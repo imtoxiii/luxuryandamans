@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://andamanluxury.com/sitemap.xml
+
+# Optimize crawling
+Crawl-delay: 1
+
+# Prevent duplicate content
+Disallow: /*?*utm_  # Block only URLs with tracking parameters like utm_source
+Disallow: /*?fbclid
+Disallow: /*&fbclid
+Disallow: /*#  # Fragment identifiers are not necessary to block usually
+
+# Prevent indexing of admin and utility pages
+Disallow: /admin/
+Disallow: /api/
+Disallow: /cdn-cgi/

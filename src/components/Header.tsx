@@ -183,12 +183,14 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center lg:space-x-8 md:space-x-4">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   to={item.path}
                   className={`text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                    ((item.name === 'Guide' || item.name === 'Calculator') ? 'hidden lg:inline-block' : '')
+                  } ${
                     location.pathname === item.path
                       ? showWhiteBackground 
                         ? 'text-teal-600 border-b-2 border-teal-600' 
@@ -318,8 +320,11 @@ const Header = () => {
                   </motion.div>
                 ))}
                 
-                {/* Book Now CTA */}
-                <motion.div variants={itemVariants} className="pt-8">
+                {/* CTA and social links */}
+                <motion.div 
+                  className="mt-12 text-center"
+                  variants={footerVariants}
+                >
                   <Link
                     to="/enquiry"
                     onClick={closeMenu}

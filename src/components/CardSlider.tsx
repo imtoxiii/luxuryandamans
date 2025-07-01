@@ -184,7 +184,7 @@ const CardSlider: React.FC<CardSliderProps> = ({
 
       {/* Enhanced Dot Navigation */}
       {showDots && items.length > itemsPerView && maxIndex > 0 && (
-        <div className="flex items-center justify-center space-x-2 mt-8">
+        <div className="hidden md:flex items-center justify-center space-x-2 mt-8">
           {Array.from({ length: maxIndex + 1 }).map((_, index) => (
             <motion.button
               key={index}

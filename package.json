@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -56,6 +60,10 @@
     "eslint": "^9.14.0",
     "glob": "^11.0.0",
     "rimraf": "^6.0.1",
-    "inflight": "^1.0.6"
+    "inflight": "^1.0.6",
+    "@humanwhocodes/config-array": "^0.14.0",
+    "@humanwhocodes/object-schema": "^2.0.3",
+    "@eslint/object-schema": "^2.1.4",
+    "@eslint/config-array": "^0.18.0"
   }
 }

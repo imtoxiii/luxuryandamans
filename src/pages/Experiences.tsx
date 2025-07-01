@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { staggerContainer, fadeInUp } from '../lib/animations';
+import { ChevronRight } from 'lucide-react';
 
 const experiences = [
   {
@@ -53,7 +54,7 @@ const experiences = [
 
 const ExperiencesPage = () => {
   return (
-    <div className="min-h-screen bg-pearl">
+    <div className="min-h-screen bg-gray-50">
       <SEO 
         title="Luxury Experiences"
         description="Discover unforgettable luxury experiences in the Andaman Islands. From scuba diving to sunset cruises, create lasting memories with our curated activities."
@@ -61,33 +62,17 @@ const ExperiencesPage = () => {
       />
       <Header />
       
-      {/* Hero Section */}
-      <div className="relative h-[60vh] overflow-hidden">
-        <img 
-          src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
-          alt="Andaman Experiences"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-night/60 to-night/30" />
-        <div className="absolute inset-0 flex items-center justify-center text-center">
-          <div className="max-w-4xl px-4">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-5xl md:text-6xl font-bold text-pearl mb-6"
-            >
-              Unforgettable Experiences
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl text-pearl/90"
-            >
-              Create lasting memories with our curated activities
-            </motion.p>
-          </div>
+      <div className="relative overflow-hidden bg-gradient-to-r from-blue-700 to-cyan-500 text-white pt-24 pb-12 md:pt-28 md:pb-16">
+        <div className="container mx-auto px-4 z-10 relative">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <div className="flex items-center text-sm text-blue-200 mb-4">
+              <Link to="/" className="hover:text-white transition-colors">Home</Link>
+              <ChevronRight size={16} className="mx-1" />
+              <span className="font-semibold text-white">Experiences</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold">Unforgettable Experiences</h1>
+            <p className="mt-2 text-lg text-blue-100 max-w-2xl">Dive into adventure, relax in style, and create memories that last a lifetime.</p>
+          </motion.div>
         </div>
       </div>
 
@@ -101,29 +86,37 @@ const ExperiencesPage = () => {
       >
         <div className="container mx-auto px-4">
           <motion.h2 variants={fadeInUp} className="text-3xl font-bold text-night mb-12 text-center">Our Experiences</motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {experiences.map((exp) => (
               <motion.div
                 key={exp.slug}
                 variants={fadeInUp}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100"
               >
-                <Link 
-                  to={`/experiences/${exp.slug}`}
-                  className="block bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500"
-                >
-                  <div className="relative h-64 overflow-hidden">
-                    <div className="absolute inset-0 bg-night/20 group-hover:bg-night/40 transition-all duration-500 z-10" />
-                    <img
-                      src={exp.image}
-                      alt={exp.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
+                <div className="relative h-48 overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
+                  <img
+                    src={exp.image}
+                    alt={exp.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                   <div className="absolute bottom-3 left-3 right-3 z-20">
+                    <h3 className="text-white font-bold text-xl mb-1 leading-tight">{exp.title}</h3>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-night mb-2">{exp.title}</h3>
-                    <p className="text-night/70">{exp.description}</p>
+                </div>
+                
+                <div className="p-4 flex flex-col">
+                  <p className="text-gray-600 text-sm mb-4 flex-grow h-10 line-clamp-2">{exp.description}</p>
+                  <div className="mt-4">
+                    <Link
+                      to={`/experiences/${exp.slug}`}
+                      className="w-full block text-center py-2.5 bg-gradient-to-r from-azure to-blue-600 text-white rounded-lg hover:shadow-lg transition-all text-sm font-medium"
+                    >
+                      Learn More
+                    </Link>
                   </div>
-                </Link>
+                </div>
               </motion.div>
             ))}
           </div>

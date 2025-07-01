@@ -2,14 +2,13 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import newHeroImage from '../img/hero-background.png';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
   const [heroComplete, setHeroComplete] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const mobileVideoRef = useRef<HTMLVideoElement>(null);
   
   // Use useScroll to track scroll progress from the container
   const { scrollYProgress } = useScroll();
@@ -56,45 +55,17 @@ const Hero = () => {
     return unsubscribe;
   }, [smoothProgress, heroComplete]);
 
-  // Force video play on load (desktop only)
-  useEffect(() => {
-    const playVideo = async () => {
-      if (!isMobile && videoRef.current) {
-        try {
-          await videoRef.current.play();
-        } catch (error) {
-          console.log('Desktop video autoplay prevented:', error);
-        }
-      }
-      if (isMobile && mobileVideoRef.current) {
-        try {
-          await mobileVideoRef.current.play();
-        } catch (error) {
-          console.log('Mobile video autoplay prevented:', error);
-        }
-      }
-    };
-    
-    if (isLoaded) {
-      playVideo();
-    }
-  }, [isLoaded, isMobile]);
-
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 100);
     
-    // Preload mobile background image
-    if (isMobile) {
-      const img = new Image();
-      img.onload = () => setImageLoaded(true);
-      img.onerror = () => setImageLoaded(true); // Set to true even on error to show fallback
-      img.src = 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80';
-    } else {
-      setImageLoaded(true); // Not needed for desktop
-    }
+    // Preload background image
+    const img = new Image();
+    img.onload = () => setImageLoaded(true);
+    img.onerror = () => setImageLoaded(true); // Set to true even on error to show fallback
+    img.src = newHeroImage;
     
     return () => clearTimeout(timer);
-  }, [isMobile]);
+  }, []);
 
   // DESKTOP & TABLET: ORIGINAL COMPLEX ANIMATIONS
   if (!isMobile) {
@@ -187,7 +158,7 @@ const Hero = () => {
             {/* Clean white background like NeoLeaf */}
             <div className="absolute inset-0 bg-white z-0" />
 
-            {/* Video container */}
+            {/* Image container */}
             <motion.div 
               className="absolute z-20 overflow-hidden"
               style={{ 
@@ -203,23 +174,11 @@ const Hero = () => {
               animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 1.02 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <video 
-                ref={videoRef}
-                autoPlay 
-                muted 
-                loop 
-                playsInline
-                controls={false}
-                preload="auto"
+              <img 
+                src={newHeroImage}
+                alt="Luxury Andaman hero"
                 className="w-full h-full object-cover"
-                onLoadedData={() => videoRef.current?.play()}
-                onCanPlay={() => videoRef.current?.play()}
-              >
-                <source 
-                  src="https://videos.pexels.com/video-files/3094026/3094026-uhd_2560_1440_30fps.mp4" 
-                  type="video/mp4"
-                />
-              </video>
+              />
               <motion.div 
                 className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/45" 
                 style={{ opacity: overlayOpacity }}
@@ -355,7 +314,7 @@ const Hero = () => {
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-300"
             style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80)',
+              backgroundImage: `url(${newHeroImage})`,
               backgroundColor: '#0F172A', // Fallback color
               opacity: imageLoaded ? 1 : 0
             }}

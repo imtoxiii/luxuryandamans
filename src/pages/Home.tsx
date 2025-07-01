@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Calculator, ArrowRight } from 'lucide-react';
@@ -15,6 +15,7 @@ import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
 import CardSlider from '../components/CardSlider';
 import { staggerContainer, fadeInUp } from '../lib/animations';
+import { gsap } from 'gsap';
 
 const Home = () => {
   const experiences = [
@@ -49,6 +50,20 @@ const Home = () => {
       link: "/experiences/wellness-retreats"
     }
   ];
+
+  const floatingIconRef = useRef(null);
+
+  useEffect(() => {
+    if (floatingIconRef.current) {
+      gsap.to(floatingIconRef.current, {
+        y: -10,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut",
+        duration: 1.5
+      });
+    }
+  }, []);
 
   return (
     <div className="bg-white">
@@ -172,7 +187,7 @@ const Home = () => {
           
           <div className="container relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="w-20 h-20 bg-gradient-to-br from-emerald-500 via-emerald-400 to-yellow-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl float-animation">
+              <div ref={floatingIconRef} className="w-20 h-20 bg-gradient-to-br from-emerald-500 via-emerald-400 to-yellow-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
                 <ArrowRight className="w-10 h-10 text-white" />
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 heading-luxury leading-tight">

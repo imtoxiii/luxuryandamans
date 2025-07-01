@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Calendar, Users, Send, Clock, Home, Star, CheckCircle, ArrowRight, Sparkles, Globe, Shield, Heart } from 'lucide-react';
+import { Mail, Phone, MapPin, Calendar, Users, Send, Clock, Home, Star, CheckCircle, ArrowRight, Sparkles, Globe, Shield, Heart, Package } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { sendEmail } from '../lib/email';
 import toast, { Toaster } from 'react-hot-toast';
+import Header from './Header';
+import Footer from './Footer';
+import SEO from './SEO';
 
 const Enquiry = () => {
   const [formData, setFormData] = useState({
@@ -18,9 +21,48 @@ const Enquiry = () => {
     preferredContact: 'email'
   });
 
+  const [packageDetails, setPackageDetails] = useState<{
+    packageName?: string;
+    days?: number;
+    people?: number;
+    totalPrice?: number;
+    supplements?: string[];
+  } | null>(null);
+  const [enquiryType, setEnquiryType] = useState<'general' | 'booking' | 'enquiry'>('general');
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 3;
+
+  useEffect(() => {
+    // Check for booking details from package pages
+    const bookingDetails = localStorage.getItem('bookingDetails');
+    const enquiryDetails = localStorage.getItem('enquiryDetails');
+    
+    if (bookingDetails) {
+      const details = JSON.parse(bookingDetails);
+      setPackageDetails(details);
+      setEnquiryType('booking');
+      setFormData(prev => ({
+        ...prev,
+        guests: details.people?.toString() || '2',
+        duration: details.days?.toString() || '5',
+        message: `I would like to book the ${details.packageName} package for ${details.people} people for ${details.days} days. Total estimated price: ₹${details.totalPrice?.toLocaleString()}.${details.supplements?.length ? `\n\nSelected add-ons: ${details.supplements.join(', ')}` : ''}`
+      }));
+      localStorage.removeItem('bookingDetails');
+    } else if (enquiryDetails) {
+      const details = JSON.parse(enquiryDetails);
+      setPackageDetails(details);
+      setEnquiryType('enquiry');
+      setFormData(prev => ({
+        ...prev,
+        guests: details.people?.toString() || '2',
+        duration: details.days?.toString() || '5',
+        message: `I would like to enquire about the ${details.packageName} package for ${details.people} people for ${details.days} days. Could you please provide more details and pricing information?${details.supplements?.length ? `\n\nInterested add-ons: ${details.supplements.join(', ')}` : ''}`
+      }));
+      localStorage.removeItem('enquiryDetails');
+    }
+  }, []);
 
   const destinations = [
     { value: 'havelock', label: 'Havelock Island', description: 'Pristine beaches & luxury resorts' },
@@ -97,22 +139,30 @@ const Enquiry = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-lavender-100 to-violet-50 overflow-x-hidden" style={{
-      background: 'linear-gradient(135deg, #f3f0ff 0%, #e5deff 25%, #ddd6fe 50%, #c4b5fd 75%, #a78bfa 100%)'
-    }}>
-      <Toaster 
-        position="top-right"
-        toastOptions={{
-          style: {
-            background: 'linear-gradient(135deg, #8b5cf6, #a855f7)',
-            color: '#fff',
-            borderRadius: '16px',
-            border: '1px solid rgba(139, 92, 246, 0.3)',
-            fontSize: '14px',
-            padding: '16px',
-          },
-        }}
+    <div className="min-h-screen">
+      <SEO 
+        title="Book Your Dream Vacation"
+        description="Plan your perfect Andaman getaway with our luxury travel packages. Submit your enquiry and get personalized recommendations."
+        keywords="andaman booking, luxury travel enquiry, vacation planning, travel booking"
       />
+      <Header />
+      
+      <div className="bg-gradient-to-br from-purple-50 via-lavender-100 to-violet-50 overflow-x-hidden min-h-screen pt-20" style={{
+        background: 'linear-gradient(135deg, #f3f0ff 0%, #e5deff 25%, #ddd6fe 50%, #c4b5fd 75%, #a78bfa 100%)'
+      }}>
+        <Toaster 
+          position="top-right"
+          toastOptions={{
+            style: {
+              background: 'linear-gradient(135deg, #8b5cf6, #a855f7)',
+              color: '#fff',
+              borderRadius: '16px',
+              border: '1px solid rgba(139, 92, 246, 0.3)',
+              fontSize: '14px',
+              padding: '16px',
+            },
+          }}
+        />
       
       {/* Floating particles background */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
@@ -328,6 +378,72 @@ const Enquiry = () => {
                     </p>
                   </div>
                 </div>
+
+                {/* Package Details Section */}
+                {packageDetails && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-200"
+                  >
+                    <div className="flex items-center space-x-3 mb-4">
+                      <Package className="w-6 h-6 text-blue-600" />
+                      <h3 className="text-xl font-bold text-gray-800">
+                        {enquiryType === 'booking' ? 'Booking Details' : 'Package Enquiry'}
+                      </h3>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                      <div className="bg-white rounded-lg p-3 shadow-sm">
+                        <h4 className="font-semibold text-gray-700 text-sm">Package</h4>
+                        <p className="text-blue-600 font-bold">{packageDetails.packageName}</p>
+                      </div>
+                      <div className="bg-white rounded-lg p-3 shadow-sm">
+                        <h4 className="font-semibold text-gray-700 text-sm">Duration</h4>
+                        <p className="text-gray-900 font-semibold">{packageDetails.days} days</p>
+                      </div>
+                      <div className="bg-white rounded-lg p-3 shadow-sm">
+                        <h4 className="font-semibold text-gray-700 text-sm">People</h4>
+                        <p className="text-gray-900 font-semibold">{packageDetails.people} guests</p>
+                      </div>
+                      {packageDetails.totalPrice && (
+                        <div className="bg-white rounded-lg p-3 shadow-sm">
+                          <h4 className="font-semibold text-gray-700 text-sm">Total Price</h4>
+                          <p className="text-green-600 font-bold">₹{packageDetails.totalPrice.toLocaleString()}</p>
+                        </div>
+                      )}
+                    </div>
+                    {packageDetails.supplements && packageDetails.supplements.length > 0 && (
+                      <div className="mt-4 p-3 bg-white rounded-lg">
+                        <h4 className="font-semibold text-gray-700 text-sm mb-2">Selected Add-ons:</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {packageDetails.supplements.map((supplement, index) => (
+                            <span 
+                              key={index}
+                              className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium"
+                            >
+                              {supplement}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    <div className="mt-4 flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span className="text-sm text-gray-600">
+                          {enquiryType === 'booking' ? 'Ready to book this package' : 'Interested in this package'}
+                        </span>
+                      </div>
+                                             <Link
+                         to="/packages"
+                         className="text-sm text-gray-500 hover:text-gray-700 underline"
+                       >
+                         Change Package
+                       </Link>
+                    </div>
+                  </motion.div>
+                )}
 
                 <form onSubmit={handleSubmit} className="space-y-8">
                   <AnimatePresence mode="wait">
@@ -610,6 +726,9 @@ const Enquiry = () => {
           </div>
         </div>
       </div>
+      </div>
+      
+      <Footer />
     </div>
   );
 };

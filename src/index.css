@@ -260,11 +260,6 @@
     position: fixed !important;
   }
 
-  .nav-white-bg .gradient-text {
-    @apply text-night !important; /* Make brand text dark on white background */
-    background: none !important;
-  }
-
   .nav-white-bg .nav-link {
     @apply text-gray-700 hover:text-black !important; /* Darker links */
   }
@@ -302,17 +297,6 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     @apply text-night rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 
            hover:scale-[1.02] active:scale-[0.98];
-  }
-
-  .gradient-text {
-    @apply bg-gradient-to-r from-azure via-lagoon to-azure bg-clip-text text-transparent;
-    background-size: 200% auto;
-    animation: gradient-shift 3s ease-in-out infinite;
-  }
-
-  @keyframes gradient-shift {
-    0%, 100% { background-position: 0% center; }
-    50% { background-position: 100% center; }
   }
 
   .nav-link {
@@ -523,15 +507,6 @@
   }
 
   /* Additional animations and effects */
-  .float-animation {
-    animation: float 3s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-  }
-
   .heading-luxury {
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   }
@@ -541,17 +516,6 @@
   }
 
   /* Loading and error states */
-  .loading-skeleton {
-    @apply animate-pulse bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-xl;
-    background-size: 200% 100%;
-    animation: skeleton-wave 2s infinite ease-in-out;
-  }
-
-  @keyframes skeleton-wave {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-
   .error-message {
     @apply text-red-500 text-sm mt-2 p-3 bg-red-50 rounded-lg border border-red-100;
   }

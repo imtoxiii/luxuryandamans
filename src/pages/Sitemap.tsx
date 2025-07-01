@@ -20,7 +20,7 @@ const Sitemap = () => {
       title: "Main Pages",
       links: [
         { name: "Home", path: "/" },
-        { name: "About", path: "/about" },
+        { name: "Travel Guide", path: "/guide" },
         { name: "Contact", path: "/contact" },
         { name: "Blog", path: "/blog" }
       ]
@@ -29,16 +29,16 @@ const Sitemap = () => {
       title: "Destinations",
       links: [
         { name: "All Destinations", path: "/destinations" },
-        { name: "Havelock Island", path: "/destinations/havelock-island" },
-        { name: "Neil Island", path: "/destinations/neil-island" },
-        { name: "Port Blair", path: "/destinations/port-blair" }
+        { name: "Radhanagar Beach", path: "/destinations/radhanagar-beach" },
+        { name: "Cellular Jail", path: "/destinations/cellular-jail" },
+        { name: "Ross Island", path: "/destinations/ross-island" }
       ]
     },
     {
       title: "Experiences",
       links: [
         { name: "All Experiences", path: "/experiences" },
-        { name: "Luxury Resorts", path: "/experiences/luxury-beach-resorts" },
+        { name: "Luxury Resorts", path: "/experiences/luxury-resorts" },
         { name: "Scuba Diving", path: "/experiences/scuba-diving" },
         { name: "Island Hopping", path: "/experiences/island-hopping" },
         { name: "Sunset Cruises", path: "/experiences/sunset-cruises" },
@@ -59,7 +59,7 @@ const Sitemap = () => {
       title: "Help & Support",
       links: [
         { name: "FAQ", path: "/faq" },
-        { name: "Travel Guide", path: "/travel-guide" },
+        { name: "Travel Guide", path: "/guide" },
         { name: "Price Calculator", path: "/calculator" }
       ]
     },

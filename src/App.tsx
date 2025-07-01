@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { useScrollTop } from './hooks/useScrollTop';
 import { usePageTransition } from './hooks/usePageTransition';
 import PageTransition from './components/LoadingSpinner';
@@ -17,9 +17,9 @@ import WellnessRetreatsPage from './pages/experiences/wellness-retreats';
 import PricingCalculatorPage from './pages/PricingCalculator';
 import ChatWidget from './components/ChatWidget';
 import DestinationDetail from './pages/destinations/[slug]';
-import PackageDetail from './pages/packages/[slug]';
+import PackageDetailPage from './pages/packages/[slug]';
 import LocationPage from './pages/locations/[slug]';
-import AboutPage from './pages/About';
+import GuidePage from './pages/About';
 import BlogPage from './pages/Blog';
 import BlogPost from './pages/blog/[slug]';
 import TravelGuide from './pages/TravelGuide';
@@ -54,15 +54,16 @@ function App() {
         <Route path="/destinations/:slug" element={<DestinationDetail />} />
         <Route path="/locations/:slug" element={<LocationPage />} />
         <Route path="/packages" element={<PackagesPage />} />
-        <Route path="/packages/:slug" element={<PackageDetail />} />
+        <Route path="/packages/:slug" element={<PackageDetailPage />} />
         <Route path="/experiences" element={<ExperiencesPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/about" element={<AboutPage />} />
+        <Route path="/guide" element={<GuidePage />} />
+        <Route path="/about" element={<Navigate to="/guide" replace />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/enquiry" element={<Enquiry />} />
         <Route path="/calculator" element={<PricingCalculatorPage />} />
-        <Route path="/travel-guide" element={<TravelGuide />} />
+        <Route path="/travel-guide" element={<Navigate to="/guide" replace />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
@@ -70,12 +71,16 @@ function App() {
         
         {/* Experience Detail Pages */}
         <Route path="/experiences/luxury-resorts" element={<LuxuryResortsPage />} />
+        <Route path="/experiences/luxury-beach-resorts" element={<Navigate to="/experiences/luxury-resorts" replace />} />
         <Route path="/experiences/scuba-diving" element={<ScubaDivingPage />} />
         <Route path="/experiences/island-hopping" element={<IslandHoppingPage />} />
         <Route path="/experiences/sunset-cruises" element={<SunsetCruisesPage />} />
         <Route path="/experiences/wellness-retreats" element={<WellnessRetreatsPage />} />
         <Route path="/experiences/romantic-getaways" element={<RomanticGetawaysPage />} />
         <Route path="/experiences/family-adventures" element={<FamilyAdventuresPage />} />
+        
+        {/* 404 Catch-all */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <ChatWidget />
       

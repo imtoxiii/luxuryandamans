@@ -40,7 +40,8 @@ const Header = () => {
 
   // Determine if we should show white background
   const isContactPage = location.pathname === '/contact';
-  const showWhiteBackground = scrollY > contentThreshold || isContactPage;
+  const isHomePage = location.pathname === '/';
+  const showWhiteBackground = !isHomePage || scrollY > contentThreshold || isContactPage;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -68,8 +69,10 @@ const Header = () => {
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'Destinations', path: '/destinations' },
+    { name: 'Packages', path: '/packages' },
     { name: 'Experiences', path: '/experiences' },
-    { name: 'About', path: '/about' },
+    { name: 'Guide', path: '/guide' },
+    { name: 'Calculator', path: '/calculator' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -136,7 +139,7 @@ const Header = () => {
       {/* Fixed Navigation */}
       <motion.nav 
         className={`fixed top-0 left-0 right-0 w-full z-[9999] transition-all duration-500 ${
-          showWhiteBackground ? 'nav-white-bg shadow-lg' : 'bg-transparent'
+          (showWhiteBackground && !isMenuOpen) ? 'nav-white-bg shadow-lg' : 'bg-transparent'
         }`}
         style={{ 
           zIndex: 9999,
@@ -152,11 +155,11 @@ const Header = () => {
         {/* White background overlay that appears with main content */}
         <motion.div
           className="absolute inset-0 bg-white/95 backdrop-blur-md"
-          style={{ opacity: navOpacity }}
+          style={{ opacity: (isMenuOpen && isMobile) ? 0 : navOpacity }}
         />
         
         {/* Ensure navigation always has a background when scrolled */}
-        {showWhiteBackground && (
+        {(showWhiteBackground && !isMenuOpen) && (
           <div className="absolute inset-0 bg-white/90 backdrop-blur-sm" />
         )}
         
@@ -169,11 +172,11 @@ const Header = () => {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <Palmtree className={`h-8 w-8 transition-colors duration-300 ${
-                  showWhiteBackground ? 'text-teal-600' : 'text-white'
+                  (showWhiteBackground && !isMenuOpen) ? 'text-teal-600' : 'text-white'
                 }`} />
               </motion.div>
               <span className={`text-2xl font-bold transition-colors duration-300 ${
-                showWhiteBackground ? 'text-gray-900' : 'text-white'
+                (showWhiteBackground && !isMenuOpen) ? 'text-gray-900' : 'text-white'
               }`}>
                 Luxury Andamans
               </span>
@@ -220,15 +223,15 @@ const Header = () => {
             {/* Custom Hamburger Menu Button for Mobile */}
             <button
               onClick={toggleMenu}
-              className={`md:hidden relative w-10 h-10 flex flex-col justify-center items-center transition-colors duration-300 ${
-                showWhiteBackground ? 'text-gray-900' : 'text-white'
+              className={`md:hidden relative w-10 h-10 flex flex-col justify-center items-center z-[10001] ${
+                (showWhiteBackground && !isMenuOpen) ? 'text-gray-900' : 'text-white'
               } focus:outline-none`}
               aria-label="Toggle navigation menu"
             >
               {/* Custom hamburger/X animation */}
               <motion.span
-                className={`absolute w-6 h-0.5 rounded-full transition-colors duration-300 ${
-                  showWhiteBackground ? 'bg-gray-900' : 'bg-white'
+                className={`absolute w-6 h-0.5 rounded-full ${
+                  (showWhiteBackground && !isMenuOpen) ? 'bg-gray-900' : 'bg-white'
                 }`}
                 initial={false}
                 animate={{
@@ -238,8 +241,8 @@ const Header = () => {
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               />
               <motion.span
-                className={`absolute w-6 h-0.5 rounded-full transition-colors duration-300 ${
-                  showWhiteBackground ? 'bg-gray-900' : 'bg-white'
+                className={`absolute w-6 h-0.5 rounded-full ${
+                  (showWhiteBackground && !isMenuOpen) ? 'bg-gray-900' : 'bg-white'
                 }`}
                 initial={false}
                 animate={{
@@ -249,8 +252,8 @@ const Header = () => {
                 transition={{ duration: 0.2, ease: "easeInOut" }}
               />
               <motion.span
-                className={`absolute w-6 h-0.5 rounded-full transition-colors duration-300 ${
-                  showWhiteBackground ? 'bg-gray-900' : 'bg-white'
+                className={`absolute w-6 h-0.5 rounded-full ${
+                  (showWhiteBackground && !isMenuOpen) ? 'bg-gray-900' : 'bg-white'
                 }`}
                 initial={false}
                 animate={{

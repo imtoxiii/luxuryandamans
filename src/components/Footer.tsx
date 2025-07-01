@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -11,10 +11,11 @@ import {
   Globe,
   ChevronRight
 } from 'lucide-react';
+import { gsap } from 'gsap';
 
 const Footer = () => {
   const quickLinks = [
-    { name: 'About Us', href: '/about' },
+          { name: 'Travel Guide', href: '/guide' },
     { name: 'Destinations', href: '/destinations' },
     { name: 'Experiences', href: '/experiences' },
     { name: 'Packages', href: '/packages' },
@@ -23,20 +24,34 @@ const Footer = () => {
   ];
 
   const destinations = [
-    { name: 'Havelock Island', href: '/destinations/havelock' },
-    { name: 'Neil Island', href: '/destinations/neil' },
-    { name: 'Port Blair', href: '/destinations/port-blair' },
-    { name: 'Ross Island', href: '/destinations/ross' },
-    { name: 'Barren Island', href: '/destinations/barren' }
+    { name: 'Havelock Island', href: '/destinations/radhanagar-beach' },
+    { name: 'Neil Island', href: '/destinations/bharatpur-beach' },
+    { name: 'Port Blair', href: '/destinations/cellular-jail' },
+    { name: 'Ross Island', href: '/destinations/ross-island' },
+    { name: 'Barren Island', href: '/destinations/barren-island' }
   ];
 
   const experiences = [
     { name: 'Scuba Diving', href: '/experiences/scuba-diving' },
     { name: 'Island Hopping', href: '/experiences/island-hopping' },
-    { name: 'Beach Activities', href: '/experiences/beach-activities' },
-    { name: 'Water Sports', href: '/experiences/water-sports' },
+    { name: 'Luxury Resorts', href: '/experiences/luxury-resorts' },
+    { name: 'Wellness Retreats', href: '/experiences/wellness-retreats' },
     { name: 'Sunset Cruises', href: '/experiences/sunset-cruises' }
   ];
+
+  const gradientTextRef = useRef(null);
+
+  useEffect(() => {
+    if (gradientTextRef.current) {
+      gsap.to(gradientTextRef.current, {
+        backgroundPosition: "200% center",
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut",
+        duration: 3
+      });
+    }
+  }, []);
 
   return (
     <footer className="bg-night text-pearl">
@@ -49,7 +64,7 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-2xl font-bold mb-6 gradient-text">Luxury Andamans</h3>
+            <h3 ref={gradientTextRef} className="text-2xl font-bold mb-6 bg-gradient-to-r from-azure via-lagoon to-azure bg-clip-text text-transparent" style={{ backgroundSize: '200% auto' }}>Luxury Andamans</h3>
             <p className="text-pearl/80 mb-6">
               Your gateway to the most exclusive experiences in the Andaman Islands.
               Discover paradise with our curated luxury travel services.

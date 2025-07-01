@@ -1,6 +1,6 @@
 export const fadeInUp = {
   initial: {
-    opacity: 0,
+    opacity: 1,
     y: 30,
   },
   animate: {
@@ -25,7 +25,7 @@ export const staggerContainer = (staggerChildren: number, delayChildren: number)
 
 export const fadeIn = {
   initial: {
-    opacity: 0,
+    opacity: 1,
   },
   animate: {
     opacity: 1,

@@ -69,7 +69,7 @@ const ExperiencesPage = () => {
               <Link to="/" className="hover:text-white transition-colors">Home</Link>
               <ChevronRight size={16} className="mx-1" />
               <span className="font-semibold text-white">Experiences</span>
-            </div>
+          </div>
             <h1 className="text-4xl md:text-5xl font-bold">Unforgettable Experiences</h1>
             <p className="mt-2 text-lg text-blue-100 max-w-2xl">Dive into adventure, relax in style, and create memories that last a lifetime.</p>
           </motion.div>
@@ -93,14 +93,14 @@ const ExperiencesPage = () => {
                 variants={fadeInUp}
                 whileHover={{ y: -8, scale: 1.02 }}
                 className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100"
-              >
+                >
                 <div className="relative h-48 overflow-hidden group">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-                  <img
-                    src={exp.image}
-                    alt={exp.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+                    <img
+                      src={exp.image}
+                      alt={exp.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
                    <div className="absolute bottom-3 left-3 right-3 z-20">
                     <h3 className="text-white font-bold text-xl mb-1 leading-tight">{exp.title}</h3>
                   </div>

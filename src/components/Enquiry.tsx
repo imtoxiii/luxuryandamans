@@ -148,21 +148,21 @@ const Enquiry = () => {
       <Header />
       
       <div className="bg-gradient-to-br from-purple-50 via-lavender-100 to-violet-50 overflow-x-hidden min-h-screen pt-20" style={{
-        background: 'linear-gradient(135deg, #f3f0ff 0%, #e5deff 25%, #ddd6fe 50%, #c4b5fd 75%, #a78bfa 100%)'
-      }}>
-        <Toaster 
-          position="top-right"
-          toastOptions={{
-            style: {
-              background: 'linear-gradient(135deg, #8b5cf6, #a855f7)',
-              color: '#fff',
-              borderRadius: '16px',
-              border: '1px solid rgba(139, 92, 246, 0.3)',
-              fontSize: '14px',
-              padding: '16px',
-            },
-          }}
-        />
+      background: 'linear-gradient(135deg, #f3f0ff 0%, #e5deff 25%, #ddd6fe 50%, #c4b5fd 75%, #a78bfa 100%)'
+    }}>
+      <Toaster 
+        position="top-right"
+        toastOptions={{
+          style: {
+            background: 'linear-gradient(135deg, #8b5cf6, #a855f7)',
+            color: '#fff',
+            borderRadius: '16px',
+            border: '1px solid rgba(139, 92, 246, 0.3)',
+            fontSize: '14px',
+            padding: '16px',
+          },
+        }}
+      />
       
       {/* Floating particles background */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">

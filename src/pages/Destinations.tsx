@@ -25,7 +25,7 @@ const DestinationsPage = () => {
               <Link to="/" className="hover:text-white transition-colors">Home</Link>
               <ChevronRight size={16} className="mx-1" />
               <span className="font-semibold text-white">Destinations</span>
-            </div>
+          </div>
             <h1 className="text-4xl md:text-5xl font-bold">Explore Our Islands</h1>
             <p className="mt-2 text-lg text-blue-100 max-w-2xl">From bustling capitals to serene, untouched beaches, find your paradise.</p>
           </motion.div>
@@ -48,14 +48,14 @@ const DestinationsPage = () => {
                 variants={fadeInUp}
                 whileHover={{ y: -8, scale: 1.02 }}
                 className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100"
-              >
+                >
                 <div className="relative h-48 overflow-hidden group">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-                  <img
-                    src={dest.image}
-                    alt={dest.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+                    <img
+                      src={dest.image}
+                      alt={dest.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
                   <div className="absolute bottom-3 left-3 right-3 z-20">
                     <h3 className="text-white font-bold text-xl mb-1 leading-tight">{dest.name}</h3>
                   </div>
@@ -69,12 +69,12 @@ const DestinationsPage = () => {
                       <div key={i} className="flex items-center text-gray-600">
                         <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mr-2" />
                         <span className="text-xs">{activity}</span>
-                      </div>
-                    ))}
+                        </div>
+                      ))}
                     {dest.activities.length > 2 && (
                        <div className="text-xs text-cyan-500 font-medium">
                         +{dest.activities.length - 2} more activities
-                      </div>
+                    </div>
                     )}
                   </div>
 
@@ -84,7 +84,7 @@ const DestinationsPage = () => {
                       className="w-full block text-center py-2.5 bg-gradient-to-r from-azure to-blue-600 text-white rounded-lg hover:shadow-lg transition-all text-sm font-medium"
                     >
                       Explore Destination
-                    </Link>
+                </Link>
                   </div>
                 </div>
               </motion.div>

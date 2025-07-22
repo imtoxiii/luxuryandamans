@@ -29,7 +29,7 @@ import Terms from './pages/Terms';
 import Sitemap from './pages/Sitemap';
 import RomanticGetawaysPage from './pages/experiences/romantic-getaways';
 import FamilyAdventuresPage from './pages/experiences/family-adventures';
-import CustomCursor from './components/CustomCursor';
+import SEO from './components/SEO';
 
 function App() {
   const { isTransitioning, displayLocation } = usePageTransition();
@@ -46,7 +46,6 @@ function App() {
 
   return (
     <>
-      {!isMobile && <CustomCursor />}
       {/* Page Content - shows the displayLocation (delayed during transition) */}
       <Routes location={displayLocation}>
         <Route path="/" element={<Home />} />
@@ -63,7 +62,7 @@ function App() {
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/enquiry" element={<Enquiry />} />
         <Route path="/calculator" element={<PricingCalculatorPage />} />
-        <Route path="/travel-guide" element={<Navigate to="/guide" replace />} />
+        <Route path="/travel-guide" element={<TravelGuide />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />

@@ -453,7 +453,7 @@ export const destinations: Destination[] = [
       transportOptions: ["Boat from Havelock Jetty", "Trekking through forest"],
       nearestAirport: "Veer Savarkar International Airport (via Port Blair ferry)",
       bestWayToTravel: "Boat ride for convenience, trekking for adventure"
-    },
+  },
     timings: {
       openTime: "9:00 AM",
       closeTime: "4:00 PM",
@@ -547,7 +547,7 @@ export const destinations: Destination[] = [
       openTime: "6:00 AM",
       closeTime: "6:00 PM",
       closedDays: "Open daily"
-    },
+  },
     ticketInfo: {
       entryFee: 0
     },

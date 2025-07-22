@@ -171,7 +171,7 @@ const DestinationPage = () => {
                     </div>
 
                     {destination.timings && (
-                      <div className="flex items-start space-x-3">
+                <div className="flex items-start space-x-3">
                         <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-azure mt-1 flex-shrink-0" />
                         <div className="flex-1">
                           <h3 className="font-semibold text-night mb-2 text-sm sm:text-base">Timings</h3>
@@ -213,7 +213,7 @@ const DestinationPage = () => {
                           </div>
                         </div>
                       ))}
-                    </div>
+                </div>
                   </div>
                 )}
 
@@ -231,8 +231,8 @@ const DestinationPage = () => {
                           {facility}
                         </div>
                       ))}
-                    </div>
                   </div>
+                </div>
                 )}
               </div>
             </motion.div>
@@ -254,18 +254,18 @@ const DestinationPage = () => {
               <p className="text-night/70 text-sm sm:text-base">Discover what makes {destination.name} special</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-              {destination.highlights.map((highlight, index) => (
-                <motion.div
-                  key={index}
+            {destination.highlights.map((highlight, index) => (
+              <motion.div
+                key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                   className="group relative overflow-hidden rounded-xl"
-                >
+              >
                   <div className="aspect-w-16 aspect-h-9">
-                    <img
-                      src={highlight.image}
-                      alt={highlight.title}
+                  <img
+                    src={highlight.image}
+                    alt={highlight.title}
                       className="w-full h-52 sm:h-64 object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                   </div>

@@ -25,7 +25,7 @@ const PackagesPage = () => {
               <Link to="/" className="hover:text-white transition-colors">Home</Link>
               <ChevronRight size={16} className="mx-1" />
               <span className="font-semibold text-white">Packages</span>
-            </div>
+          </div>
             <h1 className="text-4xl md:text-5xl font-bold">Our Curated Packages</h1>
             <p className="mt-2 text-lg text-blue-100 max-w-2xl">Explore our handcrafted journeys, designed for every type of traveler.</p>
           </motion.div>
@@ -82,7 +82,7 @@ const PackagesPage = () => {
                       {[...Array(5)].map((_, i) => (
                         <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
                       ))}
-                    </div>
+                      </div>
                   </div>
 
                   <div className="space-y-1 mb-4">
@@ -100,12 +100,12 @@ const PackagesPage = () => {
                   </div>
 
                   <div className="flex space-x-2">
-                    <Link
-                      to={`/packages/${pkg.slug}`}
+                  <Link
+                    to={`/packages/${pkg.slug}`}
                       className="flex-1 py-2.5 bg-gradient-to-r from-azure to-blue-600 text-white text-center rounded-lg hover:shadow-lg transition-all text-sm font-medium"
-                    >
-                      View Details
-                    </Link>
+                  >
+                    View Details
+                  </Link>
                     <Link
                       to="/enquiry"
                       className="px-4 py-2.5 border-2 border-azure text-azure rounded-lg hover:bg-azure hover:text-white transition-all text-sm font-medium"

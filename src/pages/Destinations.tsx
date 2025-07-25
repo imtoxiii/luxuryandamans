@@ -9,6 +9,12 @@ import { destinations } from '../data/destinations';
 import { staggerContainer, fadeInUp } from '../lib/animations';
 
 const DestinationsPage = () => {
+  // Local image paths - Add your images to src/assets/images/destinations/
+  const localImages = {
+    // heroBackground: '/src/assets/images/destinations/destinations-hero.jpg',
+    // Replace with your local image path
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <SEO 
@@ -19,6 +25,16 @@ const DestinationsPage = () => {
       <Header />
       
       <div className="relative overflow-hidden bg-gradient-to-r from-blue-700 to-cyan-500 text-white pt-24 pb-12 md:pt-28 md:pb-16">
+        {/* 
+        OPTIONAL: Add background image
+        <div className="absolute inset-0">
+          <img 
+            src={localImages.heroBackground}
+            alt="Andaman Destinations"
+            className="w-full h-full object-cover opacity-30"
+          />
+        </div>
+        */}
         <div className="container mx-auto px-4 z-10 relative">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <div className="flex items-center text-sm text-blue-200 mb-4">
@@ -51,6 +67,21 @@ const DestinationsPage = () => {
                 >
                 <div className="relative h-48 overflow-hidden group">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
+                    {/* 
+                    NOTE: Destination images come from the destinations data file.
+                    To use local images for destinations, update the image URLs in:
+                    src/data/destinations.ts
+                    
+                    Example:
+                    - Save images to: src/assets/images/destinations/
+                    - Update image paths in destinations.ts from:
+                      image: "https://images.unsplash.com/..."
+                    - To:
+                      image: "/src/assets/images/destinations/cellular-jail.jpg"
+                      
+                    Each destination also has gallery images and highlight images
+                    that should be updated in the same manner.
+                    */}
                     <img
                       src={dest.image}
                       alt={dest.name}

@@ -20,10 +20,10 @@ import { gsap } from 'gsap';
 const Home = () => {
   const experiences = [
     {
-      title: "Luxury Beach Resorts",
-      description: "Experience world-class hospitality in paradise",
+      title: "Budget Beach Resorts",
+      description: "Affordable luxury accommodation starting from ₹2,000/night",
       image: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      link: "/experiences/luxury-beach-resorts"
+      link: "/experiences/luxury-resorts"
     },
     {
       title: "Scuba Diving",
@@ -68,9 +68,31 @@ const Home = () => {
   return (
     <div className="bg-white">
       <SEO 
-        title="Luxury Travel Experiences in Andaman Islands"
-        description="Experience the ultimate luxury travel in the Andaman Islands with our curated packages, private beach resorts, and exclusive experiences. Book your dream vacation today."
-        keywords="luxury travel, andaman islands, beach resorts, island hopping, scuba diving, private beaches, luxury accommodation"
+        title="Best Andaman Islands Tour Packages 2025 | Starting ₹15,000 | Book Now"
+        description="#1 Andaman tour packages with 4.8★ rating. Pristine beaches, scuba diving, luxury resorts & honeymoon specials. 1000+ happy travelers. Free cancellation. Book today!"
+        keywords="andaman tour packages, andaman islands packages, andaman packages 2025, best andaman packages, andaman honeymoon packages, scuba diving andaman, havelock island packages, neil island tour, radhanagar beach, andaman tourism, beach vacation india, island hopping packages, andaman resorts booking, cheap andaman packages, luxury andaman packages, andaman family packages, port blair tour, cellular jail visit"
+        targetAudience="all"
+        priceRange="₹₹₹"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Luxury Andaman",
+          "url": "https://luxuryandaman.com",
+          "potentialAction": [
+            {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://luxuryandaman.com/packages?search={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          ],
+          "sameAs": [
+            "https://www.instagram.com/luxuryandaman",
+            "https://www.facebook.com/luxuryandaman"
+          ]
+        }}
       />
       
       <Header />

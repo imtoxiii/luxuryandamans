@@ -1,158 +1,311 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-  
-  <url>
-    <loc>https://andamanluxury.com/</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/about</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/contact</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/destinations</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/packages</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/experiences</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/blog</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/faq</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/travel-guide</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/calculator</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/privacy</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/terms</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/sitemap</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/destinations/havelock-island</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/destinations/neil-island</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/destinations/port-blair</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/experiences/luxury-beach-resorts</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/experiences/scuba-diving</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/experiences/island-hopping</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/experiences/sunset-cruises</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/experiences/wellness-retreats</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/packages/luxury-island-escape</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/packages/adventure-seeker</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/packages/family-paradise</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://andamanluxury.com/packages/honeymoon-special</loc>
-    <lastmod>2025-04-07T08:44:22.417Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+<!-- Main Pages -->
+<url>
+  <loc>https://luxuryandamans.com/</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1.0</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/packages</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/destinations</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/blog</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/calculator</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/enquiry</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<!-- High-Value SEO Blog Posts -->
+<url>
+  <loc>https://luxuryandamans.com/blog/andaman-vs-maldives-budget-alternative-comparison</loc>
+  <lastmod>2025-01-15T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.9</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/blog/budget-honeymoon-andaman-packages-under-50000</loc>
+  <lastmod>2025-01-10T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.9</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/blog/cheapest-andaman-packages-budget-travel-under-20000</loc>
+  <lastmod>2025-01-05T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.9</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/blog/family-vacation-packages-andaman-kid-friendly-activities</loc>
+  <lastmod>2025-01-20T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/blog/best-beach-destination-india-andaman-vs-goa-kerala-maldives</loc>
+  <lastmod>2025-01-25T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/blog/best-andaman-packages-december-2024-peak-season-deals</loc>
+  <lastmod>2024-11-15T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/blog/scuba-diving-andaman-complete-guide-prices-best-spots</loc>
+  <lastmod>2024-12-01T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/blog/solo-travel-andaman-safety-guide-itinerary-budget</loc>
+  <lastmod>2024-11-20T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/blog/7-hidden-beaches-andaman</loc>
+  <lastmod>2025-02-10T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.9</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/blog/top-10-things-to-do-andaman-2025</loc>
+  <lastmod>2025-02-12T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.9</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/blog/family-friendly-andaman-kids</loc>
+  <lastmod>2025-02-08T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<!-- Existing Blog Posts -->
+<url>
+  <loc>https://luxuryandamans.com/blog/top-10-hidden-beaches-andamans</loc>
+  <lastmod>2025-02-15T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/blog/divers-guide-marine-life</loc>
+  <lastmod>2024-12-10T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<!-- Package Pages -->
+<url>
+  <loc>https://luxuryandamans.com/packages/luxury-island-escape</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/packages/adventure-seeker</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/packages/family-paradise</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/packages/honeymoon-special</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/packages/budget-explorer</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/packages/backpacker-special</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<!-- Destination Pages -->
+<url>
+  <loc>https://luxuryandamans.com/destinations/cellular-jail</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/destinations/radhanagar-beach</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/destinations/elephant-beach</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/destinations/bharatpur-beach</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/destinations/ross-island</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/destinations/north-bay-island</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<!-- Experience Pages -->
+<url>
+  <loc>https://luxuryandamans.com/experiences/luxury-resorts</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/experiences/scuba-diving</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/experiences/island-hopping</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/experiences/sunset-cruises</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/experiences/wellness-retreats</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/experiences/family-adventures</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/experiences/romantic-getaways</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<!-- Location Pages -->
+<url>
+  <loc>https://luxuryandamans.com/locations/havelock-island</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/locations/neil-island</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/locations/port-blair</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<!-- Utility Pages -->
+<url>
+  <loc>https://luxuryandamans.com/about</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/contact</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/faq</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/travel-guide</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/sitemap</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/privacy</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+  <loc>https://luxuryandamans.com/terms</loc>
+  <lastmod>2025-01-30T08:00:00+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.3</priority>
+</url>
+
 </urlset>

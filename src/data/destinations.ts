@@ -72,10 +72,10 @@ export const destinations: Destination[] = [
     longDescription: `The Cellular Jail, also known as Kala Pani, is a colonial prison situated in Port Blair. It was used by the British to exile Indian political prisoners to the remote archipelago. Today, it stands as a national memorial and museum showcasing India's struggle for independence.
 
     Completed in 1906, this prison was designed for solitary confinement with seven blocks radiating from a central tower. Many freedom fighters including Vinayak Damodar Savarkar were imprisoned here. The jail is famous for its Light and Sound Show that narrates the heroic saga of the Indian freedom struggle.`,
-    image: "https://images.unsplash.com/photo-1584507305093-a4e42d1632c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    image: "https://images.unsplash.com/photo-1630569688747-0e3b60f6430f?q=80&w=1214&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     gallery: [
       {
-        url: "https://images.unsplash.com/photo-1584507305093-a4e42d1632c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        url: "https://images.unsplash.com/photo-1630569688747-0e3b60f6430f?q=80&w=1214&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         caption: "Cellular Jail exterior view"
       },
       {
@@ -163,10 +163,10 @@ export const destinations: Destination[] = [
     longDescription: `Ross Island, officially known as Netaji Subhas Chandra Bose Island, served as the administrative headquarters for the British in the Andaman Islands from 1858 to 1941. Today, it stands as a testament to the colonial past with ruins of buildings that once housed the British elite.
 
     The island features remnants of a church, hospital, bakery, press, swimming pool, cemetery, and the Chief Commissioner's residence. During World War II, the Japanese occupied the island and built several bunkers, which can still be seen today.`,
-    image: "https://images.unsplash.com/photo-1616428373638-7a9bdecbe342?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    image: "https://images.unsplash.com/photo-1499288813343-3be7f015631a?q=80&w=1143&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     gallery: [
       {
-        url: "https://images.unsplash.com/photo-1616428373638-7a9bdecbe342?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        url: "https://images.unsplash.com/photo-1499288813343-3be7f015631a?q=80&w=1143&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         caption: "British colonial ruins"
       },
       {
@@ -193,7 +193,7 @@ export const destinations: Destination[] = [
       {
         title: "British Colonial Ruins",
         description: "Explore the remnants of the British administrative center",
-        image: "https://images.unsplash.com/photo-1616428373638-7a9bdecbe342?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+        image: "https://www.remotelands.com/travelogues/app/uploads/2022/10/Ross-island-Andaman-Islands-India-2-1200x800.jpg"
       },
       {
         title: "Japanese Bunkers",
@@ -666,13 +666,13 @@ export const destinations: Destination[] = [
     longDescription: `Saddle Peak is the highest point in the Andaman and Nicobar Islands at 732 meters above sea level. Located in Diglipur, this peak offers breathtaking panoramic views of the surrounding islands and the Bay of Bengal.
 
     The trek to Saddle Peak is challenging but rewarding, taking you through dense tropical forests rich in flora and fauna. The peak is part of the Saddle Peak National Park and is home to various endemic species of birds and butterflies.`,
-    image: "https://images.unsplash.com/photo-1464822759844-d150ad6d1ee4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    image: "https://plus.unsplash.com/premium_photo-1727348666903-71feb2e21a0a?q=80&w=1075&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     activities: ["Trekking", "Bird Watching", "Photography", "Nature Study"],
     highlights: [
       {
         title: "Highest Peak",
         description: "Summit the highest point in Andaman and Nicobar Islands",
-        image: "https://images.unsplash.com/photo-1464822759844-d150ad6d1ee4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+        image: "https://plus.unsplash.com/premium_photo-1727348666903-71feb2e21a0a?q=80&w=1075&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       }
     ],
     bestTimeToVisit: "November to April",

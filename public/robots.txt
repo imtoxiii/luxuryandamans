@@ -1,18 +1,33 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://andamanluxury.com/sitemap.xml
+# High priority pages for crawling
+Allow: /packages
+Allow: /destinations
+Allow: /blog
+Allow: /enquiry
+Allow: /calculator
 
-# Optimize crawling
+# Block admin and private areas (if any exist)
+Disallow: /admin
+Disallow: /private
+Disallow: /.env
+Disallow: /config
+
+# Allow all image and asset files
+Allow: /images
+Allow: /assets
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+
+# Sitemap location
+Sitemap: https://luxuryandaman.com/sitemap.xml
+
+# Crawl delay (optional - helps prevent server overload)
 Crawl-delay: 1
-
-# Prevent duplicate content
-Disallow: /*?*utm_  # Block only URLs with tracking parameters like utm_source
-Disallow: /*?fbclid
-Disallow: /*&fbclid
-Disallow: /*#  # Fragment identifiers are not necessary to block usually
-
-# Prevent indexing of admin and utility pages
-Disallow: /admin/
-Disallow: /api/
-Disallow: /cdn-cgi/

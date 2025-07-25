@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Palmtree } from 'lucide-react';
+import { Palmtree, Mail } from 'lucide-react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
@@ -71,6 +71,7 @@ const Header = () => {
     { name: 'Destinations', path: '/destinations' },
     { name: 'Packages', path: '/packages' },
     { name: 'Experiences', path: '/experiences' },
+    { name: 'Blog', path: '/blog' },
     { name: 'Guide', path: '/guide' },
     { name: 'Calculator', path: '/calculator' },
     { name: 'Contact', path: '/contact' },
@@ -335,25 +336,6 @@ const Header = () => {
                 </motion.div>
               </motion.nav>
               
-              {/* Footer Contact Information */}
-              <motion.div
-                className="absolute bottom-12 left-8 right-8"
-                variants={footerVariants}
-                initial="closed"
-                animate="open"
-                exit="closed"
-              >
-                <div className="space-y-4 text-gray-400">
-                  <div className="text-sm font-medium">
-                    <p>+91 987 654 3210</p>
-                    <p>bookings@andamanluxury.com</p>
-                  </div>
-                  <div className="text-xs opacity-75">
-                    <p>Port Blair, Andaman Islands</p>
-                    <p>Creating luxury experiences since 2020</p>
-                  </div>
-                </div>
-              </motion.div>
             </div>
           </motion.div>
         )}

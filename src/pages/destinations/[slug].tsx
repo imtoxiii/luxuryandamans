@@ -57,6 +57,25 @@ const DestinationPage = () => {
       
       {/* Hero Section */}
       <div className="relative h-[60vh] sm:h-[70vh] overflow-hidden">
+        {/* 
+        NOTE: Destination images come from the destinations data file.
+        To use local images for destinations, update the image URLs in:
+        src/data/destinations.ts
+        
+        Example:
+        - Save images to: src/assets/images/destinations/
+        - Update image paths in destinations.ts from:
+          image: "https://images.unsplash.com/..."
+        - To:
+          image: "/src/assets/images/destinations/cellular-jail.jpg"
+          
+        Each destination also has:
+        - gallery[] array with url and caption
+        - highlights[] array with image property
+        - detailedActivities[] array (if present) with image property
+        
+        Update all these image paths in the destinations.ts file.
+        */}
         <img 
           src={destination.image}
           alt={destination.name}
@@ -201,6 +220,11 @@ const DestinationPage = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                       {destination.gallery.map((image, index) => (
                         <div key={index} className="relative rounded-lg overflow-hidden group aspect-w-16 aspect-h-10">
+                          {/* 
+                          NOTE: Gallery images come from the destinations data file.
+                          Update image.url paths in src/data/destinations.ts to use local images.
+                          Example: url: "/src/assets/images/destinations/gallery/cellular-jail-interior.jpg"
+                          */}
                           <img 
                             src={image.url} 
                             alt={image.caption}
@@ -263,6 +287,11 @@ const DestinationPage = () => {
                   className="group relative overflow-hidden rounded-xl"
               >
                   <div className="aspect-w-16 aspect-h-9">
+                  {/* 
+                  NOTE: Highlight images come from the destinations data file.
+                  Update highlight.image paths in src/data/destinations.ts to use local images.
+                  Example: image: "/src/assets/images/destinations/highlights/cellular-jail-night.jpg"
+                  */}
                   <img
                     src={highlight.image}
                     alt={highlight.title}

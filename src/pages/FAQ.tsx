@@ -267,13 +267,13 @@ const FAQ = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="tel:+919876543210"
+                href="tel:+916297576826"
                 className="px-8 py-4 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
               >
                 Call Support
               </a>
               <a
-                href="mailto:support@andamanluxury.com"
+                href="mailto:support@luxuryandamans.com"
                 className="px-8 py-4 glass-sunset-button text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
               >
                 Email Support

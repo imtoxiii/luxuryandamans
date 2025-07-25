@@ -105,10 +105,10 @@ class ChatService {
     // Check for booking queries
     if (message.includes('book') || message.includes('reserve') || message.includes('enquiry')) {
       return `You can book your Andaman experience in several ways:\n\n` +
-        `1. Use our online booking system\n` +
-        `2. Call us at +91-987-654-3210\n` +
-        `3. Email us at bookings@andamanluxury.com\n\n` +
-        `How would you like to proceed with your booking?`;
+        `1. Chat with us now for instant support.\n` +
+        `2. Call our 24/7 helpline: +91 6297576826\n` +
+        `3. Email us at bookings@luxuryandamans.com\n\n` +
+        `We look forward to crafting your dream Andaman getaway!`;
     }
 
     // Check for timing queries

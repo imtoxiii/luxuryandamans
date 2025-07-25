@@ -8,25 +8,25 @@ import 'swiper/css/pagination';
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
-    location: "London, UK",
+    name: "Priya Sharma",
+    location: "Bengaluru, India",
     rating: 5,
-    comment: "An absolutely magical experience! The attention to detail and personalized service exceeded all expectations.",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80"
+    comment: "Our trip to the Andaman Islands was truly unforgettable! The pristine beaches and crystal-clear waters were breathtaking. We highly recommend Luxury Andamans for their exceptional service and seamless arrangements.",
+    image: "https://plus.unsplash.com/premium_photo-1682089781034-a214f5768d58?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
-    name: "Raj Patel",
+    name: "Amit & Deepa",
+    location: "Delhi, India",
+    rating: 5,
+    comment: "Luxury Andamans crafted the perfect romantic getaway for us. From the serene sunsets to thrilling water sports, every moment was magical. The team was incredibly helpful and ensured we had a worry-free vacation.",
+    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&q=80&w=1470&auto=format&fit=crop&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    name: "Sneha & Rahul",
     location: "Mumbai, India",
     rating: 5,
-    comment: "The perfect family getaway. Our kids loved the activities and we enjoyed the luxury amenities.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80"
-  },
-  {
-    name: "Emma Wilson",
-    location: "Sydney, Australia",
-    rating: 5,
-    comment: "The diving experience was incredible! Pristine waters and professional guides made it unforgettable.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80"
+    comment: "An amazing adventure for our family! The kids absolutely loved the snorkeling and glass-bottom boat rides. Luxury Andamans made sure our trip was comfortable and filled with joyous memories. We can't wait to visit again!",
+    image: "https://images.unsplash.com/photo-1648037011755-ff3f1b62364c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   }
 ];
 

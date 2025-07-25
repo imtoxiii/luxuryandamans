@@ -31,6 +31,13 @@ import SEO from '../components/SEO';
 const GuidePage = () => {
   const [activeSection, setActiveSection] = useState('overview');
 
+  // Local image paths - Add your images to src/assets/images/about/
+  const localImages = {
+    // andamanOverview: '/src/assets/images/about/andaman-overview.jpg',
+    // cellularJail: '/src/assets/images/about/cellular-jail.jpg',
+    // Replace these with your local image paths
+  };
+
   const navigationItems = [
     { id: 'overview', label: 'Overview', icon: <BookOpen className="w-5 h-5" /> },
     { id: 'how-to-reach', label: 'How to Reach', icon: <Plane className="w-5 h-5" /> },
@@ -141,6 +148,14 @@ const GuidePage = () => {
                   </div>
                 </div>
                 <div className="order-first lg:order-last">
+                  {/* LOCAL IMAGE PLACEHOLDER - Replace with your image */}
+                  {/* <img
+                    src={localImages.andamanOverview}
+                    alt="Andaman Islands Overview"
+                    className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl shadow-xl"
+                  /> */}
+                  
+                  {/* FALLBACK ONLINE IMAGE - Remove when adding local image */}
                   <img
                     src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                     alt="Andaman Islands Overview"
@@ -243,6 +258,14 @@ const GuidePage = () => {
             </div>
           </div>
                   <div>
+                    {/* LOCAL IMAGE PLACEHOLDER - Replace with your image */}
+                    {/* <img
+                      src={localImages.cellularJail}
+                      alt="Cellular Jail Historical Monument"
+                      className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl shadow-xl"
+                    /> */}
+                    
+                    {/* FALLBACK ONLINE IMAGE - Remove when adding local image */}
                     <img
                       src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                       alt="Cellular Jail Historical Monument"

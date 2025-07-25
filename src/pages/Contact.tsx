@@ -17,6 +17,14 @@ const ContactPage = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Local image paths - Add your images to src/assets/images/contact/
+  const localImages = {
+    // officeImage: '/src/assets/images/contact/office-exterior.jpg',
+    // mapImage: '/src/assets/images/contact/location-map.jpg',
+    // teamImage: '/src/assets/images/contact/team-photo.jpg',
+    // Replace these with your local image paths
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -57,6 +65,18 @@ const ContactPage = () => {
       <Toaster position="top-right" />
       <Header />
       
+      {/* 
+      OPTIONAL: Add a hero section with local images
+      <div className="relative h-[40vh] overflow-hidden">
+        <img 
+          src={localImages.officeImage}
+          alt="Our Office"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-night/60 to-night/30" />
+      </div>
+      */}
+      
       <main className="pt-32 pb-20 px-4">
         <div className="container max-w-6xl mx-auto">
           <motion.div
@@ -78,6 +98,17 @@ const ContactPage = () => {
               className="lg:col-span-1"
             >
               <div className="bg-night rounded-xl p-8 text-pearl h-full">
+                {/* 
+                OPTIONAL: Add office image
+                <div className="mb-8">
+                  <img
+                    src={localImages.officeImage}
+                    alt="Our Office"
+                    className="w-full h-48 object-cover rounded-lg"
+                  />
+                </div>
+                */}
+                
                 <div className="space-y-8">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-azure/10 rounded-full flex items-center justify-center flex-shrink-0">
@@ -85,8 +116,8 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg mb-2">Phone</h3>
-                      <p className="text-pearl/80">+91 987 654 3210</p>
-
+                      <a href="tel:+916297576826" className="text-pearl/80 hover:text-azure transition-colors block">+91 6297576826</a>
+                      <a href="tel:+919433731478" className="text-pearl/80 hover:text-azure transition-colors block">+91 9433731478</a>
                     </div>
                   </div>
 
@@ -96,7 +127,7 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg mb-2">Email</h3>
-                      <p className="text-pearl/80">bookings@andamanluxury.com</p>
+                      <p className="text-pearl/80">bookings@luxuryandamans.com</p>
                     </div>
                   </div>
 

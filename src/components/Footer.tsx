@@ -135,22 +135,34 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-6">Contact Us</h4>
             <ul className="space-y-4">
               <li>
-                <Link to="tel:+919876543210" className="flex items-start text-pearl/80 hover:text-pearl transition-colors">
-                  <Phone className="w-5 h-5 mr-3 mt-1 glass-sunset-text" />
-                  <div>
-                    <p>+91 987 654 3210</p>
-                    <p className="text-sm text-pearl/60">Mon-Sat 9:00-18:00</p>
-                  </div>
-                </Link>
+                <div className="space-y-2">
+                  <Link to="tel:+916297576826" className="flex items-start text-pearl/80 hover:text-pearl transition-colors">
+                    <Phone className="w-5 h-5 mr-3 mt-1 glass-sunset-text" />
+                    <div>
+                      <p>+91 6297576826</p>
+                      <p className="text-sm text-pearl/60">Primary Contact</p>
+                    </div>
+                  </Link>
+                  <Link to="tel:+919433731478" className="flex items-start text-pearl/80 hover:text-pearl transition-colors ml-8">
+                    <div>
+                      <p>+91 9433731478</p>
+                      <p className="text-sm text-pearl/60">Mon-Sat 9:00-18:00</p>
+                    </div>
+                  </Link>
+                </div>
               </li>
               <li>
-                <Link to="mailto:info@andamanluxury.com" className="flex items-start text-pearl/80 hover:text-pearl transition-colors">
-                  <Mail className="w-5 h-5 mr-3 mt-1 glass-sunset-text" />
+                <div className="flex items-start gap-4">
+                  <Mail className="text-accent-gold mt-1.5" size={20} />
                   <div>
-                    <p>info@andamanluxury.com</p>
-                    <p className="text-sm text-pearl/60">24/7 Online Support</p>
+                    <p className="font-bold text-pearl mb-1 text-lg">Email Us</p>
+                    <Link to="mailto:info@luxuryandamans.com" className="flex items-start text-pearl/80 hover:text-pearl transition-colors">
+                      <div className="ml-0">
+                        <p>info@luxuryandamans.com</p>
+                      </div>
+                    </Link>
                   </div>
-                </Link>
+                </div>
               </li>
               <li className="flex items-start text-pearl/80">
                 <MapPin className="w-5 h-5 mr-3 mt-1 glass-sunset-text" />

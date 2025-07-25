@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 
-const BASE_URL = 'https://andamanluxury.com';
+const BASE_URL = 'https://luxuryandamans.com';
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 const routes = [
   '/',

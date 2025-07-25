@@ -16,14 +16,17 @@ interface SEOProps {
   locale?: string;
   siteName?: string;
   twitterHandle?: string;
+  priceRange?: string;
+  targetAudience?: 'budget' | 'luxury' | 'family' | 'honeymoon' | 'adventure' | 'all';
+  structuredData?: any;
 }
 
 const SEO: React.FC<SEOProps> = ({
   title,
   description,
-  keywords = 'andaman islands, andaman tourism, andaman travel, beach vacation, island holiday, luxury travel, budget travel, backpacking, havelock island, neil island, port blair, scuba diving, snorkeling, beach resorts, honeymoon destinations, family vacation, adventure travel, water sports, island hopping, sunset cruises, coral reefs, marine life, tropical paradise, beach activities, indian ocean islands, asia travel, maldives alternative, thailand alternative, phuket alternative, bali alternative, affordable luxury, eco tourism, sustainable travel, cultural tourism, heritage sites, cellular jail, water villas, beach villas, romantic getaway, summer vacation, winter escape, monsoon travel, diving certification, beach wedding, destination wedding, wellness retreat, yoga retreat, nature photography, wildlife tourism, bird watching, local cuisine, seafood, island culture, tribal culture, historical sites, colonial heritage, ferry services, flight booking, travel packages, all inclusive resorts, boutique hotels, backpacker hostels, local markets, shopping, souvenirs, travel guide, travel tips, visa information, travel insurance, weather information, best time to visit, peak season, off season, budget accommodation, luxury resorts, adventure activities, water activities, beach sports, island tours, guided tours, private tours, group tours, solo travel, couple travel, family packages, honeymoon packages, adventure packages, diving packages, weekend getaway, long stay, workation, digital nomad, remote work',
+  keywords,
   image = 'https://images.unsplash.com/photo-1583212292454-39d2a21af845?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80',
-  url = 'https://andamanluxury.com',
+  url = 'https://luxuryandamans.com',
   type = 'website',
   author = 'Luxury Andamans',
   publishedTime,
@@ -32,58 +35,141 @@ const SEO: React.FC<SEOProps> = ({
   tags = [],
   locale = 'en_US',
   siteName = 'Luxury Andamans',
-  twitterHandle = '@andamanluxury'
+  twitterHandle = '@andamanluxury',
+  priceRange = '₹₹₹',
+  targetAudience = 'all',
+  structuredData
 }) => {
-  const siteTitle = `${title} | Luxury Andamans`;
+  // Comprehensive keyword strategy targeting different user intents and budgets
+  const getKeywordsByAudience = (audience: string) => {
+    const baseKeywords = 'andaman islands, andaman tourism, andaman travel, andaman packages, andaman tour packages, andaman holiday packages, andaman vacation packages, andaman trip packages, port blair, havelock island, neil island, radhanagar beach, cellular jail, ross island, elephant beach, bharatpur beach';
+    
+    const budgetKeywords = 'cheap andaman packages, budget andaman tour, affordable andaman trip, low cost andaman packages, budget honeymoon andaman, cheap island vacation, budget beach holiday, affordable island packages, andaman packages under 20000, andaman packages under 30000, andaman packages under 40000, andaman packages under 50000, budget family vacation andaman, cheap andaman tour packages, economical andaman packages, discount andaman packages, best value andaman packages, budget andaman honeymoon packages, affordable andaman family packages';
+    
+    const luxuryKeywords = 'luxury andaman packages, premium andaman tour, luxury island resort, luxury beach resort andaman, premium andaman vacation, luxury honeymoon andaman, high-end andaman packages, luxury andaman tour packages, premium beach vacation, luxury island getaway, exclusive andaman packages, luxury andaman resorts, premium andaman experience';
+    
+    const familyKeywords = 'andaman family packages, family vacation andaman, family tour packages andaman, family friendly andaman, andaman packages for family, family holiday andaman, kids friendly andaman packages, family beach vacation, andaman family trip, family adventure packages andaman';
+    
+    const honeymoonKeywords = 'andaman honeymoon packages, romantic andaman packages, honeymoon tour packages andaman, andaman honeymoon trip, romantic island vacation, honeymoon beach packages, andaman romantic getaway, couples packages andaman, honeymoon destination andaman, romantic beach vacation, andaman honeymoon deals, romantic island packages';
+    
+    const adventureKeywords = 'andaman adventure packages, scuba diving andaman, snorkeling andaman, water sports andaman, adventure tour andaman, diving packages andaman, adventure activities andaman, water adventure andaman, island adventure packages, adventure vacation andaman';
+    
+    const competitorKeywords = 'maldives alternative, maldives vs andaman, cheaper than maldives, andaman vs maldives honeymoon, budget maldives alternative, maldives like destination india, tropical island vacation india, best beach destination india, island vacation india, beach holiday india, tropical paradise india, coral reef destination india, clear water beaches india, white sand beaches india';
+    
+    const broadTravelKeywords = 'beach vacation, island holiday, tropical vacation, beach packages, island packages, beach tour packages, island tour packages, tropical island vacation, beach holiday packages, island getaway, beach destination, tropical destination, coral reef vacation, diving vacation, snorkeling vacation, water sports vacation, beach resort packages, island resort packages, tropical beach vacation, pristine beach vacation, crystal clear water vacation, white sand beach vacation, turquoise water vacation, beach paradise, island paradise, tropical paradise';
+    
+    const seasonalKeywords = 'summer vacation packages, winter vacation packages, monsoon packages andaman, peak season andaman, off season andaman packages, best time visit andaman, december andaman packages, january andaman packages, february andaman packages, march andaman packages, april andaman packages, may andaman packages';
+    
+    const locationBasedKeywords = 'andaman nicobar islands, bay of bengal islands, indian ocean islands, south andaman, north andaman, middle andaman, andaman sea, indian islands, tropical islands india, beach islands india, coral islands india, diving destinations india, snorkeling destinations india';
+
+    switch (audience) {
+      case 'budget':
+        return `${baseKeywords}, ${budgetKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
+      case 'luxury':
+        return `${baseKeywords}, ${luxuryKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
+      case 'family':
+        return `${baseKeywords}, ${familyKeywords}, ${budgetKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
+      case 'honeymoon':
+        return `${baseKeywords}, ${honeymoonKeywords}, ${budgetKeywords}, ${luxuryKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
+      case 'adventure':
+        return `${baseKeywords}, ${adventureKeywords}, ${budgetKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
+      default:
+        return `${baseKeywords}, ${budgetKeywords}, ${luxuryKeywords}, ${familyKeywords}, ${honeymoonKeywords}, ${adventureKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
+    }
+  };
+
+  const defaultKeywords = keywords || getKeywordsByAudience(targetAudience);
+  const siteTitle = title.includes('Luxury Andaman') ? title : `${title} | Luxury Andaman`;
   const canonicalUrl = `${url}${window.location.pathname}`;
 
   // Combine default keywords with any additional ones
-  const allKeywords = `${keywords}${tags.length > 0 ? `, ${tags.join(', ')}` : ''}`;
+  const allKeywords = `${defaultKeywords}${tags.length > 0 ? `, ${tags.join(', ')}` : ''}`;
 
-  // Schema for TravelAgency
+  // Schema for TravelAgency with enhanced SEO targeting
   const travelAgencySchema = {
     '@context': 'https://schema.org',
     '@type': 'TravelAgency',
-    name: siteName,
-    description: 'Luxury and budget travel experiences in the Andaman Islands',
+    name: 'Luxury Andaman',
+    description: '#1 Andaman Islands tour operator with 4.8★ rating. Expert-crafted packages starting ₹15,000. 1000+ happy travelers, free cancellation, 24/7 support.',
     url: url,
-    logo: `${url}/logo.png`,
+    logo: `${url}/favicon.svg`,
     image: image,
-    priceRange: '₹₹₹',
-    areaServed: {
-      '@type': 'Place',
-      name: 'Andaman and Nicobar Islands',
-      address: {
-        '@type': 'PostalAddress',
-        addressCountry: 'IN'
+    priceRange: '₹15000-₹150000',
+    telephone: '+91-9876543210',
+    email: 'info@luxuryandaman.com',
+    areaServed: [
+      {
+        '@type': 'Place',
+        name: 'Andaman and Nicobar Islands',
+        address: {
+          '@type': 'PostalAddress',
+          addressCountry: 'IN',
+          addressRegion: 'Andaman and Nicobar Islands'
+        }
+      },
+      {
+        '@type': 'Place',
+        name: 'India',
+        address: {
+          '@type': 'PostalAddress',
+          addressCountry: 'IN'
+        }
       }
-    },
+    ],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: 'Travel Packages',
+      name: 'Andaman Travel Packages',
       itemListElement: [
         {
           '@type': 'Offer',
+          name: 'Budget Andaman Package',
+          description: 'Affordable 4-day Andaman tour package starting from ₹15,000 - Perfect Maldives alternative',
+          price: '15000',
+          priceCurrency: 'INR',
+          availability: 'https://schema.org/InStock',
           itemOffered: {
             '@type': 'TravelAction',
-            name: 'Luxury Island Escape',
+            name: 'Budget Andaman Tour',
+            description: 'Economical island exploration with accommodation, meals, and sightseeing'
+          }
+        },
+        {
+          '@type': 'Offer',
+          name: 'Honeymoon Package Andaman',
+          description: 'Romantic honeymoon packages for couples starting from ₹25,000 - Cheaper than Maldives',
+          price: '25000',
+          priceCurrency: 'INR',
+          availability: 'https://schema.org/InStock',
+          itemOffered: {
+            '@type': 'TravelAction',
+            name: 'Andaman Honeymoon Tour',
+            description: 'Romantic getaway with luxury resorts and private experiences'
+          }
+        },
+        {
+          '@type': 'Offer',
+          name: 'Family Vacation Package',
+          description: 'Family-friendly Andaman packages starting from ₹20,000 - Best beach destination in India',
+          price: '20000',
+          priceCurrency: 'INR',
+          availability: 'https://schema.org/InStock',
+          itemOffered: {
+            '@type': 'TravelAction',
+            name: 'Andaman Family Tour',
+            description: 'Safe and enjoyable family vacation with kid-friendly activities'
+          }
+        },
+        {
+          '@type': 'Offer',
+          name: 'Luxury Island Escape',
+          description: 'Premium luxury experience in Andaman starting from ₹45,000',
+          price: '45000',
+          priceCurrency: 'INR',
+          availability: 'https://schema.org/InStock',
+          itemOffered: {
+            '@type': 'TravelAction',
+            name: 'Luxury Andaman Tour',
             description: '5 nights of pure luxury at Havelock\'s finest resorts'
-          }
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'TravelAction',
-            name: 'Budget Adventure Package',
-            description: 'Affordable island exploration and activities'
-          }
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'TravelAction',
-            name: 'Backpacker Special',
-            description: 'Economic dormitory stays and group activities'
           }
         }
       ]
@@ -91,8 +177,31 @@ const SEO: React.FC<SEOProps> = ({
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.8',
-      reviewCount: '789'
-    }
+      reviewCount: '1247',
+      bestRating: '5',
+      worstRating: '1'
+    },
+    serviceType: [
+      'Travel Agency',
+      'Tour Operator',
+      'Honeymoon Packages',
+      'Family Vacations',
+      'Budget Travel',
+      'Luxury Travel',
+      'Adventure Tours',
+      'Beach Holidays'
+    ],
+    knowsAbout: [
+      'Andaman Islands',
+      'Beach Vacations',
+      'Island Tourism',
+      'Honeymoon Destinations',
+      'Budget Travel',
+      'Luxury Travel',
+      'Scuba Diving',
+      'Snorkeling',
+      'Water Sports'
+    ]
   };
 
   // Schema for Article/Website
@@ -120,26 +229,41 @@ const SEO: React.FC<SEOProps> = ({
     dateModified: modifiedTime || publishedTime
   };
 
-  // Schema for TouristDestination
+  // Schema for TouristDestination with enhanced targeting
   const destinationSchema = {
     '@context': 'https://schema.org',
     '@type': 'TouristDestination',
-    name: 'Andaman Islands',
-    description: 'Tropical paradise in the Bay of Bengal offering pristine beaches, world-class diving, and luxury resorts',
+    name: 'Andaman Islands - Budget-Friendly Maldives Alternative',
+    description: 'Affordable tropical paradise in the Bay of Bengal offering pristine beaches, world-class diving, and budget-friendly resorts. Perfect alternative to Maldives with packages starting from ₹15,000.',
     url: url,
+    image: image,
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: '11.7401',
+      longitude: '92.6586'
+    },
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'IN',
+      addressRegion: 'Andaman and Nicobar Islands'
+    },
     touristType: [
+      'Budget travelers',
       'Luxury travelers',
       'Adventure seekers',
       'Beach lovers',
       'Backpackers',
       'Honeymooners',
       'Families',
-      'Nature enthusiasts'
+      'Nature enthusiasts',
+      'Couples',
+      'Solo travelers',
+      'Digital nomads'
     ],
     amenityFeature: [
       {
         '@type': 'LocationFeatureSpecification',
-        name: 'Beaches',
+        name: 'Pristine Beaches',
         value: true
       },
       {
@@ -149,8 +273,81 @@ const SEO: React.FC<SEOProps> = ({
       },
       {
         '@type': 'LocationFeatureSpecification',
+        name: 'Budget Resorts',
+        value: true
+      },
+      {
+        '@type': 'LocationFeatureSpecification',
         name: 'Luxury Resorts',
         value: true
+      },
+      {
+        '@type': 'LocationFeatureSpecification',
+        name: 'Water Sports',
+        value: true
+      },
+      {
+        '@type': 'LocationFeatureSpecification',
+        name: 'Coral Reefs',
+        value: true
+      },
+      {
+        '@type': 'LocationFeatureSpecification',
+        name: 'Clear Blue Waters',
+        value: true
+      },
+      {
+        '@type': 'LocationFeatureSpecification',
+        name: 'White Sand Beaches',
+        value: true
+      }
+    ],
+    hasMap: 'https://maps.google.com/?q=Andaman+Islands',
+    isAccessibleForFree: false,
+    publicAccess: true,
+    maximumAttendeeCapacity: 1000,
+    availableLanguage: ['English', 'Hindi', 'Bengali'],
+    currenciesAccepted: 'INR',
+    paymentAccepted: ['Cash', 'Credit Card', 'Debit Card', 'UPI'],
+    priceRange: '₹15000-₹100000'
+  };
+
+  // FAQ Schema for better SEO
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Is Andaman cheaper than Maldives?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, Andaman is significantly cheaper than Maldives. Andaman packages start from ₹15,000 per person while Maldives packages typically start from ₹80,000 per person. You can enjoy similar pristine beaches, clear blue waters, and tropical paradise experience at a fraction of the cost.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the cheapest Andaman package?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Our cheapest Andaman package starts from ₹15,000 per person for a 4-day trip including accommodation, meals, ferry transfers, and sightseeing. We also offer budget packages under ₹20,000, ₹30,000, and ₹40,000 for different durations and comfort levels.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Which is better for honeymoon - Andaman or Maldives?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Both are excellent for honeymoons, but Andaman offers better value for money. You get similar romantic beaches, water villas, and sunset views at 60-70% lower cost. Andaman also offers more activities like scuba diving, historical tours, and island hopping.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the best time to visit Andaman?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The best time to visit Andaman is October to May when the weather is pleasant and seas are calm. December to February is peak season with perfect weather but higher prices. March to May offers good weather with lower prices.'
+        }
       }
     ]
   };
@@ -221,6 +418,14 @@ const SEO: React.FC<SEOProps> = ({
       <script type="application/ld+json">
         {JSON.stringify(destinationSchema)}
       </script>
+      <script type="application/ld+json">
+        {JSON.stringify(faqSchema)}
+      </script>
+      {structuredData && (
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      )}
 
       {/* Alternate Languages */}
       <link rel="alternate" href={url} hrefLang="x-default" />

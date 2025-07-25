@@ -1,0 +1,21 @@
+{
+  "name": "Luxury Andaman - Andaman Islands Tour Packages",
+  "short_name": "Luxury Andaman",
+  "description": "Best Andaman Islands tour packages starting ₹15,000. Pristine beaches, scuba diving, luxury resorts & honeymoon packages.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#059669",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["travel", "tourism", "vacation", "beach", "islands"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+} 

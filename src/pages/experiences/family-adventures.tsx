@@ -6,6 +6,14 @@ import Footer from '../../components/Footer';
 import { Link } from 'react-router-dom';
 
 const FamilyAdventuresPage = () => {
+  // Local image paths - Add your images to src/assets/images/experiences/family-adventures/
+  const localImages = {
+    // heroImage: '/src/assets/images/experiences/family-adventures/hero.jpg',
+    // glassBottomBoat: '/src/assets/images/experiences/family-adventures/glass-bottom-boat.jpg',
+    // jungleSafari: '/src/assets/images/experiences/family-adventures/jungle-safari.jpg',
+    // Replace these with your local image paths
+  };
+
   const activities = [
     {
       name: "Glass-Bottom Boat Tour",
@@ -18,6 +26,7 @@ const FamilyAdventuresPage = () => {
         "On-board guide"
       ],
       description: "Explore the underwater world without getting wet.",
+      // localImage: localImages.glassBottomBoat, // Uncomment when adding local image
       image: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
     },
     {
@@ -31,6 +40,7 @@ const FamilyAdventuresPage = () => {
         "Safe for kids"
       ],
       description: "Discover the lush green forests of the Andamans.",
+      // localImage: localImages.jungleSafari, // Uncomment when adding local image
       image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
     }
   ];
@@ -41,6 +51,14 @@ const FamilyAdventuresPage = () => {
       
       {/* Hero Section */}
       <div className="relative h-[70vh] overflow-hidden">
+        {/* LOCAL IMAGE PLACEHOLDER - Replace with your image */}
+        {/* <img 
+          src={localImages.heroImage}
+          alt="Family Adventures"
+          className="absolute inset-0 w-full h-full object-cover"
+        /> */}
+        
+        {/* FALLBACK ONLINE IMAGE - Remove when adding local image */}
         <img 
           src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
           alt="Family Adventures"
@@ -108,7 +126,7 @@ const FamilyAdventuresPage = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-center"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx--auto mb-4">
+              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Mountain className="w-8 h-8 text-azure" />
               </div>
               <h3 className="text-lg font-semibold text-night mb-2">Easy Treks</h3>
@@ -159,6 +177,20 @@ const FamilyAdventuresPage = () => {
               >
                 <div className="relative h-64 overflow-hidden">
                   <div className="absolute inset-0 bg-night/20 group-hover:bg-night/40 transition-all duration-500 z-10" />
+                  {/* 
+                  TO USE LOCAL IMAGES:
+                  1. Save your images to: src/assets/images/experiences/family-adventures/
+                  2. Uncomment the line below and replace 'activity.localImage' with your local path
+                  3. Comment out or remove the fallback image below
+                  
+                  <img
+                    src={activity.localImage}
+                    alt={activity.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  */}
+                  
+                  {/* FALLBACK ONLINE IMAGE - Remove when adding local images */}
                   <img
                     src={activity.image}
                     alt={activity.name}

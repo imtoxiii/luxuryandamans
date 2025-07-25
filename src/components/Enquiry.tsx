@@ -289,8 +289,8 @@ const Enquiry = () => {
                   
                   <div className="space-y-6">
                     {[
-                      { icon: Phone, title: "Call Us", info: ["+91 987 654 3210", "+91 987 654 3211"], color: "text-green-300" },
-                      { icon: Mail, title: "Email Us", info: ["info@andamanluxury.com", "bookings@andamanluxury.com"], color: "text-blue-300" },
+                      { icon: Phone, title: "Call Us", info: ["+91 6297576826", "+91 9433731478"], color: "text-green-300" },
+                      { icon: Mail, title: "Email Us", info: ["info@luxuryandamans.com", "bookings@luxuryandamans.com"], color: "text-blue-300" },
                       { icon: MapPin, title: "Visit Us", info: ["Marine Hill Road, Port Blair", "Andaman & Nicobar Islands"], color: "text-pink-300" },
                       { icon: Clock, title: "Business Hours", info: ["Mon-Sat: 9:00 AM - 6:00 PM", "Sunday: 10:00 AM - 2:00 PM"], color: "text-yellow-300" }
                     ].map((item, index) => (
@@ -308,7 +308,19 @@ const Enquiry = () => {
                         <div>
                           <h3 className="font-semibold text-lg mb-1 group-hover:text-white/90 transition-colors duration-300">{item.title}</h3>
                           {item.info.map((line, i) => (
-                            <p key={i} className="text-white/80 text-sm leading-relaxed">{line}</p>
+                            <p key={i} className="text-white/80 text-sm leading-relaxed">
+                              {item.title === "Call Us" ? (
+                                <a href={`tel:${line.replace(/\s/g, '')}`} className="hover:text-white transition-colors underline">
+                                  {line}
+                                </a>
+                              ) : item.title === "Email Us" ? (
+                                <a href={`mailto:${line}`} className="hover:text-white transition-colors underline">
+                                  {line}
+                                </a>
+                              ) : (
+                                line
+                              )}
+                            </p>
                           ))}
                         </div>
                       </motion.div>

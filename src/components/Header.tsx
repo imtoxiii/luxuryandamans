@@ -139,11 +139,11 @@ const Header = () => {
     <>
       {/* Fixed Navigation */}
       <motion.nav 
-        className={`fixed top-0 left-0 right-0 w-full z-[9999] transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 w-full z-[10001] transition-all duration-500 ${
           (showWhiteBackground && !isMenuOpen) ? 'nav-white-bg shadow-lg' : 'bg-transparent'
         }`}
         style={{ 
-          zIndex: 9999,
+          zIndex: 10001,
           position: 'fixed',
           top: 0,
           left: 0,
@@ -226,15 +226,17 @@ const Header = () => {
             {/* Custom Hamburger Menu Button for Mobile */}
             <button
               onClick={toggleMenu}
-              className={`md:hidden relative w-10 h-10 flex flex-col justify-center items-center z-[10001] ${
-                (showWhiteBackground && !isMenuOpen) ? 'text-gray-900' : 'text-white'
+              className={`md:hidden relative w-10 h-10 flex flex-col justify-center items-center z-[10002] rounded-full transition-all duration-300 ${
+                isMenuOpen 
+                  ? 'text-white bg-white/10 backdrop-blur-sm' 
+                  : (showWhiteBackground ? 'text-gray-900 hover:bg-gray-100' : 'text-white hover:bg-white/10')
               } focus:outline-none`}
               aria-label="Toggle navigation menu"
             >
               {/* Custom hamburger/X animation */}
               <motion.span
-                className={`absolute w-6 h-0.5 rounded-full ${
-                  (showWhiteBackground && !isMenuOpen) ? 'bg-gray-900' : 'bg-white'
+                className={`absolute w-6 h-0.5 rounded-full shadow-sm ${
+                  isMenuOpen || !showWhiteBackground ? 'bg-white' : 'bg-gray-900'
                 }`}
                 initial={false}
                 animate={{
@@ -244,8 +246,8 @@ const Header = () => {
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               />
               <motion.span
-                className={`absolute w-6 h-0.5 rounded-full ${
-                  (showWhiteBackground && !isMenuOpen) ? 'bg-gray-900' : 'bg-white'
+                className={`absolute w-6 h-0.5 rounded-full shadow-sm ${
+                  isMenuOpen || !showWhiteBackground ? 'bg-white' : 'bg-gray-900'
                 }`}
                 initial={false}
                 animate={{
@@ -255,8 +257,8 @@ const Header = () => {
                 transition={{ duration: 0.2, ease: "easeInOut" }}
               />
               <motion.span
-                className={`absolute w-6 h-0.5 rounded-full ${
-                  (showWhiteBackground && !isMenuOpen) ? 'bg-gray-900' : 'bg-white'
+                className={`absolute w-6 h-0.5 rounded-full shadow-sm ${
+                  isMenuOpen || !showWhiteBackground ? 'bg-white' : 'bg-gray-900'
                 }`}
                 initial={false}
                 animate={{
@@ -274,7 +276,7 @@ const Header = () => {
        <AnimatePresence>
          {isMenuOpen && (
            <motion.div
-             className="fixed inset-0 z-[10000] md:hidden"
+             className="fixed inset-0 z-[9999] md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

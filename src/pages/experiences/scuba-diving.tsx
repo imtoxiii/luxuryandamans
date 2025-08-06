@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Anchor, Compass, Shield, Award, Clock, Users } from 'lucide-react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import SEO from '../../components/SEO';
 import { Link } from 'react-router-dom';
 
 const ScubaDivingPage = () => {
@@ -42,6 +43,14 @@ const ScubaDivingPage = () => {
 
   return (
     <div className="min-h-screen bg-pearl">
+      <SEO 
+        title="Scuba Diving in Andaman | Best Diving Sites | PADI Certified | Book Now"
+        description="Explore underwater paradise with scuba diving in Andaman. 30+ dive sites, PADI certified instructors, beginner to advanced courses. Book diving packages from ₹3,500."
+        keywords="scuba diving andaman, andaman diving packages, PADI diving andaman, havelock diving, neil island diving, north bay diving, best diving sites andaman, underwater photography, diving courses andaman, diving certification andaman, coral reef diving, beginner scuba diving"
+        targetAudience="adventure"
+        url="https://luxuryandaman.com/experiences/scuba-diving"
+        image="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
+      />
       <Header />
       
       {/* Hero Section */}

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Star, Wifi, Coffee, Utensils, Car, Space as Spa, Phone, MapPin } from 'lucide-react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import SEO from '../../components/SEO';
 import { Link } from 'react-router-dom';
 
 const LuxuryResortsPage = () => {
@@ -36,6 +37,14 @@ const LuxuryResortsPage = () => {
 
   return (
     <div className="min-h-screen bg-pearl">
+      <SEO 
+        title="Luxury Beach Resorts in Andaman | 5-Star Accommodation | Book Now"
+        description="Stay at world-class luxury resorts in Andaman Islands. Taj Exotica, Barefoot Resort & more. Private beaches, spa services, fine dining. Starting ₹15,000/night."
+        keywords="luxury resorts andaman, andaman beach resorts, taj exotica andaman, barefoot resort havelock, 5 star resorts andaman, luxury accommodation andaman, beach resorts havelock island, neil island luxury resorts, andaman spa resorts, private beach resorts, luxury hotel booking andaman"
+        targetAudience="luxury"
+        url="https://luxuryandaman.com/experiences/luxury-resorts"
+        image="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
+      />
       <Header />
       
       {/* Hero Section */}

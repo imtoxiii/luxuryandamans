@@ -567,16 +567,34 @@ const PricingCalculatorPage = () => {
     };
 
     try {
-      // Here you would typically send this to your backend
-      // For now, we'll just show a success message
-      toast.success('Package request sent successfully! We will contact you soon.');
+      // Import sendEmail function
+      const { sendEmail } = await import('../lib/email');
       
-      // Reset form
-      setCustomActivities([]);
-      setSpecialRequests('');
-      setContactEmail('');
-      setContactPhone('');
+      const success = await sendEmail({
+        name: 'Package Calculator User',
+        email: contactEmail,
+        phone: contactPhone,
+        message: `Package Calculator Request:\n\nTotal Cost: ${formatCurrency(total)}\n\nPackage Details:\n${JSON.stringify(packageDetails, null, 2)}`,
+        packageName: 'Custom Package Calculator',
+        totalPrice: total,
+        preferred_contact: contactEmail ? 'email' : 'phone',
+        guests: adults + children,
+        duration: days,
+        destination: selectedIslands.map(id => islands.find(i => i.id === id)?.name).join(', ')
+      });
+
+      if (success) {
+        console.log('✅ Package request submitted successfully via PHP backend');
+        toast.success('🎉 Package request sent successfully! We will contact you soon.');
+        
+        // Reset form
+        setCustomActivities([]);
+        setSpecialRequests('');
+        setContactEmail('');
+        setContactPhone('');
+      }
     } catch (error) {
+      console.error('❌ Error submitting package request:', error);
       toast.error('Failed to send package request. Please try again.');
     }
   };

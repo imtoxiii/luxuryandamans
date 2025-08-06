@@ -223,8 +223,9 @@ const EnquiryForm = ({ planDetails, onBack, onSubmitSuccess }: { planDetails: an
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [error, setError] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!name) {
             setError('Please enter your name.');
@@ -239,16 +240,32 @@ const EnquiryForm = ({ planDetails, onBack, onSubmitSuccess }: { planDetails: an
             return;
         }
         setError('');
+        setIsSubmitting(true);
 
-        const enquiryData = {
-            contact: { name, email, phone },
-            tripPlan: planDetails,
-        };
+        try {
+            // Import sendEmail function
+            const { sendEmail } = await import('../lib/email');
+            
+            const success = await sendEmail({
+                name,
+                email,
+                phone,
+                message: `Travel Plan Enquiry:\n\nTotal Cost: ${formatPrice(planDetails.totalCost)}\n\nPlan Details:\n${JSON.stringify(planDetails, null, 2)}`,
+                packageName: 'Custom Travel Plan',
+                totalPrice: planDetails.totalCost,
+                preferred_contact: email ? 'email' : 'phone'
+            });
 
-        console.log('--- Enquiry Submitted ---');
-        console.log(JSON.stringify(enquiryData, null, 2));
-        
-        onSubmitSuccess();
+            if (success) {
+                console.log('✅ Enquiry submitted successfully via PHP backend');
+                onSubmitSuccess();
+            }
+        } catch (error) {
+            console.error('❌ Error submitting enquiry:', error);
+            setError('Failed to submit enquiry. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -285,8 +302,12 @@ const EnquiryForm = ({ planDetails, onBack, onSubmitSuccess }: { planDetails: an
                     </div>
                     {error && <p className="text-xs text-red-500">{error}</p>}
                 </div>
-                <button type="submit" className="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all text-sm mt-4">
-                    Send Enquiry
+                <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all text-sm mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    {isSubmitting ? 'Sending...' : 'Send Enquiry'}
                 </button>
             </form>
         </div>

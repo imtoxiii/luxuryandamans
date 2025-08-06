@@ -1,12 +1,14 @@
-// Google Analytics 4 Configuration
+// Google Analytics 4 Configuration - Optimized for Performance
 // Replace 'GA_MEASUREMENT_ID' with your actual Google Analytics 4 Measurement ID
 
 (function() {
-  // Load Google Analytics
-  const script = document.createElement('script');
-  script.async = true;
-  script.src = 'https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID';
-  document.head.appendChild(script);
+  // Defer analytics loading until after critical resources
+  function loadAnalytics() {
+    // Load Google Analytics
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID';
+    document.head.appendChild(script);
 
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -139,11 +141,25 @@
     trackSEOEvents();
   }
 
-  // Make tracking functions globally available
-  window.trackPackageView = trackPackageView;
-  window.trackEnquiry = trackEnquiry;
-  window.trackBooking = trackBooking;
+    // Make tracking functions globally available
+    window.trackPackageView = trackPackageView;
+    window.trackEnquiry = trackEnquiry;
+    window.trackBooking = trackBooking;
+  }
 
+  // Load analytics after page load to avoid blocking render
+  if (document.readyState === 'complete') {
+    // If page is already loaded, load analytics immediately
+    setTimeout(loadAnalytics, 100);
+  } else {
+    // Otherwise wait for page load
+    window.addEventListener('load', function() {
+      setTimeout(loadAnalytics, 100);
+    });
+  }
+
+  // Fallback: Load analytics after 3 seconds regardless
+  setTimeout(loadAnalytics, 3000);
 })();
 
 // Facebook Pixel Configuration (optional)

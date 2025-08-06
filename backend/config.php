@@ -1,17 +1,21 @@
 <?php
-// Email Configuration
-define('SMTP_HOST', 'mail.luxuryandamans.com');
-define('SMTP_PORT', 465);
-define('SMTP_SECURE', 'ssl'); // 'ssl' for port 465, 'tls' for port 587
+// Load environment variables securely
+require_once __DIR__ . '/env-loader.php';
+EnvLoader::load();
 
-// Email accounts
-define('INFO_EMAIL', 'info@luxuryandamans.com');
-define('INFO_PASSWORD', 'Sumeet@26');
-define('BOOKING_EMAIL', 'bookings@luxuryandamans.com');
-define('BOOKING_PASSWORD', 'Sumeet@26'); // You need to provide this password
+// Email Configuration - Now loaded from environment variables
+define('SMTP_HOST', EnvLoader::get('SMTP_HOST', 'mail.luxuryandamans.com'));
+define('SMTP_PORT', (int)EnvLoader::get('SMTP_PORT', 465));
+define('SMTP_SECURE', EnvLoader::get('SMTP_SECURE', 'ssl')); // 'ssl' for port 465, 'tls' for port 587
+
+// Email accounts - Securely loaded from .env file
+define('INFO_EMAIL', EnvLoader::get('INFO_EMAIL', 'info@luxuryandamans.com'));
+define('INFO_PASSWORD', EnvLoader::get('INFO_PASSWORD', ''));
+define('BOOKING_EMAIL', EnvLoader::get('BOOKING_EMAIL', 'bookings@luxuryandamans.com'));
+define('BOOKING_PASSWORD', EnvLoader::get('BOOKING_PASSWORD', ''));
 
 // Admin email to receive notifications
-define('ADMIN_EMAIL', 'xumeet1987@gmail.com');
+define('ADMIN_EMAIL', EnvLoader::get('ADMIN_EMAIL', 'admin@luxuryandamans.com'));
 
 // Enable error reporting for debugging
 error_reporting(E_ALL);

@@ -27,7 +27,7 @@ Allow: /*.svg$
 Allow: /*.webp$
 
 # Sitemap location
-Sitemap: https://luxuryandaman.com/sitemap.xml
+Sitemap: https://luxuryandamans.com/sitemap.xml
 
 # Crawl delay (optional - helps prevent server overload)
 Crawl-delay: 1

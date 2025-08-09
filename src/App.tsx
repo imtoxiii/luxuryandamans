@@ -1,10 +1,11 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
-import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { useEffect, Suspense, lazy } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useScrollTop } from './hooks/useScrollTop';
 import { usePageTransition } from './hooks/usePageTransition';
 import PageTransition from './components/LoadingSpinner';
 import Home from './pages/Home'; // Keep Home page eager for faster initial load
 import ChatWidget from './components/ChatWidget';
+import PrefetchManager from './components/PrefetchManager';
 
 // Lazy load non-critical pages
 const DestinationsPage = lazy(() => import('./pages/Destinations'));
@@ -36,15 +37,10 @@ const FamilyAdventuresPage = lazy(() => import('./pages/experiences/family-adven
 
 function App() {
   const { isTransitioning, displayLocation } = usePageTransition();
-  const [isMobile, setIsMobile] = useState(false);
-  
   useScrollTop();
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    // Future: place light, one-time boot-time logic here if needed
   }, []);
 
   return (
@@ -87,6 +83,7 @@ function App() {
         </Routes>
       </Suspense>
       <ChatWidget />
+      <PrefetchManager />
       
       {/* Transition walls - appear over the page content */}
       {isTransitioning && <PageTransition />}

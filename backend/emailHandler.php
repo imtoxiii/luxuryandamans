@@ -27,7 +27,8 @@ class EmailHandler {
             $body,
             INFO_EMAIL,
             INFO_PASSWORD,
-            'Luxury Andamans - Info'
+            'Luxury Andamans - Info',
+            isset($formData['email']) ? $formData['email'] : null
         );
         
         consoleLog("Admin email sent", ['success' => $success, 'to' => ADMIN_EMAIL]);
@@ -52,7 +53,8 @@ class EmailHandler {
             $body,
             BOOKING_EMAIL,
             BOOKING_PASSWORD,
-            'Luxury Andamans - Bookings'
+            'Luxury Andamans - Bookings',
+            ADMIN_EMAIL
         );
         
         consoleLog("User confirmation email sent", ['success' => $success, 'to' => $formData['email']]);
@@ -256,22 +258,55 @@ class EmailHandler {
                 throw new Exception("Invalid email format");
             }
             
+            // Check if email credentials are configured
+            if (empty(INFO_PASSWORD) || empty(BOOKING_PASSWORD)) {
+                // Allow fallback to native PHP mail() without SMTP auth
+                consoleLog("Warning: Missing email credentials; attempting native PHP mail() without SMTP auth");
+            }
+            
             // Sanitize data
             $sanitizedData = [];
             foreach ($formData as $key => $value) {
                 $sanitizedData[$key] = sanitizeInput($value);
             }
             
-            // Log to file as backup
+            // Log to file as backup (before attempting to send emails)
             logToFile('form_submissions.txt', [
                 'type' => $formType,
                 'timestamp' => date('Y-m-d H:i:s'),
-                'data' => $sanitizedData
+                'data' => $sanitizedData,
+                'status' => 'received'
             ]);
             
             // Send emails
-            $adminEmailSent = $this->sendAdminNotification($sanitizedData, $formType);
-            $userEmailSent = $this->sendUserConfirmation($sanitizedData, $formType);
+            consoleLog("Attempting to send emails", ['admin_email' => ADMIN_EMAIL, 'user_email' => $sanitizedData['email']]);
+            
+            $adminEmailSent = false;
+            $userEmailSent = false;
+            
+            try {
+                $adminEmailSent = $this->sendAdminNotification($sanitizedData, $formType);
+                consoleLog("Admin email result", ['sent' => $adminEmailSent]);
+            } catch (Exception $e) {
+                consoleLog("Admin email failed", ['error' => $e->getMessage()]);
+            }
+            
+            try {
+                $userEmailSent = $this->sendUserConfirmation($sanitizedData, $formType);
+                consoleLog("User email result", ['sent' => $userEmailSent]);
+            } catch (Exception $e) {
+                consoleLog("User email failed", ['error' => $e->getMessage()]);
+            }
+            
+            // Log final status
+            logToFile('form_submissions.txt', [
+                'type' => $formType,
+                'timestamp' => date('Y-m-d H:i:s'),
+                'data' => $sanitizedData,
+                'status' => 'processed',
+                'admin_email_sent' => $adminEmailSent,
+                'user_email_sent' => $userEmailSent
+            ]);
             
             $response = [
                 'success' => true,
@@ -296,7 +331,7 @@ class EmailHandler {
             // Still log the attempt even if there was an error
             logToFile('form_errors.txt', [
                 'error' => $e->getMessage(),
-                'data' => $formData,
+                'data' => isset($formData) ? $formData : 'No data',
                 'timestamp' => date('Y-m-d H:i:s')
             ]);
             

@@ -29,12 +29,31 @@ const ContactPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Validate form data
+    if (!formData.name.trim()) {
+      toast.error('Please enter your name');
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!formData.email.trim()) {
+      toast.error('Please enter your email address');
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!formData.message.trim()) {
+      toast.error('Please enter your message');
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const success = await sendEmail({
-        name: formData.name,
-        email: formData.email,
-        subject: formData.subject,
-        message: formData.message
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        subject: formData.subject.trim() || 'Contact Form Enquiry',
+        message: formData.message.trim()
       });
 
       if (success) {
@@ -44,7 +63,11 @@ const ContactPage = () => {
           subject: '',
           message: ''
         });
+        toast.success('✅ Thank you! Your message has been sent successfully.');
       }
+    } catch (error) {
+      console.error('Contact form error:', error);
+      toast.error('❌ Failed to send message. Please try again or call us directly.');
     } finally {
       setIsSubmitting(false);
     }

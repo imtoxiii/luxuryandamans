@@ -10,12 +10,13 @@ define('SMTP_SECURE', EnvLoader::get('SMTP_SECURE', 'ssl')); // 'ssl' for port 4
 
 // Email accounts - Securely loaded from .env file
 define('INFO_EMAIL', EnvLoader::get('INFO_EMAIL', 'info@luxuryandamans.com'));
+// Do NOT provide real password defaults; require via environment
 define('INFO_PASSWORD', EnvLoader::get('INFO_PASSWORD', ''));
 define('BOOKING_EMAIL', EnvLoader::get('BOOKING_EMAIL', 'bookings@luxuryandamans.com'));
 define('BOOKING_PASSWORD', EnvLoader::get('BOOKING_PASSWORD', ''));
 
 // Admin email to receive notifications
-define('ADMIN_EMAIL', EnvLoader::get('ADMIN_EMAIL', 'admin@luxuryandamans.com'));
+define('ADMIN_EMAIL', EnvLoader::get('ADMIN_EMAIL', 'xummeet1987@gmail.com'));
 
 // Enable error reporting for debugging
 error_reporting(E_ALL);

@@ -96,7 +96,7 @@ const SEO: React.FC<SEOProps> = ({
     image: image,
     priceRange: '₹15000-₹150000',
     telephone: '+91-9876543210',
-    email: 'info@luxuryandaman.com',
+    email: 'info@luxuryandamans.com',
     areaServed: [
       {
         '@type': 'Place',

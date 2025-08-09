@@ -227,42 +227,68 @@ const EnquiryForm = ({ planDetails, onBack, onSubmitSuccess }: { planDetails: an
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!name) {
+        
+        // Reset error state
+        setError('');
+        
+        // Validate inputs
+        if (!name.trim()) {
             setError('Please enter your name.');
             return;
         }
-        if (!email && !phone) {
+        if (!email.trim() && !phone.trim()) {
             setError('Please provide either an email or a phone number.');
             return;
         }
-        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
             setError('Please enter a valid email address.');
             return;
         }
-        setError('');
+        
         setIsSubmitting(true);
 
         try {
             // Import sendEmail function
             const { sendEmail } = await import('../lib/email');
             
+            // Prepare detailed plan information
+            const planSummary = `Travel Plan Enquiry:
+
+🏖️ Destinations: ${planDetails.selectedDestinations?.map(d => d.name).join(', ') || 'Not specified'}
+👥 Travelers: ${planDetails.travelers || 'Not specified'}
+📅 Duration: ${planDetails.duration || 'Not specified'} days
+🏨 Accommodation: ${planDetails.accommodationTier || 'Not specified'}
+🍽️ Meals: ${planDetails.mealPlan || 'Not specified'}
+✈️ Tour Type: ${planDetails.tourType || 'Not specified'}
+🎯 Activities: ${planDetails.selectedActivities?.length || 0} selected
+✈️ Flights: ${planDetails.includeFlights ? 'Included' : 'Not included'}
+🛡️ Insurance: ${planDetails.includeInsurance ? 'Included' : 'Not included'}
+
+💰 Total Estimated Cost: ${formatPrice(planDetails.totalCost)}
+
+Please contact me to finalize this travel plan.`;
+            
             const success = await sendEmail({
-                name,
-                email,
-                phone,
-                message: `Travel Plan Enquiry:\n\nTotal Cost: ${formatPrice(planDetails.totalCost)}\n\nPlan Details:\n${JSON.stringify(planDetails, null, 2)}`,
-                packageName: 'Custom Travel Plan',
+                name: name.trim(),
+                email: email.trim(),
+                phone: phone.trim(),
+                message: planSummary,
+                packageName: 'Custom Travel Plan Calculator',
                 totalPrice: planDetails.totalCost,
-                preferred_contact: email ? 'email' : 'phone'
+                preferred_contact: email.trim() ? 'email' : 'phone'
             });
 
             if (success) {
-                console.log('✅ Enquiry submitted successfully via PHP backend');
+                console.log('✅ Pricing Calculator enquiry submitted successfully');
                 onSubmitSuccess();
+                // Clear form
+                setName('');
+                setEmail('');
+                setPhone('');
             }
         } catch (error) {
-            console.error('❌ Error submitting enquiry:', error);
-            setError('Failed to submit enquiry. Please try again.');
+            console.error('❌ Error submitting pricing calculator enquiry:', error);
+            setError('Failed to submit enquiry. Please try again or contact us directly.');
         } finally {
             setIsSubmitting(false);
         }

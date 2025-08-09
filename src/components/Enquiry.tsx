@@ -75,12 +75,31 @@ const Enquiry = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Validate form data
+    if (!formData.name.trim()) {
+      toast.error('Please enter your name');
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!formData.email.trim()) {
+      toast.error('Please enter your email address');
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!formData.phone.trim()) {
+      toast.error('Please enter your phone number');
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const success = await sendEmail({
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        message: formData.message,
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        message: formData.message.trim() || 'Travel enquiry from website',
         destination: formData.destination,
         guests: parseInt(formData.guests),
         travel_date: formData.travelDate,
@@ -103,6 +122,9 @@ const Enquiry = () => {
         setCurrentStep(1);
         toast.success('🎉 Your enquiry has been submitted! We\'ll contact you within 24 hours.');
       }
+    } catch (error) {
+      console.error('Enquiry form error:', error);
+      toast.error('❌ Failed to submit enquiry. Please try again or call us directly.');
     } finally {
       setIsSubmitting(false);
     }

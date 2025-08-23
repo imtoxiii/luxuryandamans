@@ -15,6 +15,20 @@ const ContactPage = lazy(() => import('./pages/Contact'));
 const Enquiry = lazy(() => import('./components/Enquiry'));
 const PricingCalculatorPage = lazy(() => import('./pages/PricingCalculator'));
 const DestinationDetail = lazy(() => import('./pages/destinations/[slug]'));
+// Static destination pages for SEO-friendly unique content per page
+const CellularJail = lazy(() => import('./pages/destinations/cellular-jail'));
+const RossIsland = lazy(() => import('./pages/destinations/ross-island'));
+const NorthBayIsland = lazy(() => import('./pages/destinations/north-bay-island'));
+const RadhanagarBeach = lazy(() => import('./pages/destinations/radhanagar-beach'));
+const ElephantBeach = lazy(() => import('./pages/destinations/elephant-beach'));
+const BharatpurBeach = lazy(() => import('./pages/destinations/bharatpur-beach'));
+const NaturalBridge = lazy(() => import('./pages/destinations/natural-bridge'));
+const LimestoneCaves = lazy(() => import('./pages/destinations/limestone-caves'));
+const MudVolcano = lazy(() => import('./pages/destinations/mud-volcano'));
+const RossSmithIslands = lazy(() => import('./pages/destinations/ross-smith-islands'));
+const SaddlePeak = lazy(() => import('./pages/destinations/saddle-peak'));
+const CinqueIsland = lazy(() => import('./pages/destinations/cinque-island'));
+const BarrenIsland = lazy(() => import('./pages/destinations/barren-island'));
 const PackageDetailPage = lazy(() => import('./pages/packages/[slug]'));
 const LocationPage = lazy(() => import('./pages/locations/[slug]'));
 const GuidePage = lazy(() => import('./pages/About'));
@@ -50,6 +64,22 @@ function App() {
         <Routes location={displayLocation}>
           <Route path="/" element={<Home />} />
           <Route path="/destinations" element={<DestinationsPage />} />
+          {/* Static routes first for specific destinations */}
+          <Route path="/destinations/cellular-jail" element={<CellularJail />} />
+          <Route path="/destinations/ross-island" element={<RossIsland />} />
+          <Route path="/destinations/north-bay-island" element={<NorthBayIsland />} />
+          <Route path="/destinations/radhanagar-beach" element={<RadhanagarBeach />} />
+          <Route path="/destinations/elephant-beach" element={<ElephantBeach />} />
+          <Route path="/destinations/bharatpur-beach" element={<BharatpurBeach />} />
+          <Route path="/destinations/natural-bridge" element={<NaturalBridge />} />
+          <Route path="/destinations/limestone-caves" element={<LimestoneCaves />} />
+          <Route path="/destinations/mud-volcano" element={<MudVolcano />} />
+          <Route path="/destinations/ross-smith-islands" element={<RossSmithIslands />} />
+          <Route path="/destinations/saddle-peak" element={<SaddlePeak />} />
+          <Route path="/destinations/cinque-island" element={<CinqueIsland />} />
+          <Route path="/destinations/barren-island" element={<BarrenIsland />} />
+
+          {/* Fallback dynamic route */}
           <Route path="/destinations/:slug" element={<DestinationDetail />} />
           <Route path="/locations/:slug" element={<LocationPage />} />
           <Route path="/packages" element={<PackagesPage />} />

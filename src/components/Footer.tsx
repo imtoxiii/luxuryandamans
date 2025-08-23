@@ -15,7 +15,7 @@ import { gsap } from 'gsap';
 
 const Footer = () => {
   const quickLinks = [
-          { name: 'Travel Guide', href: '/guide' },
+    { name: 'Travel Guide', href: '/guide' },
     { name: 'Destinations', href: '/destinations' },
     { name: 'Experiences', href: '/experiences' },
     { name: 'Packages', href: '/packages' },

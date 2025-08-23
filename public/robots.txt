@@ -7,6 +7,11 @@ Allow: /destinations
 Allow: /blog
 Allow: /enquiry
 Allow: /calculator
+Allow: /android-chrome-192x192.png
+Allow: /android-chrome-512x512.png
+Allow: /apple-touch-icon.png
+Allow: /favicon-32x32.png
+Allow: /favicon-16x16.png
 
 # Block admin and private areas (if any exist)
 Disallow: /admin
@@ -25,6 +30,7 @@ Allow: /*.jpeg$
 Allow: /*.gif$
 Allow: /*.svg$
 Allow: /*.webp$
+Allow: /*.ico$
 
 # Sitemap location
 Sitemap: https://luxuryandamans.com/sitemap.xml

@@ -19,6 +19,7 @@ interface SEOProps {
   priceRange?: string;
   targetAudience?: 'budget' | 'luxury' | 'family' | 'honeymoon' | 'adventure' | 'all';
   structuredData?: any;
+  extraStructuredData?: any[];
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -38,7 +39,8 @@ const SEO: React.FC<SEOProps> = ({
   twitterHandle = '@andamanluxury',
   priceRange = '₹₹₹',
   targetAudience = 'all',
-  structuredData
+  structuredData,
+  extraStructuredData
 }) => {
   // Comprehensive keyword strategy targeting different user intents and budgets
   const getKeywordsByAudience = (audience: string) => {
@@ -207,7 +209,7 @@ const SEO: React.FC<SEOProps> = ({
   // Schema for Article/Website
   const contentSchema = {
     '@context': 'https://schema.org',
-    '@type': type === 'article' ? 'Article' : 'WebSite',
+    '@type': type === 'article' ? 'Article' : 'WebPage',
     name: siteTitle,
     headline: title,
     description,
@@ -228,6 +230,53 @@ const SEO: React.FC<SEOProps> = ({
     datePublished: publishedTime,
     dateModified: modifiedTime || publishedTime
   };
+
+  // Site-level WebSite schema with SearchAction for sitelinks search box
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteName,
+    url,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${url}/packages?search={search_term_string}`,
+      'query-input': 'required name=search_term_string'
+    }
+  };
+
+  // Primary navigation links to encourage sitelinks
+  const navigationSchemas = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'SiteNavigationElement',
+      name: 'Packages',
+      url: `${url}/packages`
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'SiteNavigationElement',
+      name: 'Destinations',
+      url: `${url}/destinations`
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'SiteNavigationElement',
+      name: 'Experiences',
+      url: `${url}/experiences`
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'SiteNavigationElement',
+      name: 'Blog',
+      url: `${url}/blog`
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'SiteNavigationElement',
+      name: 'Contact',
+      url: `${url}/contact`
+    }
+  ];
 
   // Schema for TouristDestination with enhanced targeting
   const destinationSchema = {
@@ -413,6 +462,14 @@ const SEO: React.FC<SEOProps> = ({
         {JSON.stringify(contentSchema)}
       </script>
       <script type="application/ld+json">
+        {JSON.stringify(websiteSchema)}
+      </script>
+      {navigationSchemas.map((obj, idx) => (
+        <script key={`nav-${idx}`} type="application/ld+json">
+          {JSON.stringify(obj)}
+        </script>
+      ))}
+      <script type="application/ld+json">
         {JSON.stringify(travelAgencySchema)}
       </script>
       <script type="application/ld+json">
@@ -426,6 +483,11 @@ const SEO: React.FC<SEOProps> = ({
           {JSON.stringify(structuredData)}
         </script>
       )}
+      {extraStructuredData && extraStructuredData.map((obj, idx) => (
+        <script key={idx} type="application/ld+json">
+          {JSON.stringify(obj)}
+        </script>
+      ))}
 
       {/* Alternate Languages */}
       <link rel="alternate" href={url} hrefLang="x-default" />

@@ -252,30 +252,45 @@ const EnquiryForm = ({ planDetails, onBack, onSubmitSuccess }: { planDetails: an
             const { sendEmail } = await import('../lib/email');
             
             // Prepare detailed plan information
-            const planSummary = `Travel Plan Enquiry:
+            const destinationNames: string[] = (planDetails.selectedDestinations || [])
+              .map((id: string) => andamanDestinations.find(d => d.id === id)?.name || id);
 
-🏖️ Destinations: ${planDetails.selectedDestinations?.map(d => d.name).join(', ') || 'Not specified'}
-👥 Travelers: ${planDetails.travelers || 'Not specified'}
-📅 Duration: ${planDetails.duration || 'Not specified'} days
-🏨 Accommodation: ${planDetails.accommodationTier || 'Not specified'}
-🍽️ Meals: ${planDetails.mealPlan || 'Not specified'}
-✈️ Tour Type: ${planDetails.tourType || 'Not specified'}
-🎯 Activities: ${planDetails.selectedActivities?.length || 0} selected
-✈️ Flights: ${planDetails.includeFlights ? 'Included' : 'Not included'}
-🛡️ Insurance: ${planDetails.includeInsurance ? 'Included' : 'Not included'}
-
-💰 Total Estimated Cost: ${formatPrice(planDetails.totalCost)}
-
-Please contact me to finalize this travel plan.`;
+            const planSummary = `Travel Plan Enquiry:\n\n` +
+`🏖️ Destinations: ${destinationNames.length ? destinationNames.join(', ') : 'Not specified'}\n` +
+`👥 Travelers: ${planDetails.travelers || 'Not specified'}\n` +
+`📅 Duration: ${planDetails.duration || 'Not specified'} days\n` +
+`🏨 Accommodation: ${planDetails.accommodationTier || 'Not specified'}\n` +
+`🍽️ Meals: ${planDetails.mealPlan || 'Not specified'}\n` +
+`🚌 Tour Type: ${planDetails.tourType || 'Not specified'}\n` +
+`🎯 Activities: ${(planDetails.selectedActivities?.length || 0)} selected\n` +
+`✈️ Flights: ${planDetails.includeFlights ? 'Included' : 'Not included'}\n` +
+`🛡️ Insurance: ${planDetails.includeInsurance ? 'Included' : 'Not included'}\n\n` +
+`💰 Total Estimated Cost: ${formatPrice(planDetails.totalCost)}\n\n` +
+`Please contact me to finalize this travel plan.`;
             
             const success = await sendEmail({
                 name: name.trim(),
                 email: email.trim(),
                 phone: phone.trim(),
+                subject: 'Pricing Calculator Enquiry',
                 message: planSummary,
                 packageName: 'Custom Travel Plan Calculator',
                 totalPrice: planDetails.totalCost,
-                preferred_contact: email.trim() ? 'email' : 'phone'
+                preferred_contact: email.trim() ? 'email' : 'phone',
+                // Include all calculator selections for admin (from planDetails)
+                selectedDestinations: planDetails.selectedDestinations || [],
+                selectedDestinationNames: destinationNames,
+                travelers: planDetails.travelers,
+                duration: planDetails.duration,
+                accommodationTier: planDetails.accommodationTier,
+                roomType: planDetails.roomType,
+                mealPlan: planDetails.mealPlan,
+                selectedActivities: planDetails.selectedActivities || [],
+                tourType: planDetails.tourType,
+                includeFlights: planDetails.includeFlights,
+                includeInsurance: planDetails.includeInsurance,
+                miscBuffer: planDetails.miscBuffer,
+                breakdown: planDetails.breakdown || []
             });
 
             if (success) {
@@ -618,7 +633,21 @@ const PricingCalculatorPage = () => {
 
                                 {/* Back of Card - Enquiry Form */}
                                 <EnquiryForm 
-                                    planDetails={{ totalCost, breakdown }} 
+                                    planDetails={{
+                                        totalCost,
+                                        breakdown,
+                                        selectedDestinations,
+                                        travelers,
+                                        duration,
+                                        accommodationTier,
+                                        roomType,
+                                        mealPlan,
+                                        selectedActivities,
+                                        tourType,
+                                        includeFlights,
+                                        includeInsurance,
+                                        miscBuffer
+                                    }}
                                     onBack={() => setIsFlipped(false)}
                                     onSubmitSuccess={handleFormSubmit}
                                 />

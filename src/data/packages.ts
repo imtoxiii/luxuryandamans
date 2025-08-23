@@ -5,6 +5,16 @@ export interface Hotel {
   image: string;
   amenities: string[];
   description: string;
+  // Optional fields to support booking configurator flexibility
+  starCategory?: 3 | 4 | 5;
+  images?: string[];
+  roomTypes?: { 
+    name: string; 
+    code?: string; 
+    pricePerNight?: number; 
+    description?: string;
+    maxOccupancy?: number;
+  }[];
 }
 
 export interface PricingOption {
@@ -201,7 +211,19 @@ export const packages: Package[] = [
         rating: 4,
         image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
         amenities: ["Free WiFi", "Restaurant", "Room Service", "Air Conditioning", "Laundry"],
-        description: "Comfortable hotel in the heart of Port Blair with modern amenities and easy access to major attractions."
+        description: "Comfortable hotel in the heart of Port Blair with modern amenities and easy access to major attractions.",
+        starCategory: 4,
+        images: [
+          "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+          "https://images.unsplash.com/photo-1551776235-dde6d4829808?q=80&w=1974&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1560448075-bb4caa6c0f11?q=80&w=1974&auto=format&fit=crop"
+        ],
+        roomTypes: [
+          { name: "Standard", pricePerNight: 2000, description: "Comfortable AC room with city view", maxOccupancy: 2 },
+          { name: "Deluxe", pricePerNight: 3500, description: "Spacious room with sea view and balcony", maxOccupancy: 3 },
+          { name: "Super Deluxe", pricePerNight: 5000, description: "Premium room with ocean view and modern amenities", maxOccupancy: 3 },
+          { name: "Suite", pricePerNight: 8000, description: "Luxury suite with separate living area", maxOccupancy: 4 }
+        ]
       },
       {
         name: "Taj Exotica Resort & Spa",
@@ -209,7 +231,19 @@ export const packages: Package[] = [
         rating: 5,
         image: "https://images.unsplash.com/photo-1602002418082-a4443e081dd1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
         amenities: ["Private Beach", "Spa", "Swimming Pool", "Multiple Restaurants", "Water Sports", "Butler Service"],
-        description: "Ultra-luxury beachfront resort offering world-class amenities, pristine beaches, and exceptional service."
+        description: "Ultra-luxury beachfront resort offering world-class amenities, pristine beaches, and exceptional service.",
+        starCategory: 5,
+        images: [
+          "https://images.unsplash.com/photo-1602002418082-a4443e081dd1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+          "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2069&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1496412705862-e0088f16f791?q=80&w=1974&auto=format&fit=crop"
+        ],
+        roomTypes: [
+          { name: "Deluxe", pricePerNight: 4500, description: "Elegant room with garden view and premium amenities", maxOccupancy: 2 },
+          { name: "Super Deluxe", pricePerNight: 7000, description: "Luxury room with partial ocean view", maxOccupancy: 3 },
+          { name: "Suite", pricePerNight: 12000, description: "Presidential suite with full ocean view", maxOccupancy: 4 },
+          { name: "Villa", pricePerNight: 18000, description: "Private beachfront villa with butler service", maxOccupancy: 6 }
+        ]
       }
     ],
     supplements: [

@@ -1,342 +1,294 @@
 <?php
-require_once 'config.php';
-require_once 'phpmailer.php';
+/**
+ * Robust Email Handler for Luxury Andamans
+ * Handles both contact forms and automated emails
+ */
 
-class EmailHandler {
-    
-    public function __construct() {
-        setCorsHeaders();
-        consoleLog("EmailHandler initialized");
-    }
-    
-    /**
-     * Send email to admin about new enquiry
-     */
-    private function sendAdminNotification($formData, $formType = 'general') {
-        consoleLog("Preparing admin notification email", $formData);
+// Headers for API response
+header('Content-Type: application/json; charset=utf-8');
+header('X-Content-Type-Options: nosniff');
+header('Referrer-Policy: same-origin');
+
+// Only accept POST requests
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['success' => false, 'message' => 'Method Not Allowed']);
+    exit;
+}
+
+// Load configuration
+require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/PHPMailer.php';
+require_once __DIR__ . '/log-submissions.php';
+
+/**
+ * Send email using improved SMTP configuration
+ */
+function sendEmail($to, $subject, $htmlBody, $altBody = '', $fromName = null) {
+    return sendEmailWithCustomFrom($to, $subject, $htmlBody, $altBody, SMTP_FROM_EMAIL, $fromName);
+}
+
+/**
+ * Send email with custom FROM address
+ */
+function sendEmailWithCustomFrom($to, $subject, $htmlBody, $altBody = '', $fromEmail = null, $fromName = null) {
+    try {
+        $mailer = new SimplePHPMailer();
         
-        $subject = "New " . ucfirst($formType) . " Enquiry from Luxury Andamans Website";
+        // Set sender info with custom FROM address
+        $fromEmail = $fromEmail ?: SMTP_FROM_EMAIL;
+        $fromName = $fromName ?: SMTP_FROM_NAME;
         
-        // Create detailed email body
-        $body = $this->createAdminEmailBody($formData, $formType);
+        // Choose correct SMTP credentials based on FROM address
+        $smtpUsername = SMTP_USERNAME;
+        $smtpPassword = SMTP_PASSWORD;
         
-        // Send from info@luxuryandamans.com to admin
-        $success = sendViaSMTP(
-            ADMIN_EMAIL,
-            $subject,
-            $body,
-            INFO_EMAIL,
-            INFO_PASSWORD,
-            'Luxury Andamans - Info',
-            isset($formData['email']) ? $formData['email'] : null
-        );
-        
-        consoleLog("Admin email sent", ['success' => $success, 'to' => ADMIN_EMAIL]);
-        return $success;
-    }
-    
-    /**
-     * Send confirmation email to user
-     */
-    private function sendUserConfirmation($formData, $formType = 'general') {
-        consoleLog("Preparing user confirmation email", ['email' => $formData['email'], 'name' => $formData['name']]);
-        
-        $subject = "Thank You for Your Enquiry - Luxury Andamans";
-        
-        // Create user confirmation email body
-        $body = $this->createUserEmailBody($formData, $formType);
-        
-        // Send from bookings@luxuryandamans.com to user
-        $success = sendViaSMTP(
-            $formData['email'],
-            $subject,
-            $body,
-            BOOKING_EMAIL,
-            BOOKING_PASSWORD,
-            'Luxury Andamans - Bookings',
-            ADMIN_EMAIL
-        );
-        
-        consoleLog("User confirmation email sent", ['success' => $success, 'to' => $formData['email']]);
-        return $success;
-    }
-    
-    /**
-     * Create detailed admin email body
-     */
-    private function createAdminEmailBody($data, $formType) {
-        $html = '
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <title>New Enquiry - Luxury Andamans</title>
-            <style>
-                body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-                .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-                .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
-                .content { background: #f9f9f9; padding: 20px; border-radius: 0 0 8px 8px; }
-                .field { margin-bottom: 15px; padding: 10px; background: white; border-radius: 5px; }
-                .field-label { font-weight: bold; color: #667eea; margin-bottom: 5px; }
-                .field-value { color: #333; }
-                .highlight { background: #e8f2ff; border-left: 4px solid #667eea; padding: 10px; margin: 15px 0; }
-                .footer { text-align: center; margin-top: 20px; color: #666; font-size: 12px; }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <div class="header">
-                    <h1>🏝️ New Enquiry - Luxury Andamans</h1>
-                    <p>You have received a new ' . $formType . ' enquiry from your website</p>
-                </div>
-                
-                <div class="content">
-                    <div class="highlight">
-                        <strong>⏰ Received:</strong> ' . date('d M Y, h:i A') . '
-                    </div>';
-        
-        // Basic contact information
-        if (isset($data['name'])) {
-            $html .= '<div class="field"><div class="field-label">👤 Name:</div><div class="field-value">' . htmlspecialchars($data['name']) . '</div></div>';
+        if ($fromEmail === 'info@luxuryandamans.com') {
+            $smtpUsername = INFO_SMTP_USERNAME;
+            $smtpPassword = INFO_SMTP_PASSWORD;
+        } elseif ($fromEmail === 'bookings@luxuryandamans.com') {
+            $smtpUsername = BOOKINGS_SMTP_USERNAME;
+            $smtpPassword = BOOKINGS_SMTP_PASSWORD;
         }
         
-        if (isset($data['email'])) {
-            $html .= '<div class="field"><div class="field-label">📧 Email:</div><div class="field-value">' . htmlspecialchars($data['email']) . '</div></div>';
-        }
+        // Basic configuration with correct credentials
+        $mailer->CharSet = 'UTF-8';
+        $mailer->isSMTP();
+        $mailer->Host = SMTP_HOST;
+        $mailer->SMTPAuth = true;
+        $mailer->Username = $smtpUsername;
+        $mailer->Password = $smtpPassword;
+        $mailer->SMTPSecure = strtolower(SMTP_ENCRYPTION);
+        $mailer->Port = SMTP_PORT;
         
-        if (isset($data['phone']) && !empty($data['phone'])) {
-            $html .= '<div class="field"><div class="field-label">📱 Phone:</div><div class="field-value">' . htmlspecialchars($data['phone']) . '</div></div>';
-        }
+        $mailer->setFrom($fromEmail, $fromName);
+        $mailer->Sender = $fromEmail; // Use same email for return-path
         
-        // Travel specific information
-        if (isset($data['destination']) && !empty($data['destination'])) {
-            $html .= '<div class="field"><div class="field-label">🏖️ Destination:</div><div class="field-value">' . htmlspecialchars($data['destination']) . '</div></div>';
-        }
-        
-        if (isset($data['guests']) && !empty($data['guests'])) {
-            $html .= '<div class="field"><div class="field-label">👥 Number of Guests:</div><div class="field-value">' . htmlspecialchars($data['guests']) . '</div></div>';
-        }
-        
-        if (isset($data['travel_date']) && !empty($data['travel_date'])) {
-            $html .= '<div class="field"><div class="field-label">📅 Travel Date:</div><div class="field-value">' . htmlspecialchars($data['travel_date']) . '</div></div>';
-        }
-        
-        if (isset($data['duration']) && !empty($data['duration'])) {
-            $html .= '<div class="field"><div class="field-label">⏳ Duration:</div><div class="field-value">' . htmlspecialchars($data['duration']) . ' days</div></div>';
-        }
-        
-        if (isset($data['preferred_contact']) && !empty($data['preferred_contact'])) {
-            $html .= '<div class="field"><div class="field-label">📞 Preferred Contact:</div><div class="field-value">' . ucfirst(htmlspecialchars($data['preferred_contact'])) . '</div></div>';
-        }
-        
-        if (isset($data['subject']) && !empty($data['subject'])) {
-            $html .= '<div class="field"><div class="field-label">📋 Subject:</div><div class="field-value">' . htmlspecialchars($data['subject']) . '</div></div>';
-        }
-        
-        if (isset($data['message']) && !empty($data['message'])) {
-            $html .= '<div class="field"><div class="field-label">💬 Message:</div><div class="field-value">' . nl2br(htmlspecialchars($data['message'])) . '</div></div>';
-        }
-        
-        $html .= '
-                    <div class="highlight">
-                        <strong>🚀 Next Steps:</strong><br>
-                        • Review the enquiry details above<br>
-                        • Contact the customer within 24 hours<br>
-                        • Prepare a customized travel proposal<br>
-                        • Follow up to ensure customer satisfaction
-                    </div>
-                </div>
-                
-                <div class="footer">
-                    <p>This email was automatically generated from your Luxury Andamans website.<br>
-                    Please respond to the customer promptly to ensure the best service experience.</p>
-                </div>
-            </div>
-        </body>
-        </html>';
-        
-        return $html;
-    }
-    
-    /**
-     * Create user confirmation email body
-     */
-    private function createUserEmailBody($data, $formType) {
-        $customerName = isset($data['name']) ? htmlspecialchars($data['name']) : 'Valued Customer';
-        
-        $html = '
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <title>Thank You - Luxury Andamans</title>
-            <style>
-                body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-                .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-                .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0; }
-                .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 8px 8px; }
-                .highlight { background: #e8f2ff; border-left: 4px solid #667eea; padding: 15px; margin: 20px 0; border-radius: 5px; }
-                .cta-button { display: inline-block; background: #667eea; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; margin: 15px 0; }
-                .footer { text-align: center; margin-top: 30px; color: #666; font-size: 14px; }
-                .contact-info { background: white; padding: 20px; border-radius: 5px; margin: 20px 0; }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <div class="header">
-                    <h1>🏝️ Thank You for Your Enquiry!</h1>
-                    <p>We\'re excited to help you plan your perfect Andaman getaway</p>
-                </div>
-                
-                <div class="content">
-                    <h2>Dear ' . $customerName . ',</h2>
-                    
-                    <p>Thank you for reaching out to <strong>Luxury Andamans</strong>! We have successfully received your enquiry and are thrilled about the opportunity to create an unforgettable travel experience for you.</p>
-                    
-                    <div class="highlight">
-                        <h3>🎯 What Happens Next?</h3>
-                        <ul>
-                            <li><strong>Within 2 hours:</strong> Our travel experts will review your requirements</li>
-                            <li><strong>Within 24 hours:</strong> You\'ll receive a personalized travel proposal</li>
-                            <li><strong>Ongoing:</strong> We\'ll work with you to perfect every detail of your trip</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="contact-info">
-                        <h3>📞 Need Immediate Assistance?</h3>
-                        <p><strong>Phone:</strong> +91 98765 43210<br>
-                        <strong>Email:</strong> bookings@luxuryandamans.com<br>
-                        <strong>WhatsApp:</strong> Available 24/7 for urgent queries</p>
-                    </div>
-                    
-                    <div class="highlight">
-                        <h3>🌟 Why Choose Luxury Andamans?</h3>
-                        <ul>
-                            <li>✨ Personalized itineraries crafted just for you</li>
-                            <li>🏖️ Exclusive access to pristine beaches and hidden gems</li>
-                            <li>🏨 Handpicked luxury accommodations</li>
-                            <li>🤝 24/7 local support during your trip</li>
-                            <li>💎 Unmatched expertise in Andaman tourism</li>
-                        </ul>
-                    </div>
-                    
-                    <p>We understand that planning the perfect vacation is important to you, and we\'re committed to making this process as smooth and exciting as possible.</p>
-                    
-                    <p>In the meantime, feel free to explore our website for inspiration, or follow us on social media for the latest updates and travel tips!</p>
-                </div>
-                
-                <div class="footer">
-                    <p><strong>Luxury Andamans</strong><br>
-                    Creating Unforgettable Island Experiences<br>
-                    <em>"Your Gateway to Paradise"</em></p>
-                    
-                    <p style="margin-top: 20px; font-size: 12px;">
-                    This is an automated confirmation email. Please do not reply to this email address.<br>
-                    For any queries, please contact us at bookings@luxuryandamans.com
-                    </p>
-                </div>
-            </div>
-        </body>
-        </html>';
-        
-        return $html;
-    }
-    
-    /**
-     * Process form submission
-     */
-    public function processForm($formData, $formType = 'general') {
-        consoleLog("Processing form submission", ['type' => $formType, 'data' => $formData]);
-        
-        try {
-            // Validate required fields
-            if (empty($formData['name']) || empty($formData['email'])) {
-                throw new Exception("Name and email are required fields");
+        // Set recipient(s)
+        if (is_array($to)) {
+            foreach ($to as $email => $name) {
+                if (is_numeric($email)) {
+                    $mailer->addAddress($name);
+                } else {
+                    $mailer->addAddress($email, $name);
+                }
             }
-            
-            if (!isValidEmail($formData['email'])) {
-                throw new Exception("Invalid email format");
-            }
-            
-            // Check if email credentials are configured
-            if (empty(INFO_PASSWORD) || empty(BOOKING_PASSWORD)) {
-                // Allow fallback to native PHP mail() without SMTP auth
-                consoleLog("Warning: Missing email credentials; attempting native PHP mail() without SMTP auth");
-            }
-            
-            // Sanitize data
-            $sanitizedData = [];
-            foreach ($formData as $key => $value) {
-                $sanitizedData[$key] = sanitizeInput($value);
-            }
-            
-            // Log to file as backup (before attempting to send emails)
-            logToFile('form_submissions.txt', [
-                'type' => $formType,
-                'timestamp' => date('Y-m-d H:i:s'),
-                'data' => $sanitizedData,
-                'status' => 'received'
-            ]);
-            
-            // Send emails
-            consoleLog("Attempting to send emails", ['admin_email' => ADMIN_EMAIL, 'user_email' => $sanitizedData['email']]);
-            
-            $adminEmailSent = false;
-            $userEmailSent = false;
-            
-            try {
-                $adminEmailSent = $this->sendAdminNotification($sanitizedData, $formType);
-                consoleLog("Admin email result", ['sent' => $adminEmailSent]);
-            } catch (Exception $e) {
-                consoleLog("Admin email failed", ['error' => $e->getMessage()]);
-            }
-            
-            try {
-                $userEmailSent = $this->sendUserConfirmation($sanitizedData, $formType);
-                consoleLog("User email result", ['sent' => $userEmailSent]);
-            } catch (Exception $e) {
-                consoleLog("User email failed", ['error' => $e->getMessage()]);
-            }
-            
-            // Log final status
-            logToFile('form_submissions.txt', [
-                'type' => $formType,
-                'timestamp' => date('Y-m-d H:i:s'),
-                'data' => $sanitizedData,
-                'status' => 'processed',
-                'admin_email_sent' => $adminEmailSent,
-                'user_email_sent' => $userEmailSent
-            ]);
-            
-            $response = [
-                'success' => true,
-                'message' => 'Form submitted successfully!',
-                'admin_email_sent' => $adminEmailSent,
-                'user_email_sent' => $userEmailSent,
-                'timestamp' => date('Y-m-d H:i:s')
-            ];
-            
-            consoleLog("Form processing completed", $response);
-            return $response;
-            
-        } catch (Exception $e) {
-            $error = [
-                'success' => false,
-                'message' => $e->getMessage(),
-                'timestamp' => date('Y-m-d H:i:s')
-            ];
-            
-            consoleLog("Form processing error", $error);
-            
-            // Still log the attempt even if there was an error
-            logToFile('form_errors.txt', [
-                'error' => $e->getMessage(),
-                'data' => isset($formData) ? $formData : 'No data',
-                'timestamp' => date('Y-m-d H:i:s')
-            ]);
-            
-            return $error;
+        } else {
+            $mailer->addAddress($to);
         }
+        
+        // Email content
+        $mailer->isHTML(true);
+        $mailer->Subject = $subject;
+        $mailer->Body = $htmlBody;
+        if ($altBody) {
+            $mailer->AltBody = $altBody;
+        }
+        
+        // Send email
+        $result = $mailer->send();
+        
+        $toList = is_array($to) ? implode(', ', array_keys($to)) : $to;
+        if ($result) {
+            logError("Email sent successfully FROM: {$fromEmail} (auth: {$smtpUsername}) TO: {$toList}");
+            return ['success' => true, 'message' => 'Email sent successfully'];
+        } else {
+            logError("Failed to send email FROM: {$fromEmail} (auth: {$smtpUsername}) TO: {$toList}");
+            return ['success' => false, 'message' => 'Failed to send email via SMTP'];
+        }
+        
+    } catch (Exception $e) {
+        $toList = is_array($to) ? implode(', ', array_keys($to)) : $to;
+        logError("Email sending error FROM: {$fromEmail} (auth: {$smtpUsername}) TO: {$toList} - " . $e->getMessage());
+        return ['success' => false, 'message' => 'Email sending failed: ' . $e->getMessage()];
     }
 }
-?> 
+
+/**
+ * Log errors and debug information
+ */
+function logError($message) {
+    $logFile = __DIR__ . '/mail-errors.log';
+    $timestamp = date('Y-m-d H:i:s');
+    $logEntry = "[$timestamp] $message\n";
+    @file_put_contents($logFile, $logEntry, FILE_APPEND | LOCK_EX);
+}
+
+/**
+ * Sanitize and validate form input
+ */
+function sanitizeInput($data) {
+    if (is_array($data)) {
+        return array_map('sanitizeInput', $data);
+    }
+    return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
+}
+
+/**
+ * Validate email address
+ */
+function isValidEmail($email) {
+    return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+}
+
+/**
+ * Build HTML email template
+ */
+function buildEmailTemplate($title, $content, $footerText = 'Luxury Andamans') {
+    $logoUrl = defined('LOGO_URL') ? LOGO_URL : '';
+    $brandHeader = $logoUrl ? 
+        '<img src="' . htmlspecialchars($logoUrl, ENT_QUOTES, 'UTF-8') . '" alt="Luxury Andamans" style="height:48px;vertical-align:middle;" />' : 
+        '<span style="font-size:20px;font-weight:700;color:#0f172a;">Luxury Andamans</span>';
+    
+    return "
+    <div style=\"font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:#0f172a;background:#f8fafc;padding:24px\">
+        <div style=\"max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden\">
+            <div style=\"display:flex;align-items:center;gap:12px;padding:16px 20px;background:#0f172a;color:#fff\">
+                {$brandHeader}
+                <span style=\"margin-left:auto;font-size:12px;color:#cbd5e1\">{$title}</span>
+            </div>
+            <div style=\"padding:20px\">
+                {$content}
+            </div>
+            <div style=\"padding:14px 20px;background:#f8fafc;border-top:1px solid #e5e7eb;color:#64748b;font-size:12px\">
+                {$footerText}
+            </div>
+        </div>
+    </div>";
+}
+
+// Handle the email sending request
+try {
+    // Parse input data
+    $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
+    $rawBody = file_get_contents('php://input');
+    
+    $data = [];
+    if (strpos($contentType, 'application/json') !== false && $rawBody) {
+        $decoded = json_decode($rawBody, true);
+        if (json_last_error() === JSON_ERROR_NONE) {
+            $data = $decoded;
+        }
+    } else {
+        $data = $_POST;
+    }
+    
+    // Sanitize input data
+    $data = sanitizeInput($data);
+    
+    // Extract and validate required fields
+    $name = $data['name'] ?? '';
+    $email = $data['email'] ?? '';
+    $message = $data['message'] ?? '';
+    $subject = $data['subject'] ?? 'Website Enquiry';
+    
+    // Validate required fields
+    if (empty($name) || empty($email) || empty($message)) {
+        throw new Exception('Missing required fields: name, email, and message are required');
+    }
+    
+    if (!isValidEmail($email)) {
+        throw new Exception('Invalid email address provided');
+    }
+    
+    // Log the submission
+    logSubmission($data, 'processing');
+    
+    // Build admin email content
+    $adminContent = "<h2>New Website Enquiry</h2>";
+    $adminContent .= "<p>You have received a new enquiry from the website:</p>";
+    $adminContent .= "<table style=\"width:100%;border-collapse:collapse;margin:16px 0;\">";
+    
+    $fields = [
+        'Name' => $name,
+        'Email' => $email,
+        'Phone' => $data['phone'] ?? '',
+        'Subject' => $subject,
+        'Destination' => $data['destination'] ?? '',
+        'Guests' => $data['guests'] ?? '',
+        'Travel Date' => $data['travel_date'] ?? '',
+        'Duration' => $data['duration'] ?? '',
+        'Preferred Contact' => $data['preferred_contact'] ?? '',
+        'Package' => $data['packageName'] ?? '',
+        'Total Price' => $data['totalPrice'] ?? '',
+    ];
+    
+    foreach ($fields as $label => $value) {
+        if (!empty($value)) {
+            $adminContent .= "<tr><td style=\"padding:8px;border:1px solid #eee;font-weight:bold;\">{$label}</td>";
+            $adminContent .= "<td style=\"padding:8px;border:1px solid #eee;\">" . nl2br(htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8')) . "</td></tr>";
+        }
+    }
+    
+    $adminContent .= "</table>";
+    $adminContent .= "<div style=\"padding:12px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;margin-top:16px;\">";
+    $adminContent .= "<h4 style=\"margin:0 0 8px;\">Message:</h4>";
+    $adminContent .= "<p style=\"margin:0;\">" . nl2br(htmlspecialchars($message)) . "</p>";
+    $adminContent .= "</div>";
+    
+    $adminEmailBody = buildEmailTemplate('Website Enquiry', $adminContent);
+    
+    // Send admin notification using info@luxuryandamans.com as sender
+    $adminRecipients = explode(',', ADMIN_RECIPIENTS);
+    $adminEmails = [];
+    foreach ($adminRecipients as $recipient) {
+        $adminEmails[trim($recipient)] = '';
+    }
+    
+    $adminResult = sendEmailWithCustomFrom(
+        $adminEmails,
+        $subject . ' - Website Enquiry',
+        $adminEmailBody,
+        "New enquiry from {$name} ({$email})\n\nMessage: {$message}",
+        ADMIN_FROM_EMAIL,
+        SMTP_FROM_NAME
+    );
+    
+    // Send autoresponder to customer
+    $customerContent = "<p>Hi " . htmlspecialchars($name) . ",</p>";
+    $customerContent .= "<p>Thank you for contacting Luxury Andamans. We have received your enquiry and our travel experts will get back to you within 24 hours.</p>";
+    $customerContent .= "<div style=\"padding:12px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;margin:16px 0;\">";
+    $customerContent .= "<h4 style=\"margin:0 0 8px;\">Your Message:</h4>";
+    $customerContent .= "<p style=\"margin:0;\">" . nl2br(htmlspecialchars($message)) . "</p>";
+    $customerContent .= "</div>";
+    $customerContent .= "<p>If you have any urgent queries, please feel free to call us directly.</p>";
+    $customerContent .= "<p>Best regards,<br><strong>Luxury Andamans Team</strong></p>";
+    
+    $customerEmailBody = buildEmailTemplate('Enquiry Received', $customerContent);
+    
+    $customerResult = sendEmailWithCustomFrom(
+        $email,
+        'Thank you for your enquiry - Luxury Andamans',
+        $customerEmailBody,
+        "Thank you for contacting Luxury Andamans. We have received your enquiry and will respond shortly.",
+        USER_FROM_EMAIL,
+        SMTP_FROM_NAME
+    );
+    
+    // Log results
+    logSubmission($data, $adminResult['success'] ? 'sent' : 'failed');
+    
+    // Return response
+    $response = [
+        'success' => $adminResult['success'],
+        'message' => $adminResult['message'],
+        'admin_email_sent' => $adminResult['success'],
+        'customer_email_sent' => $customerResult['success'],
+        'timestamp' => date('c')
+    ];
+    
+    echo json_encode($response);
+    
+} catch (Exception $e) {
+    logError("Email handler error: " . $e->getMessage());
+    
+    $response = [
+        'success' => false,
+        'message' => $e->getMessage(),
+        'timestamp' => date('c')
+    ];
+    
+    http_response_code(500);
+    echo json_encode($response);
+}
+?>

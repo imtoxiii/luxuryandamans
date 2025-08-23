@@ -62,6 +62,17 @@ export interface Destination {
   };
   historicalInfo?: string;
   touristGuide?: string[];
+  bestFor?: string[];
+  nearbyAttractions?: { name: string; distance: string; description?: string; slug?: string }[];
+  itineraries?: { title: string; duration: string; activities: string[] }[];
+  stayOptions?: { name: string; type: string; priceRange: string; location?: string }[];
+  practicalInfo?: {
+    permits?: string;
+    networkCoverage?: string[];
+    atmAvailability?: string;
+    medicalFacilities?: string;
+    emergencyContacts?: string[];
+  };
 }
 
 export const destinations: Destination[] = [
@@ -152,6 +163,33 @@ export const destinations: Destination[] = [
       "Photography is allowed",
       "Guide services available"
     ],
+    bestFor: ["history lovers", "culture enthusiasts", "families", "photographers"],
+    nearbyAttractions: [
+      { name: "Ross Island (Netaji Subhas Chandra Bose Island)", distance: "2 km by ferry", slug: "ross-island" },
+      { name: "North Bay Island", distance: "30–40 min by boat", slug: "north-bay-island" }
+    ],
+    itineraries: [
+      {
+        title: "Cellular Jail + Light & Sound Show",
+        duration: "Half-day",
+        activities: [
+          "Explore museum exhibits and historical wings",
+          "Walk through solitary cells and central tower",
+          "Attend the evening Light & Sound Show"
+        ]
+      }
+    ],
+    stayOptions: [
+      { name: "Comfort stay near Aberdeen Bazar", type: "Hotel", priceRange: "₹3,000–₹6,000", location: "Port Blair city" },
+      { name: "Sea-view boutique stay", type: "Hotel", priceRange: "₹6,000–₹12,000", location: "Marine Hill" }
+    ],
+    practicalInfo: {
+      permits: "No special permit required for Indian nationals. Foreign nationals require RAP (issued on arrival).",
+      networkCoverage: ["Airtel", "Jio", "BSNL"],
+      atmAvailability: "Multiple ATMs within 1–2 km in city center.",
+      medicalFacilities: "GB Pant Hospital ~2 km; basic first-aid available at venue.",
+      emergencyContacts: ["Emergency 112", "Police 100", "Ambulance 102/108"]
+    },
     slug: "cellular-jail",
     category: "port-blair",
     region: "south"
@@ -235,6 +273,33 @@ export const destinations: Destination[] = [
       "Visit during cooler hours",
       "Photography is allowed"
     ],
+    bestFor: ["history lovers", "nature walkers", "families", "photographers"],
+    nearbyAttractions: [
+      { name: "North Bay Island", distance: "Short boat hop", slug: "north-bay-island" },
+      { name: "Cellular Jail", distance: "15–20 min drive + ferry", slug: "cellular-jail" }
+    ],
+    itineraries: [
+      {
+        title: "Colonial Ruins Walk",
+        duration: "2–3 hours",
+        activities: [
+          "Church, bakery and commissioner’s house ruins",
+          "Visit deer park and Japanese bunkers",
+          "Jetty area for photos"
+        ]
+      }
+    ],
+    stayOptions: [
+      { name: "City hotel near jetty", type: "Hotel", priceRange: "₹3,000–₹7,000", location: "Port Blair" },
+      { name: "Premium seafront stay", type: "Resort", priceRange: "₹10,000+", location: "Port Blair waterfront" }
+    ],
+    practicalInfo: {
+      permits: "Entry tickets sold at jetty; no special permit required.",
+      networkCoverage: ["BSNL", "Airtel", "Jio"],
+      atmAvailability: "ATMs available in Port Blair before ferry.",
+      medicalFacilities: "First-aid at jetty; full facilities in Port Blair.",
+      emergencyContacts: ["Emergency 112"]
+    },
     slug: "ross-island",
     category: "port-blair",
     region: "south"
@@ -323,6 +388,23 @@ export const destinations: Destination[] = [
       "Follow safety instructions",
       "Bring waterproof camera"
     ],
+    bestFor: ["adventure seekers", "snorkelers", "families"],
+    nearbyAttractions: [
+      { name: "Ross Island", distance: "Boat combo", slug: "ross-island" }
+    ],
+    itineraries: [
+      { title: "Water Sports Combo", duration: "Half-day", activities: ["Sea walk", "Snorkeling", "Glass-bottom boat ride"] }
+    ],
+    stayOptions: [
+      { name: "City base near jetty", type: "Hotel", priceRange: "₹3,000–₹6,000", location: "Port Blair" }
+    ],
+    practicalInfo: {
+      permits: "Activity tickets and vendor permits arranged on-site; no special island permit.",
+      networkCoverage: ["BSNL"],
+      atmAvailability: "No ATMs on island; withdraw in Port Blair.",
+      medicalFacilities: "Basic first-aid with vendors; hospitals in Port Blair.",
+      emergencyContacts: ["Emergency 112"]
+    },
     slug: "north-bay-island",
     category: "port-blair",
     region: "south"
@@ -406,6 +488,24 @@ export const destinations: Destination[] = [
       "Best time for sunset photography",
       "Wear comfortable beach attire"
     ],
+    bestFor: ["couples", "families", "photographers", "sunset chasers"],
+    nearbyAttractions: [
+      { name: "Elephant Beach", distance: "20–30 min boat/trek", slug: "elephant-beach" }
+    ],
+    itineraries: [
+      { title: "Beach Day & Sunset", duration: "Half-day", activities: ["Swimming", "Beach walk", "Sunset viewpoint"] }
+    ],
+    stayOptions: [
+      { name: "Beachside resort (mid-range)", type: "Resort", priceRange: "₹6,000–₹12,000", location: "Radhanagar vicinity" },
+      { name: "Luxury island resort", type: "Resort", priceRange: "₹15,000+", location: "Havelock" }
+    ],
+    practicalInfo: {
+      permits: "No special permit. Follow lifeguard instructions.",
+      networkCoverage: ["BSNL", "Airtel (patchy)", "Jio (patchy)"] ,
+      atmAvailability: "ATMs near Havelock market; limited.",
+      medicalFacilities: "Primary health center on Havelock; first-aid at beach.",
+      emergencyContacts: ["Emergency 112", "Lifeguard post on duty"]
+    },
     slug: "radhanagar-beach",
     category: "havelock",
     region: "south"
@@ -483,6 +583,23 @@ export const destinations: Destination[] = [
       "Bring underwater camera",
       "Comfortable shoes for trekking option"
     ],
+    bestFor: ["snorkelers", "adventure seekers", "families"],
+    nearbyAttractions: [
+      { name: "Radhanagar Beach", distance: "20–30 min", slug: "radhanagar-beach" }
+    ],
+    itineraries: [
+      { title: "Snorkeling + Trek", duration: "Half-day", activities: ["Snorkeling session", "Forest trek (optional)", "Leisure on beach"] }
+    ],
+    stayOptions: [
+      { name: "Havelock market stays", type: "Hotel", priceRange: "₹3,000–₹7,000", location: "Govind Nagar" }
+    ],
+    practicalInfo: {
+      permits: "Boat ticket/forest trekking route permission required; arranged locally.",
+      networkCoverage: ["BSNL", "Airtel (patchy)", "Jio (patchy)"] ,
+      atmAvailability: "Limited ATMs in Havelock market.",
+      medicalFacilities: "Primary health center on Havelock; first-aid at activity counters.",
+      emergencyContacts: ["Emergency 112"]
+    },
     slug: "elephant-beach",
     category: "havelock",
     region: "south"
@@ -565,6 +682,23 @@ export const destinations: Destination[] = [
       "Carry reef-safe sunscreen",
       "Best coral viewing in morning hours"
     ],
+    bestFor: ["families", "snorkelers", "first-time visitors"],
+    nearbyAttractions: [
+      { name: "Natural Bridge", distance: "10–15 min", slug: "natural-bridge" }
+    ],
+    itineraries: [
+      { title: "Snorkeling & Glass Boat", duration: "3–4 hours", activities: ["Glass bottom boat ride", "Snorkeling", "Beach time"] }
+    ],
+    stayOptions: [
+      { name: "Neil market stay", type: "Hotel", priceRange: "₹2,500–₹5,000", location: "Near Jetty" }
+    ],
+    practicalInfo: {
+      permits: "No special permit required.",
+      networkCoverage: ["BSNL", "Airtel", "Jio"],
+      atmAvailability: "ATMs near Neil Jetty and market.",
+      medicalFacilities: "Primary health center on Neil Island.",
+      emergencyContacts: ["Emergency 112"]
+    },
     slug: "bharatpur-beach",
     category: "neil",
     region: "south"
@@ -587,6 +721,23 @@ export const destinations: Destination[] = [
     ],
     bestTimeToVisit: "During low tide for best views",
     howToReach: "2 km from Neil Island Jetty",
+    bestFor: ["photographers", "nature lovers", "couples"],
+    nearbyAttractions: [
+      { name: "Bharatpur Beach", distance: "10–15 min", slug: "bharatpur-beach" }
+    ],
+    itineraries: [
+      { title: "Low Tide Walk & Photos", duration: "1–2 hours", activities: ["Walk to coral arch", "Tide pool exploration", "Sunrise photos"] }
+    ],
+    stayOptions: [
+      { name: "Neil Island cottages", type: "Resort", priceRange: "₹3,000–₹8,000", location: "Laxmanpur" }
+    ],
+    practicalInfo: {
+      permits: "No permit required. Visit only during safe low tide windows.",
+      networkCoverage: ["BSNL", "Airtel (varies)", "Jio (varies)"] ,
+      atmAvailability: "ATMs in Neil market.",
+      medicalFacilities: "Primary health center at Neil.",
+      emergencyContacts: ["Emergency 112"]
+    },
     slug: "natural-bridge",
     category: "neil",
     region: "south"
@@ -610,6 +761,23 @@ export const destinations: Destination[] = [
     ],
     bestTimeToVisit: "October to March",
     howToReach: "90 km from Port Blair + boat ride through mangroves",
+    bestFor: ["adventure seekers", "nature lovers", "photographers"],
+    nearbyAttractions: [
+      { name: "Mud Volcano (Baratang)", distance: "30–45 min", slug: "mud-volcano" }
+    ],
+    itineraries: [
+      { title: "Caves Day Trip", duration: "Full-day", activities: ["Convoy road to Baratang", "Mangrove boat ride", "Forest walk to caves"] }
+    ],
+    stayOptions: [
+      { name: "Basic Baratang stay", type: "Guesthouse", priceRange: "₹1,500–₹3,000", location: "Baratang" }
+    ],
+    practicalInfo: {
+      permits: "Convoy timings through Jarawa reserve; permits checked at check-post; follow all rules.",
+      networkCoverage: ["BSNL (spotty)"] ,
+      atmAvailability: "Very limited; carry cash.",
+      medicalFacilities: "Basic first-aid at Baratang; advanced care in Port Blair.",
+      emergencyContacts: ["Emergency 112"]
+    },
     slug: "limestone-caves",
     category: "baratang",
     region: "middle"
@@ -632,6 +800,17 @@ export const destinations: Destination[] = [
     ],
     bestTimeToVisit: "October to March",
     howToReach: "100 km from Port Blair via road and boat",
+    bestFor: ["geology enthusiasts", "nature lovers"],
+    itineraries: [
+      { title: "Baratang Combo", duration: "Full-day", activities: ["Mud volcano site visit", "Optional limestone caves if time permits"] }
+    ],
+    practicalInfo: {
+      permits: "Same convoy/permit rules as Baratang route.",
+      networkCoverage: ["BSNL (spotty)"] ,
+      atmAvailability: "Very limited; carry cash.",
+      medicalFacilities: "Basic first-aid; advanced care in Port Blair.",
+      emergencyContacts: ["Emergency 112"]
+    },
     slug: "mud-volcano",
     category: "baratang",
     region: "middle"
@@ -655,6 +834,23 @@ export const destinations: Destination[] = [
     ],
     bestTimeToVisit: "December to March",
     howToReach: "230 km from Port Blair + boat ride from Aerial Bay",
+    bestFor: ["beach lovers", "snorkelers", "photographers", "families"],
+    nearbyAttractions: [
+      { name: "Saddle Peak", distance: "1–1.5 hr drive", slug: "saddle-peak" }
+    ],
+    itineraries: [
+      { title: "Sandbar Day Trip", duration: "Half-day", activities: ["Walk the sandbar at low tide", "Snorkeling", "Beach picnic"] }
+    ],
+    stayOptions: [
+      { name: "Diglipur stays", type: "Hotel", priceRange: "₹2,500–₹6,000", location: "Kalipur/Aerial Bay" }
+    ],
+    practicalInfo: {
+      permits: "Forest permit obtained locally at Diglipur; check tide timings.",
+      networkCoverage: ["BSNL (limited)"],
+      atmAvailability: "Limited ATMs in Diglipur.",
+      medicalFacilities: "Community health center in Diglipur.",
+      emergencyContacts: ["Emergency 112"]
+    },
     slug: "ross-smith-islands",
     category: "diglipur",
     region: "north"
@@ -677,6 +873,20 @@ export const destinations: Destination[] = [
     ],
     bestTimeToVisit: "November to April",
     howToReach: "230 km from Port Blair, then trek from Kalipur",
+    bestFor: ["trekkers", "nature enthusiasts", "photographers"],
+    itineraries: [
+      { title: "Saddle Peak Trek", duration: "6–8 hours", activities: ["Forest trail", "Summit viewpoint", "Bird watching"] }
+    ],
+    stayOptions: [
+      { name: "Budget stays at Kalipur", type: "Guesthouse", priceRange: "₹1,500–₹3,500", location: "Kalipur" }
+    ],
+    practicalInfo: {
+      permits: "Entry permit for National Park may be required; carry ID.",
+      networkCoverage: ["Minimal/none on trail"],
+      atmAvailability: "ATMs in Diglipur; none on trek.",
+      medicalFacilities: "Basic first-aid; trek at own risk with guide.",
+      emergencyContacts: ["Emergency 112"]
+    },
     slug: "saddle-peak",
     category: "diglipur",
     region: "north"
@@ -700,6 +910,17 @@ export const destinations: Destination[] = [
     ],
     bestTimeToVisit: "November to April",
     howToReach: "Chartered boat from Port Blair (special permits required)",
+    bestFor: ["snorkelers", "scuba divers", "photographers", "offbeat travelers"],
+    itineraries: [
+      { title: "Day Trip to Cinque", duration: "Full-day", activities: ["Boat ride", "Snorkeling", "Beach time", "Return by evening"] }
+    ],
+    practicalInfo: {
+      permits: "Special permit required; only chartered boats; zero facilities on island.",
+      networkCoverage: ["None"],
+      atmAvailability: "None on island; carry cash in Port Blair.",
+      medicalFacilities: "None on island; carry first-aid.",
+      emergencyContacts: ["Emergency 112"]
+    },
     slug: "cinque-island",
     category: "untouched",
     region: "south"
@@ -722,6 +943,17 @@ export const destinations: Destination[] = [
     ],
     bestTimeToVisit: "December to March",
     howToReach: "Special chartered boat tours from Port Blair (permits required)",
+    bestFor: ["adventure cruisers", "photographers", "marine life enthusiasts"],
+    itineraries: [
+      { title: "Barren Island Viewing", duration: "Full-day (no landing)", activities: ["Blue-water cruise", "View volcanic cone from sea", "Return"] }
+    ],
+    practicalInfo: {
+      permits: "Strictly no landing; boat viewing with special permits only.",
+      networkCoverage: ["None at sea"],
+      atmAvailability: "None; arrange before departure.",
+      medicalFacilities: "Onboard first-aid only; operators carry safety equipment.",
+      emergencyContacts: ["Emergency 112"]
+    },
     slug: "barren-island",
     category: "untouched",
     region: "north"

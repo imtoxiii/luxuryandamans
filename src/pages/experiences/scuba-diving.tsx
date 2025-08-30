@@ -77,6 +77,15 @@ const ScubaDivingPage = () => {
               </p>
               <Link
                 to="/enquiry"
+                onClick={() => {
+                  try {
+                    localStorage.setItem('enquiryDetails', JSON.stringify({
+                      packageName: 'Scuba Diving Adventures',
+                      source: 'experience',
+                      slug: 'scuba-diving'
+                    }));
+                  } catch (_) { /* no-op */ }
+                }}
                 className="inline-flex items-center px-8 py-4 glass-sunset-button text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
               >
                 Book Your Dive
@@ -248,6 +257,16 @@ const ScubaDivingPage = () => {
                   <span className="text-2xl font-bold text-night">{course.price}</span>
                   <Link
                     to="/enquiry"
+                    onClick={() => {
+                      try {
+                        localStorage.setItem('enquiryDetails', JSON.stringify({
+                          packageName: 'Scuba Diving Adventures',
+                          source: 'experience',
+                          slug: 'scuba-diving',
+                          selectedActivities: [course.name]
+                        }));
+                      } catch (_) { /* no-op */ }
+                    }}
                     className="inline-flex items-center px-6 py-3 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
                   >
                     Book Now
@@ -255,6 +274,60 @@ const ScubaDivingPage = () => {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Seasons & Gear */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl font-bold text-night mb-2">Seasons & Gear</h2>
+            <p className="text-night/70">Plan dives around conditions and equipment needs</p>
+          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-lg font-semibold text-night mb-2">Best Season</h3>
+              <p className="text-night/70">October–May. Visibility 10–30m. Sea calmer and warmer. Monsoon (Jun–Sep) is weather-dependent.</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-lg font-semibold text-night mb-2">Gear & Certification</h3>
+              <p className="text-night/70">Top-quality BCDs, regulators, and wetsuits provided. Bring certification card for advanced dives.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQs */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-10"
+          >
+            <h2 className="text-3xl font-bold text-night mb-2">Diving FAQs</h2>
+            <p className="text-night/70">Helpful answers for first-time and certified divers</p>
+          </motion.div>
+          <div className="max-w-3xl mx-auto space-y-6">
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="font-semibold text-night">Can non-swimmers try scuba?</h3>
+              <p className="text-night/70 mt-2">Yes. Discover Scuba is designed for beginners with pool and shallow-water sessions.</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="font-semibold text-night">Is medical clearance required?</h3>
+              <p className="text-night/70 mt-2">You must complete a medical form. Certain conditions need a doctor’s fitness certificate.</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="font-semibold text-night">Are photos included?</h3>
+              <p className="text-night/70 mt-2">Most beginner dives include photos or offer them as an add-on. Ask when booking.</p>
+            </div>
           </div>
         </div>
       </section>

@@ -63,6 +63,15 @@ const RomanticGetawaysPage = () => {
               </p>
               <Link
                 to="/enquiry"
+                onClick={() => {
+                  try {
+                    localStorage.setItem('enquiryDetails', JSON.stringify({
+                      packageName: 'Romantic Getaways',
+                      source: 'experience',
+                      slug: 'romantic-getaways'
+                    }));
+                  } catch (_) { /* no-op */ }
+                }}
                 className="inline-flex items-center px-8 py-4 glass-sunset-button text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
               >
                 Plan Your Escape
@@ -191,6 +200,16 @@ const RomanticGetawaysPage = () => {
                   </div>
                   <Link
                     to="/enquiry"
+                    onClick={() => {
+                      try {
+                        localStorage.setItem('enquiryDetails', JSON.stringify({
+                          packageName: 'Romantic Getaways',
+                          source: 'experience',
+                          slug: 'romantic-getaways',
+                          selectedActivities: [pkg.name]
+                        }));
+                      } catch (_) { /* no-op */ }
+                    }}
                     className="inline-flex items-center px-6 py-3 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
                   >
                     Enquire Now
@@ -198,6 +217,35 @@ const RomanticGetawaysPage = () => {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Add-ons & Tips */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-10"
+          >
+            <h2 className="text-3xl font-bold text-night mb-2">Add-ons & Tips</h2>
+            <p className="text-night/70">Personalize your romantic escape</p>
+          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-lg font-semibold text-night mb-2">Romantic Add-ons</h3>
+              <p className="text-night/70">Private yacht sunset, beachfront cabana dinners, flower décor, and more.</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-lg font-semibold text-night mb-2">Best Time</h3>
+              <p className="text-night/70">Plan around new moon for starry nights and calmer seas.</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-lg font-semibold text-night mb-2">Photo Sessions</h3>
+              <p className="text-night/70">Golden-hour shoots at Radhanagar or Kalapathar for timeless memories.</p>
+            </div>
           </div>
         </div>
       </section>

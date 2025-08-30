@@ -81,6 +81,15 @@ const FamilyAdventuresPage = () => {
               </p>
               <Link
                 to="/enquiry"
+                onClick={() => {
+                  try {
+                    localStorage.setItem('enquiryDetails', JSON.stringify({
+                      packageName: 'Family Adventures',
+                      source: 'experience',
+                      slug: 'family-adventures'
+                    }));
+                  } catch (_) { /* no-op */ }
+                }}
                 className="inline-flex items-center px-8 py-4 glass-sunset-button text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
               >
                 Book Your Adventure
@@ -223,6 +232,16 @@ const FamilyAdventuresPage = () => {
                   </div>
                   <Link
                     to="/enquiry"
+                    onClick={() => {
+                      try {
+                        localStorage.setItem('enquiryDetails', JSON.stringify({
+                          packageName: 'Family Adventures',
+                          source: 'experience',
+                          slug: 'family-adventures',
+                          selectedActivities: [activity.name]
+                        }));
+                      } catch (_) { /* no-op */ }
+                    }}
                     className="inline-flex items-center px-6 py-3 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
                   >
                     Enquire Now
@@ -230,6 +249,35 @@ const FamilyAdventuresPage = () => {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Good to Know */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-10"
+          >
+            <h2 className="text-3xl font-bold text-night mb-2">Good to Know</h2>
+            <p className="text-night/70">Helpful information for families traveling with kids</p>
+          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-lg font-semibold text-night mb-3">Best Season</h3>
+              <p className="text-night/70">October to May offers calm seas and great visibility for outdoor fun.</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-lg font-semibold text-night mb-3">What to Pack</h3>
+              <p className="text-night/70">Sun hats, reef-safe sunscreen, quick-dry clothing, water shoes, and snacks.</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-lg font-semibold text-night mb-3">Age Guidance</h3>
+              <p className="text-night/70">Most activities are suitable for 5+ with parental supervision; ask us for details.</p>
+            </div>
           </div>
         </div>
       </section>

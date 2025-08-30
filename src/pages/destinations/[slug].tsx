@@ -513,6 +513,21 @@ const DestinationPage = () => {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link
                 to="/enquiry"
+                onClick={() => {
+                  try {
+                    const details = {
+                      packageName: destination.name,
+                      days: undefined,
+                      people: 2,
+                      totalPrice: undefined,
+                      selectedActivities: destination.activities || [],
+                      supplements: [],
+                      source: 'destination',
+                      slug: destination.slug,
+                    };
+                    localStorage.setItem('enquiryDetails', JSON.stringify(details));
+                  } catch (_) { /* no-op */ }
+                }}
                 className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105 text-sm sm:text-base font-medium"
               >
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />

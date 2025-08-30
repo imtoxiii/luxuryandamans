@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MapPin, Calendar, Users, Send, Clock, Home, Star, CheckCircle, ArrowRight, Sparkles, Globe, Shield, Heart, Package } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { sendEmail } from '../lib/email';
 import toast, { Toaster } from 'react-hot-toast';
 import Header from './Header';
@@ -36,12 +36,20 @@ const Enquiry = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 3;
+  const totalSteps = packageDetails ? 2 : 3;
+
+  const location = useLocation();
 
   useEffect(() => {
     // Check for booking details from package pages
     const bookingDetails = localStorage.getItem('bookingDetails');
     const enquiryDetails = localStorage.getItem('enquiryDetails');
+    const params = new URLSearchParams(location.search);
+    const context = params.get('context');
+    const pkg = params.get('package');
+    const dest = params.get('destination');
+    const daysParam = params.get('days');
+    const peopleParam = params.get('people');
     
     if (bookingDetails) {
       const details = JSON.parse(bookingDetails);
@@ -75,8 +83,24 @@ const Enquiry = () => {
           `${details.supplements?.length ? `\n\nInterested add-ons: ${details.supplements.join(', ')}` : ''}`
       }));
       localStorage.removeItem('enquiryDetails');
+    } else if (context || pkg || dest) {
+      const details = {
+        packageName: pkg || dest || 'Selected Option',
+        days: daysParam ? parseInt(daysParam) : undefined,
+        people: peopleParam ? parseInt(peopleParam) : undefined,
+        selectedActivities: [],
+        supplements: [],
+      };
+      setPackageDetails(details);
+      setEnquiryType(context === 'booking' ? 'booking' : 'enquiry');
+      setFormData(prev => ({
+        ...prev,
+        guests: details.people?.toString() || prev.guests,
+        duration: details.days?.toString() || prev.duration,
+        message: `${context === 'booking' ? 'I would like to book' : 'I would like to enquire about'} ${details.packageName}${details.people ? ` for ${details.people} people` : ''}${details.days ? ` for ${details.days} days` : ''}.`
+      }));
     }
-  }, []);
+  }, [location.search]);
 
   const destinations = [
     { value: 'havelock', label: 'Havelock Island', description: 'Pristine beaches & luxury resorts' },
@@ -185,9 +209,10 @@ const Enquiry = () => {
   const isStepValid = () => {
     switch (currentStep) {
       case 1:
-        return formData.name && formData.email && formData.phone;
+        return formData.name && (formData.email || formData.phone);
       case 2:
-        return formData.destination && formData.guests && formData.duration;
+        // If context present, destination preferences are optional
+        return packageDetails ? true : (formData.destination && formData.guests && formData.duration);
       case 3:
         return true;
       default:
@@ -504,7 +529,7 @@ const Enquiry = () => {
                           {enquiryType === 'booking' ? 'Ready to book this package' : 'Interested in this package'}
                         </span>
                       </div>
-                                             <Link
+                      <Link
                          to="/packages"
                          className="text-sm text-gray-500 hover:text-gray-700 underline"
                        >
@@ -512,6 +537,19 @@ const Enquiry = () => {
                        </Link>
                     </div>
                   </motion.div>
+                )}
+
+                {/* Quick send when context is present */}
+                {packageDetails && (
+                  <div className="mb-6">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full md:w-auto px-6 py-3 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all"
+                    >
+                      {isSubmitting ? 'Sending...' : `Send ${enquiryType === 'booking' ? 'Booking' : 'Enquiry'} for ${packageDetails.packageName}`}
+                    </button>
+                  </div>
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-8">
@@ -590,14 +628,17 @@ const Enquiry = () => {
                         className="space-y-6"
                       >
                         <div>
-                          <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-6">Plan your adventure</h3>
+                          <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-2">Plan your adventure</h3>
+                          {packageDetails && (
+                            <p className="text-gray-600 mb-4">These are optional since you already selected a {enquiryType === 'booking' ? 'package' : 'destination'}.</p>
+                          )}
                         </div>
 
                         <div className="group">
                           <label className="block text-base font-semibold text-gray-700 mb-4 group-hover:text-purple-600 transition-colors duration-300">
                             Preferred Destination
                           </label>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 ${packageDetails ? 'opacity-60 pointer-events-auto' : ''}`}>
                             {destinations.map(dest => (
                               <motion.label
                                 key={dest.value}

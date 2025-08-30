@@ -68,6 +68,15 @@ const IslandHoppingPage = () => {
               </p>
               <Link
                 to="/enquiry"
+                onClick={() => {
+                  try {
+                    localStorage.setItem('enquiryDetails', JSON.stringify({
+                      packageName: 'Island Hopping Adventures',
+                      source: 'experience',
+                      slug: 'island-hopping'
+                    }));
+                  } catch (_) { /* no-op */ }
+                }}
                 className="inline-flex items-center px-8 py-4 glass-sunset-button text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
               >
                 Book Your Adventure
@@ -191,6 +200,76 @@ const IslandHoppingPage = () => {
         </div>
       </section>
 
+      {/* Sample Itineraries */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-night mb-4">Sample Itineraries</h2>
+            <p className="text-night/70 max-w-2xl mx-auto">Pick a ready-made plan or ask us to tailor one for you</p>
+          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-xl font-semibold text-night mb-2">Half Day Highlights</h3>
+              <p className="text-night/70 mb-3">Ross Island + North Bay</p>
+              <ul className="space-y-2 text-night/70">
+                <li>• Morning boat to Ross Island</li>
+                <li>• Explore ruins and deer park</li>
+                <li>• Transfer to North Bay for glass-bottom</li>
+                <li>• Return by late afternoon</li>
+              </ul>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-xl font-semibold text-night mb-2">Full Day Explorer</h3>
+              <p className="text-night/70 mb-3">Neil + Havelock day circuit</p>
+              <ul className="space-y-2 text-night/70">
+                <li>• Bharatpur Beach snorkel</li>
+                <li>• Natural Bridge visit</li>
+                <li>• Ferry to Havelock for Radhanagar Beach</li>
+                <li>• Evening return</li>
+              </ul>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-xl font-semibold text-night mb-2">Two-Day Premium</h3>
+              <p className="text-night/70 mb-3">Private boat with custom route</p>
+              <ul className="space-y-2 text-night/70">
+                <li>• Hidden coves and snorkeling stops</li>
+                <li>• Sunset at Kalapathar</li>
+                <li>• Overnight on Havelock</li>
+                <li>• Next-day island trio</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Travel Tips */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-10"
+          >
+            <h2 className="text-3xl font-bold text-night mb-2">Travel Tips</h2>
+            <p className="text-night/70">Make hopping seamless and comfortable</p>
+          </motion.div>
+          <div className="max-w-3xl mx-auto">
+            <ul className="space-y-3 text-night/80">
+              <li className="flex"><span className="w-2 h-2 glass-sunset-dot mt-2 mr-3" />Carry light day-packs and waterproof phone cases</li>
+              <li className="flex"><span className="w-2 h-2 glass-sunset-dot mt-2 mr-3" />Pre-book ferry tickets during peak months (Dec–Feb)</li>
+              <li className="flex"><span className="w-2 h-2 glass-sunset-dot mt-2 mr-3" />Start early to avoid midday heat</li>
+              <li className="flex"><span className="w-2 h-2 glass-sunset-dot mt-2 mr-3" />Respect local regulations and eco zones</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* Packages Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
@@ -241,6 +320,16 @@ const IslandHoppingPage = () => {
                   <span className="text-2xl font-bold text-night">{pkg.price}</span>
                   <Link
                     to="/enquiry"
+                    onClick={() => {
+                      try {
+                        localStorage.setItem('enquiryDetails', JSON.stringify({
+                          packageName: 'Island Hopping Adventures',
+                          source: 'experience',
+                          slug: 'island-hopping',
+                          selectedActivities: [pkg.name]
+                        }));
+                      } catch (_) { /* no-op */ }
+                    }}
                     className="inline-flex items-center px-6 py-3 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
                   >
                     Book Now

@@ -71,6 +71,15 @@ const LuxuryResortsPage = () => {
               </p>
               <Link
                 to="/enquiry"
+                onClick={() => {
+                  try {
+                    localStorage.setItem('enquiryDetails', JSON.stringify({
+                      packageName: 'Luxury Beach Resorts',
+                      source: 'experience',
+                      slug: 'luxury-resorts'
+                    }));
+                  } catch (_) { /* no-op */ }
+                }}
                 className="inline-flex items-center px-8 py-4 glass-sunset-button text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
               >
                 <Phone className="w-5 h-5 mr-2" />
@@ -175,6 +184,16 @@ const LuxuryResortsPage = () => {
                   </p>
                   <Link
                     to="/enquiry"
+                    onClick={() => {
+                      try {
+                        localStorage.setItem('enquiryDetails', JSON.stringify({
+                          packageName: 'Luxury Beach Resorts',
+                          source: 'experience',
+                          slug: 'luxury-resorts',
+                          selectedActivities: [resort.name]
+                        }));
+                      } catch (_) { /* no-op */ }
+                    }}
                     className="inline-flex items-center px-6 py-3 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
                   >
                     Book Now
@@ -182,6 +201,64 @@ const LuxuryResortsPage = () => {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Book With Us */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold text-night mb-4">Why Book With Us</h2>
+            <p className="text-night/70 max-w-2xl mx-auto">Exclusive benefits and on-ground support for a seamless luxury stay</p>
+          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-lg font-semibold text-night mb-2">Best Rate Assurance</h3>
+              <p className="text-night/70">We work directly with partner resorts to secure the most competitive rates and inclusions.</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-lg font-semibold text-night mb-2">Personal Concierge</h3>
+              <p className="text-night/70">Airport assistance, private transfers, priority check-ins, and curated experiences.</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-lg font-semibold text-night mb-2">Local Expertise</h3>
+              <p className="text-night/70">Our Andaman team supports you 24/7 throughout your stay.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQs */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-10"
+          >
+            <h2 className="text-3xl font-bold text-night mb-2">FAQs</h2>
+            <p className="text-night/70">Answers to common questions about luxury stays</p>
+          </motion.div>
+          <div className="max-w-3xl mx-auto space-y-6">
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="font-semibold text-night">What is the best time to visit?</h3>
+              <p className="text-night/70 mt-2">October to May offers the best weather for beach and water activities.</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="font-semibold text-night">Do resorts offer private beach access?</h3>
+              <p className="text-night/70 mt-2">Many properties are beachfront with semi-private access; true private beaches are restricted in India.</p>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="font-semibold text-night">Can you arrange special celebrations?</h3>
+              <p className="text-night/70 mt-2">Yes—romantic dinners, proposals, anniversaries, and more with bespoke setups.</p>
+            </div>
           </div>
         </div>
       </section>

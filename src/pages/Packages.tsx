@@ -108,6 +108,20 @@ const PackagesPage = () => {
                   </Link>
                     <Link
                       to="/enquiry"
+                      onClick={() => {
+                        try {
+                          const days = parseInt(pkg.duration.replace(/[^0-9]/g, '')) || undefined;
+                          const details = {
+                            packageName: pkg.title,
+                            days,
+                            people: 2,
+                            totalPrice: pkg.price,
+                            selectedActivities: [],
+                            supplements: [],
+                          };
+                          localStorage.setItem('bookingDetails', JSON.stringify(details));
+                        } catch (_) { /* no-op */ }
+                      }}
                       className="px-4 py-2.5 border-2 border-azure text-azure rounded-lg hover:bg-azure hover:text-white transition-all text-sm font-medium"
                     >
                       Book

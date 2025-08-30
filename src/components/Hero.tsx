@@ -354,6 +354,7 @@ const Hero = () => {
               >
                 <Link
                   to="/enquiry"
+                  onClick={() => { try { localStorage.setItem('enquiryDetails', JSON.stringify({ source: 'hero' })); } catch(_) { /* no-op */ } }}
                   className="inline-flex items-center px-8 py-4 bg-white/90 backdrop-blur-sm text-gray-900 rounded-full font-semibold hover:bg-white transition-all duration-300 shadow-xl"
                 >
                   Explore Now

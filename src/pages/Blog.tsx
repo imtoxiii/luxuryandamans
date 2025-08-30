@@ -1,11 +1,11 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, User, Clock, ArrowRight, Search, Tag, TrendingUp, BookOpen, Filter } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
-import { blogPosts } from '../data/blogPosts';
+import { blogPosts } from '../data/blog';
 
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState('');

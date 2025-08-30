@@ -212,6 +212,9 @@ const Header = () => {
               >
                 <Link
                   to="/enquiry"
+                  onClick={() => {
+                    try { localStorage.setItem('enquiryDetails', JSON.stringify({ source: 'header' })); } catch(_) { /* no-op */ }
+                  }}
                   className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
                     showWhiteBackground
                       ? 'bg-gradient-to-r from-teal-600 to-blue-600 text-white hover:shadow-lg'
@@ -330,7 +333,7 @@ const Header = () => {
                 >
                   <Link
                     to="/enquiry"
-                    onClick={closeMenu}
+                    onClick={() => { try { localStorage.setItem('enquiryDetails', JSON.stringify({ source: 'header' })); } catch(_) { /* no-op */ } closeMenu(); }}
                     className="inline-block px-8 py-4 bg-gradient-to-r from-teal-600 to-blue-600 text-white text-lg font-medium rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105"
                   >
                     Book Your Experience

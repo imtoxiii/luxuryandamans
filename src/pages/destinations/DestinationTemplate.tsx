@@ -15,7 +15,14 @@ import {
   Navigation,
   Phone,
   Shield,
-  Plane
+  Plane,
+  Camera,
+  Utensils,
+  Cloud,
+  Sun,
+  CloudRain,
+  Eye,
+  
 } from 'lucide-react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -330,169 +337,7 @@ export default function DestinationTemplate({ destination }: DestinationTemplate
         </div>
       </motion.section>
 
-      {/* Audience Fit */}
-      {destination.bestFor && destination.bestFor.length > 0 && (
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="py-12 sm:py-16 lg:py-20 bg-white"
-        >
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-2xl sm:text-3xl font-bold text-night mb-6">Best For</h2>
-              <div className="flex flex-wrap gap-2">
-                {destination.bestFor.map((tag, idx) => (
-                  <span key={idx} className="px-3 py-1 rounded-full bg-azure/10 text-azure text-sm">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.section>
-      )}
-
-      {/* Nearby Attractions */}
-      {destination.nearbyAttractions && destination.nearbyAttractions.length > 0 && (
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="py-12 sm:py-16 lg:py-20"
-        >
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-2xl sm:text-3xl font-bold text-night mb-6">Nearby Attractions</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {destination.nearbyAttractions.map((a, idx) => (
-                  <div key={idx} className="bg-white p-5 rounded-xl border border-gray-100">
-                    <div className="flex items-center justify-between mb-1">
-                      {a.slug ? (
-                        <Link className="text-azure font-semibold hover:underline" to={`/destinations/${a.slug}`}>{a.name}</Link>
-                      ) : (
-                        <div className="text-night font-semibold">{a.name}</div>
-                      )}
-                      <div className="text-night/60 text-sm">{a.distance}</div>
-                    </div>
-                    {a.description && (
-                      <p className="text-night/70 text-sm mt-1">{a.description}</p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.section>
-      )}
-
-      {/* Sample Itineraries */}
-      {destination.itineraries && destination.itineraries.length > 0 && (
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="py-12 sm:py-16 lg:py-20 bg-white"
-        >
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-2xl sm:text-3xl font-bold text-night mb-6">Suggested Itineraries</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {destination.itineraries.map((it, idx) => (
-                  <div key={idx} className="p-6 bg-pearl rounded-xl">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="text-night font-semibold">{it.title}</div>
-                      <div className="text-night/60 text-sm">{it.duration}</div>
-                    </div>
-                    <ul className="list-disc list-inside text-night/70 text-sm space-y-1">
-                      {it.activities.map((act, i) => (
-                        <li key={i}>{act}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.section>
-      )}
-
-      {/* Stay Options */}
-      {destination.stayOptions && destination.stayOptions.length > 0 && (
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="py-12 sm:py-16 lg:py-20"
-        >
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-2xl sm:text-3xl font-bold text-night mb-6">Where to Stay</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {destination.stayOptions.map((stay, idx) => (
-                  <div key={idx} className="bg-white rounded-xl p-5 border border-gray-100">
-                    <div className="text-night font-semibold">{stay.name}</div>
-                    <div className="text-sm text-night/60 mt-1">{stay.type}{stay.location ? ` • ${stay.location}` : ''}</div>
-                    <div className="text-azure font-medium mt-2">{stay.priceRange}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.section>
-      )}
-
-      {/* Practical Info */}
-      {destination.practicalInfo && (
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="py-12 sm:py-16 lg:py-20 bg-white"
-        >
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-2xl sm:text-3xl font-bold text-night mb-6">Practical Information</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {destination.practicalInfo.permits && (
-                  <div className="p-5 bg-pearl rounded-xl">
-                    <h3 className="font-semibold text-night mb-2">Permits</h3>
-                    <p className="text-night/70 text-sm">{destination.practicalInfo.permits}</p>
-                  </div>
-                )}
-                {destination.practicalInfo.networkCoverage && (
-                  <div className="p-5 bg-pearl rounded-xl">
-                    <h3 className="font-semibold text-night mb-2">Network Coverage</h3>
-                    <p className="text-night/70 text-sm">{destination.practicalInfo.networkCoverage.join(', ')}</p>
-                  </div>
-                )}
-                {destination.practicalInfo.atmAvailability && (
-                  <div className="p-5 bg-pearl rounded-xl">
-                    <h3 className="font-semibold text-night mb-2">ATM Availability</h3>
-                    <p className="text-night/70 text-sm">{destination.practicalInfo.atmAvailability}</p>
-                  </div>
-                )}
-                {destination.practicalInfo.medicalFacilities && (
-                  <div className="p-5 bg-pearl rounded-xl">
-                    <h3 className="font-semibold text-night mb-2">Medical Facilities</h3>
-                    <p className="text-night/70 text-sm">{destination.practicalInfo.medicalFacilities}</p>
-                  </div>
-                )}
-                {destination.practicalInfo.emergencyContacts && (
-                  <div className="p-5 bg-pearl rounded-xl md:col-span-2">
-                    <h3 className="font-semibold text-night mb-2">Emergency Contacts</h3>
-                    <ul className="list-disc list-inside text-night/70 text-sm">
-                      {destination.practicalInfo.emergencyContacts.map((c, i) => (
-                        <li key={i}>{c}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </motion.section>
-      )}
+      
 
       {/* Highlights Section */}
       <motion.section
@@ -631,6 +476,260 @@ export default function DestinationTemplate({ destination }: DestinationTemplate
         </motion.section>
       )}
 
+      {/* Weather Information */}
+      {destination.weatherInfo && destination.weatherInfo.length > 0 && (
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="py-12 sm:py-16 lg:py-20"
+        >
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex items-center mb-8 sm:mb-12">
+                <Cloud className="w-6 h-6 sm:w-8 sm:h-8 text-azure mr-3 flex-shrink-0" />
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-night">Weather & Best Time to Visit</h2>
+                  <p className="text-night/70 text-sm sm:text-base">Plan your visit according to weather conditions</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                {destination.weatherInfo.map((weather, index) => {
+                  const seasonIcon = weather.season.includes('Winter') ? (() => <Cloud className="w-6 h-6 text-blue-500" />) :
+                                   weather.season.includes('Summer') ? (() => <Sun className="w-6 h-6 text-yellow-500" />) :
+                                   (() => <CloudRain className="w-6 h-6 text-gray-500" />);
+                  
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                    >
+                      <div className="flex items-center mb-4">
+                        {seasonIcon()}
+                        <h3 className="text-lg font-bold text-night ml-2">{weather.season}</h3>
+                      </div>
+                      <div className="space-y-3">
+                        <div>
+                          <span className="font-semibold text-night text-sm">Temperature:</span>
+                          <p className="text-night/70 text-sm">{weather.temperature}</p>
+                        </div>
+                        <div>
+                          <span className="font-semibold text-night text-sm">Conditions:</span>
+                          <p className="text-night/70 text-sm">{weather.conditions}</p>
+                        </div>
+                        {weather.seaConditions && (
+                          <div>
+                            <span className="font-semibold text-night text-sm">Sea Conditions:</span>
+                            <p className="text-night/70 text-sm">{weather.seaConditions}</p>
+                          </div>
+                        )}
+                        {weather.visibility && (
+                          <div>
+                            <span className="font-semibold text-night text-sm">Visibility:</span>
+                            <p className="text-night/70 text-sm">{weather.visibility}</p>
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </motion.section>
+      )}
+
+      {/* Local Cuisine */}
+      {destination.localCuisine && destination.localCuisine.length > 0 && (
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="py-12 sm:py-16 lg:py-20 bg-white"
+        >
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex items-center mb-8 sm:mb-12">
+                <Utensils className="w-6 h-6 sm:w-8 sm:h-8 text-azure mr-3 flex-shrink-0" />
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-night">Local Cuisine</h2>
+                  <p className="text-night/70 text-sm sm:text-base">Taste the flavors of {destination.name}</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                {destination.localCuisine.map((dish, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="bg-pearl p-6 rounded-xl hover:shadow-md transition-shadow"
+                  >
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="text-lg font-bold text-night">{dish.specialty}</h3>
+                      {dish.price && (
+                        <span className="text-azure font-semibold text-sm">{dish.price}</span>
+                      )}
+                    </div>
+                    <p className="text-night/70 text-sm mb-4 leading-relaxed">{dish.description}</p>
+                    <div className="border-t border-night/10 pt-3">
+                      <span className="font-semibold text-night text-sm">Where to try:</span>
+                      <p className="text-night/70 text-sm">{dish.whereToTry}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.section>
+      )}
+
+      {/* Planning & Essentials (Combined) */}
+      {(destination.bestFor?.length || destination.nearbyAttractions?.length || destination.itineraries?.length || destination.stayOptions?.length || destination.practicalInfo) && (
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="py-12 sm:py-16 lg:py-20"
+        >
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-8 sm:mb-10">
+                <h2 className="text-2xl sm:text-3xl font-bold text-night">Planning & Essentials</h2>
+                <p className="text-night/70 text-sm sm:text-base">Compact info: best fit, nearby, itineraries, stays, practicals</p>
+              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+                <div className="space-y-6">
+                  {/* Best For */}
+                  {destination.bestFor && destination.bestFor.length > 0 && (
+                    <div className="bg-white p-5 rounded-xl border border-gray-100">
+                      <h3 className="text-lg font-bold text-night mb-3">Best For</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {destination.bestFor.map((tag, idx) => (
+                          <span key={idx} className="px-3 py-1 rounded-full bg-azure/10 text-azure text-xs sm:text-sm">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Nearby Attractions */}
+                  {destination.nearbyAttractions && destination.nearbyAttractions.length > 0 && (
+                    <div className="bg-white p-5 rounded-xl border border-gray-100">
+                      <h3 className="text-lg font-bold text-night mb-3">Nearby Attractions</h3>
+                      <div className="grid grid-cols-1 gap-3">
+                        {destination.nearbyAttractions.map((a, idx) => (
+                          <div key={idx} className="flex items-start justify-between">
+                            <div>
+                              {a.slug ? (
+                                <Link className="text-azure font-semibold hover:underline" to={`/destinations/${a.slug}`}>{a.name}</Link>
+                              ) : (
+                                <div className="text-night font-semibold">{a.name}</div>
+                              )}
+                              {a.description && (
+                                <p className="text-night/70 text-xs sm:text-sm mt-1">{a.description}</p>
+                              )}
+                            </div>
+                            <div className="text-night/60 text-xs sm:text-sm ml-3 flex-shrink-0">{a.distance}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="space-y-6">
+                  {/* Suggested Itineraries */}
+                  {destination.itineraries && destination.itineraries.length > 0 && (
+                    <div className="bg-white p-5 rounded-xl border border-gray-100">
+                      <h3 className="text-lg font-bold text-night mb-3">Suggested Itineraries</h3>
+                      <div className="grid grid-cols-1 gap-3">
+                        {destination.itineraries.map((it, idx) => (
+                          <div key={idx} className="p-4 bg-pearl rounded-lg">
+                            <div className="flex items-center justify-between mb-1">
+                              <div className="text-night font-semibold">{it.title}</div>
+                              <div className="text-night/60 text-xs sm:text-sm">{it.duration}</div>
+                            </div>
+                            <ul className="list-disc list-inside text-night/70 text-xs sm:text-sm space-y-0.5">
+                              {it.activities.map((act, i) => (
+                                <li key={i}>{act}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Where to Stay */}
+                  {destination.stayOptions && destination.stayOptions.length > 0 && (
+                    <div className="bg-white p-5 rounded-xl border border-gray-100">
+                      <h3 className="text-lg font-bold text-night mb-3">Where to Stay</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {destination.stayOptions.map((stay, idx) => (
+                          <div key={idx} className="bg-pearl rounded-lg p-4">
+                            <div className="text-night font-semibold text-sm sm:text-base">{stay.name}</div>
+                            <div className="text-xs sm:text-sm text-night/60 mt-0.5">{stay.type}{stay.location ? ` • ${stay.location}` : ''}</div>
+                            <div className="text-azure font-medium text-sm mt-1">{stay.priceRange}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Practical Information */}
+                {destination.practicalInfo && (
+                  <div className="lg:col-span-2 bg-white p-5 rounded-xl border border-gray-100">
+                    <h3 className="text-lg font-bold text-night mb-3">Practical Information</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {destination.practicalInfo.permits && (
+                        <div className="p-4 bg-pearl rounded-lg">
+                          <h4 className="font-semibold text-night mb-1 text-sm">Permits</h4>
+                          <p className="text-night/70 text-sm">{destination.practicalInfo.permits}</p>
+                        </div>
+                      )}
+                      {destination.practicalInfo.networkCoverage && (
+                        <div className="p-4 bg-pearl rounded-lg">
+                          <h4 className="font-semibold text-night mb-1 text-sm">Network Coverage</h4>
+                          <p className="text-night/70 text-sm">{destination.practicalInfo.networkCoverage.join(', ')}</p>
+                        </div>
+                      )}
+                      {destination.practicalInfo.atmAvailability && (
+                        <div className="p-4 bg-pearl rounded-lg">
+                          <h4 className="font-semibold text-night mb-1 text-sm">ATM Availability</h4>
+                          <p className="text-night/70 text-sm">{destination.practicalInfo.atmAvailability}</p>
+                        </div>
+                      )}
+                      {destination.practicalInfo.medicalFacilities && (
+                        <div className="p-4 bg-pearl rounded-lg">
+                          <h4 className="font-semibold text-night mb-1 text-sm">Medical Facilities</h4>
+                          <p className="text-night/70 text-sm">{destination.practicalInfo.medicalFacilities}</p>
+                        </div>
+                      )}
+                      {destination.practicalInfo.emergencyContacts && (
+                        <div className="md:col-span-2 p-4 bg-pearl rounded-lg">
+                          <h4 className="font-semibold text-night mb-1 text-sm">Emergency Contacts</h4>
+                          <ul className="list-disc list-inside text-night/70 text-sm">
+                            {destination.practicalInfo.emergencyContacts.map((c, i) => (
+                              <li key={i}>{c}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </motion.section>
+      )}
+
       {/* Tips and Safety */}
       <motion.section
         initial={{ opacity: 0, y: 20 }}
@@ -639,86 +738,231 @@ export default function DestinationTemplate({ destination }: DestinationTemplate
         className="py-12 sm:py-16 lg:py-20 bg-pearl"
       >
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
-            {/* Travel Tips */}
-            {destination.tips && destination.tips.length > 0 && (
-              <div className="bg-white p-6 sm:p-8 rounded-xl">
-                <div className="flex items-center mb-4 sm:mb-6">
-                  <CheckCircle className="w-6 h-6 sm:w-7 sm:h-7 text-azure mr-3 flex-shrink-0" />
-                  <h3 className="text-xl sm:text-2xl font-bold text-night">Travel Tips</h3>
-                </div>
-                <div className="space-y-3 sm:space-y-4">
-                  {destination.tips.map((tip, index) => (
-                    <div key={index} className="flex items-start space-x-3">
-                      <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      <p className="text-night/70 text-sm sm:text-base leading-relaxed">{tip}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Safety Tips */}
-            {destination.safetyTips && destination.safetyTips.length > 0 && (
-              <div className="bg-white p-6 sm:p-8 rounded-xl">
-                <div className="flex items-center mb-4 sm:mb-6">
-                  <Shield className="w-6 h-6 sm:w-7 sm:h-7 text-azure mr-3 flex-shrink-0" />
-                  <h3 className="text-xl sm:text-2xl font-bold text-night">Safety Guidelines</h3>
-                </div>
-                <div className="space-y-3 sm:space-y-4">
-                  {destination.safetyTips.map((tip, index) => (
-                    <div key={index} className="flex items-start space-x-3">
-                      <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500 mt-0.5 flex-shrink-0" />
-                      <p className="text-night/70 text-sm sm:text-base leading-relaxed">{tip}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* If no safety tips, show ticket and timing info */}
-            {!destination.safetyTips && (destination.ticketInfo || destination.timings) && (
-              <div className="bg-white p-6 sm:p-8 rounded-xl">
-                <div className="flex items-center mb-4 sm:mb-6">
-                  <Ticket className="w-6 h-6 sm:w-7 sm:h-7 text-azure mr-3 flex-shrink-0" />
-                  <h3 className="text-xl sm:text-2xl font-bold text-night">Visitor Information</h3>
-                </div>
-                <div className="space-y-3 sm:space-y-4">
-                  {destination.ticketInfo && (
-                    <div>
-                      <h4 className="font-semibold text-night mb-2 text-sm sm:text-base">Entry Fees:</h4>
-                      <div className="space-y-1 text-sm sm:text-base">
-                        {destination.ticketInfo.entryFee !== undefined && (
-                          <p className="text-night/70">Entry: ₹{destination.ticketInfo.entryFee} per person</p>
-                        )}
-                        {destination.ticketInfo.showTicket && (
-                          <p className="text-night/70">Show: ₹{destination.ticketInfo.showTicket} per person</p>
-                        )}
-                        {destination.ticketInfo.childrenFee && (
-                          <p className="text-night/70">Children: ₹{destination.ticketInfo.childrenFee} per child</p>
-                        )}
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
+              {/* Travel Tips */}
+              {destination.tips && destination.tips.length > 0 && (
+                <div className="bg-white p-6 sm:p-8 rounded-xl">
+                  <div className="flex items-center mb-4 sm:mb-6">
+                    <CheckCircle className="w-6 h-6 sm:w-7 sm:h-7 text-azure mr-3 flex-shrink-0" />
+                    <h3 className="text-xl sm:text-2xl font-bold text-night">Travel Tips</h3>
+                  </div>
+                  <div className="space-y-3 sm:space-y-4">
+                    {destination.tips.map((tip, index) => (
+                      <div key={index} className="flex items-start space-x-3">
+                        <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                        <p className="text-night/70 text-sm sm:text-base leading-relaxed">{tip}</p>
                       </div>
-                    </div>
-                  )}
-                  {destination.timings && (
-                    <div>
-                      <h4 className="font-semibold text-night mb-2 text-sm sm:text-base">Operating Hours:</h4>
-                      <div className="space-y-1 text-sm sm:text-base">
-                        {destination.timings.openTime && (
-                          <p className="text-night/70">{destination.timings.openTime} - {destination.timings.closeTime}</p>
-                        )}
-                        {destination.timings.closedDays && (
-                          <p className="text-night/70">Closed: {destination.timings.closedDays}</p>
-                        )}
-                      </div>
-                    </div>
-                  )}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+
+              {/* Safety Tips */}
+              {destination.safetyTips && destination.safetyTips.length > 0 ? (
+                <div className="bg-white p-6 sm:p-8 rounded-xl">
+                  <div className="flex items-center mb-4 sm:mb-6">
+                    <Shield className="w-6 h-6 sm:w-7 sm:h-7 text-azure mr-3 flex-shrink-0" />
+                    <h3 className="text-xl sm:text-2xl font-bold text-night">Safety Guidelines</h3>
+                  </div>
+                  <div className="space-y-3 sm:space-y-4">
+                    {destination.safetyTips.map((tip, index) => (
+                      <div key={index} className="flex items-start space-x-3">
+                        <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                        <p className="text-night/70 text-sm sm:text-base leading-relaxed">{tip}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                /* If no safety tips, show ticket and timing info */
+                (destination.ticketInfo || destination.timings) && (
+                  <div className="bg-white p-6 sm:p-8 rounded-xl">
+                    <div className="flex items-center mb-4 sm:mb-6">
+                      <Ticket className="w-6 h-6 sm:w-7 sm:h-7 text-azure mr-3 flex-shrink-0" />
+                      <h3 className="text-xl sm:text-2xl font-bold text-night">Visitor Information</h3>
+                    </div>
+                    <div className="space-y-3 sm:space-y-4">
+                      {destination.ticketInfo && (
+                        <div>
+                          <h4 className="font-semibold text-night mb-2 text-sm sm:text-base">Entry Fees:</h4>
+                          <div className="space-y-1 text-sm sm:text-base">
+                            {destination.ticketInfo.entryFee !== undefined && (
+                              <p className="text-night/70">Entry: ₹{destination.ticketInfo.entryFee} per person</p>
+                            )}
+                            {destination.ticketInfo.showTicket && (
+                              <p className="text-night/70">Show: ₹{destination.ticketInfo.showTicket} per person</p>
+                            )}
+                            {destination.ticketInfo.childrenFee && (
+                              <p className="text-night/70">Children: ₹{destination.ticketInfo.childrenFee} per child</p>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                      {destination.timings && (
+                        <div>
+                          <h4 className="font-semibold text-night mb-2 text-sm sm:text-base">Operating Hours:</h4>
+                          <div className="space-y-1 text-sm sm:text-base">
+                            {destination.timings.openTime && (
+                              <p className="text-night/70">{destination.timings.openTime} - {destination.timings.closeTime}</p>
+                            )}
+                            {destination.timings.closedDays && (
+                              <p className="text-night/70">Closed: {destination.timings.closedDays}</p>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
           </div>
         </div>
       </motion.section>
+
+      {/* Photography Tips */}
+      {destination.photography && (
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="py-12 sm:py-16 lg:py-20 bg-white"
+        >
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex items-center mb-8 sm:mb-12">
+                <Camera className="w-6 h-6 sm:w-8 sm:h-8 text-azure mr-3 flex-shrink-0" />
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-night">Photography Guide</h2>
+                  <p className="text-night/70 text-sm sm:text-base">Capture the best moments at {destination.name}</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
+                <div className="space-y-6">
+                  <div className="bg-pearl p-6 rounded-xl">
+                    <h3 className="text-lg font-bold text-night mb-4">Best Photography Spots</h3>
+                    <div className="space-y-2">
+                      {destination.photography.bestSpots.map((spot, index) => (
+                        <div key={index} className="flex items-center text-night/70 text-sm">
+                          <Eye className="w-4 h-4 mr-2 text-azure flex-shrink-0" />
+                          {spot}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="bg-pearl p-6 rounded-xl">
+                    <h3 className="text-lg font-bold text-night mb-4">Golden Hours</h3>
+                    <p className="text-night/70 text-sm leading-relaxed">{destination.photography.goldenhours}</p>
+                  </div>
+                </div>
+                <div className="space-y-6">
+                  <div className="bg-pearl p-6 rounded-xl">
+                    <h3 className="text-lg font-bold text-night mb-4">Photography Tips</h3>
+                    <div className="space-y-2">
+                      {destination.photography.tips.map((tip, index) => (
+                        <div key={index} className="flex items-start text-night/70 text-sm">
+                          <Camera className="w-4 h-4 mr-2 text-azure flex-shrink-0 mt-0.5" />
+                          <span className="leading-relaxed">{tip}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {destination.photography.restrictions && destination.photography.restrictions.length > 0 && (
+                    <div className="bg-pearl p-6 rounded-xl">
+                      <h3 className="text-lg font-bold text-night mb-4">Photography Guidelines</h3>
+                      <div className="space-y-2">
+                        {destination.photography.restrictions.map((restriction, index) => (
+                          <div key={index} className="flex items-start text-night/70 text-sm">
+                            <AlertTriangle className="w-4 h-4 mr-2 text-orange-500 flex-shrink-0 mt-0.5" />
+                            <span className="leading-relaxed">{restriction}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.section>
+      )}
+
+      {/* Budget Information */}
+      {destination.budgetInfo && (
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="py-12 sm:py-16 lg:py-20"
+        >
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex items-center mb-8 sm:mb-12">
+                <DollarSign className="w-6 h-6 sm:w-8 sm:h-8 text-azure mr-3 flex-shrink-0" />
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-night">Budget Guide</h2>
+                  <p className="text-night/70 text-sm sm:text-base">Plan your expenses for {destination.name}</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="bg-white p-6 rounded-xl">
+                  <h3 className="text-lg font-bold text-night mb-4">Estimated Budget</h3>
+                  <div className="text-2xl font-bold text-azure mb-2">{destination.budgetInfo.budget}</div>
+                  <p className="text-night/70 text-sm">Per person for complete experience</p>
+                </div>
+                <div className="bg-white p-6 rounded-xl">
+                  <h3 className="text-lg font-bold text-night mb-4">Cost Breakdown</h3>
+                  <div className="space-y-3">
+                    {destination.budgetInfo.costs.map((cost, index) => (
+                      <div key={index} className="flex justify-between items-center">
+                        <span className="text-night/70 text-sm">{cost.item}</span>
+                        <span className="font-semibold text-night text-sm">{cost.price}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.section>
+      )}
+
+      {/* Things to Know */}
+      {destination.thingsToKnow && destination.thingsToKnow.length > 0 && (
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="py-12 sm:py-16 lg:py-20 bg-white"
+        >
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex items-center mb-8 sm:mb-12">
+                <Info className="w-6 h-6 sm:w-8 sm:h-8 text-azure mr-3 flex-shrink-0" />
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-night">Things to Know</h2>
+                  <p className="text-night/70 text-sm sm:text-base">Essential information for your visit</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                {destination.thingsToKnow.map((fact, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.05 }}
+                    className="flex items-start space-x-3 bg-pearl p-4 rounded-xl"
+                  >
+                    <CheckCircle className="w-5 h-5 text-azure flex-shrink-0 mt-0.5" />
+                    <p className="text-night/70 text-sm leading-relaxed">{fact}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.section>
+      )}
 
       {/* Contact CTA */}
       <motion.section
@@ -738,6 +982,21 @@ export default function DestinationTemplate({ destination }: DestinationTemplate
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link
                 to="/enquiry"
+                onClick={() => {
+                  try {
+                    const details = {
+                      packageName: destination.name,
+                      days: undefined,
+                      people: 2,
+                      totalPrice: undefined,
+                      selectedActivities: destination.activities || [],
+                      supplements: [],
+                      source: 'destination',
+                      slug: destination.slug,
+                    };
+                    localStorage.setItem('enquiryDetails', JSON.stringify(details));
+                  } catch (_) { /* no-op */ }
+                }}
                 className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105 text-sm sm:text-base font-medium"
               >
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />

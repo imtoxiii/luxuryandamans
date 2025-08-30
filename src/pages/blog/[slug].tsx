@@ -5,7 +5,7 @@ import { Calendar, User, Clock, Tag, ArrowLeft, Share2, BookOpen, ChevronRight }
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
-import { blogPosts } from '../../data/blogPosts';
+import { blogPosts } from '../../data/blog';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 

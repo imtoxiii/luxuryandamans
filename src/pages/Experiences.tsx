@@ -56,6 +56,24 @@ const experiences = [
     // localImage: '/src/assets/images/experiences/family-adventures.jpg', // Add your local image path here
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     slug: "family-adventures"
+  },
+  {
+    title: "Bioluminescence Kayaking",
+    description: "Paddle through glowing waters on new moon nights",
+    image: "https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    slug: "bioluminescence-kayaking"
+  },
+  {
+    title: "Sea Walk",
+    description: "Walk on the sea bed—perfect for non-swimmers",
+    image: "https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    slug: "sea-walk"
+  },
+  {
+    title: "Game Fishing",
+    description: "Private charters targeting GT, tuna and more",
+    image: "https://images.unsplash.com/photo-1469230529682-4b4f7572a2fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    slug: "game-fishing"
   }
 ];
 

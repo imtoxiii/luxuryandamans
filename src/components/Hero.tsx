@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { ChevronDown, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import newHeroImage from '../img/hero-background.png';
 
@@ -354,7 +354,6 @@ const Hero = () => {
               >
                 <Link
                   to="/enquiry"
-                  onClick={() => { try { localStorage.setItem('enquiryDetails', JSON.stringify({ source: 'hero' })); } catch(_) { /* no-op */ } }}
                   className="inline-flex items-center px-8 py-4 bg-white/90 backdrop-blur-sm text-gray-900 rounded-full font-semibold hover:bg-white transition-all duration-300 shadow-xl"
                 >
                   Explore Now

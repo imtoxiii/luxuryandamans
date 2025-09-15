@@ -36,7 +36,7 @@ const Enquiry = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = packageDetails ? 2 : 3;
+  const totalSteps = (packageDetails && packageDetails.packageName) ? 2 : 3;
 
   const location = useLocation();
 
@@ -69,19 +69,23 @@ const Enquiry = () => {
       localStorage.removeItem('bookingDetails');
     } else if (enquiryDetails) {
       const details = JSON.parse(enquiryDetails);
-      setPackageDetails(details);
-      setEnquiryType('enquiry');
-      setFormData(prev => ({
-        ...prev,
-        guests: details.people?.toString() || '2',
-        duration: details.days?.toString() || '5',
-        message: `I would like to enquire about the ${details.packageName} package for ${details.people} people for ${details.days} days. Could you please provide more details and pricing information?` +
-          `${details.starTier ? `\n\nPreferred star category: ${details.starTier}-Star` : ''}` +
-          `${details.roomType ? `\nPreferred room type: ${details.roomType}` : ''}` +
-          `${details.hotelName ? `\nPreferred hotel: ${details.hotelName}` : ''}` +
-          `${details.selectedActivities?.length ? `\n\nInterested activities: ${details.selectedActivities.join(', ')}` : ''}` +
-          `${details.supplements?.length ? `\n\nInterested add-ons: ${details.supplements.join(', ')}` : ''}`
-      }));
+      const hasValidPackage = !!details.packageName;
+      if (hasValidPackage) {
+        setPackageDetails(details);
+        setEnquiryType('enquiry');
+        setFormData(prev => ({
+          ...prev,
+          guests: details.people?.toString() || '2',
+          duration: details.days?.toString() || '5',
+          message: `I would like to enquire about the ${details.packageName} package for ${details.people} people for ${details.days} days. Could you please provide more details and pricing information?` +
+            `${details.starTier ? `\n\nPreferred star category: ${details.starTier}-Star` : ''}` +
+            `${details.roomType ? `\nPreferred room type: ${details.roomType}` : ''}` +
+            `${details.hotelName ? `\nPreferred hotel: ${details.hotelName}` : ''}` +
+            `${details.selectedActivities?.length ? `\n\nInterested activities: ${details.selectedActivities.join(', ')}` : ''}` +
+            `${details.supplements?.length ? `\n\nInterested add-ons: ${details.supplements.join(', ')}` : ''}`
+        }));
+      }
+      // Always clear the temporary context so a fresh visit stays clean
       localStorage.removeItem('enquiryDetails');
     } else if (context || pkg || dest) {
       const details = {
@@ -212,7 +216,7 @@ const Enquiry = () => {
         return formData.name && (formData.email || formData.phone);
       case 2:
         // If context present, destination preferences are optional
-        return packageDetails ? true : (formData.destination && formData.guests && formData.duration);
+        return (packageDetails && packageDetails.packageName) ? true : (formData.destination && formData.guests && formData.duration);
       case 3:
         return true;
       default:
@@ -474,7 +478,7 @@ const Enquiry = () => {
                 </div>
 
                 {/* Package Details Section */}
-                {packageDetails && (
+                {packageDetails && packageDetails.packageName && (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -540,10 +544,11 @@ const Enquiry = () => {
                 )}
 
                 {/* Quick send when context is present */}
-                {packageDetails && (
+                {packageDetails && packageDetails.packageName && (
                   <div className="mb-6">
                     <button
                       type="submit"
+                      form="enquiry-form"
                       disabled={isSubmitting}
                       className="w-full md:w-auto px-6 py-3 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all"
                     >
@@ -552,7 +557,7 @@ const Enquiry = () => {
                   </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-8">
+                <form id="enquiry-form" onSubmit={handleSubmit} className="space-y-8">
                   <AnimatePresence mode="wait">
                     {/* Step 1: Personal Information */}
                     {currentStep === 1 && (
@@ -629,7 +634,7 @@ const Enquiry = () => {
                       >
                         <div>
                           <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-2">Plan your adventure</h3>
-                          {packageDetails && (
+                          {packageDetails && packageDetails.packageName && (
                             <p className="text-gray-600 mb-4">These are optional since you already selected a {enquiryType === 'booking' ? 'package' : 'destination'}.</p>
                           )}
                         </div>
@@ -638,7 +643,7 @@ const Enquiry = () => {
                           <label className="block text-base font-semibold text-gray-700 mb-4 group-hover:text-purple-600 transition-colors duration-300">
                             Preferred Destination
                           </label>
-                          <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 ${packageDetails ? 'opacity-60 pointer-events-auto' : ''}`}>
+                          <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 ${(packageDetails && packageDetails.packageName) ? 'opacity-60 pointer-events-auto' : ''}`}>
                             {destinations.map(dest => (
                               <motion.label
                                 key={dest.value}

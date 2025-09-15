@@ -20,99 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/PHPMailer.php';
 require_once __DIR__ . '/log-submissions.php';
-
-/**
- * Send email using improved SMTP configuration
- */
-function sendEmail($to, $subject, $htmlBody, $altBody = '', $fromName = null) {
-    return sendEmailWithCustomFrom($to, $subject, $htmlBody, $altBody, SMTP_FROM_EMAIL, $fromName);
-}
-
-/**
- * Send email with custom FROM address
- */
-function sendEmailWithCustomFrom($to, $subject, $htmlBody, $altBody = '', $fromEmail = null, $fromName = null) {
-    try {
-        $mailer = new SimplePHPMailer();
-        
-        // Set sender info with custom FROM address
-        $fromEmail = $fromEmail ?: SMTP_FROM_EMAIL;
-        $fromName = $fromName ?: SMTP_FROM_NAME;
-        
-        // Choose correct SMTP credentials based on FROM address
-        $smtpUsername = SMTP_USERNAME;
-        $smtpPassword = SMTP_PASSWORD;
-        
-        if ($fromEmail === 'info@luxuryandamans.com') {
-            $smtpUsername = INFO_SMTP_USERNAME;
-            $smtpPassword = INFO_SMTP_PASSWORD;
-        } elseif ($fromEmail === 'bookings@luxuryandamans.com') {
-            $smtpUsername = BOOKINGS_SMTP_USERNAME;
-            $smtpPassword = BOOKINGS_SMTP_PASSWORD;
-        }
-        
-        // Basic configuration with correct credentials
-        $mailer->CharSet = 'UTF-8';
-        $mailer->isSMTP();
-        $mailer->Host = SMTP_HOST;
-        $mailer->SMTPAuth = true;
-        $mailer->Username = $smtpUsername;
-        $mailer->Password = $smtpPassword;
-        $mailer->SMTPSecure = strtolower(SMTP_ENCRYPTION);
-        $mailer->Port = SMTP_PORT;
-        
-        $mailer->setFrom($fromEmail, $fromName);
-        $mailer->Sender = $fromEmail; // Use same email for return-path
-        
-        // Set recipient(s)
-        if (is_array($to)) {
-            foreach ($to as $email => $name) {
-                if (is_numeric($email)) {
-                    $mailer->addAddress($name);
-                } else {
-                    $mailer->addAddress($email, $name);
-                }
-            }
-        } else {
-            $mailer->addAddress($to);
-        }
-        
-        // Email content
-        $mailer->isHTML(true);
-        $mailer->Subject = $subject;
-        $mailer->Body = $htmlBody;
-        if ($altBody) {
-            $mailer->AltBody = $altBody;
-        }
-        
-        // Send email
-        $result = $mailer->send();
-        
-        $toList = is_array($to) ? implode(', ', array_keys($to)) : $to;
-        if ($result) {
-            logError("Email sent successfully FROM: {$fromEmail} (auth: {$smtpUsername}) TO: {$toList}");
-            return ['success' => true, 'message' => 'Email sent successfully'];
-        } else {
-            logError("Failed to send email FROM: {$fromEmail} (auth: {$smtpUsername}) TO: {$toList}");
-            return ['success' => false, 'message' => 'Failed to send email via SMTP'];
-        }
-        
-    } catch (Exception $e) {
-        $toList = is_array($to) ? implode(', ', array_keys($to)) : $to;
-        logError("Email sending error FROM: {$fromEmail} (auth: {$smtpUsername}) TO: {$toList} - " . $e->getMessage());
-        return ['success' => false, 'message' => 'Email sending failed: ' . $e->getMessage()];
-    }
-}
-
-/**
- * Log errors and debug information
- */
-function logError($message) {
-    $logFile = __DIR__ . '/mail-errors.log';
-    $timestamp = date('Y-m-d H:i:s');
-    $logEntry = "[$timestamp] $message\n";
-    @file_put_contents($logFile, $logEntry, FILE_APPEND | LOCK_EX);
-}
+require_once __DIR__ . '/emailService.php';
 
 /**
  * Sanitize and validate form input
@@ -232,10 +140,10 @@ try {
     $adminRecipients = explode(',', ADMIN_RECIPIENTS);
     $adminEmails = [];
     foreach ($adminRecipients as $recipient) {
-        $adminEmails[trim($recipient)] = '';
+        $adminEmails[trim($recipient)] = 'Admin';
     }
     
-    $adminResult = sendEmailWithCustomFrom(
+    $adminResult = sendEmail(
         $adminEmails,
         $subject . ' - Website Enquiry',
         $adminEmailBody,
@@ -256,7 +164,7 @@ try {
     
     $customerEmailBody = buildEmailTemplate('Enquiry Received', $customerContent);
     
-    $customerResult = sendEmailWithCustomFrom(
+    $customerResult = sendEmail(
         $email,
         'Thank you for your enquiry - Luxury Andamans',
         $customerEmailBody,
@@ -280,7 +188,7 @@ try {
     echo json_encode($response);
     
 } catch (Exception $e) {
-    logError("Email handler error: " . $e->getMessage());
+    logMailError("Email handler error: " . $e->getMessage());
     
     $response = [
         'success' => false,

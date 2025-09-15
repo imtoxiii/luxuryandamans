@@ -20,60 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/PHPMailer.php';
 require_once __DIR__ . '/log-submissions.php';
-
-/**
- * Send email with proper authentication based on FROM address
- */
-function sendEmailWithAuth($fromEmail, $toEmail, $toName, $subject, $htmlBody, $altBody = '') {
-    try {
-        $mailer = new SimplePHPMailer();
-        
-        // Choose correct SMTP credentials based on FROM address
-        if ($fromEmail === 'info@luxuryandamans.com') {
-            $smtpUsername = INFO_SMTP_USERNAME;
-            $smtpPassword = INFO_SMTP_PASSWORD;
-        } else {
-            $smtpUsername = BOOKINGS_SMTP_USERNAME;
-            $smtpPassword = BOOKINGS_SMTP_PASSWORD;
-        }
-        
-        // SMTP configuration
-        $mailer->CharSet = 'UTF-8';
-        $mailer->isSMTP();
-        $mailer->Host = SMTP_HOST;
-        $mailer->SMTPAuth = true;
-        $mailer->Username = $smtpUsername;
-        $mailer->Password = $smtpPassword;
-        $mailer->SMTPSecure = strtolower(SMTP_ENCRYPTION);
-        $mailer->Port = SMTP_PORT;
-        
-        // Email settings
-        $mailer->setFrom($fromEmail, SMTP_FROM_NAME);
-        $mailer->Sender = $fromEmail;
-        $mailer->addAddress($toEmail, $toName);
-        $mailer->isHTML(true);
-        $mailer->Subject = $subject;
-        $mailer->Body = $htmlBody;
-        if ($altBody) {
-            $mailer->AltBody = $altBody;
-        }
-        
-        // Send email
-        $result = $mailer->send();
-        
-        if ($result) {
-            error_log("✅ Email sent successfully FROM: {$fromEmail} TO: {$toEmail}");
-            return ['success' => true, 'message' => 'Email sent successfully'];
-        } else {
-            error_log("❌ Failed to send email FROM: {$fromEmail} TO: {$toEmail}");
-            return ['success' => false, 'message' => 'Failed to send email'];
-        }
-        
-    } catch (Exception $e) {
-        error_log("❌ Email error FROM: {$fromEmail} TO: {$toEmail} - " . $e->getMessage());
-        return ['success' => false, 'message' => 'Email sending failed: ' . $e->getMessage()];
-    }
-}
+require_once __DIR__ . '/emailService.php';
 
 /**
  * Build beautiful HTML email template
@@ -280,13 +227,12 @@ try {
     $adminHtml = buildEmailTemplate('New Website Enquiry', $adminContent, false);
     
     $adminSubject = '[Enquiry] ' . ($formData['subject'] ?? 'Website enquiry');
-    $adminResult = sendEmailWithAuth(
-        'info@luxuryandamans.com',
-        'xumeet1987@gmail.com',
-        'Admin',
+    $adminResult = sendEmail(
+        ['xumeet1987@gmail.com' => 'Admin'],
         $adminSubject,
         $adminHtml,
-        "New enquiry from {$name}" . ($email ? " ({$email})" : "") . "\n\nMessage: {$message}"
+        "New enquiry from {$name}" . ($email ? " ({$email})" : "") . "\n\nMessage: {$message}",
+        'info@luxuryandamans.com'
     );
     
     // Send user thank you email
@@ -295,13 +241,12 @@ try {
     
     $userResult = ['success' => false];
     if ($hasValidEmail) {
-        $userResult = sendEmailWithAuth(
-            'bookings@luxuryandamans.com',
-            $email,
-            $name,
+        $userResult = sendEmail(
+            [$email => $name],
             'We received your enquiry',
             $userHtml,
-            "Thank you for contacting Luxury Andamans. We have received your enquiry and will respond within 24 hours."
+            "Thank you for contacting Luxury Andamans. We have received your enquiry and will respond within 24 hours.",
+            'bookings@luxuryandamans.com'
         );
     }
     

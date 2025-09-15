@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { Calendar, User, Clock, Tag, ArrowLeft, Share2, BookOpen, ChevronRight, HelpCircle } from 'lucide-react';

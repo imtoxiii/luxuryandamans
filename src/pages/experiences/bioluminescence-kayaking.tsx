@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -54,7 +53,7 @@ const BioluminescenceKayakingPage = () => {
         description="Witness nature's magic with bioluminescence kayaking in Havelock, Andamans. Guided night tours, beginner friendly, best around new moon. Book glow kayak now."
         keywords="bioluminescence andaman, glow kayaking havelock, night kayaking andaman, plankton glow andaman, new moon kayaking"
         targetAudience="adventure"
-        url="https://luxuryandaman.com/experiences/bioluminescence-kayaking"
+        pathname="/experiences/bioluminescence-kayaking"
       />
       <Header />
 

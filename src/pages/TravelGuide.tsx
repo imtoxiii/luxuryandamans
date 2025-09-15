@@ -1,6 +1,20 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Calendar, Plane, Book, Map, Compass, Sun, Cloud, Umbrella, CreditCard, Import as Passport, Backpack, Utensils, Bus, Phone, AlertTriangle, Heart, Camera, Globe, ArrowRight } from 'lucide-react';
+import { 
+  Calendar, 
+  Plane, 
+  Book, 
+  Sun, 
+  CreditCard, 
+  Import as Passport, 
+  Backpack, 
+  Bus, 
+  Phone, 
+  AlertTriangle, 
+  Heart, 
+  ArrowRight 
+} from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
@@ -27,6 +41,7 @@ interface Section {
 }
 
 const TravelGuide = () => {
+  const location = useLocation();
   const sections: Section[] = [
     {
       title: "Best Time to Visit",
@@ -326,6 +341,7 @@ const TravelGuide = () => {
         title="Travel Guide - Andaman Islands"
         description="Complete travel guide for the Andaman Islands. Learn about the best time to visit, visa requirements, local transportation, packing essentials, and more."
         keywords="andaman travel guide, andaman visa, andaman transportation, andaman weather, andaman safety"
+        pathname={location.pathname}
       />
       <Header />
       

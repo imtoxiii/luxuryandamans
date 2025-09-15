@@ -149,6 +149,7 @@ export default function DestinationTemplate({ destination }: DestinationTemplate
         type="article"
         tags={[destination.region, destination.category, ...destination.activities]}
         extraStructuredData={[breadcrumbSchema, touristAttractionSchema, destinationFaq]}
+        pathname={`/destinations/${destination.slug}`}
       />
       <Header />
 

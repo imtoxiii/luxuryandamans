@@ -30,13 +30,6 @@ const GuidePage = () => {
   const [activeSection, setActiveSection] = useState('overview');
   const location = useLocation();
 
-  // Local image paths - Add your images to src/assets/images/about/
-  const localImages = {
-    // andamanOverview: '/src/assets/images/about/andaman-overview.jpg',
-    // cellularJail: '/src/assets/images/about/cellular-jail.jpg',
-    // Replace these with your local image paths
-  };
-
   const navigationItems = [
     { id: 'overview', label: 'Overview', icon: <BookOpen className="w-5 h-5" /> },
     { id: 'how-to-reach', label: 'How to Reach', icon: <Plane className="w-5 h-5" /> },

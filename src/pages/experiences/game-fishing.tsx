@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -54,7 +53,7 @@ const GameFishingPage = () => {
         description="Book game fishing charters in Andaman. Half-day and full-day private boats with crew, gear, and refreshments. Target GT, tuna, barracuda, and more."
         keywords="game fishing andaman, fishing charter andaman, big game havelock, sport fishing andaman, trolling jigging andaman"
         targetAudience="adventure"
-        url="https://luxuryandaman.com/experiences/game-fishing"
+        pathname="/experiences/game-fishing"
       />
       <Header />
 

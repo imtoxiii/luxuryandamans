@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
@@ -78,10 +77,25 @@ const experiences = [
 ];
 
 const ExperiencesPage = () => {
-  // Local image paths - Add your images to src/assets/images/experiences/
-  const localImages = {
-    // heroBackground: '/src/assets/images/experiences/experiences-hero.jpg',
-    // Replace with your local image path
+  const location = useLocation();
+
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: `${import.meta.env.VITE_SITE_URL || 'https://luxuryandamans.com'}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Experiences',
+        item: `${import.meta.env.VITE_SITE_URL || 'https://luxuryandamans.com'}${location.pathname}`,
+      },
+    ],
   };
 
   return (
@@ -89,7 +103,9 @@ const ExperiencesPage = () => {
       <SEO 
         title="Unique Experiences"
         description="Discover extraordinary experiences in the Andaman Islands. From luxury resorts and scuba diving to romantic getaways and family adventures."
+        pathname={location.pathname}
         keywords="andaman experiences, scuba diving, luxury resorts, island hopping, sunset cruises, wellness retreats"
+        extraStructuredData={[breadcrumbStructuredData]}
       />
       <Header />
       
@@ -140,7 +156,7 @@ const ExperiencesPage = () => {
       >
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {experiences.map((experience, index) => (
+            {experiences.map((experience) => (
               <motion.div
                 key={experience.slug}
                 variants={fadeInUp}

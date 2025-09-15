@@ -1,6 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, ChevronRight, Activity } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
@@ -9,10 +9,25 @@ import { destinations } from '../data/destinations';
 import { staggerContainer, fadeInUp } from '../lib/animations';
 
 const DestinationsPage = () => {
-  // Local image paths - Add your images to src/assets/images/destinations/
-  const localImages = {
-    // heroBackground: '/src/assets/images/destinations/destinations-hero.jpg',
-    // Replace with your local image path
+  const location = useLocation();
+
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: `${import.meta.env.VITE_SITE_URL || 'https://luxuryandamans.com'}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Destinations',
+        item: `${import.meta.env.VITE_SITE_URL || 'https://luxuryandamans.com'}${location.pathname}`,
+      },
+    ],
   };
 
   return (
@@ -20,7 +35,9 @@ const DestinationsPage = () => {
       <SEO 
         title="Luxury Destinations"
         description="Explore the most beautiful destinations in the Andaman Islands. Discover pristine beaches, crystal-clear waters, and exclusive resorts across Havelock, Neil Island, and more."
-        keywords="andaman destinations, havelock island, neil island, port blair, luxury resorts, beach destinations"
+        pathname={location.pathname}
+        keywords="andaman destinations, havelock island, neil island, port blair, Honeymoon destinations, luxury resorts, beach destinations"
+        extraStructuredData={[breadcrumbStructuredData]}
       />
       <Header />
       

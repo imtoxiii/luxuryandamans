@@ -9,12 +9,17 @@ export interface BlogPost {
   title: string;
   slug: string;
   excerpt: string;
-  content: string;
   image: string;
-  author: Author;
+  author: {
+    name: string;
+    avatar: string;
+    bio: string;
+  };
   date: string;
   readTime: string;
   category: string;
   tags: string[];
   relatedPosts: string[];
+  faq?: { question: string; answer: string }[];
+  content: string;
 }

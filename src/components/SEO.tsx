@@ -4,9 +4,9 @@ import { Helmet } from 'react-helmet-async';
 interface SEOProps {
   title: string;
   description: string;
+  pathname: string; // Add pathname prop
   keywords?: string;
   image?: string;
-  url?: string;
   type?: string;
   author?: string;
   publishedTime?: string;
@@ -16,18 +16,19 @@ interface SEOProps {
   locale?: string;
   siteName?: string;
   twitterHandle?: string;
-  priceRange?: string;
   targetAudience?: 'budget' | 'luxury' | 'family' | 'honeymoon' | 'adventure' | 'all';
   structuredData?: any;
   extraStructuredData?: any[];
+  faqData?: { question: string; answer: string }[];
+  destinationData?: any;
 }
 
 const SEO: React.FC<SEOProps> = ({
   title,
   description,
+  pathname, // Destructure pathname
   keywords,
   image = 'https://images.unsplash.com/photo-1583212292454-39d2a21af845?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80',
-  url = 'https://luxuryandamans.com',
   type = 'website',
   author = 'Luxury Andamans',
   publishedTime,
@@ -37,52 +38,55 @@ const SEO: React.FC<SEOProps> = ({
   locale = 'en_US',
   siteName = 'Luxury Andamans',
   twitterHandle = '@andamanluxury',
-  priceRange = '₹₹₹',
   targetAudience = 'all',
   structuredData,
-  extraStructuredData
+  extraStructuredData,
+  faqData,
+  destinationData,
 }) => {
+  const siteUrl = import.meta.env.VITE_SITE_URL || 'https://luxuryandamans.com';
+
   // Comprehensive keyword strategy targeting different user intents and budgets
   const getKeywordsByAudience = (audience: string) => {
     const baseKeywords = 'andaman islands, andaman tourism, andaman travel, andaman packages, andaman tour packages, andaman holiday packages, andaman vacation packages, andaman trip packages, port blair, havelock island, neil island, radhanagar beach, cellular jail, ross island, elephant beach, bharatpur beach';
     
-    const budgetKeywords = 'cheap andaman packages, budget andaman tour, affordable andaman trip, low cost andaman packages, budget honeymoon andaman, cheap island vacation, budget beach holiday, affordable island packages, andaman packages under 20000, andaman packages under 30000, andaman packages under 40000, andaman packages under 50000, budget family vacation andaman, cheap andaman tour packages, economical andaman packages, discount andaman packages, best value andaman packages, budget andaman honeymoon packages, affordable andaman family packages';
+    const budgetKeywords = 'cheap andaman packages, budget andaman tour, affordable andaman trip, low cost andaman packages, budget honeymoon andaman, cheap island vacation, budget beach holiday, affordable island packages, andaman packages under 20000, andaman packages under 30000, andaman packages under 40000, andaman packages under 50000, budget family vacation andaman, cheap andaman tour packages, economical andaman packages, discount andaman packages, best value andaman packages, budget andaman honeymoon packages, affordable andaman family packages, andaman packages on emi, all inclusive andaman packages, andaman family package under 1 lakh';
     
-    const luxuryKeywords = 'luxury andaman packages, premium andaman tour, luxury island resort, luxury beach resort andaman, premium andaman vacation, luxury honeymoon andaman, high-end andaman packages, luxury andaman tour packages, premium beach vacation, luxury island getaway, exclusive andaman packages, luxury andaman resorts, premium andaman experience';
+    const premiumKeywords = 'premium andaman packages, boutique andaman tour, premium island resort, quality beach resort andaman, premium andaman vacation, curated honeymoon andaman, high-quality andaman packages, premium andaman tour packages, boutique beach vacation, premium island getaway, exclusive andaman packages, best rated andaman resorts, premium andaman experience, 4 star andaman packages, 5 star andaman packages';
     
-    const familyKeywords = 'andaman family packages, family vacation andaman, family tour packages andaman, family friendly andaman, andaman packages for family, family holiday andaman, kids friendly andaman packages, family beach vacation, andaman family trip, family adventure packages andaman';
+    const familyKeywords = 'andaman family packages, family vacation andaman, family tour packages andaman, family friendly andaman, andaman packages for family, family holiday andaman, kids friendly andaman packages, family beach vacation, andaman family trip, family adventure packages andaman, andaman with kids, safe andaman packages for family';
     
-    const honeymoonKeywords = 'andaman honeymoon packages, romantic andaman packages, honeymoon tour packages andaman, andaman honeymoon trip, romantic island vacation, honeymoon beach packages, andaman romantic getaway, couples packages andaman, honeymoon destination andaman, romantic beach vacation, andaman honeymoon deals, romantic island packages';
+    const honeymoonKeywords = 'andaman honeymoon packages, romantic andaman packages, honeymoon tour packages andaman, andaman honeymoon trip, romantic island vacation, honeymoon beach packages, andaman romantic getaway, couples packages andaman, honeymoon destination andaman, romantic beach vacation, andaman honeymoon deals, romantic island packages, private beach dinner andaman, couple activities andaman';
     
-    const adventureKeywords = 'andaman adventure packages, scuba diving andaman, snorkeling andaman, water sports andaman, adventure tour andaman, diving packages andaman, adventure activities andaman, water adventure andaman, island adventure packages, adventure vacation andaman';
+    const adventureKeywords = 'andaman adventure packages, scuba diving andaman, snorkeling andaman, water sports andaman, adventure tour andaman, diving packages andaman, adventure activities andaman, water adventure andaman, island adventure packages, adventure vacation andaman, trekking andaman, sea walk andaman';
     
-    const competitorKeywords = 'maldives alternative, maldives vs andaman, cheaper than maldives, andaman vs maldives honeymoon, budget maldives alternative, maldives like destination india, tropical island vacation india, best beach destination india, island vacation india, beach holiday india, tropical paradise india, coral reef destination india, clear water beaches india, white sand beaches india';
+    const competitorKeywords = 'maldives alternative, maldives vs andaman, cheaper than maldives, andaman vs maldives honeymoon, budget maldives alternative, maldives like destination india, tropical island vacation india, best beach destination india, island vacation india, beach holiday india, tropical paradise india, coral reef destination india, clear water beaches india, white sand beaches india, andaman vs thailand for indian family, andaman vs goa';
     
     const broadTravelKeywords = 'beach vacation, island holiday, tropical vacation, beach packages, island packages, beach tour packages, island tour packages, tropical island vacation, beach holiday packages, island getaway, beach destination, tropical destination, coral reef vacation, diving vacation, snorkeling vacation, water sports vacation, beach resort packages, island resort packages, tropical beach vacation, pristine beach vacation, crystal clear water vacation, white sand beach vacation, turquoise water vacation, beach paradise, island paradise, tropical paradise';
     
     const seasonalKeywords = 'summer vacation packages, winter vacation packages, monsoon packages andaman, peak season andaman, off season andaman packages, best time visit andaman, december andaman packages, january andaman packages, february andaman packages, march andaman packages, april andaman packages, may andaman packages';
     
-    const locationBasedKeywords = 'andaman nicobar islands, bay of bengal islands, indian ocean islands, south andaman, north andaman, middle andaman, andaman sea, indian islands, tropical islands india, beach islands india, coral islands india, diving destinations india, snorkeling destinations india';
+    const locationBasedKeywords = 'andaman nicobar islands, bay of bengal islands, indian ocean islands, south andaman, north andaman, middle andaman, andaman sea, indian islands, tropical islands india, beach islands india, coral islands india, diving destinations india, snorkeling destinations india, andaman tour from delhi, andaman tour from mumbai, andaman tour from chennai, andaman tour from kolkata, andaman tour from bangalore, andaman tour from hyderabad, andaman tour from pune';
 
     switch (audience) {
       case 'budget':
         return `${baseKeywords}, ${budgetKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
       case 'luxury':
-        return `${baseKeywords}, ${luxuryKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
+        return `${baseKeywords}, ${premiumKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
       case 'family':
         return `${baseKeywords}, ${familyKeywords}, ${budgetKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
       case 'honeymoon':
-        return `${baseKeywords}, ${honeymoonKeywords}, ${budgetKeywords}, ${luxuryKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
+        return `${baseKeywords}, ${honeymoonKeywords}, ${budgetKeywords}, ${premiumKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
       case 'adventure':
         return `${baseKeywords}, ${adventureKeywords}, ${budgetKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
       default:
-        return `${baseKeywords}, ${budgetKeywords}, ${luxuryKeywords}, ${familyKeywords}, ${honeymoonKeywords}, ${adventureKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
+        return `${baseKeywords}, ${budgetKeywords}, ${premiumKeywords}, ${familyKeywords}, ${honeymoonKeywords}, ${adventureKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
     }
   };
 
   const defaultKeywords = keywords || getKeywordsByAudience(targetAudience);
   const siteTitle = title.includes('Luxury Andaman') ? title : `${title} | Luxury Andaman`;
-  const canonicalUrl = `${url}${window.location.pathname}`;
+  const canonicalUrl = `${siteUrl}${pathname}`;
 
   // Combine default keywords with any additional ones
   const allKeywords = `${defaultKeywords}${tags.length > 0 ? `, ${tags.join(', ')}` : ''}`;
@@ -93,11 +97,11 @@ const SEO: React.FC<SEOProps> = ({
     '@type': 'TravelAgency',
     name: 'Luxury Andaman',
     description: '#1 Andaman Islands tour operator with 4.8★ rating. Expert-crafted packages starting ₹15,000. 1000+ happy travelers, free cancellation, 24/7 support.',
-    url: url,
-    logo: `${url}/favicon.svg`,
+    url: siteUrl,
+    logo: `${siteUrl}/favicon.svg`,
     image: image,
     priceRange: '₹15000-₹150000',
-    telephone: '+91-9876543210',
+    telephone: '+91-6297576826',
     email: 'info@luxuryandamans.com',
     areaServed: [
       {
@@ -224,7 +228,7 @@ const SEO: React.FC<SEOProps> = ({
       name: siteName,
       logo: {
         '@type': 'ImageObject',
-        url: `${url}/logo.png`
+        url: `${siteUrl}/favicon.svg`
       }
     },
     datePublished: publishedTime,
@@ -236,10 +240,10 @@ const SEO: React.FC<SEOProps> = ({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: siteName,
-    url,
+    url: siteUrl,
     potentialAction: {
       '@type': 'SearchAction',
-      target: `${url}/packages?search={search_term_string}`,
+      target: `${siteUrl}/packages?search={search_term_string}`,
       'query-input': 'required name=search_term_string'
     }
   };
@@ -250,156 +254,52 @@ const SEO: React.FC<SEOProps> = ({
       '@context': 'https://schema.org',
       '@type': 'SiteNavigationElement',
       name: 'Packages',
-      url: `${url}/packages`
+      url: `${siteUrl}/packages`
     },
     {
       '@context': 'https://schema.org',
       '@type': 'SiteNavigationElement',
       name: 'Destinations',
-      url: `${url}/destinations`
+      url: `${siteUrl}/destinations`
     },
     {
       '@context': 'https://schema.org',
       '@type': 'SiteNavigationElement',
       name: 'Experiences',
-      url: `${url}/experiences`
+      url: `${siteUrl}/experiences`
     },
     {
       '@context': 'https://schema.org',
       '@type': 'SiteNavigationElement',
       name: 'Blog',
-      url: `${url}/blog`
+      url: `${siteUrl}/blog`
     },
     {
       '@context': 'https://schema.org',
       '@type': 'SiteNavigationElement',
       name: 'Contact',
-      url: `${url}/contact`
+      url: `${siteUrl}/contact`
     }
   ];
 
-  // Schema for TouristDestination with enhanced targeting
-  const destinationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'TouristDestination',
-    name: 'Andaman Islands - Budget-Friendly Maldives Alternative',
-    description: 'Affordable tropical paradise in the Bay of Bengal offering pristine beaches, world-class diving, and budget-friendly resorts. Perfect alternative to Maldives with packages starting from ₹15,000.',
-    url: url,
-    image: image,
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: '11.7401',
-      longitude: '92.6586'
-    },
-    address: {
-      '@type': 'PostalAddress',
-      addressCountry: 'IN',
-      addressRegion: 'Andaman and Nicobar Islands'
-    },
-    touristType: [
-      'Budget travelers',
-      'Luxury travelers',
-      'Adventure seekers',
-      'Beach lovers',
-      'Backpackers',
-      'Honeymooners',
-      'Families',
-      'Nature enthusiasts',
-      'Couples',
-      'Solo travelers',
-      'Digital nomads'
-    ],
-    amenityFeature: [
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Pristine Beaches',
-        value: true
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Scuba Diving',
-        value: true
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Budget Resorts',
-        value: true
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Luxury Resorts',
-        value: true
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Water Sports',
-        value: true
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Coral Reefs',
-        value: true
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'Clear Blue Waters',
-        value: true
-      },
-      {
-        '@type': 'LocationFeatureSpecification',
-        name: 'White Sand Beaches',
-        value: true
-      }
-    ],
-    hasMap: 'https://maps.google.com/?q=Andaman+Islands',
-    isAccessibleForFree: false,
-    publicAccess: true,
-    maximumAttendeeCapacity: 1000,
-    availableLanguage: ['English', 'Hindi', 'Bengali'],
-    currenciesAccepted: 'INR',
-    paymentAccepted: ['Cash', 'Credit Card', 'Debit Card', 'UPI'],
-    priceRange: '₹15000-₹100000'
+  // Generate FAQ Schema if faqData is provided
+  const generateFaqSchema = () => {
+    if (!faqData || faqData.length === 0) return null;
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqData.map(item => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer,
+        },
+      })),
+    };
   };
 
-  // FAQ Schema for better SEO
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'Is Andaman cheaper than Maldives?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, Andaman is significantly cheaper than Maldives. Andaman packages start from ₹15,000 per person while Maldives packages typically start from ₹80,000 per person. You can enjoy similar pristine beaches, clear blue waters, and tropical paradise experience at a fraction of the cost.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'What is the cheapest Andaman package?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Our cheapest Andaman package starts from ₹15,000 per person for a 4-day trip including accommodation, meals, ferry transfers, and sightseeing. We also offer budget packages under ₹20,000, ₹30,000, and ₹40,000 for different durations and comfort levels.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'Which is better for honeymoon - Andaman or Maldives?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Both are excellent for honeymoons, but Andaman offers better value for money. You get similar romantic beaches, water villas, and sunset views at 60-70% lower cost. Andaman also offers more activities like scuba diving, historical tours, and island hopping.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'What is the best time to visit Andaman?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'The best time to visit Andaman is October to May when the weather is pleasant and seas are calm. December to February is peak season with perfect weather but higher prices. March to May offers good weather with lower prices.'
-        }
-      }
-    ]
-  };
+  const faqSchema = generateFaqSchema();
 
   return (
     <Helmet>
@@ -472,12 +372,16 @@ const SEO: React.FC<SEOProps> = ({
       <script type="application/ld+json">
         {JSON.stringify(travelAgencySchema)}
       </script>
-      <script type="application/ld+json">
-        {JSON.stringify(destinationSchema)}
-      </script>
-      <script type="application/ld+json">
-        {JSON.stringify(faqSchema)}
-      </script>
+      {destinationData && (
+        <script type="application/ld+json">
+          {JSON.stringify(destinationData)}
+        </script>
+      )}
+      {faqSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      )}
       {structuredData && (
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
@@ -490,9 +394,9 @@ const SEO: React.FC<SEOProps> = ({
       ))}
 
       {/* Alternate Languages */}
-      <link rel="alternate" href={url} hrefLang="x-default" />
-      <link rel="alternate" href={url} hrefLang="en" />
-      <link rel="alternate" href={`${url}/hi`} hrefLang="hi" />
+      <link rel="alternate" href={siteUrl} hrefLang="x-default" />
+      <link rel="alternate" href={siteUrl} hrefLang="en" />
+      <link rel="alternate" href={`${siteUrl}/hi`} hrefLang="hi" />
     </Helmet>
   );
 };

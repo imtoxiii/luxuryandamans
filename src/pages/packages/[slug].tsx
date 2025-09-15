@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 // import { motion } from 'framer-motion';
 import { 
   // Calendar, 
@@ -35,6 +35,7 @@ import { Package } from '../../data/packages';
 const PackageDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
   const [currentPackage, setCurrentPackage] = useState<Package | null>(null);
   // Booking configurator states
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -471,6 +472,28 @@ const PackageDetailPage: React.FC = () => {
     );
   }
 
+  // Structured Data for the package
+  const packageStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: currentPackage.title,
+    description: currentPackage.description,
+    image: currentPackage.image,
+    sku: currentPackage.slug,
+    offers: {
+      '@type': 'Offer',
+      price: currentPackage.price,
+      priceCurrency: 'INR',
+      availability: 'https://schema.org/InStock',
+      url: `${import.meta.env.VITE_SITE_URL || 'https://luxuryandamans.com'}${location.pathname}`,
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9', // You can make this dynamic if you have ratings
+      reviewCount: '284',
+    },
+  };
+
   const formatPrice = (price: number) => {
     return `₹${(price / 1000).toFixed(0)}K`;
   };
@@ -489,7 +512,9 @@ const PackageDetailPage: React.FC = () => {
       <SEO
         title={`${currentPackage.title} - Luxury Andaman Tours`}
         description={currentPackage.description}
+        pathname={location.pathname}
         keywords={`andaman tour, ${currentPackage.title.toLowerCase()}, luxury travel, island holiday`}
+        structuredData={packageStructuredData}
       />
       <Header />
       

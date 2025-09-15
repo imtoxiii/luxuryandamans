@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 import { sendEmail } from '../lib/email';
 import toast, { Toaster } from 'react-hot-toast';
 import Header from '../components/Header';
@@ -8,6 +9,7 @@ import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 
 const ContactPage = () => {
+  const location = useLocation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,14 +18,6 @@ const ContactPage = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Local image paths - Add your images to src/assets/images/contact/
-  const localImages = {
-    // officeImage: '/src/assets/images/contact/office-exterior.jpg',
-    // mapImage: '/src/assets/images/contact/location-map.jpg',
-    // teamImage: '/src/assets/images/contact/team-photo.jpg',
-    // Replace these with your local image paths
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,12 +72,33 @@ const ContactPage = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: `${import.meta.env.VITE_SITE_URL || 'https://luxuryandamans.com'}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Contact Us',
+        item: `${import.meta.env.VITE_SITE_URL || 'https://luxuryandamans.com'}${location.pathname}`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-pearl">
       <SEO 
         title="Contact Us"
         description="Get in touch with Andaman Luxury for personalized travel planning, inquiries, and support. We're here to help you plan your perfect Andaman Islands getaway."
+        pathname={location.pathname}
         keywords="contact andaman luxury, travel inquiries, andaman islands travel support, luxury travel contact"
+        extraStructuredData={[breadcrumbStructuredData]}
       />
       <Toaster position="top-right" />
       <Header />

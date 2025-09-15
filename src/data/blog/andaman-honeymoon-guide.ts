@@ -18,6 +18,24 @@ const post: BlogPost = {
   category: 'Honeymoon',
   tags: ['honeymoon', 'romantic', 'couples', 'private dinner', 'sunset'],
   relatedPosts: ['andaman-itinerary-7-days', 'andaman-best-time'],
+  faq: [
+    {
+      question: "Which is the best island in Andaman for a honeymoon?",
+      answer: "Havelock Island (Swaraj Dweep) is widely considered the best for honeymoons due to its stunning beaches like Radhanagar, luxury resorts, and abundance of romantic activities like candlelight dinners and scuba diving for couples."
+    },
+    {
+      question: "How many days are enough for an Andaman honeymoon?",
+      answer: "A 5 to 7-day trip is ideal for a relaxed and romantic honeymoon. This allows enough time to explore Havelock and Neil Islands, enjoy water sports, and have plenty of leisure time without feeling rushed."
+    },
+    {
+      question: "What is the average cost for an Andaman honeymoon package?",
+      answer: "A good quality 5-6 day honeymoon package can range from ₹40,000 to ₹80,000 per person, including flights, 4-star accommodation, private cruises, water activities, and romantic dinners. Budget options are also available starting from ₹25,000."
+    },
+    {
+      question: "Is Andaman better than Goa for a honeymoon?",
+      answer: "Andaman offers a more serene, secluded, and exotic experience with cleaner beaches and world-class diving, making it ideal for a romantic escape. Goa is more commercialized with a vibrant nightlife. For a pure nature-focused and romantic trip, Andaman is the better choice."
+    }
+  ],
   content: `
 ## Where to stay
 - Beachfront villas in Havelock for sunsets

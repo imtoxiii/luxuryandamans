@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useParams, Link } from 'react-router-dom';
-import { Calendar, User, Clock, Tag, ArrowLeft, Share2, BookOpen, ChevronRight } from 'lucide-react';
+import { useParams, Link, useLocation } from 'react-router-dom';
+import { Calendar, User, Clock, Tag, ArrowLeft, Share2, BookOpen, ChevronRight, HelpCircle } from 'lucide-react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
@@ -57,6 +57,7 @@ const dedent = (str: string | undefined): string => {
 
 const BlogPost = () => {
   const { slug } = useParams();
+  const location = useLocation();
   const post = blogPosts.find(p => p.slug === slug);
   const [activeSection, setActiveSection] = useState('');
   const [tableOfContents, setTableOfContents] = useState<Array<{id: string, title: string, level: number}>>([]);
@@ -183,6 +184,7 @@ const BlogPost = () => {
       <SEO 
         title={post.title}
         description={post.excerpt}
+        pathname={location.pathname}
         keywords={post.tags.join(', ')}
         image={post.image}
         type="article"
@@ -190,6 +192,7 @@ const BlogPost = () => {
         publishedTime={post.date}
         section={post.category}
         tags={post.tags}
+        faqData={post.faq}
       />
       <Header />
       
@@ -345,6 +348,29 @@ const BlogPost = () => {
                         {processedContent}
                       </ReactMarkdown>
                     </div>
+
+                    {/* FAQ Section */}
+                    {post.faq && post.faq.length > 0 && (
+                      <div className="mt-12 pt-8 border-t border-pearl">
+                        <h2 className="text-2xl font-bold text-night mb-6 flex items-center">
+                          <HelpCircle className="w-6 h-6 mr-3 text-azure" />
+                          Frequently Asked Questions
+                        </h2>
+                        <div className="space-y-4">
+                          {post.faq.map((item, index) => (
+                            <details key={index} className="bg-gray-50 p-4 rounded-lg group" open={index === 0}>
+                              <summary className="font-semibold text-night cursor-pointer flex justify-between items-center">
+                                {item.question}
+                                <ChevronRight className="w-5 h-5 transform group-open:rotate-90 transition-transform" />
+                              </summary>
+                              <p className="text-night/80 mt-2 leading-relaxed">
+                                {item.answer}
+                              </p>
+                            </details>
+                          ))}
+                        </div>
+                      </div>
+                    )}
 
                     {/* All Tags */}
                     <div className="mt-12 pt-8 border-t border-pearl">

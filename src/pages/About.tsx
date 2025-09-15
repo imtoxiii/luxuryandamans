@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   MapPin, 
@@ -8,7 +8,6 @@ import {
   Sun, 
   Users, 
   BookOpen, 
-  Clock,
   Thermometer,
   Cloud,
   Umbrella,
@@ -18,18 +17,18 @@ import {
   Languages,
   ChevronRight,
   Navigation,
-  Map,
-  Timer,
   Activity,
   Star,
   CheckCircle
 } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 
 const GuidePage = () => {
   const [activeSection, setActiveSection] = useState('overview');
+  const location = useLocation();
 
   // Local image paths - Add your images to src/assets/images/about/
   const localImages = {
@@ -56,12 +55,33 @@ const GuidePage = () => {
     }
   }, [activeSection]);
 
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: `${import.meta.env.VITE_SITE_URL || 'https://luxuryandamans.com'}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Travel Guide',
+        item: `${import.meta.env.VITE_SITE_URL || 'https://luxuryandamans.com'}${location.pathname}`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-pearl">
       <SEO 
         title="Complete Andaman Islands Travel Guide - Everything You Need to Know"
         description="Comprehensive guide to Andaman Islands covering how to reach, best time to visit, things to do, weather, history, people and language. Plan your perfect trip."
+        pathname={location.pathname}
         keywords="Andaman Islands guide, travel guide, how to reach Andaman, best time visit Andaman, Andaman weather, Andaman history, things to do Andaman"
+        extraStructuredData={[breadcrumbStructuredData]}
       />
       <Header />
       

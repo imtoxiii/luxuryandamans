@@ -1,12 +1,10 @@
-import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { Calculator, ArrowRight } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import ExperienceCard from '../components/ExperienceCard';
-import WeatherWidget from '../components/WeatherWidget';
 import Destinations from '../components/Destinations';
 import FeaturedPackages from '../components/FeaturedPackages';
 import Testimonials from '../components/Testimonials';
@@ -18,6 +16,7 @@ import { staggerContainer, fadeInUp } from '../lib/animations';
 import { gsap } from 'gsap';
 
 const Home = () => {
+  const location = useLocation();
   const experiences = [
     {
       title: "Budget Beach Resorts",
@@ -69,30 +68,10 @@ const Home = () => {
     <div className="bg-white">
       <SEO 
         title="Best Andaman Islands Tour Packages 2025 | Starting ₹15,000 | Book Now"
-        description="#1 Andaman tour packages with 4.8★ rating. Pristine beaches, scuba diving, luxury resorts & honeymoon specials. 1000+ happy travelers. Free cancellation. Book today!"
-        keywords="andaman tour packages, andaman islands packages, andaman packages 2025, best andaman packages, andaman honeymoon packages, scuba diving andaman, havelock island packages, neil island tour, radhanagar beach, andaman tourism, beach vacation india, island hopping packages, andaman resorts booking, cheap andaman packages, luxury andaman packages, andaman family packages, port blair tour, cellular jail visit"
+        description="#1 Andaman tour packages with 4.8★ rating. Pristine beaches, scuba diving, premium resorts & honeymoon specials. 1000+ happy travelers. Free cancellation. Book today!"
+        pathname={location.pathname}
+        keywords="andaman tour packages, andaman islands packages, andaman packages 2025, best andaman packages, andaman honeymoon packages, scuba diving andaman, havelock island packages, neil island tour, radhanagar beach, andaman tourism, beach vacation india, island hopping packages, andaman resorts booking, cheap andaman packages, premium andaman packages, andaman family packages, port blair tour, cellular jail visit, andaman packages from delhi, andaman packages from chennai, andaman packages from kolkata, affordable andaman tour, value for money andaman trip"
         targetAudience="all"
-        priceRange="₹₹₹"
-        structuredData={{
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": "Luxury Andaman",
-          "url": "https://luxuryandaman.com",
-          "potentialAction": [
-            {
-              "@type": "SearchAction",
-              "target": {
-                "@type": "EntryPoint",
-                "urlTemplate": "https://luxuryandaman.com/packages?search={search_term_string}"
-              },
-              "query-input": "required name=search_term_string"
-            }
-          ],
-          "sameAs": [
-            "https://www.instagram.com/luxuryandaman",
-            "https://www.facebook.com/luxuryandaman"
-          ]
-        }}
       />
       
       <Header />

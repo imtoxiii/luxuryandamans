@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 interface SEOProps {
   title: string;
   description: string;
-  pathname: string; // Add pathname prop
+  pathname?: string; // Make optional; default from window.location
   keywords?: string;
   image?: string;
   type?: string;
@@ -45,6 +45,7 @@ const SEO: React.FC<SEOProps> = ({
   destinationData,
 }) => {
   const siteUrl = import.meta.env.VITE_SITE_URL || 'https://luxuryandamans.com';
+  const safePathname = typeof window !== 'undefined' && window.location?.pathname ? window.location.pathname : '/';
 
   // Comprehensive keyword strategy targeting different user intents and budgets
   const getKeywordsByAudience = (audience: string) => {
@@ -86,7 +87,7 @@ const SEO: React.FC<SEOProps> = ({
 
   const defaultKeywords = keywords || getKeywordsByAudience(targetAudience);
   const siteTitle = title.includes('Luxury Andaman') ? title : `${title} | Luxury Andaman`;
-  const canonicalUrl = `${siteUrl}${pathname}`;
+  const canonicalUrl = `${siteUrl}${pathname || safePathname}`;
 
   // Combine default keywords with any additional ones
   const allKeywords = `${defaultKeywords}${tags.length > 0 ? `, ${tags.join(', ')}` : ''}`;

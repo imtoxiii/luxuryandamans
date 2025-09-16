@@ -98,7 +98,7 @@ const SEO: React.FC<SEOProps> = ({
     name: 'Luxury Andaman',
     description: '#1 Andaman Islands tour operator with 4.8★ rating. Expert-crafted packages starting ₹15,000. 1000+ happy travelers, free cancellation, 24/7 support.',
     url: siteUrl,
-    logo: `${siteUrl}/favicon.svg`,
+    logo: `${siteUrl}/favicon.png`,
     image: image,
     priceRange: '₹15000-₹150000',
     telephone: '+91-6297576826',
@@ -228,7 +228,7 @@ const SEO: React.FC<SEOProps> = ({
       name: siteName,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteUrl}/favicon.svg`
+        url: `${siteUrl}/favicon.png`
       }
     },
     datePublished: publishedTime,

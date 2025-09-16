@@ -9,10 +9,11 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && npm run sitemap",
     "lint": "eslint .",
     "preview": "vite preview",
-    "clean": "rm -rf node_modules package-lock.json"
+    "clean": "rm -rf node_modules package-lock.json",
+    "sitemap": "node scripts/generate-sitemap.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

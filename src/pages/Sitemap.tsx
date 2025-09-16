@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
+import { packages } from '../data/packages';
+import { locations } from '../data/locations';
+import { blogPosts } from '../data/blog';
+import { destinations as destinationData } from '../data/destinations';
 
 interface SitemapSection {
   title: string;
@@ -15,6 +19,46 @@ interface SitemapSection {
 }
 
 const Sitemap = () => {
+  const formatTitleFromSlug = (slug: string) =>
+    slug
+      .replace(/-/g, ' ')
+      .replace(/\b\w/g, (c) => c.toUpperCase());
+
+  const experienceSlugs = [
+    'luxury-resorts',
+    'scuba-diving',
+    'island-hopping',
+    'sunset-cruises',
+    'wellness-retreats',
+    'romantic-getaways',
+    'family-adventures',
+    'bioluminescence-kayaking',
+    'sea-walk',
+    'game-fishing'
+  ];
+
+  const destinationLinks = [
+    { name: 'All Destinations', path: '/destinations' },
+    ...destinationData.map(d => ({ name: d.name, path: `/destinations/${d.slug}` }))
+  ];
+
+  const experienceLinks = [
+    { name: 'All Experiences', path: '/experiences' },
+    ...experienceSlugs.map(s => ({ name: formatTitleFromSlug(s), path: `/experiences/${s}` }))
+  ];
+
+  const packageLinks = [
+    { name: 'All Packages', path: '/packages' },
+    ...packages.map(p => ({ name: p.title, path: `/packages/${p.slug}` }))
+  ];
+
+  const locationLinks = locations.map(l => ({ name: l.name, path: `/locations/${l.slug}` }));
+
+  const blogLinks = [
+    { name: 'Blog Home', path: '/blog' },
+    ...blogPosts.map(p => ({ name: p.title, path: `/blog/${p.slug}` }))
+  ];
+
   const sections: SitemapSection[] = [
     {
       title: "Main Pages",
@@ -22,53 +66,31 @@ const Sitemap = () => {
         { name: "Home", path: "/" },
         { name: "Travel Guide", path: "/guide" },
         { name: "Contact", path: "/contact" },
-        { name: "Blog", path: "/blog" }
+        { name: "Price Calculator", path: "/calculator" },
+        { name: "FAQ", path: "/faq" },
+        { name: "Privacy Policy", path: "/privacy" },
+        { name: "Terms of Service", path: "/terms" }
       ]
     },
     {
       title: "Destinations",
-      links: [
-        { name: "All Destinations", path: "/destinations" },
-        { name: "Radhanagar Beach", path: "/destinations/radhanagar-beach" },
-        { name: "Cellular Jail", path: "/destinations/cellular-jail" },
-        { name: "Ross Island", path: "/destinations/ross-island" }
-      ]
+      links: destinationLinks
     },
     {
       title: "Experiences",
-      links: [
-        { name: "All Experiences", path: "/experiences" },
-        { name: "Luxury Resorts", path: "/experiences/luxury-resorts" },
-        { name: "Scuba Diving", path: "/experiences/scuba-diving" },
-        { name: "Island Hopping", path: "/experiences/island-hopping" },
-        { name: "Sunset Cruises", path: "/experiences/sunset-cruises" },
-        { name: "Wellness Retreats", path: "/experiences/wellness-retreats" }
-      ]
+      links: experienceLinks
     },
     {
       title: "Packages",
-      links: [
-        { name: "All Packages", path: "/packages" },
-        { name: "Luxury Island Escape", path: "/packages/luxury-island-escape" },
-        { name: "Adventure Seeker", path: "/packages/adventure-seeker" },
-        { name: "Family Paradise", path: "/packages/family-paradise" },
-        { name: "Honeymoon Special", path: "/packages/honeymoon-special" }
-      ]
+      links: packageLinks
     },
     {
-      title: "Help & Support",
-      links: [
-        { name: "FAQ", path: "/faq" },
-        { name: "Travel Guide", path: "/guide" },
-        { name: "Price Calculator", path: "/calculator" }
-      ]
+      title: "Locations",
+      links: locationLinks
     },
     {
-      title: "Legal",
-      links: [
-        { name: "Privacy Policy", path: "/privacy" },
-        { name: "Terms of Service", path: "/terms" }
-      ]
+      title: "Blog Posts",
+      links: blogLinks
     }
   ];
 

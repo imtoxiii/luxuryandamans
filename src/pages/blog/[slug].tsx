@@ -155,6 +155,7 @@ const BlogPost = () => {
     ul: ({ children }: any) => <ul className="list-disc list-inside mb-4 space-y-2 text-night/80">{children}</ul>,
     ol: ({ children }: any) => <ol className="list-decimal list-inside mb-4 space-y-2 text-night/80">{children}</ol>,
     li: ({ children }: any) => <li className="text-night/80 leading-relaxed marker:text-azure">{children}</li>,
+    img: ({ node, ...props }: any) => <img className="rounded-lg my-4 shadow-lg" {...props} alt={props.alt || ''} />,
     strong: ({ children }: any) => <strong className="font-semibold text-night">{children}</strong>,
     em: ({ children }: any) => <em className="italic text-night/90">{children}</em>,
     blockquote: ({ children }: any) => (

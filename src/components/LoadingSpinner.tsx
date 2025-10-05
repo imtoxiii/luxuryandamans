@@ -232,19 +232,6 @@ const PageTransition: React.FC<PageTransitionProps> = ({ onComplete }) => {
         className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4"
         style={{ marginTop: '120px' }} // Push content down away from text
       >
-        {/* Tropical Icons */}
-        <div className="flex items-center gap-4 sm:gap-6 md:gap-8 mb-3 sm:mb-4">
-          <div className="animate-float" style={{ animationDelay: '0s' }}>
-            <Ship size={28} className="sm:w-9 sm:h-9 md:w-10 md:h-10 text-white drop-shadow-lg" />
-          </div>
-          <div className="animate-float" style={{ animationDelay: '0.3s' }}>
-            <Waves size={32} className="sm:w-10 sm:h-10 md:w-12 md:h-12 text-white drop-shadow-lg" />
-          </div>
-          <div className="animate-float" style={{ animationDelay: '0.6s' }}>
-            <Palmtree size={28} className="sm:w-9 sm:h-9 md:w-10 md:h-10 text-white drop-shadow-lg" />
-          </div>
-        </div>
-
         {/* Tagline */}
         <p 
           className="text-white text-xs sm:text-sm md:text-base font-light tracking-wide text-center"

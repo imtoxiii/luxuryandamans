@@ -1,8 +1,13 @@
-import { useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { useEffect, useState, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import newHeroImage from '../img/hero-background.png';
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -10,8 +15,14 @@ const Hero = () => {
   const [heroComplete, setHeroComplete] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   
-  // Use useScroll to track scroll progress from the container
-  const { scrollYProgress } = useScroll();
+  // Refs for GSAP animations
+  const heroContainerRef = useRef<HTMLDivElement>(null);
+  const videoContainerRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+  const textWordsRef = useRef<HTMLSpanElement[]>([]);
+  const exploreLettersRef = useRef<HTMLSpanElement[]>([]);
+  const exploreContainerRef = useRef<HTMLDivElement>(null);
 
   // Detect mobile vs desktop with proper initial state
   useEffect(() => {
@@ -39,21 +50,127 @@ const Hero = () => {
       window.removeEventListener('resize', debouncedCheck);
       clearTimeout(timeoutId);
     };
-  }, []);
+  }, [isMobile]);
 
-  // Ultra fast spring physics for quick animations (desktop)
-  const springConfig = { stiffness: 1000, damping: 30, restDelta: 0.001 };
-  const smoothProgress = useSpring(scrollYProgress, springConfig);
-
-  // BULLETPROOF: Monitor scroll progress and set heroComplete immediately after "Explore Now"
+  // GSAP ScrollTrigger animations for desktop
   useEffect(() => {
-    const unsubscribe = smoothProgress.onChange((latest) => {
-      if (latest >= 0.25 && !heroComplete) {
-        setHeroComplete(true); // Mark hero as complete at 25%
+    if (isMobile || !videoContainerRef.current) return;
+
+    // Set up GSAP context for cleanup
+    const ctx = gsap.context(() => {
+      // Performance optimization: Set ScrollTrigger defaults
+      ScrollTrigger.config({
+        limitCallbacks: true, // Limit callback frequency for better performance
+        syncInterval: 33, // ~30fps sync rate for better performance
+      });
+
+      // Phase 1: Video Scaling (0% to 5% of scroll)
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: heroContainerRef.current,
+          start: 'top top',
+          end: '5% top',
+          scrub: 1, // Smooth scrubbing with 1 second delay
+          invalidateOnRefresh: true,
+          fastScrollEnd: true, // Better performance on fast scrolling
+        }
+      })
+      .to(videoContainerRef.current, {
+        height: '60vh',
+        width: '90vw',
+        top: '8vh',
+        left: '5vw',
+        borderRadius: '20px',
+        scale: 0.98,
+        ease: 'none',
+        force3D: true, // Force hardware acceleration
+      }, 0)
+      .to(overlayRef.current, {
+        opacity: 0.1,
+        ease: 'none',
+        force3D: true,
+      }, 0);
+
+      // Phase 2: Fade scroll indicator quickly
+      gsap.to(scrollIndicatorRef.current, {
+        opacity: 0,
+        scrollTrigger: {
+          trigger: heroContainerRef.current,
+          start: 'top top',
+          end: '1% top',
+          scrub: 1,
+          fastScrollEnd: true,
+        },
+        ease: 'none',
+        force3D: true,
+      });
+
+      // Phase 3: Text words animation (5% to 15%)
+      if (textWordsRef.current.length > 0) {
+        textWordsRef.current.forEach((word, index) => {
+          if (word) {
+            const startProgress = 5 + (index * 0.6); // Each word gets 0.6% of scroll
+            const endProgress = startProgress + 0.6;
+            
+            gsap.fromTo(word, 
+              { opacity: 0 },
+              {
+                opacity: 1,
+                scrollTrigger: {
+                  trigger: heroContainerRef.current,
+                  start: `${startProgress}% top`,
+                  end: `${endProgress}% top`,
+                  scrub: 1,
+                  fastScrollEnd: true,
+                },
+                ease: 'none',
+                force3D: true,
+              }
+            );
+          }
+        });
       }
-    });
-    return unsubscribe;
-  }, [smoothProgress, heroComplete]);
+
+      // Phase 4: "Explore Now" letter by letter (15% to 20.5%)
+      if (exploreLettersRef.current.length > 0) {
+        exploreLettersRef.current.forEach((letter, index) => {
+          if (letter) {
+            const startProgress = 15 + (index * 0.5); // Each letter gets 0.5% of scroll
+            const endProgress = startProgress + 0.5;
+            
+            gsap.fromTo(letter,
+              { opacity: 0 },
+              {
+                opacity: 1,
+                scrollTrigger: {
+                  trigger: heroContainerRef.current,
+                  start: `${startProgress}% top`,
+                  end: `${endProgress}% top`,
+                  scrub: 1,
+                  fastScrollEnd: true,
+                },
+                ease: 'none',
+                force3D: true,
+              }
+            );
+          }
+        });
+      }
+
+      // Mark hero complete at 25% scroll
+      ScrollTrigger.create({
+        trigger: heroContainerRef.current,
+        start: '25% top',
+        onEnter: () => setHeroComplete(true),
+        onLeaveBack: () => setHeroComplete(false),
+      });
+
+    }, heroContainerRef);
+
+    return () => {
+      ctx.revert(); // Clean up all GSAP animations and ScrollTriggers
+    };
+  }, [isMobile, imageLoaded]);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 100);
@@ -67,139 +184,57 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // DESKTOP & TABLET: ORIGINAL COMPLEX ANIMATIONS
+  // DESKTOP & TABLET: GSAP SCROLL ANIMATIONS
   if (!isMobile) {
-    // 🔒 BULLETPROOF PC TIMING: 20% DURATION EXPLORE NOW + 15% EXTRA SCROLL
-
-    // Phase 1: Video Scaling ONLY (0% to 5%) - WIDER VIDEO
-    const videoHeight = useTransform(smoothProgress, [0, 0.05], ['100vh', '60vh']);
-    const videoWidth = useTransform(smoothProgress, [0, 0.05], ['100vw', '90vw']); // WIDER: 80vw -> 90vw
-    const videoTop = useTransform(smoothProgress, [0, 0.05], ['0vh', '8vh']);
-    const videoLeft = useTransform(smoothProgress, [0, 0.05], ['0vw', '5vw']); // WIDER: 10vw -> 5vw
-    const videoBorderRadius = useTransform(smoothProgress, [0, 0.05], [0, 20]);
-    const videoScale = useTransform(smoothProgress, [0, 0.05], [1, 0.98]);
-
-    // Phase 2: Text color based on video position (0% to 5%) - For subtitle only
-    const subtitleColor = useTransform(
-      smoothProgress,
-      [0, 0.025, 0.05],
-      ['rgba(255, 255, 255, 0.9)', 'rgba(180, 180, 180, 0.9)', 'rgba(100, 100, 100, 0.9)']
-    );
-    
-    // Phase 3: Text animation AFTER video is done (5% to 15%) - Compressed timing
-    const word1Opacity = useTransform(smoothProgress, [0.05, 0.056], [0, 1]);
-    const word2Opacity = useTransform(smoothProgress, [0.056, 0.062], [0, 1]);
-    const word3Opacity = useTransform(smoothProgress, [0.062, 0.068], [0, 1]);
-    const word4Opacity = useTransform(smoothProgress, [0.068, 0.074], [0, 1]);
-    const word5Opacity = useTransform(smoothProgress, [0.074, 0.08], [0, 1]);
-    const word6Opacity = useTransform(smoothProgress, [0.08, 0.086], [0, 1]);
-    const word7Opacity = useTransform(smoothProgress, [0.086, 0.092], [0, 1]);
-    const word8Opacity = useTransform(smoothProgress, [0.092, 0.098], [0, 1]);
-    const word9Opacity = useTransform(smoothProgress, [0.098, 0.104], [0, 1]);
-    const word10Opacity = useTransform(smoothProgress, [0.104, 0.11], [0, 1]);
-    const word11Opacity = useTransform(smoothProgress, [0.11, 0.116], [0, 1]);
-    const word12Opacity = useTransform(smoothProgress, [0.116, 0.122], [0, 1]);
-    const word13Opacity = useTransform(smoothProgress, [0.122, 0.128], [0, 1]);
-    const word14Opacity = useTransform(smoothProgress, [0.128, 0.134], [0, 1]);
-    const word15Opacity = useTransform(smoothProgress, [0.134, 0.14], [0, 1]);
-    const word16Opacity = useTransform(smoothProgress, [0.14, 0.146], [0, 1]);
-    
-    // Phase 4: "Explore Now" LETTER BY LETTER - FAST ANIMATION (15% to 25%) then HOLD 5% MORE
-    const letter1Opacity = useTransform(smoothProgress, [0.15, 0.155], [0, 1]); // E
-    const letter2Opacity = useTransform(smoothProgress, [0.155, 0.160], [0, 1]); // X
-    const letter3Opacity = useTransform(smoothProgress, [0.160, 0.165], [0, 1]); // P
-    const letter4Opacity = useTransform(smoothProgress, [0.165, 0.170], [0, 1]); // L
-    const letter5Opacity = useTransform(smoothProgress, [0.170, 0.175], [0, 1]); // O
-    const letter6Opacity = useTransform(smoothProgress, [0.175, 0.180], [0, 1]); // R
-    const letter7Opacity = useTransform(smoothProgress, [0.180, 0.185], [0, 1]); // E
-    const letter8Opacity = useTransform(smoothProgress, [0.185, 0.190], [0, 1]); // (space)
-    const letter9Opacity = useTransform(smoothProgress, [0.190, 0.195], [0, 1]); // N
-    const letter10Opacity = useTransform(smoothProgress, [0.195, 0.200], [0, 1]); // O
-    const letter11Opacity = useTransform(smoothProgress, [0.200, 0.205], [0, 1]); // W
-
-    // Hold "Explore Now" after completion - SHORT HOLD (20.5% to 25.5%)
-    const exploreTextOpacity = useTransform(smoothProgress, [0.205, 1.0], [1, 1]);
-
-    // Hero elements stay visible throughout scroll - NO FADE
-    const heroElementsOpacity = useTransform(smoothProgress, [0, 1.0], [1, 1]);
-    
-    // Scroll indicator fades instantly
-    const scrollIndicatorOpacity = useTransform(smoothProgress, [0, 0.01], [1, 0]);
-
-    // Video overlay
-    const overlayOpacity = useTransform(smoothProgress, [0, 0.05], [0.4, 0.1]);
-
     const textWords = [
       "We", "empower", "travelers", "to", "discover", "amazing", "destinations", "and",
       "capture", "true", "luxury", "experiences", "with", "the", "Andaman", "Islands"
     ];
 
-    const wordOpacities = [
-      word1Opacity, word2Opacity, word3Opacity, word4Opacity,
-      word5Opacity, word6Opacity, word7Opacity, word8Opacity,
-      word9Opacity, word10Opacity, word11Opacity, word12Opacity,
-      word13Opacity, word14Opacity, word15Opacity, word16Opacity
-    ];
-
-    // "Explore Now" letters
     const exploreLetters = ["E", "X", "P", "L", "O", "R", "E", " ", "N", "O", "W"];
-    const letterOpacities = [
-      letter1Opacity, letter2Opacity, letter3Opacity, letter4Opacity,
-      letter5Opacity, letter6Opacity, letter7Opacity, letter8Opacity,
-      letter9Opacity, letter10Opacity, letter11Opacity
-    ];
 
     return (
       <>
         {/* Optimized scroll distance for complete animations */}
-        <div className="relative" style={{ height: '300vh' }}>
+        <div ref={heroContainerRef} className="relative" style={{ height: '300vh' }}>
           {/* Fixed hero container */}
           <div className="fixed top-0 left-0 w-full h-screen overflow-hidden z-10">
-            {/* Clean white background like NeoLeaf */}
+            {/* Clean white background */}
             <div className="absolute inset-0 bg-white z-0" />
 
-            {/* Image container */}
-            <motion.div 
+            {/* Image container - animated with GSAP */}
+            <div 
+              ref={videoContainerRef}
               className="absolute z-20 overflow-hidden"
               style={{ 
-                height: videoHeight, 
-                width: videoWidth,
-                top: videoTop,
-                left: videoLeft,
-                borderRadius: videoBorderRadius,
-                scale: videoScale,
+                height: '100vh',
+                width: '100vw',
+                top: '0vh',
+                left: '0vw',
+                borderRadius: '0px',
                 boxShadow: '0 30px 60px -20px rgba(0, 0, 0, 0.4)',
+                willChange: 'transform, width, height, border-radius',
+                transform: 'translateZ(0)', // Force GPU acceleration
+                backfaceVisibility: 'hidden', // Better performance
               }}
-              initial={{ opacity: 0, scale: 1.02 }}
-              animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 1.02 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <img 
+              <motion.img 
                 src={newHeroImage}
                 alt="Luxury Andaman hero"
                 className="w-full h-full object-cover"
+                initial={{ opacity: 0, scale: 1.02 }}
+                animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 1.02 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
               />
-              <motion.div 
+              <div 
+                ref={overlayRef}
                 className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/45" 
-                style={{ opacity: overlayOpacity }}
+                style={{ opacity: 0.4 }}
               />
-            </motion.div>
+            </div>
             
             {/* Hero Content */}
-            <motion.div 
-              className="absolute inset-0 z-30"
-              style={{ opacity: heroElementsOpacity }}
-            >
-              {/* 
-                🔒 BULLETPROOF TIMING SUMMARY:
-                - 0-5%: Video scaling (WIDER)
-                - 5-15%: Text animation
-                - 15-35%: "Explore Now" appears LETTER BY LETTER (20% duration)
-                - 35-60%: "Explore Now" HOLDS (25% duration)
-                - 65-66%: Hero fades
-                - 67%+: Main content
-              */}
-              
+            <div className="absolute inset-0 z-30">
               {/* Text positioned with 30px offset */}
               <div className="absolute left-0 bottom-0 w-full p-8 md:p-16 pb-32 pointer-events-none">
                 <motion.div 
@@ -209,7 +244,7 @@ const Hero = () => {
                   animate={{ opacity: isLoaded ? 1 : 0, x: isLoaded ? 0 : -30 }}
                   transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
                 >
-                  {/* Main heading - MOVED DOWN 10PX */}
+                  {/* Main heading */}
                   <motion.h1 
                     className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight"
                     style={{ y: 10 }}
@@ -221,49 +256,52 @@ const Hero = () => {
                     </span>
                   </motion.h1>
                   
-                  {/* Paragraph animation - COMPLETES BY 15% */}
+                  {/* Paragraph animation with GSAP refs */}
                   <div className="text-xl md:text-2xl lg:text-3xl font-light leading-relaxed max-w-3xl">
                     {textWords.map((word, index) => (
-                      <motion.span
+                      <span
                         key={index}
-                        className="inline-block mr-2"
-                        style={{ 
-                          opacity: wordOpacities[index],
-                          color: subtitleColor
+                        ref={(el) => {
+                          if (el) textWordsRef.current[index] = el;
                         }}
+                        className="inline-block mr-2 text-white/90"
+                        style={{ opacity: 0 }}
                       >
                         {word}
-                      </motion.span>
+                      </span>
                     ))}
                   </div>
                 </motion.div>
               </div>
 
-              {/* "Explore Now" - NEW FONT AND COLOR */}
-              <motion.div
+              {/* "Explore Now" with GSAP letter animation */}
+              <div
+                ref={exploreContainerRef}
                 className="absolute bottom-16 right-16 z-40 pointer-events-none"
-                style={{ opacity: exploreTextOpacity }}
               >
                 <div className="flex items-center">
                   <div className="flex font-playfair">
                     {exploreLetters.map((letter, index) => (
-                      <motion.span
+                      <span
                         key={index}
+                        ref={(el) => {
+                          if (el) exploreLettersRef.current[index] = el;
+                        }}
                         className="text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-gradient-to-r from-blue-600 via-teal-500 to-green-500 bg-clip-text"
-                        style={{ opacity: letterOpacities[index] }}
+                        style={{ opacity: 0 }}
                       >
                         {letter}
-                      </motion.span>
+                      </span>
                     ))}
                   </div>
                 </div>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
 
-            {/* Scroll indicator */}
-            <motion.div
+            {/* Scroll indicator - animated with GSAP */}
+            <div
+              ref={scrollIndicatorRef}
               className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40"
-              style={{ opacity: scrollIndicatorOpacity }}
             >
               <div className="flex flex-col items-center">
                 <motion.div
@@ -278,11 +316,11 @@ const Hero = () => {
                   />
                 </motion.div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
         
-        {/* Main content starts after hero animations complete (after 25% scroll) */}
+        {/* Main content starts after hero animations complete */}
         <motion.div 
           className="bg-white py-16"
           style={{ 

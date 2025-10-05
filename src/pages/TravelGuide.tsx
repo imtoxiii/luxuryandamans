@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
@@ -42,6 +42,12 @@ interface Section {
 
 const TravelGuide = () => {
   const location = useLocation();
+  
+  // Ensure page loads from top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   const sections: Section[] = [
     {
       title: "Best Time to Visit",

@@ -51,6 +51,9 @@ const FamilyAdventuresPage = lazy(() => import('./pages/experiences/family-adven
 const BioluminescenceKayakingPage = lazy(() => import('./pages/experiences/bioluminescence-kayaking'));
 const SeaWalkPage = lazy(() => import('./pages/experiences/sea-walk'));
 const GameFishingPage = lazy(() => import('./pages/experiences/game-fishing'));
+const SnorkelingPage = lazy(() => import('./pages/experiences/snorkeling'));
+const TrekkingPage = lazy(() => import('./pages/experiences/trekking'));
+const CulturalToursPage = lazy(() => import('./pages/experiences/cultural-tours'));
 
 function App() {
   const { isTransitioning, displayLocation } = usePageTransition();
@@ -113,6 +116,9 @@ function App() {
           <Route path="/experiences/bioluminescence-kayaking" element={<BioluminescenceKayakingPage />} />
           <Route path="/experiences/sea-walk" element={<SeaWalkPage />} />
           <Route path="/experiences/game-fishing" element={<GameFishingPage />} />
+          <Route path="/experiences/snorkeling" element={<SnorkelingPage />} />
+          <Route path="/experiences/trekking" element={<TrekkingPage />} />
+          <Route path="/experiences/cultural-tours" element={<CulturalToursPage />} />
           
           {/* 404 Catch-all */}
           <Route path="*" element={<Navigate to="/" replace />} />

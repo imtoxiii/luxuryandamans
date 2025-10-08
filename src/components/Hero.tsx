@@ -131,12 +131,12 @@ const Hero = () => {
         });
       }
 
-      // Phase 4: "Explore Now" letter by letter (15% to 20.5%)
+      // Phase 4: "Explore Now" letter by letter (15% to 20%)
       if (exploreLettersRef.current.length > 0) {
         exploreLettersRef.current.forEach((letter, index) => {
           if (letter) {
-            const startProgress = 15 + (index * 0.5); // Each letter gets 0.5% of scroll
-            const endProgress = startProgress + 0.5;
+            const startProgress = 15 + (index * 0.55); // Each letter gets 0.55% of scroll
+            const endProgress = startProgress + 0.55;
             
             gsap.fromTo(letter,
               { opacity: 0 },
@@ -157,10 +157,10 @@ const Hero = () => {
         });
       }
 
-      // Mark hero complete at 25% scroll
+      // Mark hero complete at 20% scroll (right after "Explore Now" completes)
       ScrollTrigger.create({
         trigger: heroContainerRef.current,
-        start: '25% top',
+        start: '20% top',
         onEnter: () => setHeroComplete(true),
         onLeaveBack: () => setHeroComplete(false),
       });
@@ -196,7 +196,7 @@ const Hero = () => {
     return (
       <>
         {/* Optimized scroll distance for complete animations */}
-        <div ref={heroContainerRef} className="relative" style={{ height: '300vh' }}>
+        <div ref={heroContainerRef} className="relative" style={{ height: '240vh' }}>
           {/* Fixed hero container */}
           <div className="fixed top-0 left-0 w-full h-screen overflow-hidden z-10">
             {/* Clean white background */}

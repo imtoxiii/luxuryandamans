@@ -34,10 +34,9 @@ const PackagesPage = () => {
 
       {/* Packages Grid */}
       <motion.section
-        variants={staggerContainer(0.1, 0.3)}
+        variants={staggerContainer(0.1, 0.2)}
         initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, amount: 0.2 }}
+        animate="animate"
         className="py-20"
       >
         <div className="container mx-auto px-4">
@@ -138,8 +137,7 @@ const PackagesPage = () => {
       <motion.section
         variants={staggerContainer(0.2, 0.5)}
         initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, amount: 0.3 }}
+        animate="animate"
         className="py-16"
       >
         <div className="container mx-auto px-4">

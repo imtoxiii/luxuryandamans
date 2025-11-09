@@ -24,14 +24,24 @@ export default defineConfig({
     sourcemap: false,
     minify: 'terser',
     target: 'es2015',
-    cssCodeSplit: true, // Enable CSS code splitting for better caching
+    cssCodeSplit: true,
     rollupOptions: {
       output: {
-        // Manual chunking for better caching and performance
+        // Optimized manual chunking for better caching and performance
         manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          ui: ['framer-motion', 'lucide-react', 'react-hot-toast'],
-          utils: ['axios']
+          // Core React libraries
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          // Animation and UI libraries
+          'vendor-animations': ['framer-motion', 'gsap'],
+          // UI components
+          'vendor-ui': ['lucide-react', 'react-hot-toast', 'react-helmet-async'],
+          // Below-fold components (lazy loaded)
+          'components-lazy': [
+            './src/components/Testimonials.tsx',
+            './src/components/InstagramFeed.tsx',
+            './src/components/Newsletter.tsx',
+            './src/components/Footer.tsx'
+          ],
         },
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
@@ -39,11 +49,15 @@ export default defineConfig({
       }
     },
     chunkSizeWarningLimit: 1000,
-    assetsInlineLimit: 4096, // Inline smaller assets for performance
+    assetsInlineLimit: 4096,
     terserOptions: {
       compress: {
-        drop_console: true, // Remove console logs in production
-        drop_debugger: true
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug']
+      },
+      format: {
+        comments: false
       }
     }
   },
@@ -53,8 +67,10 @@ export default defineConfig({
       'react-dom', 
       'react-router-dom',
       'framer-motion',
+      'gsap',
       'lucide-react',
-      'react-hot-toast'
+      'react-hot-toast',
+      'react-helmet-async'
     ],
     exclude: ['@emailjs/browser']
   }

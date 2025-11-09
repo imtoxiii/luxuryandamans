@@ -223,49 +223,57 @@ const Header = () => {
               </motion.div>
             </div>
 
-            {/* Custom Hamburger Menu Button for Mobile */}
+            {/* Custom Hamburger Menu Button for Mobile - Fixed position when menu open */}
             <button
               onClick={toggleMenu}
-              className={`md:hidden relative w-10 h-10 flex flex-col justify-center items-center z-[10002] rounded-full transition-all duration-300 ${
+              className={`md:hidden ${isMenuOpen ? 'fixed top-4 right-4' : 'relative'} w-14 h-14 flex flex-col justify-center items-center z-[10002] rounded-full transition-all duration-300 ${
                 isMenuOpen 
-                  ? 'text-white bg-white/10 backdrop-blur-sm' 
+                  ? 'bg-white/30 backdrop-blur-lg border-2 border-white shadow-2xl' 
                   : (showWhiteBackground ? 'text-gray-900 hover:bg-gray-100' : 'text-white hover:bg-white/10')
               } focus:outline-none`}
               aria-label="Toggle navigation menu"
             >
-              {/* Custom hamburger/X animation */}
+              {/* Animated X mark when menu is open, hamburger when closed */}
               <motion.span
-                className={`absolute w-6 h-0.5 rounded-full shadow-sm ${
-                  isMenuOpen || !showWhiteBackground ? 'bg-white' : 'bg-gray-900'
+                className={`absolute w-8 h-1 rounded-full shadow-2xl ${
+                  isMenuOpen ? 'bg-white' : (showWhiteBackground ? 'bg-gray-900' : 'bg-white')
                 }`}
                 initial={false}
                 animate={{
                   rotate: isMenuOpen ? 45 : 0,
-                  y: isMenuOpen ? 0 : -4
+                  y: isMenuOpen ? 0 : -6,
+                  scaleX: isMenuOpen ? 1.2 : 1
                 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                style={{
+                  filter: isMenuOpen ? 'drop-shadow(0 2px 8px rgba(255,255,255,0.8))' : 'none'
+                }}
               />
               <motion.span
-                className={`absolute w-6 h-0.5 rounded-full shadow-sm ${
-                  isMenuOpen || !showWhiteBackground ? 'bg-white' : 'bg-gray-900'
+                className={`absolute w-8 h-1 rounded-full shadow-2xl ${
+                  isMenuOpen ? 'bg-white' : (showWhiteBackground ? 'bg-gray-900' : 'bg-white')
                 }`}
                 initial={false}
                 animate={{
                   opacity: isMenuOpen ? 0 : 1,
-                  x: isMenuOpen ? -10 : 0
+                  scaleX: isMenuOpen ? 0 : 1
                 }}
                 transition={{ duration: 0.2, ease: "easeInOut" }}
               />
               <motion.span
-                className={`absolute w-6 h-0.5 rounded-full shadow-sm ${
-                  isMenuOpen || !showWhiteBackground ? 'bg-white' : 'bg-gray-900'
+                className={`absolute w-8 h-1 rounded-full shadow-2xl ${
+                  isMenuOpen ? 'bg-white' : (showWhiteBackground ? 'bg-gray-900' : 'bg-white')
                 }`}
                 initial={false}
                 animate={{
                   rotate: isMenuOpen ? -45 : 0,
-                  y: isMenuOpen ? 0 : 4
+                  y: isMenuOpen ? 0 : 6,
+                  scaleX: isMenuOpen ? 1.2 : 1
                 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                style={{
+                  filter: isMenuOpen ? 'drop-shadow(0 2px 8px rgba(255,255,255,0.8))' : 'none'
+                }}
               />
             </button>
           </div>

@@ -130,7 +130,7 @@ const GuidePage = () => {
           <div className="container mx-auto px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="max-w-6xl mx-auto"
             >
@@ -199,7 +199,7 @@ const GuidePage = () => {
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.2 }}
                     className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                   >
@@ -220,7 +220,7 @@ const GuidePage = () => {
           <div className="container mx-auto px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="max-w-6xl mx-auto"
             >
@@ -259,7 +259,7 @@ const GuidePage = () => {
                 <motion.div
                   key={index}
                           initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
+                          animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                           className="border-l-4 border-azure pl-6"
                 >
@@ -321,7 +321,7 @@ const GuidePage = () => {
           <div className="container mx-auto px-4 sm:px-6">
             <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
               className="max-w-6xl mx-auto"
             >
@@ -431,7 +431,7 @@ const GuidePage = () => {
           <div className="container mx-auto px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="max-w-6xl mx-auto"
             >
@@ -472,7 +472,7 @@ const GuidePage = () => {
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                     className={`bg-white p-6 sm:p-8 rounded-xl shadow-lg border-t-4 ${
                       season.color === 'green' ? 'border-green-500' :
@@ -558,7 +558,7 @@ const GuidePage = () => {
           <div className="container mx-auto px-4 sm:px-6">
             <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
               className="max-w-7xl mx-auto"
             >
@@ -706,7 +706,7 @@ const GuidePage = () => {
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
                   >
@@ -770,7 +770,7 @@ const GuidePage = () => {
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                       className="bg-gray-50 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300"
                     >
@@ -841,7 +841,7 @@ const GuidePage = () => {
           <div className="container mx-auto px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="max-w-6xl mx-auto"
             >
@@ -957,7 +957,7 @@ const GuidePage = () => {
           <div className="container mx-auto px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="max-w-6xl mx-auto"
             >

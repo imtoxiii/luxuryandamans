@@ -400,7 +400,7 @@ const TravelGuide = () => {
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
@@ -415,7 +415,7 @@ const TravelGuide = () => {
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 className="group relative overflow-hidden rounded-xl"
               >
@@ -446,7 +446,7 @@ const TravelGuide = () => {
                 key={index}
                 href={`#${section.title.toLowerCase().replace(/\s+/g, '-')}`}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all group text-center"
               >
@@ -472,7 +472,7 @@ const TravelGuide = () => {
                 key={index}
                 id={section.title.toLowerCase().replace(/\s+/g, '-')}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 className="scroll-mt-24"
               >
@@ -561,7 +561,7 @@ const TravelGuide = () => {
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center"
           >

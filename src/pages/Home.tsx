@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -14,10 +14,12 @@ import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
 import CardSlider from '../components/CardSlider';
 import { staggerContainer, fadeInUp } from '../lib/animations';
-import { gsap } from 'gsap';
 
 const Home = () => {
   const location = useLocation();
+  const [showBelowFold, setShowBelowFold] = useState(false);
+  const belowFoldTriggerRef = useRef<HTMLDivElement>(null);
+  
   const experiences = [
     {
       title: "Budget Beach Resorts",
@@ -53,16 +55,40 @@ const Home = () => {
 
   const floatingIconRef = useRef(null);
 
+  // Load below-fold content immediately after initial render
   useEffect(() => {
-    if (floatingIconRef.current) {
-      gsap.to(floatingIconRef.current, {
-        y: -10,
-        repeat: -1,
-        yoyo: true,
-        ease: "power1.inOut",
-        duration: 1.5
-      });
-    }
+    // Show below-fold content after 300ms
+    const timer = setTimeout(() => {
+      setShowBelowFold(true);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Simple floating animation for call-to-action icon
+  useEffect(() => {
+    if (!floatingIconRef.current) return;
+    
+    let frame: number;
+    let start: number;
+    
+    const animate = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const progress = timestamp - start;
+      
+      if (floatingIconRef.current) {
+        const y = Math.sin(progress / 500) * 10;
+        (floatingIconRef.current as HTMLElement).style.transform = `translateY(${y}px)`;
+      }
+      
+      frame = requestAnimationFrame(animate);
+    };
+    
+    frame = requestAnimationFrame(animate);
+    
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   return (
@@ -82,12 +108,34 @@ const Home = () => {
       
       {/* Additional page content sections - these will appear after the hero animation */}
       <div className="relative z-50 bg-white">
-        {/* Experiences Section */}
+        {/* Smooth transition divider between hero and content */}
+        <div className="h-4 bg-gradient-to-b from-transparent to-white"></div>
+        
+        {/* Featured Packages Section - NOW FIRST */}
+        <motion.div 
+          variants={fadeInUp}
+          initial="initial"
+          animate="animate"
+          className="bg-white"
+        >
+          <FeaturedPackages />
+        </motion.div>
+
+        {/* Destinations Section - NOW SECOND */}
+        <motion.div 
+          variants={fadeInUp}
+          initial="initial"
+          animate="animate"
+          className="bg-white"
+        >
+          <Destinations />
+        </motion.div>
+
+        {/* Experiences Section - NOW THIRD */}
         <motion.section 
           variants={staggerContainer(0.2, 0.5)}
           initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.3 }}
+          animate="animate"
           className="bg-white py-16"
         >
           <div className="container">
@@ -120,67 +168,48 @@ const Home = () => {
           </div>
         </motion.section>
 
-        {/* Destinations Section */}
-        <motion.div 
-          variants={fadeInUp}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.3 }}
-          className="bg-white"
-        >
-          <Destinations />
-        </motion.div>
+        {/* Lazy-loaded below-the-fold sections - Load after short delay */}
+        <div ref={belowFoldTriggerRef}>
+          {showBelowFold && (
+            <>
+              {/* Testimonials Section */}
+              <motion.div 
+                variants={fadeInUp}
+                initial="initial"
+                animate="animate"
+                className="bg-white"
+              >
+                <Testimonials />
+              </motion.div>
 
-        {/* Featured Packages Section */}
-        <motion.div 
-          variants={fadeInUp}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.3 }}
-          className="bg-white"
-        >
-          <FeaturedPackages />
-        </motion.div>
+              {/* Instagram Feed Section */}
+              <motion.div 
+                variants={fadeInUp}
+                initial="initial"
+                animate="animate"
+                className="bg-white"
+              >
+                <InstagramFeed />
+              </motion.div>
 
-        {/* Testimonials Section */}
-        <motion.div 
-          variants={fadeInUp}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.3 }}
-          className="bg-white"
-        >
-          <Testimonials />
-        </motion.div>
-
-        {/* Instagram Feed Section */}
-        <motion.div 
-          variants={fadeInUp}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.3 }}
-          className="bg-white"
-        >
-          <InstagramFeed />
-        </motion.div>
-
-        {/* Newsletter Section */}
-        <motion.div 
-          variants={fadeInUp}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.3 }}
-          className="bg-white"
-        >
-          <Newsletter />
-        </motion.div>
+              {/* Newsletter Section */}
+              <motion.div 
+                variants={fadeInUp}
+                initial="initial"
+                animate="animate"
+                className="bg-white"
+              >
+                <Newsletter />
+              </motion.div>
+            </>
+          )}
+        </div>
 
         {/* Call to Action Section */}
         <motion.section 
           variants={fadeInUp}
           initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.3 }}
+          animate="animate"
           className="relative py-12 md:py-16 overflow-hidden"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900"></div>
@@ -212,11 +241,12 @@ const Home = () => {
           </div>
         </motion.section>
 
-        {/* Footer */}
-        <Footer />
+        {/* Footer - loads with other below-fold content */}
+        {showBelowFold && <Footer />}
       </div>
     </div>
   );
 };
 
 export default Home;
+

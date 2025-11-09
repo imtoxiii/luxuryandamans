@@ -1,14 +1,15 @@
+// Optimized animations for smooth performance
 export const fadeInUp = {
   initial: {
-    opacity: 1,
-    y: 30,
+    opacity: 0,
+    y: 20,
   },
   animate: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
-      ease: "easeInOut",
+      duration: 0.4,
+      ease: [0.25, 0.1, 0.25, 1], // Custom cubic-bezier for smoothness
     },
   },
 };
@@ -25,13 +26,13 @@ export const staggerContainer = (staggerChildren: number, delayChildren: number)
 
 export const fadeIn = {
   initial: {
-    opacity: 1,
+    opacity: 0,
   },
   animate: {
     opacity: 1,
     transition: {
-      duration: 0.8,
-      ease: 'linear'
+      duration: 0.3,
+      ease: 'easeOut'
     }
   }
 } 

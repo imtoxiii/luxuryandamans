@@ -106,7 +106,7 @@ const Blog = () => {
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
@@ -119,7 +119,7 @@ const Blog = () => {
               <motion.article
                 key={post.id}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className={`group ${index === 0 ? 'lg:col-span-2 lg:row-span-2' : ''}`}
               >
@@ -270,7 +270,7 @@ const Blog = () => {
                 <motion.article
                   key={post.id}
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: (index % 9) * 0.1 }}
                   className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-2xl transition-all duration-500 border border-pearl"
                 >

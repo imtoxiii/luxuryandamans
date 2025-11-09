@@ -67,10 +67,9 @@ const DestinationsPage = () => {
 
       {/* Destinations Grid */}
       <motion.section
-        variants={staggerContainer(0.1, 0.3)}
+        variants={staggerContainer(0.1, 0.2)}
         initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, amount: 0.2 }}
+        animate="animate"
         className="py-20"
       >
         <div className="container mx-auto px-4">

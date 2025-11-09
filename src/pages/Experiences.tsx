@@ -317,8 +317,8 @@ const ExperiencesPage = () => {
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
               className="text-center mb-12"
             >
               <h2 className="text-3xl font-bold text-night mb-4">Featured Experiences</h2>
@@ -328,10 +328,9 @@ const ExperiencesPage = () => {
             </motion.div>
 
             <motion.div
-              variants={staggerContainer(0.1, 0.3)}
+              variants={staggerContainer(0.1, 0.2)}
               initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, amount: 0.2 }}
+              animate="animate"
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {getFeaturedExperiences().slice(0, 6).map((experience) => (
@@ -347,8 +346,8 @@ const ExperiencesPage = () => {
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
             className="text-center mb-12"
           >
             <h2 className="text-3xl font-bold text-night mb-4">
@@ -366,10 +365,9 @@ const ExperiencesPage = () => {
 
           {filteredAndSortedExperiences.length > 0 ? (
             <motion.div
-              variants={staggerContainer(0.1, 0.3)}
+              variants={staggerContainer(0.1, 0.2)}
               initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, amount: 0.2 }}
+              animate="animate"
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {filteredAndSortedExperiences.map((experience) => (
@@ -399,7 +397,7 @@ const ExperiencesPage = () => {
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >

@@ -1,4 +1,73 @@
 /* Add to your existing CSS */
+
+/* Performance optimizations for smooth scrolling */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: auto; /* Single scrollbar */
+  /* Enhanced smooth scrolling for cursor/mouse wheel */
+  scroll-padding-top: 80px; /* Account for fixed header */
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto; /* Prevent double scrollbars */
+  margin: 0;
+  padding: 0;
+  /* CSS Scroll Snap for ultra-smooth scrolling */
+  -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
+  overscroll-behavior-y: none; /* Prevent scroll chaining */
+}
+
+/* Remove any extra scrollbars from root */
+#root {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Custom smooth scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(250, 250, 250, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(28, 91, 147, 0.3);
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(28, 91, 147, 0.6);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(28, 91, 147, 0.3) rgba(250, 250, 250, 0.5);
+}
+
+/* Hardware acceleration for better scroll performance */
+.will-change-transform {
+  will-change: transform;
+}
+
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
 @layer utilities {
   .hide-scrollbar {
     -ms-overflow-style: none;

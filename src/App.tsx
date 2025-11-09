@@ -1,4 +1,4 @@
-import { useEffect, Suspense, lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useScrollTop } from './hooks/useScrollTop';
 import { usePageTransition } from './hooks/usePageTransition';
@@ -58,10 +58,6 @@ const CulturalToursPage = lazy(() => import('./pages/experiences/cultural-tours'
 function App() {
   const { isTransitioning, displayLocation } = usePageTransition();
   useScrollTop();
-
-  useEffect(() => {
-    // Future: place light, one-time boot-time logic here if needed
-  }, []);
 
   return (
     <>

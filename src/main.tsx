@@ -4,51 +4,28 @@ import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
 import './index.css';
-
-// Remove loading skeleton once React is ready
-const removeLoadingSkeleton = () => {
-  const skeleton = document.getElementById('loading-skeleton');
-  if (skeleton) {
-    // Add fade-out class
-    skeleton.classList.add('fade-out');
-    // Remove from DOM after animation
-    setTimeout(() => {
-      skeleton.remove();
-    }, 400);
-  }
-};
-
-// Enhanced smooth scrolling for cursor/mouse wheel
-const initSmoothScrolling = () => {
-  // Ensure smooth scroll behavior is applied
-  document.documentElement.style.scrollBehavior = 'smooth';
-  
-  // Optimize scroll performance with RAF
-  let ticking = false;
-
-  const optimizeScroll = () => {
-    ticking = false;
-    // Scroll optimizations handled by CSS
-  };
-
-  const handleScroll = () => {
-    if (!ticking) {
-      window.requestAnimationFrame(optimizeScroll);
-      ticking = true;
-    }
-  };
-
-  // Passive scroll listener for better performance
-  window.addEventListener('scroll', handleScroll, { passive: true });
-};
+import { requestIdleTask } from './lib/performanceOptimizer';
 
 const AppWrapper = () => {
   useEffect(() => {
-    // Remove skeleton immediately when component mounts - React is ready!
-    removeLoadingSkeleton();
-    
-    // Initialize smooth scrolling
-    initSmoothScrolling();
+    // Remove loading skeleton with smooth transition
+    const skeleton = document.getElementById('loading-skeleton');
+    if (skeleton) {
+      skeleton.classList.add('hidden');
+      setTimeout(() => skeleton.remove(), 300);
+    }
+
+    // Performance optimizations for mobile
+    requestIdleTask(() => {
+      // Optimize images after initial render
+      const images = document.querySelectorAll('img[loading="lazy"]');
+      images.forEach((img) => {
+        if (img instanceof HTMLImageElement) {
+          // Force decode images in idle time
+          img.decode?.().catch(() => {});
+        }
+      });
+    });
   }, []);
 
   return (

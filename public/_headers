@@ -1,0 +1,50 @@
+# Cache configuration for better PageSpeed scores
+# This file works with Netlify, Vercel, and similar platforms
+
+# Cache static assets for 1 year
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache images for 1 year
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+/*.gif
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache fonts for 1 year
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+/*.ttf
+  Cache-Control: public, max-age=31536000, immutable
+/*.eot
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache CSS and JS with shorter duration (for updates)
+/*.css
+  Cache-Control: public, max-age=604800, must-revalidate
+/*.js
+  Cache-Control: public, max-age=604800, must-revalidate
+
+# Don't cache HTML
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Cache manifest and robots
+/site.webmanifest
+  Cache-Control: public, max-age=604800
+/robots.txt
+  Cache-Control: public, max-age=604800
+/sitemap.xml
+  Cache-Control: public, max-age=3600

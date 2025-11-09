@@ -32,36 +32,76 @@ const LazyImage: React.FC<LazyImageProps> = ({
   const imgRef = useRef<HTMLImageElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  // Optimize Unsplash URLs with proper parameters
+  // Optimize Unsplash URLs with proper parameters - Mobile optimized
   const optimizedSrc = React.useMemo(() => {
     if (src.includes('unsplash.com')) {
       const url = new URL(src);
       url.searchParams.set('auto', 'format');
       url.searchParams.set('fit', 'crop');
-      url.searchParams.set('q', quality.toString());
-      if (width) url.searchParams.set('w', width.toString());
-      if (height) url.searchParams.set('h', height.toString());
+      // Mobile: reduce quality slightly for smaller file size
+      const isMobile = window.innerWidth <= 768;
+      const mobileQuality = Math.max(60, quality - 20); // Reduce quality by 20 for mobile
+      url.searchParams.set('q', isMobile ? mobileQuality.toString() : quality.toString());
+      
+      // Mobile: reduce dimensions
+      if (width) {
+        const mobileWidth = isMobile ? Math.floor(width * 0.6) : width;
+        url.searchParams.set('w', mobileWidth.toString());
+      }
+      if (height) {
+        const mobileHeight = isMobile ? Math.floor(height * 0.6) : height;
+        url.searchParams.set('h', mobileHeight.toString());
+      }
+      
       url.searchParams.set('ixlib', 'rb-4.0.3');
+      url.searchParams.set('fm', 'webp'); // Force WebP format
       return url.toString();
     }
     return src;
   }, [src, quality, width, height]);
 
-  // Generate a low-quality placeholder
+  // Generate a low-quality placeholder - Ultra lightweight
   const placeholderSrc = React.useMemo(() => {
     if (placeholder) return placeholder;
     if (src.includes('unsplash.com')) {
       const url = new URL(src);
       url.searchParams.set('auto', 'format');
       url.searchParams.set('fit', 'crop');
-      url.searchParams.set('q', '10');
-      url.searchParams.set('w', '50');
-      url.searchParams.set('blur', '10');
+      url.searchParams.set('q', '5'); // Extremely low quality for placeholder
+      url.searchParams.set('w', '20'); // Tiny size
+      url.searchParams.set('blur', '20'); // Heavy blur
       url.searchParams.set('ixlib', 'rb-4.0.3');
+      url.searchParams.set('fm', 'webp'); // WebP for placeholder too
       return url.toString();
     }
     return undefined;
   }, [src, placeholder]);
+
+  // Generate responsive srcset for better mobile performance
+  const srcSet = React.useMemo(() => {
+    if (!src.includes('unsplash.com') || !width) return undefined;
+    
+    const sizes = [0.5, 0.75, 1, 1.5, 2]; // Different size variants
+    const srcSetArray = sizes.map(multiplier => {
+      const url = new URL(src);
+      url.searchParams.set('auto', 'format');
+      url.searchParams.set('fit', 'crop');
+      url.searchParams.set('q', quality.toString());
+      url.searchParams.set('w', Math.floor(width * multiplier).toString());
+      if (height) url.searchParams.set('h', Math.floor(height * multiplier).toString());
+      url.searchParams.set('ixlib', 'rb-4.0.3');
+      url.searchParams.set('fm', 'webp');
+      return `${url.toString()} ${Math.floor(width * multiplier)}w`;
+    });
+    
+    return srcSetArray.join(', ');
+  }, [src, quality, width, height]);
+
+  // Generate sizes attribute for responsive images
+  const sizesAttr = React.useMemo(() => {
+    if (!width) return undefined;
+    return `(max-width: 640px) ${Math.floor(width * 0.5)}px, (max-width: 768px) ${Math.floor(width * 0.75)}px, ${width}px`;
+  }, [width]);
 
   useEffect(() => {
     if (priority) {
@@ -138,6 +178,8 @@ const LazyImage: React.FC<LazyImageProps> = ({
       {isInView && (
         <motion.img
           src={optimizedSrc}
+          srcSet={srcSet}
+          sizes={sizesAttr}
           alt={alt}
           className={`w-full h-full object-cover transition-opacity duration-300 ${
             isLoaded ? 'opacity-100' : 'opacity-0'

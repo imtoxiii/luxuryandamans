@@ -79,6 +79,13 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
     
+    <!-- CRITICAL: Preload hero image for instant display -->
+    <link rel="preload" href="/src/img/hero-background.png" as="image" fetchpriority="high" />
+    
+    <!-- Preconnect to Unsplash with higher priority for mobile -->
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="preconnect" href="https://plus.unsplash.com" crossorigin />
+    
     <!-- Critical fonts loaded immediately -->
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet" />
     
@@ -162,11 +169,36 @@
         -moz-osx-font-smoothing: grayscale;
       }
       
+      /* Force GPU acceleration for hero image */
+      img[src*="hero-background"] {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        will-change: transform;
+      }
+      
       html {
         scroll-behavior: smooth;
       }
       
-      /* Loading skeleton styles - Beautiful minimal design */
+      body { 
+        margin: 0; 
+        padding: 0;
+        overflow-x: hidden;
+      }
+      
+      * { 
+        box-sizing: border-box;
+      }
+      
+      /* Mobile optimization - reduce animations on slower devices */
+      @media (max-width: 768px) {
+        * {
+          animation-duration: 0.5s !important;
+          transition-duration: 0.2s !important;
+        }
+      }
+      
+      /* Minimal loading screen - instant removal */
       #loading-skeleton {
         position: fixed;
         top: 0;
@@ -175,146 +207,46 @@
         height: 100vh;
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
         z-index: 9999;
-        opacity: 1;
-        transition: opacity 0.4s ease-out;
         display: flex;
         align-items: center;
         justify-content: center;
+        opacity: 1;
+        transition: opacity 0.3s ease-out;
       }
       
-      #loading-skeleton.fade-out {
+      #loading-skeleton.hidden {
         opacity: 0;
         pointer-events: none;
       }
       
-      /* Elegant centered loader */
+      /* Simple loader */
       .loader-container {
         text-align: center;
-        animation: fadeInUp 0.6s ease-out;
       }
       
-      /* Animated logo/icon placeholder */
-      .loader-icon {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 30px;
-        position: relative;
-      }
-      
-      .loader-circle {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        border: 3px solid transparent;
-        border-top-color: #10b981;
-        border-right-color: #3b82f6;
-        animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
-      }
-      
-      .loader-circle-inner {
-        position: absolute;
-        width: 60px;
-        height: 60px;
-        top: 10px;
-        left: 10px;
-        border-radius: 50%;
-        border: 3px solid transparent;
-        border-bottom-color: #06b6d4;
-        border-left-color: #8b5cf6;
-        animation: spin 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite reverse;
-      }
-      
-      /* Brand name */
       .loader-title {
         font-family: 'Clash Display', sans-serif;
         font-size: 28px;
         font-weight: 700;
         color: #ffffff;
-        margin-bottom: 12px;
         letter-spacing: -0.5px;
-        animation: pulse 2s ease-in-out infinite;
       }
       
-      .loader-subtitle {
-        font-family: system-ui, -apple-system, sans-serif;
-        font-size: 14px;
-        font-weight: 400;
-        color: #94a3b8;
-        letter-spacing: 0.5px;
-      }
-      
-      /* Elegant gradient text */
       .gradient-text {
         background: linear-gradient(135deg, #10b981, #3b82f6, #06b6d4);
-        background-size: 200% 200%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        animation: gradientShift 3s ease infinite;
-      }
-      
-      /* Animations */
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-      
-      @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.7; }
-      }
-      
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      
-      @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
-      
-      /* Smooth transition for root */
-      #root {
-        animation: fadeIn 0.4s ease-in;
-      }
-      
-      @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
-      
-      /* Prevent flash of unstyled content */
-      body { 
-        margin: 0; 
-        padding: 0;
-        overflow-x: hidden;
-      }
-      * { 
-        box-sizing: border-box;
       }
     </style>
   </head>
   <body class="bg-light text-dark antialiased">
-    <!-- Beautiful Minimal Loading Screen -->
+    <!-- Minimal Loading Screen -->
     <div id="loading-skeleton">
       <div class="loader-container">
-        <div class="loader-icon">
-          <div class="loader-circle"></div>
-          <div class="loader-circle-inner"></div>
-        </div>
         <h1 class="loader-title">
           <span class="gradient-text">Luxury Andamans</span>
         </h1>
-        <p class="loader-subtitle">Preparing your paradise...</p>
       </div>
     </div>
     

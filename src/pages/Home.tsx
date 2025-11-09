@@ -1,5 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
@@ -13,12 +12,10 @@ import InstagramFeed from '../components/InstagramFeed';
 import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
 import CardSlider from '../components/CardSlider';
-import { staggerContainer, fadeInUp } from '../lib/animations';
 
 const Home = () => {
   const location = useLocation();
-  const [showBelowFold, setShowBelowFold] = useState(false);
-  const belowFoldTriggerRef = useRef<HTMLDivElement>(null);
+  const floatingIconRef = useRef(null);
   
   const experiences = [
     {
@@ -53,44 +50,6 @@ const Home = () => {
     }
   ];
 
-  const floatingIconRef = useRef(null);
-
-  // Load below-fold content immediately after initial render
-  useEffect(() => {
-    // Show below-fold content after 300ms
-    const timer = setTimeout(() => {
-      setShowBelowFold(true);
-    }, 300);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Simple floating animation for call-to-action icon
-  useEffect(() => {
-    if (!floatingIconRef.current) return;
-    
-    let frame: number;
-    let start: number;
-    
-    const animate = (timestamp: number) => {
-      if (!start) start = timestamp;
-      const progress = timestamp - start;
-      
-      if (floatingIconRef.current) {
-        const y = Math.sin(progress / 500) * 10;
-        (floatingIconRef.current as HTMLElement).style.transform = `translateY(${y}px)`;
-      }
-      
-      frame = requestAnimationFrame(animate);
-    };
-    
-    frame = requestAnimationFrame(animate);
-    
-    return () => {
-      if (frame) cancelAnimationFrame(frame);
-    };
-  }, []);
-
   return (
     <div className="bg-white">
       <SEO 
@@ -102,56 +61,26 @@ const Home = () => {
       />
       
       <Header />
-      
-      {/* Hero component now contains its own content area */}
       <Hero />
       
-      {/* Additional page content sections - these will appear after the hero animation */}
+      {/* All content loads immediately - no delays */}
       <div className="relative z-50 bg-white">
-        {/* Smooth transition divider between hero and content */}
-        <div className="h-4 bg-gradient-to-b from-transparent to-white"></div>
-        
-        {/* Featured Packages Section - NOW FIRST */}
-        <motion.div 
-          variants={fadeInUp}
-          initial="initial"
-          animate="animate"
-          className="bg-white"
-        >
-          <FeaturedPackages />
-        </motion.div>
+        <FeaturedPackages />
+        <Destinations />
 
-        {/* Destinations Section - NOW SECOND */}
-        <motion.div 
-          variants={fadeInUp}
-          initial="initial"
-          animate="animate"
-          className="bg-white"
-        >
-          <Destinations />
-        </motion.div>
-
-        {/* Experiences Section - NOW THIRD */}
-        <motion.section 
-          variants={staggerContainer(0.2, 0.5)}
-          initial="initial"
-          animate="animate"
-          className="bg-white py-16"
-        >
+        {/* Experiences Section */}
+        <section className="bg-white py-16">
           <div className="container">
-            <motion.div
-              variants={fadeInUp}
-              className="section-title-spacing text-center"
-            >
+            <div className="section-title-spacing text-center">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-night mb-4">
                 Unforgettable Experiences
               </h2>
               <p className="text-night/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
                 Discover the best of what the Andaman Islands have to offer through our carefully curated experiences
               </p>
-            </motion.div>
+            </div>
             
-            <motion.div variants={fadeInUp} className="section-content-spacing">
+            <div className="section-content-spacing">
               <CardSlider showDots={true} autoScroll={false}>
                 {experiences.map((exp, index) => (
                   <Link key={index} to={exp.link} className="block">
@@ -159,59 +88,21 @@ const Home = () => {
                       title={exp.title}
                       description={exp.description}
                       image={exp.image}
-                      delay={index * 0.1}
+                      delay={0}
                     />
                   </Link>
                 ))}
               </CardSlider>
-            </motion.div>
+            </div>
           </div>
-        </motion.section>
+        </section>
 
-        {/* Lazy-loaded below-the-fold sections - Load after short delay */}
-        <div ref={belowFoldTriggerRef}>
-          {showBelowFold && (
-            <>
-              {/* Testimonials Section */}
-              <motion.div 
-                variants={fadeInUp}
-                initial="initial"
-                animate="animate"
-                className="bg-white"
-              >
-                <Testimonials />
-              </motion.div>
-
-              {/* Instagram Feed Section */}
-              <motion.div 
-                variants={fadeInUp}
-                initial="initial"
-                animate="animate"
-                className="bg-white"
-              >
-                <InstagramFeed />
-              </motion.div>
-
-              {/* Newsletter Section */}
-              <motion.div 
-                variants={fadeInUp}
-                initial="initial"
-                animate="animate"
-                className="bg-white"
-              >
-                <Newsletter />
-              </motion.div>
-            </>
-          )}
-        </div>
+        <Testimonials />
+        <InstagramFeed />
+        <Newsletter />
 
         {/* Call to Action Section */}
-        <motion.section 
-          variants={fadeInUp}
-          initial="initial"
-          animate="animate"
-          className="relative py-12 md:py-16 overflow-hidden"
-        >
+        <section className="relative py-12 md:py-16 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900"></div>
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-20"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
@@ -239,14 +130,12 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </motion.section>
+        </section>
 
-        {/* Footer - loads with other below-fold content */}
-        {showBelowFold && <Footer />}
+        <Footer />
       </div>
     </div>
   );
 };
 
 export default Home;
-

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Clock, Users, MapPin, ArrowRight, Star } from 'lucide-react';
+import { Clock, Users, MapPin, ArrowRight, Star, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { getPackageCardImage } from '../lib/imageLoader';
 
 interface PackageCardProps {
   title: string;
@@ -26,130 +27,111 @@ const PackageCard: React.FC<PackageCardProps> = ({
   slug,
   delay = 0
 }) => {
+  // Use dynamic image from folder or fallback to provided image
+  const cardImage = getPackageCardImage(slug);
+  const [displayImage, setDisplayImage] = useState(image);
+  
+  // Check if dynamic image exists, otherwise use fallback
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => setDisplayImage(cardImage);
+    img.onerror = () => setDisplayImage(image); // Fallback to original
+    img.src = cardImage;
+  }, [cardImage, image]);
+  
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{ 
-        duration: 0.6, 
+        duration: 0.5, 
         delay,
-        ease: [0.25, 0.46, 0.45, 0.94],
-        type: "spring",
-        stiffness: 100
-      }}
-      whileHover={{ 
-        y: -8,
-        transition: { duration: 0.3, ease: "easeOut" }
+        ease: [0.21, 0.45, 0.27, 0.9]
       }}
       className="h-full"
     >
-      <Link to={`/packages/${slug}`} className="card-modern group h-full flex flex-col min-h-[600px] md:min-h-[650px] block relative overflow-hidden">
-        <div className="relative h-64 md:h-72 overflow-hidden flex-shrink-0">
-          <div className="absolute inset-0 bg-gradient-to-t from-night/60 via-night/20 to-transparent 
-                         group-hover:from-night/70 group-hover:via-night/30 transition-all duration-700 ease-out z-10" />
+      <Link 
+        to={`/packages/${slug}`} 
+        className="group h-full flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-blue-200"
+      >
+        {/* Image Section */}
+        <div className="relative h-56 overflow-hidden bg-gray-100">
           <motion.img
-            src={image}
+            src={displayImage}
             alt={title}
             className="w-full h-full object-cover"
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           />
-          <motion.div 
-            className="absolute top-4 right-4 glass-sunset-badge px-4 py-2 z-20 font-semibold shadow-lg"
-            whileHover={{ scale: 1.05, rotate: 2 }}
-            transition={{ duration: 0.3 }}
-          >
-            ₹{price.toLocaleString('en-IN')}
-          </motion.div>
-          <motion.div 
-            className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm 
-                       text-azure px-3 py-1 rounded-full z-20 font-medium text-sm shadow-lg
-                       flex items-center space-x-1"
-            whileHover={{ scale: 1.05, x: 2 }}
-            transition={{ duration: 0.3 }}
-          >
-            <Star className="w-3 h-3 fill-current" />
-            <span>Premium</span>
-          </motion.div>
+          
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-70 transition-opacity duration-500" />
+          
+          {/* Price Badge */}
+          <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg">
+            <div className="text-xs font-medium text-gray-600 mb-0.5">Starting from</div>
+            <div className="text-lg font-bold text-blue-600">₹{(price / 1000).toFixed(0)}K</div>
+          </div>
+          
+          {/* Premium Badge */}
+          <div className="absolute top-4 left-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-3 py-1.5 rounded-full shadow-lg flex items-center space-x-1.5">
+            <Star className="w-3.5 h-3.5 fill-white" />
+            <span className="text-xs font-semibold">Premium</span>
+          </div>
         </div>
         
-        <div className="p-6 md:p-8 flex-1 flex flex-col">
-          <motion.h3 
-            className="text-xl md:text-2xl font-bold text-night mb-3 group-hover:text-azure 
-                      transition-colors duration-500 leading-tight"
-            whileHover={{ x: 4 }}
-            transition={{ duration: 0.3 }}
-          >
+        {/* Content Section */}
+        <div className="p-6 flex-1 flex flex-col">
+          {/* Title */}
+          <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors duration-300">
             {title}
-          </motion.h3>
-          <p className="text-night/70 text-sm md:text-base mb-6 leading-relaxed line-clamp-3 flex-1">{description}</p>
+          </h3>
           
-          <motion.div 
-            className="flex items-center justify-between mb-6 p-3 bg-gray-50 rounded-xl group-hover:bg-gray-100 transition-colors duration-500"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="flex items-center text-night/70">
-              <Clock className="w-4 h-4 mr-2 glass-sunset-text" />
+          {/* Description */}
+          <p className="text-gray-600 text-sm leading-relaxed mb-5 line-clamp-2 flex-grow">
+            {description}
+          </p>
+          
+          {/* Meta Info */}
+          <div className="flex items-center justify-between mb-5 py-3 px-4 bg-gray-50 rounded-xl">
+            <div className="flex items-center space-x-2 text-gray-700">
+              <Clock className="w-4 h-4 text-blue-600" />
               <span className="text-sm font-medium">{duration}</span>
             </div>
-            <div className="flex items-center text-night/70">
-              <Users className="w-4 h-4 mr-2 glass-sunset-text" />
-              <span className="text-sm font-medium">{groupSize}</span>
+            <div className="w-px h-4 bg-gray-300"></div>
+            <div className="flex items-center space-x-2 text-gray-700">
+              <Users className="w-4 h-4 text-blue-600" />
+              <span className="text-sm font-medium">{groupSize} people</span>
             </div>
-          </motion.div>
+          </div>
 
-          <div className="space-y-3 mb-8 flex-1">
+          {/* Features */}
+          <div className="space-y-2.5 mb-6">
             {features.slice(0, 3).map((feature, i) => (
-              <motion.div 
-                key={i} 
-                className="flex items-center text-night/70"
-                whileHover={{ x: 4 }}
-                transition={{ duration: 0.3, delay: i * 0.05 }}
-              >
-                <motion.div 
-                  className="w-2 h-2 bg-gradient-to-r from-azure to-lagoon rounded-full mr-3 flex-shrink-0"
-                  whileHover={{ scale: 1.5 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <span className="text-sm md:text-base">{feature}</span>
-              </motion.div>
+              <div key={i} className="flex items-start space-x-2.5">
+                <div className="mt-0.5 flex-shrink-0">
+                  <Check className="w-4 h-4 text-green-600" />
+                </div>
+                <span className="text-sm text-gray-700 leading-snug">{feature}</span>
+              </div>
             ))}
           </div>
 
-          <motion.div 
-            className="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-          >
-            <motion.div 
-              className="flex items-center text-azure group-hover:text-sunset transition-colors duration-500"
-              whileHover={{ x: 4 }}
-              transition={{ duration: 0.3 }}
-            >
-              <span className="text-sm font-semibold mr-2">View Details</span>
-              <motion.div
-                whileHover={{ x: 4 }}
-                transition={{ duration: 0.3 }}
-              >
-                <ArrowRight className="w-4 h-4" />
-              </motion.div>
-            </motion.div>
-            <div className="flex items-center text-sm text-night/60">
-              <MapPin className="w-4 h-4 mr-1 text-sunset" />
-              <span className="font-medium">Andaman Islands</span>
+          {/* CTA Button */}
+          <div className="mt-auto pt-4 border-t border-gray-100">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2 text-blue-600 font-semibold text-sm group-hover:text-blue-700 transition-colors">
+                <span>View Details</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </div>
+              <div className="flex items-center space-x-1.5 text-xs text-gray-500">
+                <MapPin className="w-3.5 h-3.5" />
+                <span>Andaman</span>
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
-        
-        <motion.div
-          className="absolute inset-0 border-2 border-transparent rounded-2xl pointer-events-none"
-          whileHover={{
-            borderColor: "rgba(59, 130, 246, 0.3)",
-            boxShadow: "0 0 20px rgba(59, 130, 246, 0.1)"
-          }}
-          transition={{ duration: 0.3 }}
-        />
       </Link>
     </motion.div>
   );

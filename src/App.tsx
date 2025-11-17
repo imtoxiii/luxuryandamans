@@ -29,6 +29,11 @@ const RossSmithIslands = lazy(() => import('./pages/destinations/ross-smith-isla
 const SaddlePeak = lazy(() => import('./pages/destinations/saddle-peak'));
 const CinqueIsland = lazy(() => import('./pages/destinations/cinque-island'));
 const BarrenIsland = lazy(() => import('./pages/destinations/barren-island'));
+// Destination category hub pages
+const PortBlairDestinations = lazy(() => import('./pages/destinations/PortBlairDestinations'));
+const HavelockDestinations = lazy(() => import('./pages/destinations/HavelockDestinations'));
+const NeilDestinations = lazy(() => import('./pages/destinations/NeilDestinations'));
+const BaratangDestinations = lazy(() => import('./pages/destinations/BaratangDestinations'));
 const PackageDetailPage = lazy(() => import('./pages/packages/[slug]'));
 const LocationPage = lazy(() => import('./pages/locations/[slug]'));
 const GuidePage = lazy(() => import('./pages/About'));
@@ -66,6 +71,11 @@ function App() {
         <Routes location={displayLocation}>
           <Route path="/" element={<Home />} />
           <Route path="/destinations" element={<DestinationsPage />} />
+          {/* Category hub pages */}
+          <Route path="/destinations/port-blair-destinations" element={<PortBlairDestinations />} />
+          <Route path="/destinations/havelock-destinations" element={<HavelockDestinations />} />
+          <Route path="/destinations/neil-destinations" element={<NeilDestinations />} />
+          <Route path="/destinations/baratang-destinations" element={<BaratangDestinations />} />
           {/* Static routes first for specific destinations */}
           <Route path="/destinations/cellular-jail" element={<CellularJail />} />
           <Route path="/destinations/ross-island" element={<RossIsland />} />

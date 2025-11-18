@@ -14,118 +14,115 @@ const PageTransition: React.FC<PageTransitionProps> = ({ onComplete }) => {
   const iconsContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // GSAP animations for smooth curtain effect
+    // GSAP animations optimized for low-end devices
     const ctx = gsap.context(() => {
+      // Set initial states with proper transforms and GPU acceleration
+      gsap.set([leftCurtainRef.current, rightCurtainRef.current], {
+        force3D: true,
+      });
+      
+      gsap.set(leftCurtainRef.current, {
+        x: '-100%',
+      });
+      
+      gsap.set(rightCurtainRef.current, {
+        x: '100%',
+      });
+
       const tl = gsap.timeline({
         defaults: {
-          ease: 'power2.inOut',
+          ease: 'power1.inOut', // Lighter easing for smoother performance
         }
       });
 
-      // Curtains slide in with text attached
-      tl.fromTo(
+      // Curtains slide in - faster duration for low-end devices
+      tl.to(
         leftCurtainRef.current,
-        { xPercent: -100 },
         {
-          xPercent: 0,
-          duration: 0.6,
+          x: '0%',
+          duration: 0.5,
           force3D: true,
         },
         0
       );
 
-      tl.fromTo(
+      tl.to(
         rightCurtainRef.current,
-        { xPercent: 100 },
         {
-          xPercent: 0,
-          duration: 0.6,
+          x: '0%',
+          duration: 0.5,
           force3D: true,
         },
         0
       );
 
-      // Text moves with curtains - already positioned inside curtains
-      // Just fade them in as curtains move
-      tl.fromTo(
+      // Text fade in - simplified animation
+      tl.to(
         [leftTextRef.current, rightTextRef.current],
         {
-          opacity: 0,
-        },
-        {
           opacity: 1,
-          duration: 0.4,
-          force3D: true,
-        },
-        0.2
-      );
-
-      // Icons appear in center after curtains close
-      tl.fromTo(
-        iconsContainerRef.current,
-        {
-          opacity: 0,
-          scale: 0.8,
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.4,
-          force3D: true,
-        },
-        0.6
-      );
-
-      // Hold for a moment
-      tl.to({}, { duration: 0.5 }, 1.0);
-
-      // Icons fade out first
-      tl.to(
-        iconsContainerRef.current,
-        {
-          opacity: 0,
-          scale: 0.9,
           duration: 0.3,
-          force3D: true,
         },
-        1.5
+        0.15
       );
 
-      // Text fades as curtains start opening
+      // Icons appear - simplified with no scale for better performance
+      tl.to(
+        iconsContainerRef.current,
+        {
+          opacity: 1,
+          duration: 0.3,
+        },
+        0.5
+      );
+
+      // Hold for a shorter moment
+      tl.to({}, { duration: 0.4 }, 0.8);
+
+      // Icons fade out
+      tl.to(
+        iconsContainerRef.current,
+        {
+          opacity: 0,
+          duration: 0.25,
+        },
+        1.2
+      );
+
+      // Text fades out
       tl.to(
         [leftTextRef.current, rightTextRef.current],
         {
           opacity: 0,
-          duration: 0.4,
-          force3D: true,
+          duration: 0.3,
         },
-        1.6
+        1.3
       );
 
-      // Curtains open - text moves with them
+      // Curtains open - smooth and fast
       tl.to(
         leftCurtainRef.current,
         {
-          xPercent: -100,
-          duration: 0.7,
-          ease: 'power2.inOut',
+          x: '-100%',
+          duration: 0.5,
+          ease: 'power1.inOut',
           force3D: true,
         },
-        1.6
+        1.4
       );
 
       tl.to(
         rightCurtainRef.current,
         {
-          xPercent: 100,
-          duration: 0.7,
-          ease: 'power2.inOut',
+          x: '100%',
+          duration: 0.5,
+          ease: 'power1.inOut',
           force3D: true,
           onComplete: () => {
             onComplete?.();
           }
         },
-        1.6
+        1.4
       );
     });
 
@@ -135,16 +132,17 @@ const PageTransition: React.FC<PageTransitionProps> = ({ onComplete }) => {
   }, [onComplete]);
 
   return (
-    <div className="fixed inset-0 z-[10001] pointer-events-none flex items-center justify-center">
+    <div className="fixed inset-0 z-[10001] pointer-events-none overflow-hidden">
       {/* Left Curtain - Ocean Blue Gradient with "Luxury" text */}
       <div
         ref={leftCurtainRef}
-        className="absolute left-0 top-0 w-1/2 h-full flex items-center justify-center overflow-hidden"
+        className="absolute top-0 bottom-0 flex items-center justify-center"
         style={{
+          left: 0,
+          width: '50vw',
           background: 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #14b8a6 100%)',
           willChange: 'transform',
-          transform: 'translateZ(0)',
-          backfaceVisibility: 'hidden',
+          transform: 'translate3d(-100%, 0, 0)',
         }}
       >
         {/* Wave pattern overlay */}
@@ -173,7 +171,7 @@ const PageTransition: React.FC<PageTransitionProps> = ({ onComplete }) => {
             style={{ 
               fontFamily: 'Philosopher, sans-serif',
               textShadow: '0 4px 20px rgba(0,0,0,0.3)',
-              willChange: 'transform, opacity',
+              opacity: 0,
             }}
           >
             Luxury
@@ -184,12 +182,13 @@ const PageTransition: React.FC<PageTransitionProps> = ({ onComplete }) => {
       {/* Right Curtain - Turquoise/Teal Gradient with "Andamans" text */}
       <div
         ref={rightCurtainRef}
-        className="absolute right-0 top-0 w-1/2 h-full flex items-center justify-center overflow-hidden"
+        className="absolute top-0 bottom-0 flex items-center justify-center"
         style={{
+          right: 0,
+          width: '50vw',
           background: 'linear-gradient(135deg, #14b8a6 0%, #06b6d4 50%, #0ea5e9 100%)',
           willChange: 'transform',
-          transform: 'translateZ(0)',
-          backfaceVisibility: 'hidden',
+          transform: 'translate3d(100%, 0, 0)',
         }}
       >
         {/* Wave pattern overlay */}
@@ -218,7 +217,7 @@ const PageTransition: React.FC<PageTransitionProps> = ({ onComplete }) => {
             style={{ 
               fontFamily: 'Philosopher, sans-serif',
               textShadow: '0 4px 20px rgba(0,0,0,0.3)',
-              willChange: 'transform, opacity',
+              opacity: 0,
             }}
           >
             Andamans
@@ -230,7 +229,10 @@ const PageTransition: React.FC<PageTransitionProps> = ({ onComplete }) => {
       <div 
         ref={iconsContainerRef}
         className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4"
-        style={{ marginTop: '120px' }} // Push content down away from text
+        style={{ 
+          marginTop: '120px',
+          opacity: 0,
+        }}
       >
         {/* Tagline */}
         <p 

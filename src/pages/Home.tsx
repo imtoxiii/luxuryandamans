@@ -1,22 +1,43 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Star, MapPin, Calendar, CreditCard } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import SEO from '../components/SEO';
 import Header from '../components/Header';
-import Hero from '../components/Hero';
-import ExperienceCard from '../components/ExperienceCard';
-import Destinations from '../components/Destinations';
 import FeaturedPackages from '../components/FeaturedPackages';
+import Destinations from '../components/Destinations';
 import Testimonials from '../components/Testimonials';
 import InstagramFeed from '../components/InstagramFeed';
 import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
 import CardSlider from '../components/CardSlider';
+import ExperienceCard from '../components/ExperienceCard';
+import heroBg from '../img/pexels-nabilnaidu-106714031 (1).webp';
 
 const Home = () => {
   const location = useLocation();
-  const floatingIconRef = useRef(null);
-  
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  // Sliced image animation for mobile
+  const [imagePart, setImagePart] = useState(0); // 0 = left, 1 = center, 2 = right
+  const objectPositions = ["25% 50%", "75% 100%", "0% 25%"];
+
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      const interval = setInterval(() => {
+        setImagePart((prev) => (prev + 1) % objectPositions.length);
+      }, 3000); // change every 2 seconds
+      return () => clearInterval(interval);
+    }
+  }, []);
+
   const experiences = [
     {
       title: "Budget Beach Resorts",
@@ -50,45 +71,126 @@ const Home = () => {
     }
   ];
 
+  // Mobile image position trigger (0 = center, 1 = right, -1 = left)
+  const mobileImagePosition = 0.1; // Change this value between 0 (center), 1 (right), -1 (left)
+
   return (
-    <div className="bg-white">
-      <SEO 
+    <div className="bg-white font-sans selection:bg-blue-100 selection:text-blue-900" ref={containerRef}>
+      <SEO
         title="Best Andaman Islands Tour Packages 2025 | Starting ₹15,000 | Book Now"
         description="#1 Andaman tour packages with 4.8★ rating. Pristine beaches, scuba diving, premium resorts & honeymoon specials. 1000+ happy travelers. Free cancellation. Book today!"
         pathname={location.pathname}
         keywords="andaman tour packages, andaman islands packages, andaman packages 2025, best andaman packages, andaman honeymoon packages, scuba diving andaman, havelock island packages, neil island tour, radhanagar beach, andaman tourism, beach vacation india, island hopping packages, andaman resorts booking, cheap andaman packages, premium andaman packages, andaman family packages, port blair tour, cellular jail visit, andaman packages from delhi, andaman packages from chennai, andaman packages from kolkata, affordable andaman tour, value for money andaman trip"
         targetAudience="all"
       />
-      
-      <Header />
-      <Hero />
-      
-      {/* All content loads immediately - no delays */}
-      <div className="relative z-50 bg-white">
-        <FeaturedPackages />
-        <Destinations />
 
-        {/* Experiences Section */}
-        <section className="bg-white py-16">
-          <div className="container">
-            <div className="section-title-spacing text-center">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-night mb-4">
-                Unforgettable Experiences
+      <Header />
+
+      {/* Custom Parallax Hero */}
+      <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+        <motion.div
+          style={{ y, opacity }}
+          className="absolute inset-0 z-0"
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 z-10" />
+          <img
+            src={heroBg}
+            alt="Andaman Paradise"
+            className="w-full h-full object-cover scale-110"
+            style={{
+              objectPosition: window.innerWidth < 768 ? objectPositions[imagePart] : 'center',
+              transition: 'object-position 1s cubic-bezier(0.4,0,0.2,1)'
+            }}
+          />
+        </motion.div>
+
+        <div className="container mx-auto px-4 relative z-20 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white mb-8 shadow-2xl">
+              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+              <span className="text-sm font-bold tracking-widest uppercase">#1 Rated Andaman Agency</span>
+            </div>
+
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight leading-tight drop-shadow-2xl font-display">
+              Paradise <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-cyan-200 to-white">Found Here</span>
+            </h1>
+
+            <p className="text-lg md:text-2xl text-gray-100 max-w-3xl mx-auto leading-relaxed font-light mb-10 drop-shadow-md">
+              Experience the untouched beauty of the Andaman Islands with our curated luxury packages and bespoke itineraries.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link
+                to="/packages"
+                className="px-8 py-4 bg-white text-blue-900 rounded-full font-bold text-lg hover:bg-blue-50 transition-all duration-300 shadow-[0_0_40px_-10px_rgba(255,255,255,0.5)] hover:shadow-[0_0_60px_-15px_rgba(255,255,255,0.7)] hover:-translate-y-1 flex items-center justify-center gap-2"
+              >
+                Explore Packages
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                to="/enquiry"
+                className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white/10 transition-all duration-300 backdrop-blur-sm flex items-center justify-center gap-2"
+              >
+                Plan My Trip
+                <Calendar className="w-5 h-5" />
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/80"
+        >
+          <span className="text-xs uppercase tracking-widest">Scroll to Explore</span>
+          <div className="w-px h-12 bg-gradient-to-b from-white to-transparent" />
+        </motion.div>
+      </section>
+
+      <div className="relative z-10 bg-white">
+        {/* Featured Packages with improved spacing */}
+        <section className="py-12 md:py-16">
+          <FeaturedPackages />
+        </section>
+
+        {/* Destinations with Parallax Effect */}
+        <section className="relative py-12 md:py-16 bg-gray-50 overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+          <Destinations />
+        </section>
+
+        {/* Experiences Section - Redesigned */}
+        <section className="py-12 md:py-16 bg-white relative">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <span className="text-blue-600 font-bold tracking-wider uppercase text-sm mb-3 block">Unforgettable Moments</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-display">
+                Curated Experiences
               </h2>
-              <p className="text-night/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+              <p className="text-gray-500 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
                 Discover the best of what the Andaman Islands have to offer through our carefully curated experiences
               </p>
             </div>
-            
-            <div className="section-content-spacing">
+
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-[3rem] -z-10 transform rotate-1" />
               <CardSlider showDots={true} autoScroll={false}>
                 {experiences.map((exp, index) => (
-                  <Link key={index} to={exp.link} className="block">
+                  <Link key={index} to={exp.link} className="block h-full">
                     <ExperienceCard
                       title={exp.title}
                       description={exp.description}
                       image={exp.image}
-                      delay={0}
+                      delay={index * 0.1}
                     />
                   </Link>
                 ))}
@@ -98,34 +200,60 @@ const Home = () => {
         </section>
 
         <Testimonials />
-        <InstagramFeed />
+
+        {/* Modern Instagram Feed */}
+        <section className="py-12 md:py-16 bg-gray-50">
+          <InstagramFeed />
+        </section>
+
         <Newsletter />
 
-        {/* Call to Action Section */}
-        <section className="relative py-12 md:py-16 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900"></div>
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-20"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
-          
-          <div className="container relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-              <div ref={floatingIconRef} className="w-20 h-20 bg-gradient-to-br from-emerald-500 via-emerald-400 to-yellow-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
-                <ArrowRight className="w-10 h-10 text-white" />
-              </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 heading-luxury leading-tight">
-                Ready for Your <span className="text-transparent bg-gradient-to-r from-emerald-400 to-yellow-500 bg-clip-text"> Luxury Adventure?</span>
+        {/* Call to Action Section - Premium */}
+        <section className="relative py-16 md:py-24 overflow-hidden">
+          <div className="absolute inset-0 bg-blue-900">
+            <img
+              src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+              alt="Background"
+              className="w-full h-full object-cover opacity-20 mix-blend-overlay"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-blue-800/90 to-cyan-900/90" />
+          </div>
+
+          <div className="container relative z-10 px-4">
+            <div className="max-w-5xl mx-auto text-center">
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="w-24 h-24 bg-white/10 backdrop-blur-xl rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl border border-white/20"
+              >
+                <MapPin className="w-10 h-10 text-white" />
+              </motion.div>
+
+              <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 font-display leading-tight">
+                Ready for Your <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200">Luxury Adventure?</span>
               </h2>
-              <p className="text-white/90 text-lg md:text-xl mb-8 max-w-3xl mx-auto leading-relaxed text-luxury">
+
+              <p className="text-blue-100 text-lg md:text-xl mb-12 max-w-3xl mx-auto leading-relaxed font-light">
                 Let our expert travel consultants create a bespoke itinerary tailored to your desires. From private island retreats to exclusive cultural experiences, we craft journeys that exceed expectations.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Link to="/enquiry" className="btn-primary-luxury inline-flex items-center group min-w-[240px] justify-center">
+
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <Link
+                  to="/enquiry"
+                  className="px-10 py-5 bg-white text-blue-900 rounded-full font-bold text-lg hover:bg-blue-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center gap-3 min-w-[200px] justify-center"
+                >
                   <span>Start Planning</span>
-                  <ArrowRight className="w-5 h-5 ml-3 transform group-hover:translate-x-1 transition-transform duration-300" />
+                  <ArrowRight className="w-5 h-5" />
                 </Link>
-                <Link to="/calculator" className="btn-secondary-luxury inline-flex items-center group min-w-[240px] justify-center">
+                <Link
+                  to="/calculator"
+                  className="px-10 py-5 bg-blue-800/50 border border-blue-400/30 text-white rounded-full font-bold text-lg hover:bg-blue-800/70 transition-all duration-300 backdrop-blur-md flex items-center gap-3 min-w-[200px] justify-center"
+                >
                   <span>Calculate Costs</span>
-                  <ArrowRight className="w-5 h-5 ml-3 transform group-hover:translate-x-1 transition-transform duration-300" />
+                  <CreditCard className="w-5 h-5" />
                 </Link>
               </div>
             </div>

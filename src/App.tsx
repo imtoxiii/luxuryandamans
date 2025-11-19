@@ -1,8 +1,9 @@
 import { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import { useScrollTop } from './hooks/useScrollTop';
 import { usePageTransition } from './hooks/usePageTransition';
-import PageTransition from './components/LoadingSpinner';
+import CurtainTransition from './components/CurtainTransition';
 import Home from './pages/Home'; // Keep Home page eager for faster initial load
 import ChatWidget from './components/ChatWidget';
 import PrefetchManager from './components/PrefetchManager';
@@ -61,13 +62,13 @@ const TrekkingPage = lazy(() => import('./pages/experiences/trekking'));
 const CulturalToursPage = lazy(() => import('./pages/experiences/cultural-tours'));
 
 function App() {
-  const { isTransitioning, displayLocation } = usePageTransition();
+  const { transitionPhase, displayLocation } = usePageTransition();
   useScrollTop();
 
   return (
     <>
       {/* Page Content - shows the displayLocation (delayed during transition) */}
-      <Suspense fallback={<PageTransition />}>
+      <Suspense fallback={null}>
         <Routes location={displayLocation}>
           <Route path="/" element={<Home />} />
           <Route path="/destinations" element={<DestinationsPage />} />
@@ -134,7 +135,11 @@ function App() {
       <PrefetchManager />
       
       {/* Transition walls - appear over the page content */}
-      {isTransitioning && <PageTransition />}
+      <AnimatePresence>
+        {(transitionPhase === 'wipe-in' || transitionPhase === 'content-swap') && (
+          <CurtainTransition />
+        )}
+      </AnimatePresence>
     </>
   );
 }

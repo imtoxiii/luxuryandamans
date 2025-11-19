@@ -1,148 +1,141 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
+import { MapPin, ArrowRight, Compass } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
-import { Link } from 'react-router-dom';
 import { destinations } from '../data/destinations';
-import { staggerContainer, fadeInUp } from '../lib/animations';
 
-const DestinationsPage = () => {
-  const location = useLocation();
-
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: `${import.meta.env.VITE_SITE_URL || 'https://luxuryandamans.com'}/`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Destinations',
-        item: `${import.meta.env.VITE_SITE_URL || 'https://luxuryandamans.com'}${location.pathname}`,
-      },
-    ],
-  };
+const Destinations = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <SEO 
-        title="Luxury Destinations"
-        description="Explore the most beautiful destinations in the Andaman Islands. Discover pristine beaches, crystal-clear waters, and exclusive resorts across Havelock, Neil Island, and more."
-        pathname={location.pathname}
-        keywords="andaman destinations, havelock island, neil island, port blair, Honeymoon destinations, luxury resorts, beach destinations"
-        extraStructuredData={[breadcrumbStructuredData]}
+    <div className="min-h-screen bg-gray-50 font-sans selection:bg-blue-100 selection:text-blue-900">
+      <SEO
+        title="Destinations - Andaman Islands"
+        description="Explore the most beautiful destinations in the Andaman Islands. From Havelock to Neil Island, discover paradise."
+        keywords="andaman destinations, havelock island, neil island, port blair, baratang"
+        pathname="/destinations"
       />
       <Header />
-      
-      <div className="relative overflow-hidden bg-gradient-to-r from-blue-700 to-cyan-500 text-white pt-24 pb-12 md:pt-28 md:pb-16">
-        {/* 
-        OPTIONAL: Add background image
-        <div className="absolute inset-0">
-          <img 
-            src={localImages.heroBackground}
-            alt="Andaman Destinations"
-            className="w-full h-full object-cover opacity-30"
+
+      {/* Modern Hero Section with Parallax */}
+      <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-gray-50 z-10" />
+          <motion.img
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 10, ease: "easeOut" }}
+            src="https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+            alt="Destinations Hero"
+            className="w-full h-full object-cover"
           />
         </div>
-        */}
-        <div className="container mx-auto px-4 z-10 relative">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="flex items-center text-sm text-blue-200 mb-4">
-              <Link to="/" className="hover:text-white transition-colors">Home</Link>
-              <ChevronRight size={16} className="mx-1" />
-              <span className="font-semibold text-white">Destinations</span>
-          </div>
-            <h1 className="text-4xl md:text-5xl font-bold">Explore Our Islands</h1>
-            <p className="mt-2 text-lg text-blue-100 max-w-2xl">From bustling capitals to serene, untouched beaches, find your paradise.</p>
+
+        <div className="container mx-auto px-4 relative z-20 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white mb-6">
+              <Compass className="w-4 h-4 text-blue-300" />
+              <span className="text-sm font-medium tracking-wide uppercase">Explore the Archipelago</span>
+            </div>
+
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight drop-shadow-lg font-display">
+              Discover Our <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200">Paradise Islands</span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed font-light">
+              From the pristine beaches of Havelock to the historic shores of Port Blair,
+              explore the diverse beauty of the Andaman Islands.
+            </p>
           </motion.div>
         </div>
-      </div>
+      </section>
 
       {/* Destinations Grid */}
-      <motion.section
-        variants={staggerContainer(0.1, 0.2)}
-        initial="initial"
-        animate="animate"
-        className="py-20"
-      >
+      <section className="py-16 bg-white relative">
+        {/* Decorative Elements */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {destinations.map((dest) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            {destinations.map((dest, index) => (
               <motion.div
-                key={dest.slug}
-                variants={fadeInUp}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100"
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.7, delay: index * 0.1 }}
+                className={`${index % 3 === 0 ? 'md:col-span-2' : 'md:col-span-1'}`}
+              >
+                <Link
+                  to={`/destinations/${dest.slug}`}
+                  className="group block relative rounded-[2.5rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-gray-900"
                 >
-                <div className="relative h-48 overflow-hidden group">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-                    {/* 
-                    NOTE: Destination images come from the destinations data file.
-                    To use local images for destinations, update the image URLs in:
-                    src/data/destinations.ts
-                    
-                    Example:
-                    - Save images to: src/assets/images/destinations/
-                    - Update image paths in destinations.ts from:
-                      image: "https://images.unsplash.com/..."
-                    - To:
-                      image: "/src/assets/images/destinations/cellular-jail.jpg"
-                      
-                    Each destination also has gallery images and highlight images
-                    that should be updated in the same manner.
-                    */}
+                  <div className={`relative ${index % 3 === 0 ? 'h-[500px] md:h-[600px]' : 'h-[500px]'} overflow-hidden`}>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
                     <img
                       src={dest.image}
                       alt={dest.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                     />
-                  <div className="absolute bottom-3 left-3 right-3 z-20">
-                    <h3 className="text-white font-bold text-xl mb-1 leading-tight">{dest.name}</h3>
-                  </div>
-                </div>
-                
-                <div className="p-4">
-                  <p className="text-gray-600 text-sm mb-4 h-10 line-clamp-2">{dest.description}</p>
 
-                  <div className="space-y-1 mb-4">
-                    {dest.activities.slice(0, 2).map((activity, i) => (
-                      <div key={i} className="flex items-center text-gray-600">
-                        <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mr-2" />
-                        <span className="text-xs">{activity}</span>
-                        </div>
-                      ))}
-                    {dest.activities.length > 2 && (
-                       <div className="text-xs text-cyan-500 font-medium">
-                        +{dest.activities.length - 2} more activities
+                    {/* Floating Badge */}
+                    <div className="absolute top-8 left-8 z-20">
+                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white shadow-lg group-hover:scale-105 transition-transform duration-300">
+                        <MapPin className="w-4 h-4" />
+                        <span className="text-sm font-bold tracking-wide uppercase">{dest.name}</span>
+                      </div>
                     </div>
-                    )}
-                  </div>
 
-                  <div className="mt-4">
-                    <Link
-                      to={`/destinations/${dest.slug}`}
-                      className="w-full block text-center py-2.5 bg-gradient-to-r from-azure to-blue-600 text-white rounded-lg hover:shadow-lg transition-all text-sm font-medium"
-                    >
-                      Explore Destination
-                </Link>
+                    {/* Content Overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 z-20 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                      <div className="max-w-3xl">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 font-display leading-tight">
+                          {dest.name}
+                        </h2>
+                        <p className="text-gray-200 text-lg mb-8 line-clamp-2 group-hover:line-clamp-none transition-all duration-500 font-light">
+                          {dest.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-3 mb-8">
+                          {dest.activities.slice(0, 4).map((activity, i) => (
+                            <span
+                              key={i}
+                              className="px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white text-sm font-medium border border-white/10 group-hover:bg-white/20 transition-colors"
+                            >
+                              {activity}
+                            </span>
+                          ))}
+                        </div>
+
+                        <div className="flex items-center gap-3 text-white font-semibold tracking-wide group/btn w-fit">
+                          <span className="border-b-2 border-transparent group-hover/btn:border-white transition-all duration-300">Explore Destination</span>
+                          <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover/btn:bg-white group-hover/btn:text-blue-900 transition-all duration-300">
+                            <ArrowRight className="w-4 h-4 transform group-hover/btn:translate-x-0.5 transition-transform" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
       <Footer />
     </div>
   );
 };
 
-export default DestinationsPage;
+export default Destinations;

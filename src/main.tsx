@@ -8,11 +8,26 @@ import { requestIdleTask } from './lib/performanceOptimizer';
 
 const AppWrapper = () => {
   useEffect(() => {
-    // Remove loading skeleton with smooth transition
+    // Handle the HTML loader transition
     const skeleton = document.getElementById('loading-skeleton');
-    if (skeleton) {
-      skeleton.classList.add('hidden');
-      setTimeout(() => skeleton.remove(), 300);
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    
+    // Clear the simulation interval
+    if ((window as any).loaderInterval) {
+      clearInterval((window as any).loaderInterval);
+    }
+
+    if (skeleton && progressBar && progressText) {
+      // Force progress to 100%
+      progressBar.style.width = '100%';
+      progressText.textContent = '100%';
+      
+      // Wait a moment for the 100% to be seen, then fade out
+      setTimeout(() => {
+        skeleton.classList.add('hidden');
+        setTimeout(() => skeleton.remove(), 500);
+      }, 500);
     }
 
     // Performance optimizations for mobile

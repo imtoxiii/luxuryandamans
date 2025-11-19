@@ -1,89 +1,84 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
-import { MapPin, ArrowRight } from 'lucide-react';
+import { MapPin, ArrowRight, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CardSlider from './CardSlider';
 import { destinations } from '../data/destinations';
 
 const Destinations = () => {
   return (
-    <section className="bg-pearl">
-      <div className="container">
+    <div className="relative overflow-hidden">
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+      <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-50" />
+      <div className="absolute top-40 -left-20 w-72 h-72 bg-cyan-50 rounded-full blur-3xl opacity-50" />
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="section-title-spacing text-center"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-night mb-4">
-            Popular Destinations
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-600 mb-6">
+            <MapPin className="w-4 h-4" />
+            <span className="text-sm font-bold tracking-wide uppercase">Popular Locations</span>
+          </div>
+
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-display tracking-tight">
+            Explore Paradise
           </h2>
-          <p className="text-night/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            Explore our carefully curated selection of the most breathtaking locations
+          <p className="text-gray-500 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-light">
+            From the pristine beaches of Havelock to the historic shores of Port Blair, discover the gems of the Andaman archipelago.
           </p>
         </motion.div>
 
-        <div className="section-content-spacing">
+        <div className="relative">
           <CardSlider showDots={true} autoScroll={false}>
             {destinations.map((dest, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="h-full"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="h-full px-2 py-4"
               >
-                <Link 
+                <Link
                   to={`/destinations/${dest.slug}`}
-                  className="card-modern group h-full flex flex-col min-h-[500px] md:min-h-[550px] block"
+                  className="group block h-full relative bg-white rounded-[2.5rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100"
                 >
-                  <div className="relative h-64 md:h-72 overflow-hidden flex-shrink-0">
-                    <div className="absolute inset-0 bg-gradient-to-t from-night/60 via-night/20 to-transparent 
-                                   group-hover:from-night/70 group-hover:via-night/30 transition-all duration-500 z-10" />
+                  {/* Image Section */}
+                  <div className="relative h-[400px] overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
                     <img
                       src={dest.image}
                       alt={dest.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      draggable="false"
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                     />
-                    <div className="absolute top-4 left-4 glass-sunset-badge px-3 py-2  
-                                   flex items-center z-20 font-medium shadow-lg group-hover:scale-105 transition-transform duration-500">
-                      <MapPin className="w-4 h-4 mr-2" />
-                      <span className="text-sm">{dest.name}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="p-6 md:p-8 flex-1 flex flex-col">
-                    <h3 className="text-xl md:text-2xl font-bold text-night mb-3 group-hover:text-azure 
-                                  transition-colors duration-300 leading-tight">
-                      {dest.name}
-                    </h3>
-                    <p className="text-night/70 text-sm md:text-base mb-6 leading-relaxed line-clamp-2 flex-1">
-                      {dest.description}
-                    </p>
-                    
-                    <div className="space-y-3 mb-8 flex-1">
-                      {dest.activities.slice(0, 3).map((activity, i) => (
-                        <div 
-                          key={i} 
-                          className="flex items-center text-night/70 transform group-hover:translate-x-1 
-                                    transition-transform duration-300"
-                          style={{ transitionDelay: `${i * 100}ms` }}
-                        >
-                          <div className="w-2 h-2 glass-sunset-dot mr-3 
-                                         transform group-hover:scale-125 transition-transform duration-300 flex-shrink-0" />
-                          <span className="text-sm md:text-base">{activity}</span>
-                        </div>
-                      ))}
+
+                    {/* Floating Badge */}
+                    <div className="absolute top-6 left-6 z-20">
+                      <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white shadow-lg">
+                        <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                        <span className="text-xs font-bold uppercase tracking-wider">Top Rated</span>
+                      </div>
                     </div>
 
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
-                      <div className="flex items-center text-azure group-hover:text-sunset transition-colors duration-300">
-                        <span className="text-sm font-semibold mr-2">Explore Destination</span>
-                        <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                    {/* Content Overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 p-8 z-20 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                      <h3 className="text-white font-bold text-3xl mb-3 font-display leading-tight">{dest.name}</h3>
+                      <div className="flex flex-wrap gap-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                        {dest.activities.slice(0, 3).map((activity, i) => (
+                          <span key={i} className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white text-xs font-medium border border-white/10">
+                            {activity}
+                          </span>
+                        ))}
                       </div>
-                      <div className="text-sm text-night/60 font-medium">
-                        Andaman Islands
+                      <div className="flex items-center gap-2 text-white/90 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
+                        <span>Explore Destination</span>
+                        <ArrowRight className="w-4 h-4" />
                       </div>
                     </div>
                   </div>
@@ -93,7 +88,7 @@ const Destinations = () => {
           </CardSlider>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

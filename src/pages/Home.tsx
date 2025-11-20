@@ -29,15 +29,23 @@ const Home = () => {
   // Sliced image animation for mobile
   const [imagePart, setImagePart] = useState(0); // 0 = left, 1 = center, 2 = right
   const objectPositions = ["25% 50%", "75% 100%", "0% 25%"];
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (window.innerWidth < 768) {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) {
       const interval = setInterval(() => {
         setImagePart((prev) => (prev + 1) % objectPositions.length);
-      }, 3000); // change every 2 seconds
+      }, 3000); // change every 3 seconds
       return () => clearInterval(interval);
     }
-  }, []);
+  }, [isMobile]);
 
   // Preload hero image and hide loader when ready
   useEffect(() => {
@@ -208,14 +216,14 @@ const Home = () => {
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-[3rem] -z-10 transform rotate-1" />
               <CardSlider showDots={true} autoScroll={false}>
                 {experiences.map((exp, index) => (
-                  <Link key={index} to={exp.link} className="block h-full">
-                    <ExperienceCard
-                      title={exp.title}
-                      description={exp.description}
-                      image={exp.image}
-                      delay={index * 0.1}
-                    />
-                  </Link>
+                  <ExperienceCard
+                    key={index}
+                    title={exp.title}
+                    description={exp.description}
+                    image={exp.image}
+                    delay={index * 0.1}
+                    link={exp.link}
+                  />
                 ))}
               </CardSlider>
             </div>

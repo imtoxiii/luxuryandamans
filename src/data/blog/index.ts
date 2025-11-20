@@ -22,6 +22,16 @@ import budgetEmi2025 from './andaman-budget-emi-2025';
 import honeymoonItin2025 from './andaman-honeymoon-itinerary-2025';
 import monsoonGuide2025 from './andaman-monsoon-travel-guide-2025';
 import luxuryResorts2025 from './andaman-luxury-resorts-2025';
+import flightVsShip from './how-to-reach-andaman-flight-vs-ship';
+import safetyGuide from './is-andaman-safe-for-tourists';
+import internetGuide from './mobile-network-internet-in-andaman';
+import vegFoodGuide from './vegetarian-food-in-andaman';
+import permitGuide from './andaman-permit-guide-indian-tourists';
+import packingGuide from './what-to-pack-for-andaman-trip';
+import shoppingGuide from './shopping-in-andaman-what-to-buy';
+import ferryGuide from './andaman-ferry-booking-guide';
+import waterSportsPrices from './water-sports-price-list-andaman';
+import baratangGuide from './how-to-visit-baratang-island';
 
 const newPosts: BlogPost[] = [
   basePosts,
@@ -45,7 +55,17 @@ const newPosts: BlogPost[] = [
   budgetEmi2025,
   honeymoonItin2025,
   monsoonGuide2025,
-  luxuryResorts2025
+  luxuryResorts2025,
+  flightVsShip,
+  safetyGuide,
+  internetGuide,
+  vegFoodGuide,
+  permitGuide,
+  packingGuide,
+  shoppingGuide,
+  ferryGuide,
+  waterSportsPrices,
+  baratangGuide
 ];
 
 // Merge and sort by date (newest first)

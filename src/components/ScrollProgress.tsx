@@ -35,7 +35,7 @@ const ScrollProgress = ({
     <>
       {/* Progress bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 z-[9998] origin-left"
+        className="fixed top-0 left-0 right-0 z-[10003] origin-left"
         style={{
           scaleX,
           height: `${height}px`,
@@ -53,7 +53,7 @@ const ScrollProgress = ({
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
-          className="fixed top-4 right-4 z-[9998] px-3 py-1 bg-white shadow-lg rounded-full text-sm font-semibold"
+          className="fixed top-4 right-4 z-[10003] px-3 py-1 bg-white shadow-lg rounded-full text-sm font-semibold"
           style={{ color }}
         >
           {percentage}%

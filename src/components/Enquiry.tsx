@@ -27,9 +27,6 @@ const Enquiry = () => {
     people?: number;
     totalPrice?: number;
     supplements?: string[];
-    starTier?: number | null;
-    roomType?: string;
-    hotelName?: string;
     selectedActivities?: string[];
   } | null>(null);
   const [enquiryType, setEnquiryType] = useState<'general' | 'booking' | 'enquiry'>('general');
@@ -60,9 +57,6 @@ const Enquiry = () => {
         guests: details.people?.toString() || '2',
         duration: details.days?.toString() || '5',
         message: `I would like to book the ${details.packageName} package for ${details.people} people for ${details.days} days. Total estimated price: ₹${details.totalPrice?.toLocaleString()}.` +
-          `${details.starTier ? `\n\nPreferred star category: ${details.starTier}-Star` : ''}` +
-          `${details.roomType ? `\nPreferred room type: ${details.roomType}` : ''}` +
-          `${details.hotelName ? `\nSelected hotel: ${details.hotelName}` : ''}` +
           `${details.selectedActivities?.length ? `\n\nSelected activities: ${details.selectedActivities.join(', ')}` : ''}` +
           `${details.supplements?.length ? `\n\nSelected add-ons: ${details.supplements.join(', ')}` : ''}`
       }));
@@ -78,9 +72,6 @@ const Enquiry = () => {
           guests: details.people?.toString() || '2',
           duration: details.days?.toString() || '5',
           message: `I would like to enquire about the ${details.packageName} package for ${details.people} people for ${details.days} days. Could you please provide more details and pricing information?` +
-            `${details.starTier ? `\n\nPreferred star category: ${details.starTier}-Star` : ''}` +
-            `${details.roomType ? `\nPreferred room type: ${details.roomType}` : ''}` +
-            `${details.hotelName ? `\nPreferred hotel: ${details.hotelName}` : ''}` +
             `${details.selectedActivities?.length ? `\n\nInterested activities: ${details.selectedActivities.join(', ')}` : ''}` +
             `${details.supplements?.length ? `\n\nInterested add-ons: ${details.supplements.join(', ')}` : ''}`
         }));
@@ -162,9 +153,6 @@ const Enquiry = () => {
         basePayload.supplements = packageDetails.supplements || [];
         basePayload.people = packageDetails.people;
         basePayload.days = packageDetails.days;
-        basePayload.starTier = packageDetails.starTier ?? undefined;
-        basePayload.roomType = packageDetails.roomType ?? undefined;
-        basePayload.hotelName = packageDetails.hotelName ?? undefined;
         basePayload.selectedActivities = packageDetails.selectedActivities || [];
       }
 

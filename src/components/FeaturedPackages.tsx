@@ -9,53 +9,53 @@ const FeaturedPackages = () => {
   const packages = [
     {
       title: "Luxury Island Escape",
-      description: "5 nights of pure luxury at Havelock's finest resorts with world-class amenities",
-      price: 125000,
-      duration: "6 days",
+      description: "Ultra-luxury 7-day experience with 5-star resorts, premium activities, and personalized service",
+      price: 85000,
+      duration: "7 days",
       groupSize: "2-4",
       image: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      features: ["All-inclusive luxury resort", "Private beach access", "Spa treatments", "Fine dining"],
-      slug: "luxury-island-escape"
+      features: ["5-star luxury resorts", "Premium scuba diving", "Private transfers", "Gourmet dining"],
+      slug: "luxury-island-escape-7-days"
     },
     {
-      title: "Adventure Seeker",
-      description: "Discover the underwater wonders and thrilling adventures of the Andamans",
-      price: 85000,
-      duration: "4 days",
-      groupSize: "1-2",
+      title: "Luxury Adventure",
+      description: "Experience premium luxury in a compact 5-day package with exclusive water activities",
+      price: 65000,
+      duration: "5 days",
+      groupSize: "2",
       image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      features: ["Professional scuba diving", "Snorkeling expeditions", "Island hopping tours", "Adventure activities"],
-      slug: "adventure-seeker"
+      features: ["Premium scuba diving", "Private beach access", "Spa treatments", "5-star accommodation"],
+      slug: "luxury-escape-4n5d-premium"
     },
     {
       title: "Family Paradise",
-      description: "Perfect getaway for the whole family with activities for all ages",
-      price: 150000,
-      duration: "7 days",
+      description: "Perfect family vacation with kid-friendly activities, comfortable accommodations, and fun for all ages",
+      price: 32000,
+      duration: "6 days",
       groupSize: "4-6",
       image: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      features: ["Kid-friendly activities", "Family suite rooms", "Guided nature tours", "Cultural experiences"],
-      slug: "family-paradise"
+      features: ["Kid-friendly activities", "Family rooms", "Safe water sports", "Educational experiences"],
+      slug: "family-paradise-6-days"
     },
     {
       title: "Honeymoon Special",
-      description: "Romantic escape for newlyweds with intimate and exclusive experiences",
-      price: 175000,
-      duration: "8 days",
+      description: "Perfect 5 nights 6 days romantic itinerary with time-optimized schedule for couples",
+      price: 38000,
+      duration: "6 days",
       groupSize: "2",
       image: "https://images.unsplash.com/photo-1586611292717-f828b167408c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       features: ["Candlelit beach dinners", "Couple spa treatments", "Private beach picnic", "Romantic villa"],
-      slug: "honeymoon-special"
+      slug: "5n6d-andaman-time-mapped-honeymoon"
     },
     {
-      title: "Cultural Explorer",
-      description: "Immerse yourself in the rich history and culture of the Andaman Islands",
-      price: 95000,
-      duration: "5 days",
+      title: "Standard Andaman",
+      description: "Budget-friendly complete Andaman tour covering all major attractions",
+      price: 25000,
+      duration: "6 days",
       groupSize: "2-6",
       image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-      features: ["Historical site visits", "Local cultural experiences", "Museum tours", "Traditional dining"],
-      slug: "cultural-explorer"
+      features: ["All major islands covered", "Essential water activities", "Comfortable hotels", "Complete sightseeing"],
+      slug: "standard-andaman-package-5n6d"
     }
   ];
 

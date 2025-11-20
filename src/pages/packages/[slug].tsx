@@ -35,11 +35,9 @@ const PackageDetailPage: React.FC = () => {
   const [selectedDays, setSelectedDays] = useState(6);
   const [numberOfPeople, setNumberOfPeople] = useState(2);
   const [selectedSupplements, setSelectedSupplements] = useState<string[]>([]);
+  const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedStarTier, setSelectedStarTier] = useState<3 | 4 | 5 | null>(null);
-  const [selectedRoomType, setSelectedRoomType] = useState<string>('');
-  const [selectedHotelName, setSelectedHotelName] = useState<string>('');
   const [showImageModal, setShowImageModal] = useState(false);
   const [modalImageIndex, setModalImageIndex] = useState(0);
   const [modalImages, setModalImages] = useState<string[]>([]);
@@ -76,29 +74,19 @@ const PackageDetailPage: React.FC = () => {
       }
     });
 
-    const selectedHotel = currentPackage.hotels?.find(h => h.name === selectedHotelName);
-    let roomNightPrice = 0;
-
-    if (selectedHotel && selectedRoomType) {
-      const roomType = selectedHotel.roomTypes?.find(rt => rt.name === selectedRoomType);
-      if (roomType?.pricePerNight) {
-        roomNightPrice = roomType.pricePerNight;
-      }
-    } else if (selectedRoomType) {
-      const roomTypeName = selectedRoomType.toLowerCase();
-      if (roomTypeName.includes('villa')) roomNightPrice = 15000;
-      else if (roomTypeName.includes('suite')) roomNightPrice = 10000;
-      else if (roomTypeName.includes('super')) roomNightPrice = 6000;
-      else if (roomTypeName.includes('deluxe')) roomNightPrice = 4000;
-      else if (roomTypeName.includes('standard')) roomNightPrice = 2500;
+    // Activities Logic
+    if (selectedActivities.includes('Scuba Diving')) {
+      total += 5000 * numberOfPeople;
     }
-
-    if (roomNightPrice > 0 && selectedDays > 0) {
-      total += roomNightPrice * selectedDays;
+    if (selectedActivities.includes('Candle Light Dinner')) {
+      total += 7000;
+    }
+    if (selectedActivities.includes('Flower Bed Decoration')) {
+      total += 3000;
     }
 
     setTotalPrice(total);
-  }, [currentPackage, selectedDays, numberOfPeople, selectedSupplements, selectedHotelName, selectedRoomType]);
+  }, [currentPackage, selectedDays, numberOfPeople, selectedSupplements, selectedActivities]);
 
   // Auto-rotate images
   useEffect(() => {
@@ -139,9 +127,7 @@ const PackageDetailPage: React.FC = () => {
       people: numberOfPeople,
       totalPrice,
       supplements: selectedSupplements,
-      starTier: selectedStarTier,
-      roomType: selectedRoomType,
-      hotelName: selectedHotelName
+      selectedActivities
     };
     localStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
     navigate('/enquiry');
@@ -154,38 +140,11 @@ const PackageDetailPage: React.FC = () => {
       people: numberOfPeople,
       totalPrice,
       supplements: selectedSupplements,
-      starTier: selectedStarTier,
-      roomType: selectedRoomType,
-      hotelName: selectedHotelName,
+      selectedActivities,
       type: 'enquiry'
     };
     localStorage.setItem('enquiryDetails', JSON.stringify(enquiryDetails));
     navigate('/enquiry');
-  };
-
-  // Helpers
-  const filteredHotels = currentPackage?.hotels
-    ? currentPackage.hotels.filter(hotel => {
-      const starOk = selectedStarTier ? (hotel.starCategory || hotel.rating) === selectedStarTier : true;
-      const roomOk = selectedRoomType ? (hotel.roomTypes || []).some(rt => rt.name === selectedRoomType) : true;
-      return starOk && roomOk;
-    })
-    : [];
-
-  const getAvailableRoomTypes = () => {
-    if (selectedHotelName) {
-      const hotel = currentPackage?.hotels?.find(h => h.name === selectedHotelName);
-      if (hotel?.roomTypes && hotel.roomTypes.length > 0) {
-        return hotel.roomTypes;
-      }
-    }
-    return [
-      { name: "Standard", pricePerNight: 2500, description: "Comfortable AC room with basic amenities", maxOccupancy: 2 },
-      { name: "Deluxe", pricePerNight: 4000, description: "Spacious room with sea/garden view", maxOccupancy: 3 },
-      { name: "Super Deluxe", pricePerNight: 6000, description: "Premium room with ocean view and modern amenities", maxOccupancy: 3 },
-      { name: "Suite", pricePerNight: 10000, description: "Luxury suite with separate living area", maxOccupancy: 4 },
-      { name: "Villa", pricePerNight: 15000, description: "Private villa with exclusive amenities", maxOccupancy: 6 }
-    ];
   };
 
   const openImageModal = (images: string[], startIndex: number = 0) => {
@@ -427,7 +386,7 @@ const PackageDetailPage: React.FC = () => {
                                   <span className="text-sm font-bold text-blue-600 uppercase tracking-wider mb-1 block">Day {idx + 1}</span>
                                   <h3 className="text-xl font-bold text-gray-900">{day.title}</h3>
                                 </div>
-                                <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center group-open:rotate-180 transition-transform duration-300 text-blue-600">
+                                <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center transition-transform duration-300 text-blue-600">
                                   <ChevronDown className="w-5 h-5" />
                                 </div>
                               </summary>
@@ -522,16 +481,6 @@ const PackageDetailPage: React.FC = () => {
                                 ))}
                               </div>
                             </div>
-                            <button 
-                              onClick={() => {
-                                setSelectedHotelName(hotel.name);
-                                setSelectedStarTier(hotel.starCategory || 3);
-                                document.querySelector('.sticky')?.scrollIntoView({ behavior: 'smooth' });
-                              }}
-                              className="self-start text-blue-600 font-bold text-sm hover:underline"
-                            >
-                              Select this hotel
-                            </button>
                           </div>
                         </div>
                       ))
@@ -642,90 +591,68 @@ const PackageDetailPage: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Hotel Tier */}
+                  {/* Add-on Activities */}
                   <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Hotel Category</label>
-                    <div className="grid grid-cols-3 gap-2">
-                      {[3, 4, 5].map((tier) => (
-                        <button
-                          key={tier}
-                          onClick={() => {
-                            setSelectedStarTier(tier as 3 | 4 | 5);
-                            setSelectedHotelName('');
-                            setSelectedRoomType('');
-                          }}
-                          className={`py-3 px-1 rounded-xl text-sm font-bold border transition-all ${
-                            selectedStarTier === tier
-                              ? 'bg-blue-600 text-white border-blue-600 shadow-md ring-2 ring-blue-200 ring-offset-1'
-                              : 'bg-white text-gray-600 border-gray-200 hover:border-blue-300 hover:bg-blue-50'
-                          }`}
-                        >
-                          {tier} Star
-                        </button>
-                      ))}
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Enhance Your Trip</label>
+                    <div className="space-y-3">
+                      <label className="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-colors">
+                        <div className="flex items-center gap-3">
+                          <input 
+                            type="checkbox"
+                            checked={selectedActivities.includes('Scuba Diving')}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setSelectedActivities([...selectedActivities, 'Scuba Diving']);
+                              } else {
+                                setSelectedActivities(selectedActivities.filter(a => a !== 'Scuba Diving'));
+                              }
+                            }}
+                            className="w-5 h-5 rounded text-blue-600 focus:ring-blue-500 border-gray-300"
+                          />
+                          <span className="font-medium text-gray-900">Scuba Diving</span>
+                        </div>
+                        <span className="text-sm font-bold text-blue-600">₹5,000<span className="text-gray-400 font-normal text-xs">/person</span></span>
+                      </label>
+
+                      <label className="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-colors">
+                        <div className="flex items-center gap-3">
+                          <input 
+                            type="checkbox"
+                            checked={selectedActivities.includes('Candle Light Dinner')}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setSelectedActivities([...selectedActivities, 'Candle Light Dinner']);
+                              } else {
+                                setSelectedActivities(selectedActivities.filter(a => a !== 'Candle Light Dinner'));
+                              }
+                            }}
+                            className="w-5 h-5 rounded text-blue-600 focus:ring-blue-500 border-gray-300"
+                          />
+                          <span className="font-medium text-gray-900">Candle Light Dinner</span>
+                        </div>
+                        <span className="text-sm font-bold text-blue-600">₹7,000</span>
+                      </label>
+
+                      <label className="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-colors">
+                        <div className="flex items-center gap-3">
+                          <input 
+                            type="checkbox"
+                            checked={selectedActivities.includes('Flower Bed Decoration')}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setSelectedActivities([...selectedActivities, 'Flower Bed Decoration']);
+                              } else {
+                                setSelectedActivities(selectedActivities.filter(a => a !== 'Flower Bed Decoration'));
+                              }
+                            }}
+                            className="w-5 h-5 rounded text-blue-600 focus:ring-blue-500 border-gray-300"
+                          />
+                          <span className="font-medium text-gray-900">Flower Bed Decoration</span>
+                        </div>
+                        <span className="text-sm font-bold text-blue-600">₹3,000</span>
+                      </label>
                     </div>
                   </div>
-
-                  {/* Dynamic Hotel Selection */}
-                  <AnimatePresence>
-                    {selectedStarTier && (
-                      <motion.div 
-                        initial={{ opacity: 0, height: 0 }} 
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="space-y-4 overflow-hidden"
-                      >
-                        <div>
-                          <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Select Hotel</label>
-                          <div className="relative">
-                            <select
-                              value={selectedHotelName}
-                              onChange={(e) => {
-                                setSelectedHotelName(e.target.value);
-                                setSelectedRoomType('');
-                              }}
-                              className="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl py-3.5 px-4 pr-8 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            >
-                              <option value="">Choose a hotel...</option>
-                              {(filteredHotels.length > 0 ? filteredHotels.map(h => h.name) : [
-                                `${selectedStarTier}-Star Palm Grove`,
-                                `${selectedStarTier}-Star Lagoon Retreat`,
-                                `${selectedStarTier}-Star Ocean View Resort`
-                              ]).map(name => (
-                                <option key={name} value={name}>{name}</option>
-                              ))}
-                            </select>
-                            <ChevronDown className="absolute right-3 top-4 w-4 h-4 text-gray-400 pointer-events-none" />
-                          </div>
-                        </div>
-
-                        {selectedHotelName && (
-                          <div>
-                            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Room Type</label>
-                            <div className="space-y-2 max-h-48 overflow-y-auto pr-1 custom-scrollbar">
-                              {getAvailableRoomTypes().map((room) => (
-                                <div
-                                  key={room.name}
-                                  onClick={() => setSelectedRoomType(room.name)}
-                                  className={`p-3 rounded-xl border cursor-pointer transition-all ${
-                                    selectedRoomType === room.name
-                                      ? 'bg-blue-50 border-blue-500 ring-1 ring-blue-500 shadow-sm'
-                                      : 'bg-white border-gray-200 hover:border-blue-300 hover:bg-gray-50'
-                                  }`}
-                                >
-                                  <div className="flex justify-between items-center mb-1">
-                                    <span className="font-bold text-sm text-gray-900">{room.name}</span>
-                                    <span className="text-xs font-bold text-blue-600 bg-blue-100 px-2 py-0.5 rounded-full">₹{room.pricePerNight?.toLocaleString()}</span>
-                                  </div>
-                                  <p className="text-xs text-gray-500 line-clamp-1">{room.description}</p>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
 
                   {/* Action Buttons */}
                   <div className="pt-4 space-y-3">

@@ -9,15 +9,17 @@ interface ExperienceCardProps {
   description: string;
   image: string;
   delay: number;
+  link?: string;
 }
 
-const ExperienceCard: React.FC<ExperienceCardProps> = ({ title, description, image, delay }) => {
+const ExperienceCard: React.FC<ExperienceCardProps> = ({ title, description, image, delay, link }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
   });
 
   const getPath = (title: string) => {
+    if (link) return link;
     const slug = title.toLowerCase().replace(/\s+/g, '-');
     return `/experiences/${slug}`;
   };

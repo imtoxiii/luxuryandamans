@@ -8,6 +8,7 @@ import SEO from '../../components/SEO';
 import { blogPosts } from '../../data/blog';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import ScrollProgress from '../../components/ScrollProgress';
 
 // Helper to slugify text for IDs
 const slugify = (text: string): string => {
@@ -62,6 +63,10 @@ const BlogPost = () => {
   const [activeSection, setActiveSection] = useState('');
   const [tableOfContents, setTableOfContents] = useState<Array<{id: string, title: string, level: number}>>([]);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  const currentIndex = blogPosts.findIndex(p => p.slug === slug);
+  const prevPost = currentIndex > 0 ? blogPosts[currentIndex - 1] : null;
+  const nextPost = currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null;
 
   const processedContent = useMemo(() => dedent(post?.content), [post]);
 
@@ -181,7 +186,8 @@ const BlogPost = () => {
   };
 
   return (
-    <div className="min-h-screen bg-pearl">
+    <div className="min-h-screen bg-pearl font-sans selection:bg-azure selection:text-white">
+      <ScrollProgress showPercentage color="#0EA5E9" />
       <SEO 
         title={post.title}
         description={post.excerpt}
@@ -198,76 +204,76 @@ const BlogPost = () => {
       <Header />
       
       {/* Hero Section */}
-      <div className="relative h-[60vh] md:h-[70vh] overflow-hidden">
-        <img 
-          src={post.image}
-          alt={post.title}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-night/70 via-night/50 to-night/30" />
+      <div className="relative h-[70vh] min-h-[600px] overflow-hidden">
+        <motion.div 
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5 }}
+          className="absolute inset-0"
+        >
+          <img 
+            src={post.image}
+            alt={post.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-night/60 via-night/40 to-night/80" />
+        </motion.div>
+
         <div className="absolute inset-0 flex items-center">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 md:px-8 lg:px-12">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="max-w-4xl mx-auto"
+              className="max-w-5xl mx-auto text-center"
             >
               <Link 
                 to="/blog"
-                className="inline-flex items-center text-pearl/80 hover:text-pearl mb-8 transition-colors group"
+                className="inline-flex items-center text-white/80 hover:text-white mb-8 transition-colors group backdrop-blur-sm bg-white/10 px-4 py-2 rounded-full"
               >
-                <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
-                Back to Blog
+                <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+                Back to Journal
               </Link>
               
-              <div className="mb-4">
-                <span className="inline-block bg-azure/20 text-pearl px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
+              <div className="mb-6">
+                <span className="inline-block bg-azure text-white px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider shadow-lg shadow-azure/20">
                   {post.category}
                 </span>
               </div>
               
-              <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold text-pearl mb-4 md:mb-6 leading-tight">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-[1.1] tracking-tight">
                 {post.title}
               </h1>
               
-              <p className="text-lg md:text-xl text-pearl/90 mb-6 md:mb-8 leading-relaxed max-w-3xl">
+              <p className="text-lg md:text-2xl text-white/90 mb-10 leading-relaxed max-w-3xl mx-auto font-light">
                 {post.excerpt}
               </p>
               
-              <div className="flex flex-wrap items-center gap-3 md:gap-6 text-pearl/90">
-                <div className="flex items-center bg-white/10 backdrop-blur-sm px-3 md:px-4 py-2 rounded-lg text-sm md:text-base">
-                  <User className="w-4 h-4 md:w-5 md:h-5 mr-2" />
-                  <span className="hidden sm:inline">{post.author.name}</span>
-                  <span className="sm:hidden">{post.author.name.split(' ')[0]}</span>
+              <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 text-white/90">
+                <div className="flex items-center gap-2">
+                  <img 
+                    src={post.author.avatar} 
+                    alt={post.author.name}
+                    className="w-8 h-8 rounded-full border-2 border-white/20"
+                  />
+                  <span className="font-medium">{post.author.name}</span>
                 </div>
-                <div className="flex items-center bg-white/10 backdrop-blur-sm px-3 md:px-4 py-2 rounded-lg text-sm md:text-base">
-                  <Calendar className="w-4 h-4 md:w-5 md:h-5 mr-2" />
-                  <span className="hidden sm:inline">
+                <div className="w-1.5 h-1.5 rounded-full bg-white/30" />
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  <span>
                     {new Date(post.date).toLocaleDateString('en-US', {
                       month: 'long',
                       day: 'numeric',
                       year: 'numeric'
                     })}
                   </span>
-                  <span className="sm:hidden">
-                    {new Date(post.date).toLocaleDateString('en-US', {
-                      month: 'short',
-                      day: 'numeric'
-                    })}
-                  </span>
                 </div>
-                <div className="flex items-center bg-white/10 backdrop-blur-sm px-3 md:px-4 py-2 rounded-lg text-sm md:text-base">
-                  <Clock className="w-4 h-4 md:w-5 md:h-5 mr-2" />
+                <div className="w-1.5 h-1.5 rounded-full bg-white/30" />
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4" />
                   {post.readTime}
                 </div>
-                <button
-                  onClick={sharePost}
-                  className="flex items-center bg-azure/20 hover:bg-azure/30 backdrop-blur-sm px-4 py-2 rounded-lg transition-colors"
-                >
-                  <Share2 className="w-5 h-5 mr-2" />
-                  Share
-                </button>
               </div>
             </motion.div>
           </div>
@@ -275,178 +281,183 @@ const BlogPost = () => {
       </div>
 
       {/* Content Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-              
-              {/* Table of Contents - Sidebar */}
-              {tableOfContents.length > 0 && (
-                <div className="lg:col-span-1 order-2 lg:order-1">
-                  <div className="lg:sticky lg:top-28">
-                    <div className="bg-white rounded-xl p-4 md:p-6 shadow-lg border border-pearl mb-8 lg:mb-0">
-                      <h3 className="flex items-center text-base md:text-lg font-bold text-night mb-4">
-                        <BookOpen className="w-4 h-4 md:w-5 md:h-5 mr-2 text-azure" />
-                        Table of Contents
-                      </h3>
-                      <nav className="space-y-2">
-                        {tableOfContents.map((item) => (
-                          <a
-                            key={item.id}
-                            href={`#${item.id}`}
-                            className={`block text-sm hover:text-azure transition-colors ${
-                              item.level === 1 ? 'font-semibold' : 
-                              item.level === 2 ? 'ml-4' : 'ml-8'
-                            } ${activeSection === item.id ? 'text-azure font-bold' : 'text-night/70'}`}
-                          >
-                            <ChevronRight className="w-3 h-3 inline mr-1" />
-                            {item.title}
-                          </a>
-                        ))}
-                      </nav>
-                    </div>
+      <section className="relative py-20 px-4 md:px-8 lg:px-12">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            {/* Table of Contents - Sidebar */}
+            <div className="hidden lg:block lg:col-span-3">
+              <div className="sticky top-32">
+                {tableOfContents.length > 0 && (
+                  <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-black/5">
+                    <h3 className="flex items-center text-sm font-bold text-night/40 uppercase tracking-wider mb-6">
+                      <BookOpen className="w-4 h-4 mr-2" />
+                      Contents
+                    </h3>
+                    <nav className="space-y-1">
+                      {tableOfContents.map((item) => (
+                        <a
+                          key={item.id}
+                          href={`#${item.id}`}
+                          className={`block text-sm py-1.5 transition-all duration-300 border-l-2 pl-4 ${
+                            activeSection === item.id 
+                              ? 'border-azure text-azure font-medium translate-x-1' 
+                              : 'border-transparent text-night/60 hover:text-night hover:border-black/10'
+                          } ${item.level > 1 ? 'ml-4' : ''}`}
+                        >
+                          {item.title}
+                        </a>
+                      ))}
+                    </nav>
                   </div>
-                </div>
-              )}
-
-              {/* Main Content */}
-              <div ref={contentRef} className={`${tableOfContents.length > 0 ? 'lg:col-span-3' : 'lg:col-span-4'} order-1 lg:order-2`}>
-                <div className="bg-white rounded-xl shadow-lg border border-pearl overflow-hidden">
-                  
-                  {/* Author Info */}
-                  <div className="bg-gradient-to-r from-azure/5 to-sunset/5 p-4 md:p-8 border-b border-pearl">
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
-                      <img
-                        src={post.author.avatar}
-                        alt={post.author.name}
-                        className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover ring-4 ring-white shadow-lg mx-auto sm:mx-0"
-                      />
-                      <div className="text-center sm:text-left">
-                        <h3 className="text-lg md:text-xl font-bold text-night mb-1">{post.author.name}</h3>
-                        <p className="text-sm md:text-base text-night/70 mb-3">{post.author.bio}</p>
-                        <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
-                          {post.tags.slice(0, 3).map(tag => (
-                            <span
-                              key={tag}
-                              className="inline-flex items-center bg-azure/10 text-azure px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium"
-                            >
-                              <Tag className="w-3 h-3 mr-1" />
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Article Content */}
-                  <div className="p-4 md:p-8 lg:p-12">
-                    <div className="prose prose-lg max-w-none">
-                      <ReactMarkdown 
-                        remarkPlugins={[remarkGfm]}
-                        components={markdownComponents}
-                      >
-                        {processedContent}
-                      </ReactMarkdown>
-                    </div>
-
-                    {/* FAQ Section */}
-                    {post.faq && post.faq.length > 0 && (
-                      <div className="mt-12 pt-8 border-t border-pearl">
-                        <h2 className="text-2xl font-bold text-night mb-6 flex items-center">
-                          <HelpCircle className="w-6 h-6 mr-3 text-azure" />
-                          Frequently Asked Questions
-                        </h2>
-                        <div className="space-y-4">
-                          {post.faq.map((item, index) => (
-                            <details key={index} className="bg-gray-50 p-4 rounded-lg group" open={index === 0}>
-                              <summary className="font-semibold text-night cursor-pointer flex justify-between items-center">
-                                {item.question}
-                                <ChevronRight className="w-5 h-5 transform group-open:rotate-90 transition-transform" />
-                              </summary>
-                              <p className="text-night/80 mt-2 leading-relaxed">
-                                {item.answer}
-                              </p>
-                            </details>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* All Tags */}
-                    <div className="mt-12 pt-8 border-t border-pearl">
-                      <h4 className="text-lg font-semibold text-night mb-4">Tags</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {post.tags.map(tag => (
-                          <span
-                            key={tag}
-                            className="inline-flex items-center bg-pearl text-night/80 hover:bg-azure/10 hover:text-azure px-4 py-2 rounded-full text-sm font-medium transition-colors cursor-pointer"
-                          >
-                            <Tag className="w-4 h-4 mr-1" />
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+                )}
+                
+                <div className="mt-8">
+                  <button
+                    onClick={sharePost}
+                    className="w-full flex items-center justify-center gap-2 bg-white border border-black/5 hover:border-azure/30 hover:text-azure text-night/60 py-3 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md"
+                  >
+                    <Share2 className="w-4 h-4" />
+                    Share Article
+                  </button>
                 </div>
               </div>
             </div>
 
-            {/* Related Posts */}
-            {relatedPosts.length > 0 && (
-              <div className="mt-20">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  className="text-center mb-12"
-                >
-                  <h2 className="text-3xl font-bold text-night mb-4">Continue Reading</h2>
-                  <p className="text-night/70 text-lg">Discover more insights about Andaman travel</p>
-                </motion.div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {relatedPosts.map((relatedPost, index) => (
-                    <motion.div
-                      key={relatedPost?.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                    >
-                      <Link 
-                        to={`/blog/${relatedPost?.slug}`}
-                        className="block bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-pearl"
+            {/* Main Content */}
+            <div className="lg:col-span-7">
+              <div ref={contentRef} className="bg-white rounded-3xl shadow-glass p-6 md:p-12 lg:p-16">
+                <div className="prose prose-lg prose-headings:font-display prose-headings:font-bold prose-a:text-azure prose-img:rounded-2xl prose-img:shadow-lg max-w-none">
+                  <ReactMarkdown 
+                    remarkPlugins={[remarkGfm]}
+                    components={markdownComponents}
+                  >
+                    {processedContent}
+                  </ReactMarkdown>
+                </div>
+
+                {/* FAQ Section */}
+                {post.faq && post.faq.length > 0 && (
+                  <div className="mt-16 pt-12 border-t border-black/5">
+                    <h2 className="text-2xl font-display font-bold text-night mb-8 flex items-center gap-3">
+                      <HelpCircle className="w-6 h-6 text-azure" />
+                      Frequently Asked Questions
+                    </h2>
+                    <div className="space-y-4">
+                      {post.faq.map((item, index) => (
+                        <details key={index} className="group bg-gray-50 rounded-2xl overflow-hidden transition-all duration-300 hover:bg-azure/5">
+                          <summary className="flex justify-between items-center p-6 cursor-pointer font-medium text-night">
+                            {item.question}
+                            <ChevronRight className="w-5 h-5 text-night/40 transition-transform duration-300 group-open:rotate-90" />
+                          </summary>
+                          <div className="px-6 pb-6 text-night/70 leading-relaxed">
+                            {item.answer}
+                          </div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Tags */}
+                <div className="mt-12 pt-8 border-t border-black/5">
+                  <div className="flex flex-wrap gap-2">
+                    {post.tags.map(tag => (
+                      <span
+                        key={tag}
+                        className="inline-flex items-center bg-gray-50 text-night/60 px-4 py-2 rounded-full text-sm font-medium hover:bg-azure hover:text-white transition-all duration-300 cursor-pointer"
                       >
-                        <div className="relative h-48 overflow-hidden">
-                          <img
-                            src={relatedPost?.image}
-                            alt={relatedPost?.title}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-night/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        </div>
-                        <div className="p-6">
-                          <div className="mb-2">
-                            <span className="text-xs font-medium text-azure bg-azure/10 px-2 py-1 rounded">
-                              {relatedPost?.category}
-                            </span>
-                          </div>
-                          <h3 className="text-lg font-bold text-night mb-2 group-hover:text-azure transition-colors line-clamp-2">
-                            {relatedPost?.title}
-                          </h3>
-                          <p className="text-night/70 text-sm line-clamp-3 mb-4">{relatedPost?.excerpt}</p>
-                          <div className="flex items-center text-xs text-night/60">
-                            <Clock className="w-3 h-3 mr-1" />
-                            {relatedPost?.readTime}
-                          </div>
-                        </div>
-                      </Link>
-                    </motion.div>
+                        <Tag className="w-3 h-3 mr-2" />
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Post Navigation */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+                {prevPost ? (
+                  <Link 
+                    to={`/blog/${prevPost.slug}`}
+                    className="group bg-white p-6 rounded-2xl border border-black/5 hover:border-azure/30 hover:shadow-lg transition-all duration-300"
+                  >
+                    <span className="text-xs font-bold text-night/30 uppercase tracking-wider mb-2 block">Previous Article</span>
+                    <h4 className="font-display font-bold text-lg text-night group-hover:text-azure transition-colors line-clamp-2">
+                      {prevPost.title}
+                    </h4>
+                  </Link>
+                ) : <div />}
+                
+                {nextPost && (
+                  <Link 
+                    to={`/blog/${nextPost.slug}`}
+                    className="group bg-white p-6 rounded-2xl border border-black/5 hover:border-azure/30 hover:shadow-lg transition-all duration-300 text-right"
+                  >
+                    <span className="text-xs font-bold text-night/30 uppercase tracking-wider mb-2 block">Next Article</span>
+                    <h4 className="font-display font-bold text-lg text-night group-hover:text-azure transition-colors line-clamp-2">
+                      {nextPost.title}
+                    </h4>
+                  </Link>
+                )}
+              </div>
+            </div>
+
+            {/* Related Posts Sidebar (Desktop) */}
+            <div className="hidden lg:block lg:col-span-2">
+              <div className="sticky top-32">
+                <h3 className="text-sm font-bold text-night/40 uppercase tracking-wider mb-6">Related Stories</h3>
+                <div className="space-y-6">
+                  {relatedPosts.slice(0, 3).map((relatedPost) => (
+                    <Link 
+                      key={relatedPost?.id}
+                      to={`/blog/${relatedPost?.slug}`}
+                      className="group block"
+                    >
+                      <div className="aspect-[4/3] rounded-xl overflow-hidden mb-3">
+                        <img
+                          src={relatedPost?.image}
+                          alt={relatedPost?.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                      </div>
+                      <h4 className="font-bold text-sm text-night group-hover:text-azure transition-colors line-clamp-2 mb-1">
+                        {relatedPost?.title}
+                      </h4>
+                      <span className="text-xs text-night/40">{relatedPost?.readTime}</span>
+                    </Link>
                   ))}
                 </div>
               </div>
-            )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mobile Related Posts */}
+      <section className="lg:hidden py-12 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h3 className="text-2xl font-display font-bold text-night mb-8">More Stories</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {relatedPosts.map((relatedPost) => (
+              <Link 
+                key={relatedPost?.id}
+                to={`/blog/${relatedPost?.slug}`}
+                className="bg-white rounded-2xl overflow-hidden shadow-sm"
+              >
+                <div className="aspect-video">
+                  <img
+                    src={relatedPost?.image}
+                    alt={relatedPost?.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-4">
+                  <h4 className="font-bold text-lg text-night mb-2">{relatedPost?.title}</h4>
+                  <p className="text-sm text-night/60 line-clamp-2">{relatedPost?.excerpt}</p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

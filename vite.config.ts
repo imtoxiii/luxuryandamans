@@ -4,23 +4,24 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   base: '/',
+  envPrefix: 'VITE_',
   server: {
-    port: 5173,
-    host: true,
-    open: true,
-    proxy: {
-      '/backend': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-        secure: false
+      port: 5173,
+      host: true,
+      open: true,
+      proxy: {
+        '/backend': {
+          target: 'http://localhost:8080',
+          changeOrigin: true,
+          secure: false
+        }
       }
-    }
-  },
-  preview: {
-    port: 4173,
-    host: true
-  },
-  build: {
+    },
+    preview: {
+      port: 4173,
+      host: true
+    },
+    build: {
     sourcemap: false,
     minify: 'terser',
     target: 'es2015',
@@ -87,18 +88,18 @@ export default defineConfig({
         safari10: true // Better Safari compatibility
       }
     }
-  },
-  optimizeDeps: {
-    include: [
-      'react', 
-      'react-dom', 
-      'react-router-dom',
-      'framer-motion',
-      'gsap',
-      'lucide-react',
-      'react-hot-toast',
-      'react-helmet-async'
-    ],
-    exclude: ['@emailjs/browser']
-  }
+    },
+    optimizeDeps: {
+      include: [
+        'react', 
+        'react-dom', 
+        'react-router-dom',
+        'framer-motion',
+        'gsap',
+        'lucide-react',
+        'react-hot-toast',
+        'react-helmet-async'
+      ],
+      exclude: []
+    }
 });

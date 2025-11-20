@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, Send, MessageCircle, User, AtSign } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Mail, Phone, MapPin, Clock, Send, MessageCircle, User, AtSign, CheckCircle, Loader2 } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
-import { sendEmail } from '../lib/email';
+import { sendTelegramMessage, formatContactMessage } from '../lib/telegram';
 import toast, { Toaster } from 'react-hot-toast';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -18,6 +18,7 @@ const ContactPage = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,21 +44,21 @@ const ContactPage = () => {
     }
 
     try {
-      const success = await sendEmail({
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        subject: formData.subject.trim() || 'Contact Form Enquiry',
-        message: formData.message.trim()
-      });
+      const message = formatContactMessage(formData);
+      const success = await sendTelegramMessage(message);
 
       if (success) {
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
+        setIsSuccess(true);
         toast.success('✅ Thank you! Your message has been sent successfully.');
+        setTimeout(() => {
+            setFormData({
+              name: '',
+              email: '',
+              subject: '',
+              message: ''
+            });
+            setIsSuccess(false);
+        }, 3000);
       }
     } catch (error) {
       console.error('Contact form error:', error);
@@ -92,7 +93,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pearl via-white to-azure/5">
+    <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
       <SEO
         title="Contact Us"
         description="Get in touch with Andaman Luxury for personalized travel planning, inquiries, and support. We're here to help you plan your perfect Andaman Islands getaway."
@@ -104,11 +105,12 @@ const ContactPage = () => {
       <Header />
       
       {/* Hero Section with Gradient Background */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-night via-night/95 to-azure/20">
+      <div className="relative overflow-hidden bg-slate-900 pt-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-indigo-900/20"></div>
         <div
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-10"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
           }}
         ></div>
         <div className="relative container max-w-6xl mx-auto px-4 py-24 md:py-32">
@@ -122,14 +124,18 @@ const ContactPage = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center justify-center w-20 h-20 bg-azure/20 rounded-full mb-6"
+              className="inline-flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-md rounded-3xl mb-8 border border-white/10 shadow-2xl"
             >
-              <MessageCircle className="w-10 h-10 text-azure" />
+              <MessageCircle className="w-10 h-10 text-purple-400" />
             </motion.div>
-            <h1 className="text-4xl md:text-6xl font-bold text-pearl mb-6 bg-gradient-to-r from-pearl to-azure/80 bg-clip-text text-transparent">
-              Get in Touch
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white mb-4 text-xs font-semibold tracking-[0.2em] uppercase">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>24/7 Travel Assistance</span>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight leading-tight drop-shadow-2xl font-display">
+              Get in <span className="text-transparent bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text">Touch</span>
             </h1>
-            <p className="text-pearl/80 text-lg md:text-xl max-w-2xl mx-auto">
+            <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
               We'd love to hear from you. Send us a message and we'll respond as soon as possible to help plan your perfect Andaman getaway.
             </p>
           </motion.div>
@@ -138,13 +144,13 @@ const ContactPage = () => {
         {/* Decorative wave */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white" fillOpacity="0.1"/>
-            <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white" fillOpacity="0.05"/>
+            <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#f8fafc"/>
           </svg>
         </div>
       </div>
       
-      <main className="pt-16 pb-20 px-4">
+      <main className="pt-16 pb-20 px-4 bg-slate-50">
         <div className="container max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
             {/* Contact Information */}
@@ -154,17 +160,17 @@ const ContactPage = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-1"
             >
-              <div className="bg-gradient-to-br from-night to-night/95 rounded-2xl p-8 text-pearl h-full shadow-2xl border border-azure/10 backdrop-blur-sm relative overflow-hidden">
+              <div className="bg-slate-900 rounded-3xl p-8 text-white h-full shadow-2xl shadow-slate-200 border border-slate-800 backdrop-blur-sm relative overflow-hidden">
                 {/* Background decoration */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-azure/10 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-azure/5 rounded-full blur-2xl"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 left-0 w-32 h-32 bg-indigo-500/20 rounded-full blur-3xl"></div>
                 
                 <div className="relative z-10">
                   <motion.h2
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
-                    className="text-2xl font-bold mb-8 bg-gradient-to-r from-pearl to-azure/80 bg-clip-text text-transparent"
+                    className="text-2xl font-bold mb-8 tracking-tight font-display"
                   >
                     Contact Information
                   </motion.h2>
@@ -176,14 +182,14 @@ const ContactPage = () => {
                       transition={{ duration: 0.5, delay: 0.4 }}
                       className="group"
                     >
-                      <div className="flex items-start space-x-4 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-azure/10 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02]">
-                        <div className="w-14 h-14 bg-gradient-to-br from-azure/20 to-azure/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:from-azure/30 group-hover:to-azure/20 transition-all duration-300">
-                          <Phone className="w-7 h-7 text-azure" />
+                      <div className="flex items-start space-x-4 p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/5 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02]">
+                        <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-purple-500/30 transition-all duration-300">
+                          <Phone className="w-6 h-6 text-purple-300" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-lg mb-2 text-pearl">Phone</h3>
-                          <a href="tel:+916297576826" className="text-pearl/70 hover:text-azure transition-colors block mb-1">+91 6297576826</a>
-                          <a href="tel:+919433731478" className="text-pearl/70 hover:text-azure transition-colors block">+91 9433731478</a>
+                          <h3 className="font-semibold text-lg mb-1 text-slate-100">Phone</h3>
+                          <a href="tel:+916297576826" className="text-slate-400 hover:text-white transition-colors block text-sm">+91 6297576826</a>
+                          <a href="tel:+919433731478" className="text-slate-400 hover:text-white transition-colors block text-sm mt-1">+91 9433731478</a>
                         </div>
                       </div>
                     </motion.div>
@@ -194,13 +200,13 @@ const ContactPage = () => {
                       transition={{ duration: 0.5, delay: 0.5 }}
                       className="group"
                     >
-                      <div className="flex items-start space-x-4 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-azure/10 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02]">
-                        <div className="w-14 h-14 bg-gradient-to-br from-azure/20 to-azure/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:from-azure/30 group-hover:to-azure/20 transition-all duration-300">
-                          <Mail className="w-7 h-7 text-azure" />
+                      <div className="flex items-start space-x-4 p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/5 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02]">
+                        <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500/30 transition-all duration-300">
+                          <Mail className="w-6 h-6 text-blue-300" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-lg mb-2 text-pearl">Email</h3>
-                          <a href="mailto:bookings@luxuryandamans.com" className="text-pearl/70 hover:text-azure transition-colors block">bookings@luxuryandamans.com</a>
+                          <h3 className="font-semibold text-lg mb-1 text-slate-100">Email</h3>
+                          <a href="mailto:bookings@luxuryandamans.com" className="text-slate-400 hover:text-white transition-colors block text-sm break-all">bookings@luxuryandamans.com</a>
                         </div>
                       </div>
                     </motion.div>
@@ -211,13 +217,13 @@ const ContactPage = () => {
                       transition={{ duration: 0.5, delay: 0.6 }}
                       className="group"
                     >
-                      <div className="flex items-start space-x-4 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-azure/10 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02]">
-                        <div className="w-14 h-14 bg-gradient-to-br from-azure/20 to-azure/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:from-azure/30 group-hover:to-azure/20 transition-all duration-300">
-                          <MapPin className="w-7 h-7 text-azure" />
+                      <div className="flex items-start space-x-4 p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/5 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02]">
+                        <div className="w-12 h-12 bg-rose-500/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-rose-500/30 transition-all duration-300">
+                          <MapPin className="w-6 h-6 text-rose-300" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-lg mb-2 text-pearl">Office Address</h3>
-                          <p className="text-pearl/70">
+                          <h3 className="font-semibold text-lg mb-1 text-slate-100">Office Address</h3>
+                          <p className="text-slate-400 text-sm leading-relaxed">
                             Andaman & Nicobar Islands<br />
                             India - 744101
                           </p>
@@ -231,13 +237,13 @@ const ContactPage = () => {
                       transition={{ duration: 0.5, delay: 0.7 }}
                       className="group"
                     >
-                      <div className="flex items-start space-x-4 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-azure/10 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02]">
-                        <div className="w-14 h-14 bg-gradient-to-br from-azure/20 to-azure/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:from-azure/30 group-hover:to-azure/20 transition-all duration-300">
-                          <Clock className="w-7 h-7 text-azure" />
+                      <div className="flex items-start space-x-4 p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/5 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02]">
+                        <div className="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-amber-500/30 transition-all duration-300">
+                          <Clock className="w-6 h-6 text-amber-300" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-lg mb-2 text-pearl">Business Hours</h3>
-                          <p className="text-pearl/70">
+                          <h3 className="font-semibold text-lg mb-1 text-slate-100">Business Hours</h3>
+                          <p className="text-slate-400 text-sm">
                             Monday - Saturday: 9:00 AM - 6:00 PM
                           </p>
                         </div>
@@ -255,16 +261,38 @@ const ContactPage = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="lg:col-span-2"
             >
-              <div className="bg-white rounded-2xl p-8 shadow-2xl border border-azure/10 backdrop-blur-sm relative overflow-hidden">
-                {/* Background decoration */}
-                <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-azure/5 to-transparent rounded-full blur-3xl"></div>
-                
+              <div className="bg-white rounded-3xl p-8 lg:p-10 shadow-xl shadow-slate-200/50 border border-slate-100 relative overflow-hidden">
+                {/* Success Overlay */}
+                <AnimatePresence>
+                  {isSuccess && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="absolute inset-0 z-50 bg-white/95 backdrop-blur-sm flex flex-col items-center justify-center text-center p-8"
+                    >
+                      <motion.div
+                        initial={{ scale: 0.5, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ type: "spring", duration: 0.5 }}
+                        className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6"
+                      >
+                        <CheckCircle className="w-12 h-12 text-green-600" />
+                      </motion.div>
+                      <h3 className="text-3xl font-bold text-slate-800 mb-2">Message Sent!</h3>
+                      <p className="text-slate-600 text-lg max-w-md">
+                        Thank you for contacting us. We have received your message and will respond shortly.
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
                 <div className="relative z-10">
                   <motion.h2
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
-                    className="text-2xl font-bold mb-2 bg-gradient-to-r from-night to-azure/80 bg-clip-text text-transparent"
+                    className="text-3xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-slate-600 tracking-tight font-display"
                   >
                     Send us a Message
                   </motion.h2>
@@ -272,7 +300,7 @@ const ContactPage = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
-                    className="text-night/60 mb-8"
+                    className="text-slate-500 mb-8"
                   >
                     Fill out the form below and we'll get back to you as soon as possible.
                   </motion.p>
@@ -285,8 +313,8 @@ const ContactPage = () => {
                         transition={{ duration: 0.5, delay: 0.5 }}
                         className="group"
                       >
-                        <label className="block text-sm font-semibold text-night mb-3 flex items-center">
-                          <User className="w-4 h-4 mr-2 text-azure" />
+                        <label className="block text-sm font-semibold text-slate-700 mb-2 flex items-center">
+                          <User className="w-4 h-4 mr-2 text-purple-500" />
                           Your Name
                         </label>
                         <div className="relative">
@@ -295,11 +323,11 @@ const ContactPage = () => {
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            className="w-full px-4 py-4 rounded-xl border border-azure/20 focus:border-azure focus:ring-2 focus:ring-azure/20 transition-all duration-300 bg-pearl/30 focus:bg-white hover:border-azure/30"
+                            className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all outline-none bg-slate-50 focus:bg-white"
                             placeholder="John Doe"
                             required
+                            autoComplete="name"
                           />
-                          <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-azure/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                         </div>
                       </motion.div>
 
@@ -309,8 +337,8 @@ const ContactPage = () => {
                         transition={{ duration: 0.5, delay: 0.6 }}
                         className="group"
                       >
-                        <label className="block text-sm font-semibold text-night mb-3 flex items-center">
-                          <AtSign className="w-4 h-4 mr-2 text-azure" />
+                        <label className="block text-sm font-semibold text-slate-700 mb-2 flex items-center">
+                          <AtSign className="w-4 h-4 mr-2 text-purple-500" />
                           Email Address
                         </label>
                         <div className="relative">
@@ -319,11 +347,11 @@ const ContactPage = () => {
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
-                            className="w-full px-4 py-4 rounded-xl border border-azure/20 focus:border-azure focus:ring-2 focus:ring-azure/20 transition-all duration-300 bg-pearl/30 focus:bg-white hover:border-azure/30"
+                            className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all outline-none bg-slate-50 focus:bg-white"
                             placeholder="john@example.com"
                             required
+                            autoComplete="email"
                           />
-                          <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-azure/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                         </div>
                       </motion.div>
                     </div>
@@ -334,7 +362,7 @@ const ContactPage = () => {
                       transition={{ duration: 0.5, delay: 0.7 }}
                       className="group"
                     >
-                      <label className="block text-sm font-semibold text-night mb-3">
+                      <label className="block text-sm font-semibold text-slate-700 mb-2">
                         Subject
                       </label>
                       <div className="relative">
@@ -343,11 +371,10 @@ const ContactPage = () => {
                           name="subject"
                           value={formData.subject}
                           onChange={handleChange}
-                          className="w-full px-4 py-4 rounded-xl border border-azure/20 focus:border-azure focus:ring-2 focus:ring-azure/20 transition-all duration-300 bg-pearl/30 focus:bg-white hover:border-azure/30"
+                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all outline-none bg-slate-50 focus:bg-white"
                           placeholder="How can we help you?"
                           required
                         />
-                        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-azure/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                       </div>
                     </motion.div>
 
@@ -357,8 +384,8 @@ const ContactPage = () => {
                       transition={{ duration: 0.5, delay: 0.8 }}
                       className="group"
                     >
-                      <label className="block text-sm font-semibold text-night mb-3 flex items-center">
-                        <MessageCircle className="w-4 h-4 mr-2 text-azure" />
+                      <label className="block text-sm font-semibold text-slate-700 mb-2 flex items-center">
+                        <MessageCircle className="w-4 h-4 mr-2 text-purple-500" />
                         Your Message
                       </label>
                       <div className="relative">
@@ -367,11 +394,10 @@ const ContactPage = () => {
                           value={formData.message}
                           onChange={handleChange}
                           rows={5}
-                          className="w-full px-4 py-4 rounded-xl border border-azure/20 focus:border-azure focus:ring-2 focus:ring-azure/20 transition-all duration-300 bg-pearl/30 focus:bg-white hover:border-azure/30 resize-none"
+                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all outline-none bg-slate-50 focus:bg-white resize-none min-h-[140px]"
                           placeholder="Tell us about your dream Andaman vacation..."
                           required
                         ></textarea>
-                        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-azure/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                       </div>
                     </motion.div>
 
@@ -384,17 +410,20 @@ const ContactPage = () => {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="group relative px-8 py-4 bg-gradient-to-r from-azure to-azure/90 text-pearl rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-azure/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 overflow-hidden"
+                        className="w-full py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl font-bold text-lg shadow-lg shadow-purple-500/30 hover:shadow-xl hover:scale-[1.02] transition-all group relative disabled:opacity-70 disabled:cursor-not-allowed overflow-hidden"
                       >
-                        <div className="absolute inset-0 bg-gradient-to-r from-azure/90 to-azure opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         <div className="relative flex items-center justify-center space-x-3">
-                          <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
-                          <motion.div
-                            animate={isSubmitting ? { rotate: 360 } : { rotate: 0 }}
-                            transition={{ duration: 1, repeat: isSubmitting ? Infinity : 0, ease: "linear" }}
-                          >
-                            <Send className="w-5 h-5" />
-                          </motion.div>
+                          {isSubmitting ? (
+                            <>
+                              <Loader2 className="w-5 h-5 animate-spin" />
+                              <span>Sending...</span>
+                            </>
+                          ) : (
+                            <>
+                              <span>Send Message</span>
+                              <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </>
+                          )}
                         </div>
                       </button>
                     </motion.div>

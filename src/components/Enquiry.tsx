@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Calendar, Users, Send, Clock, Home, Star, CheckCircle, ArrowRight, Sparkles, Globe, Shield, Heart, Package } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Mail, Phone, CheckCircle, ArrowRight, Sparkles, MapPin, Clock, User, Calendar, Users, ShieldCheck, Star } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { sendEmail } from '../lib/email';
+import { sendTelegramMessage, formatBookingMessage } from '../lib/telegram';
 import toast, { Toaster } from 'react-hot-toast';
 import Header from './Header';
 import Footer from './Footer';
@@ -18,7 +18,8 @@ const Enquiry = () => {
     travelDate: '',
     duration: '5',
     message: '',
-    preferredContact: 'email'
+    preferredContact: 'email',
+    tripType: 'couple'
   });
 
   const [packageDetails, setPackageDetails] = useState<{
@@ -32,8 +33,7 @@ const Enquiry = () => {
   const [enquiryType, setEnquiryType] = useState<'general' | 'booking' | 'enquiry'>('general');
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = (packageDetails && packageDetails.packageName) ? 2 : 3;
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const location = useLocation();
 
@@ -45,6 +45,7 @@ const Enquiry = () => {
     const context = params.get('context');
     const pkg = params.get('package');
     const dest = params.get('destination');
+    const activity = params.get('activity');
     const daysParam = params.get('days');
     const peopleParam = params.get('people');
     
@@ -76,11 +77,10 @@ const Enquiry = () => {
             `${details.supplements?.length ? `\n\nInterested add-ons: ${details.supplements.join(', ')}` : ''}`
         }));
       }
-      // Always clear the temporary context so a fresh visit stays clean
       localStorage.removeItem('enquiryDetails');
-    } else if (context || pkg || dest) {
+    } else if (context || pkg || dest || activity) {
       const details = {
-        packageName: pkg || dest || 'Selected Option',
+        packageName: pkg || dest || activity || 'Selected Option',
         days: daysParam ? parseInt(daysParam) : undefined,
         people: peopleParam ? parseInt(peopleParam) : undefined,
         selectedActivities: [],
@@ -97,85 +97,36 @@ const Enquiry = () => {
     }
   }, [location.search]);
 
-  const destinations = [
-    { value: 'havelock', label: 'Havelock Island', description: 'Pristine beaches & luxury resorts' },
-    { value: 'neil', label: 'Neil Island', description: 'Coral reefs & natural beauty' },
-    { value: 'portblair', label: 'Port Blair', description: 'Historic sites & cultural experiences' },
-    { value: 'multiple', label: 'Multiple Destinations', description: 'Complete island exploration' }
-  ];
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Validate form data
-    if (!formData.name.trim()) {
-      toast.error('Please enter your name');
-      setIsSubmitting(false);
-      return;
-    }
-
-    if (!formData.email.trim()) {
-      toast.error('Please enter your email address');
-      setIsSubmitting(false);
-      return;
-    }
-
-    if (!formData.phone.trim()) {
-      toast.error('Please enter your phone number');
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim()) {
+      toast.error('Please fill in all required fields');
       setIsSubmitting(false);
       return;
     }
 
     try {
-      const basePayload: any = {
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        phone: formData.phone.trim(),
-        message: formData.message.trim() || 'Travel enquiry from website',
-        destination: formData.destination,
-        guests: parseInt(formData.guests),
-        travel_date: formData.travelDate,
-        duration: parseInt(formData.duration),
-        preferred_contact: formData.preferredContact,
-        subject:
-          enquiryType === 'booking'
-            ? 'Booking Enquiry'
-            : enquiryType === 'enquiry'
-            ? 'Package Enquiry'
-            : 'General Enquiry',
-        sourcePage: 'Enquiry'
+      const payload = {
+        ...formData,
+        packageName: packageDetails?.packageName,
+        totalPrice: packageDetails?.totalPrice,
+        supplements: packageDetails?.supplements,
+        selectedActivities: packageDetails?.selectedActivities
       };
 
-      if (packageDetails) {
-        basePayload.packageName = packageDetails.packageName;
-        basePayload.totalPrice = packageDetails.totalPrice;
-        basePayload.supplements = packageDetails.supplements || [];
-        basePayload.people = packageDetails.people;
-        basePayload.days = packageDetails.days;
-        basePayload.selectedActivities = packageDetails.selectedActivities || [];
-      }
-
-      const success = await sendEmail(basePayload);
+      const message = formatBookingMessage(payload);
+      const success = await sendTelegramMessage(message);
 
       if (success) {
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          destination: 'havelock',
-          guests: '2',
-          travelDate: '',
-          duration: '5',
-          message: '',
-          preferredContact: 'email'
-        });
-        setCurrentStep(1);
-        toast.success('🎉 Your enquiry has been submitted! We\'ll contact you within 24 hours.');
+        setIsSuccess(true);
+        toast.success('Enquiry submitted successfully!');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } catch (error) {
       console.error('Enquiry form error:', error);
-      toast.error('❌ Failed to submit enquiry. Please try again or call us directly.');
+      toast.error('Failed to submit enquiry. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -186,651 +137,322 @@ const Enquiry = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const nextStep = () => {
-    if (currentStep < totalSteps) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const prevStep = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-
-  const isStepValid = () => {
-    switch (currentStep) {
-      case 1:
-        return formData.name && (formData.email || formData.phone);
-      case 2:
-        // If context present, destination preferences are optional
-        return (packageDetails && packageDetails.packageName) ? true : (formData.destination && formData.guests && formData.duration);
-      case 3:
-        return true;
-      default:
-        return false;
-    }
-  };
+  if (isSuccess) {
+    return (
+      <div className="min-h-screen font-sans bg-pearl">
+        <SEO title="Enquiry Submitted | Luxury Andamans" description="Thank you for your enquiry." />
+        <Header />
+        <div className="pt-32 pb-20 container mx-auto px-6 flex items-center justify-center min-h-[60vh]">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-2xl w-full bg-white rounded-3xl shadow-xl p-12 text-center border border-gray-100"
+          >
+            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <CheckCircle className="w-10 h-10 text-green-600" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold font-display text-night mb-4">Enquiry Received!</h2>
+            <p className="text-lg text-gray-600 mb-8">
+              Thank you, <span className="font-semibold text-night">{formData.name}</span>. We'll be in touch shortly to plan your perfect Andaman trip.
+            </p>
+            <div className="flex justify-center gap-4">
+              <Link to="/" className="px-8 py-3 bg-gray-100 text-gray-700 rounded-xl font-semibold hover:bg-gray-200 transition-colors">
+                Back Home
+              </Link>
+              <Link to="/packages" className="px-8 py-3 bg-azure text-white rounded-xl font-semibold hover:bg-azure/90 transition-colors shadow-lg shadow-azure/20">
+                View Packages
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen font-sans bg-pearl">
       <SEO 
-        title="Book Your Dream Vacation"
-        description="Plan your perfect Andaman getaway with our luxury travel packages. Submit your enquiry and get personalized recommendations."
-        keywords="andaman booking, luxury travel enquiry, vacation planning, travel booking"
+        title="Plan Your Trip | Luxury Andamans"
+        description="Start planning your dream Andaman vacation. Custom packages, luxury resorts, and unforgettable experiences."
       />
       <Header />
-      
-      <div className="bg-gradient-to-br from-purple-50 via-lavender-100 to-violet-50 overflow-x-hidden min-h-screen pt-20" style={{
-      background: 'linear-gradient(135deg, #f3f0ff 0%, #e5deff 25%, #ddd6fe 50%, #c4b5fd 75%, #a78bfa 100%)'
-    }}>
-      <Toaster 
-        position="top-right"
-        toastOptions={{
-          style: {
-            background: 'linear-gradient(135deg, #8b5cf6, #a855f7)',
-            color: '#fff',
-            borderRadius: '16px',
-            border: '1px solid rgba(139, 92, 246, 0.3)',
-            fontSize: '14px',
-            padding: '16px',
-          },
-        }}
-      />
-      
-      {/* Floating particles background */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              width: Math.random() * 6 + 2 + 'px',
-              height: Math.random() * 6 + 2 + 'px',
-              background: `linear-gradient(45deg, rgba(139, 92, 246, ${Math.random() * 0.3 + 0.1}), rgba(168, 85, 247, ${Math.random() * 0.3 + 0.1}))`
-            }}
-            initial={{
-              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-            }}
-            animate={{
-              y: [0, -30, 0],
-              x: [0, Math.random() * 20 - 10, 0],
-              opacity: [0.2, 0.8, 0.2],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: 6 + Math.random() * 4,
-              repeat: Infinity,
-              delay: Math.random() * 3,
-            }}
-          />
-        ))}
+      <Toaster position="top-right" />
+
+      {/* Hero Section */}
+      <div className="relative bg-night pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544550581-5f7ceaf7f992?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-night/80 via-night/60 to-pearl"></div>
+        
+        <div className="container mx-auto px-6 relative z-10 text-center">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold font-display text-white mb-6"
+          >
+            Start Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-400">Journey</span>
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto"
+          >
+            Tell us about your dream vacation, and let our experts craft a personalized itinerary just for you.
+          </motion.p>
+        </div>
       </div>
 
-      {/* Enhanced Header */}
-      <div className="relative z-10">
-        <div className="container mx-auto px-6 lg:px-8 pt-6 pb-8">
-          <div className="flex items-center justify-between">
-            {/* Home Icon */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Link 
-                to="/" 
-                className="inline-flex items-center justify-center w-14 h-14 bg-white/95 backdrop-blur-sm rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 group border border-purple-200"
-              >
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: -10 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Home className="w-6 h-6 text-purple-600 group-hover:text-violet-600 transition-colors duration-300" />
-                </motion.div>
-              </Link>
-            </motion.div>
-
-            {/* Enhanced Title */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-center"
-            >
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800">
-                Your <span className="text-transparent bg-gradient-to-r from-purple-600 via-violet-600 to-fuchsia-600 bg-clip-text">Dream</span> Vacation
-              </h1>
-              <p className="text-base md:text-lg text-gray-600 mt-2">Plan your perfect Andaman getaway</p>
-            </motion.div>
-
-            {/* Enhanced Trust Indicators */}
-            <div className="hidden lg:flex flex-col items-center space-y-3">
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex items-center space-x-2 text-sm text-gray-600"
-              >
-                <Shield className="w-4 h-4 text-green-500" />
-                <span className="font-medium">Secure & Trusted</span>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex items-center space-x-2 text-sm text-gray-600"
-              >
-                <Star className="w-4 h-4 text-yellow-500" />
-                <span className="font-medium">5-Star Service</span>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Layout */}
-        <div className="container mx-auto px-6 lg:px-8 pb-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 max-w-8xl mx-auto">
-            {/* Enhanced Contact Information */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-4 order-2 lg:order-1"
-            >
-              <div className="bg-gradient-to-br from-purple-600 via-violet-600 to-fuchsia-600 rounded-3xl p-8 lg:p-10 text-white relative overflow-hidden h-full shadow-2xl">
-                {/* Decorative elements */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12"></div>
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10"></div>
-                
-                <div className="relative z-10">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    className="mb-8"
-                  >
-                    <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-sm">
-                      <Sparkles className="w-8 h-8 text-white" />
-                    </div>
-                  </motion.div>
-                  
-                  <h2 className="text-2xl lg:text-3xl font-bold mb-4">Let's Connect</h2>
-                  <p className="text-white/90 mb-8 text-base lg:text-lg leading-relaxed">
-                    Our travel experts are ready to turn your island dreams into reality. Reach out through any channel that works for you.
-                  </p>
-                  
-                  <div className="space-y-6">
-                    {[
-                      { icon: Phone, title: "Call Us", info: ["+91 6297576826", "+91 9433731478"], color: "text-green-300" },
-                      { icon: Mail, title: "Email Us", info: ["info@luxuryandamans.com", "bookings@luxuryandamans.com"], color: "text-blue-300" },
-                      { icon: MapPin, title: "Visit Us", info: ["Marine Hill Road, Port Blair", "Andaman & Nicobar Islands"], color: "text-pink-300" },
-                      { icon: Clock, title: "Business Hours", info: ["Mon-Sat: 9:00 AM - 6:00 PM", "Sunday: 10:00 AM - 2:00 PM"], color: "text-yellow-300" }
-                    ].map((item, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                        whileHover={{ x: 6, scale: 1.02 }}
-                        className="flex items-start space-x-4 group cursor-pointer"
-                      >
-                        <div className={`w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300`}>
-                          <item.icon className={`w-6 h-6 ${item.color}`} />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-lg mb-1 group-hover:text-white/90 transition-colors duration-300">{item.title}</h3>
-                          {item.info.map((line, i) => (
-                            <p key={i} className="text-white/80 text-sm leading-relaxed">
-                              {item.title === "Call Us" ? (
-                                <a href={`tel:${line.replace(/\s/g, '')}`} className="hover:text-white transition-colors underline">
-                                  {line}
-                                </a>
-                              ) : item.title === "Email Us" ? (
-                                <a href={`mailto:${line}`} className="hover:text-white transition-colors underline">
-                                  {line}
-                                </a>
-                              ) : (
-                                line
-                              )}
-                            </p>
-                          ))}
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* Additional lavender accent */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: 0.8 }}
-                    className="mt-8 pt-8 border-t border-white/20"
-                  >
-                    <div className="flex items-center space-x-3">
-                      <Heart className="w-5 h-5 text-pink-300" />
-                      <p className="text-white/90 text-sm font-medium">Creating magical memories since 2020</p>
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Enhanced Multi-Step Form */}
+      <div className="container mx-auto px-6 -mt-20 pb-20 relative z-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          {/* Contact Info Sidebar */}
+          <div className="lg:col-span-4 space-y-6 order-2 lg:order-1">
             <motion.div 
-              initial={{ opacity: 0, x: 40 }}
+              initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-8 order-1 lg:order-2"
+              transition={{ delay: 0.2 }}
+              className="bg-white rounded-3xl p-8 shadow-xl shadow-gray-200/50 border border-gray-100"
             >
-              <div className="bg-white/90 backdrop-blur-lg rounded-3xl p-8 lg:p-10 shadow-2xl border border-purple-200/30">
-                {/* Enhanced Progress bar */}
-                <div className="mb-10">
-                  <div className="flex items-center justify-between mb-6">
-                    {[1, 2, 3].map((step) => (
-                      <motion.div
-                        key={step}
-                        className={`flex items-center ${step < totalSteps ? 'flex-1' : ''}`}
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ duration: 0.3, delay: step * 0.1 }}
-                      >
-                        <div
-                          className={`w-12 h-12 rounded-full flex items-center justify-center text-base font-bold transition-all duration-300 ${
-                            currentStep >= step
-                              ? 'bg-gradient-to-r from-purple-600 to-violet-600 text-white shadow-lg shadow-purple-500/30'
-                              : 'bg-gray-200 text-gray-400'
-                          }`}
-                        >
-                          {currentStep > step ? <CheckCircle className="w-6 h-6" /> : step}
-                        </div>
-                        {step < totalSteps && (
-                          <div
-                            className={`flex-1 h-2 mx-6 rounded-full transition-all duration-500 ${
-                              currentStep > step ? 'bg-gradient-to-r from-purple-600 to-violet-600' : 'bg-gray-200'
-                            }`}
-                          />
-                        )}
-                      </motion.div>
-                    ))}
+              <h3 className="text-2xl font-bold font-display text-night mb-6">Why Choose Us?</h3>
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center flex-shrink-0">
+                    <ShieldCheck className="w-5 h-5 text-teal-600" />
                   </div>
-                  <div className="text-center">
-                    <p className="text-sm text-gray-600 font-medium">
-                      Step {currentStep} of {totalSteps}: {
-                        currentStep === 1 ? 'Personal Information' :
-                        currentStep === 2 ? 'Travel Preferences' : 'Additional Details'
-                      }
-                    </p>
+                  <div>
+                    <h4 className="font-semibold text-night">Trusted Local Experts</h4>
+                    <p className="text-sm text-gray-500 mt-1">Based in Port Blair with 10+ years of experience.</p>
                   </div>
                 </div>
-
-                {/* Package Details Section */}
-                {packageDetails && packageDetails.packageName && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-200"
-                  >
-                    <div className="flex items-center space-x-3 mb-4">
-                      <Package className="w-6 h-6 text-blue-600" />
-                      <h3 className="text-xl font-bold text-gray-800">
-                        {enquiryType === 'booking' ? 'Booking Details' : 'Package Enquiry'}
-                      </h3>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                      <div className="bg-white rounded-lg p-3 shadow-sm">
-                        <h4 className="font-semibold text-gray-700 text-sm">Package</h4>
-                        <p className="text-blue-600 font-bold">{packageDetails.packageName}</p>
-                      </div>
-                      <div className="bg-white rounded-lg p-3 shadow-sm">
-                        <h4 className="font-semibold text-gray-700 text-sm">Duration</h4>
-                        <p className="text-gray-900 font-semibold">{packageDetails.days} days</p>
-                      </div>
-                      <div className="bg-white rounded-lg p-3 shadow-sm">
-                        <h4 className="font-semibold text-gray-700 text-sm">People</h4>
-                        <p className="text-gray-900 font-semibold">{packageDetails.people} guests</p>
-                      </div>
-                      {packageDetails.totalPrice && (
-                        <div className="bg-white rounded-lg p-3 shadow-sm">
-                          <h4 className="font-semibold text-gray-700 text-sm">Total Price</h4>
-                          <p className="text-green-600 font-bold">₹{packageDetails.totalPrice.toLocaleString()}</p>
-                        </div>
-                      )}
-                    </div>
-                    {packageDetails.supplements && packageDetails.supplements.length > 0 && (
-                      <div className="mt-4 p-3 bg-white rounded-lg">
-                        <h4 className="font-semibold text-gray-700 text-sm mb-2">Selected Add-ons:</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {packageDetails.supplements.map((supplement, index) => (
-                            <span 
-                              key={index}
-                              className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium"
-                            >
-                              {supplement}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    <div className="mt-4 flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <CheckCircle className="w-5 h-5 text-green-500" />
-                        <span className="text-sm text-gray-600">
-                          {enquiryType === 'booking' ? 'Ready to book this package' : 'Interested in this package'}
-                        </span>
-                      </div>
-                      <Link
-                         to="/packages"
-                         className="text-sm text-gray-500 hover:text-gray-700 underline"
-                       >
-                         Change Package
-                       </Link>
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* Quick send when context is present */}
-                {packageDetails && packageDetails.packageName && (
-                  <div className="mb-6">
-                    <button
-                      type="submit"
-                      form="enquiry-form"
-                      disabled={isSubmitting}
-                      className="w-full md:w-auto px-6 py-3 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all"
-                    >
-                      {isSubmitting ? 'Sending...' : `Send ${enquiryType === 'booking' ? 'Booking' : 'Enquiry'} for ${packageDetails.packageName}`}
-                    </button>
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
+                    <Star className="w-5 h-5 text-blue-600" />
                   </div>
-                )}
-
-                <form id="enquiry-form" onSubmit={handleSubmit} className="space-y-8">
-                  <AnimatePresence mode="wait">
-                    {/* Step 1: Personal Information */}
-                    {currentStep === 1 && (
-                      <motion.div
-                        key="step1"
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -20 }}
-                        transition={{ duration: 0.3 }}
-                        className="space-y-6"
-                      >
-                        <div>
-                          <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-6">Tell us about yourself</h3>
-                        </div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="group">
-                            <label className="block text-base font-semibold text-gray-700 mb-3 group-hover:text-purple-600 transition-colors duration-300">
-                              Your Name *
-                            </label>
-                            <input
-                              type="text"
-                              name="name"
-                              value={formData.name}
-                              onChange={handleChange}
-                              className="w-full px-6 py-4 rounded-xl border-2 border-purple-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all duration-300 bg-white/80 backdrop-blur-sm text-base placeholder-gray-400"
-                              placeholder="Enter your full name"
-                              required
-                            />
-                          </div>
-
-                          <div className="group">
-                            <label className="block text-base font-semibold text-gray-700 mb-3 group-hover:text-purple-600 transition-colors duration-300">
-                              Email Address *
-                            </label>
-                            <input
-                              type="email"
-                              name="email"
-                              value={formData.email}
-                              onChange={handleChange}
-                              className="w-full px-6 py-4 rounded-xl border-2 border-purple-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all duration-300 bg-white/80 backdrop-blur-sm text-base placeholder-gray-400"
-                              placeholder="your@email.com"
-                              required
-                            />
-                          </div>
-                        </div>
-
-                        <div className="group">
-                          <label className="block text-base font-semibold text-gray-700 mb-3 group-hover:text-purple-600 transition-colors duration-300">
-                            Phone Number *
-                          </label>
-                          <input
-                            type="tel"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            className="w-full px-6 py-4 rounded-xl border-2 border-purple-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all duration-300 bg-white/80 backdrop-blur-sm text-base placeholder-gray-400"
-                            placeholder="+91 XXXXX XXXXX"
-                            required
-                          />
-                        </div>
-                      </motion.div>
-                    )}
-
-                    {/* Step 2: Travel Preferences */}
-                    {currentStep === 2 && (
-                      <motion.div
-                        key="step2"
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -20 }}
-                        transition={{ duration: 0.3 }}
-                        className="space-y-6"
-                      >
-                        <div>
-                          <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-2">Plan your adventure</h3>
-                          {packageDetails && packageDetails.packageName && (
-                            <p className="text-gray-600 mb-4">These are optional since you already selected a {enquiryType === 'booking' ? 'package' : 'destination'}.</p>
-                          )}
-                        </div>
-
-                        <div className="group">
-                          <label className="block text-base font-semibold text-gray-700 mb-4 group-hover:text-purple-600 transition-colors duration-300">
-                            Preferred Destination
-                          </label>
-                          <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 ${(packageDetails && packageDetails.packageName) ? 'opacity-60 pointer-events-auto' : ''}`}>
-                            {destinations.map(dest => (
-                              <motion.label
-                                key={dest.value}
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                className={`relative p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
-                                  formData.destination === dest.value
-                                    ? 'border-purple-500 bg-purple-50 shadow-lg shadow-purple-200'
-                                    : 'border-purple-200 hover:border-purple-400 bg-white/80'
-                                }`}
-                              >
-                                <input
-                                  type="radio"
-                                  name="destination"
-                                  value={dest.value}
-                                  checked={formData.destination === dest.value}
-                                  onChange={handleChange}
-                                  className="sr-only"
-                                />
-                                <div>
-                                  <h4 className="font-semibold text-gray-800 text-base mb-1">{dest.label}</h4>
-                                  <p className="text-sm text-gray-600">{dest.description}</p>
-                                </div>
-                                {formData.destination === dest.value && (
-                                  <motion.div
-                                    initial={{ scale: 0 }}
-                                    animate={{ scale: 1 }}
-                                    className="absolute top-4 right-4"
-                                  >
-                                    <CheckCircle className="w-6 h-6 text-purple-600" />
-                                  </motion.div>
-                                )}
-                              </motion.label>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                          <div className="group">
-                            <label className="block text-base font-semibold text-gray-700 mb-3 group-hover:text-purple-600 transition-colors duration-300">
-                              <Users className="w-4 h-4 inline mr-2" />
-                              Guests
-                            </label>
-                            <input
-                              type="number"
-                              name="guests"
-                              min="1"
-                              max="20"
-                              value={formData.guests}
-                              onChange={handleChange}
-                              className="w-full px-6 py-4 rounded-xl border-2 border-purple-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all duration-300 bg-white/80 backdrop-blur-sm text-base"
-                            />
-                          </div>
-
-                          <div className="group">
-                            <label className="block text-base font-semibold text-gray-700 mb-3 group-hover:text-purple-600 transition-colors duration-300">
-                              <Calendar className="w-4 h-4 inline mr-2" />
-                              Travel Date
-                            </label>
-                            <input
-                              type="date"
-                              name="travelDate"
-                              value={formData.travelDate}
-                              onChange={handleChange}
-                              className="w-full px-6 py-4 rounded-xl border-2 border-purple-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all duration-300 bg-white/80 backdrop-blur-sm text-base"
-                            />
-                          </div>
-
-                          <div className="group">
-                            <label className="block text-base font-semibold text-gray-700 mb-3 group-hover:text-purple-600 transition-colors duration-300">
-                              <Clock className="w-4 h-4 inline mr-2" />
-                              Duration (days)
-                            </label>
-                            <input
-                              type="number"
-                              name="duration"
-                              min="1"
-                              max="30"
-                              value={formData.duration}
-                              onChange={handleChange}
-                              className="w-full px-6 py-4 rounded-xl border-2 border-purple-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all duration-300 bg-white/80 backdrop-blur-sm text-base"
-                            />
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-
-                    {/* Step 3: Additional Details */}
-                    {currentStep === 3 && (
-                      <motion.div
-                        key="step3"
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -20 }}
-                        transition={{ duration: 0.3 }}
-                        className="space-y-6"
-                      >
-                        <div>
-                          <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-6">Final touches</h3>
-                        </div>
-
-                        <div className="group">
-                          <label className="block text-base font-semibold text-gray-700 mb-3 group-hover:text-purple-600 transition-colors duration-300">
-                            Tell us about your dream vacation
-                          </label>
-                          <textarea
-                            name="message"
-                            value={formData.message}
-                            onChange={handleChange}
-                            rows={4}
-                            className="w-full px-6 py-4 rounded-xl border-2 border-purple-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all duration-300 bg-white/80 backdrop-blur-sm resize-none text-base"
-                            placeholder="Describe your ideal experience, special requests, or any questions you have..."
-                          ></textarea>
-                        </div>
-
-                        <div className="group">
-                          <label className="block text-base font-semibold text-gray-700 mb-4 group-hover:text-purple-600 transition-colors duration-300">
-                            How would you prefer us to contact you?
-                          </label>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {['email', 'phone'].map((method) => (
-                              <motion.label
-                                key={method}
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                className={`flex items-center space-x-4 p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
-                                  formData.preferredContact === method
-                                    ? 'border-purple-500 bg-purple-50 shadow-lg shadow-purple-200'
-                                    : 'border-purple-200 hover:border-purple-400 bg-white/80'
-                                }`}
-                              >
-                                <input
-                                  type="radio"
-                                  name="preferredContact"
-                                  value={method}
-                                  checked={formData.preferredContact === method}
-                                  onChange={handleChange}
-                                  className="w-5 h-5 text-purple-600"
-                                />
-                                <span className="font-semibold text-gray-800 capitalize text-base">{method}</span>
-                              </motion.label>
-                            ))}
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  {/* Enhanced Navigation Buttons */}
-                  <div className="flex items-center justify-between pt-8 border-t-2 border-gray-200">
-                    <div>
-                      {currentStep > 1 && (
-                        <motion.button
-                          type="button"
-                          onClick={prevStep}
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          className="px-6 py-3 text-gray-800 hover:text-purple-600 transition-colors duration-300 font-semibold text-base"
-                        >
-                          ← Previous
-                        </motion.button>
-                      )}
-                    </div>
-                    
-                    <div>
-                      {currentStep < totalSteps ? (
-                        <motion.button
-                          type="button"
-                          onClick={nextStep}
-                          disabled={!isStepValid()}
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          className="px-8 py-4 bg-gradient-to-r from-purple-600 to-violet-600 text-white rounded-xl font-bold transition-all duration-300 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-3 text-base"
-                        >
-                          <span>Continue</span>
-                          <ArrowRight className="w-5 h-5" />
-                        </motion.button>
-                      ) : (
-                        <motion.button
-                          type="submit"
-                          disabled={isSubmitting}
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          className="px-8 py-4 bg-gradient-to-r from-purple-600 to-violet-600 text-white rounded-xl font-bold transition-all duration-300 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-3 text-base"
-                        >
-                          <span>{isSubmitting ? 'Sending...' : 'Send Enquiry'}</span>
-                          <Send className="w-5 h-5" />
-                        </motion.button>
-                      )}
-                    </div>
+                  <div>
+                    <h4 className="font-semibold text-night">Premium Experiences</h4>
+                    <p className="text-sm text-gray-500 mt-1">Curated luxury stays and exclusive activities.</p>
                   </div>
-                </form>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-5 h-5 text-purple-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-night">24/7 Support</h4>
+                    <p className="text-sm text-gray-500 mt-1">We're with you at every step of your journey.</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 }}
+              className="bg-night rounded-3xl p-8 shadow-xl text-white relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+              <h3 className="text-xl font-bold font-display mb-6 relative z-10">Contact Details</h3>
+              <div className="space-y-4 relative z-10">
+                <a href="tel:+916297576826" className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
+                  <Phone className="w-5 h-5" />
+                  <span>+91 6297576826</span>
+                </a>
+                <a href="mailto:info@luxuryandamans.com" className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
+                  <Mail className="w-5 h-5" />
+                  <span>info@luxuryandamans.com</span>
+                </a>
+                <div className="flex items-center gap-3 text-gray-300">
+                  <MapPin className="w-5 h-5" />
+                  <span>Port Blair, Andaman Islands</span>
+                </div>
               </div>
             </motion.div>
           </div>
+
+          {/* Main Form */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="lg:col-span-8 order-1 lg:order-2"
+          >
+            <div className="bg-white rounded-3xl p-8 md:p-10 shadow-xl shadow-gray-200/50 border border-gray-100">
+              <div className="flex items-center gap-3 mb-8">
+                <Sparkles className="w-6 h-6 text-azure" />
+                <h2 className="text-2xl md:text-3xl font-bold font-display text-night">Plan Your Trip</h2>
+              </div>
+
+              {packageDetails?.packageName && (
+                <div className="mb-8 p-4 bg-azure/5 rounded-xl border border-azure/10 flex flex-wrap gap-4 items-center justify-between">
+                  <div>
+                    <span className="text-xs font-semibold text-azure uppercase tracking-wider">Selected Package</span>
+                    <p className="font-bold text-night">{packageDetails.packageName}</p>
+                  </div>
+                  {packageDetails.totalPrice && (
+                    <div className="text-right">
+                      <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Est. Price</span>
+                      <p className="font-bold text-azure text-lg">₹{packageDetails.totalPrice.toLocaleString()}</p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-8">
+                {/* Personal Details */}
+                <div className="space-y-6">
+                  <h3 className="text-lg font-semibold text-night border-b border-gray-100 pb-2">Personal Details</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-gray-700">Full Name *</label>
+                      <div className="relative">
+                        <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <input
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-azure focus:ring-4 focus:ring-azure/10 transition-all outline-none"
+                          placeholder="John Doe"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-gray-700">Email Address *</label>
+                      <div className="relative">
+                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-azure focus:ring-4 focus:ring-azure/10 transition-all outline-none"
+                          placeholder="john@example.com"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-gray-700">Phone Number *</label>
+                      <div className="relative">
+                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-azure focus:ring-4 focus:ring-azure/10 transition-all outline-none"
+                          placeholder="+91 98765 43210"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-gray-700">Trip Type</label>
+                      <div className="relative">
+                        <Users className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <select
+                          name="tripType"
+                          value={formData.tripType}
+                          onChange={handleChange}
+                          className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-azure focus:ring-4 focus:ring-azure/10 transition-all outline-none appearance-none bg-white"
+                        >
+                          <option value="couple">Couple / Honeymoon</option>
+                          <option value="family">Family</option>
+                          <option value="friends">Friends Group</option>
+                          <option value="solo">Solo Traveler</option>
+                          <option value="corporate">Corporate</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Trip Details */}
+                <div className="space-y-6">
+                  <h3 className="text-lg font-semibold text-night border-b border-gray-100 pb-2">Trip Details</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-gray-700">Travel Date</label>
+                      <div className="relative">
+                        <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <input
+                          type="date"
+                          name="travelDate"
+                          value={formData.travelDate}
+                          onChange={handleChange}
+                          className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-azure focus:ring-4 focus:ring-azure/10 transition-all outline-none"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-gray-700">Duration (Days)</label>
+                      <div className="relative">
+                        <Clock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <input
+                          type="number"
+                          name="duration"
+                          min="1"
+                          max="30"
+                          value={formData.duration}
+                          onChange={handleChange}
+                          className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-azure focus:ring-4 focus:ring-azure/10 transition-all outline-none"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-gray-700">No. of Guests</label>
+                      <div className="relative">
+                        <Users className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <input
+                          type="number"
+                          name="guests"
+                          min="1"
+                          max="50"
+                          value={formData.guests}
+                          onChange={handleChange}
+                          className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:border-azure focus:ring-4 focus:ring-azure/10 transition-all outline-none"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-700">Additional Message / Special Requests</label>
+                    <textarea
+                      name="message"
+                      rows={4}
+                      value={formData.message}
+                      onChange={handleChange}
+                      className="w-full p-4 rounded-xl border border-gray-200 focus:border-azure focus:ring-4 focus:ring-azure/10 transition-all outline-none resize-none"
+                      placeholder="Tell us about your preferences, specific places you want to visit, or any dietary requirements..."
+                    ></textarea>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-4 bg-gradient-to-r from-azure to-blue-600 text-white rounded-xl font-bold text-lg shadow-lg shadow-azure/30 hover:shadow-xl hover:scale-[1.01] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  {isSubmitting ? (
+                    <>Processing...</>
+                  ) : (
+                    <>
+                      Send Enquiry <ArrowRight className="w-5 h-5" />
+                    </>
+                  )}
+                </button>
+                <p className="text-center text-sm text-gray-500">
+                  By submitting this form, you agree to our privacy policy. We'll contact you within 24 hours.
+                </p>
+              </form>
+            </div>
+          </motion.div>
         </div>
       </div>
-      </div>
-      
       <Footer />
     </div>
   );

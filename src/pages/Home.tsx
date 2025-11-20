@@ -13,6 +13,7 @@ import Footer from '../components/Footer';
 import CardSlider from '../components/CardSlider';
 import ExperienceCard from '../components/ExperienceCard';
 import heroBg from '../img/pexels-nabilnaidu-106714031 (1).webp';
+import { removeLoader } from '../lib/loader';
 
 const Home = () => {
   const location = useLocation();
@@ -36,6 +37,28 @@ const Home = () => {
       }, 3000); // change every 2 seconds
       return () => clearInterval(interval);
     }
+  }, []);
+
+  // Preload hero image and hide loader when ready
+  useEffect(() => {
+    const img = new Image();
+    img.src = heroBg;
+    
+    const handleLoad = () => {
+      removeLoader();
+    };
+
+    if (img.complete) {
+      handleLoad();
+    } else {
+      img.onload = handleLoad;
+      img.onerror = handleLoad; // Hide loader even if image fails
+    }
+
+    // Safety timeout in case image hangs
+    const timeout = setTimeout(handleLoad, 5000);
+
+    return () => clearTimeout(timeout);
   }, []);
 
   const experiences = [
@@ -87,7 +110,7 @@ const Home = () => {
       <Header />
 
       {/* Custom Parallax Hero */}
-      <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen min-h-[600px] flex flex-col justify-start pt-32 md:justify-center md:pt-0 items-center overflow-hidden">
         <motion.div
           style={{ y, opacity }}
           className="absolute inset-0 z-0"

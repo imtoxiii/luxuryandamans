@@ -1,5 +1,5 @@
-import { Suspense, lazy } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Suspense, lazy, useEffect } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { useScrollTop } from './hooks/useScrollTop';
 import { usePageTransition } from './hooks/usePageTransition';
@@ -7,6 +7,7 @@ import CurtainTransition from './components/CurtainTransition';
 import Home from './pages/Home'; // Keep Home page eager for faster initial load
 import ChatWidget from './components/ChatWidget';
 import PrefetchManager from './components/PrefetchManager';
+import { removeLoader } from './lib/loader';
 
 // Lazy load non-critical pages
 const DestinationsPage = lazy(() => import('./pages/Destinations'));
@@ -63,7 +64,16 @@ const CulturalToursPage = lazy(() => import('./pages/experiences/cultural-tours'
 
 function App() {
   const { transitionPhase, displayLocation } = usePageTransition();
+  const location = useLocation();
   useScrollTop();
+
+  useEffect(() => {
+    // If we are not on the home page, remove the loader immediately
+    // The Home page handles its own loader removal after image load
+    if (location.pathname !== '/') {
+      removeLoader();
+    }
+  }, [location.pathname]);
 
   return (
     <>

@@ -190,7 +190,7 @@ const Header = () => {
                   key={item.name}
                   to={item.path}
                   className={`text-sm font-medium transition-all duration-300 hover:scale-105 ${
-                    ((item.name === 'Guide' || item.name === 'Calculator') ? 'hidden lg:inline-block' : '')
+                    ((item.name === 'Calculator') ? 'hidden lg:inline-block' : '')
                   } ${
                     location.pathname === item.path
                       ? showWhiteBackground 

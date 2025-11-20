@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
-import { Calendar, User, Clock, ArrowRight, Search, Tag, TrendingUp, BookOpen, Filter } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, Clock, ArrowRight, Search, SlidersHorizontal, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -11,6 +11,7 @@ const Blog = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortBy, setSortBy] = useState('newest');
+  const [showFilters, setShowFilters] = useState(false);
 
   const categories = ['all', ...new Set(blogPosts.map(post => post.category.toLowerCase()))];
   
@@ -37,10 +38,7 @@ const Blog = () => {
     });
 
     return filtered;
-  }, [searchTerm, selectedCategory, sortBy, blogPosts]);
-
-  // Get featured posts (latest 3 posts)
-  const featuredPosts = blogPosts.slice(0, 3);
+  }, [searchTerm, selectedCategory, sortBy]);
 
   const categoryStats = useMemo(() => {
     return categories.map(category => ({
@@ -49,304 +47,275 @@ const Blog = () => {
         ? blogPosts.length 
         : blogPosts.filter(post => post.category.toLowerCase() === category).length
     }));
-  }, [categories, blogPosts]);
+  }, [categories]);
 
   return (
-    <div className="min-h-screen bg-pearl">
+    <div className="min-h-screen bg-[#FAFAFA] font-sans selection:bg-azure selection:text-white">
       <SEO 
-        title="Andaman Travel Blog - Expert Guides & Tips"
-        description="Discover comprehensive travel guides, budget tips, and expert insights about the Andaman Islands. From budget packages to luxury experiences, find everything you need for your perfect island vacation."
-        keywords="andaman blog, travel guides, budget travel tips, honeymoon packages, family vacation, scuba diving, best beaches"
+        title="The Journal - Luxury Andamans"
+        description="Explore our curated collection of stories, guides, and insights about the Andaman Islands."
+        keywords="andaman blog, travel stories, luxury travel, island guide"
         targetAudience="all"
       />
       <Header />
       
-      {/* Hero Section */}
-      <div className="relative h-[60vh] overflow-hidden">
-        <img 
-          src="https://images.unsplash.com/photo-1583212292454-39d2a21af845?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
-          alt="Andaman Travel Blog"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-night/70 via-night/50 to-night/30" />
-        <div className="absolute inset-0 flex items-center justify-center text-center">
-          <div className="max-w-5xl px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
+      <main className="pt-32 pb-20 px-4 md:px-8 lg:px-12 max-w-[1600px] mx-auto">
+        {/* Header Section */}
+        <div className="flex flex-col lg:flex-row justify-between items-end gap-8 mb-16 border-b border-black/5 pb-12">
+          <div className="max-w-2xl">
+            <motion.span 
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              className="inline-block text-azure font-medium tracking-wider text-sm uppercase mb-4"
             >
-              <h1 className="text-5xl md:text-7xl font-bold text-pearl mb-6 leading-tight">
-                Andaman Travel <span className="text-azure">Blog</span>
-              </h1>
-              <p className="text-xl md:text-2xl text-pearl/90 mb-8 leading-relaxed max-w-3xl mx-auto">
-                Expert guides, budget tips, and insider secrets for your perfect Andaman adventure
-              </p>
-              <div className="flex flex-wrap justify-center gap-4 text-pearl/90">
-                <div className="flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
-                  <BookOpen className="w-5 h-5 mr-2" />
-                  {blogPosts.length} Articles
-                </div>
-                <div className="flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
-                  <TrendingUp className="w-5 h-5 mr-2" />
-                  Expert Insights
-                </div>
-                <div className="flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
-                  <Tag className="w-5 h-5 mr-2" />
-                  Budget to Luxury
+              The Journal
+            </motion.span>
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-night leading-[0.9] tracking-tight mb-6"
+            >
+              Stories from <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-azure to-cyan-500">Paradise</span>
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-xl text-night/60 leading-relaxed max-w-lg"
+            >
+              Curated guides, local secrets, and travel tips for your perfect island getaway.
+            </motion.p>
+          </div>
+
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto"
+          >
+            <div className="relative group flex-grow sm:flex-grow-0">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-night/30 group-focus-within:text-azure transition-colors" />
+              <input
+                type="text"
+                placeholder="Search stories..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full sm:w-64 pl-12 pr-4 py-4 bg-white border border-black/5 rounded-2xl text-night placeholder:text-night/30 focus:outline-none focus:ring-2 focus:ring-azure/10 focus:border-azure/50 transition-all shadow-sm hover:shadow-md"
+              />
+            </div>
+            
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className={`flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-medium transition-all duration-300 shadow-sm hover:shadow-md ${
+                showFilters 
+                  ? 'bg-night text-white shadow-lg scale-105' 
+                  : 'bg-white text-night border border-black/5 hover:border-black/10'
+              }`}
+            >
+              <SlidersHorizontal className="w-5 h-5" />
+              <span>Filters</span>
+              {selectedCategory !== 'all' && (
+                <span className="ml-1 bg-azure text-white text-[10px] px-2 py-0.5 rounded-full">1</span>
+              )}
+            </button>
+          </motion.div>
+        </div>
+
+        {/* Filter Panel */}
+        <AnimatePresence>
+          {showFilters && (
+            <motion.div
+              initial={{ height: 0, opacity: 0, marginBottom: 0 }}
+              animate={{ height: 'auto', opacity: 1, marginBottom: 48 }}
+              exit={{ height: 0, opacity: 0, marginBottom: 0 }}
+              className="overflow-hidden"
+            >
+              <div className="bg-white rounded-3xl p-8 border border-black/5 shadow-xl shadow-black/5">
+                <div className="flex flex-col lg:flex-row gap-12">
+                  {/* Categories */}
+                  <div className="flex-grow">
+                    <h3 className="text-sm font-bold text-night/40 uppercase tracking-wider mb-6">Categories</h3>
+                    <div className="flex flex-wrap gap-3">
+                      {categoryStats.map((category) => (
+                        <button
+                          key={category.name}
+                          onClick={() => setSelectedCategory(category.name)}
+                          className={`group relative px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+                            selectedCategory === category.name
+                              ? 'bg-azure text-white shadow-lg shadow-azure/20'
+                              : 'bg-gray-50 text-night/60 hover:bg-gray-100'
+                          }`}
+                        >
+                          <span className="capitalize">{category.name}</span>
+                          <span className={`ml-2 text-xs ${
+                            selectedCategory === category.name ? 'text-white/60' : 'text-night/30'
+                          }`}>
+                            {category.count}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Sort */}
+                  <div className="min-w-[200px]">
+                    <h3 className="text-sm font-bold text-night/40 uppercase tracking-wider mb-6">Sort By</h3>
+                    <div className="space-y-2">
+                      {[
+                        { value: 'newest', label: 'Newest First' },
+                        { value: 'oldest', label: 'Oldest First' },
+                        { value: 'readTime', label: 'Read Time' }
+                      ].map((option) => (
+                        <label 
+                          key={option.value}
+                          className="flex items-center gap-3 p-3 rounded-xl cursor-pointer hover:bg-gray-50 transition-colors"
+                        >
+                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
+                            sortBy === option.value ? 'border-azure' : 'border-gray-300'
+                          }`}>
+                            {sortBy === option.value && (
+                              <div className="w-2.5 h-2.5 rounded-full bg-azure" />
+                            )}
+                          </div>
+                          <input
+                            type="radio"
+                            name="sort"
+                            value={option.value}
+                            checked={sortBy === option.value}
+                            onChange={(e) => setSortBy(e.target.value)}
+                            className="hidden"
+                          />
+                          <span className={`text-sm font-medium ${
+                            sortBy === option.value ? 'text-night' : 'text-night/60'
+                          }`}>
+                            {option.label}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>
-          </div>
-        </div>
-      </div>
+          )}
+        </AnimatePresence>
 
-      {/* Featured Posts Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl font-bold text-night mb-4">Featured Articles</h2>
-            <p className="text-night/70 text-lg">Our most popular and comprehensive travel guides</p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {featuredPosts.map((post, index) => (
-              <motion.article
-                key={post.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`group ${index === 0 ? 'lg:col-span-2 lg:row-span-2' : ''}`}
-              >
-                <Link 
-                  to={`/blog/${post.slug}`}
-                  className="block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-pearl"
-                >
-                  <div className={`relative overflow-hidden ${index === 0 ? 'h-80' : 'h-48'}`}>
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-night/60 via-transparent to-transparent" />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-azure/90 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
-                        {post.category}
-                      </span>
-                    </div>
-                    {index === 0 && (
-                      <div className="absolute top-4 right-4">
-                        <span className="bg-sunset/90 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm flex items-center">
-                          <TrendingUp className="w-4 h-4 mr-1" />
-                          Featured
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                  <div className={`p-6 ${index === 0 ? 'lg:p-8' : ''}`}>
-                    <h3 className={`font-bold text-night mb-3 group-hover:text-azure transition-colors ${
-                      index === 0 ? 'text-2xl lg:text-3xl' : 'text-xl'
-                    }`}>
-                      {post.title}
-                    </h3>
-                    <p className={`text-night/70 mb-4 ${index === 0 ? 'text-lg' : ''}`}>
-                      {post.excerpt}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-4 text-sm text-night/60">
-                        <div className="flex items-center">
-                          <User className="w-4 h-4 mr-1" />
-                          {post.author.name}
-                        </div>
-                        <div className="flex items-center">
-                          <Clock className="w-4 h-4 mr-1" />
-                          {post.readTime}
-                        </div>
-                      </div>
-                      <div className="flex items-center text-azure group-hover:text-sunset transition-colors">
-                        <span className="text-sm font-medium">Read More</span>
-                        <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Search and Filter Section */}
-      <section className="py-8 bg-gradient-to-r from-azure/5 to-sunset/5">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Blog Grid */}
+        {filteredAndSortedPosts.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+            {filteredAndSortedPosts.map((post, index) => {
+              // Featured layout logic: First post spans 2 columns if it's the first page/no search
+              const isFeatured = index === 0 && !searchTerm && selectedCategory === 'all';
               
-              {/* Search */}
-              <div className="lg:col-span-2">
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search articles, tips, destinations..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full px-12 py-4 rounded-xl border border-white/50 bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-azure focus:border-transparent focus:bg-white transition-all"
-                  />
-                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-night/40 w-5 h-5" />
-                </div>
-              </div>
-
-              {/* Sort */}
-              <div className="relative">
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="w-full px-4 py-4 rounded-xl border border-white/50 bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-azure focus:border-transparent focus:bg-white transition-all appearance-none cursor-pointer"
-                >
-                  <option value="newest">Newest First</option>
-                  <option value="oldest">Oldest First</option>
-                  <option value="readTime">Quick Reads</option>
-                </select>
-                <Filter className="absolute right-4 top-1/2 transform -translate-y-1/2 text-night/40 w-5 h-5 pointer-events-none" />
-              </div>
-            </div>
-
-            {/* Categories */}
-            <div className="mt-6 flex flex-wrap gap-3">
-              {categoryStats.map((category) => (
-                <button
-                  key={category.name}
-                  onClick={() => setSelectedCategory(category.name)}
-                  className={`px-6 py-3 rounded-full capitalize transition-all font-medium ${
-                    selectedCategory === category.name
-                      ? 'bg-azure text-white shadow-lg scale-105'
-                      : 'bg-white/80 backdrop-blur-sm text-night hover:bg-white hover:shadow-md hover:scale-105'
-                  }`}
-                >
-                  {category.name} ({category.count})
-                </button>
-              ))}
-            </div>
-
-            {/* Results Info */}
-            <div className="mt-6 text-center">
-              <p className="text-night/70">
-                Showing {filteredAndSortedPosts.length} of {blogPosts.length} articles
-                {searchTerm && (
-                  <span className="font-medium text-azure"> for "{searchTerm}"</span>
-                )}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* All Blog Posts */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          {filteredAndSortedPosts.length === 0 ? (
-            <div className="text-center py-16">
-              <BookOpen className="w-16 h-16 text-night/30 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-night mb-2">No articles found</h3>
-              <p className="text-night/70 mb-6">Try adjusting your search or filter criteria</p>
-              <button
-                onClick={() => {
-                  setSearchTerm('');
-                  setSelectedCategory('all');
-                }}
-                className="bg-azure text-white px-6 py-3 rounded-lg hover:bg-azure/90 transition-colors"
-              >
-                Clear Filters
-              </button>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredAndSortedPosts.map((post, index) => (
+              return (
                 <motion.article
                   key={post.id}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: (index % 9) * 0.1 }}
-                  className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-2xl transition-all duration-500 border border-pearl"
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className={`group flex flex-col ${isFeatured ? 'lg:col-span-2 lg:row-span-2' : ''}`}
                 >
-                  <Link to={`/blog/${post.slug}`}>
-                    <div className="relative h-48 overflow-hidden">
+                  <Link 
+                    to={`/blog/${post.slug}`}
+                    className="block relative overflow-hidden rounded-3xl mb-6 aspect-[4/3] lg:aspect-auto lg:h-full"
+                  >
+                    <div className={`w-full h-full bg-gray-100 ${isFeatured ? 'min-h-[400px] lg:min-h-[600px]' : ''}`}>
                       <img
                         src={post.image}
                         alt={post.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-night/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-azure/90 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
-                          {post.category}
-                        </span>
-                      </div>
                     </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-night mb-3 group-hover:text-azure transition-colors line-clamp-2">
-                        {post.title}
-                      </h3>
-                      <p className="text-night/70 mb-4 line-clamp-3">{post.excerpt}</p>
-                      
-                      {/* Author & Meta Info */}
-                      <div className="flex items-center space-x-4 text-sm text-night/60 mb-4">
-                        <div className="flex items-center">
-                          <img
-                            src={post.author.avatar}
-                            alt={post.author.name}
-                            className="w-6 h-6 rounded-full mr-2"
-                          />
-                          {post.author.name}
-                        </div>
-                        <div className="flex items-center">
-                          <Calendar className="w-4 h-4 mr-1" />
-                          {new Date(post.date).toLocaleDateString('en-US', {
-                            month: 'short',
-                            day: 'numeric'
-                          })}
-                        </div>
-                        <div className="flex items-center">
-                          <Clock className="w-4 h-4 mr-1" />
-                          {post.readTime}
-                        </div>
-                      </div>
-
-                      {/* Tags */}
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {post.tags.slice(0, 3).map(tag => (
-                          <span
-                            key={tag}
-                            className="inline-flex items-center text-xs bg-azure/10 text-azure px-2 py-1 rounded-full font-medium"
-                          >
-                            <Tag className="w-3 h-3 mr-1" />
-                            {tag}
-                          </span>
-                        ))}
-                        {post.tags.length > 3 && (
-                          <span className="text-xs text-night/50 px-2 py-1">
-                            +{post.tags.length - 3} more
-                          </span>
-                        )}
-                      </div>
-
-                      <div className="flex items-center text-azure group-hover:text-sunset transition-colors">
-                        <span className="text-sm font-medium">Read Full Article</span>
-                        <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
-                      </div>
+                    
+                    {/* Overlay Tags */}
+                    <div className="absolute top-6 left-6 flex flex-wrap gap-2">
+                      <span className="bg-white/90 backdrop-blur-md text-night px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">
+                        {post.category}
+                      </span>
+                      {isFeatured && (
+                        <span className="bg-azure/90 backdrop-blur-md text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm flex items-center gap-1">
+                          <Tag className="w-3 h-3" /> Featured
+                        </span>
+                      )}
                     </div>
                   </Link>
+
+                  <div className="flex flex-col flex-grow">
+                    <div className="flex items-center gap-4 text-xs font-medium text-night/40 uppercase tracking-wider mb-4">
+                      <span className="flex items-center gap-1.5">
+                        <Calendar className="w-3.5 h-3.5" />
+                        {new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                      </span>
+                      <span className="w-1 h-1 rounded-full bg-night/20" />
+                      <span className="flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5" />
+                        {post.readTime}
+                      </span>
+                    </div>
+
+                    <Link to={`/blog/${post.slug}`} className="group-hover:text-azure transition-colors duration-300">
+                      <h2 className={`font-display font-bold text-night leading-[1.1] mb-4 ${
+                        isFeatured ? 'text-3xl md:text-4xl lg:text-5xl' : 'text-2xl'
+                      }`}>
+                        {post.title}
+                      </h2>
+                    </Link>
+
+                    <p className={`text-night/60 leading-relaxed mb-6 line-clamp-3 ${
+                      isFeatured ? 'text-lg md:text-xl max-w-2xl' : 'text-base'
+                    }`}>
+                      {post.excerpt}
+                    </p>
+
+                    <div className="mt-auto pt-6 border-t border-black/5 flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <img
+                          src={post.author.avatar}
+                          alt={post.author.name}
+                          className="w-10 h-10 rounded-full object-cover border border-black/5"
+                        />
+                        <div>
+                          <p className="text-sm font-bold text-night">{post.author.name}</p>
+                          <p className="text-xs text-night/40 font-medium">Author</p>
+                        </div>
+                      </div>
+                      
+                      <Link 
+                        to={`/blog/${post.slug}`}
+                        className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-night/40 group-hover:bg-azure group-hover:border-azure group-hover:text-white transition-all duration-300"
+                      >
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  </div>
                 </motion.article>
-              ))}
+              );
+            })}
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center py-32 text-center">
+            <div className="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mb-6">
+              <Search className="w-10 h-10 text-night/20" />
             </div>
-          )}
-        </div>
-      </section>
+            <h3 className="text-2xl font-display font-bold text-night mb-2">No stories found</h3>
+            <p className="text-night/60 max-w-md mb-8">
+              We couldn't find any articles matching your search. Try adjusting your filters or search terms.
+            </p>
+            <button
+              onClick={() => {
+                setSearchTerm('');
+                setSelectedCategory('all');
+              }}
+              className="px-8 py-3 bg-night text-white rounded-xl font-medium hover:bg-night/90 transition-colors"
+            >
+              Clear all filters
+            </button>
+          </div>
+        )}
+      </main>
 
       <Footer />
     </div>

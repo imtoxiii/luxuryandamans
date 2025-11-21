@@ -69,12 +69,12 @@ const PackagesPage = () => {
       <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
         {/* Background Image with Parallax */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-gray-50 z-10" />
+          <div className="absolute inset-0  z-10" />
           <motion.img
             initial={{ scale: 1.1 }}
             animate={{ scale: 1 }}
             transition={{ duration: 10, ease: "easeOut" }}
-            src="https://images.unsplash.com/photo-1544550581-5f7ceaf7f992?q=80&w=2070&auto=format&fit=crop"
+            src="https://images.pexels.com/photos/631477/pexels-photo-631477.jpeg"
             alt="Andaman Luxury"
             className="w-full h-full object-cover"
           />

@@ -214,11 +214,11 @@ const ExperiencesPage = () => {
       <div className="relative h-[50vh] min-h-[400px] bg-gray-900 overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" 
+            src="https://images.pexels.com/photos/1078983/pexels-photo-1078983.jpeg" 
             alt="Andaman Experiences" 
             className="w-full h-full object-cover opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/40 via-gray-900/20 to-gray-900/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/30 via-gray-900/20 to-gray-900/30" />
         </div>
 
         <div className="relative h-full container mx-auto px-4 flex flex-col justify-center items-center text-center z-10">

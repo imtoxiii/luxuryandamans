@@ -114,10 +114,13 @@ const ContactPage = () => {
       <Header />
 
       {/* Hero Section */}
-      <div className="relative bg-slate-900 pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/90 via-slate-900/80 to-slate-50"></div>
-        
+<div className="relative bg-slate-900 pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
+  {/* Background Image */}
+  <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/10945169/pexels-photo-10945169.jpeg')] bg-cover bg-center opacity-60"></div>
+
+  {/* Soft gradient overlay so image stays visible */}
+  <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 via-slate-900/30 to-slate-50/20"></div>
+
         <div className="container mx-auto px-6 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -611,11 +611,11 @@ const PricingCalculatorPage = () => {
             {/* Hero Section */}
             <div className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-b z-10" />
                     <img
-                        src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+                        src="https://images.pexels.com/photos/10818863/pexels-photo-10818863.jpeg"
                         alt="Andaman Calculator Background"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover object-[50%_40%]"
                     />
                 </div>
 

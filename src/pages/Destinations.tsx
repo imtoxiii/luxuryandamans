@@ -25,12 +25,12 @@ const Destinations = () => {
       {/* Modern Hero Section with Parallax */}
       <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-gray-50 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b z-10" />
           <motion.img
             initial={{ scale: 1.1 }}
             animate={{ scale: 1 }}
             transition={{ duration: 10, ease: "easeOut" }}
-            src="https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+            src="https://images.pexels.com/photos/10945169/pexels-photo-10945169.jpeg"
             alt="Destinations Hero"
             className="w-full h-full object-cover"
           />

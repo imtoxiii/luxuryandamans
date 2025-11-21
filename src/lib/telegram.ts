@@ -16,11 +16,13 @@ export const sendTelegramMessage = async (message: string): Promise<boolean> => 
     // Get env vars at runtime to ensure fresh values
     const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
     const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
-    
+
     console.log('📤 Sending Telegram message...');
-    
+
     if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID || TELEGRAM_BOT_TOKEN === 'undefined' || TELEGRAM_CHAT_ID === 'undefined') {
-        console.error('❌ Telegram credentials missing');
+        console.error('❌ Telegram credentials missing. Please check your .env file.');
+        console.error('VITE_TELEGRAM_BOT_TOKEN:', TELEGRAM_BOT_TOKEN ? 'Set' : 'Missing');
+        console.error('VITE_TELEGRAM_CHAT_ID:', TELEGRAM_CHAT_ID ? 'Set' : 'Missing');
         toast.error('Configuration Error: Unable to send message. Please contact us directly.');
         return false;
     }

@@ -12,6 +12,7 @@ const ContactPage = () => {
   const location = useLocation();
   const [formData, setFormData] = useState({
     name: '',
+    phone: '',
     email: '',
     subject: '',
     message: ''
@@ -31,8 +32,15 @@ const ContactPage = () => {
       return;
     }
 
-    if (!formData.email.trim()) {
-      toast.error('Please enter your email address');
+    if (!formData.phone.trim()) {
+      toast.error('Please enter your phone number');
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Email is optional, but if provided, validate format
+    if (formData.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      toast.error('Please enter a valid email address');
       setIsSubmitting(false);
       return;
     }
@@ -53,6 +61,7 @@ const ContactPage = () => {
         setTimeout(() => {
           setFormData({
             name: '',
+            phone: '',
             email: '',
             subject: '',
             message: ''
@@ -240,7 +249,7 @@ const ContactPage = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold text-slate-700 ml-1">Your Name</label>
+                    <label className="text-sm font-semibold text-slate-700 ml-1">Your Name *</label>
                     <div className="relative group">
                       <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-teal-500 transition-colors" />
                       <input
@@ -256,7 +265,23 @@ const ContactPage = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold text-slate-700 ml-1">Email Address</label>
+                    <label className="text-sm font-semibold text-slate-700 ml-1">Phone Number *</label>
+                    <div className="relative group">
+                      <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-teal-500 transition-colors" />
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 transition-all outline-none font-medium text-slate-800 placeholder:text-slate-400"
+                        placeholder="+91 98765 43210"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 md:col-span-2">
+                    <label className="text-sm font-semibold text-slate-700 ml-1">Email Address <span className="text-slate-400 font-normal">(Optional)</span></label>
                     <div className="relative group">
                       <AtSign className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-teal-500 transition-colors" />
                       <input
@@ -266,7 +291,6 @@ const ContactPage = () => {
                         onChange={handleChange}
                         className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 transition-all outline-none font-medium text-slate-800 placeholder:text-slate-400"
                         placeholder="john@example.com"
-                        required
                       />
                     </div>
                   </div>

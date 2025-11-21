@@ -13,19 +13,11 @@ const escapeHtml = (unsafe: any): string => {
 };
 
 export const sendTelegramMessage = async (message: string): Promise<boolean> => {
-    // Get env vars at runtime to ensure fresh values
-    const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
-    const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+    // Hardcoded credentials as requested by user
+    const TELEGRAM_BOT_TOKEN = '7853333210:AAH0M-sHCpfADqFo8T8pfzmDxZqA00xC1pk';
+    const TELEGRAM_CHAT_ID = '1336330730';
 
     console.log('📤 Sending Telegram message...');
-
-    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID || TELEGRAM_BOT_TOKEN === 'undefined' || TELEGRAM_CHAT_ID === 'undefined') {
-        console.error('❌ Telegram credentials missing. Please check your .env file.');
-        console.error('VITE_TELEGRAM_BOT_TOKEN:', TELEGRAM_BOT_TOKEN ? 'Set' : 'Missing');
-        console.error('VITE_TELEGRAM_CHAT_ID:', TELEGRAM_CHAT_ID ? 'Set' : 'Missing');
-        toast.error('Configuration Error: Unable to send message. Please contact us directly.');
-        return false;
-    }
 
     try {
         const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
@@ -47,7 +39,6 @@ export const sendTelegramMessage = async (message: string): Promise<boolean> => 
             return true;
         } else {
             console.error('❌ Telegram API Error:', data);
-            // Don't show technical details to user, just a general error
             toast.error('Unable to send enquiry. Please try again later.');
             return false;
         }
@@ -104,14 +95,15 @@ ${escapeHtml(message)}
 };
 
 export const formatContactMessage = (data: any): string => {
-    const { name, email, subject, message } = data;
+    const { name, email, phone, subject, message } = data;
 
     return `
 <b>📬 New Contact Message</b>
 
 <b>👤 Sender Details</b>
 <b>Name:</b> ${escapeHtml(name)}
-<b>Email:</b> ${escapeHtml(email)}
+<b>Phone:</b> ${escapeHtml(phone)}
+<b>Email:</b> ${escapeHtml(email || 'Not provided')}
 
 <b>📝 Message Details</b>
 <b>Subject:</b> ${escapeHtml(subject)}

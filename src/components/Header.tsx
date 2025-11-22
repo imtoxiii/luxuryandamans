@@ -172,11 +172,13 @@ const Header = () => {
                 whileHover={{ rotate: 15, scale: 1.1 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <Palmtree className={`h-8 w-8 transition-colors duration-300 ${
-                  (showWhiteBackground && !isMenuOpen) ? 'text-teal-600' : 'text-white'
-                }`} />
+                <img 
+                  src="/images/luxury-andamans-logo.png" 
+                  alt="Luxury Andamans" 
+                  className="h-10 w-auto object-contain"
+                />
               </motion.div>
-              <span className={`text-2xl font-bold transition-colors duration-300 ${
+              <span className={`text-2xl font-display font-bold transition-colors duration-300 ${
                 (showWhiteBackground && !isMenuOpen) ? 'text-gray-900' : 'text-white'
               }`}>
                 Luxury Andamans

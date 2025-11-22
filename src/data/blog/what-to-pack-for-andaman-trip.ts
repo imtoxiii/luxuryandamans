@@ -33,7 +33,7 @@ const post: BlogPost = {
   image: images.main.src,
   author: {
     name: 'Luxury Andamans Team',
-    avatar: 'https://i.pravatar.cc/150?img=20',
+    avatar: '/images/luxury-andamans-logo.png',
     bio: 'Expert travelers helping you travel light and smart.'
   },
   date: new Date().toISOString(),

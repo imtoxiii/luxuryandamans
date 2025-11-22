@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Palmtree, Compass, Waves } from 'lucide-react';
+import { Compass, Waves } from 'lucide-react';
 
 interface PageTransitionProps {
   onComplete?: () => void;
@@ -73,7 +73,7 @@ const LoadingSpinner: React.FC<PageTransitionProps> = ({ onComplete }) => {
             className="w-32 h-32 bg-white/5 backdrop-blur-md rounded-full flex items-center justify-center border border-white/10 shadow-2xl relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20" />
-            <Palmtree className="w-12 h-12 text-white relative z-10" />
+            <img src="/images/luxury-andamans-logo.png" alt="Logo" className="w-16 h-16 object-contain relative z-10" />
             
             {/* Wave Animation inside circle */}
             <motion.div

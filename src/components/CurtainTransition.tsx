@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Palmtree } from 'lucide-react';
 
 const CurtainTransition: React.FC = () => {
   return (
@@ -55,7 +54,7 @@ const CurtainTransition: React.FC = () => {
             <div className="flex flex-col items-center relative z-10">
                 <div className="flex items-center gap-3 md:gap-4 mb-4">
                     <div className="p-2.5 md:p-3 bg-blue-500/10 rounded-2xl border border-blue-500/20 backdrop-blur-sm shadow-lg">
-                        <Palmtree className="w-6 h-6 md:w-8 md:h-8 text-blue-400" />
+                        <img src="/images/luxury-andamans-logo.png" alt="Logo" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
                     </div>
                     <div className="text-left">
                         <h2 className="text-2xl md:text-3xl font-display font-bold text-white leading-none tracking-tight">

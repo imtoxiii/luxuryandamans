@@ -1,133 +1,73 @@
 import { BlogPost } from '../../types/blog';
 
-const slug = 'top-things-to-do-in-andaman';
-
-const images = {
-  main: {
-    src: `/blog-assets/${slug}/radhanagar-beach-sunset.jpg`,
-    alt: 'Stunning sunset view at Radhanagar Beach, Havelock Island, ranked one of the best beaches in Asia.',
-    width: 1920,
-    height: 1080
-  },
-  imageOne: {
-    src: `/blog-assets/${slug}/cellular-jail-light-show.jpg`,
-    alt: 'The Cellular Jail in Port Blair illuminated during the evening light and sound show.',
-    width: 1200,
-    height: 800
-  },
-  imageTwo: {
-    src: `/blog-assets/${slug}/bioluminescence-kayaking-andaman.jpg`,
-    alt: 'Kayakers paddling through glowing bioluminescent waters at night in the Andamans.',
-    width: 1200,
-    height: 800
-  }
-};
-
-const post: BlogPost = {
-  id: slug,
-  title: '15 Best Things to Do in Andaman (2025) for an Unforgettable Trip',
-  slug: slug,
-  excerpt:
-    'Discover the top 15 must-do activities in the Andamans for 2025. From the pristine shores of Radhanagar Beach to the thrilling adventure of bioluminescence kayaking, this is your ultimate guide.',
-  image: images.main.src,
+export const post: BlogPost = {
+  id: "andaman-top-things-to-do-2025",
+  slug: "andaman-top-things-to-do-2025",
+  title: "Top 25 Things to Do in Andaman: The Ultimate 2025 Bucket List",
+  excerpt: "From walking on the sea floor to exploring active volcanoes, here is the definitive list of must-do experiences in Andaman for 2025.",
+  image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+  category: "Travel Guide",
   author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.'
+    name: "Arjun Patel",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
+    bio: "Adventure seeker and travel writer."
   },
-  date: new Date().toISOString(),
-  readTime: '12 min read',
-  category: 'Experiences',
-  tags: [
-    'things to do in andaman',
-    'andaman attractions',
-    'havelock island',
-    'neil island',
-    'radhanagar beach',
-    'cellular jail',
-    'bioluminescence andaman'
-  ],
-  relatedPosts: ['7-day-andaman-itinerary', 'andaman-scuba-guide', 'andaman-best-time'],
+  date: "2025-01-15",
+  readTime: "15 min read",
+  tags: ["Activities", "Bucket List", "Adventure", "Guide", "2025"],
+  relatedPosts: ["andaman-scuba-guide", "andaman-instagram-spots", "andaman-nightlife-guide"],
   content: `
-## Your Ultimate Andaman Bucket List for 2025
+# The Ultimate Andaman Bucket List for 2025
 
-The Andaman Islands are more than just a beach destination; they're an archipelago of experiences. Whether you're an adrenaline junkie, a nature lover, a history buff, or someone just looking to unwind, this list has something for you. Here are the top 15 things you absolutely cannot miss on your Andaman trip.
+Planning a trip to Andaman? Don't just sit on the beach (though you should do that too). Here are the top 25 experiences that define an Andaman vacation in 2025.
 
-## For the Beach Lovers & Sunset Chasers
+![Andaman Adventure](https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
 
-**1. Witness the Sunset at Radhanagar Beach (Havelock):** Consistently ranked among the best beaches in Asia, Radhanagar Beach's white sands and turquoise waters are breathtaking. The sunset here is a spiritual experience. Don't rush it; find a spot, sit back, and watch the sky paint itself in hues of orange and pink.
+## Water Sports & Adventure
+1. **Scuba Diving:** Dive with Nemo at Havelock or Neil. No swimming skills needed for introductory dives!
+2. **Sea Walking:** Walk on the ocean floor at North Bay or Elephant Beach.
+3. **Snorkeling:** Float above colorful reefs. Best spots: Elephant Beach, Bharatpur Beach.
+4. **Kayaking:** Paddle through the silent mangroves of Havelock.
+5. **Night Kayaking:** Witness the magical bioluminescence (glowing water).
+6. **Parasailing:** Get a bird's eye view of the coastline at Corbyn's Cove or Elephant Beach.
+7. **Jet Skiing:** Feel the speed on the waves.
+8. **Glass Bottom Boat:** See the corals without getting wet (great for kids/seniors).
+9. **Semi-Submarine Ride:** A step up from glass bottom boats, giving a submarine-like view.
+10. **Game Fishing:** Go deep-sea fishing for Tuna and Barracuda.
 
-**2. Walk on the Natural Bridge (Neil Island):** At low tide, a unique rock formation resembling a bridge is revealed at Laxmanpur Beach II. It's a fantastic spot for photos and exploring marine life trapped in small puddles.
+## Nature & Sightseeing
+11. **Radhanagar Beach Sunset:** Watch the sun dip below the horizon at Asia's best beach.
+12. **Limestone Caves:** Take a boat ride through mangroves to reach these ancient caves in Baratang.
+13. **Mud Volcanoes:** See the rare geological phenomenon in Baratang.
+14. **Barren Island:** Visit South Asia's only active volcano (chartered boat required).
+15. **Natural Bridge:** Marvel at the rock formation on Neil Island.
+16. **Chidiya Tapu:** Birdwatching and trekking to Munda Pahad for sunset.
+17. **Ross Island (Netaji Subhash Chandra Bose Dweep):** Explore the British ruins and meet the friendly deer.
+18. **Mount Harriet:** Trek to the highest point in South Andaman.
 
-**3. Snorkel at Elephant Beach (Havelock):** Famous for its vibrant coral reef just a few meters from the shore, Elephant Beach is a snorkeler's paradise. Reachable by a short boat ride or a forest trek, it's an essential Andaman experience.
+## History & Culture
+19. **Cellular Jail:** Visit the National Memorial and watch the Light & Sound show.
+20. **Anthropological Museum:** Learn about the indigenous tribes of the islands.
+21. **Chatham Saw Mill:** Visit one of the oldest saw mills in Asia.
 
-**4. Watch the Sunrise at Kalapathar Beach (Havelock):** Named after the black rocks that line its shores, this beach offers a serene and picturesque sunrise. It's quieter than Radhanagar, perfect for a peaceful morning.
+## Leisure & Food
+22. **Seafood Feast:** Eat fresh crab, lobster, and prawn at a local shack.
+23. **Island Hopping:** Take a private boat to uninhabited islands.
+24. **Beach Picnic:** Pack a lunch and find a secluded spot on Long Island.
+25. **Shopping:** Buy shell handicrafts and pearls at Aberdeen Bazaar.
 
-![${images.imageOne.alt}](${images.imageOne.src})
-
-## For the History & Culture Buffs
-
-**5. Attend the Light & Sound Show at Cellular Jail (Port Blair):** The saga of the Indian freedom struggle is brought to life in this moving show. It's a poignant reminder of the history that shaped these islands. A visit during the day to tour the jail is also highly recommended.
-
-**6. Explore Ross Island (Netaji Subhas Chandra Bose Dweep):** The former administrative headquarters for the British, Ross Island is now a fascinating ruin, with colonial-era buildings being reclaimed by nature. It's a short boat ride from Port Blair.
-
-**7. Visit the Anthropological Museum:** Gain insight into the lives and cultures of the indigenous tribes of the Andaman and Nicobar Islands.
-
-## For the Adventure Junkies
-
-**8. Go Scuba Diving:** Whether you're a beginner or a pro, the Andaman's underwater ecosystem is world-class. Explore vibrant coral reefs and diverse marine life. Our [Scuba Guide](/blog/andaman-scuba-guide) has all the details.
-
-**9. Try Sea Walking:** Experience the thrill of walking on the seabed at North Bay or Elephant Beach. It's a unique activity that lets you get up close with marine life without any swimming skills.
-
-**10. Kayak Through Mangrove Forests:** Paddle through the serene and dense mangrove creeks, a unique ecosystem that is vital to the islands. A peaceful yet adventurous activity.
-
-![${images.imageTwo.alt}](${images.imageTwo.src})
-
-## For a Touch of Magic
-
-**11. Experience Bioluminescence:** On moonless nights, the waters around Havelock can glitter with bioluminescent phytoplankton. Taking a night kayaking tour to witness this magical phenomenon is an unforgettable experience.
-
-**12. Ride a Glass-Bottom Boat:** Get a glimpse of the underwater world without getting wet! A glass-bottom boat ride at North Bay or Jolly Buoy is perfect for families and non-swimmers.
-
-## For the Slow Travelers
-
-**13. Island Hopping:** Rent a scooter and explore the laid-back vibes of Havelock and Neil Island. Discover hidden beaches, quaint villages, and charming cafes.
-
-**14. Café Hopping in Havelock:** Havelock has a surprisingly vibrant café scene. Relax with a good book and a great cup of coffee at places like Full Moon Café or Something Different.
-
-**15. Enjoy Local Seafood:** Don't leave without trying the fresh catch of the day. From small local eateries to fine-dining restaurants, the seafood here is a culinary delight.
-
-Ready to tick these off your list? Use our [7-Day Andaman Itinerary](/blog/7-day-andaman-itinerary) to plan your perfect trip, or check out our [Packages](/packages) for a hassle-free vacation.
-`,
+**How many can you tick off?**
+  `,
   faq: [
     {
-      question: 'How many days are enough to cover the main attractions in Andaman?',
-      answer:
-        'A trip of 5 to 7 days is ideal. This allows you to comfortably explore Port Blair, Havelock Island, and Neil Island without feeling rushed, covering most of the top attractions.'
+      question: "What is the #1 must-do activity?",
+      answer: "Scuba Diving. Even if you do it only once in your life, do it in Andaman."
     },
     {
-      question: 'What is the best way to travel between islands like Havelock and Neil?',
-      answer:
-        'The best and most popular way is by private ferry (like Makruzz or Green Ocean), which are fast, air-conditioned, and can be booked online. Government ferries are also available but are slower and have a more complex booking process.'
-    },
-    {
-      question: 'Are there ATMs available on Havelock and Neil islands?',
-      answer:
-        'Yes, there are a few ATMs on both islands, but they can be unreliable or out of cash. It is highly recommended to carry sufficient cash with you from Port Blair, as most small vendors and restaurants do not accept cards or UPI.'
-    },
-    {
-      question: 'Is Andaman a good destination for a family vacation?',
-      answer:
-        'Absolutely! Andaman is very safe and offers a wide range of activities for all ages. From gentle water sports like glass-bottom boat rides to exploring historical sites and relaxing on beautiful beaches, there is something for everyone in the family.'
-    },
-    {
-      question: 'Which is better for a tourist: Havelock Island or Neil Island?',
-      answer:
-        "Havelock (Swaraj Dweep) is more developed with more hotels, restaurants, and activities, making it the hub for tourists. Neil Island (Shaheed Dweep) is smaller, quieter, and more laid-back, known for its rustic charm. Most itineraries include both to offer a balanced experience."
+      question: "Are these activities safe?",
+      answer: "Yes, adventure sports in Andaman are regulated and operators follow safety standards. Always listen to your instructor."
     }
   ]
 };
 
 export default post;
-
-

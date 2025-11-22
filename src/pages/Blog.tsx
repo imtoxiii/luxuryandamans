@@ -50,7 +50,7 @@ const Blog = () => {
   }, [categories]);
 
   return (
-    <div className="min-h-screen bg-pearl font-sans selection:bg-azure selection:text-white">
+    <div className="relative min-h-screen bg-pearl font-sans selection:bg-azure selection:text-white">
       <SEO 
         title="The Journal - Luxury Andamans"
         description="Explore our curated collection of stories, guides, and insights about the Andaman Islands."
@@ -60,12 +60,13 @@ const Blog = () => {
       <Header />
       
       {/* Decorative Background */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-[800px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-azure/5 via-transparent to-transparent" />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-sunset/5 blur-[100px] rounded-full" />
+      <div className="absolute top-0 left-0 w-full h-[600px] pointer-events-none">
+        <div className="w-full h-full bg-[url('https://images.pexels.com/photos/907485/pexels-photo-907485.jpeg')] bg-cover bg-center">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-pearl" />
+        </div>
       </div>
 
-      <main className="relative pt-32 pb-20 px-4 md:px-8 lg:px-12 max-w-[1600px] mx-auto">
+      <main className="relative pt-32 pb-20 px-4 md:px-8 lg:px-12 max-w-[1600px]  mx-auto">
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row justify-between items-end gap-8 mb-20">
           <div className="max-w-3xl">
@@ -74,25 +75,25 @@ const Blog = () => {
               animate={{ opacity: 1, y: 0 }}
               className="flex items-center gap-3 mb-6"
             >
-              <span className="h-px w-12 bg-azure" />
-              <span className="text-azure font-medium tracking-widest text-sm uppercase">The Journal</span>
+              <span className="h-px w-12 bg-white/80" />
+              <span className="text-white/90 font-medium tracking-widest text-sm uppercase">The Journal</span>
             </motion.div>
             
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-night leading-[0.9] tracking-tight mb-8"
+              className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white leading-[0.9] tracking-tight mb-8"
             >
               Stories from <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-azure to-cyan-500">Paradise</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/80">Paradise</span>
             </motion.h1>
             
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-xl md:text-2xl text-night/60 leading-relaxed max-w-xl"
+              className="text-xl md:text-2xl text-white/80 leading-relaxed max-w-xl"
             >
               Curated guides, local secrets, and travel tips for your perfect island getaway.
             </motion.p>

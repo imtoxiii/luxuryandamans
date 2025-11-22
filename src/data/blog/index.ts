@@ -33,6 +33,23 @@ import ferryGuide from './andaman-ferry-booking-guide';
 import waterSportsPrices from './water-sports-price-list-andaman';
 import baratangGuide from './how-to-visit-baratang-island';
 
+import andamanVsLakshadweep from './andaman-vs-lakshadweep';
+import andamanVsBali from './andaman-vs-bali';
+import soloTripGuide from './andaman-solo-trip-guide';
+import instagramSpots from './andaman-instagram-spots';
+import nightlifeGuide from './andaman-nightlife-guide';
+import topThings2025 from './andaman-top-things-to-do';
+import andamanTourism2026 from './andaman-tourism-trends-2026';
+import firstTimers2026 from './first-timers-guide-andaman-2026';
+import ecoResorts2026 from './new-eco-resorts-andaman-2026';
+import scuba2026 from './andaman-scuba-diving-2026';
+import digitalNomad2026 from './digital-nomad-andaman-2026';
+import ferryGuide2026 from './andaman-ferry-guide-2026';
+import safety2026 from './is-andaman-safe-2026';
+import packing2026 from './sustainable-packing-list-2026';
+import couplesItinerary2026 from './andaman-couples-itinerary-2026';
+import familyItinerary2026 from './andaman-family-itinerary-2026';
+
 const newPosts: BlogPost[] = [
   basePosts,
   bestTime,
@@ -65,7 +82,23 @@ const newPosts: BlogPost[] = [
   shoppingGuide,
   ferryGuide,
   waterSportsPrices,
-  baratangGuide
+  baratangGuide,
+  andamanVsLakshadweep,
+  andamanVsBali,
+  soloTripGuide,
+  instagramSpots,
+  nightlifeGuide,
+  topThings2025,
+  andamanTourism2026,
+  firstTimers2026,
+  ecoResorts2026,
+  scuba2026,
+  digitalNomad2026,
+  ferryGuide2026,
+  safety2026,
+  packing2026,
+  couplesItinerary2026,
+  familyItinerary2026
 ];
 
 // Merge and sort by date (newest first)

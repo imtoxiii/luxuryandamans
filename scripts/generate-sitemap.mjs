@@ -100,10 +100,28 @@ function buildSitemapUrls() {
     urls.push(urlEntry(`/locations/${slug}`, { changefreq: 'monthly', priority: 0.7 }));
   });
 
-  // Packages from data file
+  // Packages from data file and data/packages directory
+  const packagesDir = path.join(projectRoot, 'src', 'data', 'packages');
+  const packageSlugs = new Set();
+  
+  // Try reading from the directory first
+  try {
+    if (fs.existsSync(packagesDir)) {
+      const packageFiles = fs.readdirSync(packagesDir).filter(f => f.endsWith('.ts'));
+      packageFiles.forEach(file => {
+        const slugs = extractSlugsFromFile(path.join(packagesDir, file));
+        slugs.forEach(s => packageSlugs.add(s));
+      });
+    }
+  } catch (e) {
+    console.warn('Could not read packages directory:', e.message);
+  }
+
+  // Fallback/Addition: try reading from packages.ts directly (in case some are defined inline)
   const packagesFile = path.join(projectRoot, 'src', 'data', 'packages.ts');
-  const packageSlugs = extractSlugsFromFile(packagesFile);
-  packageSlugs.forEach((slug) => {
+  extractSlugsFromFile(packagesFile).forEach(s => packageSlugs.add(s));
+
+  Array.from(packageSlugs).forEach((slug) => {
     urls.push(urlEntry(`/packages/${slug}`, { changefreq: 'weekly', priority: 0.8 }));
   });
 

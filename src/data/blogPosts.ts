@@ -158,8 +158,8 @@ The water clarity in Andaman is remarkable – visibility up to 30 meters in som
 
 ### **Day 6: Adventure Day**
 - Scuba diving at Havelock (₹4,500)
-- Kayaking through mangroves (₹1,200)
-- Beach relaxation
+- Kayaking through mangroves (₹1,200) - *Check out our [Nightlife Guide](/blog/andaman-nightlife-guide) for night kayaking tips!*
+- Beach relaxation at [Instagram-worthy spots](/blog/andaman-instagram-spots)
 - Sunset cruise (₹2,500)
 
 ### **Day 7: Departure**

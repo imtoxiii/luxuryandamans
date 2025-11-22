@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   MapPin, Calendar, Compass, Activity, Clock, Ticket, Camera, Star,
   ArrowLeft, Info, AlertTriangle, CheckCircle, DollarSign, Navigation,
   Phone, Shield, FileText, Users, Car, Plane, Sun, Cloud,
   ThermometerSun, Waves, Wind, Coffee, ShoppingBag, Heart,
-  Award, ChevronRight, MessageCircle, Share2, ExternalLink
+  Award, ChevronRight, MessageCircle, Share2, ExternalLink, ArrowRight
 } from 'lucide-react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -31,6 +31,14 @@ interface DestinationDetailProps {
 const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destination }) => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [galleryStartIndex, setGalleryStartIndex] = useState(0);
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   
   const metaTags = generateDestinationMetaTags(destination);
   const structuredData = generateDestinationStructuredData(destination);
@@ -81,7 +89,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
   ];
 
   return (
-    <div className="min-h-screen bg-pearl">
+    <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900" ref={containerRef}>
       {/* Scroll Progress Indicator */}
       <ScrollProgress color="#0EA5E9" height={3} />
       
@@ -114,122 +122,124 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
       
       <Header />
       
-      {/* Breadcrumb Navigation */}
-      <div className="bg-white border-b border-gray-100">
-        <div className="container mx-auto px-4 sm:px-6 py-3">
-          <Breadcrumb items={breadcrumbItems} />
-        </div>
-      </div>
-      
       {/* Hero Section with Enhanced Visual */}
-      <div className="relative h-[60vh] sm:h-[70vh] lg:h-[80vh] overflow-hidden">
-        <img 
-          src={destination.image}
-          alt={`${destination.name} - ${destination.description}`}
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-night/70 via-night/40 to-night/70" />
+      <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+        <motion.div 
+          style={{ y, opacity }}
+          className="absolute inset-0 z-0"
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/60 z-10" />
+          <img 
+            src={destination.image}
+            alt={`${destination.name} - ${destination.description}`}
+            className="w-full h-full object-cover scale-110"
+            loading="eager"
+          />
+        </motion.div>
         
         {/* Hero Content */}
-        <div className="absolute inset-0 flex items-center">
-          <div className="container mx-auto px-4 sm:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="max-w-4xl"
-            >
-              <div className="flex items-center mb-4 sm:mb-6">
-                <Link 
-                  to="/destinations"
-                  className="inline-flex items-center text-pearl/80 hover:text-pearl transition-colors text-sm sm:text-base mr-4"
-                >
-                  <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  Back
-                </Link>
-                <span className="glass-sunset-badge px-3 py-1.5 text-sm">
-                  {destination.category.replace('-', ' ').toUpperCase()}
-                </span>
-              </div>
+        <div className="container mx-auto px-4 sm:px-6 relative z-20 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="max-w-5xl mx-auto"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white mb-6 shadow-lg">
+              <MapPin className="w-4 h-4 text-cyan-300" />
+              <span className="text-sm font-bold tracking-widest uppercase">{destination.region.toUpperCase()} ANDAMAN</span>
+            </div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-pearl mb-4 sm:mb-6 leading-tight">
-                {destination.name}
-              </h1>
-              
-              <p className="text-xl sm:text-2xl text-pearl/95 mb-6 sm:mb-8 leading-relaxed font-light">
-                {destination.description}
-              </p>
-              
-              {/* Quick Stats */}
-              <div className="flex flex-wrap gap-4 sm:gap-6 text-pearl/90 mb-8">
-                <div className="flex items-center">
-                  <MapPin className="w-5 h-5 sm:w-6 sm:h-6 mr-2 flex-shrink-0" />
-                  <span className="text-sm sm:text-base">{destination.region.toUpperCase()} Andaman</span>
-                </div>
-                <div className="flex items-center">
-                  <Calendar className="w-5 h-5 sm:w-6 sm:h-6 mr-2 flex-shrink-0" />
-                  <span className="text-sm sm:text-base">Best: {destination.bestTimeToVisit.split(',')[0]}</span>
-                </div>
-                {destination.ticketInfo?.entryFee !== undefined && (
-                  <div className="flex items-center">
-                    <Ticket className="w-5 h-5 sm:w-6 sm:h-6 mr-2 flex-shrink-0" />
-                    <span className="text-sm sm:text-base">
-                      {destination.ticketInfo.entryFee === 0 ? 'Free Entry' : `₹${destination.ticketInfo.entryFee}`}
-                    </span>
-                  </div>
-                )}
-                {destination.activities && (
-                  <div className="flex items-center">
-                    <Activity className="w-5 h-5 sm:w-6 sm:h-6 mr-2 flex-shrink-0" />
-                    <span className="text-sm sm:text-base">{destination.activities.length}+ Activities</span>
-                  </div>
-                )}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight leading-tight drop-shadow-2xl font-display">
+              {destination.name}
+            </h1>
+            
+            <p className="text-lg md:text-2xl text-gray-100 max-w-3xl mx-auto leading-relaxed font-light mb-10 drop-shadow-md">
+              {destination.description}
+            </p>
+            
+            {/* Quick Stats */}
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-white/90 mb-10">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10">
+                <Calendar className="w-5 h-5 text-cyan-300" />
+                <span className="text-sm font-medium">Best: {destination.bestTimeToVisit.split(',')[0]}</span>
               </div>
+              {destination.ticketInfo?.entryFee !== undefined && (
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10">
+                  <Ticket className="w-5 h-5 text-cyan-300" />
+                  <span className="text-sm font-medium">
+                    {destination.ticketInfo.entryFee === 0 ? 'Free Entry' : `₹${destination.ticketInfo.entryFee} Entry`}
+                  </span>
+                </div>
+              )}
+              {destination.activities && (
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10">
+                  <Activity className="w-5 h-5 text-cyan-300" />
+                  <span className="text-sm font-medium">{destination.activities.length}+ Activities</span>
+                </div>
+              )}
+            </div>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Link
-                  to="/enquiry"
-                  onClick={() => {
-                    try {
-                      const details = {
-                        packageName: destination.name,
-                        days: undefined,
-                        people: 2,
-                        totalPrice: undefined,
-                        selectedActivities: destination.activities || [],
-                        supplements: [],
-                        source: 'destination',
-                        slug: destination.slug,
-                      };
-                      localStorage.setItem('enquiryDetails', JSON.stringify(details));
-                    } catch (_) { /* no-op */ }
-                  }}
-                  className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105 text-base sm:text-lg font-semibold shadow-lg"
-                >
-                  <Phone className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                  Book Your Visit
-                </Link>
-                <button
-                  onClick={() => {
-                    const shareData = {
-                      title: destination.name,
-                      text: destination.description,
-                      url: window.location.href,
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link
+                to="/enquiry"
+                onClick={() => {
+                  try {
+                    const details = {
+                      packageName: destination.name,
+                      days: undefined,
+                      people: 2,
+                      totalPrice: undefined,
+                      selectedActivities: destination.activities || [],
+                      supplements: [],
+                      source: 'destination',
+                      slug: destination.slug,
                     };
-                    if (navigator.share) {
-                      navigator.share(shareData);
-                    }
-                  }}
-                  className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 glass-sunset-button text-pearl rounded-lg hover:bg-opacity-90 transition-all text-base sm:text-lg font-semibold"
-                >
-                  <Share2 className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
-                  Share
-                </button>
-              </div>
-            </motion.div>
-          </div>
+                    localStorage.setItem('enquiryDetails', JSON.stringify(details));
+                  } catch (_) { /* no-op */ }
+                }}
+                className="px-8 py-4 bg-white text-blue-900 rounded-full font-bold text-lg hover:bg-blue-50 transition-all duration-300 shadow-[0_0_40px_-10px_rgba(255,255,255,0.5)] hover:shadow-[0_0_60px_-15px_rgba(255,255,255,0.7)] hover:-translate-y-1 flex items-center justify-center gap-2 min-w-[200px]"
+              >
+                <span>Book Visit</span>
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <button
+                onClick={() => {
+                  const shareData = {
+                    title: destination.name,
+                    text: destination.description,
+                    url: window.location.href,
+                  };
+                  if (navigator.share) {
+                    navigator.share(shareData);
+                  }
+                }}
+                className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white/10 transition-all duration-300 backdrop-blur-sm flex items-center justify-center gap-2 min-w-[200px]"
+              >
+                <span>Share</span>
+                <Share2 className="w-5 h-5" />
+              </button>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/80"
+        >
+          <span className="text-xs uppercase tracking-widest">Scroll to Explore</span>
+          <div className="w-px h-12 bg-gradient-to-b from-white to-transparent" />
+        </motion.div>
+      </section>
+
+      {/* Breadcrumb Navigation */}
+      <div className="bg-gray-50 border-b border-gray-200">
+        <div className="container mx-auto px-4 sm:px-6 py-4">
+          <Breadcrumb items={breadcrumbItems} />
         </div>
       </div>
 
@@ -239,25 +249,30 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="py-8 sm:py-12 bg-white shadow-md relative z-10"
+          className="py-12 bg-white relative z-10"
         >
           <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-6xl mx-auto">
-              <div className="flex items-center mb-6 sm:mb-8">
-                <Info className="w-7 h-7 sm:w-8 sm:h-8 text-azure mr-3 flex-shrink-0" />
-                <h2 className="text-2xl sm:text-3xl font-bold text-night">Essential Information</h2>
+            <div className="max-w-7xl mx-auto">
+              <div className="flex items-center mb-8">
+                <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center mr-4">
+                  <Info className="w-6 h-6 text-blue-600" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900 font-display">Essential Information</h2>
+                  <p className="text-gray-500">Quick facts about {destination.name}</p>
+                </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {Object.entries(destination.quickInfo).map(([key, value], index) => (
                   <motion.div 
                     key={index}
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="bg-pearl p-5 sm:p-6 rounded-xl hover:shadow-lg transition-shadow border border-gray-100"
+                    className="bg-gray-50 p-6 rounded-2xl hover:shadow-lg transition-all duration-300 border border-gray-100 group"
                   >
-                    <h3 className="font-semibold text-night mb-2 text-base sm:text-lg">{key}</h3>
-                    <p className="text-night/70 text-sm sm:text-base leading-relaxed">{value}</p>
+                    <h3 className="font-semibold text-gray-900 mb-2 text-lg group-hover:text-blue-600 transition-colors">{key}</h3>
+                    <p className="text-gray-600 leading-relaxed">{value}</p>
                   </motion.div>
                 ))}
               </div>
@@ -276,48 +291,47 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
         initial="initial"
         whileInView="animate"
         viewport={{ once: true, amount: 0.2 }}
-        className="py-12 sm:py-16 lg:py-20 relative"
+        className="py-16 lg:py-24 relative bg-white"
       >
-        
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto">
-            <motion.div variants={fadeInUp} className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
+          <div className="max-w-7xl mx-auto">
+            <motion.div variants={fadeInUp} className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
               {/* Main Content */}
               <div className="lg:col-span-2 order-2 lg:order-1">
-                <div className="prose prose-lg max-w-none">
-                  <h2 className="text-3xl sm:text-4xl font-bold text-night mb-6">
+                <div className="prose prose-lg max-w-none prose-headings:font-display prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-600 prose-a:text-blue-600 hover:prose-a:text-blue-700">
+                  <h2 className="text-4xl mb-8">
                     Discover {destination.name}
                   </h2>
                   
-                  <div className="text-night/70 space-y-4 leading-relaxed">
+                  <div className="text-gray-600 space-y-6 leading-relaxed text-lg">
                     {destination.longDescription.split('\n\n').map((paragraph, index) => (
-                      <p key={index} className="text-base sm:text-lg">{paragraph.trim()}</p>
+                      <p key={index}>{paragraph.trim()}</p>
                     ))}
                   </div>
 
                   {/* Historical Information */}
                   {destination.historicalInfo && (
-                    <div className="mt-8 bg-sunset/5 border-l-4 border-sunset p-6 rounded-r-xl">
-                      <div className="flex items-center mb-3">
-                        <FileText className="w-6 h-6 text-sunset mr-2" />
-                        <h3 className="text-xl font-bold text-night">Historical Significance</h3>
+                    <div className="mt-10 bg-orange-50 border-l-4 border-orange-400 p-8 rounded-r-2xl">
+                      <div className="flex items-center mb-4">
+                        <FileText className="w-6 h-6 text-orange-500 mr-3" />
+                        <h3 className="text-xl font-bold text-gray-900 m-0">Historical Significance</h3>
                       </div>
-                      <p className="text-night/70 leading-relaxed">{destination.historicalInfo}</p>
+                      <p className="text-gray-700 leading-relaxed m-0">{destination.historicalInfo}</p>
                     </div>
                   )}
 
                   {/* Best For Section */}
                   {destination.bestFor && destination.bestFor.length > 0 && (
-                    <div className="mt-8">
-                      <h3 className="text-2xl font-bold text-night mb-4 flex items-center">
-                        <Heart className="w-6 h-6 text-azure mr-2" />
+                    <div className="mt-10">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <Heart className="w-6 h-6 text-pink-500 mr-3" />
                         Perfect For
                       </h3>
                       <div className="flex flex-wrap gap-3">
                         {destination.bestFor.map((item, index) => (
                           <span 
                             key={index}
-                            className="px-4 py-2 bg-azure/10 text-azure rounded-full text-sm font-medium capitalize"
+                            className="px-5 py-2 bg-pink-50 text-pink-600 rounded-full text-sm font-semibold capitalize border border-pink-100"
                           >
                             {item}
                           </span>
@@ -329,58 +343,57 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
 
                 {/* Travel Information Card */}
                 {destination.travelInfo && (
-                  <div id="travel-info" className="mt-10 bg-white rounded-2xl p-6 sm:p-8 shadow-lg">
-                    <h3 className="text-2xl font-bold text-night mb-6 flex items-center">
-                      <Navigation className="w-6 h-6 text-azure mr-3" />
+                  <div id="travel-info" className="mt-12 bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center font-display">
+                      <Navigation className="w-7 h-7 text-blue-600 mr-3" />
                       How to Reach {destination.name}
                     </h3>
                     
-                    <div className="space-y-6">
-                      <div className="flex items-start space-x-4">
-                        <Plane className="w-6 h-6 text-azure mt-1 flex-shrink-0" />
+                    <div className="space-y-8">
+                      <div className="flex items-start space-x-5">
+                        <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
+                          <Plane className="w-5 h-5 text-blue-600" />
+                        </div>
                         <div className="flex-1">
-                          <h4 className="font-semibold text-night mb-2">Getting There</h4>
-                          <p className="text-night/70 mb-3 leading-relaxed">{destination.howToReach}</p>
-                          <div className="space-y-2">
-                            <p className="text-sm text-night/60">
-                              <strong>Nearest Airport:</strong> {destination.travelInfo.nearestAirport}
-                            </p>
+                          <h4 className="font-bold text-gray-900 mb-2 text-lg">Getting There</h4>
+                          <p className="text-gray-600 mb-4 leading-relaxed">{destination.howToReach}</p>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="bg-gray-50 p-4 rounded-xl">
+                              <p className="text-sm text-gray-500 mb-1">Nearest Airport</p>
+                              <p className="font-semibold text-gray-900">{destination.travelInfo.nearestAirport}</p>
+                            </div>
                             {destination.travelInfo.distanceFromAirport && (
-                              <p className="text-sm text-night/60">
-                                <strong>Distance:</strong> {destination.travelInfo.distanceFromAirport}
-                              </p>
-                            )}
-                            {destination.travelInfo.distanceFromJetty && (
-                              <p className="text-sm text-night/60">
-                                <strong>From Jetty:</strong> {destination.travelInfo.distanceFromJetty}
-                              </p>
+                              <div className="bg-gray-50 p-4 rounded-xl">
+                                <p className="text-sm text-gray-500 mb-1">Distance</p>
+                                <p className="font-semibold text-gray-900">{destination.travelInfo.distanceFromAirport}</p>
+                              </div>
                             )}
                           </div>
                         </div>
                       </div>
 
-                      <div className="border-t pt-4">
-                        <h4 className="font-semibold text-night mb-3 flex items-center">
-                          <Car className="w-5 h-5 text-azure mr-2" />
+                      <div className="border-t border-gray-100 pt-8">
+                        <h4 className="font-bold text-gray-900 mb-4 flex items-center text-lg">
+                          <Car className="w-5 h-5 text-blue-600 mr-3" />
                           Transport Options
                         </h4>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {destination.travelInfo.transportOptions.map((option, index) => (
-                            <div key={index} className="flex items-center text-night/70 text-sm">
-                              <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
-                              {option}
+                            <div key={index} className="flex items-center text-gray-600 bg-gray-50 px-4 py-3 rounded-xl">
+                              <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                              <span className="font-medium">{option}</span>
                             </div>
                           ))}
                         </div>
                       </div>
 
                       {destination.practicalInfo?.permits && (
-                        <div className="bg-sunset/5 border-l-4 border-sunset p-4 rounded-r-lg">
-                          <h4 className="font-semibold text-night mb-2 flex items-center">
-                            <AlertTriangle className="w-5 h-5 text-sunset mr-2" />
+                        <div className="bg-yellow-50 border border-yellow-100 p-6 rounded-2xl">
+                          <h4 className="font-bold text-gray-900 mb-2 flex items-center">
+                            <AlertTriangle className="w-5 h-5 text-yellow-600 mr-2" />
                             Permits & Requirements
                           </h4>
-                          <p className="text-night/70 text-sm leading-relaxed">
+                          <p className="text-gray-700 text-sm leading-relaxed">
                             {destination.practicalInfo.permits}
                           </p>
                         </div>
@@ -391,23 +404,26 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
               </div>
 
               {/* Sidebar */}
-              <div className="lg:col-span-1 order-1 lg:order-2">
-                {/* Gallery */}
+              <div className="lg:col-span-1 order-1 lg:order-2 space-y-8">
+                {/* Gallery Widget */}
                 {destination.gallery && destination.gallery.length > 0 && (
-                  <div className="mb-8 sticky top-4">
-                    <h3 className="text-xl font-bold text-night mb-4 flex items-center">
-                      <Camera className="w-5 h-5 text-azure mr-2" />
-                      Photo Gallery
-                    </h3>
+                  <div className="bg-white p-6 rounded-3xl shadow-lg border border-gray-100">
+                    <div className="flex items-center justify-between mb-6">
+                      <h3 className="text-xl font-bold text-gray-900 flex items-center">
+                        <Camera className="w-5 h-5 text-blue-600 mr-2" />
+                        Gallery
+                      </h3>
+                      <span className="text-sm text-gray-500 font-medium">{destination.gallery.length} Photos</span>
+                    </div>
                     <div className="grid grid-cols-2 gap-3">
-                      {destination.gallery.slice(0, 6).map((image, index) => (
+                      {destination.gallery.slice(0, 4).map((image, index) => (
                         <button
                           key={index}
                           onClick={() => {
                             setGalleryStartIndex(index);
                             setIsGalleryOpen(true);
                           }}
-                          className="relative rounded-lg overflow-hidden group aspect-square cursor-pointer"
+                          className="relative rounded-xl overflow-hidden group aspect-square cursor-pointer"
                         >
                           <img 
                             src={image.url} 
@@ -415,42 +431,37 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                             loading="lazy"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-night/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <Camera className="w-8 h-8 text-white mb-8" />
-                            <div className="absolute bottom-2 left-2 right-2 text-pearl text-xs leading-tight">
-                              {image.caption}
-                            </div>
-                          </div>
+                          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />
                         </button>
                       ))}
                     </div>
-                    {destination.gallery.length > 6 && (
-                      <button
-                        onClick={() => {
-                          setGalleryStartIndex(0);
-                          setIsGalleryOpen(true);
-                        }}
-                        className="mt-4 w-full py-2 text-azure hover:text-sunset transition-colors text-sm font-medium flex items-center justify-center gap-2"
-                      >
-                        View all {destination.gallery.length} photos
-                        <ChevronRight className="w-4 h-4" />
-                      </button>
-                    )}
+                    <button
+                      onClick={() => {
+                        setGalleryStartIndex(0);
+                        setIsGalleryOpen(true);
+                      }}
+                      className="mt-4 w-full py-3 bg-gray-50 hover:bg-gray-100 text-gray-900 rounded-xl transition-colors text-sm font-bold flex items-center justify-center gap-2"
+                    >
+                      View All Photos
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
                   </div>
                 )}
 
                 {/* Facilities Card */}
                 {destination.facilities && destination.facilities.length > 0 && (
-                  <div className="bg-white p-6 rounded-xl shadow-md mb-6">
-                    <div className="flex items-center mb-4">
-                      <CheckCircle className="w-6 h-6 text-azure mr-2" />
-                      <h3 className="text-lg font-bold text-night">Facilities</h3>
+                  <div className="bg-white p-6 rounded-3xl shadow-lg border border-gray-100">
+                    <div className="flex items-center mb-6">
+                      <div className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center mr-3">
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                      </div>
+                      <h3 className="text-lg font-bold text-gray-900">Facilities</h3>
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       {destination.facilities.map((facility, index) => (
-                        <div key={index} className="flex items-center text-night/70 text-sm">
-                          <span className="w-2 h-2 glass-sunset-dot mr-3 flex-shrink-0" />
-                          {facility}
+                        <div key={index} className="flex items-center text-gray-600">
+                          <div className="w-1.5 h-1.5 rounded-full bg-green-500 mr-3 flex-shrink-0" />
+                          <span className="font-medium">{facility}</span>
                         </div>
                       ))}
                     </div>
@@ -459,31 +470,31 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
 
                 {/* Timing Card */}
                 {destination.timings && (
-                  <div className="bg-azure/5 border border-azure/20 p-6 rounded-xl mb-6">
-                    <div className="flex items-center mb-4">
-                      <Clock className="w-6 h-6 text-azure mr-2" />
-                      <h3 className="text-lg font-bold text-night">Operating Hours</h3>
+                  <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-3xl border border-blue-100">
+                    <div className="flex items-center mb-6">
+                      <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center mr-3 shadow-sm">
+                        <Clock className="w-5 h-5 text-blue-600" />
+                      </div>
+                      <h3 className="text-lg font-bold text-gray-900">Operating Hours</h3>
                     </div>
-                    <div className="space-y-2 text-sm">
+                    <div className="space-y-3 text-sm">
                       {destination.timings.openTime && (
-                        <p className="text-night/70">
-                          <strong>Open:</strong> {destination.timings.openTime} - {destination.timings.closeTime}
-                        </p>
+                        <div className="flex justify-between items-center bg-white/60 p-3 rounded-xl">
+                          <span className="text-gray-600">Open</span>
+                          <span className="font-bold text-gray-900">{destination.timings.openTime} - {destination.timings.closeTime}</span>
+                        </div>
                       )}
                       {destination.timings.lunchBreak && (
-                        <p className="text-night/70">
-                          <strong>Lunch Break:</strong> {destination.timings.lunchBreak}
-                        </p>
+                        <div className="flex justify-between items-center bg-white/60 p-3 rounded-xl">
+                          <span className="text-gray-600">Lunch</span>
+                          <span className="font-bold text-gray-900">{destination.timings.lunchBreak}</span>
+                        </div>
                       )}
                       {destination.timings.closedDays && (
-                        <p className="text-night/70">
-                          <strong>Closed:</strong> {destination.timings.closedDays}
-                        </p>
-                      )}
-                      {destination.timings.specialTimings && (
-                        <p className="text-night/70">
-                          <strong>Special:</strong> {destination.timings.specialTimings}
-                        </p>
+                        <div className="flex justify-between items-center bg-white/60 p-3 rounded-xl">
+                          <span className="text-gray-600">Closed</span>
+                          <span className="font-bold text-red-500">{destination.timings.closedDays}</span>
+                        </div>
                       )}
                     </div>
                   </div>
@@ -491,30 +502,32 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
 
                 {/* Pricing Card */}
                 {destination.ticketInfo && (
-                  <div className="bg-white p-6 rounded-xl shadow-md">
-                    <div className="flex items-center mb-4">
-                      <Ticket className="w-6 h-6 text-azure mr-2" />
-                      <h3 className="text-lg font-bold text-night">Entry Fees</h3>
+                  <div className="bg-white p-6 rounded-3xl shadow-lg border border-gray-100">
+                    <div className="flex items-center mb-6">
+                      <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center mr-3">
+                        <Ticket className="w-5 h-5 text-purple-600" />
+                      </div>
+                      <h3 className="text-lg font-bold text-gray-900">Entry Fees</h3>
                     </div>
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       {destination.ticketInfo.entryFee !== undefined && (
-                        <div className="flex justify-between items-center">
-                          <span className="text-night/70 text-sm">Entry Fee:</span>
-                          <span className="font-semibold text-night">
+                        <div className="flex justify-between items-center border-b border-gray-50 pb-3">
+                          <span className="text-gray-600">Entry Fee</span>
+                          <span className="font-bold text-gray-900 text-lg">
                             {destination.ticketInfo.entryFee === 0 ? 'Free' : `₹${destination.ticketInfo.entryFee}`}
                           </span>
                         </div>
                       )}
                       {destination.ticketInfo.showTicket && (
-                        <div className="flex justify-between items-center">
-                          <span className="text-night/70 text-sm">Show Ticket:</span>
-                          <span className="font-semibold text-night">₹{destination.ticketInfo.showTicket}</span>
+                        <div className="flex justify-between items-center border-b border-gray-50 pb-3">
+                          <span className="text-gray-600">Show Ticket</span>
+                          <span className="font-bold text-gray-900 text-lg">₹{destination.ticketInfo.showTicket}</span>
                         </div>
                       )}
                       {destination.ticketInfo.childrenFee !== undefined && (
                         <div className="flex justify-between items-center">
-                          <span className="text-night/70 text-sm">Children:</span>
-                          <span className="font-semibold text-night">₹{destination.ticketInfo.childrenFee}</span>
+                          <span className="text-gray-600">Children</span>
+                          <span className="font-bold text-gray-900 text-lg">₹{destination.ticketInfo.childrenFee}</span>
                         </div>
                       )}
                     </div>
@@ -532,43 +545,44 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="py-12 sm:py-16 lg:py-20 bg-white"
+        className="py-16 lg:py-24 bg-gray-50"
       >
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-10 sm:mb-14">
-              <h2 className="text-3xl sm:text-4xl font-bold text-night mb-4">
-                What Makes {destination.name} Special
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12 lg:mb-16">
+              <span className="text-blue-600 font-bold tracking-wider uppercase text-sm mb-3 block">Don't Miss Out</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-display">
+                Key Highlights
               </h2>
-              <p className="text-night/70 text-lg max-w-2xl mx-auto">
-                Discover the unique features that make this destination unforgettable
+              <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+                Discover the unique features that make {destination.name} unforgettable
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {destination.highlights.map((highlight, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.15 }}
-                  className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                  className="group relative overflow-hidden rounded-[2rem] shadow-xl hover:shadow-2xl transition-all duration-500 h-[400px]"
                 >
-                  <div className="aspect-w-16 aspect-h-10">
-                    <img
-                      src={highlight.image}
-                      alt={highlight.title}
-                      className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-night/90 via-night/40 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                  <img
+                    src={highlight.image}
+                    alt={highlight.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     <div className="flex items-center mb-3">
-                      <Award className="w-6 h-6 text-sunset mr-2" />
-                      <h3 className="text-2xl font-bold text-pearl">{highlight.title}</h3>
+                      <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mr-3">
+                        <Award className="w-5 h-5 text-yellow-400" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-white">{highlight.title}</h3>
                     </div>
-                    <p className="text-pearl/90 leading-relaxed text-base">
+                    <p className="text-gray-200 leading-relaxed text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                       {highlight.description}
                     </p>
                   </div>
@@ -586,79 +600,80 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="py-12 sm:py-16 lg:py-20 bg-pearl"
+          className="py-16 lg:py-24 bg-white"
         >
           <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-10 sm:mb-14">
-                <div className="flex items-center justify-center mb-4">
-                  <Activity className="w-8 h-8 text-azure mr-3" />
-                  <h2 className="text-3xl sm:text-4xl font-bold text-night">
-                    Things to Do
-                  </h2>
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-12 lg:mb-16">
+                <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-blue-50 text-blue-600 text-sm font-bold mb-4">
+                  <Activity className="w-4 h-4 mr-2" />
+                  ADVENTURE AWAITS
                 </div>
-                <p className="text-night/70 text-lg max-w-2xl mx-auto">
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-display">
+                  Things to Do
+                </h2>
+                <p className="text-gray-500 text-lg max-w-2xl mx-auto">
                   Experience the best activities and adventures at {destination.name}
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {destination.detailedActivities.map((activity, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="bg-white p-6 sm:p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+                    className="bg-white p-8 rounded-[2rem] shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group"
                   >
-                    <div className="flex items-start justify-between mb-4 gap-4">
+                    <div className="flex items-start justify-between mb-6 gap-4">
                       <div className="flex-1">
-                        <h3 className="text-xl sm:text-2xl font-bold text-night mb-2">
+                        <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
                           {activity.name}
                         </h3>
                         {activity.price && (
-                          <div className="inline-flex items-center bg-azure/10 text-azure px-3 py-1 rounded-full text-sm font-semibold">
+                          <div className="inline-flex items-center bg-green-50 text-green-700 px-4 py-1.5 rounded-full text-sm font-bold">
                             <DollarSign className="w-4 h-4 mr-1" />
                             ₹{activity.price}
                           </div>
                         )}
                       </div>
                       <div className="flex-shrink-0">
-                        <div className="w-12 h-12 bg-azure/10 rounded-full flex items-center justify-center">
-                          <Activity className="w-6 h-6 text-azure" />
+                        <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-300">
+                          <Activity className="w-7 h-7 text-blue-600 group-hover:text-white transition-colors duration-300" />
                         </div>
                       </div>
                     </div>
                     
-                    <p className="text-night/70 mb-5 leading-relaxed text-base">
+                    <p className="text-gray-600 mb-6 leading-relaxed text-lg">
                       {activity.description}
                     </p>
                     
-                    <div className="space-y-3 mb-5">
+                    <div className="flex flex-wrap gap-4 mb-6">
                       {activity.duration && (
-                        <div className="flex items-center text-night/60 text-sm">
-                          <Clock className="w-4 h-4 mr-3 text-azure flex-shrink-0" />
-                          <span><strong>Duration:</strong> {activity.duration}</span>
+                        <div className="flex items-center text-gray-500 text-sm bg-gray-50 px-3 py-1.5 rounded-lg">
+                          <Clock className="w-4 h-4 mr-2 text-blue-600" />
+                          <span>{activity.duration}</span>
                         </div>
                       )}
                       
                       {activity.timings && (
-                        <div className="flex items-center text-night/60 text-sm">
-                          <Calendar className="w-4 h-4 mr-3 text-azure flex-shrink-0" />
-                          <span><strong>Timings:</strong> {activity.timings}</span>
+                        <div className="flex items-center text-gray-500 text-sm bg-gray-50 px-3 py-1.5 rounded-lg">
+                          <Calendar className="w-4 h-4 mr-2 text-blue-600" />
+                          <span>{activity.timings}</span>
                         </div>
                       )}
                     </div>
 
                     {activity.highlights && activity.highlights.length > 0 && (
-                      <div className="border-t border-gray-100 pt-4">
-                        <h4 className="font-semibold text-night mb-3 text-sm uppercase tracking-wide">
+                      <div className="border-t border-gray-100 pt-6">
+                        <h4 className="font-bold text-gray-900 mb-4 text-sm uppercase tracking-wide">
                           Highlights
                         </h4>
-                        <div className="grid grid-cols-1 gap-2">
+                        <div className="grid grid-cols-1 gap-3">
                           {activity.highlights.map((highlight, i) => (
-                            <div key={i} className="flex items-start text-night/70 text-sm">
-                              <Star className="w-4 h-4 mr-2 text-sunset flex-shrink-0 mt-0.5" />
+                            <div key={i} className="flex items-start text-gray-600">
+                              <Star className="w-4 h-4 mr-3 text-yellow-400 flex-shrink-0 mt-1" />
                               <span className="leading-relaxed">{highlight}</span>
                             </div>
                           ))}
@@ -680,72 +695,93 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="py-12 sm:py-16 lg:py-20 bg-white"
+          className="py-16 lg:py-24 bg-gray-50"
         >
           <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-10 sm:mb-14">
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-12 lg:mb-16">
                 <div className="flex items-center justify-center mb-4">
-                  <Sun className="w-8 h-8 text-azure mr-3" />
-                  <h2 className="text-3xl sm:text-4xl font-bold text-night">
-                    Weather & Best Time to Visit
-                  </h2>
+                  <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
+                    <Sun className="w-6 h-6 text-orange-500" />
+                  </div>
                 </div>
-                <p className="text-night/70 text-lg max-w-2xl mx-auto">
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-display">
+                  Weather & Best Time
+                </h2>
+                <p className="text-gray-500 text-lg max-w-2xl mx-auto">
                   Plan your trip with detailed seasonal information
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {destination.weatherInfo.map((weather, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.15 }}
-                    className="bg-gradient-to-br from-azure/5 to-sunset/5 p-6 rounded-2xl border border-azure/10"
+                    className="bg-white p-8 rounded-[2rem] shadow-lg border border-gray-100 relative overflow-hidden"
                   >
-                    <div className="flex items-center mb-4">
-                      {index === 0 && <ThermometerSun className="w-8 h-8 text-sunset mr-3" />}
-                      {index === 1 && <Sun className="w-8 h-8 text-azure mr-3" />}
-                      {index === 2 && <Cloud className="w-8 h-8 text-gray-500 mr-3" />}
-                      <h3 className="text-xl font-bold text-night">{weather.season}</h3>
+                    <div className="absolute top-0 right-0 p-4 opacity-10">
+                      {index === 0 && <ThermometerSun className="w-24 h-24 text-orange-500" />}
+                      {index === 1 && <Sun className="w-24 h-24 text-blue-500" />}
+                      {index === 2 && <Cloud className="w-24 h-24 text-gray-500" />}
                     </div>
-                    
-                    <div className="space-y-3 text-sm">
-                      <div className="flex items-center text-night/70">
-                        <ThermometerSun className="w-4 h-4 mr-2 text-azure" />
-                        <span><strong>Temp:</strong> {weather.temperature}</span>
-                      </div>
-                      <div className="flex items-start text-night/70">
-                        <Wind className="w-4 h-4 mr-2 text-azure flex-shrink-0 mt-0.5" />
-                        <span><strong>Conditions:</strong> {weather.conditions}</span>
-                      </div>
-                      {weather.seaConditions && (
-                        <div className="flex items-start text-night/70">
-                          <Waves className="w-4 h-4 mr-2 text-azure flex-shrink-0 mt-0.5" />
-                          <span><strong>Sea:</strong> {weather.seaConditions}</span>
+
+                    <div className="relative z-10">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-6">{weather.season}</h3>
+                      
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+                          <div className="flex items-center text-gray-600">
+                            <ThermometerSun className="w-5 h-5 mr-3 text-orange-500" />
+                            <span>Temperature</span>
+                          </div>
+                          <span className="font-bold text-gray-900">{weather.temperature}</span>
                         </div>
-                      )}
-                      {weather.visibility && (
-                        <div className="flex items-center text-night/70">
-                          <Camera className="w-4 h-4 mr-2 text-azure" />
-                          <span><strong>Visibility:</strong> {weather.visibility}</span>
+                        
+                        <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+                          <div className="flex items-center text-gray-600">
+                            <Wind className="w-5 h-5 mr-3 text-blue-500" />
+                            <span>Conditions</span>
+                          </div>
+                          <span className="font-medium text-gray-900 text-right">{weather.conditions}</span>
                         </div>
-                      )}
+
+                        {weather.seaConditions && (
+                          <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+                            <div className="flex items-center text-gray-600">
+                              <Waves className="w-5 h-5 mr-3 text-cyan-500" />
+                              <span>Sea State</span>
+                            </div>
+                            <span className="font-medium text-gray-900 text-right">{weather.seaConditions}</span>
+                          </div>
+                        )}
+                        
+                        {weather.visibility && (
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center text-gray-600">
+                              <Camera className="w-5 h-5 mr-3 text-purple-500" />
+                              <span>Visibility</span>
+                            </div>
+                            <span className="font-medium text-gray-900">{weather.visibility}</span>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </motion.div>
                 ))}
               </div>
 
-              <div className="mt-8 bg-azure/5 border-l-4 border-azure p-6 rounded-r-xl">
-                <h4 className="font-bold text-night mb-2 flex items-center">
-                  <Calendar className="w-5 h-5 text-azure mr-2" />
-                  Recommended Visit Time
-                </h4>
-                <p className="text-night/70 leading-relaxed">
-                  {destination.bestTimeToVisit}
-                </p>
+              <div className="mt-12 bg-blue-600 rounded-3xl p-8 md:p-12 text-white text-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600" />
+                <div className="relative z-10 max-w-3xl mx-auto">
+                  <Calendar className="w-12 h-12 mx-auto mb-6 text-blue-200" />
+                  <h3 className="text-2xl md:text-3xl font-bold mb-4">Recommended Visit Time</h3>
+                  <p className="text-xl text-blue-100 leading-relaxed">
+                    {destination.bestTimeToVisit}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -759,40 +795,47 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="py-12 sm:py-16 lg:py-20 bg-pearl"
+          className="py-16 lg:py-24 bg-white"
         >
           <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-10">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-12">
                 <div className="flex items-center justify-center mb-4">
-                  <DollarSign className="w-8 h-8 text-azure mr-3" />
-                  <h2 className="text-3xl sm:text-4xl font-bold text-night">
-                    Budget & Costs
-                  </h2>
+                  <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                    <DollarSign className="w-6 h-6 text-green-600" />
+                  </div>
                 </div>
-                <p className="text-night/70 text-lg">
-                  Plan your expenses with our detailed cost breakdown
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-display">
+                  Budget Planner
+                </h2>
+                <p className="text-gray-500 text-lg">
+                  Estimated costs to help you plan your trip
                 </p>
               </div>
 
-              <div className="bg-white rounded-2xl p-8 shadow-lg">
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-night mb-2">
-                    Estimated Budget
-                  </h3>
-                  <p className="text-3xl font-bold text-azure">
-                    {destination.budgetInfo.budget}
-                  </p>
+              <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl border border-gray-100">
+                <div className="flex flex-col md:flex-row items-center justify-between mb-10 pb-10 border-b border-gray-100">
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                      Daily Budget Estimate
+                    </h3>
+                    <p className="text-gray-500">Per person per day (approximate)</p>
+                  </div>
+                  <div className="mt-6 md:mt-0 px-8 py-4 bg-green-50 rounded-2xl">
+                    <p className="text-4xl font-bold text-green-600">
+                      {destination.budgetInfo.budget}
+                    </p>
+                  </div>
                 </div>
 
-                <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
                   {destination.budgetInfo.costs.map((cost, index) => (
                     <div 
                       key={index}
-                      className="flex justify-between items-center py-3 border-b border-gray-100 last:border-0"
+                      className="flex justify-between items-center py-4 border-b border-gray-50 last:border-0"
                     >
-                      <span className="text-night/70">{cost.item}</span>
-                      <span className="font-semibold text-night">{cost.price}</span>
+                      <span className="text-gray-600 font-medium">{cost.item}</span>
+                      <span className="font-bold text-gray-900">{cost.price}</span>
                     </div>
                   ))}
                 </div>
@@ -801,371 +844,6 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
           </div>
         </motion.section>
       )}
-
-      {/* Local Cuisine & Shopping */}
-      {(destination.localCuisine || destination.shopping) && (
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="py-12 sm:py-16 lg:py-20 bg-white"
-        >
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-                {/* Local Cuisine */}
-                {destination.localCuisine && destination.localCuisine.length > 0 && (
-                  <div>
-                    <div className="flex items-center mb-6">
-                      <Coffee className="w-7 h-7 text-azure mr-3" />
-                      <h3 className="text-2xl sm:text-3xl font-bold text-night">
-                        Local Cuisine
-                      </h3>
-                    </div>
-                    <div className="space-y-6">
-                      {destination.localCuisine.map((cuisine, index) => (
-                        <div key={index} className="bg-pearl p-6 rounded-xl">
-                          <h4 className="text-lg font-bold text-night mb-2">
-                            {cuisine.specialty}
-                          </h4>
-                          <p className="text-night/70 text-sm mb-3 leading-relaxed">
-                            {cuisine.description}
-                          </p>
-                          <div className="flex justify-between items-center text-sm">
-                            <span className="text-night/60">
-                              <strong>Where:</strong> {cuisine.whereToTry}
-                            </span>
-                            {cuisine.price && (
-                              <span className="font-semibold text-azure">
-                                {cuisine.price}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Shopping */}
-                {destination.shopping && (
-                  <div>
-                    <div className="flex items-center mb-6">
-                      <ShoppingBag className="w-7 h-7 text-azure mr-3" />
-                      <h3 className="text-2xl sm:text-3xl font-bold text-night">
-                        Shopping
-                      </h3>
-                    </div>
-                    <div className="bg-pearl p-6 rounded-xl">
-                      <h4 className="font-bold text-night mb-3">What to Buy</h4>
-                      <div className="grid grid-cols-1 gap-2 mb-6">
-                        {destination.shopping.items.map((item, index) => (
-                          <div key={index} className="flex items-center text-night/70 text-sm">
-                            <CheckCircle className="w-4 h-4 text-azure mr-2 flex-shrink-0" />
-                            {item}
-                          </div>
-                        ))}
-                      </div>
-
-                      {destination.shopping.markets && (
-                        <div className="mb-6">
-                          <h4 className="font-bold text-night mb-3">Where to Shop</h4>
-                          <div className="space-y-2">
-                            {destination.shopping.markets.map((market, index) => (
-                              <div key={index} className="flex items-center text-night/70 text-sm">
-                                <MapPin className="w-4 h-4 text-azure mr-2 flex-shrink-0" />
-                                {market}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {destination.shopping.tips && destination.shopping.tips.length > 0 && (
-                        <div className="border-t border-gray-200 pt-4">
-                          <h4 className="font-bold text-night mb-2 text-sm">Shopping Tips</h4>
-                          <ul className="space-y-1">
-                            {destination.shopping.tips.map((tip, index) => (
-                              <li key={index} className="text-night/60 text-xs leading-relaxed">
-                                • {tip}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </motion.section>
-      )}
-
-      {/* Tips & Safety - Enhanced */}
-      <motion.section
-        id="tips"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="py-12 sm:py-16 lg:py-20 bg-pearl"
-      >
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl sm:text-4xl font-bold text-night mb-4">
-                Essential Tips & Guidelines
-              </h2>
-              <p className="text-night/70 text-lg">
-                Make the most of your visit with these expert recommendations
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Travel Tips */}
-              {destination.tips && destination.tips.length > 0 && (
-                <div className="bg-white p-8 rounded-2xl shadow-md">
-                  <div className="flex items-center mb-6">
-                    <Users className="w-7 h-7 text-azure mr-3" />
-                    <h3 className="text-2xl font-bold text-night">Travel Tips</h3>
-                  </div>
-                  <div className="space-y-4">
-                    {destination.tips.map((tip, index) => (
-                      <div key={index} className="flex items-start space-x-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <p className="text-night/70 leading-relaxed">{tip}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Safety Guidelines */}
-              {destination.safetyTips && destination.safetyTips.length > 0 && (
-                <div className="bg-white p-8 rounded-2xl shadow-md">
-                  <div className="flex items-center mb-6">
-                    <Shield className="w-7 h-7 text-azure mr-3" />
-                    <h3 className="text-2xl font-bold text-night">Safety Guidelines</h3>
-                  </div>
-                  <div className="space-y-4">
-                    {destination.safetyTips.map((tip, index) => (
-                      <div key={index} className="flex items-start space-x-3">
-                        <AlertTriangle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
-                        <p className="text-night/70 leading-relaxed">{tip}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Things to Know */}
-              {destination.thingsToKnow && destination.thingsToKnow.length > 0 && (
-                <div className="bg-azure/5 border border-azure/20 p-8 rounded-2xl lg:col-span-2">
-                  <div className="flex items-center mb-6">
-                    <Info className="w-7 h-7 text-azure mr-3" />
-                    <h3 className="text-2xl font-bold text-night">Important Things to Know</h3>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {destination.thingsToKnow.map((thing, index) => (
-                      <div key={index} className="flex items-start space-x-3">
-                        <span className="w-6 h-6 bg-azure text-pearl rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
-                          {index + 1}
-                        </span>
-                        <p className="text-night/70 leading-relaxed text-sm">{thing}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* FAQs Section with Schema */}
-      <motion.section
-        id="faqs"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="py-12 sm:py-16 lg:py-20 bg-white"
-      >
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-10">
-              <div className="flex items-center justify-center mb-4">
-                <MessageCircle className="w-8 h-8 text-azure mr-3" />
-                <h2 className="text-3xl sm:text-4xl font-bold text-night">
-                  Frequently Asked Questions
-                </h2>
-              </div>
-              <p className="text-night/70 text-lg">
-                Everything you need to know about visiting {destination.name}
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              {faqs.map((faq, index) => (
-                <details
-                  key={index}
-                  className="group bg-pearl p-6 rounded-xl border border-gray-100 hover:border-azure/30 transition-colors"
-                >
-                  <summary className="flex justify-between items-center cursor-pointer list-none">
-                    <h3 className="text-lg font-semibold text-night pr-4">
-                      {faq.question}
-                    </h3>
-                    <span className="text-azure transform group-open:rotate-180 transition-transform">
-                      <ChevronRight className="w-5 h-5" />
-                    </span>
-                  </summary>
-                  <div className="mt-4 text-night/70 leading-relaxed border-t border-gray-100 pt-4">
-                    {faq.answer}
-                  </div>
-                </details>
-              ))}
-            </div>
-
-            <div className="mt-10 bg-azure/5 border-l-4 border-azure p-6 rounded-r-xl">
-              <p className="text-night/70 leading-relaxed">
-                <strong>Have more questions?</strong> Contact our travel experts at{' '}
-                <a href="tel:+91 6297576826" className="text-azure hover:underline">
-                  +91 6297576826
-                </a>{' '}
-                or{' '}
-                <a href="mailto:info@luxuryandamans.com" className="text-azure hover:underline">
-                  info@luxuryandamans.com
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Nearby Attractions */}
-      {destination.nearbyAttractions && destination.nearbyAttractions.length > 0 && (
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="py-12 sm:py-16 lg:py-20 bg-pearl"
-        >
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-10">
-                <div className="flex items-center justify-center mb-4">
-                  <Compass className="w-8 h-8 text-azure mr-3" />
-                  <h2 className="text-3xl sm:text-4xl font-bold text-night">
-                    Nearby Attractions
-                  </h2>
-                </div>
-                <p className="text-night/70 text-lg">
-                  Explore more amazing places near {destination.name}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {destination.nearbyAttractions.map((attraction, index) => (
-                  <Link
-                    key={index}
-                    to={attraction.slug ? `/destinations/${attraction.slug}` : '#'}
-                    className="bg-white p-6 rounded-xl hover:shadow-lg transition-all duration-300 group border border-gray-100"
-                  >
-                    <div className="flex items-start mb-4">
-                      <MapPin className="w-6 h-6 text-azure mr-3 flex-shrink-0 mt-1" />
-                      <div className="flex-1">
-                        <h3 className="text-lg font-bold text-night group-hover:text-azure transition-colors mb-2">
-                          {attraction.name}
-                        </h3>
-                        <p className="text-sm text-night/60 mb-2">
-                          Distance: {attraction.distance}
-                        </p>
-                        {attraction.description && (
-                          <p className="text-sm text-night/70 leading-relaxed">
-                            {attraction.description}
-                          </p>
-                        )}
-                      </div>
-                      {attraction.slug && (
-                        <ExternalLink className="w-5 h-5 text-azure opacity-0 group-hover:opacity-100 transition-opacity ml-2" />
-                      )}
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.section>
-      )}
-
-      {/* Final CTA Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-night via-night/95 to-azure/20"
-      >
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-pearl mb-6 leading-tight">
-              Ready to Experience {destination.name}?
-            </h2>
-            <p className="text-pearl/90 mb-8 sm:mb-10 text-lg sm:text-xl leading-relaxed">
-              Let our expert team help you create unforgettable memories at this stunning destination
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-              <Link
-                to="/enquiry"
-                onClick={() => {
-                  try {
-                    const details = {
-                      packageName: destination.name,
-                      days: undefined,
-                      people: 2,
-                      totalPrice: undefined,
-                      selectedActivities: destination.activities || [],
-                      supplements: [],
-                      source: 'destination',
-                      slug: destination.slug,
-                    };
-                    localStorage.setItem('enquiryDetails', JSON.stringify(details));
-                  } catch (_) { /* no-op */ }
-                }}
-                className="inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105 text-lg font-semibold shadow-xl"
-              >
-                <Phone className="w-6 h-6 mr-2" />
-                Plan Your Visit Now
-              </Link>
-              <Link
-                to="/packages"
-                className="inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 glass-sunset-button text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105 text-lg font-semibold"
-              >
-                <Navigation className="w-6 h-6 mr-2" />
-                View Tour Packages
-              </Link>
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-6 text-pearl/70 text-sm">
-              <div className="flex items-center">
-                <CheckCircle className="w-5 h-5 mr-2 text-green-400" />
-                Expert Guides
-              </div>
-              <div className="flex items-center">
-                <CheckCircle className="w-5 h-5 mr-2 text-green-400" />
-                Best Prices Guaranteed
-              </div>
-              <div className="flex items-center">
-                <CheckCircle className="w-5 h-5 mr-2 text-green-400" />
-                24/7 Support
-              </div>
-              <div className="flex items-center">
-                <CheckCircle className="w-5 h-5 mr-2 text-green-400" />
-                Customizable Itineraries
-              </div>
-            </div>
-          </div>
-        </div>
-      </motion.section>
 
       <Footer />
     </div>

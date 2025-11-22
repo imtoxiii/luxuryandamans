@@ -2,14 +2,17 @@
 // Honeymoon Packages
 import { honeymoon5n6d } from './packages/honeymoon-5n6d';
 import { honeymoon4n5d } from './packages/honeymoon-4n5d';
+import { romanticHideaway } from './packages/romantic-hideaway';
 
 // Luxury Packages
 import { luxuryEscape } from './packages/luxury-escape';
 import { luxury4n5d } from './packages/luxury-4n5d';
+import { ultimateAdventure } from './packages/ultimate-adventure';
 
 // Family Packages
 import { familyParadise } from './packages/family-paradise';
 import { family4n5d } from './packages/family-4n5d';
+import { grandAndaman } from './packages/grand-andaman';
 
 // Standard Package
 import { standardAndaman } from './packages/standard-andaman';
@@ -23,10 +26,10 @@ export interface Hotel {
   description: string;
   starCategory?: 3 | 4 | 5;
   images?: string[];
-  roomTypes?: { 
-    name: string; 
-    code?: string; 
-    pricePerNight?: number; 
+  roomTypes?: {
+    name: string;
+    code?: string;
+    pricePerNight?: number;
     description?: string;
     maxOccupancy?: number;
   }[];
@@ -82,16 +85,19 @@ export interface Package {
 export const packages: Package[] = [
   // Honeymoon Packages - sorted by duration
   honeymoon4n5d,      // 5 days - Quick honeymoon
+  romanticHideaway,   // 6 days - Romantic Hideaway
   honeymoon5n6d,      // 6 days - Time mapped
-  
+
   // Luxury Packages - sorted by duration
   luxury4n5d,         // 5 days - Premium
+  ultimateAdventure,  // 7 days - Adventure
   luxuryEscape,       // 7 days - Ultra luxury
-  
+
   // Family Packages - sorted by duration
   family4n5d,         // 5 days - Quick family fun
   familyParadise,     // 6 days - Complete family
-  
+  grandAndaman,       // 8 days - Grand Tour
+
   // Standard Package - Best value
   standardAndaman     // 6 days - Budget friendly
 ];

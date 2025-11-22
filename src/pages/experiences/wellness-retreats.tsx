@@ -1,10 +1,7 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Flower2, Cog as Yoga, Space as Spa, Heart, Clock, Users, MapPin, CheckCircle, Star, Calendar, Utensils, Sun, Moon, Wind } from 'lucide-react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import SEO from '../../components/SEO';
+import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
+import { Flower2, Cog as Yoga, Space as Spa, Heart, Clock, Users, MapPin, CheckCircle, Star, Calendar, Utensils, Sun, Moon, Wind } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const WellnessRetreatsPage = () => {
@@ -227,73 +224,31 @@ const WellnessRetreatsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-pearl">
-      <SEO
-        title="Wellness Retreats in Andaman | Yoga, Spa & Ayurveda | Book Now"
-        description="Rejuvenate with wellness retreats in Andaman Islands. Choose from yoga, spa, digital detox and Ayurvedic programs. Beachfront accommodation, healthy meals, expert guidance."
-        keywords="wellness retreat andaman, yoga retreat andaman, spa retreat andaman, ayurvedic retreat andaman, detox retreat andaman"
-        targetAudience="luxury"
-        pathname="/experiences/wellness-retreats"
-      />
-      <Header />
-      
-      {/* Hero Section */}
-      <div className="relative h-[70vh] overflow-hidden">
-        <img 
-          src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
-          alt="Wellness Retreats"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-night/60 to-night/30" />
-        <div className="absolute inset-0 flex items-center">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-2xl"
-            >
-              <h1 className="text-5xl md:text-6xl font-bold text-pearl mb-6">
-                Wellness Retreats
-              </h1>
-              <p className="text-xl text-pearl/90 mb-8">
-                Rejuvenate your mind, body, and soul in paradise
-              </p>
-              <Link
-                to="/enquiry"
-                onClick={() => {
-                  try {
-                    localStorage.setItem('enquiryDetails', JSON.stringify({
-                      packageName: 'Wellness Retreats',
-                      source: 'experience',
-                      slug: 'wellness-retreats'
-                    }));
-                  } catch (_) { /* no-op */ }
-                }}
-                className="inline-flex items-center px-8 py-4 glass-sunset-button text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
-              >
-                Book Your Retreat
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
+    <ExperienceLayout
+      title="Wellness Retreats"
+      subtitle="Rejuvenate in Paradise"
+      description="Reconnect with your inner self through our curated wellness retreats. From yoga and meditation to Ayurvedic healing, find your path to holistic well-being."
+      image="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+      stats={{
+        duration: "3-7 Days",
+        location: "Havelock & Neil",
+        price: "From ₹35,000/person"
+      }}
+      slug="wellness-retreats"
+      seo={{
+        title: "Wellness Retreats in Andaman | Yoga, Spa & Ayurveda | Book Now",
+        description: "Rejuvenate with wellness retreats in Andaman Islands. Choose from yoga, spa, digital detox and Ayurvedic programs. Beachfront accommodation, healthy meals, expert guidance.",
+        keywords: "wellness retreat andaman, yoga retreat andaman, spa retreat andaman, ayurvedic retreat andaman, detox retreat andaman"
+      }}
+      bookingData={{
+        packageName: 'Wellness Retreats',
+        source: 'experience',
+        slug: 'wellness-retreats'
+      }}
+    >
       {/* Benefits Section */}
-      <section className="py-20">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">Experience Wellness Benefits</h2>
-            <p className="text-night/70 max-w-2xl mx-auto">
-              Discover the transformative effects of our wellness programs
-            </p>
-          </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => (
               <motion.div
@@ -301,13 +256,13 @@ const WellnessRetreatsPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
+                className="text-center p-6 rounded-2xl bg-gray-50 hover:bg-green-50 transition-colors duration-300"
               >
-                <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4 text-azure">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">
                   {benefit.icon}
                 </div>
-                <h3 className="text-xl font-bold text-night mb-2">{benefit.title}</h3>
-                <p className="text-night/70 text-center">{benefit.description}</p>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
+                <p className="text-gray-600 text-sm">{benefit.description}</p>
               </motion.div>
             ))}
           </div>
@@ -315,21 +270,16 @@ const WellnessRetreatsPage = () => {
       </section>
 
       {/* Programs Section */}
-      <section className="py-20 bg-night">
+      <section className="py-20 bg-gray-900 text-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-pearl mb-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4 font-display">
               Wellness Programs
             </h2>
-            <p className="text-pearl/70 max-w-2xl mx-auto">
+            <p className="text-gray-400 max-w-2xl mx-auto">
               Choose your path to wellness and rejuvenation
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {programs.map((program, index) => (
@@ -338,87 +288,85 @@ const WellnessRetreatsPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500"
+                className="bg-gray-800 rounded-[2rem] overflow-hidden shadow-xl group hover:shadow-2xl transition-all duration-500 border border-gray-700 flex flex-col md:flex-row"
               >
-                <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-night/20 group-hover:bg-night/40 transition-all duration-500 z-10" />
+                <div className="md:w-2/5 relative h-64 md:h-auto overflow-hidden">
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500 z-10" />
                   <img
                     src={program.image}
                     alt={program.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 right-4 glass-sunset-badge px-4 py-2 z-20">
-                    {program.price}
-                  </div>
                   <div className="absolute top-4 left-4 z-20">
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-azure/90 text-pearl">
+                    <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-green-600 text-white shadow-lg">
                       {program.bestFor}
                     </span>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-night mb-2">{program.name}</h3>
-                  <div className="flex items-center space-x-4 mb-4 text-night/60">
-                    <span className="flex items-center">
-                      <Clock className="w-4 h-4 mr-2" />
-                      {program.duration}
-                    </span>
-                    <span className="flex items-center">
-                      <MapPin className="w-4 h-4 mr-2" />
-                      {program.location}
-                    </span>
+                <div className="p-8 md:w-3/5 flex flex-col">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-1 font-display">{program.name}</h3>
+                      <div className="flex items-center text-green-400 text-sm">
+                        <Clock className="w-4 h-4 mr-1" />
+                        {program.duration}
+                        <span className="mx-2">•</span>
+                        <MapPin className="w-4 h-4 mr-1" />
+                        {program.location}
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xl font-bold text-white">{program.price}</p>
+                    </div>
                   </div>
-                  <p className="text-night/70 mb-4">{program.description}</p>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Highlights:</h4>
-                    <div className="flex flex-wrap gap-1">
+                  
+                  <p className="text-gray-400 mb-6 text-sm leading-relaxed">{program.description}</p>
+                  
+                  <div className="mb-6 flex-grow">
+                    <h4 className="font-bold text-white text-sm mb-3">Highlights:</h4>
+                    <div className="flex flex-wrap gap-2">
                       {program.highlights.map((highlight, i) => (
-                        <span key={i} className="text-xs bg-azure/10 text-azure px-2 py-1 rounded">
+                        <span key={i} className="text-xs bg-green-900/50 text-green-200 px-3 py-1 rounded-lg font-medium border border-green-500/30">
                           {highlight}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Sessions:</h4>
-                    <div className="flex flex-wrap gap-1">
-                      {program.sessions.map((session, i) => (
-                        <span key={i} className="text-xs bg-night/10 text-night/60 px-2 py-1 rounded">
-                          {session}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Includes:</h4>
-                    <div className="space-y-1">
-                      {program.includes.slice(0, 3).map((item, i) => (
-                        <div key={i} className="flex items-center text-night/60">
-                          <CheckCircle className="w-3 h-3 mr-2 text-azure" />
-                          <span className="text-sm">{item}</span>
+
+                  <div className="mb-6">
+                    <h4 className="font-bold text-white text-sm mb-3">Includes:</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {program.includes.slice(0, 4).map((item, i) => (
+                        <div key={i} className="flex items-center text-gray-400 text-sm">
+                          <CheckCircle className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
+                          <span className="truncate">{item}</span>
                         </div>
                       ))}
-                      {program.includes.length > 3 && (
-                        <div className="text-xs text-azure">+{program.includes.length - 3} more</div>
-                      )}
                     </div>
                   </div>
-                  <Link
-                    to="/enquiry"
-                    onClick={() => {
-                      try {
-                        localStorage.setItem('enquiryDetails', JSON.stringify({
-                          packageName: 'Wellness Retreats',
-                          source: 'experience',
-                          slug: 'wellness-retreats',
-                          selectedActivities: [program.name]
-                        }));
-                      } catch (_) { /* no-op */ }
-                    }}
-                    className="inline-flex items-center px-4 py-2 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all w-full justify-center"
-                  >
-                    Book Now
-                  </Link>
+
+                  <div className="flex items-center justify-between mt-auto pt-6 border-t border-gray-700">
+                    <div className="flex items-center text-green-300 text-sm">
+                      <Users className="w-4 h-4 mr-2" />
+                      <span className="font-medium">Sessions: {program.sessions.length}</span>
+                    </div>
+                    <Link
+                      to="/enquiry"
+                      onClick={() => {
+                        try {
+                          localStorage.setItem('enquiryDetails', JSON.stringify({
+                            packageName: 'Wellness Retreats',
+                            source: 'experience',
+                            slug: 'wellness-retreats',
+                            selectedActivities: [program.name]
+                          }));
+                        } catch (_) { /* no-op */ }
+                      }}
+                      className="px-6 py-2 bg-green-600 text-white rounded-lg font-bold hover:bg-green-700 transition-colors shadow-lg shadow-green-600/20"
+                    >
+                      Book Now
+                    </Link>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -427,19 +375,16 @@ const WellnessRetreatsPage = () => {
       </section>
 
       {/* Accommodations */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">Wellness Accommodations</h2>
-            <p className="text-night/70 max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">
+              Wellness Accommodations
+            </h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">
               Stay in our serene accommodations designed for optimal relaxation
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {accommodations.map((accommodation, index) => (
@@ -448,24 +393,26 @@ const WellnessRetreatsPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500 border border-gray-100"
               >
                 <div className="relative h-48 overflow-hidden">
-                  <div className="absolute inset-0 bg-night/20 group-hover:bg-night/40 transition-all duration-500 z-10" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500 z-10" />
                   <img
                     src={accommodation.image}
                     alt={accommodation.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent z-20">
+                    <h3 className="text-xl font-bold text-white mb-1 font-display">{accommodation.name}</h3>
+                  </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-night mb-2">{accommodation.name}</h3>
-                  <p className="text-night/70 mb-4">{accommodation.description}</p>
+                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{accommodation.description}</p>
                   <div className="space-y-2">
                     {accommodation.features.map((feature, i) => (
-                      <div key={i} className="flex items-center text-night/60">
-                        <CheckCircle className="w-3 h-3 mr-2 text-azure" />
-                        <span className="text-sm">{feature}</span>
+                      <div key={i} className="flex items-center text-gray-500 text-sm">
+                        <CheckCircle className="w-3 h-3 mr-2 text-green-500" />
+                        <span>{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -477,48 +424,49 @@ const WellnessRetreatsPage = () => {
       </section>
 
       {/* Daily Schedule & Diet */}
-      <section className="py-20 bg-gradient-to-br from-azure/5 to-blue-600/5">
+      <section className="py-20 bg-green-50">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl font-bold text-night mb-2">Daily Schedule & Diet</h2>
-            <p className="text-night/70">A gentle rhythm for body and mind</p>
-          </motion.div>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-2 font-display">Daily Schedule & Diet</h2>
+            <p className="text-gray-500">A gentle rhythm for body and mind</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div className="bg-white rounded-xl p-6 shadow">
-              <h3 className="text-lg font-semibold text-night mb-4">Sample Daily Schedule</h3>
-              <div className="space-y-3">
+            <div className="bg-white rounded-[2rem] p-8 shadow-lg border border-green-100">
+              <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center">
+                <Clock className="w-5 h-5 mr-2 text-green-600" />
+                Sample Daily Schedule
+              </h3>
+              <div className="space-y-4">
                 {dailySchedule.map((item, index) => (
-                  <div key={index} className="flex border-b border-gray-100 pb-3 last:border-b-0">
-                    <div className="pr-4">
-                      <p className="text-sm font-semibold text-azure">{item.time}</p>
+                  <div key={index} className="flex border-b border-gray-100 pb-3 last:border-b-0 last:pb-0">
+                    <div className="pr-4 w-24 flex-shrink-0">
+                      <p className="text-sm font-bold text-green-600">{item.time}</p>
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-semibold text-night">{item.activity}</p>
-                      <p className="text-xs text-night/60">{item.description}</p>
+                      <p className="text-sm font-bold text-gray-900">{item.activity}</p>
+                      <p className="text-xs text-gray-500 mt-1">{item.description}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="bg-white rounded-xl p-6 shadow">
-              <h3 className="text-lg font-semibold text-night mb-4">Wholesome Nutrition</h3>
-              <div className="space-y-4">
+            <div className="bg-white rounded-[2rem] p-8 shadow-lg border border-green-100">
+              <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center">
+                <Utensils className="w-5 h-5 mr-2 text-green-600" />
+                Wholesome Nutrition
+              </h3>
+              <div className="space-y-6">
                 <div>
-                  <h4 className="font-semibold text-night mb-2">Philosophy</h4>
-                  <p className="text-night/70 text-sm">Chef-curated vegetarian and seafood options with fresh island produce. Our nutrition-focused menu supports your wellness journey.</p>
+                  <h4 className="font-bold text-gray-900 mb-2 text-sm">Philosophy</h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">Chef-curated vegetarian and seafood options with fresh island produce. Our nutrition-focused menu supports your wellness journey.</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-night mb-2">Dietary Options</h4>
-                  <p className="text-night/70 text-sm">Vegan, gluten-free, dairy-free, and Ayurvedic-friendly options available. We accommodate food allergies with advance notice.</p>
+                  <h4 className="font-bold text-gray-900 mb-2 text-sm">Dietary Options</h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">Vegan, gluten-free, dairy-free, and Ayurvedic-friendly options available. We accommodate food allergies with advance notice.</p>
                 </div>
-                <div className="flex items-center">
-                  <Utensils className="w-5 h-5 mr-2 text-azure" />
-                  <span className="text-sm text-night/60">All meals included</span>
+                <div className="flex items-center bg-green-50 p-4 rounded-xl">
+                  <CheckCircle className="w-5 h-5 mr-3 text-green-600" />
+                  <span className="text-sm font-medium text-green-800">All nutritious meals included</span>
                 </div>
               </div>
             </div>
@@ -527,21 +475,16 @@ const WellnessRetreatsPage = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-night">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-pearl mb-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">
               Guest Experiences
             </h2>
-            <p className="text-pearl/70 max-w-2xl mx-auto">
+            <p className="text-gray-500 max-w-2xl mx-auto">
               Hear from our guests about their wellness transformations
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
@@ -550,25 +493,25 @@ const WellnessRetreatsPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 relative"
               >
-                <div className="flex items-center mb-4">
+                <div className="flex items-center mb-6">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className={`w-5 h-5 ${
+                      className={`w-4 h-4 ${
                         i < testimonial.rating
-                          ? 'text-sunset fill-current'
+                          ? 'text-amber-400 fill-current'
                           : 'text-gray-300'
                       }`}
                     />
                   ))}
                 </div>
-                <p className="text-night/70 mb-4 italic">"{testimonial.comment}"</p>
-                <div className="flex items-center justify-between">
+                <p className="text-gray-600 mb-6 italic leading-relaxed">"{testimonial.comment}"</p>
+                <div className="flex items-center border-t border-gray-100 pt-4">
                   <div>
-                    <h4 className="font-semibold text-night">{testimonial.name}</h4>
-                    <p className="text-night/60 text-sm">{testimonial.location}</p>
+                    <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
+                    <p className="text-gray-500 text-sm">{testimonial.location}</p>
                   </div>
                 </div>
               </motion.div>
@@ -578,14 +521,16 @@ const WellnessRetreatsPage = () => {
       </section>
 
       {/* FAQs */}
-      <FaqAccordion
-        title="Frequently Asked Questions"
-        description="Everything you need to know about wellness retreats in Andaman"
-        faqs={faqs}
-      />
-
-      <Footer />
-    </div>
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <FaqAccordion
+            title="Frequently Asked Questions"
+            description="Everything you need to know about wellness retreats in Andaman"
+            faqs={faqs}
+          />
+        </div>
+      </section>
+    </ExperienceLayout>
   );
 };
 

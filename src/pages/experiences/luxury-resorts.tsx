@@ -1,10 +1,7 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, Wifi, Coffee, Utensils, Car, Space as Spa, Phone, MapPin, CheckCircle, Waves, Sunset, Users, Award, Heart } from 'lucide-react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import SEO from '../../components/SEO';
+import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
+import { Star, Wifi, Coffee, Utensils, Car, Space as Spa, Phone, MapPin, CheckCircle, Waves, Sunset, Users, Award, Heart } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const LuxuryResortsPage = () => {
@@ -134,77 +131,31 @@ const LuxuryResortsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-pearl">
-      <SEO 
-        title="Luxury Beach Resorts in Andaman | 5-Star Accommodation | Book Now"
-        description="Stay at world-class luxury resorts in Andaman Islands. Taj Exotica, Barefoot Resort & more. Private beaches, spa services, fine dining. Starting ₹15,000/night."
-        keywords="luxury resorts andaman, andaman beach resorts, taj exotica andaman, barefoot resort havelock, 5 star resorts andaman, luxury accommodation andaman, beach resorts havelock island, neil island luxury resorts, andaman spa resorts, private beach resorts, luxury hotel booking andaman"
-        targetAudience="luxury"
-        pathname="/experiences/luxury-resorts"
-        image="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-      />
-      <Header />
-      
-      {/* Hero Section */}
-      <div className="relative h-[70vh] overflow-hidden">
-        <img 
-          src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
-          alt="Luxury Beach Resorts"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-night/60 to-night/30" />
-        <div className="absolute inset-0 flex items-center">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-2xl"
-            >
-              <h1 className="text-5xl md:text-6xl font-bold text-pearl mb-6">
-                Luxury Beach Resorts
-              </h1>
-              <p className="text-xl text-pearl/90 mb-8">
-                Experience world-class hospitality in paradise with our carefully curated selection of luxury beach resorts
-              </p>
-              <Link
-                to="/enquiry"
-                onClick={() => {
-                  try {
-                    localStorage.setItem('enquiryDetails', JSON.stringify({
-                      packageName: 'Luxury Beach Resorts',
-                      source: 'experience',
-                      slug: 'luxury-resorts'
-                    }));
-                  } catch (_) { /* no-op */ }
-                }}
-                className="inline-flex items-center px-8 py-4 glass-sunset-button text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
-              >
-                <Phone className="w-5 h-5 mr-2" />
-                <span>Contact for Booking</span>
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
+    <ExperienceLayout
+      title="Luxury Beach Resorts"
+      subtitle="Indulge in Paradise"
+      description="Experience world-class hospitality in paradise with our carefully curated selection of luxury beach resorts. From private villas to eco-luxury retreats, find your perfect sanctuary."
+      image="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+      stats={{
+        duration: "Flexible Stay",
+        location: "Havelock & Port Blair",
+        price: "From ₹15,000/night"
+      }}
+      slug="luxury-resorts"
+      seo={{
+        title: "Luxury Beach Resorts in Andaman | 5-Star Accommodation | Book Now",
+        description: "Stay at world-class luxury resorts in Andaman Islands. Taj Exotica, Barefoot Resort & more. Private beaches, spa services, fine dining. Starting ₹15,000/night.",
+        keywords: "luxury resorts andaman, andaman beach resorts, taj exotica andaman, barefoot resort havelock, 5 star resorts andaman, luxury accommodation andaman, beach resorts havelock island, neil island luxury resorts, andaman spa resorts, private beach resorts, luxury hotel booking andaman"
+      }}
+      bookingData={{
+        packageName: 'Luxury Beach Resorts',
+        source: 'experience',
+        slug: 'luxury-resorts'
+      }}
+    >
       {/* Amenities Section */}
-      <section className="py-20">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">
-              World-Class Amenities
-            </h2>
-            <p className="text-night/70 max-w-2xl mx-auto">
-              Indulge in premium facilities and services designed for your ultimate comfort
-            </p>
-          </motion.div>
-
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
             {amenities.map((amenity, index) => (
               <motion.div
@@ -212,12 +163,12 @@ const LuxuryResortsPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
+                className="text-center p-4 rounded-2xl hover:bg-gray-50 transition-colors duration-300"
               >
-                <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4 text-azure">
+                <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3 text-amber-600">
                   {amenity.icon}
                 </div>
-                <p className="text-night font-medium">{amenity.name}</p>
+                <p className="text-gray-900 font-medium text-sm">{amenity.name}</p>
               </motion.div>
             ))}
           </div>
@@ -225,21 +176,16 @@ const LuxuryResortsPage = () => {
       </section>
 
       {/* Featured Resorts */}
-      <section className="py-20 bg-night">
+      <section className="py-20 bg-gray-900 text-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-pearl mb-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4 font-display">
               Featured Luxury Resorts
             </h2>
-            <p className="text-pearl/70 max-w-2xl mx-auto">
+            <p className="text-gray-400 max-w-2xl mx-auto">
               Choose from our handpicked selection of the finest resorts in the Andamans
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {resorts.map((resort, index) => (
@@ -248,68 +194,60 @@ const LuxuryResortsPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500"
+                className="bg-gray-800 rounded-[2rem] overflow-hidden shadow-xl group hover:shadow-2xl transition-all duration-500 border border-gray-700"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-night/20 group-hover:bg-night/40 transition-all duration-500 z-10" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500 z-10" />
                   <img
                     src={resort.image}
                     alt={resort.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 right-4 glass-sunset-badge px-4 py-2 z-20">
+                  <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md border border-white/10 text-white px-4 py-1.5 rounded-full text-sm font-bold z-20">
                     {resort.priceRange}
                   </div>
                   <div className="absolute top-4 left-4 z-20">
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-azure/90 text-pearl">
+                    <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-amber-600 text-white shadow-lg">
                       {resort.bestFor}
                     </span>
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold text-night mb-2">{resort.name}</h3>
-                  <p className="text-night/70 mb-4">{resort.description}</p>
-                  <div className="flex items-center mb-4">
+                  <h3 className="text-xl font-bold text-white mb-2 font-display">{resort.name}</h3>
+                  <div className="flex items-center mb-4 text-amber-400">
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`w-5 h-5 ${
-                          i < resort.rating
-                            ? 'text-sunset fill-current'
-                            : 'text-gray-300'
-                        }`}
+                        className={`w-4 h-4 ${i < Math.floor(resort.rating)
+                            ? 'fill-current'
+                            : 'text-gray-600'
+                          }`}
                       />
                     ))}
+                    <span className="ml-2 text-gray-400 text-sm">({resort.rating})</span>
                   </div>
-                  <p className="text-night/60 mb-4">
-                    <MapPin className="w-4 h-4 inline mr-2" />
+                  <p className="text-gray-400 mb-4 text-sm flex items-center">
+                    <MapPin className="w-4 h-4 mr-2 text-amber-500" />
                     {resort.location}
                   </p>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Highlights:</h4>
-                    <div className="flex flex-wrap gap-1">
+                  <p className="text-gray-300 mb-6 text-sm line-clamp-2">{resort.description}</p>
+
+                  <div className="mb-6">
+                    <h4 className="font-bold text-white text-sm mb-2">Highlights:</h4>
+                    <div className="flex flex-wrap gap-2">
                       {resort.highlights.slice(0, 3).map((highlight, i) => (
-                        <span key={i} className="text-xs bg-azure/10 text-azure px-2 py-1 rounded">
+                        <span key={i} className="text-xs bg-amber-900/50 text-amber-200 px-3 py-1 rounded-lg font-medium border border-amber-500/30">
                           {highlight}
                         </span>
                       ))}
                       {resort.highlights.length > 3 && (
-                        <span className="text-xs bg-night/10 text-night/60 px-2 py-1 rounded">
+                        <span className="text-xs bg-gray-700 text-gray-300 px-3 py-1 rounded-lg font-medium">
                           +{resort.highlights.length - 3} more
                         </span>
                       )}
                     </div>
                   </div>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Room Types:</h4>
-                    <div className="flex flex-wrap gap-1">
-                      {resort.roomTypes.map((room, i) => (
-                        <span key={i} className="text-xs bg-night/10 text-night/60 px-2 py-1 rounded">
-                          {room}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+
                   <Link
                     to="/enquiry"
                     onClick={() => {
@@ -322,7 +260,7 @@ const LuxuryResortsPage = () => {
                         }));
                       } catch (_) { /* no-op */ }
                     }}
-                    className="inline-flex items-center px-6 py-3 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105 w-full justify-center"
+                    className="block w-full py-3 bg-amber-600 text-white text-center rounded-xl font-bold hover:bg-amber-700 transition-colors shadow-lg shadow-amber-600/20 hover:shadow-amber-600/40"
                   >
                     Book Now
                   </Link>
@@ -334,21 +272,16 @@ const LuxuryResortsPage = () => {
       </section>
 
       {/* Luxury Experiences */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">
               Exclusive Luxury Experiences
             </h2>
-            <p className="text-night/70 max-w-2xl mx-auto">
+            <p className="text-gray-500 max-w-2xl mx-auto">
               Indulge in these curated experiences designed for our luxury guests
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {experiences.map((exp, index) => (
@@ -357,13 +290,13 @@ const LuxuryResortsPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100"
               >
-                <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4 text-azure">
+                <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4 text-amber-600">
                   {exp.icon}
                 </div>
-                <h3 className="text-xl font-bold text-night mb-2">{exp.title}</h3>
-                <p className="text-night/70">{exp.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-2 text-center">{exp.title}</h3>
+                <p className="text-gray-600 text-center text-sm">{exp.description}</p>
               </motion.div>
             ))}
           </div>
@@ -371,21 +304,16 @@ const LuxuryResortsPage = () => {
       </section>
 
       {/* Luxury Packages */}
-      <section className="py-20 bg-gradient-to-br from-azure/5 to-blue-600/5">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">
               Curated Luxury Packages
             </h2>
-            <p className="text-night/70 max-w-2xl mx-auto">
+            <p className="text-gray-500 max-w-2xl mx-auto">
               All-inclusive luxury packages designed for the ultimate Andaman experience
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {packages.map((pkg, index) => (
@@ -394,43 +322,46 @@ const LuxuryResortsPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 flex flex-col"
               >
-                <div className="bg-gradient-to-r from-azure to-blue-600 p-6">
-                  <h3 className="text-2xl font-bold text-pearl">{pkg.name}</h3>
-                  <p className="text-pearl/80">{pkg.duration}</p>
+                <div className="bg-gray-900 p-8 text-white relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full -mr-16 -mt-16 blur-2xl" />
+                  <h3 className="text-2xl font-bold mb-2 font-display relative z-10">{pkg.name}</h3>
+                  <p className="text-amber-400 text-sm font-medium relative z-10">{pkg.duration}</p>
                 </div>
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl font-bold text-night">{pkg.price}</span>
-                    <span className="text-sm text-night/60 bg-azure/10 px-3 py-1 rounded-full">
-                      {pkg.bestFor}
-                    </span>
+                <div className="p-8 flex-grow flex flex-col">
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="text-2xl font-bold text-amber-600">{pkg.price}</span>
                   </div>
-                  <ul className="space-y-2 mb-6">
-                    {pkg.includes.map((item, i) => (
-                      <li key={i} className="flex items-center text-night/70">
-                        <CheckCircle className="w-4 h-4 mr-2 text-azure" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    to="/enquiry"
-                    onClick={() => {
-                      try {
-                        localStorage.setItem('enquiryDetails', JSON.stringify({
-                          packageName: 'Luxury Beach Resorts',
-                          source: 'experience',
-                          slug: 'luxury-resorts',
-                          selectedActivities: [pkg.name]
-                        }));
-                      } catch (_) { /* no-op */ }
-                    }}
-                    className="inline-flex items-center px-6 py-3 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105 w-full justify-center"
-                  >
-                    Book Package
-                  </Link>
+                  <div className="mb-6 flex-grow">
+                    <h4 className="font-bold text-gray-900 text-sm mb-3">Includes:</h4>
+                    <ul className="space-y-3">
+                      {pkg.includes.map((item, i) => (
+                        <li key={i} className="flex items-center text-gray-600 text-sm">
+                          <CheckCircle className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="pt-6 border-t border-gray-100 mt-auto">
+                    <Link
+                      to="/enquiry"
+                      onClick={() => {
+                        try {
+                          localStorage.setItem('enquiryDetails', JSON.stringify({
+                            packageName: 'Luxury Beach Resorts',
+                            source: 'experience',
+                            slug: 'luxury-resorts',
+                            selectedActivities: [pkg.name]
+                          }));
+                        } catch (_) { /* no-op */ }
+                      }}
+                      className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-amber-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-amber-600/30"
+                    >
+                      Book Package
+                    </Link>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -439,92 +370,89 @@ const LuxuryResortsPage = () => {
       </section>
 
       {/* Why Book With Us */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">Why Book With Us</h2>
-            <p className="text-night/70 max-w-2xl mx-auto">Exclusive benefits and on-ground support for a seamless luxury stay</p>
-          </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">Why Book With Us</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">Exclusive benefits and on-ground support for a seamless luxury stay</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
+              className="bg-gray-50 rounded-[2rem] p-8 text-center hover:bg-amber-50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Award className="w-8 h-8 text-azure" />
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm text-amber-600">
+                <Award className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-semibold text-night mb-2">Best Rate Assurance</h3>
-              <p className="text-night/70">We work directly with partner resorts to secure the most competitive rates and inclusions.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Best Rate Assurance</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">We work directly with partner resorts to secure the most competitive rates and inclusions.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
+              className="bg-gray-50 rounded-[2rem] p-8 text-center hover:bg-amber-50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="w-8 h-8 text-azure" />
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm text-amber-600">
+                <Users className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-semibold text-night mb-2">Personal Concierge</h3>
-              <p className="text-night/70">Airport assistance, private transfers, priority check-ins, and curated experiences.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Personal Concierge</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">Airport assistance, private transfers, priority check-ins, and curated experiences.</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
+              className="bg-gray-50 rounded-[2rem] p-8 text-center hover:bg-amber-50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <MapPin className="w-8 h-8 text-azure" />
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm text-amber-600">
+                <MapPin className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-semibold text-night mb-2">Local Expertise</h3>
-              <p className="text-night/70">Our Andaman team supports you 24/7 throughout your stay.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Local Expertise</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">Our Andaman team supports you 24/7 throughout your stay.</p>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* FAQs */}
-      <FaqAccordion
-        title="Frequently Asked Questions"
-        description="Answers to common questions about luxury stays in Andaman"
-        faqs={[
-          {
-            question: "What is the best time to visit?",
-            answer: "October to May offers the best weather for beach and water activities. December to February is peak season with pleasant temperatures."
-          },
-          {
-            question: "Do resorts offer private beach access?",
-            answer: "Many properties are beachfront with semi-private access; true private beaches are restricted in India. However, luxury resorts offer exclusive beach areas and premium services."
-          },
-          {
-            question: "Can you arrange special celebrations?",
-            answer: "Yes—romantic dinners, proposals, anniversaries, and more with bespoke setups. Our team specializes in creating memorable experiences for special occasions."
-          },
-          {
-            question: "Are all-inclusive packages available?",
-            answer: "Yes, we offer all-inclusive packages that cover accommodation, meals, transfers, and selected activities. These can be customized based on your preferences."
-          },
-          {
-            question: "Is advance booking required?",
-            answer: "Yes, luxury resorts in Andaman have limited availability and are in high demand, especially during peak season. We recommend booking 3-6 months in advance."
-          },
-          {
-            question: "Are children welcome at luxury resorts?",
-            answer: "Most luxury resorts welcome children and offer family-friendly amenities. However, some resorts may have age restrictions or specific policies for children."
-          }
-        ]}
-      />
-
-      <Footer />
-    </div>
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <FaqAccordion
+            title="Frequently Asked Questions"
+            description="Answers to common questions about luxury stays in Andaman"
+            faqs={[
+              {
+                question: "What is the best time to visit?",
+                answer: "October to May offers the best weather for beach and water activities. December to February is peak season with pleasant temperatures."
+              },
+              {
+                question: "Do resorts offer private beach access?",
+                answer: "Many properties are beachfront with semi-private access; true private beaches are restricted in India. However, luxury resorts offer exclusive beach areas and premium services."
+              },
+              {
+                question: "Can you arrange special celebrations?",
+                answer: "Yes—romantic dinners, proposals, anniversaries, and more with bespoke setups. Our team specializes in creating memorable experiences for special occasions."
+              },
+              {
+                question: "Are all-inclusive packages available?",
+                answer: "Yes, we offer all-inclusive packages that cover accommodation, meals, transfers, and selected activities. These can be customized based on your preferences."
+              },
+              {
+                question: "Is advance booking required?",
+                answer: "Yes, luxury resorts in Andaman have limited availability and are in high demand, especially during peak season. We recommend booking 3-6 months in advance."
+              },
+              {
+                question: "Are children welcome at luxury resorts?",
+                answer: "Most luxury resorts welcome children and offer family-friendly amenities. However, some resorts may have age restrictions or specific policies for children."
+              }
+            ]}
+          />
+        </div>
+      </section>
+    </ExperienceLayout>
   );
 };
 

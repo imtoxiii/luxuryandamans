@@ -1,10 +1,7 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Compass, Anchor, Sun, Map, Clock, Users, MapPin, Camera, CheckCircle, Waves, Calendar, Shield } from 'lucide-react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import SEO from '../../components/SEO';
+import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
+import { Compass, Anchor, Sun, Map, Clock, Users, MapPin, Camera, CheckCircle, Waves, Calendar, Shield } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const IslandHoppingPage = () => {
@@ -100,37 +97,6 @@ const IslandHoppingPage = () => {
     }
   ];
 
-  const itineraries = [
-    {
-      name: "Half Day Highlights",
-      duration: "4-5 hours",
-      islands: ["Ross Island", "North Bay Island"],
-      description: "Perfect introduction to Andaman islands",
-      activities: ["Historical tour", "Snorkeling", "Glass bottom boat"]
-    },
-    {
-      name: "Neil Island Explorer",
-      duration: "Full day",
-      islands: ["Neil Island"],
-      description: "Relaxed day at pristine beaches",
-      activities: ["Beachcombing", "Natural Bridge visit", "Snorkeling"]
-    },
-    {
-      name: "Havelock Beach Paradise",
-      duration: "Full day",
-      islands: ["Havelock Island"],
-      description: "Experience world-class beaches",
-      activities: ["Radhanagar Beach", "Elephant Beach", "Water activities"]
-    },
-    {
-      name: "Three Island Adventure",
-      duration: "2 days",
-      islands: ["Neil Island", "Havelock Island", "Ross Island"],
-      description: "Perfect mix of beaches and history",
-      activities: ["Beach hopping", "Historical tour", "Water sports"]
-    }
-  ];
-
   const travelTips = [
     "Carry light day-packs and waterproof phone cases",
     "Pre-book ferry tickets during peak months (Dec–Feb)",
@@ -143,134 +109,98 @@ const IslandHoppingPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-pearl">
-      <SEO
-        title="Island Hopping in Andaman | Multi-Island Tours | Book Now"
-        description="Explore multiple Andaman Islands with guided tours. Visit Ross, North Bay, Neil, Havelock & more. Custom packages from ₹4,500 per person."
-        keywords="island hopping andaman, andaman island tour, ross island tour, north bay island, neil island tour, havelock island tour, baratang island, andaman island hopping packages, multi island tour andaman, andaman ferry booking"
-        targetAudience="all"
-        pathname="/experiences/island-hopping"
-        image="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-      />
-      <Header />
-      
-      {/* Hero Section */}
-      <div className="relative h-[70vh] overflow-hidden">
-        <img 
-          src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
-          alt="Island Hopping"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-night/60 to-night/30" />
-        <div className="absolute inset-0 flex items-center">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-2xl"
-            >
-              <h1 className="text-5xl md:text-6xl font-bold text-pearl mb-6">
-                Island Hopping Adventures
-              </h1>
-              <p className="text-xl text-pearl/90 mb-8">
-                Discover hidden beaches and secluded paradise spots across multiple islands
-              </p>
-              <Link
-                to="/enquiry"
-                onClick={() => {
-                  try {
-                    localStorage.setItem('enquiryDetails', JSON.stringify({
-                      packageName: 'Island Hopping Adventures',
-                      source: 'experience',
-                      slug: 'island-hopping'
-                    }));
-                  } catch (_) { /* no-op */ }
-                }}
-                className="inline-flex items-center px-8 py-4 glass-sunset-button text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
-              >
-                Book Your Adventure
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
+    <ExperienceLayout
+      title="Island Hopping"
+      subtitle="Discover Paradise"
+      description="Discover hidden beaches and secluded paradise spots across multiple islands. From historical ruins to pristine coral reefs, experience the diversity of the Andaman archipelago."
+      image="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+      stats={{
+        duration: "1-5 Days",
+        location: "Multiple Islands",
+        price: "From ₹4,500"
+      }}
+      slug="island-hopping"
+      seo={{
+        title: "Island Hopping in Andaman | Multi-Island Tours | Book Now",
+        description: "Explore multiple Andaman Islands with guided tours. Visit Ross, North Bay, Neil, Havelock & more. Custom packages from ₹4,500 per person.",
+        keywords: "island hopping andaman, andaman island tour, ross island tour, north bay island, neil island tour, havelock island tour, baratang island, andaman island hopping packages, multi island tour andaman, andaman ferry booking"
+      }}
+      bookingData={{
+        packageName: 'Island Hopping Adventures',
+        source: 'experience',
+        slug: 'island-hopping'
+      }}
+    >
       {/* Features Section */}
-      <section className="py-20">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center"
+              className="text-center p-6 rounded-2xl bg-gray-50 hover:bg-blue-50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Compass className="w-8 h-8 text-azure" />
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+                <Compass className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold text-night mb-2">Expert Guides</h3>
-              <p className="text-night/70">Knowledgeable local guides</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Expert Guides</h3>
+              <p className="text-gray-600 text-sm">Knowledgeable local guides</p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-center"
+              className="text-center p-6 rounded-2xl bg-gray-50 hover:bg-blue-50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Anchor className="w-8 h-8 text-azure" />
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+                <Anchor className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold text-night mb-2">Private Boats</h3>
-              <p className="text-night/70">Comfortable and safe transfers</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Private Boats</h3>
+              <p className="text-gray-600 text-sm">Comfortable and safe transfers</p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-center"
+              className="text-center p-6 rounded-2xl bg-gray-50 hover:bg-blue-50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Sun className="w-8 h-8 text-azure" />
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+                <Sun className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold text-night mb-2">Beach Time</h3>
-              <p className="text-night/70">Relax on pristine beaches</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Beach Time</h3>
+              <p className="text-gray-600 text-sm">Relax on pristine beaches</p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-center"
+              className="text-center p-6 rounded-2xl bg-gray-50 hover:bg-blue-50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Map className="w-8 h-8 text-azure" />
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+                <Map className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold text-night mb-2">Hidden Spots</h3>
-              <p className="text-night/70">Discover secret locations</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Hidden Spots</h3>
+              <p className="text-gray-600 text-sm">Discover secret locations</p>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Islands Section */}
-      <section className="py-20 bg-night">
+      <section className="py-20 bg-gray-900 text-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-pearl mb-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4 font-display">
               Featured Islands
             </h2>
-            <p className="text-pearl/70 max-w-2xl mx-auto">
+            <p className="text-gray-400 max-w-2xl mx-auto">
               Explore these amazing islands on your hopping adventure
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {islands.map((island, index) => (
@@ -279,53 +209,53 @@ const IslandHoppingPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500"
+                className="bg-gray-800 rounded-[2rem] overflow-hidden shadow-xl group hover:shadow-2xl transition-all duration-500 border border-gray-700"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-night/20 group-hover:bg-night/40 transition-all duration-500 z-10" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500 z-10" />
                   <img
                     src={island.image}
                     alt={island.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 right-4 glass-sunset-badge px-4 py-2 z-20">
+                  <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md border border-white/10 text-white px-4 py-1.5 rounded-full text-sm font-bold z-20">
                     {island.duration}
                   </div>
                   <div className="absolute top-4 left-4 z-20">
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-azure/90 text-pearl">
+                    <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-blue-600 text-white shadow-lg">
                       {island.bestFor}
                     </span>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-night mb-2">{island.name}</h3>
-                  <p className="text-night/70 mb-4">{island.description}</p>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Highlights:</h4>
-                    <div className="flex flex-wrap gap-1">
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold text-white mb-3 font-display">{island.name}</h3>
+                  <p className="text-gray-400 mb-6 leading-relaxed">{island.description}</p>
+                  <div className="mb-6">
+                    <h4 className="font-bold text-white text-sm mb-3">Highlights:</h4>
+                    <div className="flex flex-wrap gap-2">
                       {island.highlights.slice(0, 3).map((highlight, i) => (
-                        <span key={i} className="text-xs bg-azure/10 text-azure px-2 py-1 rounded">
+                        <span key={i} className="text-xs bg-blue-900/50 text-blue-200 px-3 py-1 rounded-lg font-medium border border-blue-500/30">
                           {highlight}
                         </span>
                       ))}
                       {island.highlights.length > 3 && (
-                        <span className="text-xs bg-night/10 text-night/60 px-2 py-1 rounded">
+                        <span className="text-xs bg-gray-700 text-gray-300 px-3 py-1 rounded-lg font-medium">
                           +{island.highlights.length - 3} more
                         </span>
                       )}
                     </div>
                   </div>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Activities:</h4>
-                    <div className="space-y-1">
+                  <div className="mb-6">
+                    <h4 className="font-bold text-white text-sm mb-3">Activities:</h4>
+                    <div className="space-y-2">
                       {island.activities.slice(0, 3).map((activity, i) => (
-                        <div key={i} className="flex items-center text-night/60">
-                          <CheckCircle className="w-3 h-3 mr-2 text-azure" />
-                          <span className="text-sm">{activity}</span>
+                        <div key={i} className="flex items-center text-gray-400 text-sm">
+                          <CheckCircle className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
+                          <span>{activity}</span>
                         </div>
                       ))}
                       {island.activities.length > 3 && (
-                        <div className="text-xs text-azure">+{island.activities.length - 3} more activities</div>
+                        <div className="text-xs text-blue-400 font-medium pl-6">+{island.activities.length - 3} more activities</div>
                       )}
                     </div>
                   </div>
@@ -337,46 +267,41 @@ const IslandHoppingPage = () => {
       </section>
 
       {/* Sample Itineraries */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">Sample Itineraries</h2>
-            <p className="text-night/70 max-w-2xl mx-auto">Pick a ready-made plan or ask us to tailor one for you</p>
-          </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">Sample Itineraries</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">Pick a ready-made plan or ask us to tailor one for you</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl p-6 shadow">
-              <h3 className="text-xl font-semibold text-night mb-2">Half Day Highlights</h3>
-              <p className="text-night/70 mb-3">Ross Island + North Bay</p>
-              <ul className="space-y-2 text-night/70">
-                <li>• Morning boat to Ross Island</li>
-                <li>• Explore ruins and deer park</li>
-                <li>• Transfer to North Bay for glass-bottom</li>
-                <li>• Return by late afternoon</li>
+            <div className="bg-gray-50 rounded-[2rem] p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+              <h3 className="text-xl font-bold text-gray-900 mb-2 font-display">Half Day Highlights</h3>
+              <p className="text-blue-600 font-medium mb-4">Ross Island + North Bay</p>
+              <ul className="space-y-3 text-gray-600 text-sm">
+                <li className="flex items-start"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 mr-3 flex-shrink-0" />Morning boat to Ross Island</li>
+                <li className="flex items-start"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 mr-3 flex-shrink-0" />Explore ruins and deer park</li>
+                <li className="flex items-start"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 mr-3 flex-shrink-0" />Transfer to North Bay for glass-bottom</li>
+                <li className="flex items-start"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 mr-3 flex-shrink-0" />Return by late afternoon</li>
               </ul>
             </div>
-            <div className="bg-white rounded-xl p-6 shadow">
-              <h3 className="text-xl font-semibold text-night mb-2">Full Day Explorer</h3>
-              <p className="text-night/70 mb-3">Neil + Havelock day circuit</p>
-              <ul className="space-y-2 text-night/70">
-                <li>• Bharatpur Beach snorkel</li>
-                <li>• Natural Bridge visit</li>
-                <li>• Ferry to Havelock for Radhanagar Beach</li>
-                <li>• Evening return</li>
+            <div className="bg-gray-50 rounded-[2rem] p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+              <h3 className="text-xl font-bold text-gray-900 mb-2 font-display">Full Day Explorer</h3>
+              <p className="text-blue-600 font-medium mb-4">Neil + Havelock day circuit</p>
+              <ul className="space-y-3 text-gray-600 text-sm">
+                <li className="flex items-start"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 mr-3 flex-shrink-0" />Bharatpur Beach snorkel</li>
+                <li className="flex items-start"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 mr-3 flex-shrink-0" />Natural Bridge visit</li>
+                <li className="flex items-start"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 mr-3 flex-shrink-0" />Ferry to Havelock for Radhanagar Beach</li>
+                <li className="flex items-start"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 mr-3 flex-shrink-0" />Evening return</li>
               </ul>
             </div>
-            <div className="bg-white rounded-xl p-6 shadow">
-              <h3 className="text-xl font-semibold text-night mb-2">Two-Day Premium</h3>
-              <p className="text-night/70 mb-3">Private boat with custom route</p>
-              <ul className="space-y-2 text-night/70">
-                <li>• Hidden coves and snorkeling stops</li>
-                <li>• Sunset at Kalapathar</li>
-                <li>• Overnight on Havelock</li>
-                <li>• Next-day island trio</li>
+            <div className="bg-gray-50 rounded-[2rem] p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+              <h3 className="text-xl font-bold text-gray-900 mb-2 font-display">Two-Day Premium</h3>
+              <p className="text-blue-600 font-medium mb-4">Private boat with custom route</p>
+              <ul className="space-y-3 text-gray-600 text-sm">
+                <li className="flex items-start"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 mr-3 flex-shrink-0" />Hidden coves and snorkeling stops</li>
+                <li className="flex items-start"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 mr-3 flex-shrink-0" />Sunset at Kalapathar</li>
+                <li className="flex items-start"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 mr-3 flex-shrink-0" />Overnight on Havelock</li>
+                <li className="flex items-start"><span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 mr-3 flex-shrink-0" />Next-day island trio</li>
               </ul>
             </div>
           </div>
@@ -384,44 +309,36 @@ const IslandHoppingPage = () => {
       </section>
 
       {/* Travel Tips */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-10"
-          >
-            <h2 className="text-3xl font-bold text-night mb-2">Travel Tips</h2>
-            <p className="text-night/70">Make hopping seamless and comfortable</p>
-          </motion.div>
-          <div className="max-w-3xl mx-auto">
-            <ul className="space-y-3 text-night/80">
-              <li className="flex"><span className="w-2 h-2 glass-sunset-dot mt-2 mr-3" />Carry light day-packs and waterproof phone cases</li>
-              <li className="flex"><span className="w-2 h-2 glass-sunset-dot mt-2 mr-3" />Pre-book ferry tickets during peak months (Dec–Feb)</li>
-              <li className="flex"><span className="w-2 h-2 glass-sunset-dot mt-2 mr-3" />Start early to avoid midday heat</li>
-              <li className="flex"><span className="w-2 h-2 glass-sunset-dot mt-2 mr-3" />Respect local regulations and eco zones</li>
-            </ul>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 font-display">Travel Tips</h2>
+            <p className="text-gray-500">Make hopping seamless and comfortable</p>
+          </div>
+          <div className="max-w-4xl mx-auto bg-blue-50 rounded-[2rem] p-8 border border-blue-100">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {travelTips.map((tip, index) => (
+                <div key={index} className="flex items-start text-gray-700">
+                  <CheckCircle className="w-5 h-5 mr-3 mt-0.5 text-blue-600 flex-shrink-0" />
+                  <span className="text-sm leading-relaxed">{tip}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Packages Section */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">
               Island Hopping Packages
             </h2>
-            <p className="text-night/70 max-w-2xl mx-auto">
+            <p className="text-gray-500 max-w-2xl mx-auto">
               Choose the perfect package for your island adventure
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {packages.map((pkg, index) => (
@@ -430,34 +347,40 @@ const IslandHoppingPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col border border-gray-100"
               >
-                <div className="bg-gradient-to-r from-azure to-blue-600 p-4">
-                  <h3 className="text-xl font-bold text-pearl">{pkg.name}</h3>
-                  <p className="text-pearl/80 text-sm">{pkg.duration}</p>
+                <div className="bg-gray-900 p-6 text-center">
+                  <h3 className="text-xl font-bold text-white mb-1 font-display">{pkg.name}</h3>
+                  <p className="text-gray-400 text-sm">{pkg.duration}</p>
                 </div>
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xl font-bold text-night">{pkg.price}</span>
-                    <span className="text-sm text-night/60 bg-azure/10 px-3 py-1 rounded-full">
+                <div className="p-8 flex-grow flex flex-col">
+                  <div className="text-center mb-6">
+                    <span className="text-3xl font-bold text-gray-900">{pkg.price}</span>
+                  </div>
+                  
+                  <div className="mb-6 text-center">
+                    <span className="text-xs font-bold bg-blue-50 text-blue-600 px-3 py-1 rounded-full uppercase tracking-wide">
                       {pkg.bestFor}
                     </span>
                   </div>
-                  <p className="text-night/70 mb-4">{pkg.description}</p>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Includes:</h4>
-                    <div className="space-y-1">
+
+                  <p className="text-gray-600 mb-6 text-sm text-center leading-relaxed">{pkg.description}</p>
+                  
+                  <div className="mb-8 flex-grow">
+                    <h4 className="font-bold text-gray-900 text-sm mb-3 text-center">Includes:</h4>
+                    <div className="space-y-2">
                       {pkg.includes.slice(0, 3).map((item, i) => (
-                        <div key={i} className="flex items-center text-night/60">
-                          <CheckCircle className="w-3 h-3 mr-2 text-azure" />
-                          <span className="text-sm">{item}</span>
+                        <div key={i} className="flex items-center justify-center text-gray-600 text-sm">
+                          <CheckCircle className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
+                          <span>{item}</span>
                         </div>
                       ))}
                       {pkg.includes.length > 3 && (
-                        <div className="text-xs text-azure">+{pkg.includes.length - 3} more</div>
+                        <div className="text-xs text-blue-600 font-medium text-center">+{pkg.includes.length - 3} more</div>
                       )}
                     </div>
                   </div>
+
                   <Link
                     to="/enquiry"
                     onClick={() => {
@@ -470,7 +393,7 @@ const IslandHoppingPage = () => {
                         }));
                       } catch (_) { /* no-op */ }
                     }}
-                    className="inline-flex items-center px-4 py-2 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all w-full justify-center"
+                    className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-blue-600/30 mt-auto"
                   >
                     Book Package
                   </Link>
@@ -482,39 +405,41 @@ const IslandHoppingPage = () => {
       </section>
 
       {/* FAQs */}
-      <FaqAccordion
-        title="Frequently Asked Questions"
-        description="Everything you need to know about island hopping in Andaman"
-        faqs={[
-          {
-            question: "What is the best time for island hopping?",
-            answer: "October to May offers the best weather conditions with calm seas. December to February is peak season with pleasant temperatures."
-          },
-          {
-            question: "Are ferry tickets included in the packages?",
-            answer: "Yes, all necessary ferry tickets between islands are included in our packages. We also arrange private transfers where applicable."
-          },
-          {
-            question: "Can we customize the island hopping itinerary?",
-            answer: "Absolutely! We offer customizable itineraries based on your interests, time constraints, and budget. Just let us know your preferences."
-          },
-          {
-            question: "Is island hopping suitable for children?",
-            answer: "Yes, island hopping is family-friendly. We recommend shorter itineraries with less boat travel for families with young children."
-          },
-          {
-            question: "What should we carry for island hopping?",
-            answer: "Light daypack, sunscreen, hat, comfortable footwear, swimwear, towel, waterproof phone case, and cash for small purchases."
-          },
-          {
-            question: "Are meals included during island hopping?",
-            answer: "Most packages include meals. For day trips, lunch is typically included. Multi-day packages include all meals as specified in the itinerary."
-          }
-        ]}
-      />
-
-      <Footer />
-    </div>
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <FaqAccordion
+            title="Frequently Asked Questions"
+            description="Everything you need to know about island hopping in Andaman"
+            faqs={[
+              {
+                question: "What is the best time for island hopping?",
+                answer: "October to May offers the best weather conditions with calm seas. December to February is peak season with pleasant temperatures."
+              },
+              {
+                question: "Are ferry tickets included in the packages?",
+                answer: "Yes, all necessary ferry tickets between islands are included in our packages. We also arrange private transfers where applicable."
+              },
+              {
+                question: "Can we customize the island hopping itinerary?",
+                answer: "Absolutely! We offer customizable itineraries based on your interests, time constraints, and budget. Just let us know your preferences."
+              },
+              {
+                question: "Is island hopping suitable for children?",
+                answer: "Yes, island hopping is family-friendly. We recommend shorter itineraries with less boat travel for families with young children."
+              },
+              {
+                question: "What should we carry for island hopping?",
+                answer: "Light daypack, sunscreen, hat, comfortable footwear, swimwear, towel, waterproof phone case, and cash for small purchases."
+              },
+              {
+                question: "Are meals included during island hopping?",
+                answer: "Most packages include meals. For day trips, lunch is typically included. Multi-day packages include all meals as specified in the itinerary."
+              }
+            ]}
+          />
+        </div>
+      </section>
+    </ExperienceLayout>
   );
 };
 

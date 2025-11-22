@@ -1,10 +1,7 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Mountain, MapPin, Clock, Users, TreePine, Camera, Sun, Compass, Footprints } from 'lucide-react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import SEO from '../../components/SEO';
+import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
+import { Mountain, MapPin, Clock, Users, TreePine, Camera, Sun, Compass, Footprints, CheckCircle } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const TrekkingPage = () => {
@@ -113,135 +110,118 @@ const TrekkingPage = () => {
     "Check weather conditions before trekking"
   ];
 
-  return (
-    <div className="min-h-screen bg-pearl">
-      <SEO 
-        title="Jungle Trekking in Andaman | Mountain Trails | Book Now"
-        description="Explore the pristine rainforests of Andaman with guided trekking tours. Trek Mount Harriet, Saddle Peak, and more. Discover endemic wildlife and panoramic views."
-        keywords="trekking andaman, mount harriet trek, saddle peak andaman, jungle trails andaman, nature walks andaman, bird watching andaman, forest trekking"
-        targetAudience="adventure"
-        pathname="/experiences/trekking"
-        image="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-      />
-      <Header />
-      
-      {/* Hero Section */}
-      <div className="relative h-[70vh] overflow-hidden">
-        <img 
-          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
-          alt="Jungle Trekking in Andaman"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-night/60 to-night/30" />
-        <div className="absolute inset-0 flex items-center">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-2xl"
-            >
-              <h1 className="text-5xl md:text-6xl font-bold text-pearl mb-6">
-                Jungle Trekking Adventures
-              </h1>
-              <p className="text-xl text-pearl/90 mb-8">
-                Discover the pristine rainforests of the Andaman Islands through our guided trekking experiences
-              </p>
-              <Link
-                to="/enquiry"
-                onClick={() => {
-                  try {
-                    localStorage.setItem('enquiryDetails', JSON.stringify({
-                      packageName: 'Jungle Trekking Adventures',
-                      source: 'experience',
-                      slug: 'trekking'
-                    }));
-                  } catch (_) { /* no-op */ }
-                }}
-                className="inline-flex items-center px-8 py-4 glass-sunset-button text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
-              >
-                Book Your Trek
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </div>
+  const faqs = [
+    {
+      question: "How fit do I need to be for trekking?",
+      answer: "We offer treks from easy to challenging. Basic fitness is sufficient for easy trails, while peak treks require good stamina and endurance."
+    },
+    {
+      question: "Are the forests safe to trek?",
+      answer: "Yes, our trails are safe with experienced guides. We follow designated paths and carry first aid kits for emergencies."
+    },
+    {
+      question: "What wildlife might we see during treks?",
+      answer: "You may spot various bird species including endemic ones, butterflies, small mammals, and if lucky, the Andaman wild pig."
+    },
+    {
+      question: "Can children join the treks?",
+      answer: "Children above 10 years can join easy treks with parental supervision. We recommend shorter, easier trails for families."
+    }
+  ];
 
+  return (
+    <ExperienceLayout
+      title="Jungle Trekking"
+      subtitle="Explore the Wild"
+      description="Discover the pristine rainforests of the Andaman Islands through our guided trekking experiences. Hike through dense jungles, reach mountain peaks, and witness breathtaking panoramic views."
+      image="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+      stats={{
+        duration: "3 Hours - 2 Days",
+        location: "Mount Harriet & More",
+        price: "From ₹2,500"
+      }}
+      slug="trekking"
+      seo={{
+        title: "Jungle Trekking in Andaman | Mountain Trails | Book Now",
+        description: "Explore the pristine rainforests of Andaman with guided trekking tours. Trek Mount Harriet, Saddle Peak, and more. Discover endemic wildlife and panoramic views.",
+        keywords: "trekking andaman, mount harriet trek, saddle peak andaman, jungle trails andaman, nature walks andaman, bird watching andaman, forest trekking"
+      }}
+      bookingData={{
+        packageName: 'Jungle Trekking Adventures',
+        source: 'experience',
+        slug: 'trekking'
+      }}
+    >
       {/* Features Section */}
-      <section className="py-20">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center"
+              className="text-center p-6 rounded-2xl bg-gray-50 hover:bg-green-50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Compass className="w-8 h-8 text-azure" />
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">
+                <Compass className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold text-night mb-2">Expert Guides</h3>
-              <p className="text-night/70">Knowledgeable naturalists with forest expertise</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Expert Guides</h3>
+              <p className="text-gray-600 text-sm">Knowledgeable naturalists with forest expertise</p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-center"
+              className="text-center p-6 rounded-2xl bg-gray-50 hover:bg-green-50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <TreePine className="w-8 h-8 text-azure" />
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">
+                <TreePine className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold text-night mb-2">Pristine Forests</h3>
-              <p className="text-night/70">Explore untouched rainforest ecosystems</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Pristine Forests</h3>
+              <p className="text-gray-600 text-sm">Explore untouched rainforest ecosystems</p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-center"
+              className="text-center p-6 rounded-2xl bg-gray-50 hover:bg-green-50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Camera className="w-8 h-8 text-azure" />
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">
+                <Camera className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold text-night mb-2">Wildlife Spotting</h3>
-              <p className="text-night/70">Encounter endemic species and birds</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Wildlife Spotting</h3>
+              <p className="text-gray-600 text-sm">Encounter endemic species and birds</p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-center"
+              className="text-center p-6 rounded-2xl bg-gray-50 hover:bg-green-50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Mountain className="w-8 h-8 text-azure" />
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">
+                <Mountain className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold text-night mb-2">Panoramic Views</h3>
-              <p className="text-night/70">Breathtaking vistas from mountain peaks</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Panoramic Views</h3>
+              <p className="text-gray-600 text-sm">Breathtaking vistas from mountain peaks</p>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Trekking Routes */}
-      <section className="py-20 bg-night">
+      <section className="py-20 bg-gray-900 text-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-pearl mb-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4 font-display">
               Popular Trekking Routes
             </h2>
-            <p className="text-pearl/70 max-w-2xl mx-auto">
+            <p className="text-gray-400 max-w-2xl mx-auto">
               Explore these incredible trekking trails in the Andaman Islands
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {trekkingRoutes.map((route, index) => (
@@ -250,45 +230,45 @@ const TrekkingPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500"
+                className="bg-gray-800 rounded-[2rem] overflow-hidden shadow-xl group hover:shadow-2xl transition-all duration-500 border border-gray-700"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-night/20 group-hover:bg-night/40 transition-all duration-500 z-10" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500 z-10" />
                   <img
                     src={route.image}
                     alt={route.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 right-4 glass-sunset-badge px-4 py-2 z-20">
+                  <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md border border-white/10 text-white px-4 py-1.5 rounded-full text-sm font-bold z-20">
                     {route.difficulty}
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-night mb-2">{route.name}</h3>
-                  <p className="text-night/70 mb-4">{route.description}</p>
-                  <div className="grid grid-cols-2 gap-4 mb-4 text-night/60">
-                    <span className="flex items-center">
-                      <Clock className="w-4 h-4 mr-2" />
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold text-white mb-3 font-display">{route.name}</h3>
+                  <p className="text-gray-400 mb-6 leading-relaxed">{route.description}</p>
+                  <div className="grid grid-cols-2 gap-4 mb-6 text-gray-400 text-sm">
+                    <span className="flex items-center bg-gray-700/50 px-3 py-1 rounded-lg">
+                      <Clock className="w-4 h-4 mr-2 text-green-400" />
                       {route.duration}
                     </span>
-                    <span className="flex items-center">
-                      <Footprints className="w-4 h-4 mr-2" />
+                    <span className="flex items-center bg-gray-700/50 px-3 py-1 rounded-lg">
+                      <Footprints className="w-4 h-4 mr-2 text-green-400" />
                       {route.distance}
                     </span>
-                    <span className="flex items-center">
-                      <Mountain className="w-4 h-4 mr-2" />
+                    <span className="flex items-center bg-gray-700/50 px-3 py-1 rounded-lg">
+                      <Mountain className="w-4 h-4 mr-2 text-green-400" />
                       {route.elevation}
                     </span>
-                    <span className="flex items-center">
-                      <MapPin className="w-4 h-4 mr-2" />
+                    <span className="flex items-center bg-gray-700/50 px-3 py-1 rounded-lg">
+                      <MapPin className="w-4 h-4 mr-2 text-green-400" />
                       Trail
                     </span>
                   </div>
                   <div className="space-y-2">
                     {route.highlights.map((highlight, i) => (
-                      <div key={i} className="flex items-center text-night/60">
-                        <span className="w-2 h-2 glass-sunset-dot mr-2" />
-                        <span className="text-sm">{highlight}</span>
+                      <div key={i} className="flex items-center text-gray-400 text-sm">
+                        <div className="w-1.5 h-1.5 rounded-full bg-green-400 mr-3" />
+                        <span>{highlight}</span>
                       </div>
                     ))}
                   </div>
@@ -300,21 +280,16 @@ const TrekkingPage = () => {
       </section>
 
       {/* Packages Section */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">
               Trekking Packages
             </h2>
-            <p className="text-night/70 max-w-2xl mx-auto">
+            <p className="text-gray-500 max-w-2xl mx-auto">
               Choose the perfect trekking experience for your fitness level
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {packages.map((pkg, index) => (
@@ -323,30 +298,34 @@ const TrekkingPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 flex flex-col"
               >
-                <h3 className="text-2xl font-bold text-night mb-2">{pkg.name}</h3>
-                <div className="flex items-center space-x-4 mb-4 text-night/60">
-                  <span className="flex items-center">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
+                <div className="flex items-center space-x-4 mb-6 text-gray-500 text-sm">
+                  <span className="flex items-center bg-gray-50 px-3 py-1 rounded-lg">
                     <Clock className="w-4 h-4 mr-2" />
                     {pkg.duration}
                   </span>
-                  <span className="flex items-center">
-                    <MapPin className="w-4 h-4 mr-2" />
-                    {pkg.routes.join(", ")}
-                  </span>
                 </div>
-                <p className="text-night/70 mb-4">{pkg.description}</p>
-                <ul className="space-y-2 mb-6">
-                  {pkg.includes.map((item, i) => (
-                    <li key={i} className="flex items-center text-night/60">
-                      <span className="w-2 h-2 glass-sunset-dot mr-2" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold text-night">{pkg.price}</span>
+                <p className="text-gray-600 mb-6 text-sm leading-relaxed">{pkg.description}</p>
+                
+                <div className="mb-8 flex-grow">
+                  <h4 className="font-bold text-gray-900 text-sm mb-3">Includes:</h4>
+                  <ul className="space-y-3">
+                    {pkg.includes.map((item, i) => (
+                      <li key={i} className="flex items-center text-gray-600 text-sm">
+                        <CheckCircle className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="pt-6 border-t border-gray-100 mt-auto">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-gray-500 text-sm">Starting from</span>
+                    <span className="text-2xl font-bold text-green-600">{pkg.price}</span>
+                  </div>
                   <Link
                     to="/enquiry"
                     onClick={() => {
@@ -359,7 +338,7 @@ const TrekkingPage = () => {
                         }));
                       } catch (_) { /* no-op */ }
                     }}
-                    className="inline-flex items-center px-6 py-3 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
+                    className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-green-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-green-600/30"
                   >
                     Book Now
                   </Link>
@@ -371,22 +350,24 @@ const TrekkingPage = () => {
       </section>
 
       {/* Wildlife & Essentials */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl font-bold text-night mb-6">Wildlife You Might Encounter</h2>
-              <div className="grid grid-cols-2 gap-3">
-                {wildlife.map((animal, index) => (
-                  <div key={index} className="flex items-center text-night/70">
-                    <TreePine className="w-4 h-4 mr-2 text-azure" />
-                    {animal}
-                  </div>
-                ))}
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 font-display">Wildlife You Might Encounter</h2>
+              <div className="bg-white rounded-[2rem] p-8 shadow-lg border border-gray-100">
+                <div className="grid grid-cols-2 gap-4">
+                  {wildlife.map((animal, index) => (
+                    <div key={index} className="flex items-center text-gray-700 p-2 hover:bg-green-50 rounded-lg transition-colors">
+                      <TreePine className="w-4 h-4 mr-3 text-green-500" />
+                      <span className="text-sm font-medium">{animal}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </motion.div>
 
@@ -395,38 +376,42 @@ const TrekkingPage = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl font-bold text-night mb-6">Trekking Essentials</h2>
-              <ul className="space-y-3">
-                {essentials.slice(0, 6).map((item, index) => (
-                  <li key={index} className="flex items-start text-night/70">
-                    <span className="w-2 h-2 glass-sunset-dot mr-3 mt-2" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 font-display">Trekking Essentials</h2>
+              <div className="bg-white rounded-[2rem] p-8 shadow-lg border border-gray-100">
+                <ul className="space-y-4">
+                  {essentials.slice(0, 6).map((item, index) => (
+                    <li key={index} className="flex items-start text-gray-600">
+                      <div className="w-2 h-2 rounded-full bg-green-500 mr-4 mt-2 flex-shrink-0" />
+                      <span className="leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Tips & Best Season */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl font-bold text-night mb-6">Trekking Tips</h2>
-              <ul className="space-y-3">
-                {tips.map((tip, index) => (
-                  <li key={index} className="flex items-start text-night/70">
-                    <span className="w-2 h-2 glass-sunset-dot mr-3 mt-2" />
-                    {tip}
-                  </li>
-                ))}
-              </ul>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 font-display">Trekking Tips</h2>
+              <div className="bg-gray-50 rounded-[2rem] p-8 border border-gray-100">
+                <ul className="space-y-4">
+                  {tips.map((tip, index) => (
+                    <li key={index} className="flex items-start text-gray-600">
+                      <CheckCircle className="w-5 h-5 mr-3 mt-0.5 text-green-500 flex-shrink-0" />
+                      <span className="leading-relaxed">{tip}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
 
             <motion.div
@@ -434,36 +419,20 @@ const TrekkingPage = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl font-bold text-night mb-6">Best Trekking Season</h2>
-              <div className="bg-white rounded-xl p-6 shadow">
-                <div className="flex items-center mb-4">
-                  <Sun className="w-5 h-5 mr-2 text-sunset" />
-                  <span className="font-semibold text-night">November to April</span>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 font-display">Best Trekking Season</h2>
+              <div className="bg-gray-50 rounded-[2rem] p-8 border border-gray-100">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+                    <Sun className="w-6 h-6 text-amber-500" />
+                  </div>
+                  <span className="font-bold text-xl text-gray-900">November to April</span>
                 </div>
-                <p className="text-night/70 mb-4">
-                  The dry season offers the best trekking conditions with:
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  The dry season offers the best trekking conditions with pleasant temperatures (20-30°C), lower humidity, and clear trails.
                 </p>
-                <ul className="space-y-2 text-night/70">
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 glass-sunset-dot mr-2" />
-                    Pleasant temperatures (20-30°C)
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 glass-sunset-dot mr-2" />
-                    Lower humidity levels
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 glass-sunset-dot mr-2" />
-                    Clear trails and better visibility
-                  </li>
-                  <li className="flex items-center">
-                    <span className="w-2 h-2 glass-sunset-dot mr-2" />
-                    Active wildlife and bird spotting
-                  </li>
-                </ul>
-                <p className="text-night/70 mt-4 text-sm">
-                  Monsoon season (May-October) makes trails slippery and challenging.
-                </p>
+                <div className="bg-white p-4 rounded-xl border border-gray-100 text-sm text-gray-500">
+                  Note: Monsoon season (May-October) makes trails slippery and challenging.
+                </div>
               </div>
             </motion.div>
           </div>
@@ -471,40 +440,16 @@ const TrekkingPage = () => {
       </section>
 
       {/* FAQs */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-10"
-          >
-            <h2 className="text-3xl font-bold text-night mb-2">Frequently Asked Questions</h2>
-            <p className="text-night/70">Everything you need to know about trekking in Andaman</p>
-          </motion.div>
-          <div className="max-w-3xl mx-auto space-y-6">
-            <div className="bg-white rounded-xl p-6 shadow">
-              <h3 className="font-semibold text-night">How fit do I need to be for trekking?</h3>
-              <p className="text-night/70 mt-2">We offer treks from easy to challenging. Basic fitness is sufficient for easy trails, while peak treks require good stamina and endurance.</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow">
-              <h3 className="font-semibold text-night">Are the forests safe to trek?</h3>
-              <p className="text-night/70 mt-2">Yes, our trails are safe with experienced guides. We follow designated paths and carry first aid kits for emergencies.</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow">
-              <h3 className="font-semibold text-night">What wildlife might we see during treks?</h3>
-              <p className="text-night/70 mt-2">You may spot various bird species including endemic ones, butterflies, small mammals, and if lucky, the Andaman wild pig.</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow">
-              <h3 className="font-semibold text-night">Can children join the treks?</h3>
-              <p className="text-night/70 mt-2">Children above 10 years can join easy treks with parental supervision. We recommend shorter, easier trails for families.</p>
-            </div>
-          </div>
+          <FaqAccordion
+            title="Frequently Asked Questions"
+            description="Everything you need to know about trekking in Andaman"
+            faqs={faqs}
+          />
         </div>
       </section>
-
-      <Footer />
-    </div>
+    </ExperienceLayout>
   );
 };
 

@@ -1,7 +1,5 @@
 import { motion } from 'framer-motion';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import SEO from '../../components/SEO';
+import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
 import { Moon, Sparkles, Clock, Users, MapPin, Camera, CheckCircle, Calendar, Shield, Waves } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
@@ -184,116 +182,81 @@ const BioluminescenceKayakingPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-pearl">
-      <SEO
-        title="Bioluminescence Kayaking in Andaman | Night Glow Tours | Book Now"
-        description="Witness nature's magic with bioluminescence kayaking in Havelock, Andamans. Guided night tours, beginner friendly, best around new moon. Book glow kayak now."
-        keywords="bioluminescence andaman, glow kayaking havelock, night kayaking andaman, plankton glow andaman, new moon kayaking"
-        targetAudience="adventure"
-        pathname="/experiences/bioluminescence-kayaking"
-      />
-      <Header />
-
-      {/* Hero */}
-      <div className="relative h-[70vh] overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
-          alt="Bioluminescence Kayaking"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-night/70 to-night/40" />
-        <div className="absolute inset-0 flex items-center">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-2xl"
-            >
-              <h1 className="text-5xl md:text-6xl font-bold text-pearl mb-6">
-                Bioluminescence Kayaking
-              </h1>
-              <p className="text-xl text-pearl/90 mb-8">
-                Glide over a sea of stars as plankton light up with every paddle stroke.
-              </p>
-              <Link
-                to="/enquiry"
-                onClick={() => {
-                  try {
-                    localStorage.setItem('enquiryDetails', JSON.stringify({
-                      packageName: 'Bioluminescence Kayaking',
-                      source: 'experience',
-                      slug: 'bioluminescence-kayaking'
-                    }));
-                  } catch (_) { /* no-op */ }
-                }}
-                className="inline-flex items-center px-8 py-4 glass-sunset-button text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
-              >
-                Book Night Tour
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
+    <ExperienceLayout
+      title="Bioluminescence Kayaking"
+      subtitle="Night Glow Tours"
+      description="Glide over a sea of stars as plankton light up with every paddle stroke. Experience nature's magical light show in the pristine waters of the Andaman Islands."
+      image="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+      stats={{
+        duration: "1.5-2.5 Hours",
+        location: "Havelock & Neil",
+        price: "From ₹3,500"
+      }}
+      slug="bioluminescence-kayaking"
+      seo={{
+        title: "Bioluminescence Kayaking in Andaman | Night Glow Tours | Book Now",
+        description: "Witness nature's magic with bioluminescence kayaking in Havelock, Andamans. Guided night tours, beginner friendly, best around new moon. Book glow kayak now.",
+        keywords: "bioluminescence andaman, glow kayaking havelock, night kayaking andaman, plankton glow andaman, new moon kayaking"
+      }}
+      bookingData={{
+        packageName: 'Bioluminescence Kayaking',
+        source: 'experience',
+        slug: 'bioluminescence-kayaking'
+      }}
+    >
       {/* Features */}
-      <section className="py-20">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center"
+              className="text-center p-8 rounded-2xl bg-gray-50 hover:bg-blue-50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Moon className="w-8 h-8 text-azure" />
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+                <Moon className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold text-night mb-2">New Moon Magic</h3>
-              <p className="text-night/70">Peak glow around darker nights</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">New Moon Magic</h3>
+              <p className="text-gray-600 text-sm">Peak glow around darker nights</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="text-center"
+              className="text-center p-8 rounded-2xl bg-gray-50 hover:bg-blue-50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Sparkles className="w-8 h-8 text-azure" />
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+                <Sparkles className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold text-night mb-2">Glow Guaranteed*</h3>
-              <p className="text-night/70">Dependent on season and weather</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Glow Guaranteed*</h3>
+              <p className="text-gray-600 text-sm">Dependent on season and weather</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-center"
+              className="text-center p-8 rounded-2xl bg-gray-50 hover:bg-blue-50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="w-8 h-8 text-azure" />
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+                <Users className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold text-night mb-2">Beginner Friendly</h3>
-              <p className="text-night/70">No prior kayaking experience needed</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Beginner Friendly</h3>
+              <p className="text-gray-600 text-sm">No prior kayaking experience needed</p>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* What to Expect */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">What to Expect</h2>
-            <p className="text-night/70 max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">What to Expect</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">
               Discover the magical experience of bioluminescence kayaking
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {whatToExpect.map((item, index) => (
@@ -302,13 +265,13 @@ const BioluminescenceKayakingPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100"
               >
-                <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4 text-azure">
+                <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 text-blue-600">
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-bold text-night mb-2">{item.title}</h3>
-                <p className="text-night/70">{item.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
               </motion.div>
             ))}
           </div>
@@ -316,19 +279,14 @@ const BioluminescenceKayakingPage = () => {
       </section>
 
       {/* Best Locations */}
-      <section className="py-20 bg-night">
+      <section className="py-20 bg-gray-900 text-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-pearl mb-4">Best Locations</h2>
-            <p className="text-pearl/70 max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4 font-display">Best Locations</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
               Discover the top spots for bioluminescence kayaking in Andaman
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {locations.map((location, index) => (
@@ -337,25 +295,25 @@ const BioluminescenceKayakingPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500"
+                className="bg-gray-800 rounded-[2rem] overflow-hidden shadow-xl group hover:shadow-2xl transition-all duration-500 border border-gray-700"
               >
-                <div className="relative h-48 overflow-hidden">
-                  <div className="absolute inset-0 bg-night/20 group-hover:bg-night/40 transition-all duration-500 z-10" />
+                <div className="relative h-56 overflow-hidden">
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500 z-10" />
                   <img
                     src={location.image}
                     alt={location.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 right-4 glass-sunset-badge px-4 py-2 z-20">
+                  <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md border border-white/10 text-white px-4 py-1.5 rounded-full text-sm font-bold z-20">
                     {location.visibility} Visibility
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-night mb-2">{location.name}</h3>
-                  <p className="text-night/70 mb-4">{location.description}</p>
-                  <div className="flex items-center text-night/60">
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold text-white mb-3 font-display">{location.name}</h3>
+                  <p className="text-gray-400 mb-6 text-sm leading-relaxed">{location.description}</p>
+                  <div className="flex items-center text-cyan-400 bg-gray-700/50 p-3 rounded-xl w-fit">
                     <Calendar className="w-4 h-4 mr-2" />
-                    <span className="text-sm">{location.bestTime}</span>
+                    <span className="text-sm font-medium">{location.bestTime}</span>
                   </div>
                 </div>
               </motion.div>
@@ -365,19 +323,14 @@ const BioluminescenceKayakingPage = () => {
       </section>
 
       {/* Tours */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">Night Glow Tours</h2>
-            <p className="text-night/70 max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">Night Glow Tours</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">
               Choose from our curated night kayaking experiences designed around moon phases.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {tours.map((tour, index) => (
@@ -386,61 +339,64 @@ const BioluminescenceKayakingPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 group flex flex-col"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-night/20 group-hover:bg-night/40 transition-all duration-500 z-10" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500 z-10" />
                   <img
                     src={tour.image}
                     alt={tour.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 right-4 glass-sunset-badge px-4 py-2 z-20">
+                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-gray-900 px-4 py-1.5 rounded-full text-sm font-bold z-20 shadow-lg">
                     {tour.price}
                   </div>
                   <div className="absolute top-4 left-4 z-20">
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-azure/90 text-pearl">
+                    <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-blue-600 text-white shadow-lg">
                       {tour.bestFor}
                     </span>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-night mb-2">{tour.name}</h3>
-                  <div className="flex items-center space-x-4 mb-4 text-night/60">
-                    <span className="flex items-center">
+                <div className="p-8 flex-grow flex flex-col">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 font-display">{tour.name}</h3>
+                  <div className="flex items-center space-x-4 mb-6 text-gray-500 text-sm">
+                    <span className="flex items-center bg-gray-50 px-3 py-1 rounded-lg">
                       <Clock className="w-4 h-4 mr-2" />
                       {tour.duration}
                     </span>
-                    <span className="flex items-center">
+                    <span className="flex items-center bg-gray-50 px-3 py-1 rounded-lg">
                       <MapPin className="w-4 h-4 mr-2" />
                       {tour.departure}
                     </span>
                   </div>
-                  <p className="text-night/70 mb-4">{tour.description}</p>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Highlights:</h4>
-                    <div className="flex flex-wrap gap-1">
+                  <p className="text-gray-600 mb-6 text-sm leading-relaxed">{tour.description}</p>
+                  
+                  <div className="mb-8 flex-grow">
+                    <h4 className="font-bold text-gray-900 text-sm mb-3">Highlights:</h4>
+                    <div className="flex flex-wrap gap-2">
                       {tour.highlights.map((highlight, i) => (
-                        <span key={i} className="text-xs bg-azure/10 text-azure px-2 py-1 rounded">
+                        <span key={i} className="text-xs bg-blue-50 text-blue-600 px-3 py-1 rounded-lg font-medium">
                           {highlight}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Includes:</h4>
-                    <div className="space-y-1">
+                  
+                  <div className="mb-8">
+                    <h4 className="font-bold text-gray-900 text-sm mb-3">Includes:</h4>
+                    <div className="space-y-2">
                       {tour.includes.slice(0, 3).map((item, i) => (
-                        <div key={i} className="flex items-center text-night/60">
-                          <CheckCircle className="w-3 h-3 mr-2 text-azure" />
-                          <span className="text-sm">{item}</span>
+                        <div key={i} className="flex items-center text-gray-600 text-sm">
+                          <CheckCircle className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
+                          <span>{item}</span>
                         </div>
                       ))}
                       {tour.includes.length > 3 && (
-                        <div className="text-xs text-azure">+{tour.includes.length - 3} more</div>
+                        <div className="text-xs text-blue-600 font-medium pl-6">+{tour.includes.length - 3} more items</div>
                       )}
                     </div>
                   </div>
+
                   <Link
                     to="/enquiry"
                     onClick={() => {
@@ -453,7 +409,7 @@ const BioluminescenceKayakingPage = () => {
                         }));
                       } catch (_) { /* no-op */ }
                     }}
-                    className="inline-flex items-center px-4 py-2 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all w-full justify-center"
+                    className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-blue-600/30 mt-auto"
                   >
                     Book Now
                   </Link>
@@ -465,19 +421,14 @@ const BioluminescenceKayakingPage = () => {
       </section>
 
       {/* Best Time to Visit */}
-      <section className="py-20 bg-gradient-to-br from-azure/5 to-blue-600/5">
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">Best Time to Visit</h2>
-            <p className="text-night/70 max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">Best Time to Visit</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">
               Plan your trip around the optimal conditions for bioluminescence
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {bestTimeToVisit.map((time, index) => (
@@ -486,17 +437,17 @@ const BioluminescenceKayakingPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100"
               >
-                <h3 className="text-lg font-bold text-night mb-2">{time.month}</h3>
-                <p className="text-night/70 mb-4">{time.description}</p>
-                <div className="flex items-center">
-                  <div className={`w-3 h-3 rounded-full mr-2 ${
+                <h3 className="text-lg font-bold text-gray-900 mb-3">{time.month}</h3>
+                <p className="text-gray-600 text-sm mb-6 leading-relaxed">{time.description}</p>
+                <div className="flex items-center bg-gray-50 px-3 py-2 rounded-lg w-fit">
+                  <div className={`w-2.5 h-2.5 rounded-full mr-2 ${
                     time.visibility === 'Excellent' ? 'bg-green-500' :
                     time.visibility === 'Good' ? 'bg-yellow-500' :
                     'bg-red-500'
                   }`} />
-                  <span className="text-sm text-night/60">{time.visibility} Visibility</span>
+                  <span className="text-xs font-bold text-gray-700 uppercase tracking-wide">{time.visibility} Visibility</span>
                 </div>
               </motion.div>
             ))}
@@ -505,42 +456,41 @@ const BioluminescenceKayakingPage = () => {
       </section>
 
       {/* Tips */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-10"
-          >
-            <h2 className="text-3xl font-bold text-night mb-2">Good to Know</h2>
-            <p className="text-night/70">Helpful notes to plan your glow adventure</p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white rounded-xl p-6 shadow">
-              <div className="flex items-center mb-4">
-                <Shield className="w-5 h-5 mr-2 text-azure" />
-                <span className="font-semibold text-night">Safety & Preparation</span>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 font-display">Good to Know</h2>
+            <p className="text-gray-500">Helpful notes to plan your glow adventure</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="bg-gray-50 rounded-[2rem] p-8 border border-gray-100">
+              <div className="flex items-center mb-6">
+                <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                  <Shield className="w-5 h-5 text-blue-600" />
+                </div>
+                <span className="font-bold text-xl text-gray-900">Safety & Preparation</span>
               </div>
-              <ul className="space-y-3 text-night/80">
+              <ul className="space-y-4">
                 {tips.slice(0, 4).map((tip, index) => (
-                  <li key={index} className="flex items-start">
-                    <CheckCircle className="w-4 h-4 mr-2 mt-0.5 text-azure flex-shrink-0" />
-                    <span>{tip}</span>
+                  <li key={index} className="flex items-start text-gray-600">
+                    <CheckCircle className="w-5 h-5 mr-3 mt-0.5 text-green-500 flex-shrink-0" />
+                    <span className="leading-relaxed">{tip}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-white rounded-xl p-6 shadow">
-              <div className="flex items-center mb-4">
-                <Calendar className="w-5 h-5 mr-2 text-azure" />
-                <span className="font-semibold text-night">Experience Tips</span>
+            <div className="bg-gray-50 rounded-[2rem] p-8 border border-gray-100">
+              <div className="flex items-center mb-6">
+                <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                  <Calendar className="w-5 h-5 text-blue-600" />
+                </div>
+                <span className="font-bold text-xl text-gray-900">Experience Tips</span>
               </div>
-              <ul className="space-y-3 text-night/80">
+              <ul className="space-y-4">
                 {tips.slice(4, 8).map((tip, index) => (
-                  <li key={index} className="flex items-start">
-                    <CheckCircle className="w-4 h-4 mr-2 mt-0.5 text-azure flex-shrink-0" />
-                    <span>{tip}</span>
+                  <li key={index} className="flex items-start text-gray-600">
+                    <CheckCircle className="w-5 h-5 mr-3 mt-0.5 text-green-500 flex-shrink-0" />
+                    <span className="leading-relaxed">{tip}</span>
                   </li>
                 ))}
               </ul>
@@ -550,17 +500,17 @@ const BioluminescenceKayakingPage = () => {
       </section>
 
       {/* FAQs */}
-      <FaqAccordion
-        title="Frequently Asked Questions"
-        description="Everything you need to know about bioluminescence kayaking in Andaman"
-        faqs={faqs}
-      />
-
-      <Footer />
-    </div>
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <FaqAccordion
+            title="Frequently Asked Questions"
+            description="Everything you need to know about bioluminescence kayaking in Andaman"
+            faqs={faqs}
+          />
+        </div>
+      </section>
+    </ExperienceLayout>
   );
 };
 
 export default BioluminescenceKayakingPage;
-
-

@@ -1,9 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Anchor, Compass, Shield, Award, Clock, Users, Waves, MapPin, Sun, Fish, CheckCircle, AlertCircle, Camera } from 'lucide-react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import SEO from '../../components/SEO';
+import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
 import FaqAccordion from '../../components/FaqAccordion';
 
@@ -180,135 +178,94 @@ const ScubaDivingPage = () => {
     }
   ];
 
-  return (
-    <div className="min-h-screen bg-pearl">
-      <SEO 
-        title="Scuba Diving in Andaman | Best Diving Sites | PADI Certified | Book Now"
-        description="Explore underwater paradise with scuba diving in Andaman. 30+ dive sites, PADI certified instructors, beginner to advanced courses. Book diving packages from ₹3,500."
-        keywords="scuba diving andaman, andaman diving packages, PADI diving andaman, havelock diving, neil island diving, north bay diving, best diving sites andaman, underwater photography, diving courses andaman, diving certification andaman, coral reef diving, beginner scuba diving"
-        targetAudience="adventure"
-        pathname="/experiences/scuba-diving"
-        image="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-      />
-      <Header />
-      
-      {/* Hero Section */}
-      <div className="relative h-[70vh] overflow-hidden">
-        <img 
-          src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
-          alt="Scuba Diving"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-night/60 to-night/30" />
-        <div className="absolute inset-0 flex items-center">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-2xl"
-            >
-              <h1 className="text-5xl md:text-6xl font-bold text-pearl mb-6">
-                Scuba Diving Adventures
-              </h1>
-              <p className="text-xl text-pearl/90 mb-8">
-                Explore the vibrant underwater world of the Andaman Islands with our professional diving experiences
-              </p>
-              <Link
-                to="/enquiry"
-                onClick={() => {
-                  try {
-                    localStorage.setItem('enquiryDetails', JSON.stringify({
-                      packageName: 'Scuba Diving Adventures',
-                      source: 'experience',
-                      slug: 'scuba-diving'
-                    }));
-                  } catch (_) { /* no-op */ }
-                }}
-                className="inline-flex items-center px-8 py-4 glass-sunset-button text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
-              >
-                Book Your Dive
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </div>
+  const faqs = [
+    {
+      question: 'Can non-swimmers try scuba diving?',
+      answer: 'Yes! Our Discover Scuba Diving program is perfect for beginners with no swimming experience required.'
+    },
+    {
+      question: 'What is the visibility like in Andaman waters?',
+      answer: 'Visibility typically ranges from 15-30 meters, with the best conditions from December to April.'
+    },
+    {
+      question: 'Do I need to be certified?',
+      answer: 'No certification is required for introductory dives. We offer PADI certification courses for those interested.'
+    },
+    {
+      question: 'Is diving equipment provided?',
+      answer: 'Yes, we provide all necessary diving equipment including masks, snorkels, fins, BCDs, regulators, and wetsuits.'
+    },
+    {
+      question: 'Can I bring my own diving equipment?',
+      answer: 'Yes, you\'re welcome to bring your own equipment. We offer discounts for divers with their own gear.'
+    },
+    {
+      question: 'Are there any medical restrictions for diving?',
+      answer: 'Yes, conditions like asthma, heart problems, epilepsy, and pregnancy may restrict diving. A medical questionnaire is required.'
+    }
+  ];
 
+  return (
+    <ExperienceLayout
+      title="Scuba Diving Adventures"
+      subtitle="Explore the Deep"
+      description="Explore the vibrant underwater world of the Andaman Islands with our professional diving experiences. From beginner-friendly discovery dives to advanced certifications, discover a world of color beneath the waves."
+      image="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+      stats={{
+        duration: "3-4 Hours",
+        location: "Havelock & Neil",
+        price: "From ₹3,500"
+      }}
+      slug="scuba-diving"
+      seo={{
+        title: "Scuba Diving in Andaman | Best Diving Sites | PADI Certified | Book Now",
+        description: "Explore underwater paradise with scuba diving in Andaman. 30+ dive sites, PADI certified instructors, beginner to advanced courses. Book diving packages from ₹3,500.",
+        keywords: "scuba diving andaman, andaman diving packages, PADI diving andaman, havelock diving, neil island diving, north bay diving, best diving sites andaman, underwater photography, diving courses andaman, diving certification andaman, coral reef diving, beginner scuba diving"
+      }}
+      bookingData={{
+        packageName: 'Scuba Diving Adventures',
+        source: 'experience',
+        slug: 'scuba-diving'
+      }}
+    >
       {/* Features Section */}
-      <section className="py-20">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center"
-            >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="w-8 h-8 text-azure" />
-              </div>
-              <h3 className="text-lg font-semibold text-night mb-2">Safety First</h3>
-              <p className="text-night/70">PADI certified instructors and top-quality equipment</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-center"
-            >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Compass className="w-8 h-8 text-azure" />
-              </div>
-              <h3 className="text-lg font-semibold text-night mb-2">Expert Guides</h3>
-              <p className="text-night/70">Experienced instructors who know the waters</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-center"
-            >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Award className="w-8 h-8 text-azure" />
-              </div>
-              <h3 className="text-lg font-semibold text-night mb-2">Quality Equipment</h3>
-              <p className="text-night/70">Latest diving gear and safety equipment</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-center"
-            >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Anchor className="w-8 h-8 text-azure" />
-              </div>
-              <h3 className="text-lg font-semibold text-night mb-2">Best Locations</h3>
-              <p className="text-night/70">Access to premium diving spots</p>
-            </motion.div>
+            {[
+              { icon: Shield, title: "Safety First", desc: "PADI certified instructors and top-quality equipment" },
+              { icon: Compass, title: "Expert Guides", desc: "Experienced instructors who know the waters" },
+              { icon: Award, title: "Quality Equipment", desc: "Latest diving gear and safety equipment" },
+              { icon: Anchor, title: "Best Locations", desc: "Access to premium diving spots" }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="text-center p-6 rounded-2xl bg-gray-50 hover:bg-blue-50 transition-colors duration-300"
+              >
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+                  <feature.icon className="w-8 h-8" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{feature.title}</h3>
+                <p className="text-gray-600 text-sm">{feature.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Dive Sites */}
-      <section className="py-20 bg-night">
+      <section className="py-20 bg-gray-900 text-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-pearl mb-4">
-              World-Class Dive Sites
-            </h2>
-            <p className="text-pearl/70 max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-cyan-400 font-bold tracking-wider uppercase text-sm mb-3 block">Underwater Paradise</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-display">World-Class Dive Sites</h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
               Explore these incredible diving locations in the Andaman Islands, each offering unique underwater experiences
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {diveSites.map((site, index) => (
@@ -317,65 +274,50 @@ const ScubaDivingPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500"
+                className="bg-gray-800 rounded-[2rem] overflow-hidden shadow-xl group hover:shadow-2xl transition-all duration-500 border border-gray-700"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-night/20 group-hover:bg-night/40 transition-all duration-500 z-10" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500 z-10" />
                   <img
                     src={site.image}
                     alt={site.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 right-4 glass-sunset-badge px-4 py-2 z-20">
+                  <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md border border-white/10 text-white px-4 py-1.5 rounded-full text-sm font-bold z-20">
                     {site.difficulty}
                   </div>
                   <div className="absolute top-4 left-4 z-20">
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-azure/90 text-pearl">
+                    <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-cyan-500 text-white shadow-lg flex items-center gap-1">
+                      <MapPin size={12} />
                       {site.location}
                     </span>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-night mb-2">{site.name}</h3>
-                  <p className="text-night/70 mb-4">{site.description}</p>
-                  <div className="grid grid-cols-2 gap-4 mb-4 text-night/60">
-                    <span className="flex items-center">
-                      <Waves className="w-4 h-4 mr-2" />
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold text-white mb-3 font-display">{site.name}</h3>
+                  <p className="text-gray-400 mb-6 leading-relaxed">{site.description}</p>
+                  
+                  <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
+                    <div className="flex items-center text-gray-300 bg-gray-700/50 p-3 rounded-xl">
+                      <Waves className="w-4 h-4 mr-2 text-cyan-400" />
                       {site.depth}
-                    </span>
-                    <span className="flex items-center">
-                      <Sun className="w-4 h-4 mr-2" />
+                    </div>
+                    <div className="flex items-center text-gray-300 bg-gray-700/50 p-3 rounded-xl">
+                      <Sun className="w-4 h-4 mr-2 text-yellow-400" />
                       {site.visibility}
-                    </span>
-                  </div>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Highlights:</h4>
-                    <div className="flex flex-wrap gap-1">
-                      {site.highlights.slice(0, 3).map((highlight, i) => (
-                        <span key={i} className="text-xs bg-azure/10 text-azure px-2 py-1 rounded">
-                          {highlight}
-                        </span>
-                      ))}
-                      {site.highlights.length > 3 && (
-                        <span className="text-xs bg-night/10 text-night/60 px-2 py-1 rounded">
-                          +{site.highlights.length - 3} more
-                        </span>
-                      )}
                     </div>
                   </div>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Marine Life:</h4>
-                    <div className="flex flex-wrap gap-1">
-                      {site.marineLife.slice(0, 3).map((animal, i) => (
-                        <span key={i} className="text-xs bg-azure/10 text-azure px-2 py-1 rounded">
-                          {animal}
-                        </span>
-                      ))}
-                      {site.marineLife.length > 3 && (
-                        <span className="text-xs bg-night/10 text-night/60 px-2 py-1 rounded">
-                          +{site.marineLife.length - 3} more
-                        </span>
-                      )}
+
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-bold text-white text-sm uppercase tracking-wide mb-2 opacity-80">Highlights</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {site.highlights.slice(0, 3).map((highlight, i) => (
+                          <span key={i} className="text-xs bg-cyan-500/10 text-cyan-300 px-3 py-1 rounded-lg border border-cyan-500/20">
+                            {highlight}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -386,21 +328,14 @@ const ScubaDivingPage = () => {
       </section>
 
       {/* Dive Packages */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">
-              Dive Packages
-            </h2>
-            <p className="text-night/70 max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-display">Dive Packages</h2>
+            <p className="text-gray-500 text-lg max-w-2xl mx-auto">
               Choose the perfect diving package for your experience level and interests
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {divePackages.map((pkg, index) => (
@@ -409,30 +344,37 @@ const ScubaDivingPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 flex flex-col"
               >
-                <h3 className="text-xl font-bold text-night mb-2">{pkg.name}</h3>
-                <div className="flex items-center justify-between mb-4 text-night/60">
-                  <span className="flex items-center">
-                    <Anchor className="w-4 h-4 mr-2" />
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
+                <div className="flex items-center justify-between mb-6 text-gray-500 text-sm">
+                  <span className="flex items-center bg-gray-100 px-3 py-1 rounded-lg">
+                    <Anchor className="w-3 h-3 mr-2" />
                     {pkg.dives}
                   </span>
-                  <span className="flex items-center">
-                    <Clock className="w-4 h-4 mr-2" />
+                  <span className="flex items-center bg-gray-100 px-3 py-1 rounded-lg">
+                    <Clock className="w-3 h-3 mr-2" />
                     {pkg.duration}
                   </span>
                 </div>
-                <p className="text-night/70 mb-4 text-sm">{pkg.bestFor}</p>
-                <ul className="space-y-2 mb-6">
-                  {pkg.includes.map((item, i) => (
-                    <li key={i} className="flex items-center text-night/60">
-                      <CheckCircle className="w-4 h-4 mr-2 text-azure" />
-                      <span className="text-sm">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex items-center justify-between">
-                  <span className="text-xl font-bold text-night">{pkg.price}</span>
+                
+                <div className="mb-6 flex-grow">
+                  <p className="text-gray-500 text-sm font-medium mb-4 italic">Best for: {pkg.bestFor}</p>
+                  <ul className="space-y-3">
+                    {pkg.includes.map((item, i) => (
+                      <li key={i} className="flex items-start text-gray-600 text-sm">
+                        <CheckCircle className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="pt-6 border-t border-gray-100 mt-auto">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-gray-500 text-sm">Starting from</span>
+                    <span className="text-2xl font-bold text-blue-600">{pkg.price}</span>
+                  </div>
                   <Link
                     to="/enquiry"
                     onClick={() => {
@@ -445,7 +387,7 @@ const ScubaDivingPage = () => {
                         }));
                       } catch (_) { /* no-op */ }
                     }}
-                    className="inline-flex items-center px-4 py-2 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all text-sm"
+                    className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-blue-600/30"
                   >
                     Book Now
                   </Link>
@@ -457,21 +399,14 @@ const ScubaDivingPage = () => {
       </section>
 
       {/* Courses Section */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">
-              PADI Certification Courses
-            </h2>
-            <p className="text-night/70 max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-display">PADI Certification Courses</h2>
+            <p className="text-gray-500 text-lg max-w-2xl mx-auto">
               From beginners to advanced divers, we have courses for every level
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {courses.map((course, index) => (
@@ -480,67 +415,54 @@ const ScubaDivingPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 group"
               >
-                <div className="bg-gradient-to-r from-azure to-blue-600 p-4">
-                  <h3 className="text-xl font-bold text-pearl">{course.name}</h3>
+                <div className="bg-gradient-to-r from-blue-600 to-cyan-500 p-6 text-white">
+                  <h3 className="text-xl font-bold mb-1">{course.name}</h3>
+                  <p className="text-blue-100 text-sm opacity-90">{course.duration}</p>
                 </div>
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-4 text-night/60">
-                    <span className="flex items-center">
-                      <Clock className="w-4 h-4 mr-2" />
-                      {course.duration}
-                    </span>
-                    <span className="flex items-center">
-                      <Waves className="w-4 h-4 mr-2" />
+                <div className="p-8">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center text-gray-500 text-sm bg-gray-50 px-3 py-1 rounded-lg">
+                      <Waves className="w-4 h-4 mr-2 text-blue-500" />
                       {course.depth}
-                    </span>
+                    </div>
+                    <span className="text-xl font-bold text-blue-600">{course.price}</span>
                   </div>
-                  <p className="text-night/70 mb-4 text-sm">{course.description}</p>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Includes:</h4>
-                    <div className="space-y-1">
+                  
+                  <p className="text-gray-600 mb-6 text-sm leading-relaxed">{course.description}</p>
+                  
+                  <div className="mb-6">
+                    <h4 className="font-bold text-gray-900 text-sm mb-3">Includes:</h4>
+                    <div className="space-y-2">
                       {course.includes.slice(0, 3).map((item, i) => (
-                        <div key={i} className="flex items-center text-night/60">
-                          <CheckCircle className="w-3 h-3 mr-2 text-azure" />
-                          <span className="text-xs">{item}</span>
+                        <div key={i} className="flex items-center text-gray-600 text-sm">
+                          <CheckCircle className="w-3 h-3 mr-2 text-green-500" />
+                          <span>{item}</span>
                         </div>
                       ))}
                       {course.includes.length > 3 && (
-                        <div className="text-xs text-azure">+{course.includes.length - 3} more</div>
+                        <div className="text-xs text-blue-600 font-medium pl-5">+{course.includes.length - 3} more items</div>
                       )}
                     </div>
                   </div>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Requirements:</h4>
-                    <div className="space-y-1">
-                      {course.requirements.map((req, i) => (
-                        <div key={i} className="flex items-center text-night/60">
-                          <AlertCircle className="w-3 h-3 mr-2 text-azure" />
-                          <span className="text-xs">{req}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xl font-bold text-night">{course.price}</span>
-                    <Link
-                      to="/enquiry"
-                      onClick={() => {
-                        try {
-                          localStorage.setItem('enquiryDetails', JSON.stringify({
-                            packageName: 'Scuba Diving Adventures',
-                            source: 'experience',
-                            slug: 'scuba-diving',
-                            selectedActivities: [course.name]
-                          }));
-                        } catch (_) { /* no-op */ }
-                      }}
-                      className="inline-flex items-center px-4 py-2 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all text-sm"
-                    >
-                      Enquire Now
-                    </Link>
-                  </div>
+
+                  <Link
+                    to="/enquiry"
+                    onClick={() => {
+                      try {
+                        localStorage.setItem('enquiryDetails', JSON.stringify({
+                          packageName: 'Scuba Diving Adventures',
+                          source: 'experience',
+                          slug: 'scuba-diving',
+                          selectedActivities: [course.name]
+                        }));
+                      } catch (_) { /* no-op */ }
+                    }}
+                    className="block w-full py-3 border-2 border-gray-200 text-gray-900 text-center rounded-xl font-bold hover:border-blue-600 hover:text-blue-600 transition-colors"
+                  >
+                    Enquire Now
+                  </Link>
                 </div>
               </motion.div>
             ))}
@@ -549,81 +471,23 @@ const ScubaDivingPage = () => {
       </section>
 
       {/* Marine Life & Conservation */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-start">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl font-bold text-night mb-6">Marine Life Highlights</h2>
-              <div className="grid grid-cols-2 gap-3">
-                {marineLife.map((creature, index) => (
-                  <div key={index} className="flex items-center text-night/70">
-                    <Fish className="w-4 h-4 mr-2 text-azure" />
-                    {creature}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-3xl font-bold text-night mb-6">Marine Conservation</h2>
-              <div className="bg-white rounded-xl p-6 shadow">
-                <div className="flex items-center mb-4">
-                  <Shield className="w-5 h-5 mr-2 text-azure" />
-                  <span className="font-semibold text-night">Protect Our Oceans</span>
-                </div>
-                <ul className="space-y-3">
-                  {conservation.slice(0, 6).map((tip, index) => (
-                    <li key={index} className="flex items-start text-night/70">
-                      <CheckCircle className="w-4 h-4 mr-2 mt-0.5 text-azure" />
-                      {tip}
-                    </li>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 font-display">Marine Life Highlights</h2>
+              <div className="bg-white rounded-[2rem] p-8 shadow-lg border border-gray-100">
+                <div className="grid grid-cols-2 gap-4">
+                  {marineLife.map((creature, index) => (
+                    <div key={index} className="flex items-center text-gray-700 p-2 hover:bg-blue-50 rounded-lg transition-colors">
+                      <Fish className="w-4 h-4 mr-3 text-blue-500" />
+                      <span className="text-sm font-medium">{creature}</span>
+                    </div>
                   ))}
-                </ul>
-                <p className="text-night/70 mt-4 text-sm">
-                  We actively support marine conservation initiatives and promote responsible diving practices.
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Best Season & Equipment */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-3xl font-bold text-night mb-6">Best Diving Season</h2>
-              <div className="bg-white rounded-xl p-6 shadow">
-                <div className="flex items-center mb-4">
-                  <Sun className="w-5 h-5 mr-2 text-sunset" />
-                  <span className="font-semibold text-night">October to May</span>
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold text-night mb-2">Peak Season (Nov-Feb)</h4>
-                    <p className="text-night/70">Best visibility (20-30m), calm seas, pleasant temperatures (25-28°C)</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-night mb-2">Whale Shark Season (Feb-Mar)</h4>
-                    <p className="text-night/70">Highest chance of whale shark sightings around Havelock Island</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-night mb-2">Shoulder Season (Oct, Mar-May)</h4>
-                    <p className="text-night/70">Fewer crowds, good visibility (15-25m), warmer water (28-30°C)</p>
-                  </div>
                 </div>
               </div>
             </motion.div>
@@ -633,37 +497,33 @@ const ScubaDivingPage = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl font-bold text-night mb-6">Equipment & Safety</h2>
-              <div className="bg-white rounded-xl p-6 shadow">
-                <div className="flex items-center mb-4">
-                  <Shield className="w-5 h-5 mr-2 text-azure" />
-                  <span className="font-semibold text-night">Top-Quality Gear</span>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 font-display">Marine Conservation</h2>
+              <div className="bg-gradient-to-br from-blue-900 to-gray-900 rounded-[2rem] p-8 shadow-xl text-white relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-8 opacity-10">
+                  <Shield className="w-32 h-32" />
                 </div>
-                <div className="space-y-3">
-                  <div className="flex items-center text-night/70">
-                    <CheckCircle className="w-4 h-4 mr-2 text-azure" />
-                    <span>Modern BCDs and regulators</span>
+                
+                <div className="relative z-10">
+                  <div className="flex items-center mb-6">
+                    <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
+                      <Shield className="w-6 h-6 text-cyan-400" />
+                    </div>
+                    <span className="font-bold text-xl">Protect Our Oceans</span>
                   </div>
-                  <div className="flex items-center text-night/70">
-                    <CheckCircle className="w-4 h-4 mr-2 text-azure" />
-                    <span>3mm and 5mm wetsuits available</span>
-                  </div>
-                  <div className="flex items-center text-night/70">
-                    <CheckCircle className="w-4 h-4 mr-2 text-azure" />
-                    <span>Underwater cameras for rent</span>
-                  </div>
-                  <div className="flex items-center text-night/70">
-                    <CheckCircle className="w-4 h-4 mr-2 text-azure" />
-                    <span>Safety equipment on all boats</span>
-                  </div>
-                  <div className="flex items-center text-night/70">
-                    <CheckCircle className="w-4 h-4 mr-2 text-azure" />
-                    <span>Oxygen kits and first aid</span>
-                  </div>
+                  
+                  <ul className="space-y-4 mb-8">
+                    {conservation.slice(0, 6).map((tip, index) => (
+                      <li key={index} className="flex items-start text-gray-300">
+                        <CheckCircle className="w-5 h-5 mr-3 mt-0.5 text-cyan-400 flex-shrink-0" />
+                        <span className="leading-relaxed">{tip}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <p className="text-blue-200 text-sm bg-white/5 p-4 rounded-xl border border-white/10">
+                    We actively support marine conservation initiatives and promote responsible diving practices to preserve these waters for future generations.
+                  </p>
                 </div>
-                <p className="text-night/70 mt-4 text-sm">
-                  Bring your certification card for advanced dives. Personal equipment welcome.
-                </p>
               </div>
             </motion.div>
           </div>
@@ -671,48 +531,16 @@ const ScubaDivingPage = () => {
       </section>
 
       {/* FAQs */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-10"
-          >
-            <h2 className="text-3xl font-bold text-night mb-2">Frequently Asked Questions</h2>
-            <p className="text-night/70">Everything you need to know about scuba diving in Andaman</p>
-          </motion.div>
-          <div className="max-w-3xl mx-auto space-y-6">
-            <div className="bg-white rounded-xl p-6 shadow">
-              <h3 className="font-semibold text-night">Do I need to know swimming for scuba diving?</h3>
-              <p className="text-night/70 mt-2">Basic swimming skills are helpful but not mandatory for introductory dives. Our PADI instructors ensure your safety throughout.</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow">
-              <h3 className="font-semibold text-night">What is the best time for diving in Andaman?</h3>
-              <p className="text-night/70 mt-2">October to May offers the best diving conditions with calm seas and excellent visibility. December to February is peak season.</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow">
-              <h3 className="font-semibold text-night">Is diving equipment provided?</h3>
-              <p className="text-night/70 mt-2">Yes, we provide all necessary diving equipment including masks, snorkels, fins, BCDs, regulators, and wetsuits.</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow">
-              <h3 className="font-semibold text-night">Can I get certified in Andaman?</h3>
-              <p className="text-night/70 mt-2">Absolutely! We offer PADI certification courses from Open Water to Dive Master level with experienced instructors.</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow">
-              <h3 className="font-semibold text-night">Are there any medical restrictions for diving?</h3>
-              <p className="text-night/70 mt-2">Yes, conditions like asthma, heart problems, epilepsy, and pregnancy may restrict diving. A medical questionnaire is required.</p>
-            </div>
-            <div className="bg-white rounded-xl p-6 shadow">
-              <h3 className="font-semibold text-night">Can I bring my own diving equipment?</h3>
-              <p className="text-night/70 mt-2">Yes, you're welcome to bring your own equipment. We offer discounts for divers with their own gear.</p>
-            </div>
-          </div>
+          <FaqAccordion
+            title="Frequently Asked Questions"
+            description="Everything you need to know about scuba diving in Andaman"
+            faqs={faqs}
+          />
         </div>
       </section>
-
-      <Footer />
-    </div>
+    </ExperienceLayout>
   );
 };
 

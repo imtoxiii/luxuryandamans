@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import SEO from '../../components/SEO';
+import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
-import { Fish, Anchor, Clock, Users, Trophy, MapPin, Camera, CheckCircle, Star, Waves, Compass } from 'lucide-react';
+import { Fish, Anchor, Clock, Users, Trophy, MapPin, Camera, CheckCircle, Star, Waves, Compass, Calendar, Shield } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const GameFishingPage = () => {
@@ -220,114 +218,81 @@ const GameFishingPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-pearl">
-      <SEO
-        title="Game Fishing in Andaman | Offshore Charters | Book Private Boat"
-        description="Book game fishing charters in Andaman. Half-day and full-day private boats with crew, gear, and refreshments. Target GT, tuna, barracuda, and more."
-        keywords="game fishing andaman, fishing charter andaman, big game havelock, sport fishing andaman, trolling jigging andaman"
-        targetAudience="adventure"
-        pathname="/experiences/game-fishing"
-      />
-      <Header />
-
-      {/* Hero */}
-      <div className="relative h-[70vh] overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1469230529682-4b4f7572a2fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
-          alt="Game Fishing Andaman"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-night/60 to-night/30" />
-        <div className="absolute inset-0 flex items-center">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-2xl"
-            >
-              <h1 className="text-5xl md:text-6xl font-bold text-pearl mb-6">Game Fishing Charters</h1>
-              <p className="text-xl text-pearl/90 mb-8">
-                Chase trophy fish in the pristine Andaman waters with expert crews and premium gear.
-              </p>
-              <Link
-                to="/enquiry"
-                onClick={() => {
-                  try {
-                    localStorage.setItem('enquiryDetails', JSON.stringify({
-                      packageName: 'Game Fishing Charters',
-                      source: 'experience',
-                      slug: 'game-fishing'
-                    }));
-                  } catch (_) { /* no-op */ }
-                }}
-                className="inline-flex items-center px-8 py-4 glass-sunset-button text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
-              >
-                Enquire for Availability
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
+    <ExperienceLayout
+      title="Game Fishing Charters"
+      subtitle="Chase the Trophy"
+      description="Chase trophy fish in the pristine Andaman waters with expert crews and premium gear. Experience the thrill of big game fishing in one of the world's last untouched fisheries."
+      image="https://images.unsplash.com/photo-1469230529682-4b4f7572a2fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+      stats={{
+        duration: "4-8 Hours",
+        location: "Port Blair & Havelock",
+        price: "From ₹18,000"
+      }}
+      slug="game-fishing"
+      seo={{
+        title: "Game Fishing in Andaman | Offshore Charters | Book Private Boat",
+        description: "Book game fishing charters in Andaman. Half-day and full-day private boats with crew, gear, and refreshments. Target GT, tuna, barracuda, and more.",
+        keywords: "game fishing andaman, fishing charter andaman, big game havelock, sport fishing andaman, trolling jigging andaman"
+      }}
+      bookingData={{
+        packageName: 'Game Fishing Charters',
+        source: 'experience',
+        slug: 'game-fishing'
+      }}
+    >
       {/* Highlights */}
-      <section className="py-20">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center"
+              className="text-center p-6 rounded-2xl bg-gray-50 hover:bg-blue-50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Fish className="w-8 h-8 text-azure" />
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+                <Fish className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold text-night mb-2">Rich Fishery</h3>
-              <p className="text-night/70">GT, tuna, barracuda, sailfish</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Rich Fishery</h3>
+              <p className="text-gray-600 text-sm">GT, tuna, barracuda, sailfish</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="text-center"
+              className="text-center p-6 rounded-2xl bg-gray-50 hover:bg-blue-50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Anchor className="w-8 h-8 text-azure" />
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+                <Anchor className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold text-night mb-2">Modern Boats</h3>
-              <p className="text-night/70">Well-equipped, safety compliant</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Modern Boats</h3>
+              <p className="text-gray-600 text-sm">Well-equipped, safety compliant</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-center"
+              className="text-center p-6 rounded-2xl bg-gray-50 hover:bg-blue-50 transition-colors duration-300"
             >
-              <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Trophy className="w-8 h-8 text-azure" />
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+                <Trophy className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-semibold text-night mb-2">Expert Crews</h3>
-              <p className="text-night/70">Local captains with years of experience</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Expert Crews</h3>
+              <p className="text-gray-600 text-sm">Local captains with years of experience</p>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Target Species */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-900 text-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">Target Species</h2>
-            <p className="text-night/70 max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4 font-display">Target Species</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
               Discover the prized game fish of Andaman waters
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {targetSpecies.map((species, index) => (
@@ -336,25 +301,25 @@ const GameFishingPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500"
+                className="bg-gray-800 rounded-[2rem] overflow-hidden shadow-xl group hover:shadow-2xl transition-all duration-500 border border-gray-700"
               >
                 <div className="relative h-48 overflow-hidden">
-                  <div className="absolute inset-0 bg-night/20 group-hover:bg-night/40 transition-all duration-500 z-10" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500 z-10" />
                   <img
                     src={species.image}
                     alt={species.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 right-4 glass-sunset-badge px-4 py-2 z-20">
+                  <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md border border-white/10 text-white px-4 py-1.5 rounded-full text-sm font-bold z-20">
                     {species.difficulty}
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-night mb-2">{species.name}</h3>
-                  <p className="text-night/70 mb-2">{species.description}</p>
-                  <div className="flex items-center text-night/60">
-                    <Fish className="w-4 h-4 mr-2" />
-                    <span className="text-sm">Up to {species.size}</span>
+                  <h3 className="text-xl font-bold text-white mb-2 font-display">{species.name}</h3>
+                  <p className="text-gray-400 mb-4 text-sm">{species.description}</p>
+                  <div className="flex items-center text-gray-400 text-sm bg-gray-700/50 p-2 rounded-lg">
+                    <Fish className="w-4 h-4 mr-2 text-blue-400" />
+                    <span>Up to {species.size}</span>
                   </div>
                 </div>
               </motion.div>
@@ -364,19 +329,14 @@ const GameFishingPage = () => {
       </section>
 
       {/* Fishing Spots */}
-      <section className="py-20 bg-night">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-pearl mb-4">Prime Fishing Spots</h2>
-            <p className="text-pearl/70 max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">Prime Fishing Spots</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">
               Explore the best fishing grounds in the Andaman Islands
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {fishingSpots.map((spot, index) => (
@@ -385,10 +345,10 @@ const GameFishingPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500 border border-gray-100"
               >
                 <div className="relative h-48 overflow-hidden">
-                  <div className="absolute inset-0 bg-night/20 group-hover:bg-night/40 transition-all duration-500 z-10" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500 z-10" />
                   <img
                     src={spot.image}
                     alt={spot.name}
@@ -396,14 +356,14 @@ const GameFishingPage = () => {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-night mb-2">{spot.name}</h3>
-                  <p className="text-night/70 mb-2">{spot.description}</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2 font-display">{spot.name}</h3>
+                  <p className="text-gray-600 mb-4 text-sm">{spot.description}</p>
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center text-night/60">
+                    <div className="flex items-center text-gray-500 text-sm">
                       <Compass className="w-4 h-4 mr-2" />
-                      <span className="text-sm">{spot.distance}</span>
+                      <span>{spot.distance}</span>
                     </div>
-                    <span className="text-xs bg-azure/10 text-azure px-2 py-1 rounded">
+                    <span className="text-xs bg-blue-50 text-blue-600 px-3 py-1 rounded-full font-medium">
                       {spot.bestFor}
                     </span>
                   </div>
@@ -415,19 +375,14 @@ const GameFishingPage = () => {
       </section>
 
       {/* Equipment */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">Premium Equipment</h2>
-            <p className="text-night/70 max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">Premium Equipment</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">
               We provide top-quality fishing gear for your charter
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {equipment.map((item, index) => (
@@ -436,13 +391,13 @@ const GameFishingPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] p-6 shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100"
               >
-                <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Fish className="w-8 h-8 text-azure" />
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-600">
+                  <Fish className="w-8 h-8" />
                 </div>
-                <h3 className="text-xl font-bold text-night mb-2">{item.name}</h3>
-                <p className="text-night/70 text-center">{item.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-2 text-center">{item.name}</h3>
+                <p className="text-gray-600 text-center text-sm">{item.description}</p>
               </motion.div>
             ))}
           </div>
@@ -450,17 +405,12 @@ const GameFishingPage = () => {
       </section>
 
       {/* Charters */}
-      <section className="py-20 bg-gradient-to-br from-azure/5 to-blue-600/5">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">Charter Options</h2>
-            <p className="text-night/70 max-w-2xl mx-auto">Select the ideal trip length and style</p>
-          </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">Charter Options</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">Select the ideal trip length and style</p>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {charters.map((c, index) => (
@@ -469,69 +419,62 @@ const GameFishingPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500 border border-gray-100 flex flex-col"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-night/20 group-hover:bg-night/40 transition-all duration-500 z-10" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500 z-10" />
                   <img
                     src={c.image}
                     alt={c.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 right-4 glass-sunset-badge px-4 py-2 z-20">{c.price}</div>
+                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-gray-900 px-4 py-1.5 rounded-full text-sm font-bold z-20 shadow-lg">{c.price}</div>
                   <div className="absolute top-4 left-4 z-20">
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-azure/90 text-pearl">
+                    <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-blue-600 text-white shadow-lg">
                       {c.bestFor}
                     </span>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-night mb-2">{c.name}</h3>
-                  <div className="flex items-center space-x-4 mb-4 text-night/60">
-                    <span className="flex items-center">
+                <div className="p-8 flex-grow flex flex-col">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 font-display">{c.name}</h3>
+                  <div className="flex items-center space-x-4 mb-6 text-gray-500 text-sm">
+                    <span className="flex items-center bg-gray-50 px-3 py-1 rounded-lg">
                       <Clock className="w-4 h-4 mr-2" />
                       {c.duration}
                     </span>
-                    <span className="flex items-center">
+                    <span className="flex items-center bg-gray-50 px-3 py-1 rounded-lg">
                       <MapPin className="w-4 h-4 mr-2" />
                       {c.departure}
                     </span>
                   </div>
-                  <p className="text-night/70 mb-4">{c.description}</p>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Target Species:</h4>
-                    <div className="flex flex-wrap gap-1">
+                  <p className="text-gray-600 mb-6 text-sm leading-relaxed">{c.description}</p>
+                  
+                  <div className="mb-6 flex-grow">
+                    <h4 className="font-bold text-gray-900 text-sm mb-3">Target Species:</h4>
+                    <div className="flex flex-wrap gap-2">
                       {c.targetSpecies.map((species, i) => (
-                        <span key={i} className="text-xs bg-azure/10 text-azure px-2 py-1 rounded">
+                        <span key={i} className="text-xs bg-blue-50 text-blue-600 px-3 py-1 rounded-lg font-medium">
                           {species}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Highlights:</h4>
-                    <div className="flex flex-wrap gap-1">
-                      {c.highlights.map((highlight, i) => (
-                        <span key={i} className="text-xs bg-night/10 text-night/60 px-2 py-1 rounded">
-                          {highlight}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Includes:</h4>
-                    <div className="space-y-1">
+
+                  <div className="mb-8">
+                    <h4 className="font-bold text-gray-900 text-sm mb-3">Includes:</h4>
+                    <div className="space-y-2">
                       {c.includes.slice(0, 3).map((item, i) => (
-                        <div key={i} className="flex items-center text-night/60">
-                          <CheckCircle className="w-3 h-3 mr-2 text-azure" />
-                          <span className="text-sm">{item}</span>
+                        <div key={i} className="flex items-center text-gray-600 text-sm">
+                          <CheckCircle className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
+                          <span>{item}</span>
                         </div>
                       ))}
                       {c.includes.length > 3 && (
-                        <div className="text-xs text-azure">+{c.includes.length - 3} more</div>
+                        <div className="text-xs text-blue-600 font-medium pl-6">+{c.includes.length - 3} more items</div>
                       )}
                     </div>
                   </div>
+
                   <Link
                     to="/enquiry"
                     onClick={() => {
@@ -544,7 +487,7 @@ const GameFishingPage = () => {
                         }));
                       } catch (_) { /* no-op */ }
                     }}
-                    className="inline-flex items-center px-4 py-2 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all w-full justify-center"
+                    className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-blue-600/30 mt-auto"
                   >
                     Book Now
                   </Link>
@@ -556,21 +499,16 @@ const GameFishingPage = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-night">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-pearl mb-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">
               Angler Experiences
             </h2>
-            <p className="text-pearl/70 max-w-2xl mx-auto">
+            <p className="text-gray-500 max-w-2xl mx-auto">
               Hear from fellow fishing enthusiasts about their Andaman adventures
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
@@ -579,7 +517,7 @@ const GameFishingPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100"
               >
                 <div className="flex items-center mb-4">
                   {[...Array(5)].map((_, i) => (
@@ -587,17 +525,17 @@ const GameFishingPage = () => {
                       key={i}
                       className={`w-5 h-5 ${
                         i < testimonial.rating
-                          ? 'text-sunset fill-current'
+                          ? 'text-amber-400 fill-current'
                           : 'text-gray-300'
                       }`}
                     />
                   ))}
                 </div>
-                <p className="text-night/70 mb-4 italic">"{testimonial.comment}"</p>
-                <div className="flex items-center justify-between">
+                <p className="text-gray-600 mb-6 italic leading-relaxed">"{testimonial.comment}"</p>
+                <div className="flex items-center justify-between border-t border-gray-100 pt-4">
                   <div>
-                    <h4 className="font-semibold text-night">{testimonial.name}</h4>
-                    <p className="text-night/60 text-sm">{testimonial.location}</p>
+                    <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
+                    <p className="text-gray-500 text-sm">{testimonial.location}</p>
                   </div>
                 </div>
               </motion.div>
@@ -607,42 +545,41 @@ const GameFishingPage = () => {
       </section>
 
       {/* Advice */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-10"
-          >
-            <h2 className="text-3xl font-bold text-night mb-2">Trip Advice</h2>
-            <p className="text-night/70">Quick tips to make the most of your charter</p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white rounded-xl p-6 shadow">
-              <div className="flex items-center mb-4">
-                <Calendar className="w-5 h-5 mr-2 text-azure" />
-                <span className="font-semibold text-night">Planning & Booking</span>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 font-display">Trip Advice</h2>
+            <p className="text-gray-500">Quick tips to make the most of your charter</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="bg-gray-50 rounded-[2rem] p-8 border border-gray-100">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                  <Calendar className="w-6 h-6 text-blue-600" />
+                </div>
+                <span className="font-bold text-xl text-gray-900">Planning & Booking</span>
               </div>
-              <ul className="space-y-3 text-night/80">
+              <ul className="space-y-4">
                 {advice.slice(0, 4).map((tip, index) => (
-                  <li key={index} className="flex items-start">
-                    <CheckCircle className="w-4 h-4 mr-2 mt-0.5 text-azure flex-shrink-0" />
-                    <span>{tip}</span>
+                  <li key={index} className="flex items-start text-gray-600">
+                    <CheckCircle className="w-5 h-5 mr-3 mt-0.5 text-green-500 flex-shrink-0" />
+                    <span className="leading-relaxed">{tip}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-white rounded-xl p-6 shadow">
-              <div className="flex items-center mb-4">
-                <Shield className="w-5 h-5 mr-2 text-azure" />
-                <span className="font-semibold text-night">During the Trip</span>
+            <div className="bg-gray-50 rounded-[2rem] p-8 border border-gray-100">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                  <Shield className="w-6 h-6 text-blue-600" />
+                </div>
+                <span className="font-bold text-xl text-gray-900">During the Trip</span>
               </div>
-              <ul className="space-y-3 text-night/80">
+              <ul className="space-y-4">
                 {advice.slice(4, 8).map((tip, index) => (
-                  <li key={index} className="flex items-start">
-                    <CheckCircle className="w-4 h-4 mr-2 mt-0.5 text-azure flex-shrink-0" />
-                    <span>{tip}</span>
+                  <li key={index} className="flex items-start text-gray-600">
+                    <CheckCircle className="w-5 h-5 mr-3 mt-0.5 text-green-500 flex-shrink-0" />
+                    <span className="leading-relaxed">{tip}</span>
                   </li>
                 ))}
               </ul>
@@ -652,17 +589,17 @@ const GameFishingPage = () => {
       </section>
 
       {/* FAQs */}
-      <FaqAccordion
-        title="Frequently Asked Questions"
-        description="Everything you need to know about game fishing in Andaman"
-        faqs={faqs}
-      />
-
-      <Footer />
-    </div>
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <FaqAccordion
+            title="Frequently Asked Questions"
+            description="Everything you need to know about game fishing in Andaman"
+            faqs={faqs}
+          />
+        </div>
+      </section>
+    </ExperienceLayout>
   );
 };
 
 export default GameFishingPage;
-
-

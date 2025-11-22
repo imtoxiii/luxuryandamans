@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Shield, Award, ChevronRight, Filter, Users } from 'lucide-react';
+import { useMemo, useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Shield, Award, ChevronDown, Filter, Users, Search, X } from 'lucide-react';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -20,10 +20,8 @@ const getCategory = (pkg: Package): Exclude<Category, 'All'> => {
 };
 
 const getDays = (duration: string) => {
-  // Extract first number found as days (supports formats like "5 days", "5N 6D", etc.)
   const m = duration.match(/(\d+)(?=\s*days?|\s*d|\s*n?\s*\d*\s*d|\b)/i);
   const num = m ? parseInt(m[1], 10) : undefined;
-  // Fallback: try total days from patterns like 5N 6D
   if (!num) {
     const nightsDays = duration.match(/(\d+)\s*[nN].*?(\d+)\s*[dD]/);
     if (nightsDays) return parseInt(nightsDays[2], 10);
@@ -32,9 +30,19 @@ const getDays = (duration: string) => {
 };
 
 const PackagesPage = () => {
-  // Filters / sorting
   const [category, setCategory] = useState<Category>('All');
   const [sortBy, setSortBy] = useState<'recommended' | 'priceAsc' | 'priceDesc' | 'durationAsc' | 'durationDesc'>('recommended');
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
+
+  // Handle scroll for sticky header shadow
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const filtered = useMemo(() => {
     return packages.filter(p => category === 'All' ? true : getCategory(p) === category);
@@ -52,16 +60,18 @@ const PackagesPage = () => {
       case 'durationDesc':
         return arr.sort((a, b) => getDays(b.duration) - getDays(a.duration));
       default:
-        return arr; // keep curated order as recommended
+        return arr;
     }
   }, [filtered, sortBy]);
+
+  const categories: Category[] = ['All', 'Luxury', 'Honeymoon', 'Family', 'Standard'];
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans selection:bg-blue-100 selection:text-blue-900">
       <SEO
-        title="Luxury Travel Packages"
-        description="Choose from our exclusive luxury travel packages in the Andaman Islands. Experience world-class accommodations, personalized service, and unforgettable adventures."
-        keywords="luxury packages, andaman travel packages, honeymoon packages, family packages, adventure packages"
+        title="Luxury Travel Packages | Andaman Islands"
+        description="Explore our exclusive collection of luxury travel packages for the Andaman Islands. Curated itineraries for honeymoons, families, and adventure seekers."
+        keywords="luxury packages, andaman tourism, honeymoon packages, family vacation, adventure tours"
       />
       <Header />
 
@@ -69,7 +79,7 @@ const PackagesPage = () => {
       <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
         {/* Background Image with Parallax */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0  z-10" />
+          <div className="absolute inset-0 bg-black/30 z-10" />
           <motion.img
             initial={{ scale: 1.1 }}
             animate={{ scale: 1 }}
@@ -104,17 +114,18 @@ const PackagesPage = () => {
       </section>
 
       {/* Sticky Filter Bar */}
-      <div className="sticky top-20 z-30 bg-white/80 backdrop-blur-xl border-b border-gray-200 shadow-sm transition-all duration-300">
-        <div className="container mx-auto px-4 py-4">
+      <div className={`sticky top-20 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200 transition-all duration-300 ${isScrolled ? 'shadow-md py-2' : 'py-4'}`}>
+        <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            {/* Categories */}
-            <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 no-scrollbar">
-              {(['All', 'Luxury', 'Honeymoon', 'Family', 'Standard'] as Category[]).map((c) => (
+
+            {/* Desktop Categories */}
+            <div className="hidden md:flex items-center gap-2 overflow-x-auto no-scrollbar">
+              {categories.map((c) => (
                 <button
                   key={c}
                   onClick={() => setCategory(c)}
-                  className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 whitespace-nowrap ${category === c
-                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 scale-105'
+                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap ${category === c
+                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20'
                       : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-900'
                     }`}
                 >
@@ -123,14 +134,27 @@ const PackagesPage = () => {
               ))}
             </div>
 
+            {/* Mobile Filter Toggle */}
+            <div className="md:hidden w-full flex items-center justify-between">
+              <span className="text-gray-900 font-semibold">
+                {category} Packages <span className="text-gray-400 font-normal">({displayed.length})</span>
+              </span>
+              <button
+                onClick={() => setShowMobileFilters(!showMobileFilters)}
+                className="p-2 bg-gray-100 rounded-full text-gray-700"
+              >
+                <Filter className="w-5 h-5" />
+              </button>
+            </div>
+
             {/* Sort Dropdown */}
-            <div className="flex items-center gap-3 w-full md:w-auto">
-              <div className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-full hover:border-blue-300 transition-colors group cursor-pointer relative w-full md:w-auto">
-                <Filter className="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" />
+            <div className="hidden md:flex items-center gap-3">
+              <span className="text-sm text-gray-500">Sort by:</span>
+              <div className="relative group">
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as any)}
-                  className="appearance-none bg-transparent border-none text-sm font-medium text-gray-700 focus:outline-none cursor-pointer w-full pr-8"
+                  className="appearance-none bg-gray-100 border-none pl-4 pr-10 py-2 rounded-full text-sm font-medium text-gray-700 focus:ring-2 focus:ring-blue-500 cursor-pointer hover:bg-gray-200 transition-colors"
                 >
                   <option value="recommended">Recommended</option>
                   <option value="priceAsc">Price: Low to High</option>
@@ -138,25 +162,80 @@ const PackagesPage = () => {
                   <option value="durationAsc">Duration: Short to Long</option>
                   <option value="durationDesc">Duration: Long to Short</option>
                 </select>
-                <ChevronRight className="w-4 h-4 text-gray-400 absolute right-4 rotate-90 pointer-events-none" />
+                <ChevronDown className="w-4 h-4 text-gray-500 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
               </div>
             </div>
           </div>
+
+          {/* Mobile Filters Expandable */}
+          <AnimatePresence>
+            {showMobileFilters && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="md:hidden overflow-hidden"
+              >
+                <div className="pt-4 pb-2 space-y-4 border-t border-gray-100 mt-2">
+                  <div>
+                    <p className="text-xs font-semibold text-gray-500 uppercase mb-2">Category</p>
+                    <div className="flex flex-wrap gap-2">
+                      {categories.map((c) => (
+                        <button
+                          key={c}
+                          onClick={() => { setCategory(c); setShowMobileFilters(false); }}
+                          className={`px-4 py-2 rounded-full text-sm transition-colors ${category === c
+                              ? 'bg-blue-600 text-white'
+                              : 'bg-gray-100 text-gray-700'
+                            }`}
+                        >
+                          {c}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-gray-500 uppercase mb-2">Sort By</p>
+                    <select
+                      value={sortBy}
+                      onChange={(e) => { setSortBy(e.target.value as any); setShowMobileFilters(false); }}
+                      className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 text-sm text-gray-700 focus:outline-none focus:border-blue-500"
+                    >
+                      <option value="recommended">Recommended</option>
+                      <option value="priceAsc">Price: Low to High</option>
+                      <option value="priceDesc">Price: High to Low</option>
+                      <option value="durationAsc">Duration: Short to Long</option>
+                      <option value="durationDesc">Duration: Long to Short</option>
+                    </select>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
 
       {/* Packages Grid */}
-      <section className="py-12 md:py-16">
+      <section className="py-12 bg-gray-50 min-h-[60vh]">
         <div className="container mx-auto px-4">
           <motion.div
             variants={staggerContainer(0.1, 0.1)}
             initial="initial"
             animate="animate"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {displayed.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-                {displayed.map((pkg, idx) => (
-                  <motion.div key={pkg.slug} variants={fadeInUp} layout>
+            <AnimatePresence mode='popLayout'>
+              {displayed.length > 0 ? (
+                displayed.map((pkg, idx) => (
+                  <motion.div
+                    key={pkg.slug}
+                    variants={fadeInUp}
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <PackageCard
                       title={pkg.title}
                       description={pkg.description}
@@ -169,65 +248,63 @@ const PackagesPage = () => {
                       delay={idx * 0.05}
                     />
                   </motion.div>
-                ))}
-              </div>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-32"
-              >
-                <div className="inline-flex items-center justify-center w-24 h-24 bg-gray-100 rounded-full mb-8">
-                  <Filter className="w-10 h-10 text-gray-400" />
-                </div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-3">No packages found</h3>
-                <p className="text-gray-500 mb-8 text-lg">We couldn't find any packages matching your criteria.</p>
-                <button
-                  onClick={() => setCategory('All')}
-                  className="px-8 py-4 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-blue-600/30 hover:-translate-y-1"
+                ))
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="col-span-full flex flex-col items-center justify-center py-20 text-center"
                 >
-                  View All Packages
-                </button>
-              </motion.div>
-            )}
+                  <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                    <Search className="w-8 h-8 text-gray-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">No packages found</h3>
+                  <p className="text-gray-500 mb-6">Try adjusting your filters to find what you're looking for.</p>
+                  <button
+                    onClick={() => setCategory('All')}
+                    className="px-6 py-2 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-colors"
+                  >
+                    Clear Filters
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </section>
 
-      {/* Why Choose Us - Redesigned */}
-      <section className="py-16 bg-white relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
-
+      {/* Why Choose Us */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <span className="text-blue-600 font-bold tracking-wider uppercase text-sm mb-3 block">Why Choose Us</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-display">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-display">
               Experience the Extraordinary
             </h2>
-            <p className="text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed">
+            <p className="text-gray-500 max-w-2xl mx-auto">
               We go above and beyond to ensure your Andaman journey is nothing short of perfection.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                icon: <Award className="w-8 h-8 text-white" />,
+                icon: <Award className="w-6 h-6 text-white" />,
                 title: "Premium Experience",
                 desc: "Handpicked luxury accommodations and exclusive experiences tailored to your preferences.",
-                color: "from-blue-500 to-cyan-500"
+                color: "bg-blue-500"
               },
               {
-                icon: <Shield className="w-8 h-8 text-white" />,
+                icon: <Shield className="w-6 h-6 text-white" />,
                 title: "Safe & Secure",
                 desc: "Fully insured and protected travel experiences with 24/7 on-ground support.",
-                color: "from-green-500 to-emerald-500"
+                color: "bg-green-500"
               },
               {
-                icon: <Users className="w-8 h-8 text-white" />,
+                icon: <Users className="w-6 h-6 text-white" />,
                 title: "Local Experts",
                 desc: "Guided by professional local experts who know every hidden gem of the islands.",
-                color: "from-purple-500 to-pink-500"
+                color: "bg-purple-500"
               }
             ].map((item, i) => (
               <motion.div
@@ -236,20 +313,17 @@ const PackagesPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-2xl transition-all duration-500 border border-gray-100 relative overflow-hidden"
+                className="p-8 rounded-2xl bg-gray-50 hover:bg-white hover:shadow-xl transition-all duration-300 border border-gray-100"
               >
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-500`}>
+                <div className={`w-12 h-12 rounded-xl ${item.color} flex items-center justify-center mb-6 shadow-lg`}>
                   {item.icon}
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
                   {item.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
                   {item.desc}
                 </p>
-
-                {/* Hover Decoration */}
-                <div className="absolute -bottom-2 -right-2 w-24 h-24 bg-gradient-to-br from-gray-100 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl" />
               </motion.div>
             ))}
           </div>

@@ -1,8 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import SEO from '../../components/SEO';
+import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
 import { Anchor, Shield, Clock, Users, MapPin, Camera, CheckCircle, Heart, Star, Waves } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
@@ -196,71 +193,31 @@ const SeaWalkPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-pearl">
-      <SEO
-        title="Sea Walk in Andaman | North Bay & Elephant Beach | Book Now"
-        description="Experience walking on the sea bed in Andaman. Sea walk at North Bay and Elephant Beach with helmet oxygen supply, photos, and guides. Perfect for non-swimmers."
-        keywords="sea walk andaman, north bay sea walk, elephant beach sea walk, sea bed walk andaman, underwater walking andaman"
-        targetAudience="family"
-        pathname="/experiences/sea-walk"
-      />
-      <Header />
-
-      {/* Hero */}
-      <div className="relative h-[70vh] overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
-          alt="Sea Walk Andaman"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-night/60 to-night/30" />
-        <div className="absolute inset-0 flex items-center">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-2xl"
-            >
-              <h1 className="text-5xl md:text-6xl font-bold text-pearl mb-6">Sea Walk</h1>
-              <p className="text-xl text-pearl/90 mb-8">
-                Step onto the ocean floor and meet the marine world—no swimming needed.
-              </p>
-              <Link
-                to="/enquiry"
-                onClick={() => {
-                  try {
-                    localStorage.setItem('enquiryDetails', JSON.stringify({
-                      packageName: 'Sea Walk',
-                      source: 'experience',
-                      slug: 'sea-walk'
-                    }));
-                  } catch (_) { /* no-op */ }
-                }}
-                className="inline-flex items-center px-8 py-4 glass-sunset-button text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105"
-              >
-                Reserve Your Slot
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
+    <ExperienceLayout
+      title="Sea Walk"
+      subtitle="Walk on the Ocean Floor"
+      description="Step onto the ocean floor and meet the marine world—no swimming needed. Experience the thrill of walking underwater surrounded by colorful fish and coral reefs."
+      image="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+      stats={{
+        duration: "30-40 Minutes",
+        location: "North Bay & Havelock",
+        price: "From ₹3,500"
+      }}
+      slug="sea-walk"
+      seo={{
+        title: "Sea Walk in Andaman | North Bay & Elephant Beach | Book Now",
+        description: "Experience walking on the sea bed in Andaman. Sea walk at North Bay and Elephant Beach with helmet oxygen supply, photos, and guides. Perfect for non-swimmers.",
+        keywords: "sea walk andaman, north bay sea walk, elephant beach sea walk, sea bed walk andaman, underwater walking andaman"
+      }}
+      bookingData={{
+        packageName: 'Sea Walk',
+        source: 'experience',
+        slug: 'sea-walk'
+      }}
+    >
       {/* What to Expect */}
-      <section className="py-20">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">What to Expect</h2>
-            <p className="text-night/70 max-w-2xl mx-auto">
-              Discover the magical experience of walking on the ocean floor
-            </p>
-          </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {whatToExpect.map((item, index) => (
               <motion.div
@@ -268,13 +225,13 @@ const SeaWalkPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
+                className="bg-gray-50 rounded-[2rem] p-8 shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100"
               >
-                <div className="w-16 h-16 bg-azure/10 rounded-full flex items-center justify-center mx-auto mb-4 text-azure">
+                <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 text-blue-600">
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-bold text-night mb-2">{item.title}</h3>
-                <p className="text-night/70">{item.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
               </motion.div>
             ))}
           </div>
@@ -282,19 +239,14 @@ const SeaWalkPage = () => {
       </section>
 
       {/* Marine Life */}
-      <section className="py-20 bg-night">
+      <section className="py-20 bg-gray-900 text-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-pearl mb-4">Marine Life You'll See</h2>
-            <p className="text-pearl/70 max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4 font-display">Marine Life You'll See</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
               Get up close with the fascinating underwater creatures of Andaman
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {marineLife.map((creature, index) => (
@@ -303,10 +255,10 @@ const SeaWalkPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500"
+                className="bg-gray-800 rounded-[2rem] overflow-hidden shadow-xl group hover:shadow-2xl transition-all duration-500 border border-gray-700"
               >
                 <div className="relative h-48 overflow-hidden">
-                  <div className="absolute inset-0 bg-night/20 group-hover:bg-night/40 transition-all duration-500 z-10" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500 z-10" />
                   <img
                     src={creature.image}
                     alt={creature.name}
@@ -314,8 +266,8 @@ const SeaWalkPage = () => {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-night mb-2">{creature.name}</h3>
-                  <p className="text-night/70">{creature.description}</p>
+                  <h3 className="text-xl font-bold text-white mb-2">{creature.name}</h3>
+                  <p className="text-gray-400 text-sm">{creature.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -324,19 +276,14 @@ const SeaWalkPage = () => {
       </section>
 
       {/* Experiences */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">Sea Walk Options</h2>
-            <p className="text-night/70 max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">Sea Walk Options</h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">
               Choose your preferred location and package
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {experiences.map((exp, index) => (
@@ -345,71 +292,75 @@ const SeaWalkPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100 group flex flex-col"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-night/20 group-hover:bg-night/40 transition-all duration-500 z-10" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500 z-10" />
                   <img
                     src={exp.image}
                     alt={exp.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 right-4 glass-sunset-badge px-4 py-2 z-20">
+                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-gray-900 px-4 py-1.5 rounded-full text-sm font-bold z-20 shadow-lg">
                     {exp.price}
                   </div>
                   <div className="absolute top-4 left-4 z-20">
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-azure/90 text-pearl">
+                    <span className="px-3 py-1.5 rounded-full text-xs font-bold bg-blue-600 text-white shadow-lg">
                       {exp.bestFor}
                     </span>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-night mb-2">{exp.name}</h3>
-                  <div className="flex items-center space-x-4 mb-4 text-night/60">
-                    <span className="flex items-center">
+                <div className="p-8 flex-grow flex flex-col">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 font-display">{exp.name}</h3>
+                  <div className="flex items-center space-x-4 mb-6 text-gray-500 text-sm">
+                    <span className="flex items-center bg-gray-50 px-3 py-1 rounded-lg">
                       <Clock className="w-4 h-4 mr-2" />
                       {exp.duration}
                     </span>
-                    <span className="flex items-center">
+                    <span className="flex items-center bg-gray-50 px-3 py-1 rounded-lg">
                       <MapPin className="w-4 h-4 mr-2" />
                       {exp.departure}
                     </span>
                   </div>
-                  <p className="text-night/70 mb-4">{exp.description}</p>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Highlights:</h4>
-                    <div className="flex flex-wrap gap-1">
+                  <p className="text-gray-600 mb-6 text-sm leading-relaxed">{exp.description}</p>
+                  
+                  <div className="mb-8 flex-grow">
+                    <h4 className="font-bold text-gray-900 text-sm mb-3">Highlights:</h4>
+                    <div className="flex flex-wrap gap-2">
                       {exp.highlights.map((highlight, i) => (
-                        <span key={i} className="text-xs bg-azure/10 text-azure px-2 py-1 rounded">
+                        <span key={i} className="text-xs bg-blue-50 text-blue-600 px-3 py-1 rounded-lg font-medium">
                           {highlight}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div>
-                      <h4 className="font-semibold text-night mb-1">Depth:</h4>
-                      <p className="text-night/60 text-sm">{exp.depth}</p>
+                  
+                  <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
+                    <div className="bg-gray-50 p-3 rounded-xl">
+                      <h4 className="font-bold text-gray-900 mb-1">Depth</h4>
+                      <p className="text-gray-600">{exp.depth}</p>
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-night mb-1">Visibility:</h4>
-                      <p className="text-night/60 text-sm">{exp.visibility}</p>
+                    <div className="bg-gray-50 p-3 rounded-xl">
+                      <h4 className="font-bold text-gray-900 mb-1">Visibility</h4>
+                      <p className="text-gray-600">{exp.visibility}</p>
                     </div>
                   </div>
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-night mb-2">Includes:</h4>
-                    <div className="space-y-1">
+
+                  <div className="mb-8">
+                    <h4 className="font-bold text-gray-900 text-sm mb-3">Includes:</h4>
+                    <div className="space-y-2">
                       {exp.includes.slice(0, 3).map((item, i) => (
-                        <div key={i} className="flex items-center text-night/60">
-                          <CheckCircle className="w-3 h-3 mr-2 text-azure" />
-                          <span className="text-sm">{item}</span>
+                        <div key={i} className="flex items-center text-gray-600 text-sm">
+                          <CheckCircle className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
+                          <span>{item}</span>
                         </div>
                       ))}
                       {exp.includes.length > 3 && (
-                        <div className="text-xs text-azure">+{exp.includes.length - 3} more</div>
+                        <div className="text-xs text-blue-600 font-medium pl-6">+{exp.includes.length - 3} more items</div>
                       )}
                     </div>
                   </div>
+
                   <Link
                     to="/enquiry"
                     onClick={() => {
@@ -422,7 +373,7 @@ const SeaWalkPage = () => {
                         }));
                       } catch (_) { /* no-op */ }
                     }}
-                    className="inline-flex items-center px-4 py-2 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all w-full justify-center"
+                    className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-blue-600/30 mt-auto"
                   >
                     Book Now
                   </Link>
@@ -434,21 +385,16 @@ const SeaWalkPage = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gradient-to-br from-azure/5 to-blue-600/5">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-night mb-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">
               Guest Experiences
             </h2>
-            <p className="text-night/70 max-w-2xl mx-auto">
+            <p className="text-gray-500 max-w-2xl mx-auto">
               See what our guests have to say about their sea walk experiences
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
@@ -457,7 +403,7 @@ const SeaWalkPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-500"
+                className="bg-white rounded-[2rem] p-8 shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100"
               >
                 <div className="flex items-center mb-4">
                   {[...Array(5)].map((_, i) => (
@@ -465,17 +411,17 @@ const SeaWalkPage = () => {
                       key={i}
                       className={`w-5 h-5 ${
                         i < testimonial.rating
-                          ? 'text-sunset fill-current'
+                          ? 'text-amber-400 fill-current'
                           : 'text-gray-300'
                       }`}
                     />
                   ))}
                 </div>
-                <p className="text-night/70 mb-4 italic">"{testimonial.comment}"</p>
-                <div className="flex items-center justify-between">
+                <p className="text-gray-600 mb-6 italic leading-relaxed">"{testimonial.comment}"</p>
+                <div className="flex items-center justify-between border-t border-gray-100 pt-4">
                   <div>
-                    <h4 className="font-semibold text-night">{testimonial.name}</h4>
-                    <p className="text-night/60 text-sm">{testimonial.location}</p>
+                    <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
+                    <p className="text-gray-500 text-sm">{testimonial.location}</p>
                   </div>
                 </div>
               </motion.div>
@@ -485,42 +431,41 @@ const SeaWalkPage = () => {
       </section>
 
       {/* Notes */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-10"
-          >
-            <h2 className="text-3xl font-bold text-night mb-2">Know Before You Go</h2>
-            <p className="text-night/70">Important information for a safe and enjoyable sea walk</p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white rounded-xl p-6 shadow">
-              <div className="flex items-center mb-4">
-                <Shield className="w-5 h-5 mr-2 text-azure" />
-                <span className="font-semibold text-night">Safety & Preparation</span>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 font-display">Know Before You Go</h2>
+            <p className="text-gray-500">Important information for a safe and enjoyable sea walk</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="bg-gray-50 rounded-[2rem] p-8 border border-gray-100">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                  <Shield className="w-6 h-6 text-blue-600" />
+                </div>
+                <span className="font-bold text-xl text-gray-900">Safety & Preparation</span>
               </div>
-              <ul className="space-y-3 text-night/80">
+              <ul className="space-y-4">
                 {notes.slice(0, 4).map((note, index) => (
-                  <li key={index} className="flex items-start">
-                    <CheckCircle className="w-4 h-4 mr-2 mt-0.5 text-azure flex-shrink-0" />
-                    <span>{note}</span>
+                  <li key={index} className="flex items-start text-gray-600">
+                    <CheckCircle className="w-5 h-5 mr-3 mt-0.5 text-green-500 flex-shrink-0" />
+                    <span className="leading-relaxed">{note}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-white rounded-xl p-6 shadow">
-              <div className="flex items-center mb-4">
-                <Heart className="w-5 h-5 mr-2 text-azure" />
-                <span className="font-semibold text-night">During the Experience</span>
+            <div className="bg-gray-50 rounded-[2rem] p-8 border border-gray-100">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                  <Heart className="w-6 h-6 text-blue-600" />
+                </div>
+                <span className="font-bold text-xl text-gray-900">During the Experience</span>
               </div>
-              <ul className="space-y-3 text-night/80">
+              <ul className="space-y-4">
                 {notes.slice(4, 8).map((note, index) => (
-                  <li key={index} className="flex items-start">
-                    <CheckCircle className="w-4 h-4 mr-2 mt-0.5 text-azure flex-shrink-0" />
-                    <span>{note}</span>
+                  <li key={index} className="flex items-start text-gray-600">
+                    <CheckCircle className="w-5 h-5 mr-3 mt-0.5 text-green-500 flex-shrink-0" />
+                    <span className="leading-relaxed">{note}</span>
                   </li>
                 ))}
               </ul>
@@ -530,17 +475,17 @@ const SeaWalkPage = () => {
       </section>
 
       {/* FAQs */}
-      <FaqAccordion
-        title="Frequently Asked Questions"
-        description="Everything you need to know about sea walking in Andaman"
-        faqs={faqs}
-      />
-
-      <Footer />
-    </div>
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <FaqAccordion
+            title="Frequently Asked Questions"
+            description="Everything you need to know about sea walking in Andaman"
+            faqs={faqs}
+          />
+        </div>
+      </section>
+    </ExperienceLayout>
   );
 };
 
 export default SeaWalkPage;
-
-

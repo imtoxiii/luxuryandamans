@@ -10,21 +10,24 @@ import {
   BookOpen, 
   Thermometer,
   Cloud,
-  Umbrella,
-  Wind,
   History,
   Globe,
   Languages,
-  ChevronRight,
   Navigation,
   Activity,
   Star,
-  CheckCircle
+  CheckCircle,
+  HelpCircle,
+  Wifi,
+  CreditCard,
+  Shield,
+  AlertTriangle
 } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
+import FaqAccordion from '../components/FaqAccordion';
 
 const GuidePage = () => {
   const [activeSection, setActiveSection] = useState('overview');
@@ -33,18 +36,24 @@ const GuidePage = () => {
   const navigationItems = [
     { id: 'overview', label: 'Overview', icon: <BookOpen className="w-5 h-5" /> },
     { id: 'how-to-reach', label: 'How to Reach', icon: <Plane className="w-5 h-5" /> },
-    { id: 'best-time', label: 'Best Time to Visit', icon: <Calendar className="w-5 h-5" /> },
-    { id: 'things-to-do', label: 'Things to Do', icon: <Activity className="w-5 h-5" /> },
-    { id: 'history', label: 'Island History', icon: <History className="w-5 h-5" /> },
-    { id: 'weather', label: 'Weather', icon: <Sun className="w-5 h-5" /> },
-    { id: 'people-language', label: 'People & Language', icon: <Users className="w-5 h-5" /> }
+    { id: 'best-time', label: 'Best Time', icon: <Calendar className="w-5 h-5" /> },
+    { id: 'things-to-do', label: 'Activities', icon: <Activity className="w-5 h-5" /> },
+    { id: 'travel-tips', label: 'Travel Tips', icon: <Shield className="w-5 h-5" /> },
+    { id: 'faqs', label: 'FAQs', icon: <HelpCircle className="w-5 h-5" /> }
   ];
 
   // Scroll to section when nav item is clicked
   useEffect(() => {
     const element = document.getElementById(activeSection);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const headerOffset = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
   }, [activeSection]);
 
@@ -67,147 +76,200 @@ const GuidePage = () => {
     ],
   };
 
+  const faqStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is the best time to visit Andaman?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The best time to visit Andaman is between October and May. The weather is pleasant, perfect for sightseeing and water sports. Avoid the monsoon season (June to September) if you want to enjoy outdoor activities.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I need a passport to visit Andaman?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Indian citizens do not need a passport; a valid government ID (Aadhaar, Voter ID, etc.) is sufficient. Foreign nationals require a valid passport and an Indian Visa. The Restricted Area Permit (RAP) is no longer required for 30 inhabited islands.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Is internet available in Andaman?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Internet connectivity has improved with the undersea cable project (CANI). 4G is available in Port Blair, Havelock, and Neil Island (Airtel and Jio work best). However, speeds can be slower than mainland India, and connectivity might be spotty in remote areas.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'How many days are sufficient for an Andaman trip?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'A 5-night/6-day trip is ideal to cover the main highlights: Port Blair, Havelock Island (Swaraj Dweep), and Neil Island (Shaheed Dweep). For a more relaxed vacation covering North Andaman, plan for 7-9 days.'
+        }
+      }
+    ]
+  };
+
   return (
-    <div className="min-h-screen bg-pearl">
+    <div className="min-h-screen bg-pearl font-sans selection:bg-azure/20 selection:text-azure">
       <SEO 
-        title="Complete Andaman Islands Travel Guide - Everything You Need to Know"
-        description="Comprehensive guide to Andaman Islands covering how to reach, best time to visit, things to do, weather, history, people and language. Plan your perfect trip."
+        title="Ultimate Andaman Islands Travel Guide 2025 | Tourism, Tips & Itinerary"
+        description="Plan your perfect Andaman trip with our comprehensive 2025 guide. Discover best time to visit, how to reach, top places like Havelock & Neil, scuba diving spots, and essential travel tips. Expert advice for couples and families."
         pathname={location.pathname}
-        keywords="Andaman Islands guide, travel guide, how to reach Andaman, best time visit Andaman, Andaman weather, Andaman history, things to do Andaman"
-        extraStructuredData={[breadcrumbStructuredData]}
+        keywords="Andaman Islands travel guide 2025, Andaman tourism, best time to visit Andaman, how to reach Port Blair, Havelock Island guide, Neil Island tourism, Andaman scuba diving, Andaman honeymoon guide, Andaman family trip, Andaman travel tips, Andaman ferry booking, Port Blair sightseeing"
+        extraStructuredData={[breadcrumbStructuredData, faqStructuredData]}
       />
       <Header />
       
-      {/* Hero Section */}
-      <div className="pt-20 sm:pt-24 pb-6 sm:pb-8 bg-white border-b">
-        <div className="container mx-auto px-4 sm:px-6 text-center">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
+      {/* Hero Section - Redesigned */}
+      <div className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" 
+            alt="Andaman Islands Aerial View" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-night/60 via-night/40 to-pearl"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 sm:px-6 text-center relative z-10 pt-20">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-night"
+              transition={{ duration: 0.8 }}
             >
-            Andaman Islands Guide
-            </motion.h1>
+              <span className="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-sm font-medium mb-4 tracking-wider uppercase">
+                The Ultimate Travel Guide
+              </span>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white font-display mb-6 drop-shadow-lg">
+                Discover Andaman
+              </h1>
+              <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md">
+                Your comprehensive guide to the emerald islands of India. Plan your perfect escape to paradise.
+              </p>
+            </motion.div>
         </div>
       </div>
 
-
-
-      {/* Navigation Section */}
-      <section className="py-4 sm:py-6 bg-white sticky top-0 z-40 shadow-md">
+      {/* Navigation Section - Sticky & Glassmorphism */}
+      <section className="sticky top-20 z-40 py-4 transition-all duration-300">
         <div className="container mx-auto px-4 sm:px-6">
-          {/* Mobile Navigation Title */}
-          <div className="block sm:hidden text-center mb-4">
-            <h3 className="text-lg font-bold text-night">Guide Sections</h3>
-            <p className="text-sm text-night/60">Tap to navigate</p>
-          </div>
-          
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
-            {navigationItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => setActiveSection(item.id)}
-                className={`flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base ${
-                  activeSection === item.id
-                    ? 'bg-azure text-white shadow-lg transform scale-105'
-                    : 'bg-gray-100 text-night hover:bg-gray-200'
-                }`}
-              >
-                {item.icon}
-                <span className="hidden sm:inline">{item.label}</span>
-                <span className="sm:hidden text-xs">{item.label}</span>
-              </button>
-            ))}
+          <div className="bg-white/80 backdrop-blur-md shadow-lg rounded-2xl p-2 border border-white/50 overflow-x-auto hide-scrollbar">
+            <div className="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 min-w-max md:min-w-0">
+              {navigationItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveSection(item.id)}
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-300 text-sm whitespace-nowrap ${
+                    activeSection === item.id
+                      ? 'bg-azure text-white shadow-md transform scale-105'
+                      : 'bg-transparent text-night/70 hover:bg-azure/10 hover:text-azure'
+                  }`}
+                >
+                  {item.icon}
+                  <span>{item.label}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Content Sections */}
-      <div className="pb-16 sm:pb-20 lg:pb-24">
+      <div className="pb-16 sm:pb-20 lg:pb-24 space-y-16 sm:space-y-24">
+        
         {/* Overview Section */}
-        <section id="overview" className="py-12 sm:py-16 lg:py-20">
+        <section id="overview" className="pt-8 sm:pt-12">
           <div className="container mx-auto px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="max-w-6xl mx-auto"
+              className="max-w-7xl mx-auto"
             >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night mb-6 sm:mb-8 text-center">
-                Discover the Andaman Islands
-              </h2>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night font-display mb-4">
+                  Welcome to Paradise
+                </h2>
+                <div className="w-24 h-1 bg-gradient-to-r from-azure to-lagoon mx-auto rounded-full"></div>
+              </div>
               
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center mb-12 sm:mb-16">
-                <div>
-                  <p className="text-base sm:text-lg text-night/80 mb-6 leading-relaxed">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                <div className="space-y-6">
+                  <p className="text-lg text-night/80 leading-relaxed">
                     The Andaman and Nicobar Islands, a breathtaking archipelago in the Bay of Bengal, comprise 572 pristine islands offering some of the world's most untouched natural beauty. Located approximately 1,200 km from the Indian mainland, these emerald isles are renowned for their crystal-clear waters, coral reefs, and pristine beaches.
                   </p>
-                  <p className="text-base sm:text-lg text-night/80 mb-6 leading-relaxed">
-                    With a tropical climate, rich marine life, and fascinating history, the Andaman Islands serve as the perfect destination for adventure seekers, nature lovers, and those seeking tranquil escapes. From world-class scuba diving to historical monuments, luxury resorts to untouched wilderness, these islands offer experiences that cater to every traveler.
+                  <p className="text-lg text-night/80 leading-relaxed">
+                    With a tropical climate, rich marine life, and fascinating history, the Andaman Islands serve as the perfect destination for adventure seekers, nature lovers, and those seeking tranquil escapes. From world-class scuba diving to historical monuments, luxury resorts to untouched wilderness.
                   </p>
-                  <div className="grid grid-cols-2 gap-4">
+                  
+                  <div className="grid grid-cols-2 gap-4 mt-8">
                     {[
-                      { label: 'Capital', value: 'Port Blair' },
-                      { label: 'Major Groups', value: 'Andaman & Nicobar' },
-                      { label: 'Best Beaches', value: 'Radhanagar, Elephant' },
-                      { label: 'Activities', value: 'Diving, Snorkeling' }
+                      { label: 'Capital', value: 'Port Blair', icon: <MapPin className="w-4 h-4" /> },
+                      { label: 'Islands', value: '572 (37 Inhabited)', icon: <Globe className="w-4 h-4" /> },
+                      { label: 'Best Beach', value: 'Radhanagar', icon: <Star className="w-4 h-4" /> },
+                      { label: 'Activity', value: 'Scuba Diving', icon: <Activity className="w-4 h-4" /> }
                     ].map((item, index) => (
-                      <div key={index} className="bg-gray-50 p-3 sm:p-4 rounded-lg">
-                        <div className="text-xs sm:text-sm text-night/60 mb-1">{item.label}</div>
-                        <div className="text-sm sm:text-base font-semibold text-night">{item.value}</div>
+                      <div key={index} className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col">
+                        <div className="flex items-center gap-2 text-azure mb-1">
+                          {item.icon}
+                          <span className="text-xs font-bold uppercase tracking-wider">{item.label}</span>
+                        </div>
+                        <div className="text-lg font-bold text-night">{item.value}</div>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="order-first lg:order-last">
-                  {/* LOCAL IMAGE PLACEHOLDER - Replace with your image */}
-                  {/* <img
-                    src={localImages.andamanOverview}
-                    alt="Andaman Islands Overview"
-                    className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl shadow-xl"
-                  /> */}
-                  
-                  {/* FALLBACK ONLINE IMAGE - Remove when adding local image */}
+                
+                <div className="relative">
+                  <div className="absolute -inset-4 bg-gradient-to-tr from-azure/20 to-lagoon/20 rounded-[2rem] transform rotate-3"></div>
                   <img
-                    src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                     alt="Andaman Islands Overview"
-                    className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl shadow-xl"
+                    className="relative w-full h-[500px] object-cover rounded-2xl shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-500"
                   />
                 </div>
               </div>
 
-              {/* Key Highlights */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              {/* Key Highlights Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {[
                   {
-                    icon: <Compass className="w-8 h-8 text-azure" />,
+                    icon: <Compass className="w-8 h-8 text-white" />,
                     title: 'Geographic Wonder',
-                    description: 'Located between 6°-14°N latitude and 92°-94°E longitude, featuring diverse topography from hills to coral reefs.'
+                    description: 'Located between 6°-14°N latitude, featuring diverse topography from hills to coral reefs.',
+                    bg: 'bg-gradient-to-br from-blue-500 to-blue-600'
                   },
                   {
-                    icon: <Globe className="w-8 h-8 text-azure" />,
+                    icon: <Globe className="w-8 h-8 text-white" />,
                     title: 'Biodiversity Hotspot',
-                    description: 'Home to 2,200+ plant species, 250+ bird species, and some of the world\'s most pristine coral reefs.'
+                    description: 'Home to 2,200+ plant species, 250+ bird species, and pristine coral reefs.',
+                    bg: 'bg-gradient-to-br from-teal-500 to-teal-600'
                   },
                   {
-                    icon: <History className="w-8 h-8 text-azure" />,
+                    icon: <History className="w-8 h-8 text-white" />,
                     title: 'Rich Heritage',
-                    description: 'From ancient indigenous tribes to colonial history, these islands hold fascinating stories spanning millennia.'
+                    description: 'From ancient indigenous tribes to colonial history, stories spanning millennia.',
+                    bg: 'bg-gradient-to-br from-purple-500 to-purple-600'
                   }
                 ].map((highlight, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.2 }}
-                    className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                    whileHover={{ y: -10 }}
+                    className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 relative overflow-hidden group"
                   >
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-azure/10 rounded-full flex items-center justify-center mb-4 sm:mb-6">
+                    <div className={`absolute top-0 right-0 w-32 h-32 ${highlight.bg} opacity-10 rounded-bl-full -mr-8 -mt-8 transition-all duration-500 group-hover:scale-150`}></div>
+                    <div className={`w-16 h-16 ${highlight.bg} rounded-2xl flex items-center justify-center mb-6 shadow-lg transform group-hover:rotate-6 transition-transform duration-300`}>
                       {highlight.icon}
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold text-night mb-3 sm:mb-4">{highlight.title}</h3>
-                    <p className="text-sm sm:text-base text-night/70 leading-relaxed">{highlight.description}</p>
+                    <h3 className="text-xl font-bold text-night mb-3 font-display">{highlight.title}</h3>
+                    <p className="text-night/70 leading-relaxed">{highlight.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -215,210 +277,106 @@ const GuidePage = () => {
           </div>
         </section>
 
-        {/* Island History Section */}
-        <section id="history" className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+        {/* How to Reach Section */}
+        <section id="how-to-reach" className="bg-gray-50 py-16 sm:py-20">
           <div className="container mx-auto px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               className="max-w-6xl mx-auto"
             >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night mb-6 sm:mb-8 text-center">
-                Island History & Heritage
-              </h2>
-
-              <div className="space-y-8 sm:space-y-12">
-                {/* Timeline */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-                  <div>
-                    <h3 className="text-2xl font-bold text-night mb-6">Historical Timeline</h3>
-                    <div className="space-y-6">
-                      {[
-                        {
-                          period: 'Ancient Times',
-                          event: 'Indigenous Tribes Settlement',
-                          description: 'The Andaman Islands were inhabited by indigenous tribes for over 60,000 years, including the Great Andamanese, Onge, Jarawa, and Sentinelese peoples.'
-                        },
-                        {
-                          period: '1858',
-                          event: 'British Colonial Rule',
-                          description: 'The British established the Andaman Islands as a penal colony, constructing the infamous Cellular Jail to house political prisoners.'
-                        },
-                        {
-                          period: '1942-1945',
-                          event: 'Japanese Occupation',
-                          description: 'During World War II, the Japanese occupied the islands, leaving behind bunkers and fortifications that can still be seen today.'
-                        },
-                        {
-                          period: '1947',
-                          event: 'Indian Independence',
-                          description: 'The islands became part of independent India, later developing into a Union Territory with focus on tourism and conservation.'
-                        }
-                      ].map((item, index) => (
-                <motion.div
-                  key={index}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                          className="border-l-4 border-azure pl-6"
-                >
-                          <div className="text-azure font-bold text-sm sm:text-base">{item.period}</div>
-                          <div className="font-semibold text-night text-base sm:text-lg mb-2">{item.event}</div>
-                          <div className="text-sm sm:text-base text-night/70">{item.description}</div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-                  <div>
-                    {/* LOCAL IMAGE PLACEHOLDER - Replace with your image */}
-                    {/* <img
-                      src={localImages.cellularJail}
-                      alt="Cellular Jail Historical Monument"
-                      className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl shadow-xl"
-                    /> */}
-                    
-                    {/* FALLBACK ONLINE IMAGE - Remove when adding local image */}
-                    <img
-                      src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                      alt="Cellular Jail Historical Monument"
-                      className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl shadow-xl"
-                    />
-                  </div>
-                </div>
-
-                {/* Indigenous Heritage */}
-                <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-6 sm:p-8 rounded-xl">
-                  <h3 className="text-2xl font-bold text-night mb-6">Indigenous Heritage</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                    <div>
-                      <h4 className="font-semibold text-night mb-3">Major Tribal Groups</h4>
-                      <ul className="space-y-2 text-sm sm:text-base text-night/70">
-                        <li>• <strong>Great Andamanese:</strong> The largest tribal group, traditionally nomadic</li>
-                        <li>• <strong>Onge:</strong> Hunter-gatherers living in Little Andaman</li>
-                        <li>• <strong>Jarawa:</strong> Semi-nomadic tribe in South and Middle Andaman</li>
-                        <li>• <strong>Sentinelese:</strong> Isolated tribe on North Sentinel Island</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-night mb-3">Cultural Significance</h4>
-                      <ul className="space-y-2 text-sm sm:text-base text-night/70">
-                        <li>• Traditional fishing and hunting practices</li>
-                        <li>• Unique languages and oral traditions</li>
-                        <li>• Sustainable living in harmony with nature</li>
-                        <li>• Protected under Indian tribal welfare laws</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+              <div className="text-center mb-12">
+                <span className="text-azure font-bold tracking-wider uppercase text-sm mb-2 block">Travel Logistics</span>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night font-display mb-4">
+                  How to Reach
+                </h2>
+                <p className="text-night/60 max-w-2xl mx-auto">Most travelers arrive by air, landing in Port Blair, the capital city.</p>
               </div>
-            </motion.div>
-        </div>
-      </section>
-
-        {/* How to Reach Section */}
-        <section id="how-to-reach" className="py-12 sm:py-16 lg:py-20 bg-gray-50">
-          <div className="container mx-auto px-4 sm:px-6">
-            <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-              className="max-w-6xl mx-auto"
-            >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night mb-6 sm:mb-8 text-center">
-                How to Reach Andaman Islands
-              </h2>
               
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mb-12">
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-night mb-4 sm:mb-6 flex items-center gap-3">
-                    <Plane className="w-6 h-6 sm:w-8 sm:h-8 text-azure" />
-                    By Air (Recommended)
-                  </h3>
-                  <div className="space-y-4 sm:space-y-6">
-                    <div className="bg-white p-4 sm:p-6 rounded-xl shadow-md">
-                      <h4 className="font-semibold text-night mb-2 sm:mb-3">Veer Savarkar International Airport</h4>
-                      <p className="text-sm sm:text-base text-night/70 mb-3 sm:mb-4">Located in Port Blair, this is the only commercial airport serving the islands.</p>
-                      <div className="space-y-2">
-                        <div className="flex justify-between text-sm sm:text-base">
-                          <span className="text-night/60">From Chennai:</span>
-                          <span className="font-medium">2 hours</span>
-                        </div>
-                        <div className="flex justify-between text-sm sm:text-base">
-                          <span className="text-night/60">From Kolkata:</span>
-                          <span className="font-medium">2 hours 30 min</span>
-                        </div>
-                        <div className="flex justify-between text-sm sm:text-base">
-                          <span className="text-night/60">From Delhi:</span>
-                          <span className="font-medium">3 hours 45 min</span>
-                        </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* By Air */}
+                <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+                  <div className="bg-azure p-6 sm:p-8 text-white relative overflow-hidden">
+                    <div className="absolute right-0 top-0 opacity-10 transform translate-x-1/4 -translate-y-1/4">
+                      <Plane className="w-48 h-48" />
+                    </div>
+                    <div className="relative z-10 flex items-center gap-4">
+                      <div className="p-3 bg-white/20 backdrop-blur-sm rounded-xl">
+                        <Plane className="w-8 h-8" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold font-display">By Air</h3>
+                        <p className="text-white/80">Fastest & Recommended</p>
                       </div>
                     </div>
+                  </div>
+                  <div className="p-6 sm:p-8">
+                    <h4 className="font-bold text-night text-lg mb-4">Veer Savarkar International Airport (IXZ)</h4>
+                    <p className="text-night/70 mb-6">Direct flights available from major Indian cities. Connecting flights from other metros.</p>
                     
-                    <div className="bg-azure/10 p-4 sm:p-6 rounded-xl">
-                      <h4 className="font-semibold text-night mb-2 sm:mb-3">Airlines Operating</h4>
-                      <div className="grid grid-cols-2 gap-2 sm:gap-3 text-sm sm:text-base">
-                        <span>• Air India</span>
-                        <span>• IndiGo</span>
-                        <span>• SpiceJet</span>
-                        <span>• Go First</span>
-                      </div>
+                    <div className="space-y-4">
+                      {[
+                        { from: 'Chennai', time: '2h 00m', freq: 'Daily' },
+                        { from: 'Kolkata', time: '2h 30m', freq: 'Daily' },
+                        { from: 'Delhi', time: '3h 45m', freq: 'Daily' },
+                        { from: 'Bangalore', time: '2h 30m', freq: 'Seasonal' },
+                        { from: 'Mumbai', time: '3h 15m', freq: 'Seasonal' }
+                      ].map((flight, i) => (
+                        <div key={i} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-azure/5 transition-colors">
+                          <div className="font-medium text-night">{flight.from}</div>
+                          <div className="flex items-center gap-4 text-sm">
+                            <span className="text-night/60">{flight.time}</span>
+                            <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-bold">{flight.freq}</span>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
                 
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-night mb-4 sm:mb-6 flex items-center gap-3">
-                    <Navigation className="w-6 h-6 sm:w-8 sm:h-8 text-azure" />
-                    By Sea
-                  </h3>
-                  <div className="space-y-4 sm:space-y-6">
-                    <div className="bg-white p-4 sm:p-6 rounded-xl shadow-md">
-                      <h4 className="font-semibold text-night mb-2 sm:mb-3">Government Ships</h4>
-                      <p className="text-sm sm:text-base text-night/70 mb-3 sm:mb-4">Regular passenger ships operate from mainland India.</p>
-                      <div className="space-y-2">
-                        <div className="flex justify-between text-sm sm:text-base">
-                          <span className="text-night/60">From Chennai:</span>
-                          <span className="font-medium">56-60 hours</span>
-                        </div>
-                        <div className="flex justify-between text-sm sm:text-base">
-                          <span className="text-night/60">From Kolkata:</span>
-                          <span className="font-medium">50-54 hours</span>
-                        </div>
-                        <div className="flex justify-between text-sm sm:text-base">
-                          <span className="text-night/60">From Vishakhapatnam:</span>
-                          <span className="font-medium">36-40 hours</span>
-                        </div>
+                {/* By Sea */}
+                <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+                  <div className="bg-lagoon p-6 sm:p-8 text-white relative overflow-hidden">
+                    <div className="absolute right-0 top-0 opacity-10 transform translate-x-1/4 -translate-y-1/4">
+                      <Navigation className="w-48 h-48" />
+                    </div>
+                    <div className="relative z-10 flex items-center gap-4">
+                      <div className="p-3 bg-white/20 backdrop-blur-sm rounded-xl">
+                        <Navigation className="w-8 h-8" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold font-display">By Sea</h3>
+                        <p className="text-white/80">For the Adventurous</p>
                       </div>
                     </div>
-
-                    <div className="bg-yellow-50 p-4 sm:p-6 rounded-xl border border-yellow-200">
-                      <h4 className="font-semibold text-night mb-2 sm:mb-3">Booking Information</h4>
-                      <p className="text-sm sm:text-base text-night/70">Book through Directorate of Shipping Services or authorized travel agents. Advance booking recommended.</p>
+                  </div>
+                  <div className="p-6 sm:p-8">
+                    <h4 className="font-bold text-night text-lg mb-4">Haddo Wharf, Port Blair</h4>
+                    <p className="text-night/70 mb-6">Regular passenger ships operate from Chennai, Kolkata, and Vishakhapatnam. This is a long journey.</p>
+                    
+                    <div className="space-y-4">
+                      {[
+                        { from: 'Chennai', time: '60 hours', freq: 'Weekly' },
+                        { from: 'Kolkata', time: '66 hours', freq: 'Weekly' },
+                        { from: 'Vishakhapatnam', time: '56 hours', freq: 'Weekly' }
+                      ].map((ship, i) => (
+                        <div key={i} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-lagoon/5 transition-colors">
+                          <div className="font-medium text-night">{ship.from}</div>
+                          <div className="flex items-center gap-4 text-sm">
+                            <span className="text-night/60">{ship.time}</span>
+                            <span className="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-bold">{ship.freq}</span>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
-                </div>
-              </div>
 
-              {/* Documents Required */}
-              <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
-                <h3 className="text-xl sm:text-2xl font-bold text-night mb-4 sm:mb-6">Documents Required</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                  <div>
-                    <h4 className="font-semibold text-night mb-3 sm:mb-4">For Indian Citizens</h4>
-                    <ul className="space-y-2 text-sm sm:text-base text-night/70">
-                      <li>• Valid photo identity proof (Aadhaar, Passport, Voter ID, Driving License)</li>
-                      <li>• Address proof</li>
-                      <li>• Birth certificate for children under 18</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-night mb-3 sm:mb-4">For Foreign Nationals</h4>
-                    <ul className="space-y-2 text-sm sm:text-base text-night/70">
-                      <li>• Valid passport with Indian visa</li>
-                      <li>• Restricted Area Permit (RAP) for certain areas</li>
-                      <li>• Registration with local authorities within 24 hours</li>
-                    </ul>
+                    <div className="mt-6 p-4 bg-yellow-50 border border-yellow-100 rounded-xl flex gap-3">
+                      <div className="text-yellow-600 mt-1"><CheckCircle className="w-5 h-5" /></div>
+                      <p className="text-sm text-night/80">
+                        <strong>Note:</strong> Sea travel is time-consuming and weather-dependent. Not recommended for short trips or those prone to seasickness.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -427,652 +385,383 @@ const GuidePage = () => {
         </section>
 
         {/* Best Time to Visit Section */}
-        <section id="best-time" className="py-12 sm:py-16 lg:py-20">
+        <section id="best-time" className="py-12 sm:py-16">
           <div className="container mx-auto px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-6xl mx-auto"
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-7xl mx-auto"
             >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night mb-6 sm:mb-8 text-center">
-                Best Time to Visit
-              </h2>
+              <div className="text-center mb-12">
+                <span className="text-azure font-bold tracking-wider uppercase text-sm mb-2 block">Seasonal Guide</span>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night font-display mb-4">
+                  Best Time to Visit
+                </h2>
+              </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {[
                   {
                     season: 'Peak Season',
                     period: 'October to February',
                     weather: 'Pleasant & Dry',
-                    temperature: '23°C - 30°C',
-                    pros: ['Perfect weather', 'Clear skies', 'Ideal for water sports', 'Best visibility for diving'],
-                    cons: ['Higher prices', 'Crowded beaches', 'Advance booking required'],
-                    color: 'green'
+                    temp: '23°C - 30°C',
+                    desc: 'The weather is perfect with clear skies and calm seas. Ideal for water sports, beach hopping, and sightseeing.',
+                    borderColor: 'border-emerald-500',
+                    iconBg: 'bg-emerald-100',
+                    iconColor: 'text-emerald-600',
+                    icon: <Sun className="w-6 h-6" />
                   },
                   {
                     season: 'Shoulder Season',
                     period: 'March to May',
                     weather: 'Warm & Humid',
-                    temperature: '24°C - 37°C',
-                    pros: ['Lower prices', 'Fewer crowds', 'Good for water activities', 'Better deals'],
-                    cons: ['Higher temperatures', 'Increased humidity', 'Occasional heat waves'],
-                    color: 'orange'
+                    temp: '24°C - 37°C',
+                    desc: 'Temperatures rise but crowds thin out. Great for budget travelers and those who don\'t mind the heat.',
+                    borderColor: 'border-amber-500',
+                    iconBg: 'bg-amber-100',
+                    iconColor: 'text-amber-600',
+                    icon: <Thermometer className="w-6 h-6" />
                   },
                   {
                     season: 'Monsoon Season',
                     period: 'June to September',
                     weather: 'Wet & Windy',
-                    temperature: '25°C - 30°C',
-                    pros: ['Lowest prices', 'Lush greenery', 'Dramatic landscapes', 'Cool evenings'],
-                    cons: ['Heavy rainfall', 'Rough seas', 'Limited water sports', 'Ferry disruptions'],
-                    color: 'blue'
+                    temp: '25°C - 30°C',
+                    desc: 'Heavy rainfall and strong winds. Ferries may be cancelled. Lush greenery but limited water activities.',
+                    borderColor: 'border-blue-500',
+                    iconBg: 'bg-blue-100',
+                    iconColor: 'text-blue-600',
+                    icon: <Cloud className="w-6 h-6" />
                   }
                 ].map((season, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                    className={`bg-white p-6 sm:p-8 rounded-xl shadow-lg border-t-4 ${
-                      season.color === 'green' ? 'border-green-500' :
-                      season.color === 'orange' ? 'border-orange-500' : 'border-blue-500'
-                    }`}
-                  >
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${
-                      season.color === 'green' ? 'bg-green-100' :
-                      season.color === 'orange' ? 'bg-orange-100' : 'bg-blue-100'
-                    }`}>
-                      <Calendar className={`w-6 h-6 ${
-                        season.color === 'green' ? 'text-green-600' :
-                        season.color === 'orange' ? 'text-orange-600' : 'text-blue-600'
-                      }`} />
+                  <div key={index} className={`bg-white rounded-3xl shadow-lg border-t-8 ${season.borderColor} p-8 hover:shadow-2xl transition-shadow duration-300`}>
+                    <div className={`w-14 h-14 ${season.iconBg} ${season.iconColor} rounded-2xl flex items-center justify-center mb-6`}>
+                      {season.icon}
                     </div>
-                    <h3 className="text-lg sm:text-xl font-bold text-night mb-2">{season.season}</h3>
-                    <div className="text-sm sm:text-base text-night/60 mb-1">{season.period}</div>
-                    <div className="text-sm sm:text-base font-medium text-night mb-1">{season.weather}</div>
-                    <div className="text-sm sm:text-base text-night/60 mb-4">{season.temperature}</div>
+                    <h3 className="text-2xl font-bold text-night mb-2 font-display">{season.season}</h3>
+                    <div className="text-sm font-bold uppercase tracking-wider text-night/50 mb-4">{season.period}</div>
                     
-                    <div className="space-y-3">
-                      <div>
-                        <h4 className="font-semibold text-night mb-2 text-sm">Pros:</h4>
-                        <ul className="space-y-1 text-xs sm:text-sm text-night/70">
-                          {season.pros.map((pro, i) => (
-                            <li key={i} className="flex items-center gap-2">
-                              <ChevronRight className="w-3 h-3 text-green-500" />
-                              {pro}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-night mb-2 text-sm">Cons:</h4>
-                        <ul className="space-y-1 text-xs sm:text-sm text-night/70">
-                          {season.cons.map((con, i) => (
-                            <li key={i} className="flex items-center gap-2">
-                              <ChevronRight className="w-3 h-3 text-red-500" />
-                              {con}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="px-3 py-1 bg-gray-100 rounded-full text-sm font-medium text-night/80">{season.weather}</div>
+                      <div className="px-3 py-1 bg-gray-100 rounded-full text-sm font-medium text-night/80">{season.temp}</div>
                     </div>
-                  </motion.div>
+                    
+                    <p className="text-night/70 leading-relaxed">{season.desc}</p>
+                  </div>
                 ))}
-              </div>
-
-              {/* Monthly Breakdown */}
-              <div className="bg-gradient-to-br from-azure/10 to-blue-50 p-6 sm:p-8 rounded-xl">
-                <h3 className="text-xl sm:text-2xl font-bold text-night mb-6 text-center">Monthly Weather Guide</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                  {[
-                    { month: 'October', temp: '23-30°C', rainfall: 'Low', condition: 'Excellent' },
-                    { month: 'November', temp: '23-30°C', rainfall: 'Very Low', condition: 'Perfect' },
-                    { month: 'December', temp: '22-29°C', rainfall: 'Minimal', condition: 'Perfect' },
-                    { month: 'January', temp: '22-28°C', rainfall: 'Minimal', condition: 'Perfect' },
-                    { month: 'February', temp: '23-29°C', rainfall: 'Low', condition: 'Excellent' },
-                    { month: 'March', temp: '24-32°C', rainfall: 'Low', condition: 'Good' }
-                  ].map((month, index) => (
-                    <div key={index} className="bg-white p-4 rounded-lg shadow-sm">
-                      <div className="font-semibold text-night mb-2">{month.month}</div>
-                      <div className="text-sm text-night/70 space-y-1">
-                        <div>Temp: {month.temp}</div>
-                        <div>Rain: {month.rainfall}</div>
-                        <div className={`font-medium ${
-                          month.condition === 'Perfect' ? 'text-green-600' :
-                          month.condition === 'Excellent' ? 'text-blue-600' : 'text-orange-600'
-                        }`}>
-                          {month.condition}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              </motion.div>
-        </div>
-      </section>
-
-        {/* Things to Do Section */}
-        <section id="things-to-do" className="py-12 sm:py-16 lg:py-20 bg-gray-50">
-          <div className="container mx-auto px-4 sm:px-6">
-            <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-              className="max-w-7xl mx-auto"
-            >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night mb-6 sm:mb-8 text-center">
-                Things to Do in Andaman Islands
-              </h2>
-              
-              <p className="text-lg text-night/70 text-center mb-12 max-w-3xl mx-auto">
-                From thrilling underwater adventures to peaceful nature walks, the Andaman Islands offer endless opportunities for every type of traveler. Discover over 50+ unique experiences across pristine islands.
-              </p>
-
-              {/* Hero Activity Image */}
-              <div className="mb-16">
-                <img
-                  src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-                  alt="Scuba diving in crystal clear waters of Andaman"
-                  className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-2xl shadow-2xl"
-                />
-              </div>
-
-              {/* Activity Categories - Enhanced */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
-                {[
-                  {
-                    category: 'Water Sports & Marine Adventures',
-                    icon: <Activity className="w-8 h-8 text-blue-600" />,
-                    image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                    activities: [
-                      'Scuba Diving at Elephant Beach (₹3500)',
-                      'Snorkeling at North Bay Island (₹1500)',
-                      'Parasailing at Port Blair (₹2000)',
-                      'Jet Skiing at Corbyn\'s Cove (₹1200)',
-                      'Sea Walking at North Bay (₹3000)',
-                      'Kayaking through Mangroves (₹800)',
-                      'Banana Boat Rides (₹500)',
-                      'Speed Boat Tours (₹1800)',
-                      'Glass Bottom Boat Rides (₹800)',
-                      'Deep Sea Fishing (₹4000)',
-                      'Windsurfing at Havelock (₹1500)',
-                      'Stand-up Paddleboarding (₹1000)'
-                    ],
-                    highlight: 'World-class diving sites with 95% underwater visibility'
-                  },
-                  {
-                    category: 'Adventure & Nature Exploration',
-                    icon: <Compass className="w-8 h-8 text-green-600" />,
-                    image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                    activities: [
-                      'Trekking to Saddle Peak (₹2000)',
-                      'Island Hopping Tours (₹3500)',
-                      'Limestone Cave Exploration (₹1500)',
-                      'Mud Volcano Visit at Baratang (₹2500)',
-                      'Mangrove Creek Safari (₹1800)',
-                      'Bird Watching at Parrot Island (₹1200)',
-                      'Jungle Trekking in Neil Island (₹800)',
-                      'Mount Harriet National Park Trek (₹1000)',
-                      'Chidiya Tapu Sunset Point (Free)',
-                      'Mahatma Gandhi Marine National Park (₹100)',
-                      'Nature Photography Tours (₹2000)',
-                      'Camping at Beach (₹3000)'
-                    ],
-                    highlight: 'Unique biodiversity with 270+ bird species and endemic flora'
-                  },
-                  {
-                    category: 'Cultural & Historical Experiences',
-                    icon: <History className="w-8 h-8 text-purple-600" />,
-                    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                    activities: [
-                      'Cellular Jail Light & Sound Show (₹300)',
-                      'Ross Island Historical Tour (₹30)',
-                      'Anthropological Museum Visit (₹20)',
-                      'Fisheries Museum (₹10)',
-                      'Samudrika Naval Marine Museum (₹30)',
-                      'Japanese Bunkers Exploration (Free)',
-                      'Viper Island Prison Ruins (₹50)',
-                      'Chatham Saw Mill Tour (₹30)',
-                      'Forest Museum Visit (₹10)',
-                      'Mini Zoo at Haddo (₹10)',
-                      'Local Village Cultural Tours (₹1500)',
-                      'Traditional Cooking Classes (₹2000)'
-                    ],
-                    highlight: 'Rich 150+ years of documented colonial and wartime history'
-                  },
-                  {
-                    category: 'Beach & Relaxation Activities',
-                    icon: <Sun className="w-8 h-8 text-orange-600" />,
-                    image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                    activities: [
-                      'Radhanagar Beach Sunset (Free)',
-                      'Beach Volleyball at Corbyn\'s Cove (Free)',
-                      'Beach Yoga Sessions (₹500)',
-                      'Elephant Beach Swimming (Free)',
-                      'Bharatpur Beach Coral Viewing (Free)',
-                      'Kalapathar Beach Photography (Free)',
-                      'Laxmanpur Beach Exploration (Free)',
-                      'Natural Bridge at Neil Island (Free)',
-                      'Sitapur Beach Sunrise (Free)',
-                      'Beach Camping (₹2500)',
-                      'Beach Massage Services (₹1500)',
-                      'Romantic Beach Dinners (₹4000)'
-                    ],
-                    highlight: 'Pristine beaches with powdery white sand and turquoise waters'
-                  },
-                  {
-                    category: 'Unique & Specialty Experiences',
-                    icon: <Star className="w-8 h-8 text-pink-600" />,
-                    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                    activities: [
-                      'Night Kayaking with Bioluminescence (₹2500)',
-                      'Dolphin Watching Tours (₹2000)',
-                      'Turtle Nesting Site Visits (₹1500)',
-                      'Coral Plantation Programs (₹1000)',
-                      'Underwater Photography (₹3500)',
-                      'Helicopter Rides (₹15000)',
-                      'Seaplane Experiences (₹12000)',
-                      'Luxury Yacht Cruises (₹8000)',
-                      'Private Island Picnics (₹5000)',
-                      'Stargazing Tours (₹800)',
-                      'Traditional Fishing with Locals (₹1200)',
-                      'Marine Life Research Programs (₹2500)'
-                    ],
-                    highlight: 'Once-in-a-lifetime experiences unique to Andaman Islands'
-                  },
-                  {
-                    category: 'Wellness & Spa Activities',
-                    icon: <Users className="w-8 h-8 text-teal-600" />,
-                    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                    activities: [
-                      'Ayurvedic Spa Treatments (₹3000)',
-                      'Beachside Yoga Classes (₹800)',
-                      'Meditation Retreats (₹2500)',
-                      'Traditional Thai Massage (₹2000)',
-                      'Hot Stone Therapy (₹2500)',
-                      'Couples Spa Packages (₹5000)',
-                      'Aromatherapy Sessions (₹1800)',
-                      'Reflexology Treatments (₹1200)',
-                      'Wellness Detox Programs (₹4000)',
-                      'Sunrise Meditation (₹500)',
-                      'Nature Sound Therapy (₹800)',
-                      'Holistic Healing Workshops (₹1500)'
-                    ],
-                    highlight: 'Rejuvenate your mind, body and soul in paradise settings'
-                  }
-                ].map((category, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
-                  >
-                    <div className="h-48 overflow-hidden">
-                      <img
-                        src={category.image}
-                        alt={category.category}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <div className="w-16 h-16 bg-gradient-to-br from-azure/20 to-blue-100 rounded-full flex items-center justify-center mb-4 -mt-12 relative z-10 bg-white shadow-lg">
-                        {category.icon}
-                      </div>
-                      <h3 className="text-xl font-bold text-night mb-4">{category.category}</h3>
-                      <div className="max-h-48 overflow-y-auto mb-4">
-                        <ul className="space-y-2">
-                          {category.activities.map((activity, i) => (
-                            <li key={i} className="flex items-start gap-2 text-sm text-night/70">
-                              <ChevronRight className="w-3 h-3 text-azure mt-1 flex-shrink-0" />
-                              {activity}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div className="bg-azure/10 p-3 rounded-lg">
-                        <p className="text-sm font-medium text-azure">{category.highlight}</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Popular Multi-Day Experiences */}
-              <div className="bg-white p-8 rounded-xl shadow-lg mb-12">
-                <h3 className="text-2xl font-bold text-night mb-6 text-center">Multi-Day Adventure Packages</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {[
-                    { 
-                      experience: '3-Day Havelock Explorer', 
-                      duration: '3 days/2 nights', 
-                      price: '₹12,500',
-                      includes: ['Scuba diving', 'Beach hopping', 'Sunset cruise', 'Luxury stay'],
-                      image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80'
-                    },
-                    { 
-                      experience: '5-Day Island Circuit', 
-                      duration: '5 days/4 nights', 
-                      price: '₹25,000',
-                      includes: ['All major islands', 'Cultural tours', 'Adventure activities', 'Premium resorts'],
-                      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80'
-                    },
-                    { 
-                      experience: '7-Day Ultimate Adventure', 
-                      duration: '7 days/6 nights', 
-                      price: '₹45,000',
-                      includes: ['All activities', 'Luxury accommodation', 'Private transfers', 'Personal guide'],
-                      image: 'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80'
-                    }
-                  ].map((pkg, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                      className="bg-gray-50 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300"
-                    >
-                      <img 
-                        src={pkg.image} 
-                        alt={pkg.experience}
-                        className="w-full h-40 object-cover"
-                      />
-                      <div className="p-4">
-                        <h4 className="font-semibold text-night mb-2">{pkg.experience}</h4>
-                        <div className="text-sm text-night/60 mb-3">
-                          <div className="mb-1">Duration: {pkg.duration}</div>
-                          <div className="font-medium text-azure text-lg">From {pkg.price}</div>
-                        </div>
-                        <div className="space-y-1">
-                          {pkg.includes.map((item, i) => (
-                            <div key={i} className="flex items-center gap-2 text-xs text-night/70">
-                              <CheckCircle className="w-3 h-3 text-green-500" />
-                              {item}
-                            </div>
-                          ))}
-                        </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-              </div>
-
-              {/* Quick Must-Try Experiences */}
-              <div className="bg-gradient-to-br from-azure/10 to-blue-50 p-8 rounded-xl">
-                <h3 className="text-2xl font-bold text-night mb-6 text-center">Top 10 Must-Try Experiences</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                  {[
-                    { experience: 'Radhanagar Beach Sunset', duration: '2 hours', price: 'Free', icon: <Sun className="w-5 h-5" /> },
-                    { experience: 'Cellular Jail Light Show', duration: '1 hour', price: '₹300', icon: <History className="w-5 h-5" /> },
-                    { experience: 'Elephant Beach Scuba', duration: '4 hours', price: '₹3500', icon: <Activity className="w-5 h-5" /> },
-                    { experience: 'Neil Island Day Trip', duration: 'Full day', price: '₹2500', icon: <Navigation className="w-5 h-5" /> },
-                    { experience: 'Limestone Caves Tour', duration: '6 hours', price: '₹1500', icon: <Compass className="w-5 h-5" /> },
-                    { experience: 'Ross Island Heritage', duration: '3 hours', price: '₹30', icon: <MapPin className="w-5 h-5" /> },
-                    { experience: 'Mangrove Kayaking', duration: '2 hours', price: '₹800', icon: <Users className="w-5 h-5" /> },
-                    { experience: 'Bioluminescence Night', duration: '3 hours', price: '₹2500', icon: <Star className="w-5 h-5" /> },
-                    { experience: 'Coral Garden Snorkel', duration: '3 hours', price: '₹1500', icon: <Activity className="w-5 h-5" /> },
-                    { experience: 'Sunset Cruise', duration: '2 hours', price: '₹1800', icon: <Navigation className="w-5 h-5" /> }
-                  ].map((exp, index) => (
-                    <div key={index} className="bg-white p-4 rounded-lg text-center shadow-sm hover:shadow-md transition-shadow duration-300">
-                      <div className="w-12 h-12 bg-azure/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <div className="text-azure">
-                          {exp.icon}
-                        </div>
-                      </div>
-                      <h4 className="font-semibold text-night mb-2 text-sm">{exp.experience}</h4>
-                      <div className="text-xs text-night/60 space-y-1">
-                        <div>Duration: {exp.duration}</div>
-                        <div className="font-medium text-azure">{exp.price}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
               </div>
             </motion.div>
           </div>
         </section>
 
-
-
-        {/* Weather Section */}
-        <section id="weather" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-blue-50 to-azure/10">
+        {/* Things to Do Section - Grid */}
+        <section id="things-to-do" className="bg-night py-20 text-white">
           <div className="container mx-auto px-4 sm:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-6xl mx-auto"
-            >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night mb-6 sm:mb-8 text-center">
-                Climate & Weather Conditions
+            <div className="text-center mb-16">
+              <span className="text-lagoon font-bold tracking-wider uppercase text-sm mb-2 block">Experiences</span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white font-display mb-6">
+                Things to Do
               </h2>
+              <p className="text-white/60 max-w-2xl mx-auto">From thrilling underwater adventures to peaceful nature walks, discover over 50+ unique experiences.</p>
+            </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mb-12">
-                <div>
-                  <h3 className="text-2xl font-bold text-night mb-6 flex items-center gap-3">
-                    <Thermometer className="w-8 h-8 text-red-500" />
-                    Climate Overview
-                  </h3>
-                  <div className="bg-white p-6 rounded-xl shadow-lg">
-                    <p className="text-base sm:text-lg text-night/80 mb-6 leading-relaxed">
-                      The Andaman Islands enjoy a tropical climate with warm temperatures year-round. The islands experience high humidity due to their oceanic location, with temperatures rarely dropping below 20°C or exceeding 35°C.
-                    </p>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-red-50 p-4 rounded-lg text-center">
-                        <div className="text-2xl font-bold text-red-600">32°C</div>
-                        <div className="text-sm text-night/60">Average High</div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  title: 'Scuba Diving',
+                  image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
+                  desc: 'Explore vibrant coral reefs and marine life in Havelock and Neil Island.'
+                },
+                {
+                  title: 'Beach Hopping',
+                  image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
+                  desc: 'Visit Radhanagar, Elephant, and Kalapathar beaches for pristine white sands.'
+                },
+                {
+                  title: 'Historical Tours',
+                  image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
+                  desc: 'Walk through history at Cellular Jail and Ross Island ruins.'
+                },
+                {
+                  title: 'Water Sports',
+                  image: 'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
+                  desc: 'Jet skiing, parasailing, and sea walking at North Bay and Elephant Beach.'
+                },
+                {
+                  title: 'Trekking',
+                  image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
+                  desc: 'Hike to Saddle Peak or through the limestone caves of Baratang.'
+                },
+                {
+                  title: 'Sunset Watching',
+                  image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
+                  desc: 'Witness magical sunsets at Chidiya Tapu and Radhanagar Beach.'
+                }
+              ].map((item, index) => (
+                <motion.div 
+                  key={index}
+                  whileHover={{ y: -5 }}
+                  className="group relative rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer"
+                >
+                  <img 
+                    src={item.image} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                  <div className="absolute bottom-0 left-0 p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 className="text-xl font-bold text-white mb-2 font-display">{item.title}</h3>
+                    <p className="text-white/80 text-sm line-clamp-2 group-hover:line-clamp-none transition-all">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* History Section - Timeline */}
+        <section id="history" className="py-12 sm:py-16">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+              <div>
+                <span className="text-azure font-bold tracking-wider uppercase text-sm mb-2 block">Time Travel</span>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night font-display mb-8">
+                  Island History
+                </h2>
+                <p className="text-night/70 text-lg mb-12 leading-relaxed">
+                  The history of the Andaman Islands is as deep as the ocean surrounding them. From indigenous tribes who have lived here for thousands of years to the colonial era that left an indelible mark.
+                </p>
+
+                <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
+                  {[
+                    {
+                      year: 'Ancient Times',
+                      title: 'Indigenous Settlement',
+                      desc: 'Inhabited by indigenous tribes like the Great Andamanese, Onge, Jarawa, and Sentinelese for over 60,000 years.'
+                    },
+                    {
+                      year: '1858',
+                      title: 'British Penal Colony',
+                      desc: 'The British established a penal colony for Indian freedom fighters, constructing the infamous Cellular Jail.'
+                    },
+                    {
+                      year: '1942-1945',
+                      title: 'Japanese Occupation',
+                      desc: 'Occupied by Japanese forces during WWII. Bunkers and ruins from this era can still be found.'
+                    },
+                    {
+                      year: '1947',
+                      title: 'Indian Union',
+                      desc: 'Became part of independent India, developing into a Union Territory focused on conservation and tourism.'
+                    }
+                  ].map((item, index) => (
+                    <div key={index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                      <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 group-[.is-active]:bg-azure text-slate-500 group-[.is-active]:text-emerald-50 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        <div className="w-3 h-3 bg-white rounded-full"></div>
                       </div>
-                      <div className="bg-blue-50 p-4 rounded-lg text-center">
-                        <div className="text-2xl font-bold text-blue-600">24°C</div>
-                        <div className="text-sm text-night/60">Average Low</div>
+                      <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+                        <div className="flex items-center justify-between space-x-2 mb-1">
+                          <div className="font-bold text-slate-900">{item.title}</div>
+                          <time className="font-caveat font-medium text-azure">{item.year}</time>
+                        </div>
+                        <div className="text-slate-500 text-sm">{item.desc}</div>
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-bold text-night mb-6 flex items-center gap-3">
-                    <Cloud className="w-8 h-8 text-gray-500" />
-                    Seasonal Weather Patterns
-                  </h3>
-                  <div className="space-y-4">
-                    {[
-                      {
-                        season: 'Winter (Nov-Feb)',
-                        icon: <Wind className="w-5 h-5 text-blue-500" />,
-                        temp: '22-29°C',
-                        humidity: '70-75%',
-                        rainfall: 'Minimal',
-                        description: 'Pleasant northeast winds, clear skies, perfect for outdoor activities'
-                      },
-                      {
-                        season: 'Summer (Mar-May)',
-                        icon: <Sun className="w-5 h-5 text-orange-500" />,
-                        temp: '24-37°C',
-                        humidity: '75-85%',
-                        rainfall: 'Low',
-                        description: 'Hot and humid, occasional afternoon showers provide relief'
-                      },
-                      {
-                        season: 'Monsoon (Jun-Oct)',
-                        icon: <Umbrella className="w-5 h-5 text-indigo-500" />,
-                        temp: '25-30°C',
-                        humidity: '85-95%',
-                        rainfall: 'Heavy',
-                        description: 'Southwest monsoon brings heavy rainfall, rough seas, lush greenery'
-                      }
-                    ].map((weather, index) => (
-                      <div key={index} className="bg-white p-4 rounded-lg shadow-md">
-                        <div className="flex items-center gap-3 mb-2">
-                          {weather.icon}
-                          <span className="font-semibold text-night">{weather.season}</span>
-                        </div>
-                        <div className="grid grid-cols-3 gap-2 text-xs sm:text-sm mb-2">
-                          <div>Temp: {weather.temp}</div>
-                          <div>Humidity: {weather.humidity}</div>
-                          <div>Rain: {weather.rainfall}</div>
-                        </div>
-                        <p className="text-xs sm:text-sm text-night/70">{weather.description}</p>
-                      </div>
-                    ))}
-                  </div>
+                  ))}
                 </div>
               </div>
-
-              {/* Weather Tips */}
-              <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
-                <h3 className="text-xl sm:text-2xl font-bold text-night mb-6 text-center">Weather Preparation Tips</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="text-center">
-                    <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Sun className="w-6 h-6 text-yellow-600" />
-                    </div>
-                    <h4 className="font-semibold text-night mb-2">Sun Protection</h4>
-                    <p className="text-sm text-night/70">High-SPF sunscreen, hat, sunglasses essential year-round</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Umbrella className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <h4 className="font-semibold text-night mb-2">Rain Gear</h4>
-                    <p className="text-sm text-night/70">Waterproof clothing and umbrella for monsoon season</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Wind className="w-6 h-6 text-green-600" />
-                    </div>
-                    <h4 className="font-semibold text-night mb-2">Breathable Clothes</h4>
-                    <p className="text-sm text-night/70">Light, cotton clothing for comfort in humidity</p>
+              
+              <div className="sticky top-32">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                  <img 
+                    src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                    alt="Cellular Jail" 
+                    className="w-full h-auto object-cover"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
+                    <h3 className="text-white font-bold text-xl">Cellular Jail National Memorial</h3>
+                    <p className="text-white/80 text-sm">A poignant reminder of India's struggle for freedom.</p>
                   </div>
                 </div>
+                
+                <div className="mt-8 bg-orange-50 p-6 rounded-2xl border border-orange-100">
+                  <h4 className="font-bold text-orange-800 mb-2 flex items-center gap-2">
+                    <Users className="w-5 h-5" />
+                    Indigenous Heritage
+                  </h4>
+                  <p className="text-orange-800/80 text-sm leading-relaxed">
+                    The islands are home to some of the most isolated tribal groups in the world. The Jarawa and Sentinelese tribes live in protected reserves, and interaction with them is strictly prohibited to preserve their way of life and health.
+                  </p>
+                </div>
               </div>
-            </motion.div>
-        </div>
-      </section>
+            </div>
+          </div>
+        </section>
 
         {/* People & Language Section */}
-        <section id="people-language" className="py-12 sm:py-16 lg:py-20">
+        <section id="people-language" className="bg-gradient-to-br from-azure/5 to-lagoon/5 py-16 sm:py-20">
           <div className="container mx-auto px-4 sm:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-6xl mx-auto"
-            >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night mb-6 sm:mb-8 text-center">
-                People & Languages
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night font-display mb-6">
+                People & Culture
               </h2>
+              <p className="text-night/70 text-lg">
+                Often called "Mini India," the Andamans are a melting pot of cultures, languages, and religions living in harmony.
+              </p>
+            </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mb-12">
-                <div>
-                  <h3 className="text-2xl font-bold text-night mb-6 flex items-center gap-3">
-                    <Users className="w-8 h-8 text-purple-600" />
-                    Demographics
-                  </h3>
-                  <div className="bg-white p-6 rounded-xl shadow-lg">
-                    <div className="grid grid-cols-2 gap-4 mb-6">
-                      <div className="bg-purple-50 p-4 rounded-lg text-center">
-                        <div className="text-2xl font-bold text-purple-600">380,581</div>
-                        <div className="text-sm text-night/60">Total Population</div>
-                      </div>
-                      <div className="bg-blue-50 p-4 rounded-lg text-center">
-                        <div className="text-2xl font-bold text-blue-600">46.3/km²</div>
-                        <div className="text-sm text-night/60">Population Density</div>
-                      </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100">
+                <h3 className="text-2xl font-bold text-night mb-6 flex items-center gap-3">
+                  <Languages className="w-6 h-6 text-azure" />
+                  Languages
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                    <div>
+                      <div className="font-bold text-night">Hindi & English</div>
+                      <div className="text-sm text-night/60">Official Languages</div>
                     </div>
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold text-night mb-2">Ethnic Composition</h4>
-                        <ul className="space-y-2 text-sm text-night/70">
-                          <li>• <strong>Bengalis:</strong> 26% - Largest community from West Bengal</li>
-                          <li>• <strong>Tamils:</strong> 15% - Mainly from Tamil Nadu</li>
-                          <li>• <strong>Telugu:</strong> 13% - From Andhra Pradesh</li>
-                          <li>• <strong>Hindi speakers:</strong> 12% - From various North Indian states</li>
-                          <li>• <strong>Indigenous tribes:</strong> 1% - Original inhabitants</li>
-                        </ul>
-                      </div>
-                    </div>
+                    <span className="px-3 py-1 bg-azure/10 text-azure rounded-full text-sm font-bold">Primary</span>
                   </div>
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-bold text-night mb-6 flex items-center gap-3">
-                    <Languages className="w-8 h-8 text-green-600" />
-                    Languages Spoken
-                  </h3>
-                  <div className="space-y-4">
-                    <div className="bg-white p-6 rounded-xl shadow-lg">
-                      <h4 className="font-semibold text-night mb-4">Official Languages</h4>
-                      <div className="grid grid-cols-2 gap-3">
-                                                 <div className="bg-orange-50 p-3 rounded-lg text-center">
-                           <div className="font-bold text-orange-600">Hindi</div>
-                          <div className="text-xs text-night/60">Primary Official</div>
-                        </div>
-                        <div className="bg-blue-50 p-3 rounded-lg text-center">
-                          <div className="font-bold text-blue-600">English</div>
-                          <div className="text-xs text-night/60">Administrative</div>
-                        </div>
-                      </div>
+                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                    <div>
+                      <div className="font-bold text-night">Bengali</div>
+                      <div className="text-sm text-night/60">Widely Spoken</div>
                     </div>
-
-                    <div className="bg-white p-6 rounded-xl shadow-lg">
-                      <h4 className="font-semibold text-night mb-4">Widely Spoken Languages</h4>
-                      <div className="space-y-3">
-                        {[
-                          { language: 'Bengali', percentage: '28%', note: 'Most common regional language' },
-                          { language: 'Tamil', percentage: '18%', note: 'Significant in southern areas' },
-                          { language: 'Telugu', percentage: '15%', note: 'Common in settlements' },
-                          { language: 'Hindi', percentage: '35%', note: 'Lingua franca for tourism' }
-                        ].map((lang, index) => (
-                          <div key={index} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
-                            <div>
-                              <span className="font-medium text-night">{lang.language}</span>
-                              <div className="text-xs text-night/60">{lang.note}</div>
-                            </div>
-                            <span className="text-azure font-bold">{lang.percentage}</span>
-                          </div>
-                        ))}
-                      </div>
+                    <span className="px-3 py-1 bg-gray-200 text-night/60 rounded-full text-sm font-bold">28%</span>
+                  </div>
+                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                    <div>
+                      <div className="font-bold text-night">Tamil, Telugu, Malayalam</div>
+                      <div className="text-sm text-night/60">Regional Communities</div>
                     </div>
+                    <span className="px-3 py-1 bg-gray-200 text-night/60 rounded-full text-sm font-bold">Mixed</span>
                   </div>
                 </div>
               </div>
 
-              {/* Cultural Information */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                <div className="bg-gradient-to-br from-orange-50 to-red-50 p-6 sm:p-8 rounded-xl">
-                  <h3 className="text-xl font-bold text-night mb-4 flex items-center gap-3">
-                    <Globe className="w-6 h-6 text-orange-600" />
-                    Cultural Diversity
-                  </h3>
-                  <ul className="space-y-2 text-sm sm:text-base text-night/70">
-                    <li>• Harmonious blend of different Indian cultures</li>
-                    <li>• Major festivals: Durga Puja, Diwali, Christmas, Eid</li>
-                    <li>• Rich culinary traditions from various regions</li>
-                    <li>• Traditional arts and crafts preserved</li>
-                    <li>• Strong community bonds across ethnicities</li>
-                  </ul>
+              <div className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100">
+                <h3 className="text-2xl font-bold text-night mb-6 flex items-center gap-3">
+                  <Users className="w-6 h-6 text-lagoon" />
+                  Demographics
+                </h3>
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="text-center p-4 bg-lagoon/5 rounded-xl">
+                    <div className="text-3xl font-bold text-lagoon mb-1">3.8L+</div>
+                    <div className="text-sm text-night/60">Population</div>
+                  </div>
+                  <div className="text-center p-4 bg-lagoon/5 rounded-xl">
+                    <div className="text-3xl font-bold text-lagoon mb-1">89%</div>
+                    <div className="text-sm text-night/60">Literacy Rate</div>
+                  </div>
+                </div>
+                <p className="text-night/70 text-sm leading-relaxed">
+                  The islands have a unique culture where festivals of all religions—Durga Puja, Diwali, Christmas, Eid, and Pongal—are celebrated with equal enthusiasm by everyone, reflecting true secularism.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Essential Travel Tips Section */}
+        <section id="travel-tips" className="py-12 sm:py-16 bg-gray-50">
+          <div className="container mx-auto px-4 sm:px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-6xl mx-auto"
+            >
+              <div className="text-center mb-12">
+                <span className="text-azure font-bold tracking-wider uppercase text-sm mb-2 block">Plan Smart</span>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night font-display mb-4">
+                  Essential Travel Tips
+                </h2>
+                <p className="text-night/60 max-w-2xl mx-auto">
+                  Key information to ensure a smooth and hassle-free vacation in the islands.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Connectivity */}
+                <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all">
+                  <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6">
+                    <Wifi className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-bold text-night mb-3">Mobile & Internet</h3>
+                  <p className="text-night/70 text-sm mb-4 leading-relaxed">
+                    Network connectivity can be patchy. <strong>Airtel and Jio</strong> offer the best 4G coverage in Port Blair, Havelock, and Neil. BSNL is reliable for calls.
+                  </p>
+                  <div className="bg-blue-50 p-3 rounded-lg text-xs text-blue-800 font-medium">
+                    Tip: Download offline maps and content before arrival.
+                  </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-50 to-teal-50 p-6 sm:p-8 rounded-xl">
-                  <h3 className="text-xl font-bold text-night mb-4 flex items-center gap-3">
-                    <Users className="w-6 h-6 text-green-600" />
-                    Local Hospitality
-                  </h3>
-                  <ul className="space-y-2 text-sm sm:text-base text-night/70">
-                    <li>• Warm and welcoming to visitors</li>
-                    <li>• English widely understood in tourist areas</li>
-                    <li>• Helpful local guides and community leaders</li>
-                    <li>• Respect for environmental conservation</li>
-                    <li>• Strong maritime and fishing culture</li>
-                  </ul>
+                {/* Money */}
+                <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all">
+                  <div className="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center mb-6">
+                    <CreditCard className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-bold text-night mb-3">ATMs & Cash</h3>
+                  <p className="text-night/70 text-sm mb-4 leading-relaxed">
+                    ATMs are available in Port Blair, Havelock, and Neil, but can run out of cash. Digital payments (UPI) work but depend on the network.
+                  </p>
+                  <div className="bg-green-50 p-3 rounded-lg text-xs text-green-800 font-medium">
+                    Tip: Carry sufficient cash for small vendors and remote areas.
+                  </div>
+                </div>
+
+                {/* Safety */}
+                <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all">
+                  <div className="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center mb-6">
+                    <AlertTriangle className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-bold text-night mb-3">Safety & Permits</h3>
+                  <p className="text-night/70 text-sm mb-4 leading-relaxed">
+                    Andaman is very safe for tourists. Foreign nationals no longer need a Restricted Area Permit (RAP) for major islands.
+                  </p>
+                  <div className="bg-red-50 p-3 rounded-lg text-xs text-red-800 font-medium">
+                    Tip: Do not collect corals or shells; it is strictly prohibited and punishable.
+                  </div>
                 </div>
               </div>
             </motion.div>
           </div>
         </section>
+
+        {/* FAQ Section */}
+        <div id="faqs">
+          <FaqAccordion 
+            title="Frequently Asked Questions"
+            description="Common queries answered to help you plan better."
+            faqs={[
+              {
+                question: "What is the best itinerary for a 5-day trip?",
+                answer: "A classic 5-day itinerary includes: Day 1 - Arrival in Port Blair & Cellular Jail; Day 2 - Ferry to Havelock & Radhanagar Beach; Day 3 - Elephant Beach Water Sports; Day 4 - Return to Port Blair via Neil Island (optional) or Chidiya Tapu sunset; Day 5 - Departure. This covers the essentials without rushing."
+              },
+              {
+                question: "Is vegetarian food easily available?",
+                answer: "Yes, absolutely. While Andaman is famous for seafood, all hotels and restaurants serve excellent North Indian, South Indian, and Continental vegetarian dishes. Pure veg restaurants are also available in Port Blair and Havelock."
+              },
+              {
+                question: "Can we rent bikes in Andaman?",
+                answer: "Yes, renting two-wheelers is the most popular way to explore Havelock and Neil Islands. Cost ranges from ₹500-₹800 per day. You will need a valid driving license. In Port Blair, cabs or auto-rickshaws are preferred due to traffic and distances."
+              },
+              {
+                question: "Are there crocodiles in Andaman beaches?",
+                answer: "Saltwater crocodiles inhabit the mangroves and creeks of Andaman. However, popular tourist beaches like Radhanagar, Elephant Beach, and Bharatpur are safe and monitored. Always heed warning signs and avoid swimming in restricted areas or near mangroves."
+              },
+              {
+                question: "What should I pack for the trip?",
+                answer: "Pack light cotton clothes, swimwear, comfortable flip-flops/sandals, sunglasses, a hat, and high SPF sunscreen. Don't forget your personal medication, a power bank, and a waterproof bag for your electronics during boat rides."
+              }
+            ]}
+          />
+        </div>
+
       </div>
 
       <Footer />

@@ -205,15 +205,16 @@ const RomanticGetawaysPage = () => {
       }}
       slug="romantic-getaways"
       seo={{
-        title: "Romantic Getaways in Andaman | Honeymoon & Anniversary Packages",
-        description: "Plan the perfect romantic getaway in Andaman. Choose from honeymoon, anniversary, proposal and babymoon packages with private villas, beach dining, spa treatments and more.",
-        keywords: "romantic getaway andaman, honeymoon andaman, anniversary packages andaman, proposal destination andaman, couples vacation andaman"
+        title: "Romantic Getaways & Honeymoon Packages in Andaman | 2025 Specials",
+        description: "Plan your dream honeymoon or romantic escape in Andaman. Private beach dinners, luxury villas, sunset cruises & couple spa treatments. Customize your package today.",
+        keywords: "andaman honeymoon packages, romantic getaways andaman, couple tour packages andaman, candlelight dinner havelock, luxury honeymoon resorts andaman, beach wedding andaman"
       }}
       bookingData={{
         packageName: 'Romantic Getaways',
         source: 'experience',
         slug: 'romantic-getaways'
       }}
+      faqData={faqs}
     >
       {/* Romantic Experiences */}
       <section className="py-16 bg-white">

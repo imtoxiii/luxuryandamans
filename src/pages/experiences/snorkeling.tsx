@@ -119,15 +119,16 @@ const SnorkelingPage = () => {
       }}
       slug="snorkeling"
       seo={{
-        title: "Snorkeling in Andaman | Best Snorkeling Sites | Book Now",
+        title: "Snorkeling in Andaman | Best Snorkeling Sites & Packages 2025",
         description: "Discover the underwater paradise of Andaman with guided snorkeling tours. Explore vibrant coral reefs, tropical fish, and sea turtles at North Bay, Elephant Beach, and more.",
-        keywords: "snorkeling andaman, north bay snorkeling, elephant beach snorkeling, jolly buoy snorkeling, red skin island snorkeling, coral reefs andaman, underwater life andaman"
+        keywords: "snorkeling andaman, north bay snorkeling, elephant beach snorkeling, jolly buoy snorkeling, red skin island snorkeling, coral reefs andaman, underwater life andaman, snorkeling price andaman"
       }}
       bookingData={{
         packageName: 'Snorkeling Adventures',
         source: 'experience',
         slug: 'snorkeling'
       }}
+      faqData={faqs}
     >
       {/* Overview Section */}
       <section className="py-16 bg-white">

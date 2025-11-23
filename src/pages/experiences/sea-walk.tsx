@@ -205,15 +205,16 @@ const SeaWalkPage = () => {
       }}
       slug="sea-walk"
       seo={{
-        title: "Sea Walk in Andaman | North Bay & Elephant Beach | Book Now",
+        title: "Sea Walk in Andaman | North Bay & Elephant Beach | Best Price 2025",
         description: "Experience walking on the sea bed in Andaman. Sea walk at North Bay and Elephant Beach with helmet oxygen supply, photos, and guides. Perfect for non-swimmers.",
-        keywords: "sea walk andaman, north bay sea walk, elephant beach sea walk, sea bed walk andaman, underwater walking andaman"
+        keywords: "sea walk andaman, north bay sea walk, elephant beach sea walk, sea bed walk andaman, underwater walking andaman, sea walk price andaman"
       }}
       bookingData={{
         packageName: 'Sea Walk',
         source: 'experience',
         slug: 'sea-walk'
       }}
+      faqData={faqs}
     >
       {/* What to Expect */}
       <section className="py-16 bg-white">

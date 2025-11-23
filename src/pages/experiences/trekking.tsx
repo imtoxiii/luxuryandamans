@@ -142,15 +142,16 @@ const TrekkingPage = () => {
       }}
       slug="trekking"
       seo={{
-        title: "Jungle Trekking in Andaman | Mountain Trails | Book Now",
+        title: "Jungle Trekking in Andaman | Mount Harriet & Saddle Peak 2025",
         description: "Explore the pristine rainforests of Andaman with guided trekking tours. Trek Mount Harriet, Saddle Peak, and more. Discover endemic wildlife and panoramic views.",
-        keywords: "trekking andaman, mount harriet trek, saddle peak andaman, jungle trails andaman, nature walks andaman, bird watching andaman, forest trekking"
+        keywords: "trekking andaman, mount harriet trek, saddle peak andaman, jungle trails andaman, nature walks andaman, bird watching andaman, forest trekking, trekking packages andaman"
       }}
       bookingData={{
         packageName: 'Jungle Trekking Adventures',
         source: 'experience',
         slug: 'trekking'
       }}
+      faqData={faqs}
     >
       {/* Features Section */}
       <section className="py-16 bg-white">

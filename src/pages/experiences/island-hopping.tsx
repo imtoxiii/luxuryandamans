@@ -108,6 +108,33 @@ const IslandHoppingPage = () => {
     "Follow your guide's instructions for safety"
   ];
 
+  const faqs = [
+    {
+      question: "What is the best time for island hopping?",
+      answer: "October to May offers the best weather conditions with calm seas. December to February is peak season with pleasant temperatures."
+    },
+    {
+      question: "Are ferry tickets included in the packages?",
+      answer: "Yes, all necessary ferry tickets between islands are included in our packages. We also arrange private transfers where applicable."
+    },
+    {
+      question: "Can we customize the island hopping itinerary?",
+      answer: "Absolutely! We offer customizable itineraries based on your interests, time constraints, and budget. Just let us know your preferences."
+    },
+    {
+      question: "Is island hopping suitable for children?",
+      answer: "Yes, island hopping is family-friendly. We recommend shorter itineraries with less boat travel for families with young children."
+    },
+    {
+      question: "What should we carry for island hopping?",
+      answer: "Light daypack, sunscreen, hat, comfortable footwear, swimwear, towel, waterproof phone case, and cash for small purchases."
+    },
+    {
+      question: "Are meals included during island hopping?",
+      answer: "Most packages include meals. For day trips, lunch is typically included. Multi-day packages include all meals as specified in the itinerary."
+    }
+  ];
+
   return (
     <ExperienceLayout
       title="Island Hopping"
@@ -121,15 +148,16 @@ const IslandHoppingPage = () => {
       }}
       slug="island-hopping"
       seo={{
-        title: "Island Hopping in Andaman | Multi-Island Tours | Book Now",
-        description: "Explore multiple Andaman Islands with guided tours. Visit Ross, North Bay, Neil, Havelock & more. Custom packages from ₹4,500 per person.",
-        keywords: "island hopping andaman, andaman island tour, ross island tour, north bay island, neil island tour, havelock island tour, baratang island, andaman island hopping packages, multi island tour andaman, andaman ferry booking"
+        title: "Island Hopping in Andaman | Multi-Island Tour Packages 2025",
+        description: "Explore the best of Andaman Islands with our island hopping tours. Visit Havelock, Neil, Ross & North Bay. Custom itineraries, ferry bookings, and guided tours.",
+        keywords: "island hopping andaman, andaman island hopping packages, havelock neil island tour, ross and north bay island tour, andaman ferry booking, multi island tour andaman, best island hopping itinerary"
       }}
       bookingData={{
         packageName: 'Island Hopping Adventures',
         source: 'experience',
         slug: 'island-hopping'
       }}
+      faqData={faqs}
     >
       {/* Features Section */}
       <section className="py-16 bg-white">
@@ -357,7 +385,7 @@ const IslandHoppingPage = () => {
                   <div className="text-center mb-6">
                     <span className="text-3xl font-bold text-gray-900">{pkg.price}</span>
                   </div>
-                  
+
                   <div className="mb-6 text-center">
                     <span className="text-xs font-bold bg-blue-50 text-blue-600 px-3 py-1 rounded-full uppercase tracking-wide">
                       {pkg.bestFor}
@@ -365,7 +393,7 @@ const IslandHoppingPage = () => {
                   </div>
 
                   <p className="text-gray-600 mb-6 text-sm text-center leading-relaxed">{pkg.description}</p>
-                  
+
                   <div className="mb-8 flex-grow">
                     <h4 className="font-bold text-gray-900 text-sm mb-3 text-center">Includes:</h4>
                     <div className="space-y-2">
@@ -410,32 +438,7 @@ const IslandHoppingPage = () => {
           <FaqAccordion
             title="Frequently Asked Questions"
             description="Everything you need to know about island hopping in Andaman"
-            faqs={[
-              {
-                question: "What is the best time for island hopping?",
-                answer: "October to May offers the best weather conditions with calm seas. December to February is peak season with pleasant temperatures."
-              },
-              {
-                question: "Are ferry tickets included in the packages?",
-                answer: "Yes, all necessary ferry tickets between islands are included in our packages. We also arrange private transfers where applicable."
-              },
-              {
-                question: "Can we customize the island hopping itinerary?",
-                answer: "Absolutely! We offer customizable itineraries based on your interests, time constraints, and budget. Just let us know your preferences."
-              },
-              {
-                question: "Is island hopping suitable for children?",
-                answer: "Yes, island hopping is family-friendly. We recommend shorter itineraries with less boat travel for families with young children."
-              },
-              {
-                question: "What should we carry for island hopping?",
-                answer: "Light daypack, sunscreen, hat, comfortable footwear, swimwear, towel, waterproof phone case, and cash for small purchases."
-              },
-              {
-                question: "Are meals included during island hopping?",
-                answer: "Most packages include meals. For day trips, lunch is typically included. Multi-day packages include all meals as specified in the itinerary."
-              }
-            ]}
+            faqs={faqs}
           />
         </div>
       </section>

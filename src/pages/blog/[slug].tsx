@@ -220,7 +220,7 @@ const BlogPost = () => {
         </motion.div>
 
         <div className="absolute inset-0 flex items-center">
-          <div className="container mx-auto px-4 md:px-8 lg:px-12">
+          <div className="container mx-auto px-4 md:px-8 lg:px-12 pt-20">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

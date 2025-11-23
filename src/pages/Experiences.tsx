@@ -9,7 +9,7 @@ import { staggerContainer, fadeInUp } from '../lib/animations';
 import {
   Search, Clock, MapPin, Star,
   ArrowRight, Compass, Heart, Users, Sun, Palmtree,
-  Sparkles, Filter, X
+  Sparkles, X
 } from 'lucide-react';
 import { experiences, getExperiencesByCategory, type Experience } from '../data/experiences';
 
@@ -270,10 +270,10 @@ const ExperiencesPage = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Categories */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto no-scrollbar">
+            <div className="hidden md:flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto no-scrollbar px-1 snap-x">
               <button
                 onClick={() => handleCategoryChange('all')}
-                className={`px-4 py-2 rounded-full text-sm font-bold transition-all whitespace-nowrap ${selectedCategory === 'all'
+                className={`px-4 py-2 rounded-full text-sm font-bold transition-all whitespace-nowrap snap-start ${selectedCategory === 'all'
                   ? 'bg-gray-900 text-white shadow-lg'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}
@@ -284,7 +284,7 @@ const ExperiencesPage = () => {
                 <button
                   key={key}
                   onClick={() => handleCategoryChange(key)}
-                  className={`px-4 py-2 rounded-full text-sm font-bold transition-all whitespace-nowrap flex items-center gap-2 ${selectedCategory === key
+                  className={`px-4 py-2 rounded-full text-sm font-bold transition-all whitespace-nowrap flex items-center gap-2 snap-start ${selectedCategory === key
                     ? `bg-gradient-to-r ${config.gradient} text-white shadow-lg`
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}

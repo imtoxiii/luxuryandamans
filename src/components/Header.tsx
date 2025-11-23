@@ -39,9 +39,7 @@ const Header = () => {
   }, []);
 
   // Determine if we should show white background
-  const isContactPage = location.pathname === '/contact';
-  const isHomePage = location.pathname === '/';
-  const showWhiteBackground = !isHomePage || scrollY > contentThreshold || isContactPage;
+  const showWhiteBackground = scrollY > contentThreshold;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

@@ -50,6 +50,10 @@ import packing2026 from './sustainable-packing-list-2026';
 import couplesItinerary2026 from './andaman-couples-itinerary-2026';
 import familyItinerary2026 from './andaman-family-itinerary-2026';
 
+import scubaBeginnersGuide from './andaman-scuba-diving-beginners-guide';
+import bestBeachesRanked from './best-beaches-andaman-ranked';
+import packingListChecklist from './andaman-packing-list-checklist';
+
 const newPosts: BlogPost[] = [
   basePosts,
   bestTime,
@@ -98,7 +102,10 @@ const newPosts: BlogPost[] = [
   safety2026,
   packing2026,
   couplesItinerary2026,
-  familyItinerary2026
+  familyItinerary2026,
+  scubaBeginnersGuide,
+  bestBeachesRanked,
+  packingListChecklist
 ];
 
 // Merge and sort by date (newest first)

@@ -130,6 +130,33 @@ const LuxuryResortsPage = () => {
     }
   ];
 
+  const faqs = [
+    {
+      question: "What is the best time to visit?",
+      answer: "October to May offers the best weather for beach and water activities. December to February is peak season with pleasant temperatures."
+    },
+    {
+      question: "Do resorts offer private beach access?",
+      answer: "Many properties are beachfront with semi-private access; true private beaches are restricted in India. However, luxury resorts offer exclusive beach areas and premium services."
+    },
+    {
+      question: "Can you arrange special celebrations?",
+      answer: "Yes—romantic dinners, proposals, anniversaries, and more with bespoke setups. Our team specializes in creating memorable experiences for special occasions."
+    },
+    {
+      question: "Are all-inclusive packages available?",
+      answer: "Yes, we offer all-inclusive packages that cover accommodation, meals, transfers, and selected activities. These can be customized based on your preferences."
+    },
+    {
+      question: "Is advance booking required?",
+      answer: "Yes, luxury resorts in Andaman have limited availability and are in high demand, especially during peak season. We recommend booking 3-6 months in advance."
+    },
+    {
+      question: "Are children welcome at luxury resorts?",
+      answer: "Most luxury resorts welcome children and offer family-friendly amenities. However, some resorts may have age restrictions or specific policies for children."
+    }
+  ];
+
   return (
     <ExperienceLayout
       title="Luxury Beach Resorts"
@@ -143,15 +170,16 @@ const LuxuryResortsPage = () => {
       }}
       slug="luxury-resorts"
       seo={{
-        title: "Luxury Beach Resorts in Andaman | 5-Star Accommodation | Book Now",
-        description: "Stay at world-class luxury resorts in Andaman Islands. Taj Exotica, Barefoot Resort & more. Private beaches, spa services, fine dining. Starting ₹15,000/night.",
-        keywords: "luxury resorts andaman, andaman beach resorts, taj exotica andaman, barefoot resort havelock, 5 star resorts andaman, luxury accommodation andaman, beach resorts havelock island, neil island luxury resorts, andaman spa resorts, private beach resorts, luxury hotel booking andaman"
+        title: "Luxury Resorts in Andaman | 5-Star Beach Resorts & Villas",
+        description: "Book the finest luxury resorts in Andaman. Taj Exotica, Barefoot, and more. Private beaches, infinity pools, and world-class hospitality. Plan your luxury escape.",
+        keywords: "luxury resorts andaman, 5 star hotels andaman, taj exotica havelock, barefoot resort havelock, private pool villa andaman, luxury honeymoon andaman, best resorts in havelock"
       }}
       bookingData={{
         packageName: 'Luxury Beach Resorts',
         source: 'experience',
         slug: 'luxury-resorts'
       }}
+      faqData={faqs}
     >
       {/* Amenities Section */}
       <section className="py-16 bg-white">
@@ -219,8 +247,8 @@ const LuxuryResortsPage = () => {
                       <Star
                         key={i}
                         className={`w-4 h-4 ${i < Math.floor(resort.rating)
-                            ? 'fill-current'
-                            : 'text-gray-600'
+                          ? 'fill-current'
+                          : 'text-gray-600'
                           }`}
                       />
                     ))}
@@ -423,32 +451,7 @@ const LuxuryResortsPage = () => {
           <FaqAccordion
             title="Frequently Asked Questions"
             description="Answers to common questions about luxury stays in Andaman"
-            faqs={[
-              {
-                question: "What is the best time to visit?",
-                answer: "October to May offers the best weather for beach and water activities. December to February is peak season with pleasant temperatures."
-              },
-              {
-                question: "Do resorts offer private beach access?",
-                answer: "Many properties are beachfront with semi-private access; true private beaches are restricted in India. However, luxury resorts offer exclusive beach areas and premium services."
-              },
-              {
-                question: "Can you arrange special celebrations?",
-                answer: "Yes—romantic dinners, proposals, anniversaries, and more with bespoke setups. Our team specializes in creating memorable experiences for special occasions."
-              },
-              {
-                question: "Are all-inclusive packages available?",
-                answer: "Yes, we offer all-inclusive packages that cover accommodation, meals, transfers, and selected activities. These can be customized based on your preferences."
-              },
-              {
-                question: "Is advance booking required?",
-                answer: "Yes, luxury resorts in Andaman have limited availability and are in high demand, especially during peak season. We recommend booking 3-6 months in advance."
-              },
-              {
-                question: "Are children welcome at luxury resorts?",
-                answer: "Most luxury resorts welcome children and offer family-friendly amenities. However, some resorts may have age restrictions or specific policies for children."
-              }
-            ]}
+            faqs={faqs}
           />
         </div>
       </section>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { 
   MapPin, 
@@ -32,6 +32,7 @@ import FaqAccordion from '../components/FaqAccordion';
 const GuidePage = () => {
   const [activeSection, setActiveSection] = useState('overview');
   const location = useLocation();
+  const isFirstRender = useRef(true);
 
   const navigationItems = [
     { id: 'overview', label: 'Overview', icon: <BookOpen className="w-5 h-5" /> },
@@ -44,6 +45,11 @@ const GuidePage = () => {
 
   // Scroll to section when nav item is clicked
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
     const element = document.getElementById(activeSection);
     if (element) {
       const headerOffset = 100;

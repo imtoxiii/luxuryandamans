@@ -125,7 +125,6 @@ const CulturalToursPage = () => {
       answer: "Yes, most cultural tours are family-friendly. However, tribal visits may not be suitable for very young children due to the walking involved."
     }
   ];
-
   return (
     <ExperienceLayout
       title="Cultural Heritage Tours"
@@ -139,15 +138,16 @@ const CulturalToursPage = () => {
       }}
       slug="cultural-tours"
       seo={{
-        title: "Cultural Tours in Andaman | Heritage & Tribal Experiences | Book Now",
-        description: "Discover the rich heritage of Andaman Islands with guided cultural tours. Visit museums, tribal areas, historical sites, and experience traditional performances.",
-        keywords: "cultural tours andaman, cellular jail andaman, tribal visit andaman, anthropological museum andaman, andaman heritage tours, andaman culture"
+        title: "Cultural Tours in Andaman | Heritage & Tribal Experiences 2025",
+        description: "Discover the rich heritage of Andaman Islands. Visit Cellular Jail, Anthropological Museum, and experience local tribal culture. Book guided heritage tours now.",
+        keywords: "cultural tours andaman, cellular jail light and sound show, anthropological museum port blair, tribal tours andaman, heritage walk port blair, andaman history tour, jarawa tribe information"
       }}
       bookingData={{
         packageName: 'Cultural Heritage Tours',
         source: 'experience',
         slug: 'cultural-tours'
       }}
+      faqData={faqs}
     >
       {/* Features Section */}
       <section className="py-16 bg-white">

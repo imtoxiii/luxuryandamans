@@ -218,7 +218,7 @@ const ScubaDivingPage = () => {
       }}
       slug="scuba-diving"
       seo={{
-        title: "Scuba Diving in Andaman | Best Diving Sites | PADI Certified | Book Now",
+        title: "Scuba Diving in Andaman | Best Diving Sites & Courses 2025",
         description: "Explore underwater paradise with scuba diving in Andaman. 30+ dive sites, PADI certified instructors, beginner to advanced courses. Book diving packages from ₹3,500.",
         keywords: "scuba diving andaman, andaman diving packages, PADI diving andaman, havelock diving, neil island diving, north bay diving, best diving sites andaman, underwater photography, diving courses andaman, diving certification andaman, coral reef diving, beginner scuba diving"
       }}
@@ -227,6 +227,7 @@ const ScubaDivingPage = () => {
         source: 'experience',
         slug: 'scuba-diving'
       }}
+      faqData={faqs}
     >
       {/* Features Section */}
       <section className="py-16 bg-white">

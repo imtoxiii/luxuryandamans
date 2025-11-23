@@ -97,15 +97,16 @@ const JetSkiPage = () => {
             }}
             slug="jet-ski"
             seo={{
-                title: "Jet Skiing in Andaman | Port Blair & Havelock",
-                description: "Book jet ski rides in Andaman. Experience high-speed thrills at Corbyn's Cove, Elephant Beach, and Neil Island. Safe, fun, and affordable water sports.",
-                keywords: "jet ski andaman, jet skiing port blair, havelock jet ski, water sports andaman, adventure sports"
+                title: "Jet Skiing in Andaman | Water Sports at Corbyn's Cove & Havelock",
+                description: "Experience the thrill of jet skiing in Andaman. Best spots: Corbyn's Cove, Elephant Beach, and Bharatpur Beach. Safe, guided rides for all ages. Book now!",
+                keywords: "jet ski andaman, jet skiing port blair, water sports havelock, elephant beach water sports, corbyns cove jet ski, adventure sports andaman, water activities port blair"
             }}
             bookingData={{
                 packageName: 'Jet Ski Adventure',
                 source: 'experience',
                 slug: 'jet-ski'
             }}
+            faqData={faqs}
         >
             {/* Overview Section */}
             <section className="py-16 bg-white">

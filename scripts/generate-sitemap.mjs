@@ -90,7 +90,14 @@ function buildSitemapUrls() {
   const destinationsDir = path.join(projectRoot, 'src', 'pages', 'destinations');
   const destinationSlugs = listSlugsFromDir(destinationsDir, { exclude: ['[slug].tsx', 'DestinationTemplate.tsx'] });
   destinationSlugs.forEach((slug) => {
-    urls.push(urlEntry(`/destinations/${slug}`, { changefreq: 'monthly', priority: 0.7 }));
+    let finalSlug = slug;
+    // Map component filenames to URL slugs
+    if (slug === 'PortBlairDestinations') finalSlug = 'port-blair-destinations';
+    if (slug === 'HavelockDestinations') finalSlug = 'havelock-destinations';
+    if (slug === 'NeilDestinations') finalSlug = 'neil-destinations';
+    if (slug === 'BaratangDestinations') finalSlug = 'baratang-destinations';
+    
+    urls.push(urlEntry(`/destinations/${finalSlug}`, { changefreq: 'monthly', priority: 0.7 }));
   });
 
   // Locations from data file

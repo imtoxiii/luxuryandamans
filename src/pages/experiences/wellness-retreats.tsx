@@ -236,15 +236,16 @@ const WellnessRetreatsPage = () => {
       }}
       slug="wellness-retreats"
       seo={{
-        title: "Wellness Retreats in Andaman | Yoga, Spa & Ayurveda | Book Now",
+        title: "Wellness Retreats in Andaman | Yoga, Spa & Ayurveda 2025",
         description: "Rejuvenate with wellness retreats in Andaman Islands. Choose from yoga, spa, digital detox and Ayurvedic programs. Beachfront accommodation, healthy meals, expert guidance.",
-        keywords: "wellness retreat andaman, yoga retreat andaman, spa retreat andaman, ayurvedic retreat andaman, detox retreat andaman"
+        keywords: "wellness retreat andaman, yoga retreat andaman, spa retreat andaman, ayurvedic retreat andaman, detox retreat andaman, luxury wellness andaman, meditation retreat andaman"
       }}
       bookingData={{
         packageName: 'Wellness Retreats',
         source: 'experience',
         slug: 'wellness-retreats'
       }}
+      faqData={faqs}
     >
       {/* Benefits Section */}
       <section className="py-16 bg-white">
@@ -319,9 +320,9 @@ const WellnessRetreatsPage = () => {
                       <p className="text-xl font-bold text-white">{program.price}</p>
                     </div>
                   </div>
-                  
+
                   <p className="text-gray-400 mb-6 text-sm leading-relaxed">{program.description}</p>
-                  
+
                   <div className="mb-6 flex-grow">
                     <h4 className="font-bold text-white text-sm mb-3">Highlights:</h4>
                     <div className="flex flex-wrap gap-2">
@@ -499,11 +500,10 @@ const WellnessRetreatsPage = () => {
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className={`w-4 h-4 ${
-                        i < testimonial.rating
+                      className={`w-4 h-4 ${i < testimonial.rating
                           ? 'text-amber-400 fill-current'
                           : 'text-gray-300'
-                      }`}
+                        }`}
                     />
                   ))}
                 </div>

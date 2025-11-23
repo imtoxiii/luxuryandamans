@@ -125,6 +125,20 @@ Neil Island is smaller, more tranquil, and perfect for couples seeking peace and
 
 For couples wanting to get off the beaten path, Long Island offers a rustic and untouched paradise. It's less developed, which is a huge part of its charm. Think dense forests, empty beaches like Lalaji Bay, and a real sense of seclusion.
 
+## Hidden Gems for Couples (Escape the Crowds)
+
+If you want to avoid the selfie-taking crowds at Radhanagar, try these spots:
+
+*   **Munda Pahad Beach (Chidiya Tapu):** Most people stop at the sunset point. Walk 15 minutes further to find a secluded beach cove that feels like your private island.
+*   **Neil Island's "Secret" Beach:** Just past the main Laxmanpur beach, walk around the rocky outcrop at low tide to find small, private sandy pockets.
+*   **Night Kayaking in Port Blair:** While Havelock is famous for it, the mangroves near Port Blair (Veer Savarkar Park) offer a quieter, more intimate bioluminescence experience.
+
+## What to AVOID on Your Honeymoon
+
+*   **Don't overpack your itinerary:** Island time is slow. Ferries get delayed. Don't try to see 4 islands in 5 days. You'll spend your honeymoon in transit.
+*   **Avoid North Bay Island if you hate crowds:** It's very commercialized. For water sports, Elephant Beach or Nemo Reef are far superior.
+*   **Don't ignore the sun:** The tropical sun is harsh. A bad sunburn on Day 1 will ruin the rest of your romantic trip.
+
 ## Unforgettable Romantic Experiences
 
 ![${images.imageTwo.alt}](${images.imageTwo.src})
@@ -148,11 +162,15 @@ For couples wanting to get off the beaten path, Long Island offers a rustic and 
 *   **Day 6:** Morning ferry back to Port Blair. Visit Cellular Jail in the afternoon. Light and Sound Show in the evening.
 *   **Day 7:** Visit Chidiya Tapu for bird watching and another beautiful sunset before your departure.
 
-## Honeymoon Budgeting Tips
+## Honeymoon Budget Breakdown: Luxury vs. Value
 
-*   **Luxury (₹1,00,000+ per person):** Stay at top resorts like Taj Exotica, book private cruises, and indulge in fine dining and all activities.
-*   **Mid-Range (₹60,000 - ₹90,000 per person):** Stay at 4-star resorts like SeaShell, enjoy a mix of private and group tours.
-*   **Budget-Friendly (₹40,000 - ₹55,000 per person):** Choose boutique hotels or 3-star resorts, and opt for group tours for most activities.
+| Feature | Budget-Friendly (₹40k-55k/person) | Luxury (₹1L+/person) |
+| :--- | :--- | :--- |
+| **Stay** | Boutique hotels, Garden villas | Private Pool Villas (Taj/Barefoot) |
+| **Travel** | Govt Ferry / Economy Pvt Ferry | Premium/Royal Class Ferry |
+| **Dining** | Beach shacks & local cafes | Private beach dinners & fine dining |
+| **Activities** | Group snorkeling, shared boat | Private charter, couples scuba |
+| **Vibe** | Fun, social, active | Exclusive, private, pampered |
 
 ## Practical Tips for Your Andaman Honeymoon
 

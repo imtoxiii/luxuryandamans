@@ -33,43 +33,50 @@ const NeilDestinations = () => {
         </div>
       </div>
       
-      <section className="relative py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-sunrise/20 via-pearl to-azure/20">
-        <div className="container mx-auto px-4 sm:px-6">
+      {/* Hero Section */}
+      <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+            alt="Neil Island" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
+        </div>
+        
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <div className="inline-flex items-center px-4 py-2 bg-sunrise/20 text-sunrise rounded-full mb-6 text-sm font-medium">
-              <Heart className="w-4 h-4 mr-2" />
+            <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full mb-6 text-sm font-medium tracking-wider uppercase">
+              <Heart className="w-4 h-4 mr-2 text-pink-400 fill-pink-400" />
               Perfect for Relaxation
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-night mb-6 leading-tight">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight font-display">
               Discover Neil Island
             </h1>
-            <p className="text-xl sm:text-2xl text-night/70 mb-8 leading-relaxed">
+            <p className="text-xl sm:text-2xl text-gray-100 mb-8 leading-relaxed font-light max-w-2xl mx-auto">
               Serene beaches, natural wonders & laid-back charm - Experience the peaceful side of Andaman Islands
             </p>
-            <div className="flex flex-wrap justify-center gap-4 text-night/60">
-              <div className="flex items-center">
-                <Waves className="w-5 h-5 text-azure mr-2" />
+            <div className="flex flex-wrap justify-center gap-6 text-white/90">
+              <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
+                <Waves className="w-5 h-5 text-blue-300" />
                 <span>{neilDestinations.length} Natural Attractions</span>
               </div>
-              <div className="flex items-center">
-                <Calendar className="w-5 h-5 text-azure mr-2" />
+              <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
+                <Calendar className="w-5 h-5 text-blue-300" />
                 <span>Best: Nov-Apr</span>
-              </div>
-              <div className="flex items-center">
-                <Sunrise className="w-5 h-5 text-sunrise mr-2" />
-                <span>Perfect for Couples</span>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      <section className="py-12 sm:py-16 bg-white">
+      {/* Overview Section */}
+      <section className="py-16 sm:py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
             <motion.div
@@ -77,9 +84,10 @@ const NeilDestinations = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-night mb-6">About Neil Island</h2>
-              <div className="prose prose-lg text-night/70 space-y-4">
-                <p>
+              <span className="text-blue-600 font-bold tracking-wider uppercase text-sm mb-3 block">Tranquil Escape</span>
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 font-display">About Neil Island</h2>
+              <div className="prose prose-lg text-gray-600 space-y-6 leading-relaxed">
+                <p className="first-letter:text-5xl first-letter:font-display first-letter:text-blue-600 first-letter:mr-3 first-letter:float-left">
                   Neil Island, officially renamed as Shaheed Dweep, is a small but incredibly beautiful island 
                   known for its peaceful atmosphere and stunning natural beauty. With an area of just 13.7 sq km, 
                   this tiny paradise offers an escape from the crowds to pristine beaches and unique geological formations.
@@ -101,19 +109,21 @@ const NeilDestinations = () => {
         </div>
       </section>
 
-      <section className="py-12 sm:py-16 lg:py-20">
+      {/* Destinations Grid */}
+      <section className="py-16 sm:py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-12"
+              className="text-center mb-16"
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-night mb-4">
-                Must-Visit Destinations in Neil Island
+              <span className="text-blue-600 font-bold tracking-wider uppercase text-sm mb-3 block">Must Visit</span>
+              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 font-display">
+                Top Attractions
               </h2>
-              <p className="text-night/70 text-lg max-w-2xl mx-auto">
+              <p className="text-gray-500 text-lg max-w-2xl mx-auto">
                 From coral beaches to natural rock formations
               </p>
             </motion.div>
@@ -124,11 +134,11 @@ const NeilDestinations = () => {
                   key={destination.slug}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.15 }}
+                  transition={{ duration: 0.5, delay: index * 0.15 }}
                 >
                   <Link
                     to={`/destinations/${destination.slug}`}
-                    className="group block bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500"
+                    className="group block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
                   >
                     <div className="relative h-80 overflow-hidden">
                       <img
@@ -136,26 +146,28 @@ const NeilDestinations = () => {
                         alt={destination.name}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-night/80 via-night/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                      
                       {destination.name.includes('Natural Bridge') && (
                         <div className="absolute top-4 left-4">
-                          <span className="px-4 py-2 bg-sunrise text-pearl rounded-full text-sm font-bold">
+                          <span className="px-4 py-1.5 bg-orange-500 text-white rounded-full text-xs font-bold tracking-wide shadow-lg">
                             Natural Wonder
                           </span>
                         </div>
                       )}
-                      <div className="absolute bottom-6 left-6 right-6">
-                        <h3 className="text-3xl font-bold text-pearl mb-3 group-hover:text-sunrise transition-colors">
+
+                      <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 className="text-3xl font-bold text-white mb-3 font-display">
                           {destination.name}
                         </h3>
-                        <p className="text-pearl/90 line-clamp-2 mb-4">
+                        <p className="text-white/90 line-clamp-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                           {destination.description}
                         </p>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
                           {destination.activities.slice(0, 3).map((activity, i) => (
                             <span
                               key={i}
-                              className="px-3 py-1 bg-pearl/20 backdrop-blur-sm text-pearl text-xs rounded-full"
+                              className="px-3 py-1 bg-white/20 backdrop-blur-md text-white text-xs rounded-full border border-white/30"
                             >
                               {activity}
                             </span>
@@ -164,20 +176,17 @@ const NeilDestinations = () => {
                       </div>
                     </div>
                     
-                    <div className="p-6">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-semibold text-azure group-hover:text-sunrise transition-colors flex items-center">
-                          Explore Destination
-                          <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    <div className="p-6 flex items-center justify-between">
+                      <span className="text-sm font-bold text-blue-600 group-hover:text-blue-700 transition-colors flex items-center gap-2">
+                        Explore Destination <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                      {destination.ticketInfo?.entryFee === 0 ? (
+                        <span className="text-sm font-bold text-green-600">Free Entry</span>
+                      ) : destination.ticketInfo?.entryFee && (
+                        <span className="text-sm font-bold text-gray-500">
+                          From ₹{destination.ticketInfo.entryFee}
                         </span>
-                        {destination.ticketInfo?.entryFee === 0 ? (
-                          <span className="text-sm font-semibold text-green-600">Free Entry</span>
-                        ) : destination.ticketInfo?.entryFee && (
-                          <span className="text-sm font-semibold text-night/60">
-                            From ₹{destination.ticketInfo.entryFee}
-                          </span>
-                        )}
-                      </div>
+                      )}
                     </div>
                   </Link>
                 </motion.div>
@@ -187,7 +196,8 @@ const NeilDestinations = () => {
         </div>
       </section>
 
-      <section className="py-12 sm:py-16 bg-gradient-to-br from-sunrise/5 to-azure/5">
+      {/* Travel Tips Section */}
+      <section className="py-16 sm:py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -196,8 +206,9 @@ const NeilDestinations = () => {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl font-bold text-night mb-4">Travel Tips for Neil Island</h2>
-              <p className="text-night/70">Essential information for your peaceful retreat</p>
+              <span className="text-blue-600 font-bold tracking-wider uppercase text-sm mb-3 block">Travel Guide</span>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4 font-display">Essential Tips</h2>
+              <p className="text-gray-500">Information for your peaceful retreat</p>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -205,15 +216,15 @@ const NeilDestinations = () => {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
-                className="bg-white p-8 rounded-2xl shadow-md"
+                className="bg-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-lg transition-shadow"
               >
                 <div className="flex items-start mb-4">
-                  <div className="w-12 h-12 bg-azure/10 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
-                    <Calendar className="w-6 h-6 text-azure" />
+                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 text-blue-600">
+                    <Calendar className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-night mb-2">Best Time to Visit</h3>
-                    <p className="text-night/70 leading-relaxed">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 font-display">Best Time to Visit</h3>
+                    <p className="text-gray-600 leading-relaxed">
                       November to April offers calm seas and perfect weather. Natural Bridge is best visited during low tide (early morning or evening).
                     </p>
                   </div>
@@ -224,15 +235,15 @@ const NeilDestinations = () => {
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
-                className="bg-white p-8 rounded-2xl shadow-md"
+                className="bg-orange-50 p-8 rounded-2xl border border-orange-100 hover:shadow-lg transition-shadow"
               >
                 <div className="flex items-start mb-4">
-                  <div className="w-12 h-12 bg-sunset/10 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
-                    <Navigation className="w-6 h-6 text-sunset" />
+                  <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 text-orange-600">
+                    <Navigation className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-night mb-2">How to Reach</h3>
-                    <p className="text-night/70 leading-relaxed">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 font-display">How to Reach</h3>
+                    <p className="text-gray-600 leading-relaxed">
                       Ferry from Port Blair (1-2 hours) or Havelock (30-45 minutes). Book tickets in advance, especially during peak season.
                     </p>
                   </div>
@@ -243,15 +254,15 @@ const NeilDestinations = () => {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="bg-white p-8 rounded-2xl shadow-md"
+                className="bg-green-50 p-8 rounded-2xl border border-green-100 hover:shadow-lg transition-shadow"
               >
                 <div className="flex items-start mb-4">
-                  <div className="w-12 h-12 bg-sunrise/10 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-sunrise" />
+                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 text-green-600">
+                    <MapPin className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-night mb-2">Getting Around</h3>
-                    <p className="text-night/70 leading-relaxed">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 font-display">Getting Around</h3>
+                    <p className="text-gray-600 leading-relaxed">
                       Rent bicycles (₹100-200/day) or scooters (₹400-600/day). The island is small and easy to explore. Auto-rickshaws available for ₹50-100.
                     </p>
                   </div>
@@ -262,15 +273,15 @@ const NeilDestinations = () => {
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="bg-white p-8 rounded-2xl shadow-md"
+                className="bg-pink-50 p-8 rounded-2xl border border-pink-100 hover:shadow-lg transition-shadow"
               >
                 <div className="flex items-start mb-4">
-                  <div className="w-12 h-12 bg-azure/10 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
-                    <Heart className="w-6 h-6 text-azure" />
+                  <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 text-pink-600">
+                    <Heart className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-night mb-2">Essential Tips</h3>
-                    <p className="text-night/70 leading-relaxed">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 font-display">Essential Tips</h3>
+                    <p className="text-gray-600 leading-relaxed">
                       Limited ATMs - carry cash. Book accommodation in advance. Perfect for 1-2 night stays. Combine with Havelock for best experience.
                     </p>
                   </div>
@@ -281,31 +292,41 @@ const NeilDestinations = () => {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 bg-gradient-to-br from-night via-night/95 to-sunrise/20">
-        <div className="container mx-auto px-4 sm:px-6">
+      {/* CTA Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-blue-900">
+          <img 
+            src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" 
+            alt="Background" 
+            className="w-full h-full object-cover opacity-20 mix-blend-overlay"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-blue-800/90 to-cyan-900/90" />
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-pearl mb-4">
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6 font-display">
               Experience Neil's Tranquility
             </h2>
-            <p className="text-pearl/80 mb-8 text-lg">
+            <p className="text-blue-100 mb-10 text-xl font-light leading-relaxed">
               Book your peaceful island getaway with curated packages
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link
                 to="/packages"
-                className="inline-flex items-center justify-center px-8 py-4 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105 text-lg font-semibold"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-900 rounded-full hover:bg-blue-50 transition-all transform hover:scale-105 text-lg font-bold shadow-xl"
               >
                 <Navigation className="w-5 h-5 mr-2" />
                 View Packages
               </Link>
               <Link
                 to="/enquiry"
-                className="inline-flex items-center justify-center px-8 py-4 glass-sunset-button text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105 text-lg font-semibold"
+                className="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white rounded-full hover:bg-white/10 transition-all transform hover:scale-105 text-lg font-bold backdrop-blur-sm"
               >
                 <Calendar className="w-5 h-5 mr-2" />
                 Plan Your Trip

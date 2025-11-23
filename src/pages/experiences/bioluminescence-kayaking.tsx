@@ -194,15 +194,16 @@ const BioluminescenceKayakingPage = () => {
       }}
       slug="bioluminescence-kayaking"
       seo={{
-        title: "Bioluminescence Kayaking in Andaman | Night Glow Tours | Book Now",
-        description: "Witness nature's magic with bioluminescence kayaking in Havelock, Andamans. Guided night tours, beginner friendly, best around new moon. Book glow kayak now.",
-        keywords: "bioluminescence andaman, glow kayaking havelock, night kayaking andaman, plankton glow andaman, new moon kayaking"
+        title: "Bioluminescence Kayaking in Andaman | Night Glow Tours 2025",
+        description: "Experience the magical bioluminescence in Havelock & Neil Island. Book guided night kayaking tours to see the glowing waters. Best time: Nov-Feb during new moon.",
+        keywords: "bioluminescence kayaking andaman, night kayaking havelock, glowing water tour andaman, bioluminescence tour neil island, night activities in andaman, best night tour havelock, kayaking under stars andaman, bioluminescent plankton india"
       }}
       bookingData={{
         packageName: 'Bioluminescence Kayaking',
         source: 'experience',
         slug: 'bioluminescence-kayaking'
       }}
+      faqData={faqs}
     >
       {/* Features */}
       <section className="py-16 bg-white">

@@ -198,15 +198,16 @@ const FamilyAdventuresPage = () => {
       }}
       slug="family-adventures"
       seo={{
-        title: "Family Adventures in Andaman | Kid-Friendly Activities | Book Now",
-        description: "Plan the perfect family vacation in Andaman with kid-friendly activities. Glass-bottom boat tours, jungle safaris, beach games and more. Safe, educational fun for all ages.",
-        keywords: "family activities andaman, kids activities andaman, family vacation andaman, child-friendly andaman, family adventure andaman"
+        title: "Family Adventures in Andaman | Kid-Friendly Activities 2025",
+        description: "Plan the perfect family vacation in Andaman. Glass-bottom boat rides, jungle treks, and beach fun for kids. Safe, educational, and exciting adventures for all ages.",
+        keywords: "family activities andaman, things to do with kids andaman, family vacation packages andaman, glass bottom boat andaman, kid friendly beaches andaman, family adventure tours"
       }}
       bookingData={{
         packageName: 'Family Adventures',
         source: 'experience',
         slug: 'family-adventures'
       }}
+      faqData={faqs}
     >
       {/* Family Benefits */}
       <section className="py-16 bg-white">

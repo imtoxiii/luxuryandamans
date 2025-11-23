@@ -97,15 +97,16 @@ const ParasailingPage = () => {
             }}
             slug="parasailing"
             seo={{
-                title: "Parasailing in Andaman | Havelock & North Bay",
-                description: "Book parasailing in Andaman. Soar above Elephant Beach and North Bay Island for breathtaking aerial views. Safe, thrilling, and unforgettable.",
-                keywords: "parasailing andaman, havelock parasailing, north bay parasailing, water sports andaman, adventure activities"
+                title: "Parasailing in Andaman | Best Prices & Safety Standards 2025",
+                description: "Experience the thrill of parasailing in Andaman at Havelock, North Bay & Corbyn's Cove. Safe, certified instructors & breathtaking aerial views. Book now!",
+                keywords: "parasailing andaman price, parasailing in havelock, north bay island parasailing, water sports port blair, adventure sports andaman, parasailing cost"
             }}
             bookingData={{
                 packageName: 'Parasailing Adventure',
                 source: 'experience',
                 slug: 'parasailing'
             }}
+            faqData={faqs}
         >
             {/* Overview Section */}
             <section className="py-16 bg-white">

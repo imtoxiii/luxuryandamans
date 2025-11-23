@@ -144,7 +144,7 @@ const SunsetCruisesPage = () => {
       }}
       slug="sunset-cruises"
       seo={{
-        title: "Sunset Cruises in Andaman | Romantic Evening Cruises | Book Now",
+        title: "Sunset Cruises in Andaman | Romantic Dinner & Private Yacht 2025",
         description: "Enjoy romantic sunset cruises in Andaman Islands. Luxury dinner cruises, private yachts, catamaran rides. Starting ₹4,500 per person. Book online.",
         keywords: "sunset cruise andaman, andaman sunset cruise, dinner cruise port blair, private yacht andaman, catamaran cruise havelock, romantic cruise andaman, evening cruise andaman, sailing cruise andaman, sunset point andaman, andaman sea cruise"
       }}
@@ -153,6 +153,32 @@ const SunsetCruisesPage = () => {
         source: 'experience',
         slug: 'sunset-cruises'
       }}
+      faqData={[
+        {
+          question: "What is the best time for sunset cruises?",
+          answer: "The best time is October to May when the weather is pleasant and the sea is calm. Cruises typically depart 1-2 hours before sunset to ensure you get the best views."
+        },
+        {
+          question: "Are sunset cruises suitable for children?",
+          answer: "Yes, sunset cruises are family-friendly. We recommend the catamaran cruise for families as it offers swimming opportunities and group activities that children enjoy."
+        },
+        {
+          question: "What should we wear for the cruise?",
+          answer: "Light, comfortable clothing is recommended. Bring a light jacket as it can get breezy on the water. For swimming opportunities, bring swimwear and a towel."
+        },
+        {
+          question: "Are vegetarian and vegan meal options available?",
+          answer: "Yes, we offer vegetarian, vegan, and other dietary options. Please inform us about your dietary restrictions at the time of booking."
+        },
+        {
+          question: "What happens if the weather is bad?",
+          answer: "In case of bad weather, the cruise may be rescheduled or canceled for safety reasons. You will be notified in advance and offered a full refund or an alternative date."
+        },
+        {
+          question: "Is alcohol included in the cruise packages?",
+          answer: "Most packages include welcome drinks and some beverages. Premium packages may include unlimited beverages. Alcohol is served only to guests 21+ with valid ID."
+        }
+      ]}
     >
       {/* Features Section */}
       <section className="py-16 bg-white">

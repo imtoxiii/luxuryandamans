@@ -97,15 +97,16 @@ const MangroveCreekPage = () => {
             }}
             slug="mangrove-creek"
             seo={{
-                title: "Mangrove Safari Andaman | Baratang Limestone Caves",
-                description: "Experience the enchanting mangrove creeks of Andaman. Visit Baratang limestone caves, spot saltwater crocodiles, and explore the unique mangrove ecosystem.",
-                keywords: "mangrove safari andaman, baratang island, limestone caves, mangrove kayaking, eco tourism andaman"
+                title: "Mangrove Creek Safari Andaman | Baratang & Rangat Tours",
+                description: "Explore the enchanting mangrove creeks of Andaman. Boat safaris in Baratang, Yerrata, and Mayabunder. Spot crocodiles and exotic birds. Book your nature tour.",
+                keywords: "mangrove safari andaman, baratang limestone caves, mangrove boat ride, yerrata creek rangat, bird watching andaman, crocodile spotting andaman, eco tourism andaman"
             }}
             bookingData={{
                 packageName: 'Mangrove Creek Safari',
                 source: 'experience',
                 slug: 'mangrove-creek'
             }}
+            faqData={faqs}
         >
             {/* Overview Section */}
             <section className="py-16 bg-white">

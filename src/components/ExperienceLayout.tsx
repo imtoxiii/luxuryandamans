@@ -27,6 +27,7 @@ interface ExperienceLayoutProps {
   };
   slug: string;
   bookingData?: any;
+  faqData?: { question: string; answer: string }[];
 }
 
 const ExperienceLayout: React.FC<ExperienceLayoutProps> = ({
@@ -38,7 +39,8 @@ const ExperienceLayout: React.FC<ExperienceLayoutProps> = ({
   children,
   seo,
   slug,
-  bookingData
+  bookingData,
+  faqData
 }) => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -64,6 +66,7 @@ const ExperienceLayout: React.FC<ExperienceLayoutProps> = ({
           keywords={seo.keywords}
           image={seo.image || image}
           pathname={`/experiences/${slug}`}
+          faqData={faqData}
         />
       )}
 
@@ -84,7 +87,7 @@ const ExperienceLayout: React.FC<ExperienceLayoutProps> = ({
           />
         </motion.div>
 
-        <div className="container mx-auto px-4 sm:px-6 relative z-20 text-center">
+        <div className="container mx-auto px-4 sm:px-6 relative z-20 text-center pt-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -92,22 +95,22 @@ const ExperienceLayout: React.FC<ExperienceLayoutProps> = ({
             className="max-w-5xl mx-auto"
           >
             {subtitle && (
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white mb-6 shadow-lg">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white mb-4 shadow-lg">
                 <span className="text-sm font-bold tracking-widest uppercase">{subtitle}</span>
               </div>
             )}
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight leading-tight drop-shadow-2xl font-display">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-4 tracking-tight leading-tight drop-shadow-2xl font-display">
               {title}
             </h1>
 
-            <p className="text-lg md:text-2xl text-gray-100 max-w-3xl mx-auto leading-relaxed font-light mb-10 drop-shadow-md">
+            <p className="text-lg md:text-2xl text-gray-100 max-w-3xl mx-auto leading-relaxed font-light mb-8 drop-shadow-md">
               {description}
             </p>
 
             {/* Quick Stats */}
             {stats && (
-              <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-white/90 mb-10">
+              <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-white/90 mb-8">
                 {stats.duration && (
                   <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10">
                     <Clock className="w-5 h-5 text-cyan-300" />

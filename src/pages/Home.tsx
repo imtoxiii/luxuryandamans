@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import SEO from '../components/SEO';
 import Header from '../components/Header';
 import FeaturedPackages from '../components/FeaturedPackages';
+import PopularIslands from '../components/PopularIslands';
 import Destinations from '../components/Destinations';
 import Testimonials from '../components/Testimonials';
 import InstagramFeed from '../components/InstagramFeed';
@@ -190,6 +191,11 @@ const Home = () => {
         {/* Featured Packages with improved spacing */}
         <section className="py-12 md:py-16">
           <FeaturedPackages />
+        </section>
+
+        {/* Popular Islands Section */}
+        <section className="py-16 bg-white">
+          <PopularIslands />
         </section>
 
         {/* Destinations with Parallax Effect */}

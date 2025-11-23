@@ -230,15 +230,16 @@ const GameFishingPage = () => {
       }}
       slug="game-fishing"
       seo={{
-        title: "Game Fishing in Andaman | Offshore Charters | Book Private Boat",
-        description: "Book game fishing charters in Andaman. Half-day and full-day private boats with crew, gear, and refreshments. Target GT, tuna, barracuda, and more.",
-        keywords: "game fishing andaman, fishing charter andaman, big game havelock, sport fishing andaman, trolling jigging andaman"
+        title: "Game Fishing in Andaman | Sport Fishing Charters 2025",
+        description: "Book premium game fishing charters in Andaman. Target Giant Trevally, Tuna, and Marlin. Professional crew, modern boats, and top-quality gear provided.",
+        keywords: "game fishing andaman, sport fishing charters, giant trevally fishing andaman, deep sea fishing port blair, fishing trips havelock, angling packages andaman"
       }}
       bookingData={{
         packageName: 'Game Fishing Charters',
         source: 'experience',
         slug: 'game-fishing'
       }}
+      faqData={faqs}
     >
       {/* Highlights */}
       <section className="py-16 bg-white">

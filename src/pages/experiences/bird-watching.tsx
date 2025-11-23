@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
-import { MapPin, Clock, Camera, Sun, Cloud, CheckCircle, Binoculars, Feather, TreeDeciduous } from 'lucide-react';
+import { MapPin, Clock, Camera, Sun, Cloud, CheckCircle, Binoculars, Feather, TreeDeciduous, Users } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const BirdWatchingPage = () => {
@@ -97,15 +97,16 @@ const BirdWatchingPage = () => {
             }}
             slug="bird-watching"
             seo={{
-                title: "Bird Watching in Andaman | Guided Birding Tours",
-                description: "Join expert-led bird watching tours in Andaman. Spot rare endemic species like the Andaman Woodpecker and Narcondam Hornbill in their natural habitats.",
-                keywords: "bird watching andaman, birding tours, chidiya tapu birds, andaman endemic birds, ornithology tours andaman"
+                title: "Bird Watching in Andaman | Guided Birding Tours 2025",
+                description: "Join expert-led bird watching tours in Andaman. Spot rare endemic species like the Andaman Woodpecker and Narcondam Hornbill. Best spots: Chidiya Tapu, Mount Harriet.",
+                keywords: "bird watching andaman, birding tours andaman, chidiya tapu bird watching, andaman endemic birds, ornithology tours india, bird photography andaman, mount harriet birding"
             }}
             bookingData={{
                 packageName: 'Bird Watching Expedition',
                 source: 'experience',
                 slug: 'bird-watching'
             }}
+            faqData={faqs}
         >
             {/* Overview Section */}
             <section className="py-16 bg-white">

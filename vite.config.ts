@@ -6,8 +6,8 @@ export default defineConfig({
   base: '/',
   envPrefix: 'VITE_',
   server: {
-      port: 5173,
-      host: true,
+      port: 3000,
+      host: 'localhost',
       open: true,
       proxy: {
         '/backend': {

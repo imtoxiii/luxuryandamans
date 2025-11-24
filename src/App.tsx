@@ -60,7 +60,7 @@ const SeaWalkPage = lazy(() => import('./pages/experiences/sea-walk'));
 const GameFishingPage = lazy(() => import('./pages/experiences/game-fishing'));
 const SnorkelingPage = lazy(() => import('./pages/experiences/snorkeling'));
 const TrekkingPage = lazy(() => import('./pages/experiences/trekking'));
-const TrekkingPage = lazy(() => import('./pages/experiences/trekking'));
+
 const CulturalToursPage = lazy(() => import('./pages/experiences/cultural-tours'));
 const BirdWatchingPage = lazy(() => import('./pages/experiences/bird-watching'));
 
@@ -122,7 +122,7 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/sitemap" element={<Sitemap />} />
-          
+
           {/* Experience Detail Pages */}
           <Route path="/experiences/luxury-resorts" element={<LuxuryResortsPage />} />
           <Route path="/experiences/luxury-beach-resorts" element={<Navigate to="/experiences/luxury-resorts" replace />} />
@@ -139,14 +139,14 @@ function App() {
           <Route path="/experiences/trekking" element={<TrekkingPage />} />
           <Route path="/experiences/cultural-tours" element={<CulturalToursPage />} />
           <Route path="/experiences/bird-watching" element={<BirdWatchingPage />} />
-          
+
           {/* 404 Catch-all */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
       <ChatWidget />
       <PrefetchManager />
-      
+
       {/* Transition walls - appear over the page content */}
       <AnimatePresence>
         {(transitionPhase === 'wipe-in' || transitionPhase === 'content-swap') && (

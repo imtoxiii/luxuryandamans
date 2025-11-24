@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-    Users, Calendar, Hotel, Utensils, Ship, Camera, Check, Plus, Minus, RefreshCw, Sparkles, Shield, Trophy, Wind, Umbrella, ShoppingBag, Percent, ArrowLeft, ArrowRight, Mail, Phone, Calculator, Send, Loader2, User
+    Users, Calendar, Hotel, Utensils, Ship, Camera, Check, Plus, Minus, RefreshCw, Sparkles, Shield, Trophy, Wind, Umbrella, ShoppingBag, Percent, ArrowLeft, ArrowRight, Mail, Phone, Calculator, Send, Loader2, User, Crown, Star, Fish, Waves, Sunset
 } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -52,17 +52,21 @@ const mealPlans = [
 ];
 
 const tourTypes = [
-    { id: 'group', name: 'Group Tours', multiplier: 1, icon: <Users className="w-5 h-5" />, description: "Cost-effective & social" },
-    { id: 'private', name: 'Private Tours', multiplier: 1.6, icon: <Shield className="w-5 h-5" />, description: "Exclusive & flexible" }
+    { id: 'private', name: 'Private Tours', multiplier: 1.0, icon: <Crown className="w-5 h-5" />, description: "Exclusive, flexible & just for you" },
+    { id: 'group', name: 'Group Tours', multiplier: 1.0, icon: <Users className="w-5 h-5" />, description: "Social & fun with others" },
 ];
 
 const activities = [
-    { id: 'scuba', name: 'Scuba Diving', icon: <Ship className="w-5 h-5" />, price: 4500 },
+    { id: 'scuba', name: 'Scuba Diving', icon: <Fish className="w-5 h-5" />, price: 4500, popular: true },
     { id: 'seawalk', name: 'Sea Walking', icon: <Sparkles className="w-5 h-5" />, price: 3500 },
+    { id: 'snorkeling', name: 'Snorkeling Trip', icon: <Waves className="w-5 h-5" />, price: 1500, popular: true },
     { id: 'parasail', name: 'Parasailing', icon: <Wind className="w-5 h-5" />, price: 3200 },
-    { id: 'kayak', name: 'Kayaking', icon: <Ship className="w-5 h-5" />, price: 3000 },
+    { id: 'kayak', name: 'Night Kayaking', icon: <Ship className="w-5 h-5" />, price: 3500, popular: true },
     { id: 'glassboat', name: 'Glass Bottom Boat', icon: <Trophy className="w-5 h-5" />, price: 2000 },
-    { id: 'jetski', name: 'Jet Ski', icon: <Wind className="w-5 h-5" />, price: 1000 },
+    { id: 'jetski', name: 'Jet Ski Ride', icon: <Wind className="w-5 h-5" />, price: 1000 },
+    { id: 'semisub', name: 'Semi Submarine', icon: <Ship className="w-5 h-5" />, price: 2500 },
+    { id: 'sofa', name: 'Sofa Ride', icon: <Waves className="w-5 h-5" />, price: 800 },
+    { id: 'banana', name: 'Banana Ride', icon: <Waves className="w-5 h-5" />, price: 800 },
     { id: 'candle-dinner', name: 'Candlelight Dinner', icon: <Utensils className="w-5 h-5" />, price: 8000 },
     { id: 'photo', name: 'Photography Tour', icon: <Camera className="w-5 h-5" />, price: 6000 },
 ];
@@ -106,11 +110,11 @@ const useCalculator = () => {
     const [roomType, setRoomType] = useState('prm-dlx');
     const [mealPlan, setMealPlan] = useState('map');
 
-    const [selectedActivities, setSelectedActivities] = useState<string[]>(['scuba']);
-    const [tourType, setTourType] = useState('group');
+    const [selectedActivities, setSelectedActivities] = useState<string[]>(['scuba', 'snorkeling']);
+    const [tourType, setTourType] = useState('private'); // Default to Private
 
     const [includeFlights, setIncludeFlights] = useState(false);
-    const [includeInsurance, setIncludeInsurance] = useState(true);
+    const [includeInsurance, setIncludeInsurance] = useState(false); // Default to Unchecked
     const [miscBuffer, setMiscBuffer] = useState(10); // Percentage
 
     const [totalCost, setTotalCost] = useState(0);
@@ -186,10 +190,10 @@ const useCalculator = () => {
         setAccommodationTier('premium');
         setRoomType('prm-dlx');
         setMealPlan('map');
-        setSelectedActivities(['scuba']);
-        setTourType('group');
+        setSelectedActivities(['scuba', 'snorkeling']);
+        setTourType('private');
         setIncludeFlights(false);
-        setIncludeInsurance(true);
+        setIncludeInsurance(false);
         setMiscBuffer(10);
         setShowForm(false);
     };
@@ -509,26 +513,31 @@ const PricingCalculatorPage = () => {
             case 'experiences':
                 return (
                     <motion.div key="experiences" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-                        <Section title="Experiences & Activities">
-                            <div className="grid grid-cols-2 gap-4">
-                                {activities.map(act => (
-                                    <button key={act.id} onClick={() => toggleActivity(act.id)} className={`p-4 rounded-2xl border-2 text-left transition-all duration-300 flex items-center space-x-4 ${selectedActivities.includes(act.id) ? 'border-blue-600 bg-blue-50 shadow-md' : 'border-gray-100 hover:border-blue-200 hover:shadow-md'}`}>
-                                        <div className={`p-2 rounded-lg ${selectedActivities.includes(act.id) ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-500'}`}>{act.icon}</div>
-                                        <div>
-                                            <p className={`font-bold text-sm ${selectedActivities.includes(act.id) ? 'text-blue-700' : 'text-gray-700'}`}>{act.name}</p>
-                                            <p className="text-xs text-gray-500 mt-0.5">+{formatPrice(act.price)}{act.id !== 'candle-dinner' && '/person'}</p>
-                                        </div>
-                                    </button>
-                                ))}
-                            </div>
-                        </Section>
                         <Section title="Tour Preference">
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-2 gap-4 mb-8">
                                 {tourTypes.map(type => (
                                     <button key={type.id} onClick={() => setTourType(type.id)} className={`p-5 rounded-2xl border-2 text-center transition-all duration-300 ${tourType === type.id ? 'border-blue-600 bg-blue-50 shadow-md' : 'border-gray-100 hover:border-blue-200 hover:shadow-md'}`}>
                                         <div className={`flex justify-center mb-3 ${tourType === type.id ? 'text-blue-600' : 'text-gray-400'}`}>{type.icon}</div>
                                         <p className={`font-bold ${tourType === type.id ? 'text-blue-700' : 'text-gray-700'}`}>{type.name}</p>
                                         <p className="text-xs text-gray-500 mt-1">{type.description}</p>
+                                    </button>
+                                ))}
+                            </div>
+                        </Section>
+                        <Section title="Experiences & Activities">
+                            <div className="grid grid-cols-2 gap-4">
+                                {activities.map(act => (
+                                    <button key={act.id} onClick={() => toggleActivity(act.id)} className={`relative p-4 rounded-2xl border-2 text-left transition-all duration-300 flex items-center space-x-4 ${selectedActivities.includes(act.id) ? 'border-blue-600 bg-blue-50 shadow-md' : 'border-gray-100 hover:border-blue-200 hover:shadow-md'}`}>
+                                        {act.popular && (
+                                            <div className="absolute -top-2 -right-2 bg-amber-400 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm flex items-center">
+                                                <Star className="w-3 h-3 mr-0.5 fill-current" /> Popular
+                                            </div>
+                                        )}
+                                        <div className={`p-2 rounded-lg ${selectedActivities.includes(act.id) ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-500'}`}>{act.icon}</div>
+                                        <div>
+                                            <p className={`font-bold text-sm ${selectedActivities.includes(act.id) ? 'text-blue-700' : 'text-gray-700'}`}>{act.name}</p>
+                                            <p className="text-xs text-gray-500 mt-0.5">+{formatPrice(act.price)}{act.id !== 'candle-dinner' && '/person'}</p>
+                                        </div>
                                     </button>
                                 ))}
                             </div>

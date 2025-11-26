@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   MapPin, 
@@ -21,7 +21,10 @@ import {
   Wifi,
   CreditCard,
   Shield,
-  AlertTriangle
+  AlertTriangle,
+  Utensils,
+  ShoppingBag,
+  Route
 } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
@@ -32,25 +35,27 @@ import FaqAccordion from '../components/FaqAccordion';
 const GuidePage = () => {
   const [activeSection, setActiveSection] = useState('overview');
   const location = useLocation();
-  const isFirstRender = useRef(true);
+
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const navigationItems = [
     { id: 'overview', label: 'Overview', icon: <BookOpen className="w-5 h-5" /> },
     { id: 'how-to-reach', label: 'How to Reach', icon: <Plane className="w-5 h-5" /> },
     { id: 'best-time', label: 'Best Time', icon: <Calendar className="w-5 h-5" /> },
     { id: 'things-to-do', label: 'Activities', icon: <Activity className="w-5 h-5" /> },
+    { id: 'cuisine', label: 'Cuisine', icon: <Utensils className="w-5 h-5" /> },
+    { id: 'shopping', label: 'Shopping', icon: <ShoppingBag className="w-5 h-5" /> },
+    { id: 'itineraries', label: 'Itineraries', icon: <Route className="w-5 h-5" /> },
     { id: 'travel-tips', label: 'Travel Tips', icon: <Shield className="w-5 h-5" /> },
     { id: 'faqs', label: 'FAQs', icon: <HelpCircle className="w-5 h-5" /> }
   ];
 
-  // Scroll to section when nav item is clicked
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-
-    const element = document.getElementById(activeSection);
+  const scrollToSection = (id: string) => {
+    setActiveSection(id);
+    const element = document.getElementById(id);
     if (element) {
       const headerOffset = 100;
       const elementPosition = element.getBoundingClientRect().top;
@@ -61,7 +66,7 @@ const GuidePage = () => {
         behavior: "smooth"
       });
     }
-  }, [activeSection]);
+  };
 
   const breadcrumbStructuredData = {
     '@context': 'https://schema.org',
@@ -133,7 +138,7 @@ const GuidePage = () => {
       <Header />
       
       {/* Hero Section - Redesigned */}
-      <div className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+      <div className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" 
@@ -152,12 +157,19 @@ const GuidePage = () => {
               <span className="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-sm font-medium mb-4 tracking-wider uppercase">
                 The Ultimate Travel Guide
               </span>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white font-display mb-6 drop-shadow-lg">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white font-display mb-6 drop-shadow-lg">
                 Discover Andaman
               </h1>
-              <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md">
+              <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md mb-8">
                 Your comprehensive guide to the emerald islands of India. Plan your perfect escape to paradise.
               </p>
+              
+              <button 
+                onClick={() => scrollToSection('overview')}
+                className="px-8 py-3 bg-azure hover:bg-azure/90 text-white rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-azure/50"
+              >
+                Start Exploring
+              </button>
             </motion.div>
         </div>
       </div>
@@ -170,7 +182,7 @@ const GuidePage = () => {
               {navigationItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => setActiveSection(item.id)}
+                  onClick={() => scrollToSection(item.id)}
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-300 text-sm whitespace-nowrap ${
                     activeSection === item.id
                       ? 'bg-azure text-white shadow-md transform scale-105'
@@ -527,147 +539,106 @@ const GuidePage = () => {
           </div>
         </section>
 
-        {/* History Section - Timeline */}
-        <section id="history" className="py-12 sm:py-16">
+        {/* Cuisine Section - NEW */}
+        <section id="cuisine" className="py-12 sm:py-16">
           <div className="container mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-              <div>
-                <span className="text-azure font-bold tracking-wider uppercase text-sm mb-2 block">Time Travel</span>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night font-display mb-8">
-                  Island History
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="order-2 lg:order-1">
+                <div className="grid grid-cols-2 gap-4">
+                  <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Seafood" className="rounded-2xl shadow-lg transform translate-y-8" />
+                  <img src="https://images.unsplash.com/photo-1606471191009-63994c53433b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Coconut Drink" className="rounded-2xl shadow-lg" />
+                </div>
+              </div>
+              <div className="order-1 lg:order-2">
+                <span className="text-azure font-bold tracking-wider uppercase text-sm mb-2 block">Gastronomy</span>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night font-display mb-6">
+                  Island Flavors
                 </h2>
-                <p className="text-night/70 text-lg mb-12 leading-relaxed">
-                  The history of the Andaman Islands is as deep as the ocean surrounding them. From indigenous tribes who have lived here for thousands of years to the colonial era that left an indelible mark.
+                <p className="text-night/70 text-lg mb-8 leading-relaxed">
+                  Andaman cuisine is a delightful mix of fresh seafood and tropical flavors. Influenced by Bengali, Tamil, and Burmese cultures, the food here is a treat for the senses.
                 </p>
-
-                <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
+                
+                <div className="space-y-6">
                   {[
-                    {
-                      year: 'Ancient Times',
-                      title: 'Indigenous Settlement',
-                      desc: 'Inhabited by indigenous tribes like the Great Andamanese, Onge, Jarawa, and Sentinelese for over 60,000 years.'
-                    },
-                    {
-                      year: '1858',
-                      title: 'British Penal Colony',
-                      desc: 'The British established a penal colony for Indian freedom fighters, constructing the infamous Cellular Jail.'
-                    },
-                    {
-                      year: '1942-1945',
-                      title: 'Japanese Occupation',
-                      desc: 'Occupied by Japanese forces during WWII. Bunkers and ruins from this era can still be found.'
-                    },
-                    {
-                      year: '1947',
-                      title: 'Indian Union',
-                      desc: 'Became part of independent India, developing into a Union Territory focused on conservation and tourism.'
-                    }
-                  ].map((item, index) => (
-                    <div key={index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                      <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-slate-300 group-[.is-active]:bg-azure text-slate-500 group-[.is-active]:text-emerald-50 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
-                        <div className="w-3 h-3 bg-white rounded-full"></div>
+                    { title: 'Fresh Seafood', desc: 'Try the famous Lobster, Crab, and Red Snapper delicacies.' },
+                    { title: 'Tropical Fruits', desc: 'Relish fresh coconuts, mangoes, and bananas.' },
+                    { title: 'Vegetarian Options', desc: 'Plenty of North & South Indian vegetarian restaurants available.' }
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-4">
+                      <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center shrink-0">
+                        <Utensils className="w-5 h-5 text-orange-600" />
                       </div>
-                      <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-2xl shadow-md border border-gray-100">
-                        <div className="flex items-center justify-between space-x-2 mb-1">
-                          <div className="font-bold text-slate-900">{item.title}</div>
-                          <time className="font-caveat font-medium text-azure">{item.year}</time>
-                        </div>
-                        <div className="text-slate-500 text-sm">{item.desc}</div>
+                      <div>
+                        <h4 className="font-bold text-night text-lg">{item.title}</h4>
+                        <p className="text-night/60">{item.desc}</p>
                       </div>
                     </div>
                   ))}
-                </div>
-              </div>
-              
-              <div className="sticky top-32">
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                  <img 
-                    src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                    alt="Cellular Jail" 
-                    className="w-full h-auto object-cover"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
-                    <h3 className="text-white font-bold text-xl">Cellular Jail National Memorial</h3>
-                    <p className="text-white/80 text-sm">A poignant reminder of India's struggle for freedom.</p>
-                  </div>
-                </div>
-                
-                <div className="mt-8 bg-orange-50 p-6 rounded-2xl border border-orange-100">
-                  <h4 className="font-bold text-orange-800 mb-2 flex items-center gap-2">
-                    <Users className="w-5 h-5" />
-                    Indigenous Heritage
-                  </h4>
-                  <p className="text-orange-800/80 text-sm leading-relaxed">
-                    The islands are home to some of the most isolated tribal groups in the world. The Jarawa and Sentinelese tribes live in protected reserves, and interaction with them is strictly prohibited to preserve their way of life and health.
-                  </p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* People & Language Section */}
-        <section id="people-language" className="bg-gradient-to-br from-azure/5 to-lagoon/5 py-16 sm:py-20">
+        {/* Shopping Section - NEW */}
+        <section id="shopping" className="bg-gray-50 py-12 sm:py-16">
           <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night font-display mb-6">
-                People & Culture
+            <div className="text-center mb-12">
+              <span className="text-azure font-bold tracking-wider uppercase text-sm mb-2 block">Souvenirs</span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night font-display mb-4">
+                Shopping Guide
               </h2>
-              <p className="text-night/70 text-lg">
-                Often called "Mini India," the Andamans are a melting pot of cultures, languages, and religions living in harmony.
-              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { title: 'Wooden Artifacts', desc: 'Handcrafted items made from Padauk wood.', icon: <ShoppingBag /> },
+                { title: 'Shell Jewelry', desc: 'Beautiful necklaces and earrings made from seashells.', icon: <Star /> },
+                { title: 'Spices', desc: 'Fresh cinnamon, cloves, and cardamom from local plantations.', icon: <LeafIcon /> }
+              ].map((item, i) => (
+                <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-all">
+                  <div className="w-16 h-16 bg-azure/10 text-azure rounded-full flex items-center justify-center mx-auto mb-6">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-night mb-2">{item.title}</h3>
+                  <p className="text-night/60">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 text-center">
+               <p className="text-sm text-red-500 font-medium flex items-center justify-center gap-2">
+                 <AlertTriangle className="w-4 h-4" />
+                 Reminder: Do not buy or collect corals. It is illegal.
+               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Itineraries Section - NEW */}
+        <section id="itineraries" className="py-12 sm:py-16">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="text-center mb-12">
+              <span className="text-azure font-bold tracking-wider uppercase text-sm mb-2 block">Plan Your Trip</span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-night font-display mb-4">
+                Suggested Itineraries
+              </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100">
-                <h3 className="text-2xl font-bold text-night mb-6 flex items-center gap-3">
-                  <Languages className="w-6 h-6 text-azure" />
-                  Languages
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
-                    <div>
-                      <div className="font-bold text-night">Hindi & English</div>
-                      <div className="text-sm text-night/60">Official Languages</div>
-                    </div>
-                    <span className="px-3 py-1 bg-azure/10 text-azure rounded-full text-sm font-bold">Primary</span>
-                  </div>
-                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
-                    <div>
-                      <div className="font-bold text-night">Bengali</div>
-                      <div className="text-sm text-night/60">Widely Spoken</div>
-                    </div>
-                    <span className="px-3 py-1 bg-gray-200 text-night/60 rounded-full text-sm font-bold">28%</span>
-                  </div>
-                  <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
-                    <div>
-                      <div className="font-bold text-night">Tamil, Telugu, Malayalam</div>
-                      <div className="text-sm text-night/60">Regional Communities</div>
-                    </div>
-                    <span className="px-3 py-1 bg-gray-200 text-night/60 rounded-full text-sm font-bold">Mixed</span>
-                  </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { days: '3 Nights / 4 Days', title: 'Quick Escape', desc: 'Port Blair + Havelock. Perfect for a long weekend.', link: '/packages/short-escape' },
+                { days: '5 Nights / 6 Days', title: 'Classic Andaman', desc: 'Port Blair + Havelock + Neil. The most popular itinerary.', link: '/packages/classic-andaman' },
+                { days: '7 Nights / 8 Days', title: 'Island Explorer', desc: 'Extended stay with Baratang or North Bay added.', link: '/packages/island-explorer' }
+              ].map((plan, i) => (
+                <div key={i} className="bg-white border border-gray-200 rounded-2xl p-8 hover:border-azure transition-colors group">
+                  <div className="text-azure font-bold text-sm uppercase tracking-wider mb-2">{plan.days}</div>
+                  <h3 className="text-2xl font-bold text-night mb-4 group-hover:text-azure transition-colors">{plan.title}</h3>
+                  <p className="text-night/60 mb-8">{plan.desc}</p>
+                  <a href={plan.link} className="inline-flex items-center gap-2 text-night font-medium hover:text-azure transition-colors">
+                    View Details <ArrowRight className="w-4 h-4" />
+                  </a>
                 </div>
-              </div>
-
-              <div className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100">
-                <h3 className="text-2xl font-bold text-night mb-6 flex items-center gap-3">
-                  <Users className="w-6 h-6 text-lagoon" />
-                  Demographics
-                </h3>
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="text-center p-4 bg-lagoon/5 rounded-xl">
-                    <div className="text-3xl font-bold text-lagoon mb-1">3.8L+</div>
-                    <div className="text-sm text-night/60">Population</div>
-                  </div>
-                  <div className="text-center p-4 bg-lagoon/5 rounded-xl">
-                    <div className="text-3xl font-bold text-lagoon mb-1">89%</div>
-                    <div className="text-sm text-night/60">Literacy Rate</div>
-                  </div>
-                </div>
-                <p className="text-night/70 text-sm leading-relaxed">
-                  The islands have a unique culture where festivals of all religions—Durga Puja, Diwali, Christmas, Eid, and Pongal—are celebrated with equal enthusiasm by everyone, reflecting true secularism.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
@@ -723,7 +694,7 @@ const GuidePage = () => {
                 {/* Safety */}
                 <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all">
                   <div className="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center mb-6">
-                    <AlertTriangle className="w-6 h-6" />
+                    <Shield className="w-6 h-6" />
                   </div>
                   <h3 className="text-xl font-bold text-night mb-3">Safety & Permits</h3>
                   <p className="text-night/70 text-sm mb-4 leading-relaxed">
@@ -774,5 +745,14 @@ const GuidePage = () => {
     </div>
   );
 };
+
+// Helper icons
+const LeafIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.77 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+);
+
+const ArrowRight = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+);
 
 export default GuidePage;

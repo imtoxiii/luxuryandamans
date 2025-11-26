@@ -1,4 +1,5 @@
 import { Package } from '../packages';
+import { commonPaymentPolicy, commonTips, commonCancellationPolicy, commonTerms } from '../commonPolicies';
 
 export const grandAndaman: Package = {
   slug: 'grand-andaman-tour',
@@ -105,7 +106,9 @@ export const grandAndaman: Package = {
       image: 'https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg'
     }
   ],
-  terms: ['Standard cancellation policy applies'],
+  terms: commonTerms,
+  paymentPolicy: commonPaymentPolicy,
+  tips: commonTips,
   pricingOptions: [
     { days: 8, pricePerPerson: 52000, title: 'Standard Grand' },
     { days: 8, pricePerPerson: 62000, title: 'Deluxe Grand' }
@@ -113,5 +116,5 @@ export const grandAndaman: Package = {
   hotels: [],
   supplements: [],
   pickupLocations: ['Port Blair Airport'],
-  cancellationPolicy: ['Refundable up to 15 days before travel']
+  cancellationPolicy: commonCancellationPolicy
 };

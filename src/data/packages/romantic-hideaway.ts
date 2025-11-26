@@ -1,4 +1,6 @@
+
 import { Package } from '../packages';
+import { commonPaymentPolicy, commonTips, commonCancellationPolicy, commonTerms } from '../commonPolicies';
 
 export const romanticHideaway: Package = {
     slug: 'romantic-island-hideaway',
@@ -88,7 +90,9 @@ export const romanticHideaway: Package = {
             image: 'https://images.pexels.com/photos/1024960/pexels-photo-1024960.jpeg'
         }
     ],
-    terms: ['100% advance for booking confirmation', 'Non-refundable within 15 days of travel'],
+    terms: commonTerms,
+    paymentPolicy: commonPaymentPolicy,
+    tips: commonTips,
     pricingOptions: [
         { days: 6, pricePerPerson: 65000, title: 'Luxury Hideaway' },
         { days: 6, pricePerPerson: 85000, title: 'Royal Honeymoon' }
@@ -96,5 +100,6 @@ export const romanticHideaway: Package = {
     hotels: [],
     supplements: [],
     pickupLocations: ['Port Blair Airport'],
-    cancellationPolicy: ['50% refund if cancelled 30 days prior']
+    cancellationPolicy: commonCancellationPolicy
 };
+

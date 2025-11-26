@@ -1,4 +1,5 @@
 import { Package } from '../packages';
+import { commonPaymentPolicy, commonTips, commonCancellationPolicy, commonTerms } from '../commonPolicies';
 
 export const honeymoon4n5d: Package = {
   title: "4N/5D Andaman Honeymoon Special",
@@ -117,13 +118,9 @@ export const honeymoon4n5d: Package = {
       image: "/images/packages/honeymoon-4n5d/highlight-heritage.jpg"
     }
   ],
-  terms: [
-    "50% advance payment required",
-    "Balance due 7 days before travel",
-    "Marriage certificate required",
-    "All activities subject to weather",
-    "Valid ID mandatory"
-  ],
+  terms: commonTerms,
+  paymentPolicy: commonPaymentPolicy,
+  tips: commonTips,
   pricingOptions: [
     { days: 5, pricePerPerson: 28000, title: "5 Days Quick Honeymoon" }
   ],
@@ -176,10 +173,6 @@ export const honeymoon4n5d: Package = {
     }
   ],
   pickupLocations: ["Port Blair Airport", "Port Blair Hotels"],
-  cancellationPolicy: [
-    "Free cancellation up to 10 days before",
-    "50% charge within 10 days",
-    "No refund within 3 days"
-  ],
+  cancellationPolicy: commonCancellationPolicy,
   slug: "4n5d-andaman-honeymoon-special"
 };

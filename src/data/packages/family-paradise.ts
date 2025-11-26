@@ -1,10 +1,11 @@
 import { Package } from '../packages';
+import { commonPaymentPolicy, commonTips, commonCancellationPolicy, commonTerms } from '../commonPolicies';
 
 export const familyParadise: Package = {
   title: "Family Paradise - 6 Days Fun Adventure",
   description: "Perfect family vacation with kid-friendly activities, comfortable accommodations, and fun for all ages",
   longDescription: "Create unforgettable family memories with our specially designed 6-day Andaman family package. This itinerary features kid-friendly activities, comfortable family accommodations, safe water sports, educational experiences, and plenty of beach fun. From glass-bottom boat rides to easy snorkeling, from historical learning to beach games - every activity is chosen with families in mind. Enjoy the perfect balance of adventure, learning, and relaxation with activities suitable for children aged 5 and above.",
-  price: 32000,
+  price: 38500,
   duration: "6 days",
   groupSize: "4-6",
   image: "/images/packages/family-paradise/hero.jpg",
@@ -20,7 +21,7 @@ export const familyParadise: Package = {
   includes: [
     "5 nights family accommodation (interconnecting rooms available)",
     "Daily breakfast for all family members",
-    "All ferry transfers between islands",
+    "All ferry transfers between islands (Makruzz/Nautika)",
     "Family-friendly snorkeling at Elephant Beach",
     "Glass-bottom boat ride for kids",
     "All sightseeing by private family vehicle",
@@ -197,29 +198,19 @@ export const familyParadise: Package = {
       image: "/images/packages/family-paradise/highlight-wildlife.jpg"
     }
   ],
-  terms: [
-    "50% advance payment required at booking",
-    "Balance payment 7 days before travel",
-    "Child rates: 5-12 years (with extra bed), Below 5 years complimentary (no bed)",
-    "Free cancellation up to 10 days before travel",
-    "25% cancellation charge 7-9 days before",
-    "50% cancellation charge 4-6 days before",
-    "No refund within 3 days of travel",
-    "All water activities subject to weather and age restrictions",
-    "Life jackets mandatory for children during water activities",
-    "Valid ID proof required for all family members",
-    "Adult supervision required for kids during all activities"
-  ],
+  terms: commonTerms,
+  paymentPolicy: commonPaymentPolicy,
+  tips: commonTips,
   pricingOptions: [
-    { 
-      days: 6, 
-      pricePerPerson: 32000, 
-      title: "6 Days Family Paradise (Adult rate)" 
+    {
+      days: 6,
+      pricePerPerson: 38500,
+      title: "6 Days Family Paradise (Adult rate)"
     },
-    { 
-      days: 6, 
-      pricePerPerson: 22000, 
-      title: "Child Rate (5-12 years with extra bed)" 
+    {
+      days: 6,
+      pricePerPerson: 25000,
+      title: "Child Rate (5-12 years with extra bed)"
     }
   ],
   hotels: [
@@ -237,23 +228,23 @@ export const familyParadise: Package = {
         "/images/packages/family-paradise/hotel-port-blair-3.jpg"
       ],
       roomTypes: [
-        { 
-          name: "Standard Family Room", 
-          pricePerNight: 2500, 
-          description: "Comfortable room with one double bed and extra bed option for kids", 
-          maxOccupancy: 3 
+        {
+          name: "Standard Family Room",
+          pricePerNight: 3500,
+          description: "Comfortable room with one double bed and extra bed option for kids",
+          maxOccupancy: 3
         },
-        { 
-          name: "Deluxe Family Suite", 
-          pricePerNight: 4000, 
-          description: "Spacious suite with separate sleeping areas for parents and children", 
-          maxOccupancy: 4 
+        {
+          name: "Deluxe Family Suite",
+          pricePerNight: 5500,
+          description: "Spacious suite with separate sleeping areas for parents and children",
+          maxOccupancy: 4
         },
-        { 
-          name: "Family Connecting Rooms", 
-          pricePerNight: 6000, 
-          description: "Two interconnected rooms perfect for larger families", 
-          maxOccupancy: 6 
+        {
+          name: "Family Connecting Rooms",
+          pricePerNight: 7500,
+          description: "Two interconnected rooms perfect for larger families",
+          maxOccupancy: 6
         }
       ]
     },
@@ -271,23 +262,23 @@ export const familyParadise: Package = {
         "/images/packages/family-paradise/hotel-havelock-3.jpg"
       ],
       roomTypes: [
-        { 
-          name: "Garden Cottage", 
-          pricePerNight: 3000, 
-          description: "Cozy cottage with garden view, perfect for small families", 
-          maxOccupancy: 3 
+        {
+          name: "Garden Cottage",
+          pricePerNight: 4500,
+          description: "Cozy cottage with garden view, perfect for small families",
+          maxOccupancy: 3
         },
-        { 
-          name: "Beach Cottage", 
-          pricePerNight: 4500, 
-          description: "Beachfront cottage with direct beach access and space for kids", 
-          maxOccupancy: 4 
+        {
+          name: "Beach Cottage",
+          pricePerNight: 6500,
+          description: "Beachfront cottage with direct beach access and space for kids",
+          maxOccupancy: 4
         },
-        { 
-          name: "Family Villa", 
-          pricePerNight: 7000, 
-          description: "Large villa with multiple beds and living area for families", 
-          maxOccupancy: 6 
+        {
+          name: "Family Villa",
+          pricePerNight: 9000,
+          description: "Large villa with multiple beds and living area for families",
+          maxOccupancy: 6
         }
       ]
     }
@@ -323,14 +314,6 @@ export const familyParadise: Package = {
     "Port Blair City Hotels",
     "Custom pickup location in Port Blair"
   ],
-  cancellationPolicy: [
-    "Free cancellation up to 10 days before travel",
-    "25% charges for cancellations 7-9 days before",
-    "50% charges for cancellations 4-6 days before",
-    "No refund within 3 days of travel",
-    "Child rates follow same cancellation policy",
-    "Refund processed within 7-10 working days",
-    "Weather cancellations handled per company policy"
-  ],
+  cancellationPolicy: commonCancellationPolicy,
   slug: "family-paradise-6-days"
 };

@@ -1,10 +1,11 @@
 import { Package } from '../packages';
+import { commonPaymentPolicy, commonTips, commonCancellationPolicy, commonTerms } from '../commonPolicies';
 
 export const standardAndaman: Package = {
   title: "Standard Andaman Package - 5N/6D",
   description: "Budget-friendly complete Andaman tour covering all major attractions",
   longDescription: "Our most popular standard package offers the best value for money covering all major islands and attractions of Andaman. This package includes Port Blair, Havelock, and Neil Island with comfortable 3-star accommodations, essential water activities, and all major sightseeing. Perfect for travelers looking for a complete Andaman experience without luxury frills.",
-  price: 25000,
+  price: 28500,
   duration: "6 days",
   groupSize: "2-6",
   image: "/images/packages/standard-andaman/hero.jpg",
@@ -18,7 +19,7 @@ export const standardAndaman: Package = {
   includes: [
     "5 nights accommodation in 3-star hotels",
     "Daily breakfast",
-    "All ferry transfers",
+    "All ferry transfers (Govt Ferry/Green Ocean)",
     "Elephant Beach speedboat",
     "Complimentary snorkeling",
     "All sightseeing by shared vehicle",
@@ -129,15 +130,11 @@ export const standardAndaman: Package = {
       image: "/images/packages/standard-andaman/highlight-value.jpg"
     }
   ],
-  terms: [
-    "40% advance payment required",
-    "Balance due 7 days before travel",
-    "Shared transfers may be provided",
-    "Activities subject to weather",
-    "Basic accommodation included"
-  ],
+  terms: commonTerms,
+  paymentPolicy: commonPaymentPolicy,
+  tips: commonTips,
   pricingOptions: [
-    { days: 6, pricePerPerson: 25000, title: "6 Days Standard Package" }
+    { days: 6, pricePerPerson: 28500, title: "6 Days Standard Package" }
   ],
   hotels: [
     {
@@ -149,8 +146,8 @@ export const standardAndaman: Package = {
       description: "Budget hotel in Port Blair",
       starCategory: 3,
       roomTypes: [
-        { name: "Standard", pricePerNight: 1500, description: "Basic AC room", maxOccupancy: 2 },
-        { name: "Deluxe", pricePerNight: 2200, description: "Better room with view", maxOccupancy: 3 }
+        { name: "Standard", pricePerNight: 2500, description: "Basic AC room", maxOccupancy: 2 },
+        { name: "Deluxe", pricePerNight: 3200, description: "Better room with view", maxOccupancy: 3 }
       ]
     },
     {
@@ -162,7 +159,7 @@ export const standardAndaman: Package = {
       description: "Beach resort on Havelock",
       starCategory: 3,
       roomTypes: [
-        { name: "Standard", pricePerNight: 2500, description: "Standard beach room", maxOccupancy: 2 }
+        { name: "Standard", pricePerNight: 3500, description: "Standard beach room", maxOccupancy: 2 }
       ]
     },
     {
@@ -174,7 +171,7 @@ export const standardAndaman: Package = {
       description: "Simple resort on Neil",
       starCategory: 3,
       roomTypes: [
-        { name: "Standard", pricePerNight: 1800, description: "Basic beach room", maxOccupancy: 2 }
+        { name: "Standard", pricePerNight: 2800, description: "Basic beach room", maxOccupancy: 2 }
       ]
     }
   ],
@@ -193,10 +190,6 @@ export const standardAndaman: Package = {
     }
   ],
   pickupLocations: ["Port Blair Airport"],
-  cancellationPolicy: [
-    "Free cancellation up to 7 days",
-    "50% charge within 7 days",
-    "No refund within 2 days"
-  ],
+  cancellationPolicy: commonCancellationPolicy,
   slug: "standard-andaman-package-5n6d"
 };

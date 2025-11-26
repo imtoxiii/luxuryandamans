@@ -247,21 +247,20 @@ const PackageDetailPage: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-10 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          
+
           {/* Main Content */}
           <div className="lg:col-span-8 space-y-8">
-            
+
             {/* Navigation Tabs */}
             <div className="bg-white rounded-2xl shadow-sm p-1.5 flex overflow-x-auto no-scrollbar sticky top-24 z-40 border border-gray-100">
               {['overview', 'itinerary', 'hotels', 'policies'].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab as 'overview' | 'itinerary' | 'hotels' | 'policies')}
-                  className={`flex-1 py-3 px-6 rounded-xl text-sm font-bold uppercase tracking-wider transition-all whitespace-nowrap ${
-                    activeTab === tab 
-                      ? 'bg-blue-600 text-white shadow-md' 
+                  className={`flex-1 py-3 px-6 rounded-xl text-sm font-bold uppercase tracking-wider transition-all whitespace-nowrap ${activeTab === tab
+                      ? 'bg-blue-600 text-white shadow-md'
                       : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
-                  }`}
+                    }`}
                 >
                   {tab}
                 </button>
@@ -290,8 +289,8 @@ const PackageDetailPage: React.FC = () => {
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {currentPackage.highlights.map((highlight, idx) => (
-                          <div 
-                            key={idx} 
+                          <div
+                            key={idx}
                             className="group relative overflow-hidden rounded-2xl shadow-lg aspect-[4/3] cursor-pointer"
                             onClick={() => openImageModal([highlight.image])}
                           >
@@ -511,11 +510,11 @@ const PackageDetailPage: React.FC = () => {
                             <span className="leading-relaxed">{policy}</span>
                           </li>
                         )) || (
-                          <li className="text-gray-500 italic">Standard cancellation policies apply. Please contact us for details.</li>
-                        )}
+                            <li className="text-gray-500 italic">Standard cancellation policies apply. Please contact us for details.</li>
+                          )}
                       </ul>
                     </div>
-                    
+
                     <div className="border-t pt-8">
                       <h2 className="text-2xl font-bold text-gray-900 mb-6 font-display">Terms & Conditions</h2>
                       <ul className="space-y-4">
@@ -525,8 +524,8 @@ const PackageDetailPage: React.FC = () => {
                             <span className="leading-relaxed">{term}</span>
                           </li>
                         )) || (
-                          <li className="text-gray-500 italic">Standard terms apply.</li>
-                        )}
+                            <li className="text-gray-500 italic">Standard terms apply.</li>
+                          )}
                       </ul>
                     </div>
                   </motion.div>
@@ -597,7 +596,7 @@ const PackageDetailPage: React.FC = () => {
                     <div className="space-y-3">
                       <label className="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-colors">
                         <div className="flex items-center gap-3">
-                          <input 
+                          <input
                             type="checkbox"
                             checked={selectedActivities.includes('Scuba Diving')}
                             onChange={(e) => {
@@ -616,7 +615,7 @@ const PackageDetailPage: React.FC = () => {
 
                       <label className="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-colors">
                         <div className="flex items-center gap-3">
-                          <input 
+                          <input
                             type="checkbox"
                             checked={selectedActivities.includes('Candle Light Dinner')}
                             onChange={(e) => {
@@ -635,7 +634,7 @@ const PackageDetailPage: React.FC = () => {
 
                       <label className="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-colors">
                         <div className="flex items-center gap-3">
-                          <input 
+                          <input
                             type="checkbox"
                             checked={selectedActivities.includes('Flower Bed Decoration')}
                             onChange={(e) => {
@@ -740,7 +739,7 @@ const PackageDetailPage: React.FC = () => {
                   </button>
                 </>
               )}
-              
+
               {/* Thumbnails */}
               {modalImages.length > 1 && (
                 <div className="absolute -bottom-20 left-0 right-0 flex justify-center gap-2 overflow-x-auto py-2">
@@ -748,9 +747,8 @@ const PackageDetailPage: React.FC = () => {
                     <button
                       key={idx}
                       onClick={(e) => { e.stopPropagation(); setModalImageIndex(idx); }}
-                      className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
-                        modalImageIndex === idx ? 'border-white scale-110' : 'border-transparent opacity-50 hover:opacity-100'
-                      }`}
+                      className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${modalImageIndex === idx ? 'border-white scale-110' : 'border-transparent opacity-50 hover:opacity-100'
+                        }`}
                     >
                       <img src={img} alt={`Thumbnail ${idx}`} className="w-full h-full object-cover" />
                     </button>

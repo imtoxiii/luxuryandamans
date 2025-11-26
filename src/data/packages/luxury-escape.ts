@@ -1,4 +1,5 @@
 import { Package } from '../packages';
+import { commonPaymentPolicy, commonTips, commonCancellationPolicy, commonTerms } from '../commonPolicies';
 
 export const luxuryEscape: Package = {
   title: "Luxury Island Escape - 7 Days Premium Experience",
@@ -207,23 +208,14 @@ export const luxuryEscape: Package = {
       image: "/images/packages/luxury-escape/highlight-spa.jpg"
     }
   ],
-  terms: [
-    "50% advance payment required at booking",
-    "Balance payment 10 days before travel",
-    "Free cancellation up to 15 days before travel",
-    "25% cancellation charge 7-14 days before",
-    "50% cancellation charge 3-6 days before",
-    "No refund within 2 days of travel",
-    "Luxury suite subject to availability",
-    "All activities subject to weather conditions",
-    "Valid photo ID required for all guests",
-    "Scuba diving medical fitness declaration required"
-  ],
+  terms: commonTerms,
+  paymentPolicy: commonPaymentPolicy,
+  tips: commonTips,
   pricingOptions: [
-    { 
-      days: 7, 
-      pricePerPerson: 85000, 
-      title: "7 Days Ultra Luxury Experience" 
+    {
+      days: 7,
+      pricePerPerson: 85000,
+      title: "7 Days Ultra Luxury Experience"
     }
   ],
   hotels: [
@@ -241,23 +233,23 @@ export const luxuryEscape: Package = {
         "/images/packages/luxury-escape/hotel-port-blair-3.jpg"
       ],
       roomTypes: [
-        { 
-          name: "Premium Suite", 
-          pricePerNight: 8000, 
-          description: "Luxury suite with ocean view, private balcony, and premium amenities", 
-          maxOccupancy: 2 
+        {
+          name: "Premium Suite",
+          pricePerNight: 8000,
+          description: "Luxury suite with ocean view, private balcony, and premium amenities",
+          maxOccupancy: 2
         },
-        { 
-          name: "Executive Villa", 
-          pricePerNight: 12000, 
-          description: "Private villa with plunge pool, butler service, and exclusive amenities", 
-          maxOccupancy: 3 
+        {
+          name: "Executive Villa",
+          pricePerNight: 12000,
+          description: "Private villa with plunge pool, butler service, and exclusive amenities",
+          maxOccupancy: 3
         },
-        { 
-          name: "Presidential Suite", 
-          pricePerNight: 18000, 
-          description: "Ultra-luxury suite with panoramic views, private dining, and concierge", 
-          maxOccupancy: 4 
+        {
+          name: "Presidential Suite",
+          pricePerNight: 18000,
+          description: "Ultra-luxury suite with panoramic views, private dining, and concierge",
+          maxOccupancy: 4
         }
       ]
     },
@@ -275,23 +267,23 @@ export const luxuryEscape: Package = {
         "/images/packages/luxury-escape/hotel-havelock-3.jpg"
       ],
       roomTypes: [
-        { 
-          name: "Beach Villa", 
-          pricePerNight: 10000, 
-          description: "Beachfront villa with direct beach access and modern luxury", 
-          maxOccupancy: 2 
+        {
+          name: "Beach Villa",
+          pricePerNight: 10000,
+          description: "Beachfront villa with direct beach access and modern luxury",
+          maxOccupancy: 2
         },
-        { 
-          name: "Ocean Villa", 
-          pricePerNight: 15000, 
-          description: "Premium villa with private pool and ocean views", 
-          maxOccupancy: 3 
+        {
+          name: "Ocean Villa",
+          pricePerNight: 15000,
+          description: "Premium villa with private pool and ocean views",
+          maxOccupancy: 3
         },
-        { 
-          name: "Luxury Suite", 
-          pricePerNight: 22000, 
-          description: "Ultimate luxury with private beach area, plunge pool, and butler", 
-          maxOccupancy: 4 
+        {
+          name: "Luxury Suite",
+          pricePerNight: 22000,
+          description: "Ultimate luxury with private beach area, plunge pool, and butler",
+          maxOccupancy: 4
         }
       ]
     }
@@ -327,14 +319,6 @@ export const luxuryEscape: Package = {
     "Port Blair 5-Star Hotels",
     "Private Yacht Marina"
   ],
-  cancellationPolicy: [
-    "Free cancellation up to 15 days before travel",
-    "25% charges for cancellations 7-14 days before",
-    "50% charges for cancellations 3-6 days before",
-    "No refund within 2 days of travel",
-    "Refund processed within 10-15 working days",
-    "Weather cancellations handled per policy",
-    "Luxury suite bookings are subject to availability"
-  ],
+  cancellationPolicy: commonCancellationPolicy,
   slug: "luxury-island-escape-7-days"
 };

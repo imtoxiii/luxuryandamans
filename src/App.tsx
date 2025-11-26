@@ -46,13 +46,14 @@ const FAQ = lazy(() => import('./pages/FAQ'));
 const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Sitemap = lazy(() => import('./pages/Sitemap'));
+const Offer = lazy(() => import('./pages/Offer'));
 
-// Lazy load experience pages
 const LuxuryResortsPage = lazy(() => import('./pages/experiences/luxury-resorts'));
 const ScubaDivingPage = lazy(() => import('./pages/experiences/scuba-diving'));
 const IslandHoppingPage = lazy(() => import('./pages/experiences/island-hopping'));
 const SunsetCruisesPage = lazy(() => import('./pages/experiences/sunset-cruises'));
 const WellnessRetreatsPage = lazy(() => import('./pages/experiences/wellness-retreats'));
+
 const RomanticGetawaysPage = lazy(() => import('./pages/experiences/romantic-getaways'));
 const FamilyAdventuresPage = lazy(() => import('./pages/experiences/family-adventures'));
 const BioluminescenceKayakingPage = lazy(() => import('./pages/experiences/bioluminescence-kayaking'));
@@ -115,13 +116,14 @@ function App() {
           <Route path="/about" element={<Navigate to="/guide" replace />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/enquiry" element={<Enquiry />} />
-          <Route path="/calculator" element={<PricingCalculatorPage />} />
           <Route path="/travel-guide" element={<TravelGuide />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/offer" element={<Offer />} />
+          <Route path="/enquiry" element={<Enquiry />} />
+          <Route path="/calculator" element={<PricingCalculatorPage />} />
 
           {/* Experience Detail Pages */}
           <Route path="/experiences/luxury-resorts" element={<LuxuryResortsPage />} />
@@ -129,6 +131,7 @@ function App() {
           <Route path="/experiences/scuba-diving" element={<ScubaDivingPage />} />
           <Route path="/experiences/island-hopping" element={<IslandHoppingPage />} />
           <Route path="/experiences/sunset-cruises" element={<SunsetCruisesPage />} />
+
           <Route path="/experiences/wellness-retreats" element={<WellnessRetreatsPage />} />
           <Route path="/experiences/romantic-getaways" element={<RomanticGetawaysPage />} />
           <Route path="/experiences/family-adventures" element={<FamilyAdventuresPage />} />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FileCheck, AlertCircle, CreditCard, CalendarX } from 'lucide-react';
+import { FileCheck, AlertCircle, CreditCard, CalendarX, Gavel, Umbrella } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
@@ -8,12 +8,12 @@ import SEO from '../components/SEO';
 const Terms = () => {
   return (
     <div className="min-h-screen bg-pearl">
-      <SEO 
+      <SEO
         title="Terms and Conditions"
         description="Terms and Conditions for booking tours and travel packages with Luxury Andamans."
       />
       <Header />
-      
+
       <div className="pt-32 pb-20">
         <div className="container mx-auto px-4">
           <motion.div
@@ -27,19 +27,23 @@ const Terms = () => {
                 <FileCheck className="w-8 h-8 mr-3" />
                 <h1 className="text-3xl font-bold">Terms & Conditions</h1>
               </div>
-              <p className="text-white/90">Effective Date: November 22, 2025</p>
+              <p className="text-white/90">Effective Date: November 26, 2025</p>
             </div>
 
             <div className="p-8 space-y-8 text-night/80">
               <section>
-                <h2 className="text-2xl font-bold text-night mb-4">1. Booking & Confirmation</h2>
+                <h2 className="text-2xl font-bold text-night mb-4 flex items-center">
+                  <CreditCard className="w-6 h-6 text-azure mr-2" />
+                  1. Booking & Payment Policy
+                </h2>
                 <p className="mb-4">
-                  By booking a tour or package with Luxury Andamans, you agree to these terms. A booking is considered confirmed only after the receipt of the advance payment and issuance of a booking confirmation email.
+                  To confirm your booking with Luxury Andamans, the following payment schedule applies:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li>Advance payment of 50% is required to secure bookings.</li>
-                  <li>Balance payment must be cleared 15 days prior to arrival.</li>
-                  <li>For bookings made within 15 days of travel, 100% payment is required.</li>
+                  <li><strong>Advance Payment:</strong> 50% of the total tour cost is required at the time of booking to block rooms and ferries.</li>
+                  <li><strong>Balance Payment:</strong> The remaining 50% must be cleared 15 days prior to the arrival date.</li>
+                  <li><strong>Last Minute Bookings:</strong> For bookings made within 15 days of travel, 100% payment is required at the time of confirmation.</li>
+                  <li><strong>Peak Season:</strong> For travel between Dec 15 and Jan 15, 100% payment is required 30 days in advance.</li>
                 </ul>
               </section>
 
@@ -49,71 +53,70 @@ const Terms = () => {
                   2. Cancellation & Refund Policy
                 </h2>
                 <div className="bg-pearl p-6 rounded-lg border border-sand/20">
+                  <p className="mb-4 font-semibold">Standard Cancellation Charges:</p>
                   <ul className="space-y-3">
-                    <li className="flex justify-between">
-                      <span>30 days or more before arrival:</span>
-                      <span className="font-bold text-night">90% Refund</span>
+                    <li className="flex justify-between items-center border-b border-sand/10 pb-2">
+                      <span>30 days or more before arrival</span>
+                      <span className="font-bold text-green-600">Full Refund (minus processing fee)</span>
                     </li>
-                    <li className="flex justify-between">
-                      <span>15 to 29 days before arrival:</span>
-                      <span className="font-bold text-night">50% Refund</span>
+                    <li className="flex justify-between items-center border-b border-sand/10 pb-2">
+                      <span>15 to 29 days before arrival</span>
+                      <span className="font-bold text-orange-500">50% Refund</span>
                     </li>
-                    <li className="flex justify-between">
-                      <span>7 to 14 days before arrival:</span>
-                      <span className="font-bold text-night">25% Refund</span>
+                    <li className="flex justify-between items-center border-b border-sand/10 pb-2">
+                      <span>7 to 14 days before arrival</span>
+                      <span className="font-bold text-red-500">25% Refund</span>
                     </li>
-                    <li className="flex justify-between">
-                      <span>Less than 7 days before arrival:</span>
-                      <span className="font-bold text-red-500">No Refund</span>
+                    <li className="flex justify-between items-center">
+                      <span>Less than 7 days before arrival</span>
+                      <span className="font-bold text-red-700">No Refund</span>
                     </li>
                   </ul>
-                  <p className="mt-4 text-sm italic">
-                    Note: Refunds for ferry tickets and flight tickets will be as per the respective operator's policy. Peak season bookings (Dec 15 - Jan 15) may have stricter cancellation policies.
-                  </p>
+                  <div className="mt-4 text-sm bg-white p-4 rounded border border-sand/20">
+                    <p className="font-bold mb-1">Important Notes:</p>
+                    <ul className="list-disc pl-4 space-y-1">
+                      <li>Ferry tickets (Makruzz/Nautika) are non-refundable if cancelled within 48 hours of travel.</li>
+                      <li>Peak season bookings (Dec 15 - Jan 15) are non-refundable if cancelled within 30 days of travel.</li>
+                      <li>Refunds will be processed within 7-10 working days.</li>
+                    </ul>
+                  </div>
                 </div>
               </section>
 
               <section>
                 <h2 className="text-2xl font-bold text-night mb-4 flex items-center">
-                  <AlertCircle className="w-6 h-6 text-azure mr-2" />
-                  3. Travel Documents & Permits
+                  <Umbrella className="w-6 h-6 text-azure mr-2" />
+                  3. Force Majeure & Weather Disruptions
                 </h2>
                 <p className="mb-4">
-                  It is the guest's responsibility to carry valid government-issued ID proofs (Aadhar Card, Voter ID, Passport, etc.) for all travelers.
+                  The Andaman Islands are subject to tropical weather conditions. Luxury Andamans shall not be liable for any changes or cancellations due to:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li><strong>Indian Nationals:</strong> Valid ID proof is mandatory for ferry bookings and hotel check-ins.</li>
-                  <li><strong>Foreign Nationals:</strong> Valid Passport and Indian Visa are mandatory. Restricted Area Permit (RAP) is no longer required for 30 major islands including Havelock and Neil, but registration at Port Blair airport is mandatory.</li>
+                  <li><strong>Ferry Cancellations:</strong> If private ferries are cancelled due to weather, we will attempt to arrange Govt ferry or reschedule. Any additional stay cost due to being stranded on an island will be borne by the guest.</li>
+                  <li><strong>Activity Cancellations:</strong> Water sports are subject to weather clearance. If an activity is cancelled by the operator, a full refund for that specific activity will be provided.</li>
+                  <li><strong>Itinerary Changes:</strong> We reserve the right to modify the itinerary for safety reasons. Unused services due to weather/force majeure are non-refundable.</li>
                 </ul>
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold text-night mb-4">4. Itinerary Changes</h2>
-                <p className="mb-4">
-                  Luxury Andamans reserves the right to modify itineraries due to force majeure events, weather conditions, ferry cancellations, or operational reasons.
-                </p>
+                <h2 className="text-2xl font-bold text-night mb-4 flex items-center">
+                  <AlertCircle className="w-6 h-6 text-azure mr-2" />
+                  4. Guest Responsibilities
+                </h2>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li>In case of ferry cancellation due to weather, we will arrange alternative accommodation/transport, but any additional cost will be borne by the guest.</li>
-                  <li>Unused activities or meals due to early departure or personal reasons are non-refundable.</li>
+                  <li><strong>ID Proof:</strong> Valid government ID (Aadhaar/Passport/Voter ID) is mandatory for all guests. PAN cards are NOT accepted.</li>
+                  <li><strong>Foreign Nationals:</strong> Must carry a valid Passport and Indian Visa. Restricted Area Permit (RAP) is not required for standard tourist islands.</li>
+                  <li><strong>Conduct:</strong> Guests are expected to respect local culture and environment. Collection of corals or shells is strictly prohibited and punishable by law.</li>
                 </ul>
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold text-night mb-4">5. Liability</h2>
+                <h2 className="text-2xl font-bold text-night mb-4 flex items-center">
+                  <Gavel className="w-6 h-6 text-azure mr-2" />
+                  5. Jurisdiction
+                </h2>
                 <p className="mb-4">
-                  Luxury Andamans acts as an agent for hotels, transporters, and activity providers. We are not liable for:
-                </p>
-                <ul className="list-disc pl-6 space-y-2">
-                  <li>Delays or cancellations of flights or ferries.</li>
-                  <li>Loss of luggage or personal belongings.</li>
-                  <li>Personal injuries or accidents during activities (guests are advised to have travel insurance).</li>
-                </ul>
-              </section>
-
-              <section>
-                <h2 className="text-2xl font-bold text-night mb-4">6. Jurisdiction</h2>
-                <p className="mb-4">
-                  Any disputes arising out of these terms shall be subject to the exclusive jurisdiction of the courts in Port Blair, Andaman & Nicobar Islands.
+                  Any disputes arising out of or in connection with these terms and conditions shall be subject to the exclusive jurisdiction of the courts in Port Blair, Andaman & Nicobar Islands.
                 </p>
               </section>
             </div>

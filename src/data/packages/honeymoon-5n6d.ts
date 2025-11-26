@@ -1,4 +1,5 @@
 import { Package } from '../packages';
+import { commonPaymentPolicy, commonTips, commonCancellationPolicy, commonTerms } from '../commonPolicies';
 
 export const honeymoon5n6d: Package = {
   title: "5N/6D Andaman Time Mapped Honeymoon",
@@ -188,17 +189,9 @@ export const honeymoon5n6d: Package = {
       image: "/images/packages/honeymoon-5n6d/highlight-island.jpg"
     }
   ],
-  terms: [
-    "50% advance payment required at time of booking",
-    "Balance payment due 7 days before travel date",
-    "Valid marriage certificate required for honeymoon benefits",
-    "Check-in: 12:00 PM, Check-out: 10:00 AM",
-    "All water activities subject to weather conditions and tidal movements",
-    "Valid photo ID proof mandatory for all guests (Aadhar/PAN/Passport)",
-    "Scuba diving requires basic swimming skills and medical fitness",
-    "Minimum age for scuba diving: 12 years",
-    "Package prices are per person on twin sharing basis"
-  ],
+  terms: commonTerms,
+  paymentPolicy: commonPaymentPolicy,
+  tips: commonTips,
   pricingOptions: [
     { 
       days: 6, 
@@ -342,15 +335,6 @@ export const honeymoon5n6d: Package = {
     "Port Blair Jetty",
     "Custom pickup location in Port Blair"
   ],
-  cancellationPolicy: [
-    "Free cancellation up to 10 days before travel date",
-    "25% cancellation charges apply for cancellations 7-9 days before travel",
-    "50% cancellation charges apply for cancellations 4-6 days before travel",
-    "No refund for cancellations within 3 days of travel",
-    "Refund will be processed within 7-10 working days",
-    "Bank charges (if any) will be deducted from refund amount",
-    "Weather-related cancellations handled as per company policy",
-    "Ferry cancellations due to weather will be rescheduled or refunded"
-  ],
+  cancellationPolicy: commonCancellationPolicy,
   slug: "5n6d-andaman-time-mapped-honeymoon"
 };

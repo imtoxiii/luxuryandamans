@@ -3,11 +3,13 @@
 import { honeymoon5n6d } from './packages/honeymoon-5n6d';
 import { honeymoon4n5d } from './packages/honeymoon-4n5d';
 import { romanticHideaway } from './packages/romantic-hideaway';
+import { luxuryHoneymoon } from './packages/luxury-honeymoon';
 
 // Luxury Packages
 import { luxuryEscape } from './packages/luxury-escape';
 import { luxury4n5d } from './packages/luxury-4n5d';
 import { ultimateAdventure } from './packages/ultimate-adventure';
+import { adventureThrill } from './packages/adventure-thrill';
 
 // Family Packages
 import { familyParadise } from './packages/family-paradise';
@@ -74,6 +76,8 @@ export interface Package {
     image: string;
   }[];
   terms: string[];
+  paymentPolicy?: string[];
+  tips?: string[];
   pricingOptions: PricingOption[];
   hotels: Hotel[];
   supplements: Supplement[];
@@ -87,11 +91,13 @@ export const packages: Package[] = [
   honeymoon4n5d,      // 5 days - Quick honeymoon
   romanticHideaway,   // 6 days - Romantic Hideaway
   honeymoon5n6d,      // 6 days - Time mapped
+  luxuryHoneymoon,    // 7 days - New Luxury
 
   // Luxury Packages - sorted by duration
   luxury4n5d,         // 5 days - Premium
   ultimateAdventure,  // 7 days - Adventure
   luxuryEscape,       // 7 days - Ultra luxury
+  adventureThrill,    // 6 days - New Adventure
 
   // Family Packages - sorted by duration
   family4n5d,         // 5 days - Quick family fun

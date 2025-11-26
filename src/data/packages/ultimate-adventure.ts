@@ -1,4 +1,5 @@
 import { Package } from '../packages';
+import { commonPaymentPolicy, commonTips, commonCancellationPolicy, commonTerms } from '../commonPolicies';
 
 export const ultimateAdventure: Package = {
   slug: 'ultimate-andaman-adventure',
@@ -97,7 +98,9 @@ export const ultimateAdventure: Package = {
       image: 'https://images.pexels.com/photos/307008/pexels-photo-307008.jpeg'
     }
   ],
-  terms: ['50% advance payment required', 'Cancellation charges apply as per policy'],
+  terms: commonTerms,
+  paymentPolicy: commonPaymentPolicy,
+  tips: commonTips,
   pricingOptions: [
     { days: 7, pricePerPerson: 45000, title: 'Standard Adventure' },
     { days: 7, pricePerPerson: 55000, title: 'Premium Adventure' }
@@ -105,5 +108,5 @@ export const ultimateAdventure: Package = {
   hotels: [],
   supplements: [],
   pickupLocations: ['Port Blair Airport'],
-  cancellationPolicy: ['Full refund if cancelled 30 days prior']
+  cancellationPolicy: commonCancellationPolicy
 };

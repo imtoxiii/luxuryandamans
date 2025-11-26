@@ -1,4 +1,5 @@
 import { Package } from '../packages';
+import { commonPaymentPolicy, commonTips, commonCancellationPolicy, commonTerms } from '../commonPolicies';
 
 export const luxury4n5d: Package = {
   title: "Luxury Escape - 4N/5D Premium",
@@ -116,11 +117,9 @@ export const luxury4n5d: Package = {
       image: "/images/packages/luxury-4n5d/highlight-exclusive.jpg"
     }
   ],
-  terms: [
-    "50% advance payment required",
-    "Luxury suite subject to availability",
-    "All activities weather dependent"
-  ],
+  terms: commonTerms,
+  paymentPolicy: commonPaymentPolicy,
+  tips: commonTips,
   pricingOptions: [
     { days: 5, pricePerPerson: 65000, title: "5 Days Luxury Experience" }
   ],
@@ -166,9 +165,6 @@ export const luxury4n5d: Package = {
     }
   ],
   pickupLocations: ["Port Blair Airport VIP Lounge"],
-  cancellationPolicy: [
-    "Free cancellation up to 15 days",
-    "50% charge within 15 days"
-  ],
+  cancellationPolicy: commonCancellationPolicy,
   slug: "luxury-escape-4n5d-premium"
 };

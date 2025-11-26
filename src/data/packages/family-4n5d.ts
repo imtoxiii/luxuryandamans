@@ -1,4 +1,5 @@
 import { Package } from '../packages';
+import { commonPaymentPolicy, commonTips, commonCancellationPolicy, commonTerms } from '../commonPolicies';
 
 export const family4n5d: Package = {
   title: "Family Fun - 4N/5D Quick Getaway",
@@ -116,12 +117,9 @@ export const family4n5d: Package = {
       image: "/images/packages/family-4n5d/highlight-wildlife.jpg"
     }
   ],
-  terms: [
-    "40% advance payment required",
-    "Child rates: 5-12 years ₹15,000",
-    "Below 5 years complimentary",
-    "Adult supervision required for all activities"
-  ],
+  terms: commonTerms,
+  paymentPolicy: commonPaymentPolicy,
+  tips: commonTips,
   pricingOptions: [
     { days: 5, pricePerPerson: 22000, title: "5 Days Family Fun (Adult)" },
     { days: 5, pricePerPerson: 15000, title: "Child Rate (5-12 years)" }
@@ -168,9 +166,6 @@ export const family4n5d: Package = {
     }
   ],
   pickupLocations: ["Port Blair Airport"],
-  cancellationPolicy: [
-    "Free cancellation up to 10 days",
-    "50% charge within 10 days"
-  ],
+  cancellationPolicy: commonCancellationPolicy,
   slug: "family-fun-4n5d-quick-getaway"
 };

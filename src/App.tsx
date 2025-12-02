@@ -8,6 +8,7 @@ import Home from './pages/Home'; // Keep Home page eager for faster initial load
 import ChatWidget from './components/ChatWidget';
 import PrefetchManager from './components/PrefetchManager';
 import { removeLoader } from './lib/loader';
+import DiscountPopup from './components/DiscountPopup';
 
 // Lazy load non-critical pages
 const DestinationsPage = lazy(() => import('./pages/Destinations'));
@@ -148,6 +149,7 @@ function App() {
         </Routes>
       </Suspense>
       <ChatWidget />
+      <DiscountPopup />
       <PrefetchManager />
 
       {/* Transition walls - appear over the page content */}

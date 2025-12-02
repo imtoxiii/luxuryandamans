@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Gift, Phone, ArrowRight, Sparkles } from 'lucide-react';
+import { X, Phone, ArrowRight, Gift, Sparkles } from 'lucide-react';
 import { sendTelegramMessage } from '../lib/telegram';
 import toast from 'react-hot-toast';
 
@@ -11,35 +11,33 @@ const DiscountPopup = () => {
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     useEffect(() => {
-        // Show popup after 15 seconds
+        // Show popup after 10 seconds
         const timer = setTimeout(() => {
-            setIsOpen(true);
-            // Push state to handle back button closing on mobile
-            if (window.history.state?.popup !== true) {
-                window.history.pushState({ popup: true }, '');
+            const hasSeenPopup = sessionStorage.getItem('hasSeenDiscountPopup');
+            if (!hasSeenPopup) {
+                setIsOpen(true);
+                if (window.history.state?.popup !== true) {
+                    window.history.pushState({ popup: true }, '');
+                }
             }
-        }, 15000);
+        }, 10000);
 
         return () => clearTimeout(timer);
     }, []);
 
     useEffect(() => {
-        const handlePopState = (event: PopStateEvent) => {
+        const handlePopState = () => {
             if (isOpen) {
                 setIsOpen(false);
-                // Prevent default back behavior if needed, though popstate usually means it already happened
             }
         };
-
         window.addEventListener('popstate', handlePopState);
         return () => window.removeEventListener('popstate', handlePopState);
     }, [isOpen]);
 
     const handleClose = () => {
         setIsOpen(false);
-        // If we pushed state, we should go back to keep history clean, 
-        // but checking history.state is tricky. 
-        // Safest is just to close. If user presses back later, they go back to previous page.
+        sessionStorage.setItem('hasSeenDiscountPopup', 'true');
         if (window.history.state?.popup === true) {
             window.history.back();
         }
@@ -51,14 +49,11 @@ const DiscountPopup = () => {
 
         setIsSubmitting(true);
         try {
-            await sendTelegramMessage(`🎁 *New Discount Claim*\n\nPhone: ${phone}\nOffer: 10% OFF`);
-            toast.success('Discount code sent to your phone!');
+            await sendTelegramMessage(`🎁 *Discount Popup Claim*\n\nPhone: ${phone}\nOffer: FLAT 15% OFF + Free Candle Light Dinner`);
+            toast.success('Offer claimed! We will call you shortly.');
             setHasSubmitted(true);
             setTimeout(() => {
-                setIsOpen(false);
-                if (window.history.state?.popup === true) {
-                    window.history.back();
-                }
+                handleClose();
             }, 3000);
         } catch (error) {
             console.error('Failed to send discount claim', error);
@@ -71,103 +66,99 @@ const DiscountPopup = () => {
     return (
         <AnimatePresence>
             {isOpen && (
-                <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-sm">
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.9, y: 100 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.9, y: 100 }}
-                        className="relative w-full max-w-md bg-white sm:rounded-3xl rounded-t-3xl shadow-2xl overflow-hidden"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={handleClose}
+                        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+                    />
+
+                    <motion.div
+                        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                        animate={{ scale: 1, opacity: 1, y: 0 }}
+                        exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                        transition={{ type: "spring", duration: 0.5 }}
+                        className="relative w-full max-w-md overflow-hidden rounded-3xl border border-white/20 bg-purple-900/40 backdrop-blur-xl shadow-2xl"
                     >
-                        {/* Close Button */}
+                        {/* Decorative Elements */}
+                        <div className="absolute -top-20 -left-20 w-40 h-40 bg-purple-500 rounded-full blur-[100px] opacity-50 pointer-events-none" />
+                        <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-pink-500 rounded-full blur-[100px] opacity-50 pointer-events-none" />
+
                         <button
                             onClick={handleClose}
-                            className="absolute top-3 right-3 p-2 bg-black/20 hover:bg-black/30 backdrop-blur-md rounded-full transition-colors z-50 text-white"
+                            className="absolute top-4 right-4 p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-colors z-10"
                         >
                             <X className="w-5 h-5" />
                         </button>
 
-                        <div className="flex flex-col">
-                            {/* Header Image/Gradient */}
-                            <div className="bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-600 p-8 text-center relative overflow-hidden">
-                                {/* Decorative Elements */}
-                                <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-                                    <div className="absolute top-[-20%] left-[-20%] w-64 h-64 bg-purple-400/30 rounded-full blur-3xl animate-pulse"></div>
-                                    <div className="absolute bottom-[-20%] right-[-20%] w-64 h-64 bg-indigo-400/30 rounded-full blur-3xl animate-pulse delay-700"></div>
-                                    <div className="absolute top-10 right-10 w-4 h-4 bg-yellow-300 rounded-full animate-bounce"></div>
-                                    <div className="absolute bottom-10 left-10 w-3 h-3 bg-pink-300 rounded-full animate-ping"></div>
-                                </div>
+                        <div className="p-8 relative z-0 text-center">
+                            {!hasSubmitted ? (
+                                <>
+                                    <motion.div 
+                                        initial={{ scale: 0 }}
+                                        animate={{ scale: 1 }}
+                                        transition={{ delay: 0.2, type: "spring" }}
+                                        className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/30 rotate-3"
+                                    >
+                                        <Gift className="w-10 h-10 text-white" />
+                                    </motion.div>
 
-                                <div className="relative z-10">
-                                    <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-md rounded-2xl mb-4 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] border border-white/20 transform rotate-3 hover:rotate-6 transition-transform duration-300">
-                                        <Gift className="w-10 h-10 text-white drop-shadow-md" />
-                                    </div>
-                                    <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">
-                                        <span className="inline-block animate-bounce delay-100">1</span>
-                                        <span className="inline-block animate-bounce delay-200">0</span>
-                                        <span className="inline-block animate-bounce delay-300">%</span>
-                                        <span className="ml-2">OFF</span>
+                                    <h2 className="text-3xl font-bold text-white mb-2 font-display">
+                                        Exclusive Offer
                                     </h2>
-                                    <p className="text-purple-100 font-medium text-lg">Your Dream Vacation Awaits!</p>
-                                </div>
-                            </div>
+                                    <p className="text-purple-200 mb-8 text-sm leading-relaxed">
+                                        Get <span className="font-bold text-white">FLAT 15% OFF</span> + Free Candle Light Dinner on your first booking!
+                                    </p>
 
-                            {/* Content */}
-                            <div className="p-8 bg-white">
-                                {!hasSubmitted ? (
-                                    <>
-                                        <div className="flex items-center justify-center gap-2 mb-6 text-gray-600 bg-purple-50 py-2 px-4 rounded-full w-fit mx-auto">
-                                            <Sparkles className="w-4 h-4 text-purple-500" />
-                                            <span className="text-sm font-medium">Limited Time Offer</span>
+                                    <form onSubmit={handleSubmit} className="space-y-4">
+                                        <div className="relative group">
+                                            <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-purple-300 group-focus-within:text-white transition-colors" />
+                                            <input
+                                                type="tel"
+                                                value={phone}
+                                                onChange={(e) => setPhone(e.target.value)}
+                                                placeholder="Enter Phone Number"
+                                                className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/10 rounded-xl text-white placeholder:text-purple-200/50 focus:outline-none focus:ring-2 focus:ring-purple-400/50 focus:bg-white/20 transition-all"
+                                                required
+                                            />
                                         </div>
 
-                                        <p className="text-gray-600 text-center mb-6">
-                                            Unlock an exclusive <strong>10% discount</strong> on your first booking.
-                                        </p>
-
-                                        <form onSubmit={handleSubmit} className="space-y-4">
-                                            <div className="relative group">
-                                                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-purple-600 transition-colors" />
-                                                <input
-                                                    type="tel"
-                                                    inputMode="numeric"
-                                                    pattern="[0-9]*"
-                                                    autoComplete="tel"
-                                                    value={phone}
-                                                    onChange={(e) => setPhone(e.target.value)}
-                                                    placeholder="Enter mobile number"
-                                                    className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-lg font-medium placeholder:font-normal"
-                                                    required
-                                                />
-                                            </div>
-                                            <button
-                                                type="submit"
-                                                disabled={isSubmitting}
-                                                className="w-full py-4 bg-gradient-to-r from-violet-600 to-indigo-600 text-white rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-purple-500/30 transition-all transform hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
-                                            >
-                                                {isSubmitting ? 'Unlocking...' : 'Claim My Discount'}
-                                                {!isSubmitting && <ArrowRight className="w-5 h-5" />}
-                                            </button>
-                                        </form>
-                                        <p className="text-xs text-gray-400 text-center mt-4">
-                                            *By claiming, you agree to receive a call from our expert.
-                                        </p>
-                                    </>
-                                ) : (
-                                    <div className="text-center py-8">
-                                        <motion.div
-                                            initial={{ scale: 0 }}
-                                            animate={{ scale: 1 }}
-                                            className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6"
+                                        <button
+                                            type="submit"
+                                            disabled={isSubmitting}
+                                            className="w-full py-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white rounded-xl font-bold shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                                         >
-                                            <Gift className="w-10 h-10 text-green-600" />
-                                        </motion.div>
-                                        <h3 className="text-2xl font-bold text-gray-800 mb-2">Discount Unlocked!</h3>
-                                        <p className="text-gray-600">
-                                            Our travel expert will call you shortly with your special offer.
-                                        </p>
-                                    </div>
-                                )}
-                            </div>
+                                            {isSubmitting ? (
+                                                'Claiming...'
+                                            ) : (
+                                                <>
+                                                    Claim Reward <ArrowRight className="w-5 h-5" />
+                                                </>
+                                            )}
+                                        </button>
+                                    </form>
+                                    
+                                    <p className="mt-4 text-xs text-purple-300/60">
+                                        *Limited time offer. Valid for new bookings only.
+                                    </p>
+                                </>
+                            ) : (
+                                <div className="py-10">
+                                    <motion.div
+                                        initial={{ scale: 0 }}
+                                        animate={{ scale: 1 }}
+                                        className="w-20 h-20 mx-auto mb-6 bg-green-500 rounded-full flex items-center justify-center shadow-lg shadow-green-500/30"
+                                    >
+                                        <Sparkles className="w-10 h-10 text-white" />
+                                    </motion.div>
+                                    <h3 className="text-2xl font-bold text-white mb-2">Offer Claimed!</h3>
+                                    <p className="text-purple-200">
+                                        Our travel expert will call you shortly to apply your discount.
+                                    </p>
+                                </div>
+                            )}
                         </div>
                     </motion.div>
                 </div>
@@ -177,3 +168,4 @@ const DiscountPopup = () => {
 };
 
 export default DiscountPopup;
+

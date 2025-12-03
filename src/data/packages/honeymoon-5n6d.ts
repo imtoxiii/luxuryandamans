@@ -167,6 +167,300 @@ export const honeymoon5n6d: Package = {
       sightseeing: ["Ross Island (Netaji Subhash Chandra Bose Island)", "Aberdeen Bazaar", "Anthropological Museum"]
     }
   ],
+  itineraries: {
+    5: [
+      {
+        day: "Day 1",
+        title: "Arrival – Port Blair | Heritage & Beaches",
+        description: "Arrive at Veer Savarkar International Airport. Visit Cellular Jail and Corbyn's Cove Beach. Evening Light & Sound Show.",
+        activities: ["Airport Pickup", "Cellular Jail", "Light & Sound Show"],
+        hotel: {
+          name: "Hotel Sentinel",
+          location: "Port Blair",
+          rating: 4,
+          image: "/images/packages/honeymoon-5n6d/hotel-port-blair.jpg",
+          amenities: ["Free WiFi", "Restaurant", "Room Service", "Air Conditioning", "Honeymoon Suite"],
+          description: "Comfortable hotel in Port Blair"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Cellular Jail", "Corbyn's Cove Beach"]
+      },
+      {
+        day: "Day 2",
+        title: "Port Blair → Havelock Island",
+        description: "Ferry to Havelock. Visit Radhanagar Beach for sunset.",
+        activities: ["Ferry Transfer", "Radhanagar Beach Sunset"],
+        hotel: {
+          name: "Havelock Island Beach Resort",
+          location: "Havelock Island",
+          rating: 4,
+          image: "/images/packages/honeymoon-5n6d/hotel-havelock.jpg",
+          amenities: ["Beachfront", "Restaurant", "Water Sports Desk", "WiFi"],
+          description: "Beautiful beachfront resort"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 3",
+        title: "Havelock → Neil Island",
+        description: "Morning Elephant Beach trip. Afternoon ferry to Neil Island. Sunset at Laxmanpur Beach.",
+        activities: ["Elephant Beach", "Ferry to Neil", "Laxmanpur Beach Sunset"],
+        hotel: {
+          name: "Neil Island Beach Resort",
+          location: "Neil Island",
+          rating: 3,
+          image: "/images/packages/honeymoon-5n6d/hotel-neil.jpg",
+          amenities: ["Beach Access", "Restaurant"],
+          description: "Peaceful resort on Neil Island"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Elephant Beach", "Laxmanpur Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Neil → Port Blair",
+        description: "Visit Natural Rock Bridge. Ferry back to Port Blair. Shopping in evening.",
+        activities: ["Natural Bridge", "Ferry to Port Blair", "Shopping"],
+        hotel: {
+          name: "Hotel Sentinel",
+          location: "Port Blair",
+          rating: 4,
+          image: "/images/packages/honeymoon-5n6d/hotel-port-blair.jpg",
+          amenities: ["Free WiFi", "Restaurant"],
+          description: "Comfortable hotel in Port Blair"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Natural Rock Bridge", "Aberdeen Bazaar"]
+      },
+      {
+        day: "Day 5",
+        title: "Departure",
+        description: "Transfer to airport for departure.",
+        activities: ["Airport Transfer"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ],
+    6: [
+      {
+        day: "Day 1",
+        title: "Arrival – Port Blair | Heritage & Beaches",
+        description: "Arrive at Veer Savarkar International Airport and begin your romantic Andaman journey. After checking into your hotel, explore the historical Cellular Jail and relax at the beautiful Corbyn's Cove Beach. End the day with the mesmerizing Light & Sound Show that brings history to life.",
+        activities: [
+          "Airport pickup around 12:00 PM",
+          "Hotel check-in at 12:30 PM",
+          "After lunch visit Cellular Jail (2:00 PM)",
+          "Corbyn's Cove Beach photography session",
+          "Light & Sound Show at Cellular Jail (6:00 PM - 7:00 PM)"
+        ],
+        hotel: {
+          name: "Hotel Sentinel",
+          location: "Port Blair",
+          rating: 4,
+          image: "/images/packages/honeymoon-5n6d/hotel-port-blair.jpg",
+          amenities: ["Free WiFi", "Restaurant", "Room Service", "Air Conditioning", "Honeymoon Suite"],
+          description: "Comfortable hotel in Port Blair with modern amenities and honeymoon-friendly rooms"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Cellular Jail", "Corbyn's Cove Beach", "Light & Sound Show"]
+      },
+      {
+        day: "Day 2",
+        title: "Port Blair → Havelock Island | Beach Paradise",
+        description: "Take a scenic ferry ride to the stunning Havelock Island, home to some of Asia's best beaches. Visit the unique Kalapathar Beach and the world-famous Radhanagar Beach for a magical sunset experience.",
+        activities: [
+          "Hotel check-out at 8:00 AM",
+          "Private Ferry departure at 8:45 AM",
+          "Arrive Havelock at 10:15 AM",
+          "Resort check-in at 11:00 AM",
+          "Visit Kalapathar Beach (12:00 PM - 2:30 PM) with lunch",
+          "Visit Radhanagar Beach for sunset (3:45 PM onwards)",
+          "Romantic beach walk and photography"
+        ],
+        hotel: {
+          name: "Havelock Island Beach Resort",
+          location: "Havelock Island",
+          rating: 4,
+          image: "/images/packages/honeymoon-5n6d/hotel-havelock.jpg",
+          amenities: ["Beachfront", "Restaurant", "Water Sports Desk", "WiFi", "Honeymoon Package"],
+          description: "Beautiful beachfront resort on Havelock with direct beach access"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Kalapathar Beach", "Radhanagar Beach (Beach No. 7)"]
+      },
+      {
+        day: "Day 3",
+        title: "Havelock Adventure | Scuba Diving + Elephant Beach",
+        description: "Experience the underwater world with professional scuba diving including photos and videos. Then head to Elephant Beach for complimentary snorkeling and optional water sports activities.",
+        activities: [
+          "Scuba Diving - Early morning scuba diving session at 5:30 AM",
+          "Snorkeling - Complimentary snorkeling at Elephant Beach",
+          "Jetski - High-speed jetski rides (optional)",
+          "Parasailing - Soar above the ocean (optional)",
+          "Banana Ride - Fun group activity (optional)",
+          "Glass Bottom Boat - View coral without getting wet (optional)",
+          "Sea Walk - Walk underwater with helmet (optional)"
+        ],
+        meals: ["Breakfast"],
+        sightseeing: ["Scuba Diving Site", "Elephant Beach", "Coral Reefs"]
+      },
+      {
+        day: "Day 4",
+        title: "Havelock → Neil Island | Tranquil Beaches",
+        description: "Transfer to the peaceful Neil Island, known for its serene atmosphere. Explore Bharatpur Beach with optional water sports and witness a stunning sunset at Laxmanpur Beach.",
+        activities: [
+          "Hotel check-out at 9:00 AM",
+          "Ferry to Neil Island at 10:00 AM",
+          "Arrive Neil at 11:00 AM, check-in at 12:00 PM",
+          "Visit Bharatpur Beach for swimming (2:00 PM)",
+          "Optional water sports at Bharatpur",
+          "Visit Laxmanpur Beach for sunset (till 5:30 PM)",
+          "Romantic beach evening"
+        ],
+        hotel: {
+          name: "Neil Island Beach Resort",
+          location: "Neil Island",
+          rating: 3,
+          image: "/images/packages/honeymoon-5n6d/hotel-neil.jpg",
+          amenities: ["Beach Access", "Restaurant", "WiFi", "Garden", "Bicycle Rental"],
+          description: "Peaceful resort on Neil Island offering tranquility and natural beauty"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Bharatpur Beach", "Laxmanpur Beach"]
+      },
+      {
+        day: "Day 5",
+        title: "Neil → Port Blair | Natural Wonders & Sunset",
+        description: "Explore Neil's famous Natural Rock Bridge (Howrah Bridge) before returning to Port Blair. End the day with a spectacular sunset at Chidiya Tapu, the southernmost tip of South Andaman.",
+        activities: [
+          "Visit Natural Rock Bridge at 8:30 AM",
+          "Hotel checkout and ferry transfer",
+          "Ferry to Port Blair at 11:30 AM (arrive 12:30 PM)",
+          "Hotel check-in at 1:00 PM",
+          "Visit Chidiya Tapu Sunset Point (3:30 PM - 7:00 PM)",
+          "Bird watching and beach photography"
+        ],
+        hotel: {
+          name: "Hotel Sentinel",
+          location: "Port Blair",
+          rating: 4,
+          image: "/images/packages/honeymoon-5n6d/hotel-port-blair.jpg",
+          amenities: ["Free WiFi", "Restaurant", "Room Service", "Air Conditioning"],
+          description: "Comfortable hotel in Port Blair"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Natural Rock Bridge (Howrah Bridge)", "Chidiya Tapu Sunset Point"]
+      },
+      {
+        day: "Day 6",
+        title: "Ross Island + Shopping | Departure",
+        description: "On your final day, explore the historical ruins of Ross Island before some last-minute shopping at Aberdeen Bazaar. Collect memories and souvenirs before your departure.",
+        activities: [
+          "Breakfast at hotel",
+          "15-minute boat ride to Ross Island at 9:00 AM",
+          "Explore ruins, deer, peacocks, ocean pathways",
+          "Return to city by 1:00 PM",
+          "Shopping at Aberdeen Bazaar (4:00 PM - 8:00 PM)",
+          "Buy pearls, handicrafts, shell items, souvenirs",
+          "Visit Anthropological Museum (if time permits)",
+          "Hotel checkout and airport transfer for departure"
+        ],
+        meals: ["Breakfast"],
+        sightseeing: ["Ross Island (Netaji Subhash Chandra Bose Island)", "Aberdeen Bazaar", "Anthropological Museum"]
+      }
+    ],
+    7: [
+      {
+        day: "Day 1",
+        title: "Arrival – Port Blair",
+        description: "Arrive at Port Blair. Visit Cellular Jail and Light & Sound Show.",
+        activities: ["Airport Pickup", "Cellular Jail", "Light & Sound Show"],
+        hotel: {
+          name: "Hotel Sentinel",
+          location: "Port Blair",
+          rating: 4,
+          image: "/images/packages/honeymoon-5n6d/hotel-port-blair.jpg",
+          amenities: ["Free WiFi", "Restaurant", "Honeymoon Suite"],
+          description: "Comfortable hotel in Port Blair"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Cellular Jail", "Light & Sound Show"]
+      },
+      {
+        day: "Day 2",
+        title: "Port Blair → Havelock Island",
+        description: "Ferry to Havelock. Visit Radhanagar Beach.",
+        activities: ["Ferry Transfer", "Radhanagar Beach"],
+        hotel: {
+          name: "Havelock Island Beach Resort",
+          location: "Havelock Island",
+          rating: 4,
+          image: "/images/packages/honeymoon-5n6d/hotel-havelock.jpg",
+          amenities: ["Beachfront", "Restaurant"],
+          description: "Beautiful beachfront resort"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 3",
+        title: "Havelock - Scuba Diving",
+        description: "Morning Scuba Diving. Leisure afternoon.",
+        activities: ["Scuba Diving"],
+        meals: ["Breakfast"],
+        sightseeing: ["Scuba Diving Site"]
+      },
+      {
+        day: "Day 4",
+        title: "Havelock - Elephant Beach",
+        description: "Visit Elephant Beach for water sports.",
+        activities: ["Elephant Beach", "Snorkeling"],
+        meals: ["Breakfast"],
+        sightseeing: ["Elephant Beach"]
+      },
+      {
+        day: "Day 5",
+        title: "Havelock → Neil Island",
+        description: "Ferry to Neil Island. Visit Laxmanpur Beach.",
+        activities: ["Ferry Transfer", "Laxmanpur Beach"],
+        hotel: {
+          name: "Neil Island Beach Resort",
+          location: "Neil Island",
+          rating: 3,
+          image: "/images/packages/honeymoon-5n6d/hotel-neil.jpg",
+          amenities: ["Beach Access", "Restaurant"],
+          description: "Peaceful resort on Neil Island"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Laxmanpur Beach"]
+      },
+      {
+        day: "Day 6",
+        title: "Neil → Port Blair",
+        description: "Visit Natural Bridge. Ferry to Port Blair. Chidiya Tapu Sunset.",
+        activities: ["Natural Bridge", "Ferry Transfer", "Chidiya Tapu"],
+        hotel: {
+          name: "Hotel Sentinel",
+          location: "Port Blair",
+          rating: 4,
+          image: "/images/packages/honeymoon-5n6d/hotel-port-blair.jpg",
+          amenities: ["Free WiFi", "Restaurant"],
+          description: "Comfortable hotel in Port Blair"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Natural Bridge", "Chidiya Tapu"]
+      },
+      {
+        day: "Day 7",
+        title: "Departure",
+        description: "Transfer to airport.",
+        activities: ["Airport Transfer"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ]
+  },
   highlights: [
     {
       title: "Professional Scuba Diving",
@@ -194,9 +488,19 @@ export const honeymoon5n6d: Package = {
   tips: commonTips,
   pricingOptions: [
     { 
+      days: 5, 
+      pricePerPerson: 32000, 
+      title: "5 Days Express Honeymoon" 
+    },
+    { 
       days: 6, 
       pricePerPerson: 38000, 
-      title: "6 Days Time Mapped Honeymoon Package" 
+      title: "6 Days Time Mapped Honeymoon" 
+    },
+    { 
+      days: 7, 
+      pricePerPerson: 45000, 
+      title: "7 Days Relaxed Honeymoon" 
     }
   ],
   hotels: [

@@ -8,8 +8,8 @@
     "npm": ">=9.0.0"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build && npm run sitemap",
+    "dev": "node scripts/generate-image-manifest.cjs && vite",
+    "build": "node scripts/generate-image-manifest.cjs && tsc && vite build && npm run sitemap",
     "lint": "eslint .",
     "preview": "vite preview",
     "clean": "rm -rf node_modules package-lock.json",

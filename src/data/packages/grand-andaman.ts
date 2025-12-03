@@ -7,7 +7,7 @@ export const grandAndaman: Package = {
   description: 'An 8-day comprehensive tour covering the best of Port Blair, Havelock, Neil, and Baratang.',
   longDescription: 'The Grand Andaman Tour is the ultimate way to experience the diversity of the islands. From the historical significance of Port Blair to the natural wonders of Baratang and the pristine beaches of Havelock and Neil, this 8-day itinerary covers it all. Perfect for families and groups who want to see everything.',
   price: 52000,
-  duration: '7 Nights / 8 Days',
+  duration: '8 days',
   groupSize: '4-12 People',
   image: 'https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg',
   features: ['Comprehensive Tour', 'History & Nature', 'All Major Islands', 'Family Friendly'],
@@ -94,6 +94,206 @@ export const grandAndaman: Package = {
       sightseeing: []
     }
   ],
+  itineraries: {
+    7: [
+      {
+        day: 'Day 1',
+        title: 'Arrival & City Tour',
+        description: 'Arrival at Port Blair. Visit Anthropological Museum, Fisheries Museum, and Cellular Jail.',
+        activities: ['Museum Visits', 'Light & Sound Show'],
+        meals: ['Dinner'],
+        sightseeing: ['Cellular Jail', 'Anthropological Museum', 'Fisheries Museum']
+      },
+      {
+        day: 'Day 2',
+        title: 'Ross & North Bay Islands',
+        description: 'Full day excursion to Ross Island and North Bay Coral Island.',
+        activities: ['Boat Ride', 'Coral Viewing'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Ross Island', 'North Bay']
+      },
+      {
+        day: 'Day 3',
+        title: 'Port Blair to Havelock',
+        description: 'Cruise to Havelock. Afternoon visit to Radhanagar Beach.',
+        activities: ['Cruise Transfer', 'Beach Visit'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Radhanagar Beach']
+      },
+      {
+        day: 'Day 4',
+        title: 'Elephant Beach Excursion',
+        description: 'Boat ride to Elephant Beach for water sports. Evening at leisure.',
+        activities: ['Snorkeling', 'Sea Walk (Optional)'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Elephant Beach']
+      },
+      {
+        day: 'Day 5',
+        title: 'Havelock to Neil to Port Blair',
+        description: 'Transfer to Neil Island for sightseeing, then return to Port Blair.',
+        activities: ['Ferry Transfer', 'Sightseeing', 'Return to PB'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Bharatpur Beach', 'Laxmanpur Beach']
+      },
+      {
+        day: 'Day 6',
+        title: 'Baratang Day Trip',
+        description: 'Early morning trip to Baratang to see Limestone Caves.',
+        activities: ['Jungle Journey', 'Cave Visit'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Limestone Caves']
+      },
+      {
+        day: 'Day 7',
+        title: 'Departure',
+        description: 'Transfer to airport for your onward journey.',
+        activities: ['Airport Drop'],
+        meals: ['Breakfast'],
+        sightseeing: []
+      }
+    ],
+    8: [
+      {
+        day: 'Day 1',
+        title: 'Arrival & City Tour',
+        description: 'Arrival at Port Blair. Visit Anthropological Museum, Fisheries Museum, and Cellular Jail.',
+        activities: ['Museum Visits', 'Light & Sound Show'],
+        meals: ['Dinner'],
+        sightseeing: ['Cellular Jail', 'Anthropological Museum', 'Fisheries Museum']
+      },
+      {
+        day: 'Day 2',
+        title: 'Ross & North Bay Islands',
+        description: 'Full day excursion to Ross Island and North Bay Coral Island.',
+        activities: ['Boat Ride', 'Coral Viewing'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Ross Island', 'North Bay']
+      },
+      {
+        day: 'Day 3',
+        title: 'Port Blair to Havelock',
+        description: 'Cruise to Havelock. Afternoon visit to Radhanagar Beach.',
+        activities: ['Cruise Transfer', 'Beach Visit'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Radhanagar Beach']
+      },
+      {
+        day: 'Day 4',
+        title: 'Elephant Beach Excursion',
+        description: 'Boat ride to Elephant Beach for water sports. Evening at leisure.',
+        activities: ['Snorkeling', 'Sea Walk (Optional)'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Elephant Beach']
+      },
+      {
+        day: 'Day 5',
+        title: 'Havelock to Neil Island',
+        description: 'Transfer to Neil Island. Visit Bharatpur, Laxmanpur, and Natural Bridge.',
+        activities: ['Ferry Transfer', 'Sightseeing'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Bharatpur Beach', 'Laxmanpur Beach', 'Natural Bridge']
+      },
+      {
+        day: 'Day 6',
+        title: 'Neil to Port Blair',
+        description: 'Return to Port Blair. Evening shopping at Sagarika Emporium.',
+        activities: ['Ferry Transfer', 'Shopping'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Sagarika Emporium']
+      },
+      {
+        day: 'Day 7',
+        title: 'Baratang Day Trip',
+        description: 'Early morning trip to Baratang to see Limestone Caves.',
+        activities: ['Jungle Journey', 'Cave Visit'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Limestone Caves']
+      },
+      {
+        day: 'Day 8',
+        title: 'Departure',
+        description: 'Transfer to airport for your onward journey.',
+        activities: ['Airport Drop'],
+        meals: ['Breakfast'],
+        sightseeing: []
+      }
+    ],
+    9: [
+      {
+        day: 'Day 1',
+        title: 'Arrival & City Tour',
+        description: 'Arrival at Port Blair. Visit Anthropological Museum, Fisheries Museum, and Cellular Jail.',
+        activities: ['Museum Visits', 'Light & Sound Show'],
+        meals: ['Dinner'],
+        sightseeing: ['Cellular Jail', 'Anthropological Museum', 'Fisheries Museum']
+      },
+      {
+        day: 'Day 2',
+        title: 'Ross & North Bay Islands',
+        description: 'Full day excursion to Ross Island and North Bay Coral Island.',
+        activities: ['Boat Ride', 'Coral Viewing'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Ross Island', 'North Bay']
+      },
+      {
+        day: 'Day 3',
+        title: 'Port Blair to Havelock',
+        description: 'Cruise to Havelock. Afternoon visit to Radhanagar Beach.',
+        activities: ['Cruise Transfer', 'Beach Visit'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Radhanagar Beach']
+      },
+      {
+        day: 'Day 4',
+        title: 'Elephant Beach Excursion',
+        description: 'Boat ride to Elephant Beach for water sports. Evening at leisure.',
+        activities: ['Snorkeling', 'Sea Walk (Optional)'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Elephant Beach']
+      },
+      {
+        day: 'Day 5',
+        title: 'Havelock Leisure',
+        description: 'Day at leisure to explore Havelock or relax at the resort.',
+        activities: ['Leisure', 'Optional Water Sports'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Havelock Island']
+      },
+      {
+        day: 'Day 6',
+        title: 'Havelock to Neil Island',
+        description: 'Transfer to Neil Island. Visit Bharatpur, Laxmanpur, and Natural Bridge.',
+        activities: ['Ferry Transfer', 'Sightseeing'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Bharatpur Beach', 'Laxmanpur Beach', 'Natural Bridge']
+      },
+      {
+        day: 'Day 7',
+        title: 'Neil to Port Blair',
+        description: 'Return to Port Blair. Evening shopping at Sagarika Emporium.',
+        activities: ['Ferry Transfer', 'Shopping'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Sagarika Emporium']
+      },
+      {
+        day: 'Day 8',
+        title: 'Baratang Day Trip',
+        description: 'Early morning trip to Baratang to see Limestone Caves.',
+        activities: ['Jungle Journey', 'Cave Visit'],
+        meals: ['Breakfast', 'Dinner'],
+        sightseeing: ['Limestone Caves']
+      },
+      {
+        day: 'Day 9',
+        title: 'Departure',
+        description: 'Transfer to airport for your onward journey.',
+        activities: ['Airport Drop'],
+        meals: ['Breakfast'],
+        sightseeing: []
+      }
+    ]
+  },
   highlights: [
     {
       title: 'All-in-One',
@@ -110,8 +310,9 @@ export const grandAndaman: Package = {
   paymentPolicy: commonPaymentPolicy,
   tips: commonTips,
   pricingOptions: [
-    { days: 8, pricePerPerson: 52000, title: 'Standard Grand' },
-    { days: 8, pricePerPerson: 62000, title: 'Deluxe Grand' }
+    { days: 7, pricePerPerson: 48000, title: '7 Days Grand Express' },
+    { days: 8, pricePerPerson: 52000, title: '8 Days Grand Tour' },
+    { days: 9, pricePerPerson: 58000, title: '9 Days Grand Leisure' }
   ],
   hotels: [],
   supplements: [],

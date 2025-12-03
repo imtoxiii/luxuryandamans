@@ -1,4 +1,3 @@
-
 import { Package } from '../packages';
 import { commonPaymentPolicy, commonTips, commonCancellationPolicy, commonTerms } from '../commonPolicies';
 
@@ -8,7 +7,7 @@ export const romanticHideaway: Package = {
     description: 'A 6-day intimate escape designed for couples, featuring candlelight dinners and private beach moments.',
     longDescription: 'Celebrate your love in the lap of nature with our Romantic Island Hideaway package. Enjoy private beach walks, romantic candlelight dinners, and couple spa sessions. Stay in luxury cottages and experience the magic of the Andamans with your significant other.',
     price: 65000,
-    duration: '5 Nights / 6 Days',
+    duration: '6 days',
     groupSize: 'Couple',
     image: 'https://images.pexels.com/photos/1024960/pexels-photo-1024960.jpeg',
     features: ['Candlelight Dinner', 'Couple Spa', 'Private Beach Access', 'Flower Decoration'],
@@ -78,6 +77,158 @@ export const romanticHideaway: Package = {
             sightseeing: []
         }
     ],
+    itineraries: {
+        5: [
+            {
+                day: 'Day 1',
+                title: 'Arrival & Romantic Sunset',
+                description: 'Welcome to Port Blair. Transfer to your luxury hotel. Enjoy a sunset view at Chidiya Tapu.',
+                activities: ['Airport Pickup', 'Sunset View'],
+                meals: ['Dinner'],
+                sightseeing: ['Chidiya Tapu']
+            },
+            {
+                day: 'Day 2',
+                title: 'Havelock - Beachside Bliss',
+                description: 'Private ferry to Havelock. Check into your beachside resort. Evening leisure at the beach.',
+                activities: ['Luxury Ferry', 'Beach Walk'],
+                meals: ['Breakfast', 'Dinner'],
+                sightseeing: ['Radhanagar Beach']
+            },
+            {
+                day: 'Day 3',
+                title: 'Elephant Beach & Candlelight Dinner',
+                description: 'Morning visit to Elephant Beach. Evening reserved for a romantic candlelight dinner by the sea.',
+                activities: ['Snorkeling', 'Candlelight Dinner'],
+                meals: ['Breakfast', 'Dinner'],
+                sightseeing: ['Elephant Beach']
+            },
+            {
+                day: 'Day 4',
+                title: 'Return to Port Blair & Shopping',
+                description: 'Return to Port Blair. Evening free for shopping.',
+                activities: ['Ferry Transfer', 'Shopping'],
+                meals: ['Breakfast', 'Dinner'],
+                sightseeing: ['Sagarika Emporium']
+            },
+            {
+                day: 'Day 5',
+                title: 'Departure',
+                description: 'Transfer to airport.',
+                activities: ['Airport Drop'],
+                meals: ['Breakfast'],
+                sightseeing: []
+            }
+        ],
+        6: [
+            {
+                day: 'Day 1',
+                title: 'Arrival & Romantic Sunset',
+                description: 'Welcome to Port Blair. Transfer to your luxury hotel. Enjoy a sunset view at Chidiya Tapu.',
+                activities: ['Airport Pickup', 'Sunset View'],
+                meals: ['Dinner'],
+                sightseeing: ['Chidiya Tapu']
+            },
+            {
+                day: 'Day 2',
+                title: 'Havelock - Beachside Bliss',
+                description: 'Private ferry to Havelock. Check into your beachside resort. Evening leisure at the beach.',
+                activities: ['Luxury Ferry', 'Beach Walk'],
+                meals: ['Breakfast', 'Dinner'],
+                sightseeing: ['Radhanagar Beach']
+            },
+            {
+                day: 'Day 3',
+                title: 'Elephant Beach & Candlelight Dinner',
+                description: 'Morning visit to Elephant Beach. Evening reserved for a romantic candlelight dinner by the sea.',
+                activities: ['Snorkeling', 'Candlelight Dinner'],
+                meals: ['Breakfast', 'Dinner'],
+                sightseeing: ['Elephant Beach']
+            },
+            {
+                day: 'Day 4',
+                title: 'Neil Island - Tranquility',
+                description: 'Cruise to Neil Island. Visit the serene Laxmanpur Beach for a breathtaking sunset.',
+                activities: ['Ferry Transfer', 'Sunset Watch'],
+                meals: ['Breakfast', 'Dinner'],
+                sightseeing: ['Laxmanpur Beach', 'Sitapur Beach']
+            },
+            {
+                day: 'Day 5',
+                title: 'Return to Port Blair & Shopping',
+                description: 'Return to Port Blair. Evening free for shopping and collecting souvenirs.',
+                activities: ['Ferry Transfer', 'Shopping'],
+                meals: ['Breakfast', 'Dinner'],
+                sightseeing: ['Sagarika Emporium']
+            },
+            {
+                day: 'Day 6',
+                title: 'Departure',
+                description: 'Transfer to airport with a bag full of romantic memories.',
+                activities: ['Airport Drop'],
+                meals: ['Breakfast'],
+                sightseeing: []
+            }
+        ],
+        7: [
+            {
+                day: 'Day 1',
+                title: 'Arrival & Romantic Sunset',
+                description: 'Welcome to Port Blair. Transfer to your luxury hotel. Enjoy a sunset view at Chidiya Tapu.',
+                activities: ['Airport Pickup', 'Sunset View'],
+                meals: ['Dinner'],
+                sightseeing: ['Chidiya Tapu']
+            },
+            {
+                day: 'Day 2',
+                title: 'Havelock - Beachside Bliss',
+                description: 'Private ferry to Havelock. Check into your beachside resort. Evening leisure at the beach.',
+                activities: ['Luxury Ferry', 'Beach Walk'],
+                meals: ['Breakfast', 'Dinner'],
+                sightseeing: ['Radhanagar Beach']
+            },
+            {
+                day: 'Day 3',
+                title: 'Elephant Beach & Candlelight Dinner',
+                description: 'Morning visit to Elephant Beach. Evening reserved for a romantic candlelight dinner by the sea.',
+                activities: ['Snorkeling', 'Candlelight Dinner'],
+                meals: ['Breakfast', 'Dinner'],
+                sightseeing: ['Elephant Beach']
+            },
+            {
+                day: 'Day 4',
+                title: 'Neil Island - Tranquility',
+                description: 'Cruise to Neil Island. Visit the serene Laxmanpur Beach for a breathtaking sunset.',
+                activities: ['Ferry Transfer', 'Sunset Watch'],
+                meals: ['Breakfast', 'Dinner'],
+                sightseeing: ['Laxmanpur Beach', 'Sitapur Beach']
+            },
+            {
+                day: 'Day 5',
+                title: 'Neil Island Exploration',
+                description: 'Visit Natural Bridge and enjoy leisure time.',
+                activities: ['Natural Bridge', 'Leisure'],
+                meals: ['Breakfast', 'Dinner'],
+                sightseeing: ['Natural Bridge']
+            },
+            {
+                day: 'Day 6',
+                title: 'Return to Port Blair & Shopping',
+                description: 'Return to Port Blair. Evening free for shopping and collecting souvenirs.',
+                activities: ['Ferry Transfer', 'Shopping'],
+                meals: ['Breakfast', 'Dinner'],
+                sightseeing: ['Sagarika Emporium']
+            },
+            {
+                day: 'Day 7',
+                title: 'Departure',
+                description: 'Transfer to airport with a bag full of romantic memories.',
+                activities: ['Airport Drop'],
+                meals: ['Breakfast'],
+                sightseeing: []
+            }
+        ]
+    },
     highlights: [
         {
             title: 'Candlelight Dinner',
@@ -94,12 +245,12 @@ export const romanticHideaway: Package = {
     paymentPolicy: commonPaymentPolicy,
     tips: commonTips,
     pricingOptions: [
-        { days: 6, pricePerPerson: 65000, title: 'Luxury Hideaway' },
-        { days: 6, pricePerPerson: 85000, title: 'Royal Honeymoon' }
+        { days: 5, pricePerPerson: 55000, title: '5 Days Romantic Escape' },
+        { days: 6, pricePerPerson: 65000, title: '6 Days Luxury Hideaway' },
+        { days: 7, pricePerPerson: 75000, title: '7 Days Royal Honeymoon' }
     ],
     hotels: [],
     supplements: [],
     pickupLocations: ['Port Blair Airport'],
     cancellationPolicy: commonCancellationPolicy
 };
-

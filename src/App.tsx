@@ -9,6 +9,7 @@ import ChatWidget from './components/ChatWidget';
 import PrefetchManager from './components/PrefetchManager';
 import { removeLoader } from './lib/loader';
 import DiscountPopup from './components/DiscountPopup';
+import OfferSticker from './components/OfferSticker';
 
 // Lazy load non-critical pages
 const DestinationsPage = lazy(() => import('./pages/Destinations'));
@@ -149,6 +150,7 @@ function App() {
         </Routes>
       </Suspense>
       <ChatWidget />
+      <OfferSticker />
       <DiscountPopup />
       <PrefetchManager />
 

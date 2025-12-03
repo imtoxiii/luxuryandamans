@@ -176,6 +176,295 @@ export const familyParadise: Package = {
       sightseeing: ["Chidiya Tapu", "Bird Watching", "Anthropological Museum", "Aberdeen Bazaar"]
     }
   ],
+  itineraries: {
+    5: [
+      {
+        day: "Day 1",
+        title: "Arrival & City Exploration",
+        description: "Arrival at Port Blair. Visit Cellular Jail and Light & Sound Show.",
+        activities: ["Airport Pickup", "Cellular Jail", "Light & Sound Show"],
+        hotel: {
+          name: "Hotel Sinclairs Bayview",
+          location: "Port Blair",
+          rating: 4,
+          image: "/images/packages/family-paradise/hotel-port-blair.jpg",
+          amenities: ["Family Rooms", "Kids Play Area"],
+          description: "Family-friendly hotel"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Cellular Jail", "Light & Sound Show"]
+      },
+      {
+        day: "Day 2",
+        title: "Port Blair to Havelock",
+        description: "Ferry to Havelock. Visit Radhanagar Beach.",
+        activities: ["Ferry Transfer", "Radhanagar Beach"],
+        hotel: {
+          name: "SeaShell Havelock",
+          location: "Havelock Island",
+          rating: 4,
+          image: "/images/packages/family-paradise/hotel-havelock.jpg",
+          amenities: ["Beach Access", "Kids Pool"],
+          description: "Beach resort"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 3",
+        title: "Elephant Beach Adventure",
+        description: "Speedboat to Elephant Beach. Snorkeling and Glass Bottom Boat.",
+        activities: ["Elephant Beach", "Snorkeling", "Glass Bottom Boat"],
+        meals: ["Breakfast"],
+        sightseeing: ["Elephant Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Havelock to Port Blair",
+        description: "Ferry back to Port Blair. Ross Island tour.",
+        activities: ["Ferry Transfer", "Ross Island"],
+        hotel: {
+          name: "Hotel Sinclairs Bayview",
+          location: "Port Blair",
+          rating: 4,
+          image: "/images/packages/family-paradise/hotel-port-blair.jpg",
+          amenities: ["Family Rooms"],
+          description: "Family-friendly hotel"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Ross Island"]
+      },
+      {
+        day: "Day 5",
+        title: "Departure",
+        description: "Transfer to airport.",
+        activities: ["Airport Transfer"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ],
+    6: [
+      {
+        day: "Day 1",
+        title: "Arrival & City Exploration",
+        description: "Welcome to the Andaman Islands! After a comfortable airport pickup, check into your family-friendly hotel and spend the evening exploring Port Blair's beaches and attractions. Visit the famous Cellular Jail and let kids enjoy the beach.",
+        activities: [
+          "Family pickup from airport (around 12 PM)",
+          "Check into family-friendly hotel",
+          "Lunch break and rest time",
+          "Visit Corbyn's Cove Beach (kids can play in sand)",
+          "Beach games: volleyball, frisbee, sandcastle building",
+          "Visit Cellular Jail (kid-friendly historical tour)",
+          "Light & Sound Show (fascinating for kids)",
+          "Dinner at family restaurant"
+        ],
+        hotel: {
+          name: "Hotel Sinclairs Bayview",
+          location: "Port Blair",
+          rating: 4,
+          image: "/images/packages/family-paradise/hotel-port-blair.jpg",
+          amenities: ["Family Rooms", "Restaurant", "Kids Play Area", "WiFi", "Room Service", "Safe Environment"],
+          description: "Family-friendly hotel with spacious rooms and amenities suitable for children"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Corbyn's Cove Beach", "Cellular Jail", "Light & Sound Show"]
+      },
+      {
+        day: "Day 2",
+        title: "Port Blair to Havelock - Beach Fun Begins",
+        description: "Take a comfortable ferry to Havelock Island. The ferry ride itself is an adventure for kids! Visit the stunning Radhanagar Beach where children can safely play in shallow waters.",
+        activities: [
+          "Early breakfast at hotel",
+          "Comfortable ferry to Havelock (kids love the boat ride!)",
+          "Arrive Havelock and check into beach resort",
+          "Lunch and rest time for family",
+          "Visit Radhanagar Beach (Beach No. 7)",
+          "Kids play area: shallow water play, sandcastle competition",
+          "Family photo session at sunset",
+          "Beach volleyball and games",
+          "Return to resort for dinner"
+        ],
+        hotel: {
+          name: "SeaShell Havelock",
+          location: "Havelock Island",
+          rating: 4,
+          image: "/images/packages/family-paradise/hotel-havelock.jpg",
+          amenities: ["Beach Access", "Family Rooms", "Kids Pool", "Restaurant", "Garden", "Beach Games"],
+          description: "Beach resort with family cottages and safe beach access for children"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Radhanagar Beach", "Beach Activities"]
+      },
+      {
+        day: "Day 3",
+        title: "Elephant Beach Family Adventure",
+        description: "Speedboat adventure to Elephant Beach! Kids will love the boat ride and the crystal-clear waters. Enjoy safe snorkeling with life jackets, beach games, and optional gentle water sports suitable for families.",
+        activities: [
+          "Snorkeling - Safe snorkeling with kid-friendly equipment and guides",
+          "Glass Bottom Boat - Perfect for younger kids to see coral without swimming",
+          "Banana Ride - Fun group activity suitable for kids (age 8+)",
+          "Beach Games - Volleyball, frisbee, beach cricket organized for families",
+          "Nature Walk - Short guided walk through forest (educational for kids)",
+          "Shell Collecting - Kids can collect shells on beach",
+          "Swimming - Shallow water area perfect for children"
+        ],
+        meals: ["Breakfast", "Packed Lunch"],
+        sightseeing: ["Elephant Beach", "Coral Viewing", "Nature Trail"]
+      },
+      {
+        day: "Day 4",
+        title: "Havelock Leisure & Beach Day",
+        description: "A relaxed day for the family to enjoy resort facilities, beach activities, or optional gentle water sports. Visit Kalapathar Beach for its unique black rocks and photography.",
+        activities: [
+          "Leisurely family breakfast",
+          "Resort pool time and beach activities",
+          "Visit Kalapathar Beach for photography",
+          "Kids beach cricket tournament",
+          "Optional: Easy kayaking in calm waters",
+          "Beach treasure hunt organized for kids",
+          "Sunset viewing at beach",
+          "Family game night at resort"
+        ],
+        meals: ["Breakfast"],
+        sightseeing: ["Kalapathar Beach", "Resort Beach Activities"]
+      },
+      {
+        day: "Day 5",
+        title: "Return to Port Blair - Ross Island Exploration",
+        description: "Ferry back to Port Blair and explore the historic Ross Island. Kids will love seeing the friendly deer and peacocks roaming freely! Visit the ruins and learn about island history in a fun way.",
+        activities: [
+          "Check out from Havelock resort",
+          "Ferry to Port Blair",
+          "Check into Port Blair hotel",
+          "Lunch and short rest",
+          "Boat ride to Ross Island (10-minute ride)",
+          "Explore ruins - kids love the deer and peacocks!",
+          "Nature photography and wildlife spotting",
+          "Educational tour about island history",
+          "Visit Japanese Bunkers (kids find it exciting)",
+          "Return to city for dinner"
+        ],
+        hotel: {
+          name: "Hotel Sinclairs Bayview",
+          location: "Port Blair",
+          rating: 4,
+          image: "/images/packages/family-paradise/hotel-port-blair.jpg",
+          amenities: ["Family Rooms", "Restaurant", "Kids Play Area", "WiFi", "Room Service"],
+          description: "Family-friendly hotel in Port Blair"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Ross Island", "Wildlife Spotting", "Historical Ruins"]
+      },
+      {
+        day: "Day 6",
+        title: "Chidiya Tapu & Departure",
+        description: "Final day exploring Chidiya Tapu (Bird Island) where kids can spot various birds and enjoy the beach. Shop for souvenirs before departure.",
+        activities: [
+          "Breakfast at hotel",
+          "Visit Chidiya Tapu - Bird watching for kids",
+          "Beach time and nature walk",
+          "Visit Anthropological Museum (educational)",
+          "Lunch in city",
+          "Shopping at Aberdeen Bazaar (souvenirs for kids)",
+          "Buy shells, handicrafts, pearls",
+          "Hotel checkout",
+          "Airport transfer for departure"
+        ],
+        meals: ["Breakfast"],
+        sightseeing: ["Chidiya Tapu", "Bird Watching", "Anthropological Museum", "Aberdeen Bazaar"]
+      }
+    ],
+    7: [
+      {
+        day: "Day 1",
+        title: "Arrival & City Exploration",
+        description: "Arrival at Port Blair. Visit Cellular Jail and Light & Sound Show.",
+        activities: ["Airport Pickup", "Cellular Jail", "Light & Sound Show"],
+        hotel: {
+          name: "Hotel Sinclairs Bayview",
+          location: "Port Blair",
+          rating: 4,
+          image: "/images/packages/family-paradise/hotel-port-blair.jpg",
+          amenities: ["Family Rooms", "Kids Play Area"],
+          description: "Family-friendly hotel"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Cellular Jail", "Light & Sound Show"]
+      },
+      {
+        day: "Day 2",
+        title: "Port Blair to Havelock",
+        description: "Ferry to Havelock. Visit Radhanagar Beach.",
+        activities: ["Ferry Transfer", "Radhanagar Beach"],
+        hotel: {
+          name: "SeaShell Havelock",
+          location: "Havelock Island",
+          rating: 4,
+          image: "/images/packages/family-paradise/hotel-havelock.jpg",
+          amenities: ["Beach Access", "Kids Pool"],
+          description: "Beach resort"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 3",
+        title: "Elephant Beach Adventure",
+        description: "Speedboat to Elephant Beach. Snorkeling and Glass Bottom Boat.",
+        activities: ["Elephant Beach", "Snorkeling", "Glass Bottom Boat"],
+        meals: ["Breakfast"],
+        sightseeing: ["Elephant Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Havelock to Neil Island",
+        description: "Ferry to Neil Island. Visit Bharatpur Beach.",
+        activities: ["Ferry Transfer", "Bharatpur Beach"],
+        hotel: {
+          name: "SeaShell Neil",
+          location: "Neil Island",
+          rating: 4,
+          image: "/images/packages/family-paradise/hotel-neil.jpg",
+          amenities: ["Beach Access"],
+          description: "Beach resort"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Bharatpur Beach"]
+      },
+      {
+        day: "Day 5",
+        title: "Neil to Port Blair",
+        description: "Visit Natural Bridge. Ferry to Port Blair. Chidiya Tapu Sunset.",
+        activities: ["Natural Bridge", "Ferry Transfer", "Chidiya Tapu"],
+        hotel: {
+          name: "Hotel Sinclairs Bayview",
+          location: "Port Blair",
+          rating: 4,
+          image: "/images/packages/family-paradise/hotel-port-blair.jpg",
+          amenities: ["Family Rooms"],
+          description: "Family-friendly hotel"
+        },
+        meals: ["Breakfast"],
+        sightseeing: ["Natural Bridge", "Chidiya Tapu"]
+      },
+      {
+        day: "Day 6",
+        title: "Ross Island & Shopping",
+        description: "Visit Ross Island. Shopping at Aberdeen Bazaar.",
+        activities: ["Ross Island", "Shopping"],
+        meals: ["Breakfast"],
+        sightseeing: ["Ross Island", "Aberdeen Bazaar"]
+      },
+      {
+        day: "Day 7",
+        title: "Departure",
+        description: "Transfer to airport.",
+        activities: ["Airport Transfer"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ]
+  },
   highlights: [
     {
       title: "Kid-Friendly Water Activities",
@@ -203,14 +492,19 @@ export const familyParadise: Package = {
   tips: commonTips,
   pricingOptions: [
     {
-      days: 6,
-      pricePerPerson: 38500,
-      title: "6 Days Family Paradise (Adult rate)"
+      days: 5,
+      pricePerPerson: 32000,
+      title: "5 Days Family Express"
     },
     {
       days: 6,
-      pricePerPerson: 25000,
-      title: "Child Rate (5-12 years with extra bed)"
+      pricePerPerson: 38500,
+      title: "6 Days Family Paradise"
+    },
+    {
+      days: 7,
+      pricePerPerson: 45000,
+      title: "7 Days Grand Family Vacation"
     }
   ],
   hotels: [

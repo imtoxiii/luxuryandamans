@@ -53,14 +53,6 @@ export const adventureThrill: Package = {
         "Speed boat ride",
         "Cellular Jail Light & Sound Show"
       ],
-      hotel: {
-        name: "Lemon Tree Hotel",
-        location: "Port Blair",
-        rating: 4,
-        image: "/images/packages/adventure-thrill/hotel-port-blair.jpg",
-        amenities: ["Pool", "Gym", "Bar", "WiFi"],
-        description: "Modern hotel near airport"
-      },
       meals: ["Dinner"],
       sightseeing: ["Corbyn's Cove", "Cellular Jail"]
     },
@@ -76,14 +68,6 @@ export const adventureThrill: Package = {
         "Underwater photography",
         "Evening leisure"
       ],
-      hotel: {
-        name: "Symphony Palms",
-        location: "Havelock Island",
-        rating: 4,
-        image: "/images/packages/adventure-thrill/hotel-havelock.jpg",
-        amenities: ["Private Beach", "Dive Center", "Bar"],
-        description: "Beach resort with in-house dive center"
-      },
       meals: ["Breakfast"],
       sightseeing: ["Dive Site"]
     },
@@ -143,6 +127,158 @@ export const adventureThrill: Package = {
       sightseeing: []
     }
   ],
+  itineraries: {
+    5: [
+      {
+        day: "Day 1",
+        title: "Arrival & Jet Ski",
+        description: "Arrival in Port Blair. Afternoon Jet Ski ride.",
+        activities: ["Airport pickup", "Jet Ski ride", "Cellular Jail"],
+        meals: ["Dinner"],
+        sightseeing: ["Corbyn's Cove", "Cellular Jail"]
+      },
+      {
+        day: "Day 2",
+        title: "Havelock & Scuba Diving",
+        description: "Ferry to Havelock. Scuba Diving experience.",
+        activities: ["Ferry to Havelock", "Scuba Diving"],
+        meals: ["Breakfast"],
+        sightseeing: ["Dive Site"]
+      },
+      {
+        day: "Day 3",
+        title: "Elephant Beach Trek & Sea Walk",
+        description: "Trek to Elephant Beach and Sea Walk.",
+        activities: ["Jungle Trek", "Sea Walk", "Parasailing"],
+        meals: ["Breakfast"],
+        sightseeing: ["Elephant Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Havelock to Port Blair & Trek",
+        description: "Return to Port Blair. Sunset trek at Chidiya Tapu.",
+        activities: ["Ferry to Port Blair", "Chidiya Tapu Trek"],
+        meals: ["Breakfast"],
+        sightseeing: ["Chidiya Tapu"]
+      },
+      {
+        day: "Day 5",
+        title: "Departure",
+        description: "Transfer to airport.",
+        activities: ["Airport drop"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ],
+    6: [
+      {
+        day: "Day 1",
+        title: "Arrival & Jet Ski",
+        description: "Arrival in Port Blair. Afternoon Jet Ski ride.",
+        activities: ["Airport pickup", "Jet Ski ride", "Cellular Jail"],
+        meals: ["Dinner"],
+        sightseeing: ["Corbyn's Cove", "Cellular Jail"]
+      },
+      {
+        day: "Day 2",
+        title: "Havelock & Scuba Diving",
+        description: "Ferry to Havelock. Scuba Diving experience.",
+        activities: ["Ferry to Havelock", "Scuba Diving"],
+        meals: ["Breakfast"],
+        sightseeing: ["Dive Site"]
+      },
+      {
+        day: "Day 3",
+        title: "Elephant Beach Trek & Sea Walk",
+        description: "Trek to Elephant Beach and Sea Walk.",
+        activities: ["Jungle Trek", "Sea Walk", "Parasailing"],
+        meals: ["Breakfast"],
+        sightseeing: ["Elephant Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Havelock to Neil - Night Kayaking",
+        description: "Transfer to Neil Island. Night Kayaking.",
+        activities: ["Ferry to Neil Island", "Night Kayaking"],
+        meals: ["Breakfast"],
+        sightseeing: ["Mangroves"]
+      },
+      {
+        day: "Day 5",
+        title: "Neil to Port Blair & Trek",
+        description: "Return to Port Blair. Sunset trek at Chidiya Tapu.",
+        activities: ["Ferry to Port Blair", "Chidiya Tapu Trek"],
+        meals: ["Breakfast"],
+        sightseeing: ["Chidiya Tapu"]
+      },
+      {
+        day: "Day 6",
+        title: "Departure",
+        description: "Transfer to airport.",
+        activities: ["Airport drop"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ],
+    7: [
+      {
+        day: "Day 1",
+        title: "Arrival & Jet Ski",
+        description: "Arrival in Port Blair. Afternoon Jet Ski ride.",
+        activities: ["Airport pickup", "Jet Ski ride", "Cellular Jail"],
+        meals: ["Dinner"],
+        sightseeing: ["Corbyn's Cove", "Cellular Jail"]
+      },
+      {
+        day: "Day 2",
+        title: "Havelock & Scuba Diving",
+        description: "Ferry to Havelock. Scuba Diving experience.",
+        activities: ["Ferry to Havelock", "Scuba Diving"],
+        meals: ["Breakfast"],
+        sightseeing: ["Dive Site"]
+      },
+      {
+        day: "Day 3",
+        title: "Elephant Beach Trek & Sea Walk",
+        description: "Trek to Elephant Beach and Sea Walk.",
+        activities: ["Jungle Trek", "Sea Walk", "Parasailing"],
+        meals: ["Breakfast"],
+        sightseeing: ["Elephant Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Havelock Leisure / Game Fishing",
+        description: "Day at leisure or optional Game Fishing.",
+        activities: ["Leisure", "Optional Game Fishing"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      },
+      {
+        day: "Day 5",
+        title: "Havelock to Neil - Night Kayaking",
+        description: "Transfer to Neil Island. Night Kayaking.",
+        activities: ["Ferry to Neil Island", "Night Kayaking"],
+        meals: ["Breakfast"],
+        sightseeing: ["Mangroves"]
+      },
+      {
+        day: "Day 6",
+        title: "Neil to Port Blair & Trek",
+        description: "Return to Port Blair. Sunset trek at Chidiya Tapu.",
+        activities: ["Ferry to Port Blair", "Chidiya Tapu Trek"],
+        meals: ["Breakfast"],
+        sightseeing: ["Chidiya Tapu"]
+      },
+      {
+        day: "Day 7",
+        title: "Departure",
+        description: "Transfer to airport.",
+        activities: ["Airport drop"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ]
+  },
   highlights: [
     {
       title: "Scuba Diving",
@@ -164,7 +300,9 @@ export const adventureThrill: Package = {
   paymentPolicy: commonPaymentPolicy,
   tips: commonTips,
   pricingOptions: [
-    { days: 6, pricePerPerson: 42000, title: "6 Days Adventure Thrill" }
+    { days: 5, pricePerPerson: 36000, title: "5 Days Adventure Express" },
+    { days: 6, pricePerPerson: 42000, title: "6 Days Adventure Thrill" },
+    { days: 7, pricePerPerson: 48000, title: "7 Days Ultimate Thrill" }
   ],
   hotels: [
     {

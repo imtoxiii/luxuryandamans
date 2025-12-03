@@ -101,6 +101,134 @@ export const honeymoon4n5d: Package = {
       sightseeing: ["Shopping"]
     }
   ],
+  itineraries: {
+    4: [
+      {
+        day: "Day 1",
+        title: "Arrival – Port Blair",
+        description: "Arrive in Port Blair, check into hotel, and explore the historical Cellular Jail.",
+        activities: ["Airport pickup", "Cellular Jail", "Light & Sound Show"],
+        meals: ["Breakfast"],
+        sightseeing: ["Cellular Jail", "Light & Sound Show"]
+      },
+      {
+        day: "Day 2",
+        title: "Port Blair → Havelock Island",
+        description: "Ferry to Havelock and visit the world-famous Radhanagar Beach.",
+        activities: ["Ferry to Havelock", "Radhanagar Beach"],
+        meals: ["Breakfast"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 3",
+        title: "Elephant Beach & Return",
+        description: "Morning Elephant Beach trip. Afternoon ferry back to Port Blair.",
+        activities: ["Elephant Beach", "Ferry to Port Blair"],
+        meals: ["Breakfast"],
+        sightseeing: ["Elephant Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Departure",
+        description: "Transfer to airport for departure.",
+        activities: ["Airport Transfer"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ],
+    5: [
+      {
+        day: "Day 1",
+        title: "Arrival – Port Blair",
+        description: "Arrive in Port Blair, check into hotel, and explore the historical Cellular Jail.",
+        activities: ["Airport pickup", "Cellular Jail", "Light & Sound Show"],
+        meals: ["Breakfast"],
+        sightseeing: ["Cellular Jail", "Light & Sound Show"]
+      },
+      {
+        day: "Day 2",
+        title: "Port Blair → Havelock Island",
+        description: "Ferry to Havelock and visit the world-famous Radhanagar Beach.",
+        activities: ["Ferry to Havelock", "Radhanagar Beach"],
+        meals: ["Breakfast"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 3",
+        title: "Elephant Beach Adventure",
+        description: "Speedboat to Elephant Beach for snorkeling and water activities.",
+        activities: ["Elephant Beach", "Snorkeling"],
+        meals: ["Breakfast"],
+        sightseeing: ["Elephant Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Havelock → Port Blair",
+        description: "Return to Port Blair, visit Ross Island and explore the city.",
+        activities: ["Ferry to Port Blair", "Ross Island", "Shopping"],
+        meals: ["Breakfast"],
+        sightseeing: ["Ross Island", "Aberdeen Bazaar"]
+      },
+      {
+        day: "Day 5",
+        title: "Departure",
+        description: "Final morning in Port Blair before departure.",
+        activities: ["Airport Transfer"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ],
+    6: [
+      {
+        day: "Day 1",
+        title: "Arrival – Port Blair",
+        description: "Arrive in Port Blair, check into hotel, and explore the historical Cellular Jail.",
+        activities: ["Airport pickup", "Cellular Jail", "Light & Sound Show"],
+        meals: ["Breakfast"],
+        sightseeing: ["Cellular Jail", "Light & Sound Show"]
+      },
+      {
+        day: "Day 2",
+        title: "Port Blair → Havelock Island",
+        description: "Ferry to Havelock and visit the world-famous Radhanagar Beach.",
+        activities: ["Ferry to Havelock", "Radhanagar Beach"],
+        meals: ["Breakfast"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 3",
+        title: "Elephant Beach Adventure",
+        description: "Speedboat to Elephant Beach for snorkeling and water activities.",
+        activities: ["Elephant Beach", "Snorkeling"],
+        meals: ["Breakfast"],
+        sightseeing: ["Elephant Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Havelock Leisure",
+        description: "Relax at resort or visit Kalapathar Beach.",
+        activities: ["Leisure", "Kalapathar Beach"],
+        meals: ["Breakfast"],
+        sightseeing: ["Kalapathar Beach"]
+      },
+      {
+        day: "Day 5",
+        title: "Havelock → Port Blair",
+        description: "Return to Port Blair, visit Ross Island and explore the city.",
+        activities: ["Ferry to Port Blair", "Ross Island", "Shopping"],
+        meals: ["Breakfast"],
+        sightseeing: ["Ross Island", "Aberdeen Bazaar"]
+      },
+      {
+        day: "Day 6",
+        title: "Departure",
+        description: "Final morning in Port Blair before departure.",
+        activities: ["Airport Transfer"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ]
+  },
   highlights: [
     {
       title: "Radhanagar Beach",
@@ -122,7 +250,9 @@ export const honeymoon4n5d: Package = {
   paymentPolicy: commonPaymentPolicy,
   tips: commonTips,
   pricingOptions: [
-    { days: 5, pricePerPerson: 28000, title: "5 Days Quick Honeymoon" }
+    { days: 4, pricePerPerson: 24000, title: "4 Days Quick Honeymoon" },
+    { days: 5, pricePerPerson: 28000, title: "5 Days Standard Honeymoon" },
+    { days: 6, pricePerPerson: 34000, title: "6 Days Relaxed Honeymoon" }
   ],
   hotels: [
     {

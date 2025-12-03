@@ -50,6 +50,16 @@ export interface Supplement {
   availability: string[];
 }
 
+export interface ItineraryDay {
+  day: string;
+  title: string;
+  description: string;
+  activities: string[];
+  hotel?: Hotel;
+  meals: string[];
+  sightseeing: string[];
+}
+
 export interface Package {
   title: string;
   description: string;
@@ -61,15 +71,8 @@ export interface Package {
   features: string[];
   includes: string[];
   excludes: string[];
-  itinerary: {
-    day: string;
-    title: string;
-    description: string;
-    activities: string[];
-    hotel?: Hotel;
-    meals: string[];
-    sightseeing: string[];
-  }[];
+  itinerary: ItineraryDay[];
+  itineraries?: Record<number, ItineraryDay[]>;
   highlights: {
     title: string;
     description: string;

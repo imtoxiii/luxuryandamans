@@ -23,6 +23,7 @@ import {
   generateDestinationFAQs,
   generateFAQSchema
 } from '../../lib/structuredData';
+import destinationImages from '../../data/destinationImages.json';
 
 interface DestinationDetailProps {
   destination: Destination;
@@ -44,6 +45,17 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
   const structuredData = generateDestinationStructuredData(destination);
   const faqs = generateDestinationFAQs(destination);
   const faqSchema = generateFAQSchema(faqs);
+
+  // Merge gallery images from static data and folder structure
+  const folderImages = (destinationImages as Record<string, string[]>)[destination.slug] || [];
+  
+  // Find specific images if they exist
+  const heroImage = folderImages.find(img => img.toLowerCase().includes('hero') || img.toLowerCase().includes('main')) || destination.image;
+  
+  const galleryImages = [
+    ...(destination.gallery || []).map(img => typeof img === 'string' ? { url: img, caption: destination.name } : img),
+    ...folderImages.map(url => ({ url, caption: destination.name }))
+  ];
 
   // Create TOC items
   const tocItems = [
@@ -97,13 +109,13 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
       {isGalleryOpen && (
         <ImageGallery
           images={
-            destination.gallery
-              ? destination.gallery.map((img) => (typeof img === 'string' ? img : img.url))
-              : [destination.image]
+            galleryImages.length > 0 
+              ? galleryImages.map(img => img.url)
+              : [heroImage]
           }
           captions={
-            destination.gallery
-              ? destination.gallery.map((img) => (typeof img === 'string' ? destination.name : img.caption))
+            galleryImages.length > 0
+              ? galleryImages.map(img => img.caption)
               : [destination.name]
           }
           onClose={() => setIsGalleryOpen(false)}
@@ -130,7 +142,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
         >
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/60 z-10" />
           <img 
-            src={destination.image}
+            src={heroImage}
             alt={`${destination.name} - ${destination.description}`}
             className="w-full h-full object-cover scale-110"
             loading="eager"
@@ -406,17 +418,17 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
               {/* Sidebar */}
               <div className="lg:col-span-1 order-1 lg:order-2 space-y-8">
                 {/* Gallery Widget */}
-                {destination.gallery && destination.gallery.length > 0 && (
+                {galleryImages.length > 0 && (
                   <div className="bg-white p-6 rounded-3xl shadow-lg border border-gray-100">
                     <div className="flex items-center justify-between mb-6">
                       <h3 className="text-xl font-bold text-gray-900 flex items-center">
                         <Camera className="w-5 h-5 text-blue-600 mr-2" />
                         Gallery
                       </h3>
-                      <span className="text-sm text-gray-500 font-medium">{destination.gallery.length} Photos</span>
+                      <span className="text-sm text-gray-500 font-medium">{galleryImages.length} Photos</span>
                     </div>
                     <div className="grid grid-cols-2 gap-3">
-                      {destination.gallery.slice(0, 4).map((image, index) => (
+                      {galleryImages.slice(0, 4).map((image, index) => (
                         <button
                           key={index}
                           onClick={() => {

@@ -186,6 +186,289 @@ export const luxuryEscape: Package = {
       sightseeing: ["Last-minute shopping or relaxation"]
     }
   ],
+  itineraries: {
+    5: [
+      {
+        day: "Day 1",
+        title: "Luxury Arrival",
+        description: "VIP Airport reception. Transfer to 5-star resort. Spa session.",
+        activities: ["VIP Reception", "Spa Session"],
+        hotel: {
+          name: "Fortune Resort Bay Island",
+          location: "Port Blair",
+          rating: 5,
+          image: "/images/packages/luxury-escape/hotel-port-blair.jpg",
+          amenities: ["Beachfront", "Spa"],
+          description: "Luxury 5-star resort"
+        },
+        meals: ["Welcome Drinks", "Dinner"],
+        sightseeing: ["Resort Beach"]
+      },
+      {
+        day: "Day 2",
+        title: "Port Blair to Havelock",
+        description: "Premium ferry to Havelock. Check into Taj Exotica. Radhanagar Beach.",
+        activities: ["Premium Ferry", "Radhanagar Beach"],
+        hotel: {
+          name: "Taj Exotica Resort & Spa",
+          location: "Havelock Island",
+          rating: 5,
+          image: "/images/packages/luxury-escape/hotel-havelock.jpg",
+          amenities: ["Private Beach", "Butler Service"],
+          description: "Ultra-luxury resort"
+        },
+        meals: ["Breakfast", "Dinner"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 3",
+        title: "Scuba & Elephant Beach",
+        description: "Premium Scuba Diving. Private speedboat to Elephant Beach.",
+        activities: ["Scuba Diving", "Elephant Beach VIP"],
+        meals: ["Breakfast", "Lunch", "Dinner"],
+        sightseeing: ["Elephant Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Havelock to Port Blair",
+        description: "Return to Port Blair. Ross Island VIP tour.",
+        activities: ["Premium Ferry", "Ross Island VIP"],
+        hotel: {
+          name: "Fortune Resort Bay Island",
+          location: "Port Blair",
+          rating: 5,
+          image: "/images/packages/luxury-escape/hotel-port-blair.jpg",
+          amenities: ["Beachfront", "Spa"],
+          description: "Luxury 5-star resort"
+        },
+        meals: ["Breakfast", "Farewell Dinner"],
+        sightseeing: ["Ross Island"]
+      },
+      {
+        day: "Day 5",
+        title: "Departure",
+        description: "Private transfer to airport.",
+        activities: ["Airport Transfer"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ],
+    6: [
+      {
+        day: "Day 1",
+        title: "Luxury Arrival",
+        description: "VIP Airport reception. Transfer to 5-star resort. Spa session.",
+        activities: ["VIP Reception", "Spa Session"],
+        hotel: {
+          name: "Fortune Resort Bay Island",
+          location: "Port Blair",
+          rating: 5,
+          image: "/images/packages/luxury-escape/hotel-port-blair.jpg",
+          amenities: ["Beachfront", "Spa"],
+          description: "Luxury 5-star resort"
+        },
+        meals: ["Welcome Drinks", "Dinner"],
+        sightseeing: ["Resort Beach"]
+      },
+      {
+        day: "Day 2",
+        title: "Port Blair to Havelock",
+        description: "Premium ferry to Havelock. Check into Taj Exotica. Radhanagar Beach.",
+        activities: ["Premium Ferry", "Radhanagar Beach"],
+        hotel: {
+          name: "Taj Exotica Resort & Spa",
+          location: "Havelock Island",
+          rating: 5,
+          image: "/images/packages/luxury-escape/hotel-havelock.jpg",
+          amenities: ["Private Beach", "Butler Service"],
+          description: "Ultra-luxury resort"
+        },
+        meals: ["Breakfast", "Dinner"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 3",
+        title: "Scuba & Elephant Beach",
+        description: "Premium Scuba Diving. Private speedboat to Elephant Beach.",
+        activities: ["Scuba Diving", "Elephant Beach VIP"],
+        meals: ["Breakfast", "Lunch", "Dinner"],
+        sightseeing: ["Elephant Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Leisure Day",
+        description: "Relax at resort. Spa treatments. Sunset cruise (optional).",
+        activities: ["Spa Session", "Leisure"],
+        meals: ["Breakfast", "Dinner"],
+        sightseeing: ["Resort Beach"]
+      },
+      {
+        day: "Day 5",
+        title: "Havelock to Port Blair",
+        description: "Return to Port Blair. Ross Island VIP tour.",
+        activities: ["Premium Ferry", "Ross Island VIP"],
+        hotel: {
+          name: "Fortune Resort Bay Island",
+          location: "Port Blair",
+          rating: 5,
+          image: "/images/packages/luxury-escape/hotel-port-blair.jpg",
+          amenities: ["Beachfront", "Spa"],
+          description: "Luxury 5-star resort"
+        },
+        meals: ["Breakfast", "Farewell Dinner"],
+        sightseeing: ["Ross Island"]
+      },
+      {
+        day: "Day 6",
+        title: "Departure",
+        description: "Private transfer to airport.",
+        activities: ["Airport Transfer"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ],
+    7: [
+      {
+        day: "Day 1",
+        title: "Luxury Arrival - Port Blair",
+        description: "Begin your luxury journey with VIP airport reception, private transfer to your 5-star resort, and evening leisure at the property. Enjoy welcome drinks, room decoration, and a briefing about your luxury itinerary.",
+        activities: [
+          "VIP airport reception with garland welcome",
+          "Private luxury vehicle transfer to resort",
+          "Premium suite check-in with welcome drinks",
+          "Resort facilities tour",
+          "Spa session (60 minutes) - Relaxation massage",
+          "Sunset cocktails at resort beach bar",
+          "Gourmet dinner at resort restaurant"
+        ],
+        hotel: {
+          name: "Fortune Resort Bay Island",
+          location: "Port Blair",
+          rating: 5,
+          image: "/images/packages/luxury-escape/hotel-port-blair.jpg",
+          amenities: ["Beachfront", "Infinity Pool", "Multiple Restaurants", "Spa", "Gym", "Private Beach", "Butler Service"],
+          description: "Luxury 5-star resort in Port Blair with premium amenities and stunning ocean views"
+        },
+        meals: ["Welcome Drinks", "Gourmet Dinner"],
+        sightseeing: ["Resort Beach", "Sunset Point"]
+      },
+      {
+        day: "Day 2",
+        title: "Heritage & Beaches - Port Blair Premium Tour",
+        description: "Explore Port Blair's historical and natural attractions with private guide and vehicle. Visit Cellular Jail, enjoy VIP seating at the Light & Sound Show, and relax at pristine beaches.",
+        activities: [
+          "Leisurely breakfast at resort",
+          "Visit Cellular Jail with private guide (historical tour)",
+          "Corbyn's Cove Beach with water sports options",
+          "Lunch at premium restaurant",
+          "Visit Anthropological Museum",
+          "Premium seating at Cellular Jail Light & Sound Show",
+          "Dinner at resort with ocean view"
+        ],
+        meals: ["Breakfast", "Lunch", "Dinner"],
+        sightseeing: ["Cellular Jail", "Corbyn's Cove Beach", "Anthropological Museum", "Light & Sound Show"]
+      },
+      {
+        day: "Day 3",
+        title: "Transfer to Havelock - Beach Paradise",
+        description: "Private ferry transfer to Havelock Island and check into your luxury beachfront villa. Spend the day at the world-famous Radhanagar Beach and enjoy a romantic candlelight dinner on the beach.",
+        activities: [
+          "Checkout and private transfer to jetty",
+          "Premium ferry to Havelock with lounge access",
+          "Arrive Havelock - private vehicle transfer",
+          "Check into luxury beachfront villa",
+          "Afternoon at Radhanagar Beach (Asia's best beach)",
+          "Professional photography session (4 hours)",
+          "Candlelight dinner on beach with live music"
+        ],
+        hotel: {
+          name: "Taj Exotica Resort & Spa",
+          location: "Havelock Island",
+          rating: 5,
+          image: "/images/packages/luxury-escape/hotel-havelock.jpg",
+          amenities: ["Private Beach", "Infinity Pool", "Spa", "Butler Service", "Gourmet Restaurants", "Water Sports Center"],
+          description: "Ultra-luxury beachfront resort with world-class amenities and pristine private beach"
+        },
+        meals: ["Breakfast", "Candlelight Dinner"],
+        sightseeing: ["Radhanagar Beach", "Beachfront Photography"]
+      },
+      {
+        day: "Day 4",
+        title: "Premium Scuba Diving & Elephant Beach Luxury",
+        description: "Experience professional scuba diving with premium equipment and videography. Then enjoy a private speedboat to Elephant Beach with luxury setup, champagne, and exclusive beach experience.",
+        activities: [
+          "Scuba Diving - Premium dive with certified instructor, complete equipment",
+          "Professional underwater videography included",
+          "Return to resort for breakfast and spa treatment",
+          "Private speedboat to Elephant Beach with luxury setup",
+          "Snorkeling - Premium equipment with guide",
+          "Jetski - High-performance jetski (optional premium)",
+          "Parasailing - Soaring experience with safety (optional)",
+          "Sea Walk - Underwater walking experience (optional)",
+          "Champagne and gourmet snacks on beach",
+          "Return to resort for dinner"
+        ],
+        meals: ["Breakfast", "Lunch", "Dinner"],
+        sightseeing: ["Premium Scuba Diving", "Elephant Beach VIP", "Coral Gardens"]
+      },
+      {
+        day: "Day 5",
+        title: "Leisure Day - Resort & Beach Relaxation",
+        description: "A full day to relax and enjoy the luxury resort amenities. Indulge in spa treatments, infinity pool, private beach, water sports, or simply unwind with a book by the ocean.",
+        activities: [
+          "Leisurely breakfast in villa",
+          "Spa session (60 minutes) - Couple massage",
+          "Infinity pool and beach lounging",
+          "Water sports at resort beach (kayaking, paddleboarding)",
+          "Kalapathar Beach visit for sunset",
+          "Gourmet dinner at resort's specialty restaurant",
+          "Optional: Private yacht cruise (additional cost)"
+        ],
+        meals: ["Breakfast", "Lunch", "Dinner"],
+        sightseeing: ["Kalapathar Beach", "Resort Private Beach"]
+      },
+      {
+        day: "Day 6",
+        title: "Havelock to Port Blair - Ross Island VIP Tour",
+        description: "Return to Port Blair via premium ferry and explore the historical Ross Island with private guide. Evening free for shopping or resort relaxation.",
+        activities: [
+          "Checkout from resort",
+          "Premium ferry to Port Blair",
+          "Check into luxury resort in Port Blair",
+          "Private boat to Ross Island",
+          "VIP guided tour of Ross Island ruins",
+          "Visit Chidiya Tapu for sunset photography",
+          "Evening shopping at Aberdeen Bazaar with guide",
+          "Farewell dinner at premium seafood restaurant"
+        ],
+        hotel: {
+          name: "Fortune Resort Bay Island",
+          location: "Port Blair",
+          rating: 5,
+          image: "/images/packages/luxury-escape/hotel-port-blair.jpg",
+          amenities: ["Beachfront", "Infinity Pool", "Multiple Restaurants", "Spa", "Butler Service"],
+          description: "Luxury 5-star resort in Port Blair"
+        },
+        meals: ["Breakfast", "Farewell Dinner"],
+        sightseeing: ["Ross Island", "Chidiya Tapu", "Aberdeen Bazaar"]
+      },
+      {
+        day: "Day 7",
+        title: "Departure - Memories Forever",
+        description: "Leisurely breakfast and checkout. Private transfer to airport with assistance. Depart with unforgettable luxury memories of the Andaman Islands.",
+        activities: [
+          "Leisurely breakfast at resort",
+          "Final spa session or pool time (if time permits)",
+          "Checkout with assistance",
+          "Private luxury vehicle to airport",
+          "Airport assistance and check-in support",
+          "Departure with gift hamper"
+        ],
+        meals: ["Breakfast"],
+        sightseeing: ["Last-minute shopping or relaxation"]
+      }
+    ]
+  },
   highlights: [
     {
       title: "5-Star Luxury Resorts",
@@ -212,6 +495,16 @@ export const luxuryEscape: Package = {
   paymentPolicy: commonPaymentPolicy,
   tips: commonTips,
   pricingOptions: [
+    {
+      days: 5,
+      pricePerPerson: 65000,
+      title: "5 Days Luxury Express"
+    },
+    {
+      days: 6,
+      pricePerPerson: 75000,
+      title: "6 Days Luxury Retreat"
+    },
     {
       days: 7,
       pricePerPerson: 85000,

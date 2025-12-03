@@ -4,6 +4,7 @@ import { MapPin, ArrowRight, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CardSlider from './CardSlider';
 import { destinations } from '../data/destinations';
+import destinationImages from '../data/destinationImages.json';
 
 const Destinations = () => {
   return (
@@ -36,55 +37,60 @@ const Destinations = () => {
 
         <div className="relative">
           <CardSlider showDots={true} autoScroll={false}>
-            {destinations.map((dest, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="h-full px-2 py-4"
-              >
-                <Link
-                  to={`/destinations/${dest.slug}`}
-                  className="group block h-full relative bg-white rounded-[2.5rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100"
+            {destinations.map((dest, index) => {
+              const folderImages = (destinationImages as Record<string, string[]>)[dest.slug] || [];
+              const cardImage = folderImages.find(img => img.toLowerCase().includes('card') || img.toLowerCase().includes('thumb')) || dest.image;
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="h-full px-2 py-4"
                 >
-                  {/* Image Section */}
-                  <div className="relative h-[400px] overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-                    <img
-                      src={dest.image}
-                      alt={dest.name}
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                    />
+                  <Link
+                    to={`/destinations/${dest.slug}`}
+                    className="group block h-full relative bg-white rounded-[2.5rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100"
+                  >
+                    {/* Image Section */}
+                    <div className="relative h-[400px] overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+                      <img
+                        src={cardImage}
+                        alt={dest.name}
+                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                      />
 
-                    {/* Floating Badge */}
-                    <div className="absolute top-6 left-6 z-20">
-                      <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white shadow-lg">
-                        <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
-                        <span className="text-xs font-bold uppercase tracking-wider">Top Rated</span>
+                      {/* Floating Badge */}
+                      <div className="absolute top-6 left-6 z-20">
+                        <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white shadow-lg">
+                          <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                          <span className="text-xs font-bold uppercase tracking-wider">Top Rated</span>
+                        </div>
+                      </div>
+
+                      {/* Content Overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 p-8 z-20 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 className="text-white font-bold text-3xl mb-3 font-display leading-tight">{dest.name}</h3>
+                        <div className="flex flex-wrap gap-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                          {dest.activities.slice(0, 3).map((activity, i) => (
+                            <span key={i} className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white text-xs font-medium border border-white/10">
+                              {activity}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="flex items-center gap-2 text-white/90 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
+                          <span>Explore Destination</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </div>
                       </div>
                     </div>
-
-                    {/* Content Overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-8 z-20 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                      <h3 className="text-white font-bold text-3xl mb-3 font-display leading-tight">{dest.name}</h3>
-                      <div className="flex flex-wrap gap-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                        {dest.activities.slice(0, 3).map((activity, i) => (
-                          <span key={i} className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white text-xs font-medium border border-white/10">
-                            {activity}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="flex items-center gap-2 text-white/90 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
-                        <span>Explore Destination</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+                  </Link>
+                </motion.div>
+              );
+            })}
           </CardSlider>
         </div>
       </div>

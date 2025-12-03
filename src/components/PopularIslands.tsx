@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, MapPin, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CardSlider from './CardSlider';
+import destinationImages from '../data/destinationImages.json';
 
 const islands = [
   {
@@ -45,7 +46,18 @@ const PopularIslands = () => {
 
       <div className="relative">
         <CardSlider showDots={true} autoScroll={false}>
-          {islands.map((island, index) => (
+          {islands.map((island, index) => {
+            // Map island names to slugs for image lookup
+            const slugMap: Record<string, string> = {
+              'Havelock Island': 'havelock-island',
+              'Neil Island': 'neil-island',
+              'Port Blair': 'port-blair'
+            };
+            const slug = slugMap[island.name];
+            const folderImages = slug ? (destinationImages as Record<string, string[]>)[slug] || [] : [];
+            const cardImage = folderImages.find(img => img.toLowerCase().includes('card') || img.toLowerCase().includes('thumb')) || island.image;
+
+            return (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -62,7 +74,7 @@ const PopularIslands = () => {
                 <div className="relative h-[300px] overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
                   <img
-                    src={island.image}
+                    src={cardImage}
                     alt={island.name}
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                   />
@@ -105,7 +117,8 @@ const PopularIslands = () => {
                 </div>
               </Link>
             </motion.div>
-          ))}
+            );
+          })}
         </CardSlider>
       </div>
     </div>

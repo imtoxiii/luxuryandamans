@@ -113,6 +113,158 @@ export const standardAndaman: Package = {
       sightseeing: ["Aberdeen Bazaar"]
     }
   ],
+  itineraries: {
+    5: [
+      {
+        day: "Day 1",
+        title: "Arrival Port Blair",
+        description: "Arrive and explore Port Blair's main attractions.",
+        activities: ["Airport pickup", "Corbyn's Cove Beach", "Cellular Jail"],
+        meals: ["Breakfast"],
+        sightseeing: ["Corbyn's Cove", "Cellular Jail"]
+      },
+      {
+        day: "Day 2",
+        title: "Port Blair → Havelock",
+        description: "Ferry to Havelock and visit Radhanagar Beach.",
+        activities: ["Ferry to Havelock", "Radhanagar Beach"],
+        meals: ["Breakfast"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 3",
+        title: "Elephant Beach Day",
+        description: "Water activities at Elephant Beach.",
+        activities: ["Elephant Beach", "Snorkeling"],
+        meals: ["Breakfast"],
+        sightseeing: ["Elephant Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Havelock → Port Blair",
+        description: "Return to Port Blair and visit Ross Island.",
+        activities: ["Ferry to Port Blair", "Ross Island"],
+        meals: ["Breakfast"],
+        sightseeing: ["Ross Island"]
+      },
+      {
+        day: "Day 5",
+        title: "Departure",
+        description: "Final morning and departure.",
+        activities: ["Airport transfer"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ],
+    6: [
+      {
+        day: "Day 1",
+        title: "Arrival Port Blair",
+        description: "Arrive and explore Port Blair's main attractions.",
+        activities: ["Airport pickup", "Corbyn's Cove Beach", "Cellular Jail"],
+        meals: ["Breakfast"],
+        sightseeing: ["Corbyn's Cove", "Cellular Jail"]
+      },
+      {
+        day: "Day 2",
+        title: "Port Blair → Havelock",
+        description: "Ferry to Havelock and visit Radhanagar Beach.",
+        activities: ["Ferry to Havelock", "Radhanagar Beach"],
+        meals: ["Breakfast"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 3",
+        title: "Elephant Beach Day",
+        description: "Water activities at Elephant Beach.",
+        activities: ["Elephant Beach", "Snorkeling"],
+        meals: ["Breakfast"],
+        sightseeing: ["Elephant Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Havelock → Neil Island",
+        description: "Transfer to Neil Island and beach exploration.",
+        activities: ["Ferry to Neil Island", "Bharatpur Beach", "Laxmanpur Beach"],
+        meals: ["Breakfast"],
+        sightseeing: ["Bharatpur Beach", "Laxmanpur Beach"]
+      },
+      {
+        day: "Day 5",
+        title: "Neil → Port Blair",
+        description: "Natural Bridge and return to Port Blair.",
+        activities: ["Natural Bridge", "Ferry to Port Blair", "Ross Island"],
+        meals: ["Breakfast"],
+        sightseeing: ["Natural Bridge", "Ross Island"]
+      },
+      {
+        day: "Day 6",
+        title: "Departure",
+        description: "Final morning and departure.",
+        activities: ["Airport transfer"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ],
+    7: [
+      {
+        day: "Day 1",
+        title: "Arrival Port Blair",
+        description: "Arrive and explore Port Blair's main attractions.",
+        activities: ["Airport pickup", "Corbyn's Cove Beach", "Cellular Jail"],
+        meals: ["Breakfast"],
+        sightseeing: ["Corbyn's Cove", "Cellular Jail"]
+      },
+      {
+        day: "Day 2",
+        title: "Port Blair → Havelock",
+        description: "Ferry to Havelock and visit Radhanagar Beach.",
+        activities: ["Ferry to Havelock", "Radhanagar Beach"],
+        meals: ["Breakfast"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 3",
+        title: "Elephant Beach Day",
+        description: "Water activities at Elephant Beach.",
+        activities: ["Elephant Beach", "Snorkeling"],
+        meals: ["Breakfast"],
+        sightseeing: ["Elephant Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Havelock → Neil Island",
+        description: "Transfer to Neil Island and beach exploration.",
+        activities: ["Ferry to Neil Island", "Bharatpur Beach", "Laxmanpur Beach"],
+        meals: ["Breakfast"],
+        sightseeing: ["Bharatpur Beach", "Laxmanpur Beach"]
+      },
+      {
+        day: "Day 5",
+        title: "Neil Island Leisure",
+        description: "Visit Natural Bridge and enjoy leisure time.",
+        activities: ["Natural Bridge", "Leisure"],
+        meals: ["Breakfast"],
+        sightseeing: ["Natural Bridge"]
+      },
+      {
+        day: "Day 6",
+        title: "Neil → Port Blair",
+        description: "Return to Port Blair and visit Ross Island.",
+        activities: ["Ferry to Port Blair", "Ross Island"],
+        meals: ["Breakfast"],
+        sightseeing: ["Ross Island"]
+      },
+      {
+        day: "Day 7",
+        title: "Departure",
+        description: "Final morning and departure.",
+        activities: ["Airport transfer"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ]
+  },
   highlights: [
     {
       title: "Three Islands Covered",
@@ -134,7 +286,9 @@ export const standardAndaman: Package = {
   paymentPolicy: commonPaymentPolicy,
   tips: commonTips,
   pricingOptions: [
-    { days: 6, pricePerPerson: 28500, title: "6 Days Standard Package" }
+    { days: 5, pricePerPerson: 24000, title: "5 Days Standard Express" },
+    { days: 6, pricePerPerson: 28500, title: "6 Days Standard Package" },
+    { days: 7, pricePerPerson: 33000, title: "7 Days Standard Extended" }
   ],
   hotels: [
     {

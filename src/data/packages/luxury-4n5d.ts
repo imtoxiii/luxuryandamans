@@ -100,6 +100,134 @@ export const luxury4n5d: Package = {
       sightseeing: ["Resort"]
     }
   ],
+  itineraries: {
+    4: [
+      {
+        day: "Day 1",
+        title: "Luxury Arrival",
+        description: "VIP arrival and resort relaxation.",
+        activities: ["VIP airport pickup", "Welcome spa session"],
+        meals: ["Welcome Drinks", "Dinner"],
+        sightseeing: ["Resort Beach"]
+      },
+      {
+        day: "Day 2",
+        title: "Havelock Luxury",
+        description: "Premium ferry and Radhanagar Beach experience.",
+        activities: ["Private ferry to Havelock", "Radhanagar Beach", "Candlelight Dinner"],
+        meals: ["Breakfast", "Candlelight Dinner"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 3",
+        title: "Premium Water Activities",
+        description: "Exclusive scuba diving and beach experiences. Return to Port Blair.",
+        activities: ["Scuba Diving", "Elephant Beach", "Private ferry to Port Blair"],
+        meals: ["Breakfast", "Lunch", "Dinner"],
+        sightseeing: ["Scuba Site", "Elephant Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Departure",
+        description: "Leisurely morning and VIP departure.",
+        activities: ["Private transfer to airport"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ],
+    5: [
+      {
+        day: "Day 1",
+        title: "Luxury Arrival",
+        description: "VIP arrival and resort relaxation.",
+        activities: ["VIP airport pickup", "Welcome spa session", "Sunset cocktails"],
+        meals: ["Welcome Drinks", "Dinner"],
+        sightseeing: ["Resort Beach"]
+      },
+      {
+        day: "Day 2",
+        title: "Port Blair Heritage",
+        description: "Private city tour and cultural exploration.",
+        activities: ["Private Cellular Jail tour", "Premium Light & Sound Show", "Gourmet lunch"],
+        meals: ["Breakfast", "Lunch", "Dinner"],
+        sightseeing: ["Cellular Jail", "Corbyn's Cove"]
+      },
+      {
+        day: "Day 3",
+        title: "Havelock Luxury",
+        description: "Premium ferry and Radhanagar Beach experience.",
+        activities: ["Private ferry to Havelock", "Radhanagar Beach", "Candlelight Dinner"],
+        meals: ["Breakfast", "Candlelight Dinner"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Premium Water Activities",
+        description: "Exclusive scuba diving and beach experiences.",
+        activities: ["Scuba Diving", "Elephant Beach", "Champagne on beach"],
+        meals: ["Breakfast", "Lunch", "Dinner"],
+        sightseeing: ["Scuba Site", "Elephant Beach"]
+      },
+      {
+        day: "Day 5",
+        title: "Departure",
+        description: "Leisurely morning and VIP departure.",
+        activities: ["Private transfer to airport"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ],
+    6: [
+      {
+        day: "Day 1",
+        title: "Luxury Arrival",
+        description: "VIP arrival and resort relaxation.",
+        activities: ["VIP airport pickup", "Welcome spa session", "Sunset cocktails"],
+        meals: ["Welcome Drinks", "Dinner"],
+        sightseeing: ["Resort Beach"]
+      },
+      {
+        day: "Day 2",
+        title: "Port Blair Heritage",
+        description: "Private city tour and cultural exploration.",
+        activities: ["Private Cellular Jail tour", "Premium Light & Sound Show", "Gourmet lunch"],
+        meals: ["Breakfast", "Lunch", "Dinner"],
+        sightseeing: ["Cellular Jail", "Corbyn's Cove"]
+      },
+      {
+        day: "Day 3",
+        title: "Havelock Luxury",
+        description: "Premium ferry and Radhanagar Beach experience.",
+        activities: ["Private ferry to Havelock", "Radhanagar Beach", "Candlelight Dinner"],
+        meals: ["Breakfast", "Candlelight Dinner"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Premium Water Activities",
+        description: "Exclusive scuba diving and beach experiences.",
+        activities: ["Scuba Diving", "Elephant Beach", "Champagne on beach"],
+        meals: ["Breakfast", "Lunch", "Dinner"],
+        sightseeing: ["Scuba Site", "Elephant Beach"]
+      },
+      {
+        day: "Day 5",
+        title: "Havelock Leisure & Return",
+        description: "Relaxing morning. Return to Port Blair.",
+        activities: ["Leisure", "Private ferry to Port Blair", "Shopping"],
+        meals: ["Breakfast", "Dinner"],
+        sightseeing: ["Aberdeen Bazaar"]
+      },
+      {
+        day: "Day 6",
+        title: "Departure",
+        description: "Leisurely morning and VIP departure.",
+        activities: ["Private transfer to airport"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ]
+  },
   highlights: [
     {
       title: "5-Star Luxury",
@@ -121,7 +249,9 @@ export const luxury4n5d: Package = {
   paymentPolicy: commonPaymentPolicy,
   tips: commonTips,
   pricingOptions: [
-    { days: 5, pricePerPerson: 65000, title: "5 Days Luxury Experience" }
+    { days: 4, pricePerPerson: 55000, title: "4 Days Luxury Express" },
+    { days: 5, pricePerPerson: 65000, title: "5 Days Luxury Experience" },
+    { days: 6, pricePerPerson: 75000, title: "6 Days Luxury Indulgence" }
   ],
   hotels: [
     {

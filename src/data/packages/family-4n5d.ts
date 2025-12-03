@@ -100,6 +100,134 @@ export const family4n5d: Package = {
       sightseeing: ["Aberdeen Bazaar"]
     }
   ],
+  itineraries: {
+    4: [
+      {
+        day: "Day 1",
+        title: "Family Arrival",
+        description: "Arrive and explore Port Blair beaches.",
+        activities: ["Airport pickup", "Corbyn's Cove Beach", "Cellular Jail"],
+        meals: ["Breakfast"],
+        sightseeing: ["Corbyn's Cove", "Cellular Jail"]
+      },
+      {
+        day: "Day 2",
+        title: "Havelock Island Fun",
+        description: "Ferry to Havelock and beach activities.",
+        activities: ["Ferry to Havelock", "Radhanagar Beach"],
+        meals: ["Breakfast"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 3",
+        title: "Elephant Beach & Return",
+        description: "Morning Elephant Beach trip. Afternoon ferry back to Port Blair.",
+        activities: ["Elephant Beach", "Ferry to Port Blair"],
+        meals: ["Breakfast"],
+        sightseeing: ["Elephant Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Departure",
+        description: "Transfer to airport.",
+        activities: ["Airport Transfer"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ],
+    5: [
+      {
+        day: "Day 1",
+        title: "Family Arrival",
+        description: "Arrive and explore Port Blair beaches.",
+        activities: ["Airport pickup", "Corbyn's Cove Beach", "Cellular Jail"],
+        meals: ["Breakfast"],
+        sightseeing: ["Corbyn's Cove", "Cellular Jail"]
+      },
+      {
+        day: "Day 2",
+        title: "Havelock Island Fun",
+        description: "Ferry to Havelock and beach activities.",
+        activities: ["Ferry to Havelock", "Radhanagar Beach"],
+        meals: ["Breakfast"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 3",
+        title: "Elephant Beach Family Day",
+        description: "Safe water activities for the whole family.",
+        activities: ["Elephant Beach", "Snorkeling"],
+        meals: ["Breakfast"],
+        sightseeing: ["Elephant Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Ross Island Adventure",
+        description: "Explore Ross Island and meet friendly animals.",
+        activities: ["Ferry to Port Blair", "Ross Island"],
+        meals: ["Breakfast"],
+        sightseeing: ["Ross Island"]
+      },
+      {
+        day: "Day 5",
+        title: "Departure",
+        description: "Final morning and shopping.",
+        activities: ["Airport Transfer"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ],
+    6: [
+      {
+        day: "Day 1",
+        title: "Family Arrival",
+        description: "Arrive and explore Port Blair beaches.",
+        activities: ["Airport pickup", "Corbyn's Cove Beach", "Cellular Jail"],
+        meals: ["Breakfast"],
+        sightseeing: ["Corbyn's Cove", "Cellular Jail"]
+      },
+      {
+        day: "Day 2",
+        title: "Havelock Island Fun",
+        description: "Ferry to Havelock and beach activities.",
+        activities: ["Ferry to Havelock", "Radhanagar Beach"],
+        meals: ["Breakfast"],
+        sightseeing: ["Radhanagar Beach"]
+      },
+      {
+        day: "Day 3",
+        title: "Elephant Beach Family Day",
+        description: "Safe water activities for the whole family.",
+        activities: ["Elephant Beach", "Snorkeling"],
+        meals: ["Breakfast"],
+        sightseeing: ["Elephant Beach"]
+      },
+      {
+        day: "Day 4",
+        title: "Havelock Leisure",
+        description: "Relax at resort or visit Kalapathar Beach.",
+        activities: ["Leisure", "Kalapathar Beach"],
+        meals: ["Breakfast"],
+        sightseeing: ["Kalapathar Beach"]
+      },
+      {
+        day: "Day 5",
+        title: "Ross Island Adventure",
+        description: "Explore Ross Island and meet friendly animals.",
+        activities: ["Ferry to Port Blair", "Ross Island"],
+        meals: ["Breakfast"],
+        sightseeing: ["Ross Island"]
+      },
+      {
+        day: "Day 6",
+        title: "Departure",
+        description: "Final morning and shopping.",
+        activities: ["Airport Transfer"],
+        meals: ["Breakfast"],
+        sightseeing: []
+      }
+    ]
+  },
   highlights: [
     {
       title: "Kid-Safe Activities",
@@ -121,8 +249,9 @@ export const family4n5d: Package = {
   paymentPolicy: commonPaymentPolicy,
   tips: commonTips,
   pricingOptions: [
-    { days: 5, pricePerPerson: 22000, title: "5 Days Family Fun (Adult)" },
-    { days: 5, pricePerPerson: 15000, title: "Child Rate (5-12 years)" }
+    { days: 4, pricePerPerson: 18000, title: "4 Days Family Express" },
+    { days: 5, pricePerPerson: 22000, title: "5 Days Family Fun" },
+    { days: 6, pricePerPerson: 28000, title: "6 Days Family Relax" }
   ],
   hotels: [
     {

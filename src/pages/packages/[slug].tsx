@@ -258,8 +258,8 @@ const PackageDetailPage: React.FC = () => {
                   key={tab}
                   onClick={() => setActiveTab(tab as 'overview' | 'itinerary' | 'hotels' | 'policies')}
                   className={`flex-1 py-3 px-6 rounded-xl text-sm font-bold uppercase tracking-wider transition-all whitespace-nowrap ${activeTab === tab
-                      ? 'bg-blue-600 text-white shadow-md'
-                      : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
                     }`}
                 >
                   {tab}
@@ -375,7 +375,7 @@ const PackageDetailPage: React.FC = () => {
                       </div>
 
                       <div className="relative border-l-2 border-blue-100 ml-4 space-y-8 pb-4">
-                        {currentPackage.itinerary.map((day, idx) => (
+                        {(currentPackage.itineraries?.[selectedDays] || currentPackage.itinerary).map((day, idx) => (
                           <div key={idx} className="relative pl-8">
                             <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-600 ring-4 ring-white shadow-sm" />
 
@@ -589,6 +589,35 @@ const PackageDetailPage: React.FC = () => {
                       </button>
                     </div>
                   </div>
+
+                  {/* Supplements */}
+                  {currentPackage.supplements && currentPackage.supplements.length > 0 && (
+                    <div className="mb-6">
+                      <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Optional Supplements</label>
+                      <div className="space-y-3">
+                        {currentPackage.supplements.map((supplement, idx) => (
+                          <label key={idx} className="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-colors">
+                            <div className="flex items-center gap-3">
+                              <input
+                                type="checkbox"
+                                checked={selectedSupplements.includes(supplement.name)}
+                                onChange={(e) => {
+                                  if (e.target.checked) {
+                                    setSelectedSupplements([...selectedSupplements, supplement.name]);
+                                  } else {
+                                    setSelectedSupplements(selectedSupplements.filter(s => s !== supplement.name));
+                                  }
+                                }}
+                                className="w-5 h-5 rounded text-blue-600 focus:ring-blue-500 border-gray-300"
+                              />
+                              <span className="font-medium text-gray-900 text-sm">{supplement.name}</span>
+                            </div>
+                            <span className="text-sm font-bold text-blue-600">₹{supplement.price.toLocaleString()}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Add-on Activities */}
                   <div>

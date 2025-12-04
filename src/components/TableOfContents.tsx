@@ -50,28 +50,46 @@ const TableOfContents = ({ items, className = '' }: TableOfContentsProps) => {
     }
   };
 
+  const [chatOpen, setChatOpen] = useState(false);
+
+  useEffect(() => {
+    const handleChatState = (e: CustomEvent) => {
+      setChatOpen(e.detail.isOpen);
+      if (e.detail.isOpen) setIsExpanded(false); // Close TOC if chat opens
+    };
+
+    window.addEventListener('chatWidgetState', handleChatState as EventListener);
+    return () => window.removeEventListener('chatWidgetState', handleChatState as EventListener);
+  }, []);
+
   return (
     <div className={className}>
-      {/* Floating Navigation Button - Left Center */}
-      <motion.button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="fixed left-4 top-1/2 -translate-y-1/2 z-50 p-3 bg-azure text-white rounded-full shadow-xl hover:bg-azure/90 transition-all"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        initial={false}
-      >
-        {isExpanded ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-      </motion.button>
+      {/* Floating Navigation Button - Right Bottom (Above Chat Widget) */}
+      <AnimatePresence>
+        {!chatOpen && (
+          <motion.button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="fixed right-6 bottom-24 z-[40] p-3 bg-azure text-white rounded-full shadow-xl hover:bg-azure/90 transition-all"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+          >
+            {isExpanded ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       {/* Expandable Navigation Menu */}
       <AnimatePresence>
-        {isExpanded && (
+        {isExpanded && !chatOpen && (
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: 20, scale: 0.9 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: 20, scale: 0.9 }}
             transition={{ duration: 0.15, ease: 'easeOut' }}
-            className="fixed left-20 top-1/2 -translate-y-1/2 z-50 w-64 max-h-[70vh] overflow-y-auto bg-white rounded-2xl shadow-2xl border border-gray-100 p-4"
+            className="fixed right-20 bottom-24 z-[40] w-64 max-h-[60vh] overflow-y-auto bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 origin-bottom-right"
           >
             <div className="mb-3 pb-2 border-b border-gray-200">
               <h3 className="font-bold text-night text-sm">Quick Navigation</h3>
@@ -81,11 +99,10 @@ const TableOfContents = ({ items, className = '' }: TableOfContentsProps) => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`w-full text-left px-3 py-2 rounded-lg transition-all text-sm ${
-                    activeId === item.id
-                      ? 'bg-azure/10 text-azure font-semibold border-l-2 border-azure'
-                      : 'text-night/70 hover:bg-gray-50 hover:text-night'
-                  } ${item.level === 2 ? 'ml-4 text-xs' : ''}`}
+                  className={`w-full text-left px-3 py-2 rounded-lg transition-all text-sm ${activeId === item.id
+                    ? 'bg-azure/10 text-azure font-semibold border-l-2 border-azure'
+                    : 'text-night/70 hover:bg-gray-50 hover:text-night'
+                    } ${item.level === 2 ? 'ml-4 text-xs' : ''}`}
                 >
                   {item.title}
                 </button>

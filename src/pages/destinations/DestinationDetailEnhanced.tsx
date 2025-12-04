@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  MapPin, Calendar, Compass, Activity, Clock, Ticket, Camera, Star,
-  ArrowLeft, Info, AlertTriangle, CheckCircle, DollarSign, Navigation,
-  Phone, Shield, FileText, Users, Car, Plane, Sun, Cloud,
-  ThermometerSun, Waves, Wind, Coffee, ShoppingBag, Heart,
-  Award, ChevronRight, MessageCircle, Share2, ExternalLink, ArrowRight
+import {
+  MapPin, Calendar, Activity, Clock, Ticket, Camera, Star,
+  Info, AlertTriangle, CheckCircle, DollarSign, Navigation, FileText,
+  Car, Plane, Sun, Cloud,
+  ThermometerSun, Waves, Wind, Heart,
+  Award, ChevronRight, Share2, ArrowRight
 } from 'lucide-react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -40,7 +40,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  
+
   const metaTags = generateDestinationMetaTags(destination);
   const structuredData = generateDestinationStructuredData(destination);
   const faqs = generateDestinationFAQs(destination);
@@ -48,14 +48,23 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
 
   // Merge gallery images from static data and folder structure
   const folderImages = (destinationImages as Record<string, string[]>)[destination.slug] || [];
-  
-  // Find specific images if they exist
-  const heroImage = folderImages.find(img => img.toLowerCase().includes('hero') || img.toLowerCase().includes('main')) || destination.image;
-  
-  const galleryImages = [
-    ...(destination.gallery || []).map(img => typeof img === 'string' ? { url: img, caption: destination.name } : img),
-    ...folderImages.map(url => ({ url, caption: destination.name }))
-  ];
+
+  // Image Priority Logic
+  // 1. Hero Image (Banner): Check for 'hero_card' -> 'hero' -> First available image
+
+
+  // Sort to prioritize hero_card if both exist (though find usually gets first match, let's be safe if we want strict priority)
+  // Actually, let's refine the find to be specific.
+  const specificHeroCard = folderImages.find(img => img.toLowerCase().includes('hero_card'));
+  const specificHero = folderImages.find(img => img.toLowerCase().includes('hero') && !img.toLowerCase().includes('hero_card'));
+
+  const heroImage = specificHeroCard || specificHero || folderImages[0] || destination.image || '/images/placeholder-hero.jpg';
+
+  // Gallery Logic: Use ALL folder images.
+  // If folder is empty, fallback to destination.gallery (which will be empty soon, but safe to keep for now)
+  const galleryImages = folderImages.length > 0
+    ? folderImages.map(url => ({ url, caption: destination.name }))
+    : (destination.gallery || []).map(img => typeof img === 'string' ? { url: img, caption: destination.name } : img);
 
   // Create TOC items
   const tocItems = [
@@ -74,7 +83,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
   useEffect(() => {
     // Add all structured data schemas
     const scriptElements: HTMLScriptElement[] = [];
-    
+
     [...structuredData, faqSchema].forEach((schema, index) => {
       const script = document.createElement('script');
       script.type = 'application/ld+json';
@@ -104,12 +113,12 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
     <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900" ref={containerRef}>
       {/* Scroll Progress Indicator */}
       <ScrollProgress color="#0EA5E9" height={3} />
-      
+
       {/* Image Gallery Lightbox */}
       {isGalleryOpen && (
         <ImageGallery
           images={
-            galleryImages.length > 0 
+            galleryImages.length > 0
               ? galleryImages.map(img => img.url)
               : [heroImage]
           }
@@ -122,33 +131,33 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
           initialIndex={galleryStartIndex}
         />
       )}
-      
+
       {/* Enhanced SEO with all meta tags */}
-      <SEO 
+      <SEO
         title={metaTags.title}
         description={metaTags.description}
         keywords={metaTags.keywords}
         image={metaTags.ogImage}
         pathname={`/destinations/${destination.slug}`}
       />
-      
+
       <Header />
-      
+
       {/* Hero Section with Enhanced Visual */}
-      <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        <motion.div 
+      <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden bg-gray-900">
+        <motion.div
           style={{ y, opacity }}
           className="absolute inset-0 z-0"
         >
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/60 z-10" />
-          <img 
+          <img
             src={heroImage}
             alt={`${destination.name} - ${destination.description}`}
             className="w-full h-full object-cover scale-110"
             loading="eager"
           />
         </motion.div>
-        
+
         {/* Hero Content */}
         <div className="container mx-auto px-4 sm:px-6 relative z-20 text-center">
           <motion.div
@@ -165,11 +174,11 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight leading-tight drop-shadow-2xl font-display">
               {destination.name}
             </h1>
-            
+
             <p className="text-lg md:text-2xl text-gray-100 max-w-3xl mx-auto leading-relaxed font-light mb-10 drop-shadow-md">
               {destination.description}
             </p>
-            
+
             {/* Quick Stats */}
             <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-white/90 mb-10">
               <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10">
@@ -276,7 +285,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {Object.entries(destination.quickInfo).map(([key, value], index) => (
-                  <motion.div 
+                  <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -302,7 +311,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
         variants={staggerContainer(0.2, 0.5)}
         initial="initial"
         whileInView="animate"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, margin: "-100px" }}
         className="py-16 lg:py-24 relative bg-white"
       >
         <div className="container mx-auto px-4 sm:px-6">
@@ -314,7 +323,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
                   <h2 className="text-4xl mb-8">
                     Discover {destination.name}
                   </h2>
-                  
+
                   <div className="text-gray-600 space-y-6 leading-relaxed text-lg">
                     {destination.longDescription.split('\n\n').map((paragraph, index) => (
                       <p key={index}>{paragraph.trim()}</p>
@@ -341,7 +350,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
                       </h3>
                       <div className="flex flex-wrap gap-3">
                         {destination.bestFor.map((item, index) => (
-                          <span 
+                          <span
                             key={index}
                             className="px-5 py-2 bg-pink-50 text-pink-600 rounded-full text-sm font-semibold capitalize border border-pink-100"
                           >
@@ -360,7 +369,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
                       <Navigation className="w-7 h-7 text-blue-600 mr-3" />
                       How to Reach {destination.name}
                     </h3>
-                    
+
                     <div className="space-y-8">
                       <div className="flex items-start space-x-5">
                         <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
@@ -437,11 +446,14 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
                           }}
                           className="relative rounded-xl overflow-hidden group aspect-square cursor-pointer"
                         >
-                          <img 
-                            src={image.url} 
+                          <img
+                            src={image.url}
                             alt={image.caption}
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                             loading="lazy"
+                            onError={(e) => {
+                              e.currentTarget.src = 'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=800&q=80';
+                            }}
                           />
                           <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />
                         </button>
@@ -556,6 +568,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
         id="highlights"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6 }}
         className="py-16 lg:py-24 bg-gray-50"
       >
@@ -570,7 +583,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
                 Discover the unique features that make {destination.name} unforgettable
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {destination.highlights.map((highlight, index) => (
                 <motion.div
@@ -578,7 +591,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.15 }}
-                  className="group relative overflow-hidden rounded-[2rem] shadow-xl hover:shadow-2xl transition-all duration-500 h-[400px]"
+                  className="group relative overflow-hidden rounded-[2rem] shadow-xl hover:shadow-2xl transition-all duration-500 h-[400px] bg-gray-200"
                 >
                   <img
                     src={highlight.image}
@@ -611,6 +624,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
           id="activities"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
           className="py-16 lg:py-24 bg-white"
         >
@@ -628,7 +642,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
                   Experience the best activities and adventures at {destination.name}
                 </p>
               </div>
-              
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {destination.detailedActivities.map((activity, index) => (
                   <motion.div
@@ -656,11 +670,11 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
                         </div>
                       </div>
                     </div>
-                    
+
                     <p className="text-gray-600 mb-6 leading-relaxed text-lg">
                       {activity.description}
                     </p>
-                    
+
                     <div className="flex flex-wrap gap-4 mb-6">
                       {activity.duration && (
                         <div className="flex items-center text-gray-500 text-sm bg-gray-50 px-3 py-1.5 rounded-lg">
@@ -668,7 +682,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
                           <span>{activity.duration}</span>
                         </div>
                       )}
-                      
+
                       {activity.timings && (
                         <div className="flex items-center text-gray-500 text-sm bg-gray-50 px-3 py-1.5 rounded-lg">
                           <Calendar className="w-4 h-4 mr-2 text-blue-600" />
@@ -706,6 +720,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
           id="weather"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
           className="py-16 lg:py-24 bg-gray-50"
         >
@@ -742,7 +757,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
 
                     <div className="relative z-10">
                       <h3 className="text-2xl font-bold text-gray-900 mb-6">{weather.season}</h3>
-                      
+
                       <div className="space-y-4">
                         <div className="flex items-center justify-between border-b border-gray-100 pb-3">
                           <div className="flex items-center text-gray-600">
@@ -751,7 +766,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
                           </div>
                           <span className="font-bold text-gray-900">{weather.temperature}</span>
                         </div>
-                        
+
                         <div className="flex items-center justify-between border-b border-gray-100 pb-3">
                           <div className="flex items-center text-gray-600">
                             <Wind className="w-5 h-5 mr-3 text-blue-500" />
@@ -769,7 +784,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
                             <span className="font-medium text-gray-900 text-right">{weather.seaConditions}</span>
                           </div>
                         )}
-                        
+
                         {weather.visibility && (
                           <div className="flex items-center justify-between">
                             <div className="flex items-center text-gray-600">
@@ -842,7 +857,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
                   {destination.budgetInfo.costs.map((cost, index) => (
-                    <div 
+                    <div
                       key={index}
                       className="flex justify-between items-center py-4 border-b border-gray-50 last:border-0"
                     >

@@ -55,7 +55,13 @@ const PopularIslands = () => {
             };
             const slug = slugMap[island.name];
             const folderImages = slug ? (destinationImages as Record<string, string[]>)[slug] || [] : [];
-            const cardImage = folderImages.find(img => img.toLowerCase().includes('card') || img.toLowerCase().includes('thumb')) || island.image;
+            
+            // Card Image Priority: 'card' -> 'hero_card' -> 'hero' -> First available
+            const specificCard = folderImages.find(img => img.toLowerCase().includes('card') && !img.toLowerCase().includes('hero_card'));
+            const specificHeroCard = folderImages.find(img => img.toLowerCase().includes('hero_card'));
+            const specificHero = folderImages.find(img => img.toLowerCase().includes('hero') && !img.toLowerCase().includes('hero_card'));
+            
+            const cardImage = specificCard || specificHeroCard || specificHero || folderImages[0] || island.image;
 
             return (
             <motion.div

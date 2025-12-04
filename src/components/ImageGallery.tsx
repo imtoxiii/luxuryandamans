@@ -204,6 +204,9 @@ const ImageGallery = ({ images, captions, onClose, initialIndex = 0 }: ImageGall
               dragElastic={0.1}
               onDragStart={() => setIsDragging(true)}
               onDragEnd={() => setIsDragging(false)}
+              onError={(e) => {
+                e.currentTarget.src = 'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=1200&q=80';
+              }}
             />
           </motion.div>
         </div>
@@ -246,6 +249,9 @@ const ImageGallery = ({ images, captions, onClose, initialIndex = 0 }: ImageGall
                       src={image}
                       alt={`Thumbnail ${index + 1}`}
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src = 'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=100&q=80';
+                      }}
                     />
                   </button>
                 ))}

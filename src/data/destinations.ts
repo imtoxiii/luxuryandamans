@@ -131,33 +131,8 @@ export const destinations: Destination[] = [
     longDescription: `The Cellular Jail, also known as Kala Pani, is a colonial prison situated in Port Blair. It was used by the British to exile Indian political prisoners to the remote archipelago. Today, it stands as a national memorial and museum showcasing India's struggle for independence.
 
     Completed in 1906, this prison was designed for solitary confinement with seven blocks radiating from a central tower. Many freedom fighters including Vinayak Damodar Savarkar were imprisoned here. The jail is famous for its Light and Sound Show that narrates the heroic saga of the Indian freedom struggle.`,
-    image: "https://images.unsplash.com/photo-1630569688747-0e3b60f6430f?q=80&w=1214&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    gallery: [
-      {
-        url: "https://images.unsplash.com/photo-1630569688747-0e3b60f6430f?q=80&w=1214&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        caption: "Cellular Jail exterior view with historic architecture"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1565865735449-dcf2832039b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Prison corridors and solitary confinement cells"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1584507305093-a4e42d1632c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Central tower - the heart of the prison complex"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1499288813343-3be7f015631a?q=80&w=1143&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        caption: "Light and Sound Show setup in the evening"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Museum exhibits showcasing freedom fighters' stories"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Memorial plaques honoring freedom fighters"
-      }
-    ],
+    image: "",
+    gallery: [],
     activities: ["Historical Tours", "Light & Sound Show", "Museum Visits", "Photography"],
     detailedActivities: [
       {
@@ -371,33 +346,8 @@ export const destinations: Destination[] = [
     longDescription: `Ross Island, officially known as Netaji Subhas Chandra Bose Island, served as the administrative headquarters for the British in the Andaman Islands from 1858 to 1941. Today, it stands as a testament to the colonial past with ruins of buildings that once housed the British elite.
 
     The island features remnants of a church, hospital, bakery, press, swimming pool, cemetery, and the Chief Commissioner's residence. During World War II, the Japanese occupied the island and built several bunkers, which can still be seen today.`,
-    image: "https://images.unsplash.com/photo-1499288813343-3be7f015631a?q=80&w=1143&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    gallery: [
-      {
-        url: "https://images.unsplash.com/photo-1499288813343-3be7f015631a?q=80&w=1143&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        caption: "British colonial ruins overgrown with tropical vegetation"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1565865735449-dcf2832039b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Japanese bunkers from World War II period"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Chief Commissioner's residence ruins"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Historic church ruins with original architecture"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Spotted deer roaming freely among the ruins"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Cemetery with colonial-era graves and monuments"
-      }
-    ],
+    image: "",
+    gallery: [],
     activities: ["Historical Walk", "Deer Feeding", "Photography", "Museum Visit"],
     detailedActivities: [
       {
@@ -608,33 +558,8 @@ export const destinations: Destination[] = [
     longDescription: `North Bay Island is a popular destination for water sports and coral viewing in the Andaman Islands. The island is famous for its lighthouse and offers some of the best snorkeling and sea walking experiences in the region.
 
     The crystal-clear waters around North Bay are perfect for underwater activities, and the island serves as a hub for various water sports. It's also known for its lighthouse, which has been guiding ships safely to Port Blair for decades.`,
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    gallery: [
-      {
-        url: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Water sports activities and coral viewing at North Bay"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Historic lighthouse guiding ships to Port Blair"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Glass bottom boat revealing vibrant coral reefs"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Sea walking experience with underwater coral gardens"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Snorkeling in crystal clear waters with tropical fish"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1499288813343-3be7f015631a?q=80&w=1143&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        caption: "Jet skiing and parasailing adventures"
-      }
-    ],
+    image: "",
+    gallery: [],
     activities: ["Snorkeling", "Sea Walking", "Glass Bottom Boat", "Jet Skiing", "Parasailing"],
     detailedActivities: [
       {
@@ -856,33 +781,8 @@ export const destinations: Destination[] = [
     longDescription: `Radhanagar Beach, also known as Beach No. 7, is consistently ranked as one of Asia's best beaches. Located on the western coast of Havelock Island, this pristine stretch of white sand and turquoise waters offers one of the most spectacular sunset views in the Andamans.
 
     The beach is surrounded by lush green forests and offers a perfect blend of natural beauty and tranquility. Unlike many other beaches in Andaman, Radhanagar has no coral reefs in the swimming area, making it safe for swimming and ideal for families.`,
-    image: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    gallery: [
-      {
-        url: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Radhanagar Beach spectacular sunset - Asia's best beach"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Crystal clear turquoise waters perfect for swimming"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Pristine white sand beach stretching into the distance"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Tropical forest backdrop creating perfect natural setting"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Golden hour photography opportunities at Beach No. 7"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1499288813343-3be7f015631a?q=80&w=1143&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        caption: "Romantic sunset walks along the pristine shoreline"
-      }
-    ],
+    image: "",
+    gallery: [],
     activities: ["Swimming", "Beach Walking", "Sunset Viewing", "Photography", "Sunbathing"],
     detailedActivities: [
       {
@@ -1098,33 +998,8 @@ export const destinations: Destination[] = [
     longDescription: `Elephant Beach is one of the most popular destinations in Havelock Island for water sports and snorkeling. The beach is famous for its shallow coral reefs that are easily accessible from the shore, making it perfect for snorkeling even for beginners.
 
     The journey to Elephant Beach is an adventure in itself - you can either take a boat ride or trek through the lush tropical forest. The beach offers a wide range of water sports activities and is considered one of the best snorkeling spots in the Andaman Islands.`,
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    gallery: [
-      {
-        url: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Elephant Beach coral reefs perfect for snorkeling adventures"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Vibrant underwater coral gardens accessible from shore"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Jungle trekking trail through lush tropical forest"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Crystal clear waters ideal for sea walking and water sports"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Colorful tropical fish swimming in shallow coral reefs"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1499288813343-3be7f015631a?q=80&w=1143&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        caption: "Adventure water sports including jet skiing and banana boat rides"
-      }
-    ],
+    image: "",
+    gallery: [],
     activities: ["Snorkeling", "Sea Walking", "Jet Skiing", "Banana Boat", "Parasailing", "Trekking"],
     detailedActivities: [
       {
@@ -1354,33 +1229,8 @@ export const destinations: Destination[] = [
     longDescription: `Bharatpur Beach is one of the most beautiful beaches on Neil Island, known for its pristine white sand and crystal-clear waters. The beach is perfect for swimming, snorkeling, and various water sports activities.
 
     The coral reefs near the shore make it an excellent spot for snorkeling, where you can see a variety of colorful fish and marine life. The beach is also famous for its glass-bottom boat rides that allow you to view the underwater world without getting wet.`,
-    image: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    gallery: [
-      {
-        url: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Bharatpur Beach crystal clear waters perfect for snorkeling"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Glass bottom boat offering coral viewing experience"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Pristine white sand beach with shallow coral reefs"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Neil Island's most accessible beach for families"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Colorful coral formations visible from glass bottom boats"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1499288813343-3be7f015631a?q=80&w=1143&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        caption: "Swimming and beach activities in the shallow lagoon"
-      }
-    ],
+    image: "",
+    gallery: [],
     activities: ["Snorkeling", "Glass Bottom Boat", "Swimming", "Beach Walking", "Photography"],
     detailedActivities: [
       {
@@ -1590,29 +1440,8 @@ export const destinations: Destination[] = [
     longDescription: `The Natural Bridge, locally known as Howrah Bridge, is a unique coral formation that connects two small islands. This natural wonder is one of the most photographed spots on Neil Island and offers spectacular views during low tide.
 
     The bridge is formed by years of natural erosion and coral growth, creating a stunning arch-like structure. It's best visited during low tide when you can walk closer to the formation and get better photographs.`,
-    image: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    gallery: [
-      {
-        url: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Natural Bridge coral arch formation at low tide"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Dramatic coastal scenery surrounding the natural bridge"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Sunrise photography opportunities at Howrah Bridge"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Rocky tide pools and marine life exploration"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Geological wonder showcasing natural coral architecture"
-      }
-    ],
+    image: "",
+    gallery: [],
     activities: ["Photography", "Nature Viewing", "Rock Exploration", "Sunrise Viewing", "Tide Pool Exploration"],
     detailedActivities: [
       {
@@ -1813,33 +1642,8 @@ export const destinations: Destination[] = [
     longDescription: `The Limestone Caves of Baratang are among the most spectacular natural formations in the Andaman Islands. These caves, formed over millions of years, feature stunning stalactites and stalagmites that create an otherworldly underground landscape.
 
     The journey to the caves is an adventure itself, involving a boat ride through mangrove creeks and a trek through dense forest. The caves are home to various species of bats and offer a unique spelunking experience.`,
-    image: "https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    gallery: [
-      {
-        url: "https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Magnificent stalactite and stalagmite formations in limestone caves"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Underground chambers showcasing natural limestone sculptures"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Mangrove boat journey through pristine creeks to reach caves"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Dense forest trekking path leading to cave entrance"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Ancient geological formations millions of years in the making"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Cave exploration with natural lighting highlighting formations"
-      }
-    ],
+    image: "",
+    gallery: [],
     activities: ["Cave Exploration", "Photography", "Boat Ride", "Nature Walk", "Geological Study", "Mangrove Tour"],
     detailedActivities: [
       {
@@ -2003,32 +1807,9 @@ export const destinations: Destination[] = [
   {
     name: "Mud Volcano",
     description: "Unique geological phenomenon",
-    longDescription: `The Mud Volcano in Baratang is a rare geological phenomenon where natural gas pushes mud and water up through the earth's surface, creating small volcano-like formations. This unique attraction offers visitors a chance to witness an active geological process.
-
-    The area around the mud volcano is characterized by bubbling mud pools and occasional small eruptions of mud and gas. It's one of the few places in India where you can witness such geological activity.`,
-    image: "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    gallery: [
-      {
-        url: "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Active mud volcano showcasing rare geological phenomenon"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Bubbling mud pools with natural gas emissions"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Geological formations created by volcanic mud activity"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Scientific observation of mud volcanism in action"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Natural landscape surrounding the volcanic mud site"
-      }
-    ],
+    longDescription: `The Mud Volcano in Baratang is a rare geological phenomenon where natural gas pushes mud and water up through the earth's surface, creating small volcano-like formations. This unique attraction offers visitors a chance to witness an active geological process.`,
+    image: "",
+    gallery: [],
     activities: ["Geological Study", "Photography", "Nature Observation", "Scientific Education", "Landscape Exploration"],
     detailedActivities: [
       {
@@ -2226,33 +2007,8 @@ export const destinations: Destination[] = [
     longDescription: `Ross and Smith Islands are twin islands connected by a natural white sand bar that appears during low tide. This phenomenon creates one of the most spectacular and unique beaches in the Andaman Islands.
 
     During low tide, you can walk from one island to another on the natural sandbar, offering a surreal experience of walking on water. The islands are known for their pristine beaches, clear waters, and excellent snorkeling opportunities.`,
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    gallery: [
-      {
-        url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Natural sandbar connecting Ross and Smith Islands during low tide"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Pristine white sand beaches of the twin islands"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Crystal clear waters perfect for snorkeling"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Aerial view showing the unique twin island formation"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Walking on the natural sandbar between islands"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1499288813343-3be7f015631a?q=80&w=1143&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        caption: "Sunset views from the northern tip of Andaman Islands"
-      }
-    ],
+    image: "",
+    gallery: [],
     activities: ["Beach Walking", "Snorkeling", "Photography", "Swimming", "Island Hopping", "Tide Pool Exploration"],
     detailedActivities: [
       {
@@ -2478,33 +2234,8 @@ export const destinations: Destination[] = [
     The trek to Saddle Peak is challenging but rewarding, taking you through dense tropical forests rich in flora and fauna. The peak is part of the Saddle Peak National Park and is home to various endemic species of birds and butterflies. The trail passes through pristine tropical rainforest, offering glimpses of endemic wildlife and rare plant species found nowhere else in the world.
 
     At the summit, trekkers are rewarded with 360-degree views of the Andaman archipelago, making it a must-visit destination for adventure enthusiasts and nature lovers. The peak's unique biodiversity and untouched natural beauty make it one of the most rewarding trekking experiences in the Indian Ocean.`,
-    image: "https://plus.unsplash.com/premium_photo-1727348666903-71feb2e21a0a?q=80&w=1075&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    gallery: [
-      {
-        url: "https://plus.unsplash.com/premium_photo-1727348666903-71feb2e21a0a?q=80&w=1075&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        caption: "Saddle Peak summit at 732 meters - highest point in Andaman Islands"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Dense tropical rainforest trail leading to the summit"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Panoramic 360-degree views of Andaman archipelago from summit"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Endemic bird species spotted during the trek"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1574263867128-b9c46a15bf74?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Rare butterflies and flora found only in Saddle Peak National Park"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Sunrise views from the peak - worth the early morning trek"
-      }
-    ],
+    image: "",
+    gallery: [],
     activities: ["Trekking", "Bird Watching", "Photography", "Nature Study", "Wildlife Observation"],
     detailedActivities: [
       {
@@ -2759,33 +2490,8 @@ export const destinations: Destination[] = [
     This untouched paradise offers some of the best snorkeling and diving opportunities in the Andaman Islands. The island is accessible only by chartered boats and requires special permits, making it perfect for day trips for those seeking an authentic off-the-beaten-path experience.
 
     The pristine environment, complete absence of commercial development, and restriction on visitor numbers have preserved Cinque Island as one of the last truly wild places in the Andaman archipelago. The crystal-clear waters provide visibility of up to 30 meters, making it a snorkeler's and diver's paradise with some of the most vibrant coral reefs in the Indian Ocean.`,
-    image: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    gallery: [
-      {
-        url: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Twin islands of North and South Cinque connected by pristine sandbar"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Crystal clear waters with 30-meter underwater visibility"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Vibrant coral reefs teeming with tropical marine life"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Pristine white sand beaches completely untouched by development"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Underwater paradise with colorful fish and coral formations"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1499288813343-3be7f015631a?q=80&w=1143&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        caption: "Robinson Crusoe experience on completely uninhabited island"
-      }
-    ],
+    image: "",
+    gallery: [],
     activities: ["Snorkeling", "Diving", "Beach Exploration", "Photography", "Sandbar Walking", "Marine Life Observation"],
     detailedActivities: [
       {
@@ -3046,33 +2752,8 @@ export const destinations: Destination[] = [
     The island is uninhabited and can only be approached by boat from a safe distance due to ongoing volcanic activity. The volcanic activity has created a unique marine ecosystem around the island, making it an excellent spot for deep-sea diving and marine life observation.
 
     This extraordinary geological wonder offers visitors a rare opportunity to witness an active volcano in the Indian Ocean. The island's volcanic landscape, combined with the crystal-clear waters surrounding it, creates a surreal and awe-inspiring experience. The nutrient-rich volcanic waters have fostered exceptional marine biodiversity, making the surrounding waters a haven for manta rays, whale sharks, and diverse coral species.`,
-    image: "https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    gallery: [
-      {
-        url: "https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "India's only active volcano on Barren Island"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Volcanic crater with ongoing geological activity"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1509909756405-be0199881695?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Manta rays and whale sharks in nutrient-rich volcanic waters"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Deep-sea diving in crystal clear waters around the volcano"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Dramatic volcanic landscape rising from the Indian Ocean"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-        caption: "Safe distance boat viewing of volcanic activity"
-      }
-    ],
+    image: "",
+    gallery: [],
     activities: ["Volcano Viewing", "Boat Tours", "Marine Life Observation", "Photography", "Deep Sea Diving", "Scientific Observation"],
     detailedActivities: [
       {

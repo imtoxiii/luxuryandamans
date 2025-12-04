@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { MapPin, ArrowRight, Compass, Star, Calendar } from 'lucide-react';
+import { MapPin, ArrowRight, Compass, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { destinations } from '../data/destinations';
+import destinationImagesData from '../data/destinationImages.json';
 
 const Destinations = () => {
   const containerRef = useRef(null);
@@ -20,6 +21,25 @@ const Destinations = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const getDestinationImage = (dest: any) => {
+    const images = (destinationImagesData as Record<string, string[]>)[dest.slug] || [];
+
+    // Priority: card.jpg -> hero_card.jpg -> any image with 'card' -> first image -> legacy dest.image
+    const cardImage = images.find(img => img.toLowerCase().endsWith('card.jpg'));
+    const heroCardImage = images.find(img => img.toLowerCase().includes('hero_card'));
+    const anyCardImage = images.find(img => img.toLowerCase().includes('card'));
+
+    if (cardImage) return cardImage;
+    if (heroCardImage) return heroCardImage;
+    if (anyCardImage) return anyCardImage;
+    if (images.length > 0) return images[0];
+
+    if (dest.image) return dest.image;
+
+    // Fallback placeholder
+    return 'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=800&q=80';
+  };
 
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900" ref={containerRef}>
@@ -104,10 +124,13 @@ const Destinations = () => {
                   <div className={`relative ${index % 3 === 0 ? 'h-[500px] md:h-[650px]' : 'h-[500px]'} overflow-hidden`}>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 opacity-90 group-hover:opacity-80 transition-opacity duration-500" />
                     <img
-                      src={dest.image}
+                      src={getDestinationImage(dest)}
                       alt={dest.name}
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                       loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.src = 'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=800&q=80';
+                      }}
                     />
 
                     {/* Floating Badge */}

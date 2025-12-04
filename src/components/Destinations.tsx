@@ -39,7 +39,17 @@ const Destinations = () => {
           <CardSlider showDots={true} autoScroll={false}>
             {destinations.map((dest, index) => {
               const folderImages = (destinationImages as Record<string, string[]>)[dest.slug] || [];
-              const cardImage = folderImages.find(img => img.toLowerCase().includes('card') || img.toLowerCase().includes('thumb')) || dest.image;
+              
+              // Card Image Priority: 'card' -> 'hero_card' -> 'hero' -> First available
+              const specificCard = folderImages.find(img => img.toLowerCase().includes('card') && !img.toLowerCase().includes('hero_card'));
+              const specificHeroCard = folderImages.find(img => img.toLowerCase().includes('hero_card'));
+              const specificHero = folderImages.find(img => img.toLowerCase().includes('hero') && !img.toLowerCase().includes('hero_card'));
+              
+              // Fallback to any image in folder if specific ones not found
+              const cardImage = specificCard || specificHeroCard || specificHero || folderImages[0] || dest.image || '/images/placeholder-destination.jpg';
+              
+              // Debugging (remove later)
+              // if (dest.slug === 'cellular-jail') console.log('Cellular Jail Card:', cardImage, folderImages);
 
               return (
                 <motion.div

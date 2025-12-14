@@ -1,4 +1,4 @@
-export const removeLoader = () => {
+export const removeLoader = (immediate = false) => {
     const skeleton = document.getElementById('loading-skeleton');
     const progressBar = document.getElementById('progress-bar');
     const progressText = document.getElementById('progress-text');
@@ -8,15 +8,23 @@ export const removeLoader = () => {
         clearInterval((window as any).loaderInterval);
     }
 
-    if (skeleton && progressBar && progressText) {
-        // Force progress to 100%
-        progressBar.style.width = '100%';
-        progressText.textContent = '100%';
+    if (skeleton) {
+        if (immediate) {
+            skeleton.style.display = 'none';
+            skeleton.remove();
+        } else if (progressBar && progressText) {
+            // Force progress to 100%
+            progressBar.style.width = '100%';
+            progressText.textContent = '100%';
 
-        // Wait a moment for the 100% to be seen, then fade out
-        setTimeout(() => {
-            skeleton.classList.add('hidden');
-            setTimeout(() => skeleton.remove(), 500);
-        }, 500);
+            // Wait a moment for the 100% to be seen, then fade out
+            setTimeout(() => {
+                skeleton.classList.add('hidden');
+                setTimeout(() => skeleton.remove(), 500);
+            }, 500);
+        } else {
+            // Fallback if elements missing but regular removal requested
+            skeleton.remove();
+        }
     }
 };

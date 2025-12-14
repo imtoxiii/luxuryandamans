@@ -77,7 +77,9 @@ function App() {
     // If we are not on the home page, remove the loader immediately
     // The Home page handles its own loader removal after image load
     if (location.pathname !== '/') {
-      removeLoader();
+        // For blog pages, remove immediately without transition for faster access from search
+        const isBlog = location.pathname.startsWith('/blog');
+        removeLoader(isBlog);
     }
   }, [location.pathname]);
 

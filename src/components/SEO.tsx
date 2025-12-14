@@ -28,7 +28,7 @@ const SEO: React.FC<SEOProps> = ({
   description,
   pathname, // Destructure pathname
   keywords,
-  image = 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80', // Better default image (Havelock)
+  image = 'https://luxuryandamans.com/og-default.webp', // Default to a branded local asset
   type = 'website',
   author = 'Luxury Andamans',
   publishedTime,

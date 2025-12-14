@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { optimizeUnsplashUrl, generateResponsiveSrcSet } from '../lib/performanceOptimizer';
 
 interface ExperienceCardProps {
   title: string;
@@ -29,57 +30,58 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ title, description, ima
       ref={ref}
       initial={{ opacity: 0, y: 30, scale: 0.95 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.95 }}
-      transition={{ 
-        duration: 0.6, 
-        delay, 
+      transition={{
+        duration: 0.6,
+        delay,
         ease: [0.25, 0.46, 0.45, 0.94],
         type: "spring",
         stiffness: 100
       }}
-      whileHover={{ 
+      whileHover={{
         y: -8,
         transition: { duration: 0.3, ease: "easeOut" }
       }}
       className="h-full"
     >
-      <Link 
+      <Link
         to={getPath(title)}
         className="card-modern group h-full block cursor-pointer select-none overflow-hidden flex flex-col min-h-[400px] md:min-h-[450px] relative"
       >
         <div className="relative flex-1 overflow-hidden">
-          <div 
+          <div
             className="absolute inset-0 bg-gradient-to-t from-night/80 via-night/30 to-transparent 
-                       group-hover:from-night/90 group-hover:via-night/40 transition-all duration-700 ease-out z-10" 
+                       group-hover:from-night/90 group-hover:via-night/40 transition-all duration-700 ease-out z-10"
           />
           <motion.img
-            src={image}
+            src={optimizeUnsplashUrl(image, 800)}
+            srcSet={generateResponsiveSrcSet(image, 800)}
             alt={title}
             className="w-full h-full object-cover"
             draggable="false"
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           />
-          <motion.div 
+          <motion.div
             className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 z-20"
             whileHover={{ y: -4 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <div className="space-y-3">
-              <motion.h3 
+              <motion.h3
                 className="text-2xl md:text-3xl font-bold text-pearl leading-tight"
                 whileHover={{ scale: 1.02, x: 4 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
                 {title}
               </motion.h3>
-              <motion.p 
+              <motion.p
                 className="text-pearl/90 text-sm md:text-base leading-relaxed"
                 whileHover={{ x: 4 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
                 {description}
               </motion.p>
-              <motion.div 
+              <motion.div
                 className="flex items-center text-pearl/90 text-sm font-medium mt-4"
                 whileHover={{ x: 6 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
@@ -94,14 +96,14 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ title, description, ima
               </motion.div>
             </div>
           </motion.div>
-          
+
           {/* Enhanced decorative element */}
-          <motion.div 
+          <motion.div
             className="absolute top-4 right-4 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full
                        flex items-center justify-center z-20"
             initial={{ opacity: 0, scale: 0.5 }}
-            whileHover={{ 
-              opacity: 1, 
+            whileHover={{
+              opacity: 1,
               scale: 1,
               rotate: 10,
               backgroundColor: "rgba(255, 255, 255, 0.15)"
@@ -111,7 +113,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ title, description, ima
             <ArrowRight className="w-5 h-5 text-white" />
           </motion.div>
         </div>
-        
+
         {/* Enhanced border animation */}
         <motion.div
           className="absolute inset-0 border-2 border-transparent rounded-2xl pointer-events-none"

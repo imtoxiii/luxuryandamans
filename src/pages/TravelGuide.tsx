@@ -109,6 +109,11 @@ const TravelGuide = () => {
         title="The Ultimate Andaman Islands Travel Guide 2025 | Complete Handbook"
         description="Your definitive guide to the Andaman Islands. Detailed information on flights, ferries, history, culture, best time to visit, and top things to do."
         pathname={location.pathname}
+        type="article"
+        keywords="andaman travel guide, andaman islands guide, how to reach andaman, best time to visit andaman, andaman history, andaman culture, andaman tourism guide"
+        author="Luxury Andamans Editorial Team"
+        publishedTime="2025-01-01"
+        modifiedTime={new Date().toISOString().split('T')[0]}
       />
       <Header />
       

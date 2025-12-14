@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'vegetarian-food-in-andaman';
 const imagePath = `/blog-assets/${slug}/`;
@@ -31,11 +32,7 @@ const post: BlogPost = {
   excerpt:
     'Worried that Andaman is only for seafood lovers? Think again! Discover the best pure veg restaurants, Jain food options, and what to eat in Port Blair and Havelock.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Foodies at heart, exploring the culinary delights of the islands.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '7 min read',
   category: 'Food & Drink',

@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'what-to-pack-for-andaman-trip';
 const imagePath = `/blog-assets/${slug}/`;
@@ -31,11 +32,7 @@ const post: BlogPost = {
   excerpt:
     'Don\'t overpack! Here is the definitive checklist of clothes, gadgets, and essentials you actually need for your Andaman island vacation.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Expert travelers helping you travel light and smart.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '6 min read',
   category: 'Travel Tips',

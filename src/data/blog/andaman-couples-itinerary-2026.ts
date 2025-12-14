@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
     id: "andaman-couples-itinerary-2026",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
     excerpt: "Planning a honeymoon or romantic getaway? Choose from our perfectly crafted 5, 6, and 7-day itineraries designed for love and relaxation.",
     image: "https://images.pexels.com/photos/1024960/pexels-photo-1024960.jpeg",
     category: "Itinerary",
-    author: {
-        name: "Rahul & Meera Gupta",
-        avatar: "https://images.pexels.com/photos/12516845/pexels-photo-12516845.jpeg",
-        bio: "Travel couple."
-    },
+    author: defaultAuthor,
     date: "2026-02-10",
     readTime: "15 min read",
     tags: ["Itinerary", "Couples", "Honeymoon", "2026"],

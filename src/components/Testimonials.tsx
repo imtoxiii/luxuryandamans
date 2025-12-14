@@ -8,25 +8,25 @@ import 'swiper/css/pagination';
 
 const testimonials = [
   {
-    name: "Priya Sharma",
+    name: "Luxury Andaman Team",
     location: "Bengaluru, India",
     rating: 5,
     comment: "Our trip to the Andaman Islands was truly unforgettable! The pristine beaches and crystal-clear waters were breathtaking. We highly recommend Luxury Andamans for their exceptional service and seamless arrangements.",
-    image: "https://plus.unsplash.com/premium_photo-1682089781034-a214f5768d58?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    image: "/favicon.png"
   },
   {
-    name: "Amit & Deepa",
+    name: "Luxury Andaman Team",
     location: "Delhi, India",
     rating: 5,
     comment: "Luxury Andamans crafted the perfect romantic getaway for us. From the serene sunsets to thrilling water sports, every moment was magical. The team was incredibly helpful and ensured we had a worry-free vacation.",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&q=80&w=1470&auto=format&fit=crop&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    image: "/favicon.png"
   },
   {
-    name: "Sneha & Rahul",
+    name: "Luxury Andaman Team",
     location: "Mumbai, India",
     rating: 5,
     comment: "An amazing adventure for our family! The kids absolutely loved the snorkeling and glass-bottom boat rides. Luxury Andamans made sure our trip was comfortable and filled with joyous memories. We can't wait to visit again!",
-    image: "https://images.unsplash.com/photo-1648037011755-ff3f1b62364c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    image: "/favicon.png"
   }
 ];
 

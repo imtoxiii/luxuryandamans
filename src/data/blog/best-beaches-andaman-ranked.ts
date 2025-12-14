@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
     id: "best-beaches-andaman-ranked",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
     excerpt: "We visited 30+ beaches across the Andaman archipelago. Here is our definitive ranking of the top 10, including secret spots you won't find on Google Maps.",
     image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Travel Guide",
-    author: {
-        name: "Luxury Andamans Team",
-        avatar: "/images/luxury-andamans-logo.png",
-        bio: "Exploring every grain of sand in the islands."
-    },
+    author: defaultAuthor,
     date: "2026-02-15",
     readTime: "8 min read",
     tags: ["Beaches", "Radhanagar", "Elephant Beach", "Hidden Gems", "Photography"],

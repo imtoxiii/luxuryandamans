@@ -119,19 +119,19 @@ const SeaWalkPage = () => {
 
   const testimonials = [
     {
-      name: 'Priya & Rohan',
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: 'The sea walk was incredible! We saw so many colorful fish and corals. The guides were very patient and made us feel safe throughout.',
       location: 'Mumbai'
     },
     {
-      name: 'Emily Johnson',
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: 'As someone who can\'t swim, the sea walk was perfect! I could walk on the ocean floor and see everything up close. A truly magical experience!',
       location: 'London'
     },
     {
-      name: 'The Patel Family',
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: 'Our kids loved the sea walk! It was educational and fun. The underwater photos they took are amazing memories we\'ll cherish forever.',
       location: 'Ahmedabad'

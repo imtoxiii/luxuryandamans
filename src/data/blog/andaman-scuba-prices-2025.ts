@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'andaman-scuba-prices-2025';
 
@@ -24,11 +25,7 @@ const post: BlogPost = {
   excerpt:
     'Planning a dive trip to the Andamans? Our 2025 guide breaks down the costs for everything from intro dives to PADI courses in Havelock and Neil Island. Get updated prices, tips, and a full FAQ.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '10 min read',
   category: 'Adventure',

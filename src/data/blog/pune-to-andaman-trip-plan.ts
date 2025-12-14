@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'pune-to-andaman-trip-plan';
 
@@ -24,11 +25,7 @@ const post: BlogPost = {
   excerpt:
     'Planning your Andaman escape from Pune? Our 2025 guide details the best flight routes, a perfect 7-day itinerary for Punekars, a realistic budget breakdown, and essential travel tips.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '11 min read',
   category: 'City Guides',

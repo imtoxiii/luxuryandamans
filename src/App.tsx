@@ -66,6 +66,7 @@ const TrekkingPage = lazy(() => import('./pages/experiences/trekking'));
 
 const CulturalToursPage = lazy(() => import('./pages/experiences/cultural-tours'));
 const BirdWatchingPage = lazy(() => import('./pages/experiences/bird-watching'));
+const ParasailingPage = lazy(() => import('./pages/experiences/parasailing'));
 
 function App() {
   const { transitionPhase, displayLocation } = usePageTransition();
@@ -144,6 +145,7 @@ function App() {
           <Route path="/experiences/trekking" element={<TrekkingPage />} />
           <Route path="/experiences/cultural-tours" element={<CulturalToursPage />} />
           <Route path="/experiences/bird-watching" element={<BirdWatchingPage />} />
+          <Route path="/experiences/parasailing" element={<ParasailingPage />} />
 
           {/* 404 Catch-all */}
           <Route path="*" element={<Navigate to="/" replace />} />

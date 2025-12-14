@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Phone, ArrowRight, Gift, Sparkles } from 'lucide-react';
+import { X, Phone, ArrowRight } from 'lucide-react';
 import { sendTelegramMessage } from '../lib/telegram';
 import toast from 'react-hot-toast';
 
@@ -49,8 +49,8 @@ const DiscountPopup = () => {
 
         setIsSubmitting(true);
         try {
-            await sendTelegramMessage(`🎁 *Discount Popup Claim*\n\nPhone: ${phone}\nOffer: FLAT 15% OFF + Free Candle Light Dinner`);
-            toast.success('Offer claimed! We will call you shortly.');
+            await sendTelegramMessage(`🎁 *Discount Popup Claim (Auto-Show)*\n\nPhone: ${phone}\nOffer: General Site Offer`);
+            toast.success('Offer claimed! We will contact you shortly.');
             setHasSubmitted(true);
             setTimeout(() => {
                 handleClose();
@@ -79,48 +79,42 @@ const DiscountPopup = () => {
                         initial={{ scale: 0.9, opacity: 0, y: 20 }}
                         animate={{ scale: 1, opacity: 1, y: 0 }}
                         exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                        transition={{ type: "spring", duration: 0.5 }}
-                        className="relative w-full max-w-md overflow-hidden rounded-3xl border border-white/20 bg-purple-900/40 backdrop-blur-xl shadow-2xl"
+                        onClick={(e) => e.stopPropagation()}
+                        className="relative w-full max-w-sm rounded-[20px] overflow-hidden shadow-2xl bg-white"
                     >
-                        {/* Decorative Elements */}
-                        <div className="absolute -top-20 -left-20 w-40 h-40 bg-purple-500 rounded-full blur-[100px] opacity-50 pointer-events-none" />
-                        <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-pink-500 rounded-full blur-[100px] opacity-50 pointer-events-none" />
+                        {/* Background Image */}
+                        <div className="absolute inset-0 z-0">
+                            <img
+                                src="/images/mhmb4l407dbbye0c06am.webp"
+                                alt="Background"
+                                className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-white/40 to-transparent" />
+                        </div>
 
+                        {/* Close Button */}
                         <button
                             onClick={handleClose}
-                            className="absolute top-4 right-4 p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-colors z-10"
+                            className="absolute top-4 right-4 z-20 w-8 h-8 flex items-center justify-center bg-black/20 hover:bg-black/30 rounded-full text-white transition-colors"
                         >
                             <X className="w-5 h-5" />
                         </button>
 
-                        <div className="p-8 relative z-0 text-center">
+                        <div className="relative z-10 p-8 pt-44 flex flex-col items-center">
                             {!hasSubmitted ? (
-                                <>
-                                    <motion.div 
-                                        initial={{ scale: 0 }}
-                                        animate={{ scale: 1 }}
-                                        transition={{ delay: 0.2, type: "spring" }}
-                                        className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/30 rotate-3"
-                                    >
-                                        <Gift className="w-10 h-10 text-white" />
-                                    </motion.div>
-
-                                    <h2 className="text-3xl font-bold text-white mb-2 font-display">
-                                        Exclusive Offer
-                                    </h2>
-                                    <p className="text-purple-200 mb-8 text-sm leading-relaxed">
-                                        Get <span className="font-bold text-white">FLAT 15% OFF</span> + Free Candle Light Dinner on your first booking!
-                                    </p>
+                                <div className="w-full bg-white/40 backdrop-blur-md rounded-2xl p-6 border border-white/50 shadow-lg">
+                                    
+                                    <p className="text-gray-700 text-sm mb-6 text-center">Unlock special deals for your Andaman trip!</p>
 
                                     <form onSubmit={handleSubmit} className="space-y-4">
                                         <div className="relative group">
-                                            <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-purple-300 group-focus-within:text-white transition-colors" />
+                                            <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                                             <input
                                                 type="tel"
                                                 value={phone}
                                                 onChange={(e) => setPhone(e.target.value)}
                                                 placeholder="Enter Phone Number"
-                                                className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/10 rounded-xl text-white placeholder:text-purple-200/50 focus:outline-none focus:ring-2 focus:ring-purple-400/50 focus:bg-white/20 transition-all"
+                                                className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition-all bg-white/80"
                                                 required
                                             />
                                         </div>
@@ -128,34 +122,28 @@ const DiscountPopup = () => {
                                         <button
                                             type="submit"
                                             disabled={isSubmitting}
-                                            className="w-full py-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white rounded-xl font-bold shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                                            className="w-full py-3 bg-gradient-to-r from-amber-500 to-orange-600 text-white rounded-xl font-bold shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transform active:scale-[0.98] transition-all flex items-center justify-center gap-2"
                                         >
                                             {isSubmitting ? (
-                                                'Claiming...'
+                                                <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                                             ) : (
-                                                <>
-                                                    Claim Reward <ArrowRight className="w-5 h-5" />
-                                                </>
+                                                <>Get Offer <ArrowRight className="w-5 h-5" /></>
                                             )}
                                         </button>
                                     </form>
-                                    
-                                    <p className="mt-4 text-xs text-purple-300/60">
-                                        *Limited time offer. Valid for new bookings only.
+
+                                    <p className="text-center mt-4 text-[12px] text-[#666]">
+                                        By submitting, you agree to the offer.
                                     </p>
-                                </>
+                                </div>
                             ) : (
-                                <div className="py-10">
-                                    <motion.div
-                                        initial={{ scale: 0 }}
-                                        animate={{ scale: 1 }}
-                                        className="w-20 h-20 mx-auto mb-6 bg-green-500 rounded-full flex items-center justify-center shadow-lg shadow-green-500/30"
-                                    >
-                                        <Sparkles className="w-10 h-10 text-white" />
-                                    </motion.div>
-                                    <h3 className="text-2xl font-bold text-white mb-2">Offer Claimed!</h3>
-                                    <p className="text-purple-200">
-                                        Our travel expert will call you shortly to apply your discount.
+                                <div className="w-full bg-white/80 backdrop-blur-md rounded-2xl p-8 border border-white/50 shadow-lg text-center py-12">
+                                    <div className="w-16 h-16 mx-auto mb-4 bg-green-500 rounded-full flex items-center justify-center shadow-lg shadow-green-500/30">
+                                        <ArrowRight className="w-8 h-8 text-white -rotate-45" /> {/* Use checkmark or similar if available, repurposing Arrow for now or just text */}
+                                    </div>
+                                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Offer Claimed!</h3>
+                                    <p className="text-gray-600">
+                                        Our travel expert will call you shortly.
                                     </p>
                                 </div>
                             )}

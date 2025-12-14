@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'bangalore-to-andaman-trip-plan';
 
@@ -24,11 +25,7 @@ const post: BlogPost = {
   excerpt:
     "Your ultimate guide for planning a trip from Bangalore to the Andamans. Get expert tips on booking the cheapest flights, a perfect 7-day itinerary, a detailed budget breakdown, and FAQs for 2025.",
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '11 min read',
   category: 'City Guides',

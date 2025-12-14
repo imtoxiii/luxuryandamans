@@ -7,7 +7,7 @@ import FaqAccordion from '../../components/FaqAccordion';
 const RomanticGetawaysPage = () => {
   const packages = [
     {
-      name: "Honeymoon Bliss",
+      name: "Luxury Andaman Team",
       duration: "7 days",
       price: "₹85,000 per couple",
       includes: [
@@ -19,14 +19,14 @@ const RomanticGetawaysPage = () => {
         "Decorated room on arrival"
       ],
       description: "An unforgettable honeymoon experience in paradise.",
-      image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Newlyweds",
       location: "Havelock Island",
       highlights: ["Private villa", "Couples spa", "Romantic dinners", "Sunset cruise"],
       special: "Honeymoon surprise gift"
     },
     {
-      name: "Anniversary Escape",
+      name: "Luxury Andaman Team",
       duration: "4 days",
       price: "₹55,000 per couple",
       includes: [
@@ -38,14 +38,14 @@ const RomanticGetawaysPage = () => {
         "Romantic decor in room"
       ],
       description: "Rekindle the romance with a special anniversary celebration.",
-      image: "https://images.unsplash.com/photo-1586611292717-f828b167408c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Couples celebrating anniversaries",
       location: "Neil Island",
       highlights: ["Seaview suite", "Professional photoshoot", "Beach picnic", "Special cake"],
       special: "Personalized anniversary gift"
     },
     {
-      name: "Proposal Paradise",
+      name: "Luxury Andaman Team",
       duration: "3 days",
       price: "₹65,000 per couple",
       includes: [
@@ -57,14 +57,14 @@ const RomanticGetawaysPage = () => {
         "Romantic dinner on beach"
       ],
       description: "Create the perfect setting for your proposal in paradise.",
-      image: "https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Couples ready to engage",
       location: "Long Island",
       highlights: ["Beach proposal setup", "Photography", "Champagne", "Beach villa"],
       special: "Proposal planning assistance"
     },
     {
-      name: "Babymoon Bliss",
+      name: "Luxury Andaman Team",
       duration: "5 days",
       price: "₹75,000 per couple",
       includes: [
@@ -76,7 +76,7 @@ const RomanticGetawaysPage = () => {
         "Private beach time"
       ],
       description: "Relax and reconnect before your little one arrives.",
-      image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Expecting couples",
       location: "Port Blair",
       highlights: ["Prenatal massage", "Healthy meals", "Gentle activities", "Peaceful environment"],
@@ -109,40 +109,40 @@ const RomanticGetawaysPage = () => {
 
   const romanticSpots = [
     {
-      name: "Radhanagar Beach",
+      name: "Luxury Andaman Team",
       description: "Voted one of Asia's best beaches, perfect for sunset strolls",
-      image: "https://images.unsplash.com/photo-1540202404-1b627c1926c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Sunset viewing, photography"
     },
     {
-      name: "Kalapathar Beach",
+      name: "Luxury Andaman Team",
       description: "Secluded beach with crystal clear waters and fewer crowds",
-      image: "https://images.unsplash.com/photo-1510629487420-2c5c9c7726f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Privacy, peaceful walks"
     },
     {
-      name: "Elephant Beach",
+      name: "Luxury Andaman Team",
       description: "Pristine beach with coral reefs and water activities",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Water activities, snorkeling"
     }
   ];
 
   const testimonials = [
     {
-      name: "Anjali & Rohan",
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: "Our honeymoon was beyond perfect! The private villa with pool was incredible, and the candlelight dinner on the beach was so romantic. The staff went above and beyond to make us feel special.",
       location: "Delhi"
     },
     {
-      name: "Priya & Alok",
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: "We celebrated our 10th anniversary with the Anniversary Escape package. The professional photoshoot was amazing, and we have beautiful memories. Already planning to return for our 15th!",
       location: "Bangalore"
     },
     {
-      name: "Neha & Karan",
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: "The Proposal Paradise package exceeded our expectations! The beach setup was magical, and the photographer captured the moment perfectly. She said yes! Thank you for making our engagement unforgettable.",
       location: "Mumbai"

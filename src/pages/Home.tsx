@@ -103,8 +103,7 @@ const Home = () => {
     }
   ];
 
-  // Mobile image position trigger (0 = center, 1 = right, -1 = left)
-  const mobileImagePosition = 0.1; // Change this value between 0 (center), 1 (right), -1 (left)
+
 
   return (
     <div className="bg-white font-sans selection:bg-blue-100 selection:text-blue-900" ref={containerRef}>
@@ -115,6 +114,9 @@ const Home = () => {
         keywords="andaman tour packages, andaman islands packages, andaman packages 2025, best andaman packages, andaman honeymoon packages, scuba diving andaman, havelock island packages, neil island tour, radhanagar beach, andaman tourism, beach vacation india, island hopping packages, andaman resorts booking, cheap andaman packages, premium andaman packages, andaman family packages, port blair tour, cellular jail visit, andaman packages from delhi, andaman packages from chennai, andaman packages from kolkata, affordable andaman tour, value for money andaman trip"
         targetAudience="all"
       />
+      
+      {/* Preload Hero Image for LCP Optimization */}
+      <link rel="preload" as="image" href={heroBg} />
 
       <Header />
 

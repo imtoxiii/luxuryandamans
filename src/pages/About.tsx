@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  MapPin, 
-  Calendar, 
-  Plane, 
-  Compass, 
-  Sun, 
-  Users, 
-  BookOpen, 
+import {
+  MapPin,
+  Calendar,
+  Plane,
+  Compass,
+  Sun,
+  Users,
+  BookOpen,
   Thermometer,
   Cloud,
   History,
@@ -60,7 +60,7 @@ const GuidePage = () => {
       const headerOffset = 100;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-  
+
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth"
@@ -128,49 +128,49 @@ const GuidePage = () => {
 
   return (
     <div className="min-h-screen bg-pearl font-sans selection:bg-azure/20 selection:text-azure">
-      <SEO 
-        title="Ultimate Andaman Islands Travel Guide 2025 | Tourism, Tips & Itinerary"
-        description="Plan your perfect Andaman trip with our comprehensive 2025 guide. Discover best time to visit, how to reach, top places like Havelock & Neil, scuba diving spots, and essential travel tips. Expert advice for couples and families."
+      <SEO
+        title="About Luxury Andamans | Premium Tour Operator in Port Blair"
+        description="Discover Luxury Andamans, the leading premium tour operator in Port Blair. specialized in bespoke Andaman holidays, luxury resorts, and curated island experiences since 2010."
         pathname={location.pathname}
-        keywords="Andaman Islands travel guide 2025, Andaman tourism, best time to visit Andaman, how to reach Port Blair, Havelock Island guide, Neil Island tourism, Andaman scuba diving, Andaman honeymoon guide, Andaman family trip, Andaman travel tips, Andaman ferry booking, Port Blair sightseeing"
+        keywords="about luxury andamans, andaman tour operators, luxury travel agency port blair, best andaman travel agent, premium andaman holidays, andaman experts, bespoke island tours"
         extraStructuredData={[breadcrumbStructuredData, faqStructuredData]}
       />
       <Header />
-      
+
       {/* Hero Section - Redesigned */}
       <div className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" 
-            alt="Andaman Islands Aerial View" 
+          <img
+            src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+            alt="Andaman Islands Aerial View"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-night/60 via-night/40 to-pearl"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 sm:px-6 text-center relative z-10 pt-20">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-sm font-medium mb-4 tracking-wider uppercase">
+              The Ultimate Travel Guide
+            </span>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white font-display mb-6 drop-shadow-lg">
+              Discover Andaman
+            </h1>
+            <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md mb-8">
+              Your comprehensive guide to the emerald islands of India. Plan your perfect escape to paradise.
+            </p>
+
+            <button
+              onClick={() => scrollToSection('overview')}
+              className="px-8 py-3 bg-azure hover:bg-azure/90 text-white rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-azure/50"
             >
-              <span className="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-sm font-medium mb-4 tracking-wider uppercase">
-                The Ultimate Travel Guide
-              </span>
-              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white font-display mb-6 drop-shadow-lg">
-                Discover Andaman
-              </h1>
-              <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md mb-8">
-                Your comprehensive guide to the emerald islands of India. Plan your perfect escape to paradise.
-              </p>
-              
-              <button 
-                onClick={() => scrollToSection('overview')}
-                className="px-8 py-3 bg-azure hover:bg-azure/90 text-white rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-azure/50"
-              >
-                Start Exploring
-              </button>
-            </motion.div>
+              Start Exploring
+            </button>
+          </motion.div>
         </div>
       </div>
 
@@ -183,11 +183,10 @@ const GuidePage = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-300 text-sm whitespace-nowrap ${
-                    activeSection === item.id
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-300 text-sm whitespace-nowrap ${activeSection === item.id
                       ? 'bg-azure text-white shadow-md transform scale-105'
                       : 'bg-transparent text-night/70 hover:bg-azure/10 hover:text-azure'
-                  }`}
+                    }`}
                 >
                   {item.icon}
                   <span>{item.label}</span>
@@ -200,7 +199,7 @@ const GuidePage = () => {
 
       {/* Content Sections */}
       <div className="pb-16 sm:pb-20 lg:pb-24 space-y-16 sm:space-y-24">
-        
+
         {/* Overview Section */}
         <section id="overview" className="pt-8 sm:pt-12">
           <div className="container mx-auto px-4 sm:px-6">
@@ -217,7 +216,7 @@ const GuidePage = () => {
                 </h2>
                 <div className="w-24 h-1 bg-gradient-to-r from-azure to-lagoon mx-auto rounded-full"></div>
               </div>
-              
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
                 <div className="space-y-6">
                   <p className="text-lg text-night/80 leading-relaxed">
@@ -226,7 +225,7 @@ const GuidePage = () => {
                   <p className="text-lg text-night/80 leading-relaxed">
                     With a tropical climate, rich marine life, and fascinating history, the Andaman Islands serve as the perfect destination for adventure seekers, nature lovers, and those seeking tranquil escapes. From world-class scuba diving to historical monuments, luxury resorts to untouched wilderness.
                   </p>
-                  
+
                   <div className="grid grid-cols-2 gap-4 mt-8">
                     {[
                       { label: 'Capital', value: 'Port Blair', icon: <MapPin className="w-4 h-4" /> },
@@ -244,7 +243,7 @@ const GuidePage = () => {
                     ))}
                   </div>
                 </div>
-                
+
                 <div className="relative">
                   <div className="absolute -inset-4 bg-gradient-to-tr from-azure/20 to-lagoon/20 rounded-[2rem] transform rotate-3"></div>
                   <img
@@ -311,7 +310,7 @@ const GuidePage = () => {
                 </h2>
                 <p className="text-night/60 max-w-2xl mx-auto">Most travelers arrive by air, landing in Port Blair, the capital city.</p>
               </div>
-              
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* By Air */}
                 <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
@@ -332,7 +331,7 @@ const GuidePage = () => {
                   <div className="p-6 sm:p-8">
                     <h4 className="font-bold text-night text-lg mb-4">Veer Savarkar International Airport (IXZ)</h4>
                     <p className="text-night/70 mb-6">Direct flights available from major Indian cities. Connecting flights from other metros.</p>
-                    
+
                     <div className="space-y-4">
                       {[
                         { from: 'Chennai', time: '2h 00m', freq: 'Daily' },
@@ -352,7 +351,7 @@ const GuidePage = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* By Sea */}
                 <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
                   <div className="bg-lagoon p-6 sm:p-8 text-white relative overflow-hidden">
@@ -372,7 +371,7 @@ const GuidePage = () => {
                   <div className="p-6 sm:p-8">
                     <h4 className="font-bold text-night text-lg mb-4">Haddo Wharf, Port Blair</h4>
                     <p className="text-night/70 mb-6">Regular passenger ships operate from Chennai, Kolkata, and Vishakhapatnam. This is a long journey.</p>
-                    
+
                     <div className="space-y-4">
                       {[
                         { from: 'Chennai', time: '60 hours', freq: 'Weekly' },
@@ -460,12 +459,12 @@ const GuidePage = () => {
                     </div>
                     <h3 className="text-2xl font-bold text-night mb-2 font-display">{season.season}</h3>
                     <div className="text-sm font-bold uppercase tracking-wider text-night/50 mb-4">{season.period}</div>
-                    
+
                     <div className="flex items-center gap-4 mb-6">
                       <div className="px-3 py-1 bg-gray-100 rounded-full text-sm font-medium text-night/80">{season.weather}</div>
                       <div className="px-3 py-1 bg-gray-100 rounded-full text-sm font-medium text-night/80">{season.temp}</div>
                     </div>
-                    
+
                     <p className="text-night/70 leading-relaxed">{season.desc}</p>
                   </div>
                 ))}
@@ -518,14 +517,14 @@ const GuidePage = () => {
                   desc: 'Witness magical sunsets at Chidiya Tapu and Radhanagar Beach.'
                 }
               ].map((item, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   whileHover={{ y: -5 }}
                   className="group relative rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer"
                 >
-                  <img 
-                    src={item.image} 
-                    alt={item.title} 
+                  <img
+                    src={item.image}
+                    alt={item.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
@@ -557,7 +556,7 @@ const GuidePage = () => {
                 <p className="text-night/70 text-lg mb-8 leading-relaxed">
                   Andaman cuisine is a delightful mix of fresh seafood and tropical flavors. Influenced by Bengali, Tamil, and Burmese cultures, the food here is a treat for the senses.
                 </p>
-                
+
                 <div className="space-y-6">
                   {[
                     { title: 'Fresh Seafood', desc: 'Try the famous Lobster, Crab, and Red Snapper delicacies.' },
@@ -589,7 +588,7 @@ const GuidePage = () => {
                 Shopping Guide
               </h2>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 { title: 'Wooden Artifacts', desc: 'Handcrafted items made from Padauk wood.', icon: <ShoppingBag /> },
@@ -606,10 +605,10 @@ const GuidePage = () => {
               ))}
             </div>
             <div className="mt-8 text-center">
-               <p className="text-sm text-red-500 font-medium flex items-center justify-center gap-2">
-                 <AlertTriangle className="w-4 h-4" />
-                 Reminder: Do not buy or collect corals. It is illegal.
-               </p>
+              <p className="text-sm text-red-500 font-medium flex items-center justify-center gap-2">
+                <AlertTriangle className="w-4 h-4" />
+                Reminder: Do not buy or collect corals. It is illegal.
+              </p>
             </div>
           </div>
         </section>
@@ -711,7 +710,7 @@ const GuidePage = () => {
 
         {/* FAQ Section */}
         <div id="faqs">
-          <FaqAccordion 
+          <FaqAccordion
             title="Frequently Asked Questions"
             description="Common queries answered to help you plan better."
             faqs={[
@@ -748,11 +747,11 @@ const GuidePage = () => {
 
 // Helper icons
 const LeafIcon = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.77 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.77 10-10 10Z" /><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" /></svg>
 );
 
 const ArrowRight = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
 );
 
 export default GuidePage;

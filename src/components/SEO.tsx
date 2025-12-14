@@ -28,7 +28,7 @@ const SEO: React.FC<SEOProps> = ({
   description,
   pathname, // Destructure pathname
   keywords,
-  image = 'https://images.unsplash.com/photo-1583212292454-39d2a21af845?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80',
+  image = 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80', // Better default image (Havelock)
   type = 'website',
   author = 'Luxury Andamans',
   publishedTime,
@@ -39,6 +39,7 @@ const SEO: React.FC<SEOProps> = ({
   siteName = 'Luxury Andamans',
   twitterHandle = '@andamanluxury',
   targetAudience = 'all',
+
   structuredData,
   extraStructuredData,
   faqData,
@@ -50,23 +51,23 @@ const SEO: React.FC<SEOProps> = ({
   // Comprehensive keyword strategy targeting different user intents and budgets
   const getKeywordsByAudience = (audience: string) => {
     const baseKeywords = 'andaman islands, andaman tourism, andaman travel, andaman packages, andaman tour packages, andaman holiday packages, andaman vacation packages, andaman trip packages, port blair, havelock island, neil island, radhanagar beach, cellular jail, ross island, elephant beach, bharatpur beach';
-    
+
     const budgetKeywords = 'cheap andaman packages, budget andaman tour, affordable andaman trip, low cost andaman packages, budget honeymoon andaman, cheap island vacation, budget beach holiday, affordable island packages, andaman packages under 20000, andaman packages under 30000, andaman packages under 40000, andaman packages under 50000, budget family vacation andaman, cheap andaman tour packages, economical andaman packages, discount andaman packages, best value andaman packages, budget andaman honeymoon packages, affordable andaman family packages, andaman packages on emi, all inclusive andaman packages, andaman family package under 1 lakh';
-    
+
     const premiumKeywords = 'premium andaman packages, boutique andaman tour, premium island resort, quality beach resort andaman, premium andaman vacation, curated honeymoon andaman, high-quality andaman packages, premium andaman tour packages, boutique beach vacation, premium island getaway, exclusive andaman packages, best rated andaman resorts, premium andaman experience, 4 star andaman packages, 5 star andaman packages';
-    
+
     const familyKeywords = 'andaman family packages, family vacation andaman, family tour packages andaman, family friendly andaman, andaman packages for family, family holiday andaman, kids friendly andaman packages, family beach vacation, andaman family trip, family adventure packages andaman, andaman with kids, safe andaman packages for family';
-    
+
     const honeymoonKeywords = 'andaman honeymoon packages, romantic andaman packages, honeymoon tour packages andaman, andaman honeymoon trip, romantic island vacation, honeymoon beach packages, andaman romantic getaway, couples packages andaman, honeymoon destination andaman, romantic beach vacation, andaman honeymoon deals, romantic island packages, private beach dinner andaman, couple activities andaman';
-    
+
     const adventureKeywords = 'andaman adventure packages, scuba diving andaman, snorkeling andaman, water sports andaman, adventure tour andaman, diving packages andaman, adventure activities andaman, water adventure andaman, island adventure packages, adventure vacation andaman, trekking andaman, sea walk andaman';
-    
+
     const competitorKeywords = 'maldives alternative, maldives vs andaman, cheaper than maldives, andaman vs maldives honeymoon, budget maldives alternative, maldives like destination india, tropical island vacation india, best beach destination india, island vacation india, beach holiday india, tropical paradise india, coral reef destination india, clear water beaches india, white sand beaches india, andaman vs thailand for indian family, andaman vs goa';
-    
+
     const broadTravelKeywords = 'beach vacation, island holiday, tropical vacation, beach packages, island packages, beach tour packages, island tour packages, tropical island vacation, beach holiday packages, island getaway, beach destination, tropical destination, coral reef vacation, diving vacation, snorkeling vacation, water sports vacation, beach resort packages, island resort packages, tropical beach vacation, pristine beach vacation, crystal clear water vacation, white sand beach vacation, turquoise water vacation, beach paradise, island paradise, tropical paradise';
-    
+
     const seasonalKeywords = 'summer vacation packages, winter vacation packages, monsoon packages andaman, peak season andaman, off season andaman packages, best time visit andaman, december andaman packages, january andaman packages, february andaman packages, march andaman packages, april andaman packages, may andaman packages';
-    
+
     const locationBasedKeywords = 'andaman nicobar islands, bay of bengal islands, indian ocean islands, south andaman, north andaman, middle andaman, andaman sea, indian islands, tropical islands india, beach islands india, coral islands india, diving destinations india, snorkeling destinations india, andaman tour from delhi, andaman tour from mumbai, andaman tour from chennai, andaman tour from kolkata, andaman tour from bangalore, andaman tour from hyderabad, andaman tour from pune';
 
     switch (audience) {

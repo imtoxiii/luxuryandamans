@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const images = {
   main: {
@@ -46,11 +47,7 @@ const post: BlogPost = {
   excerpt:
     'Discover the best 5-star and luxury resorts in Andaman for 2025. Our handpicked guide covers the top properties in Havelock, Neil, and Port Blair, with a focus on family stays, vegetarian cuisine, and getting the best value.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.'
-  },
+  author: defaultAuthor,
   date: new Date('2025-07-20').toISOString(),
   readTime: '20 min read',
   category: 'Luxury Stays',

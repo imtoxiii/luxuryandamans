@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
   id: "new-eco-resorts-andaman-2026",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
   excerpt: "Discover the stunning new sustainable resorts in Aves Island, Smith Island, and Long Island redefining luxury in 2026.",
   image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
   category: "Luxury Travel",
-  author: {
-    name: "Sanjay Verma",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-    bio: "Luxury travel consultant."
-  },
+  author: defaultAuthor,
   date: "2026-01-10",
   readTime: "6 min read",
   tags: ["Luxury", "Eco Resorts", "New Hotels", "2026"],

@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'water-sports-price-list-andaman';
 const imagePath = `/blog-assets/${slug}/`;
@@ -31,11 +32,7 @@ const post: BlogPost = {
   excerpt:
     'Budgeting for adventure? Here is the updated 2025 price list for all water sports in Andaman, including Scuba, Sea Walk, Parasailing, and Jet Skiing.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Adrenaline junkies tracking the best deals for you.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '4 min read',
   category: 'Adventure',

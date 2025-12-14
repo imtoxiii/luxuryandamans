@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'andaman-monsoon-travel-guide-2025';
 
@@ -53,11 +54,7 @@ const post: BlogPost = {
   excerpt:
     'Planning an Andaman trip during the monsoon? Discover what stays open, safety tips, ferry schedules, top activities, and exclusive 2025 monsoon deals. Your complete guide to an off-season Andaman adventure.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '8 min read',
   category: 'Seasonal',

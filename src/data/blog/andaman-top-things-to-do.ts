@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
   id: "andaman-top-things-to-do-2025",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
   excerpt: "From walking on the sea floor to exploring active volcanoes, here is the definitive list of must-do experiences in Andaman for 2025.",
   image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
   category: "Travel Guide",
-  author: {
-    name: "Arjun Patel",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-    bio: "Adventure seeker and travel writer."
-  },
+  author: defaultAuthor,
   date: "2025-01-15",
   readTime: "15 min read",
   tags: ["Activities", "Bucket List", "Adventure", "Guide", "2025"],

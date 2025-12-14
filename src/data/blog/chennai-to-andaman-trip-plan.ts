@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'chennai-to-andaman-trip-plan';
 
@@ -24,11 +25,7 @@ const post: BlogPost = {
   excerpt:
     'Planning your Andaman trip from Chennai? You are in the right place. This guide covers direct flights, a perfect 7-day itinerary, a detailed budget for couples, and essential tips for a seamless journey.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '10 min read',
   category: 'City Guides',

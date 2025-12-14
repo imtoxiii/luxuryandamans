@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
     id: "andaman-packing-list-checklist",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
     excerpt: "Don't overpack! Here is the exact list of what you need for a 5-7 day trip to Andaman, including the one item everyone forgets.",
     image: "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Travel Tips",
-    author: {
-        name: "Sarah Jenkins",
-        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-        bio: "Travel writer who lives out of a suitcase."
-    },
+    author: defaultAuthor,
     date: "2026-02-20",
     readTime: "6 min read",
     tags: ["Packing List", "Travel Tips", "Essentials", "Sustainable Travel"],

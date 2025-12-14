@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
     id: "sustainable-packing-list-2026",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
     excerpt: "Help protect the islands! From reef-safe sunscreen to reusable bottles, here is your eco-friendly packing list for 2026.",
     image: "https://images.pexels.com/photos/9186159/pexels-photo-9186159.jpeg",
     category: "Travel Tips",
-    author: {
-        name: "Sanjay Verma",
-        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-        bio: "Eco-tourism advocate."
-    },
+    author: defaultAuthor,
     date: "2026-02-05",
     readTime: "5 min read",
     tags: ["Packing List", "Sustainability", "Eco Friendly", "2026"],

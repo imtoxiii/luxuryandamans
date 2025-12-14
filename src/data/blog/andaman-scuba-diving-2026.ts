@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
     id: "andaman-scuba-diving-2026",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
     excerpt: "Andaman is aiming for Guinness World Records in diving! Here is your 2026 guide to prices, certification courses, and the best dive sites.",
     image: "https://images.pexels.com/photos/13042058/pexels-photo-13042058.jpeg",
     category: "Adventure",
-    author: {
-        name: "Arjun Patel",
-        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-        bio: "PADI certified diver and instructor."
-    },
+    author: defaultAuthor,
     date: "2026-01-15",
     readTime: "10 min read",
     tags: ["Scuba Diving", "Adventure", "Water Sports", "2026"],

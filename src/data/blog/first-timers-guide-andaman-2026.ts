@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
     id: "first-timers-guide-andaman-2026",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
     excerpt: "Planning your first trip to Andaman in 2026? From permits to packing, here is the only guide you need to avoid rookie mistakes.",
     image: "https://images.unsplash.com/photo-1540206395-688085723adb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Travel Guide",
-    author: {
-        name: "Meera Gupta",
-        avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-        bio: "Travel writer helping families plan perfect trips."
-    },
+    author: defaultAuthor,
     date: "2026-01-05",
     readTime: "12 min read",
     tags: ["Beginner Guide", "2026", "Tips", "Planning"],

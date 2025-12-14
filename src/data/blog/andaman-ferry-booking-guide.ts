@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'andaman-ferry-booking-guide';
 const imagePath = `/blog-assets/${slug}/`;
@@ -31,11 +32,7 @@ const post: BlogPost = {
   excerpt:
     'How do you get from Port Blair to Havelock? We compare Makruzz, Nautika, Green Ocean, and Government ferries to help you choose the best ride.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Navigating the Andaman Sea so you don\'t have to.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '8 min read',
   category: 'Travel Guide',

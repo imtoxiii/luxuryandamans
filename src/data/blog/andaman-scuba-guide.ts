@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'andaman-scuba-diving-guide';
 
@@ -30,11 +31,7 @@ const post: BlogPost = {
   excerpt:
     'Your complete guide to scuba diving in the Andamans. Discover the best dive sites, PADI/SSI courses, costs, safety tips, and the perfect time to explore this underwater paradise.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '15 min read',
   category: 'Adventure',

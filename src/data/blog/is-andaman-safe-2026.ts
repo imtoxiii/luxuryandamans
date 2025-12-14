@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
     id: "is-andaman-safe-2026",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
     excerpt: "Andaman remains one of the safest destinations in India. We cover crime rates, scams, water safety, and health tips for 2026.",
     image: "https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Safety",
-    author: {
-        name: "Meera Gupta",
-        avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-        bio: "Solo female traveler."
-    },
+    author: defaultAuthor,
     date: "2026-01-30",
     readTime: "6 min read",
     tags: ["Safety", "Solo Travel", "Health", "2026"],

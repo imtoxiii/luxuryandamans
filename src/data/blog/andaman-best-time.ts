@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'best-time-to-visit-andaman';
 const imagePath = `/blog-assets/${slug}/`;
@@ -31,11 +32,7 @@ const post: BlogPost = {
   excerpt:
     'Planning an Andaman trip? Discover the best time to visit Andaman in 2025 with a month-by-month weather guide, sea conditions, crowd levels, diving/snorkeling visibility, and expert tips to plan the perfect holiday.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '10 min read',
   category: 'Planning',

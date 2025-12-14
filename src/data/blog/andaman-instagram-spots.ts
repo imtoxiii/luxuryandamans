@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
     id: "andaman-instagram-spots",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
     excerpt: "Want to light up your feed? Here are the 10 most aesthetic, Instagram-worthy locations in Andaman that you simply cannot miss.",
     image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Travel Guide",
-    author: {
-        name: "Priya Sharma",
-        avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-        bio: "Travel influencer and photographer."
-    },
+    author: defaultAuthor,
     date: "2025-03-05",
     readTime: "6 min read",
     tags: ["Photography", "Instagram", "Social Media", "Guide", "Best Spots"],

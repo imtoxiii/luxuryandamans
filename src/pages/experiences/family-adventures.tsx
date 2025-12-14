@@ -7,7 +7,7 @@ import FaqAccordion from '../../components/FaqAccordion';
 const FamilyAdventuresPage = () => {
   const activities = [
     {
-      name: "Glass-Bottom Boat Tour",
+      name: "Luxury Andaman Team",
       duration: "2 hours",
       price: "₹8,000 for 4",
       includes: [
@@ -18,14 +18,14 @@ const FamilyAdventuresPage = () => {
         "Educational commentary"
       ],
       description: "Explore the underwater world without getting wet.",
-      image: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Families with young children",
       location: "North Bay Island",
       highlights: ["No swimming required", "Educational", "Safe for all ages", "Marine life viewing"],
       ageGroup: "All ages"
     },
     {
-      name: "Jungle Safari & Trekking",
+      name: "Luxury Andaman Team",
       duration: "4 hours",
       price: "₹12,000 for 4",
       includes: [
@@ -36,14 +36,14 @@ const FamilyAdventuresPage = () => {
         "Nature education"
       ],
       description: "Discover the lush green forests of the Andamans.",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Nature-loving families",
       location: "Mount Harriet",
       highlights: ["Wildlife spotting", "Educational", "Easy trails", "Packed lunch"],
       ageGroup: "5+ years"
     },
     {
-      name: "Beach Adventure Day",
+      name: "Luxury Andaman Team",
       duration: "6 hours",
       price: "₹15,000 for 4",
       includes: [
@@ -54,14 +54,14 @@ const FamilyAdventuresPage = () => {
         "Beach sports equipment"
       ],
       description: "A full day of fun and games on pristine beaches.",
-      image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Active families",
       location: "Radhanagar Beach",
       highlights: ["Beach games", "Snorkeling", "Sandcastle contest", "Picnic lunch"],
       ageGroup: "All ages"
     },
     {
-      name: "Island Discovery Tour",
+      name: "Luxury Andaman Team",
       duration: "8 hours",
       price: "₹20,000 for 4",
       includes: [
@@ -72,7 +72,7 @@ const FamilyAdventuresPage = () => {
         "Educational guide"
       ],
       description: "Explore multiple islands in one exciting day.",
-      image: "https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Adventurous families",
       location: "Havelock & Neil Islands",
       highlights: ["Multiple islands", "Speedboat rides", "Beachside lunch", "Photography"],
@@ -107,35 +107,35 @@ const FamilyAdventuresPage = () => {
     {
       age: "Toddlers (2-4 years)",
       activities: ["Beach play", "Glass-bottom boat tour", "Nature walks"],
-      image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+      image: "/favicon.png"
     },
     {
       age: "Kids (5-12 years)",
       activities: ["Snorkeling", "Jungle trek", "Beach games", "Island hopping"],
-      image: "https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+      image: "/favicon.png"
     },
     {
       age: "Teens (13+ years)",
       activities: ["Kayaking", "Sea walking", "Game fishing", "Adventure sports"],
-      image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+      image: "/favicon.png"
     }
   ];
 
   const testimonials = [
     {
-      name: "The Sharma Family",
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: "Our family adventure was incredible! The kids loved the glass-bottom boat tour, and the beach day was perfect for all ages. The guides were patient and engaging with the children.",
       location: "Delhi"
     },
     {
-      name: "Emily & Tom with Kids",
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: "As a family with different age children, we appreciated how the activities were tailored to each age group. The jungle safari was educational and fun for everyone.",
       location: "London"
     },
     {
-      name: "The Patels",
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: "The island discovery tour was the highlight of our trip! The kids loved the speedboat rides, and the beachside lunch was delicious. Highly recommend for families.",
       location: "Ahmedabad"

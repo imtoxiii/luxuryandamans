@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'shopping-in-andaman-what-to-buy';
 const imagePath = `/blog-assets/${slug}/`;
@@ -31,11 +32,7 @@ const post: BlogPost = {
   excerpt:
     'Want to take a piece of the islands home? Find out what to buy in Andaman, from shell handicrafts to spices, and the best markets to find them.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Curating the best island treasures for you.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '5 min read',
   category: 'Lifestyle',

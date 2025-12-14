@@ -7,7 +7,7 @@ import FaqAccordion from '../../components/FaqAccordion';
 const SunsetCruisesPage = () => {
   const cruises = [
     {
-      name: "Luxury Sunset Dinner Cruise",
+      name: "Luxury Andaman Team",
       duration: "3 hours",
       price: "₹7,500 per person",
       includes: [
@@ -18,13 +18,13 @@ const SunsetCruisesPage = () => {
         "Unlimited beverages"
       ],
       description: "Experience a romantic evening with fine dining and stunning views",
-      image: "https://images.unsplash.com/photo-1586611292717-f828b167408c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Couples, Special occasions",
       departure: "Port Blair",
       highlights: ["Gourmet dining", "Live entertainment", "Sunset views", "Professional photography"]
     },
     {
-      name: "Private Yacht Experience",
+      name: "Luxury Andaman Team",
       duration: "4 hours",
       price: "₹15,000 per person",
       includes: [
@@ -35,13 +35,13 @@ const SunsetCruisesPage = () => {
         "Personal photographer"
       ],
       description: "Exclusive private yacht cruise for special occasions",
-      image: "https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Honeymooners, Anniversaries, Proposals",
       departure: "Port Blair",
       highlights: ["Complete privacy", "Customized route", "Premium service", "Champagne celebration"]
     },
     {
-      name: "Catamaran Sunset Cruise",
+      name: "Luxury Andaman Team",
       duration: "2.5 hours",
       price: "₹4,500 per person",
       includes: [
@@ -52,13 +52,13 @@ const SunsetCruisesPage = () => {
         "Group activities"
       ],
       description: "Fun-filled catamaran cruise with swimming and sunset viewing",
-      image: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Groups, Families, Young travelers",
       departure: "Havelock Island",
       highlights: ["Swimming opportunity", "Group activities", "Music", "Affordable fun"]
     },
     {
-      name: "Traditional Sailing Experience",
+      name: "Luxury Andaman Team",
       duration: "3 hours",
       price: "₹5,500 per person",
       includes: [
@@ -69,7 +69,7 @@ const SunsetCruisesPage = () => {
         "Sunset viewing"
       ],
       description: "Experience Andaman's maritime culture on a traditional sailing boat",
-      image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Culture enthusiasts, Families",
       departure: "Neil Island",
       highlights: ["Cultural experience", "Traditional sailing", "Local cuisine", "Storytelling"]
@@ -101,19 +101,19 @@ const SunsetCruisesPage = () => {
 
   const testimonials = [
     {
-      name: "Priya & Raj",
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: "The sunset dinner cruise was the highlight of our honeymoon. The food was exceptional and the views were breathtaking!",
       location: "Mumbai"
     },
     {
-      name: "Michael Chen",
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: "The private yacht experience was worth every penny. Our guide was knowledgeable and the crew was attentive to every detail.",
       location: "Singapore"
     },
     {
-      name: "The Sharma Family",
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: "Our kids loved the catamaran cruise. Swimming in the ocean during sunset was an unforgettable experience for all of us.",
       location: "Delhi"

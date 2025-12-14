@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'hyderabad-to-andaman-trip-plan';
 
@@ -24,11 +25,7 @@ const post: BlogPost = {
   excerpt:
     'Your essential guide for planning an unforgettable trip from Hyderabad to the Andaman Islands. Discover the best flight routes, a perfect 7-day itinerary, a detailed budget, and expert tips for 2025.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '11 min read',
   category: 'City Guides',

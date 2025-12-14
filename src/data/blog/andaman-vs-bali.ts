@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
     id: "andaman-vs-bali",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
     excerpt: "Deciding between a domestic paradise and an international getaway? We compare Andaman and Bali on cost, visa, food, and experiences to help you choose.",
     image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Destination Comparison",
-    author: {
-        name: "Rahul & Meera Gupta",
-        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-        bio: "Travel couple exploring the best of Asia."
-    },
+    author: defaultAuthor,
     date: "2025-02-10",
     readTime: "12 min read",
     tags: ["Andaman", "Bali", "Comparison", "International Travel", "Budget Travel"],

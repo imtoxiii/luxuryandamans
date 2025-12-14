@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'delhi-to-andaman-trip-plan';
 
@@ -24,11 +25,7 @@ const post: BlogPost = {
   excerpt:
     'The ultimate 2025 guide for planning your Andaman vacation from Delhi. Get detailed info on the best flight options, a perfect 7-day itinerary, a realistic budget breakdown, and essential travel tips.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '12 min read',
   category: 'City Guides',

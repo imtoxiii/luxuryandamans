@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'andaman-budget-emi-2025';
 const imagePath = `/blog-assets/${slug}/`;
@@ -31,11 +32,7 @@ const post: BlogPost = {
   excerpt:
     "Dreaming of the Andamans but worried about the cost? Our 2025 guide explores how to finance your trip with easy EMIs. Learn about budget planning, finding the best EMI options, and making your island getaway a reality without breaking the bank.",
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.',
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '9 min read',
   category: 'Budget',

@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'andaman-family-itinerary';
 const imagePath = `/blog-assets/${slug}/`;
@@ -31,11 +32,7 @@ const post: BlogPost = {
   excerpt:
     'Planning a family trip to the Andamans? Our 2025 guide offers a relaxed 5-day, kid-friendly itinerary covering Port Blair, Havelock, and Neil, focusing on safe beaches, short travel times, and fun for all ages.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.',
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '10 min read',
   category: 'Family Travel',

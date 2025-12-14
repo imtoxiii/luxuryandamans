@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'mobile-network-internet-in-andaman';
 const imagePath = `/blog-assets/${slug}/`;
@@ -31,11 +32,7 @@ const post: BlogPost = {
   excerpt:
     'Worried about staying connected? Here is the honest truth about mobile networks (Airtel vs Jio vs BSNL) and Wi-Fi speed in Port Blair, Havelock, and Neil Island.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Helping you stay connected (or happily disconnected) in paradise.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '5 min read',
   category: 'Travel Tips',

@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, MapPin, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CardSlider from './CardSlider';
-import destinationImages from '../data/destinationImages.json';
+import { getDestinationImages } from '../lib/images';
 
 const islands = [
   {
@@ -54,7 +54,7 @@ const PopularIslands = () => {
               'Port Blair': 'port-blair'
             };
             const slug = slugMap[island.name];
-            const folderImages = slug ? (destinationImages as Record<string, string[]>)[slug] || [] : [];
+            const folderImages = slug ? getDestinationImages(slug) : [];
             
             // Card Image Priority: 'card' -> 'hero_card' -> 'hero' -> First available
             const specificCard = folderImages.find(img => img.toLowerCase().includes('card') && !img.toLowerCase().includes('hero_card'));

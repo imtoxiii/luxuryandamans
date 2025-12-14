@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'port-blair-one-day-itinerary';
 
@@ -24,11 +25,7 @@ const post: BlogPost = {
   excerpt:
     'Only have one day in Port Blair? Maximize your time with our three specialized itineraries for history buffs, relaxation seekers, and adventure lovers. Discover the best of the city in a single day.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '9 min read',
   category: 'City Guides',

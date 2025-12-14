@@ -7,7 +7,7 @@ import FaqAccordion from '../../components/FaqAccordion';
 const WellnessRetreatsPage = () => {
   const programs = [
     {
-      name: "Yoga & Meditation Retreat",
+      name: "Luxury Andaman Team",
       duration: "5 days",
       price: "₹45,000 per person",
       includes: [
@@ -18,14 +18,14 @@ const WellnessRetreatsPage = () => {
         "Workshops and masterclasses"
       ],
       description: "Reconnect with yourself through yoga and meditation",
-      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Spiritual seekers, Beginners",
       location: "Havelock Island",
       highlights: ["Certified instructors", "Beachfront practice", "All levels", "Workshops"],
       sessions: ["Morning yoga", "Meditation", "Breathwork", "Yoga philosophy"]
     },
     {
-      name: "Spa & Wellness Package",
+      name: "Luxury Andaman Team",
       duration: "3 days",
       price: "₹35,000 per person",
       includes: [
@@ -36,14 +36,14 @@ const WellnessRetreatsPage = () => {
         "Personalized wellness plan"
       ],
       description: "Indulge in rejuvenating spa treatments and wellness activities",
-      image: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Stress relief, Couples",
       location: "Neil Island",
       highlights: ["Ayurvedic treatments", "Massages", "Detox programs", "Beauty treatments"],
       sessions: ["Massage therapy", "Ayurveda", "Detox", "Beauty treatments"]
     },
     {
-      name: "Digital Detox Retreat",
+      name: "Luxury Andaman Team",
       duration: "4 days",
       price: "₹40,000 per person",
       includes: [
@@ -54,14 +54,14 @@ const WellnessRetreatsPage = () => {
         "Creative workshops"
       ],
       description: "Disconnect to reconnect with yourself and nature",
-      image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Digital fatigue, Stress management",
       location: "Long Island",
       highlights: ["Device-free", "Nature immersion", "Mindfulness", "Creative expression"],
       sessions: ["Nature walks", "Mindfulness", "Creative workshops", "Journaling"]
     },
     {
-      name: "Ayurvedic Rejuvenation",
+      name: "Luxury Andaman Team",
       duration: "7 days",
       price: "₹60,000 per person",
       includes: [
@@ -72,7 +72,7 @@ const WellnessRetreatsPage = () => {
         "Yoga and meditation"
       ],
       description: "Ancient healing practices for complete rejuvenation",
-      image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       bestFor: "Holistic healing, Chronic conditions",
       location: "Port Blair",
       highlights: ["Traditional healing", "Personalized", "Medicinal herbs", "Panchakarma"],
@@ -105,21 +105,21 @@ const WellnessRetreatsPage = () => {
 
   const accommodations = [
     {
-      name: "Beachfront Villas",
+      name: "Luxury Andaman Team",
       description: "Private villas with direct beach access and ocean views",
-      image: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       features: ["Ocean view", "Private terrace", "King bed", "Outdoor shower"]
     },
     {
-      name: "Garden Cottages",
+      name: "Luxury Andaman Team",
       description: "Cozy cottages nestled in tropical gardens",
-      image: "https://images.unsplash.com/photo-1522071740424-8b337d0dfa46?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       features: ["Garden view", "Private balcony", "Queen bed", "Indoor garden"]
     },
     {
-      name: "Wellness Suites",
+      name: "Luxury Andaman Team",
       description: "Spacious suites designed for optimal relaxation",
-      image: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/favicon.png",
       features: ["Spa access", "Meditation space", "King bed", "Luxury amenities"]
     }
   ];
@@ -169,19 +169,19 @@ const WellnessRetreatsPage = () => {
 
   const testimonials = [
     {
-      name: "Sarah Mitchell",
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: "The yoga retreat was transformative. The instructors were amazing, and the beachfront setting was perfect for relaxation. I left feeling completely rejuvenated.",
       location: "New York"
     },
     {
-      name: "Rahul & Priya Sharma",
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: "We did the spa & wellness package as a couple and it was incredible. The massages were amazing and the healthy food was delicious. Already planning our next visit!",
       location: "Mumbai"
     },
     {
-      name: "Michael Chen",
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: "The digital detox retreat was exactly what I needed. Being disconnected from technology in such a beautiful setting helped me find clarity I'd been missing.",
       location: "Singapore"

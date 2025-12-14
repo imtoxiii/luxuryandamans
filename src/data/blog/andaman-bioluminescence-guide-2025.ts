@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const imagePath = '/img/blog/andaman-bioluminescence-guide-2025/';
 
@@ -36,11 +37,7 @@ const post: BlogPost = {
   excerpt:
     "Unlock the secrets of Andaman's magical bioluminescence. This complete 2025 guide covers the best time, moon phases, kayaking spots in Havelock, tour prices, safety, and FAQs for witnessing the 'sea of stars'.",
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '12 min read',
   category: 'Experiences',

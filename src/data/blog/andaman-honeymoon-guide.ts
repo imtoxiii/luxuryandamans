@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const images = {
   main: {
@@ -46,11 +47,7 @@ const post: BlogPost = {
   excerpt:
     'Discover the most romantic experiences, pristine beaches, and luxurious stays for your Andaman honeymoon. This guide covers everything from private dinners on the beach to adventurous couple activities and sample itineraries.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.'
-  },
+  author: defaultAuthor,
   date: new Date('2025-07-15').toISOString(),
   readTime: '18 min read',
   category: 'Honeymoon',

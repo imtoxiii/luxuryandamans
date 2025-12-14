@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
     id: "andaman-nightlife-guide",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
     excerpt: "Think Andaman sleeps after sunset? Think again! From candlelight dinners to lively beach bars, discover the best of Andaman's nightlife.",
     image: "https://images.unsplash.com/photo-1514525253440-b393452e3383?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Travel Guide",
-    author: {
-        name: "Rahul & Meera Gupta",
-        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-        bio: "Travel couple exploring the best of Asia."
-    },
+    author: defaultAuthor,
     date: "2025-03-10",
     readTime: "7 min read",
     tags: ["Nightlife", "Bars", "Food", "Havelock", "Port Blair"],

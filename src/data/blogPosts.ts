@@ -1,3 +1,4 @@
+import { defaultAuthor } from './blog/author';
 import { BlogPost } from '../types/blog';
 
 export const blogPosts: BlogPost[] = [
@@ -8,11 +9,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: "Discover why Andaman offers the same pristine beaches and crystal-clear waters as Maldives at a fraction of the cost. Complete comparison guide with prices, activities, and insider tips.",
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Destination Comparison",
-    author: {
-      name: "Priya Sharma",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-      bio: "Travel expert specializing in budget-friendly island destinations with 8+ years of experience in Southeast Asian tourism."
-    },
+    author: defaultAuthor,
     date: "2024-01-28",
     readTime: "12 min read",
     tags: ["Andaman", "Maldives", "Budget Travel", "Island Vacation", "Comparison", "Beach Holiday"],
@@ -231,11 +228,7 @@ For couples, families, and solo travelers looking for a tropical paradise withou
     excerpt: "Plan your dream honeymoon in Andaman without breaking the bank. Complete guide with romantic packages, best resorts, and intimate experiences under ₹50,000.",
     image: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Honeymoon",
-    author: {
-      name: "Rahul & Meera Gupta",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-      bio: "Newlywed travel bloggers who honeymooned in Andaman and now help couples plan their perfect romantic getaway on a budget."
-    },
+    author: defaultAuthor,
     date: "2024-01-25",
     readTime: "15 min read",
     tags: ["Honeymoon", "Budget Travel", "Andaman", "Couples", "Romance", "Beach Holiday"],
@@ -565,11 +558,7 @@ Andaman proves that you don't need to spend a fortune to have a magical honeymoo
     excerpt: "Discover the perfect time to visit Thailand with our comprehensive weather guide. Find out when to visit for beaches, culture, and budget travel with insider tips.",
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Travel Guide",
-    author: {
-      name: "Arjun Patel",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-      bio: "Southeast Asia travel specialist with 10+ years of experience exploring Thailand's hidden gems and helping travelers plan perfect trips."
-    },
+    author: defaultAuthor,
     date: "2024-01-30",
     readTime: "14 min read",
     tags: ["Thailand", "Travel Guide", "Weather", "Best Time", "Southeast Asia", "Beach Holiday"],
@@ -948,11 +937,7 @@ Thailand offers something special in every season. Whether you prioritize perfec
     excerpt: "Comprehensive comparison between Bali and Andaman Islands covering costs, experiences, and travel convenience for Indian tourists seeking the perfect tropical getaway.",
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Destination Comparison",
-    author: {
-      name: "Kavya Menon",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-      bio: "Travel photographer and blogger who has explored over 50 tropical destinations across Asia, specializing in budget-friendly island getaways."
-    },
+    author: defaultAuthor,
     date: "2024-01-29",
     readTime: "16 min read",
     tags: ["Bali", "Andaman", "Comparison", "Budget Travel", "Island Vacation", "India Travel"],
@@ -1369,11 +1354,7 @@ Both Bali and Andaman offer incredible tropical experiences, but they cater to d
     excerpt: "Discover India's most stunning beaches from the pristine Andaman Islands to Goa's vibrant shores. Complete guide with photos, activities, and travel tips.",
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Travel Guide",
-    author: {
-      name: "Sanjay Kumar",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-      bio: "Coastal tourism expert who has traveled to every major beach destination in India, documenting hidden gems and popular hotspots."
-    },
+    author: defaultAuthor,
     date: "2024-01-31",
     readTime: "18 min read",
     tags: ["Beach Destinations", "India Travel", "Coastal Tourism", "Hidden Gems", "Travel Guide"],
@@ -1693,11 +1674,7 @@ India's coastline offers incredible diversity - from the pristine, Maldives-like
     excerpt: "Discover affordable tropical paradises accessible from India. Complete guide with costs, visa requirements, and insider tips for budget beach holidays.",
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Budget Travel",
-    author: {
-      name: "Neha Agarwal",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-      bio: "Budget travel specialist who has explored 30+ countries on a shoestring budget, helping fellow travelers discover affordable paradise destinations."
-    },
+    author: defaultAuthor,
     date: "2024-02-01",
     readTime: "14 min read",
     tags: ["Budget Travel", "Tropical Destinations", "Cheap Holidays", "Beach Vacation", "International Travel"],
@@ -2037,11 +2014,7 @@ Tropical paradise is more accessible than ever, with options ranging from ₹25,
     excerpt: "Discover romantic honeymoon destinations that won't break the bank. Complete guide with costs, romantic experiences, and insider tips for couples.",
     image: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Honeymoon",
-    author: {
-      name: "Ravi & Priya Sharma",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-      bio: "Couple travel bloggers who honeymooned on a budget and now help newlyweds plan affordable romantic getaways across India and Asia."
-    },
+    author: defaultAuthor,
     date: "2024-02-02",
     readTime: "16 min read",
     tags: ["Honeymoon", "Budget Travel", "Romantic Destinations", "Couples Travel", "Wedding"],
@@ -2404,11 +2377,7 @@ Your honeymoon should be about celebrating your love and starting your journey t
     excerpt: "Your complete guide to scuba diving in the Andaman Islands. Discover the best dive sites, certification costs, safety tips, and how to choose the right dive center.",
     image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Adventure Travel",
-    author: {
-      name: "Priya Sharma",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-      bio: "Travel expert specializing in budget-friendly island destinations with 8+ years of experience in Southeast Asian tourism."
-    },
+    author: defaultAuthor,
     date: "2024-02-05",
     readTime: "18 min read",
     tags: ["Andaman", "Scuba Diving", "Water Sports", "Adventure", "Havelock Island", "Neil Island", "PADI"],
@@ -2506,11 +2475,7 @@ Scuba diving in the Andaman Islands is more than just an activity; it's a journe
     excerpt: "Plan your perfect Andaman itinerary with our comprehensive guide to island hopping between Port Blair, Havelock, and Neil Island. Includes ferry tips, must-see attractions, and sample itineraries.",
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Travel Guide",
-    author: {
-      name: "Priya Sharma",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-      bio: "Travel expert specializing in budget-friendly island destinations with 8+ years of experience in Southeast Asian tourism."
-    },
+    author: defaultAuthor,
     date: "2024-02-04",
     readTime: "20 min read",
     tags: ["Andaman", "Island Hopping", "Havelock", "Neil Island", "Port Blair", "Travel Guide", "Itinerary"],
@@ -2634,11 +2599,7 @@ Island hopping in the Andamans is a rewarding experience that allows you to see 
     excerpt: "Explore the culinary delights of the Andaman Islands. From fresh seafood to unique local dishes, discover the 10 must-try foods and the best restaurants to find them.",
     image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Food & Travel",
-    author: {
-      name: "Rahul & Meera Gupta",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-      bio: "Newlywed travel bloggers who honeymooned in Andaman and now help couples plan their perfect romantic getaway on a budget."
-    },
+    author: defaultAuthor,
     date: "2024-02-03",
     readTime: "15 min read",
     tags: ["Andaman", "Food Guide", "Seafood", "Local Cuisine", "Restaurants", "Port Blair", "Havelock"],
@@ -2739,11 +2700,7 @@ The food in Andaman is a delightful surprise that adds another layer to your tro
     excerpt: "Discover Andaman's secret beaches away from the crowds. These 7 hidden gems offer pristine beauty, crystal-clear waters, and the ultimate offbeat island experience.",
     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Hidden Gems",
-    author: {
-      name: "Arjun Patel",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-      bio: "Adventure travel writer and offbeat destination explorer with 12+ years of discovering India's hidden treasures."
-    },
+    author: defaultAuthor,
     date: "2024-02-10",
     readTime: "14 min read",
     tags: ["Hidden Beaches", "Andaman", "Secret Places", "Offbeat Travel", "Nature", "Adventure"],
@@ -3015,11 +2972,7 @@ Some hidden beaches like Ramnagar Beach are family-friendly, while others like C
     excerpt: "Complete Andaman travel guide for 2025! Discover the top 10 must-do activities, best beaches, adventure sports, and insider tips for first-time visitors to paradise.",
     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Travel Guide",
-    author: {
-      name: "Priya Sharma",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-      bio: "Travel expert specializing in budget-friendly island destinations with 8+ years of experience in Southeast Asian tourism."
-    },
+    author: defaultAuthor,
     date: "2024-02-12",
     readTime: "16 min read",
     tags: ["Andaman Travel Guide", "Things to Do", "First Time Visitors", "Andaman Itinerary", "Island Tourism"],
@@ -3424,11 +3377,7 @@ Don't miss Radhanagar Beach sunset, scuba diving or snorkeling, Cellular Jail Li
     excerpt: "Discover the best family-friendly destinations in Andaman. Safe beaches, kid-friendly activities, and unforgettable experiences for the whole family.",
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Family Travel",
-    author: {
-      name: "Kavya Menon",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-      bio: "Family travel expert and mother of two who specializes in creating memorable adventures for families with children."
-    },
+    author: defaultAuthor,
     date: "2024-02-08",
     readTime: "12 min read",
     tags: ["Family Travel", "Andaman with Kids", "Kid-Friendly Beaches", "Family Vacation", "Children Activities"],

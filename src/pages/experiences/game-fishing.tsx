@@ -144,19 +144,19 @@ const GameFishingPage = () => {
 
   const testimonials = [
     {
-      name: 'David Chen',
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: 'The full-day charter was incredible! We caught a massive GT and the crew was amazing. The best fishing experience I\'ve had anywhere.',
       location: 'Singapore'
     },
     {
-      name: 'Michael Thompson',
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: 'As an experienced angler, I was impressed by the quality of equipment and knowledge of the captain. We hooked a sailfish - unforgettable!',
       location: 'Australia'
     },
     {
-      name: 'The Wilson Family',
+      name: "Luxury Andaman Team",
       rating: 5,
       comment: 'Our kids loved the half-day charter. The crew was patient with beginners, and we all caught fish. Great family activity!',
       location: 'United Kingdom'

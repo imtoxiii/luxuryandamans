@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
     id: "andaman-family-itinerary-2026",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
     excerpt: "Traveling with kids or elders? These stress-free itineraries ensure fun for everyone, with minimal travel fatigue.",
     image: "https://images.pexels.com/photos/18372677/pexels-photo-18372677.jpeg",
     category: "Itinerary",
-    author: {
-        name: "Meera Gupta",
-        avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-        bio: "Family travel expert."
-    },
+    author: defaultAuthor,
     date: "2026-02-15",
     readTime: "15 min read",
     tags: ["Itinerary", "Family", "Kids", "Seniors", "2026"],

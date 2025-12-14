@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
     id: "andaman-vs-lakshadweep",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
     excerpt: "Confused between Andaman and Lakshadweep? We break down the differences in cost, accessibility, activities, and vibe to help you decide your perfect island getaway.",
     image: "https://images.unsplash.com/photo-1598091383021-15ddea10925d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Destination Comparison",
-    author: {
-        name: "Priya Sharma",
-        avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-        bio: "Travel expert specializing in Indian island destinations."
-    },
+    author: defaultAuthor,
     date: "2025-02-15",
     readTime: "10 min read",
     tags: ["Andaman", "Lakshadweep", "Comparison", "Island Vacation", "India Travel"],

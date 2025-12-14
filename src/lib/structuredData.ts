@@ -1,6 +1,7 @@
 // Utility functions for generating Schema.org structured data for SEO
 
 import type { Destination } from '../data/destinations';
+import type { Package } from '../data/packages';
 
 /**
  * Generate TouristAttraction Schema for destination pages
@@ -27,8 +28,8 @@ export function generateTouristAttractionSchema(destination: Destination) {
       '@type': 'OpeningHoursSpecification',
       opens: destination.timings.openTime || '09:00',
       closes: destination.timings.closeTime || '17:00',
-      dayOfWeek: destination.timings.closedDays === 'Open daily' ? 
-        ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] : 
+      dayOfWeek: destination.timings.closedDays === 'Open daily' ?
+        ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] :
         ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     } : undefined,
     touristType: destination.bestFor || [],
@@ -229,19 +230,21 @@ export function generateDestinationMetaTags(destination: Destination) {
     destination.category.replace('-', ' '),
     ...destination.activities,
     ...destination.bestFor || [],
+    'andaman tourism',
+    'travel guide'
   ].join(', ');
 
   return {
-    title: `${destination.name} - Complete Guide & Travel Information | Luxury Andamans`,
-    description: `Discover ${destination.name} in Andaman Islands. ${destination.description}. Best time to visit, activities, tickets, and complete travel guide.`,
+    title: `${destination.name} Travel Guide 2025 | Best Time, Places & Activities`,
+    description: `Plan your trip to ${destination.name}, Andaman. Discover hidden gems, best beaches, activities, and timings. Expert guide for ${destination.bestFor?.join(', ') || 'travelers'}.`,
     keywords,
     canonical: `https://luxuryandamans.com/destinations/${destination.slug}`,
-    ogTitle: `${destination.name} - Andaman Islands Travel Guide`,
+    ogTitle: `Explore ${destination.name} - The Jewel of Andaman`,
     ogDescription: destination.description,
     ogImage: destination.image,
     ogUrl: `https://luxuryandamans.com/destinations/${destination.slug}`,
     twitterCard: 'summary_large_image',
-    twitterTitle: `${destination.name} - Andaman Islands`,
+    twitterTitle: `${destination.name} Travel Guide - Luxury Andamans`,
     twitterDescription: destination.description,
     twitterImage: destination.image,
   };
@@ -269,8 +272,8 @@ export function generateDestinationFAQs(destination: Destination) {
   if (destination.ticketInfo?.entryFee !== undefined) {
     faqs.push({
       question: `What is the entry fee for ${destination.name}?`,
-      answer: destination.ticketInfo.entryFee === 0 
-        ? `${destination.name} has free entry for all visitors.` 
+      answer: destination.ticketInfo.entryFee === 0
+        ? `${destination.name} has free entry for all visitors.`
         : `The entry fee for ${destination.name} is ₹${destination.ticketInfo.entryFee} per person.`,
     });
   }
@@ -298,4 +301,107 @@ export function generateDestinationFAQs(destination: Destination) {
   });
 
   return faqs;
+}
+
+/**
+ * Generate Product Schema for Tour Packages
+ */
+export function generateProductSchema(pkg: Package) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: pkg.title,
+    description: pkg.description,
+    image: [pkg.image],
+    sku: pkg.slug,
+    brand: {
+      '@type': 'Brand',
+      name: 'Luxury Andamans',
+    },
+    offers: {
+      '@type': 'Offer',
+      url: `https://luxuryandamans.com/packages/${pkg.slug}`,
+      priceCurrency: 'INR',
+      price: pkg.price,
+      priceValidUntil: '2025-12-31',
+      availability: 'https://schema.org/InStock',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '85',
+    },
+  };
+}
+
+/**
+ * Generate BreadcrumbList Schema for Packages
+ */
+export function generatePackageBreadcrumbSchema(pkg: Package) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://luxuryandamans.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Packages',
+        item: 'https://luxuryandamans.com/packages', // Assuming this page exists or will exist
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: pkg.title,
+        item: `https://luxuryandamans.com/packages/${pkg.slug}`,
+      },
+    ],
+  };
+}
+
+/**
+ * Generate package-specific meta tags for SEO
+ */
+export function generatePackageMetaTags(pkg: Package) {
+  const keywords = [
+    pkg.title,
+    'Andaman tour package',
+    'Andaman honeymoon package',
+    `${pkg.duration} Andaman trip`,
+    'Luxury Andaman holiday',
+    ...pkg.includes?.slice(0, 5) || [],
+    ...pkg.features || [],
+    'best andaman packages',
+    'all inclusive andaman'
+  ].join(', ');
+
+  return {
+    title: `${pkg.title} | ${pkg.duration} Luxury Andaman Package | ₹${pkg.price}`,
+    description: `Book ${pkg.title} (${pkg.duration}). Includes ${pkg.includes?.slice(0, 3).join(', ')}. Perfect for ${pkg.features?.slice(0, 3).join(', ') || 'vacations'}. Rated 4.9/5 stars.`,
+    keywords,
+    canonical: `https://luxuryandamans.com/packages/${pkg.slug}`,
+    ogTitle: `${pkg.title} - Premium Andaman Tour Package`,
+    ogDescription: `Experience the best of Andaman with our ${pkg.title}. ${pkg.duration} of luxury, adventure, and relaxation. Book now for ₹${pkg.price}.`,
+    ogImage: pkg.image,
+    ogUrl: `https://luxuryandamans.com/packages/${pkg.slug}`,
+    twitterCard: 'summary_large_image',
+    twitterTitle: `${pkg.title} | Luxury Andamans`,
+    twitterDescription: pkg.description,
+    twitterImage: pkg.image,
+  };
+}
+
+/**
+ * Generate complete structured data package for a Tour Package
+ */
+export function generatePackageStructuredData(pkg: Package) {
+  return [
+    generateProductSchema(pkg),
+    generatePackageBreadcrumbSchema(pkg),
+  ];
 }

@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
     id: "andaman-scuba-diving-beginners-guide",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
     excerpt: "Scared of water? Don't know how to swim? This guide answers every question you have about your first scuba dive in Andaman, from safety to pricing.",
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Adventure",
-    author: {
-        name: "Dive Master Arjun",
-        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-        bio: "PADI certified instructor with 5000+ dives in Andaman waters."
-    },
+    author: defaultAuthor,
     date: "2026-02-10",
     readTime: "10 min read",
     tags: ["Scuba Diving", "Adventure", "Water Sports", "Havelock", "Neil Island"],

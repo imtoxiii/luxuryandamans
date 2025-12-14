@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
   id: "andaman-ferry-guide-2026",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
   excerpt: "Confused about ferry bookings? We compare the top private ferries and government ships to help you choose the best ride in 2026.",
   image: "https://images.pexels.com/photos/172920/pexels-photo-172920.jpeg",
   category: "Travel Guide",
-  author: {
-    name: "Sanjay Verma",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-    bio: "Local transport expert."
-  },
+  author: defaultAuthor,
   date: "2026-01-25",
   readTime: "9 min read",
   tags: ["Ferry", "Transport", "Guide", "2026"],

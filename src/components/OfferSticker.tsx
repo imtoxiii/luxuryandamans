@@ -16,7 +16,7 @@ const OfferSticker = () => {
 
   return (
     <motion.div
-      className="fixed left-0 top-[65%] z-50 cursor-pointer group"
+      className="fixed left-0 top-[52%] z-50 cursor-pointer group"
       style={{ y: '-50%' }}
       initial={{ x: -50, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}

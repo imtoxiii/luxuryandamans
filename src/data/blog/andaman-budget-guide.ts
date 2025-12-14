@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'andaman-budget-travel-guide';
 const imagePath = `/blog-assets/${slug}/`;
@@ -31,11 +32,7 @@ const post: BlogPost = {
   excerpt:
     'Think an Andaman trip is expensive? Think again! Our 2025 budget guide breaks down costs for flights, ferries, and hotels, offering 15 smart tips to help you save money and plan an affordable island holiday.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.',
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '12 min read',
   category: 'Budget',

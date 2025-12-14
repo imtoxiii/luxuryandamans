@@ -24,6 +24,7 @@ import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
 import { packages, Package } from '../../data/packages';
 import { filterExistingImages, getHeroImages } from '../../lib/imageLoader';
+import { generatePackageMetaTags, generatePackageStructuredData } from '../../lib/structuredData';
 
 const PackageDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -183,13 +184,21 @@ const PackageDetailPage: React.FC = () => {
     );
   }
 
+  const seoTags = currentPackage ? generatePackageMetaTags(currentPackage) : undefined;
+  const structuredData = currentPackage ? generatePackageStructuredData(currentPackage) : undefined;
+
   return (
     <div className="bg-white min-h-screen font-sans text-gray-900">
-      <SEO
-        title={`${currentPackage.title} | Luxury Andaman Escapes`}
-        description={currentPackage.description}
-        image={currentPackage.image}
-      />
+      {currentPackage && seoTags && (
+        <SEO
+          title={seoTags.title}
+          description={seoTags.description}
+          keywords={seoTags.keywords}
+          image={seoTags.ogImage}
+          pathname={`/packages/${currentPackage.slug}`}
+          extraStructuredData={structuredData}
+        />
+      )}
       <Header />
 
       {/* Hero Section */}

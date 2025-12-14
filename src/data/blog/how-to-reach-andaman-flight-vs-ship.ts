@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'how-to-reach-andaman-flight-vs-ship';
 const imagePath = `/blog-assets/${slug}/`;
@@ -31,11 +32,7 @@ const post: BlogPost = {
   excerpt:
     'Confused about how to reach Andaman? We compare flights vs ships in detail. Find out why flying is the best option for tourists and what the ship journey is really like.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Your trusted guide to navigating the Andaman Islands with ease and comfort.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '8 min read',
   category: 'Travel Guide',

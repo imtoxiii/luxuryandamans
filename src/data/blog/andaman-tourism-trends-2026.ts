@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
   id: "andaman-tourism-trends-2026",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
   excerpt: "From the new Aves Island eco-resort to the expanded airport terminal, discover how Andaman is transforming for travelers in 2026.",
   image: "https://images.pexels.com/photos/13362953/pexels-photo-13362953.jpeg",
   category: "Travel News",
-  author: {
-    name: "Sanjay Verma",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-    bio: "Tourism analyst and island resident."
-  },
+  author: defaultAuthor,
   date: "2026-01-02",
   readTime: "8 min read",
   tags: ["Travel News", "2026", "Infrastructure", "Luxury Travel", "Eco Tourism"],

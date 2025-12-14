@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { destinations } from '../data/destinations';
-import destinationImagesData from '../data/destinationImages.json';
+import { getDestinationImages } from '../lib/images';
 
 const Destinations = () => {
   const containerRef = useRef(null);
@@ -23,11 +23,21 @@ const Destinations = () => {
   }, []);
 
   const getDestinationImage = (dest: any) => {
-    const images = (destinationImagesData as Record<string, string[]>)[dest.slug] || [];
+    const images = getDestinationImages(dest.slug);
 
     // Priority: card.jpg -> hero_card.jpg -> any image with 'card' -> first image -> legacy dest.image
-    const cardImage = images.find(img => img.toLowerCase().endsWith('card.jpg'));
+    // We use includes() instead of endsWith() to handle hashed filenames in production (e.g. card-hash.jpg)
+    
+    // 1. Look for 'card' but NOT 'hero' (to avoid hero_card)
+    const cardImage = images.find(img => {
+      const lower = img.toLowerCase();
+      return lower.includes('card') && !lower.includes('hero');
+    });
+
+    // 2. Look for 'hero_card'
     const heroCardImage = images.find(img => img.toLowerCase().includes('hero_card'));
+
+    // 3. Look for any image with 'card'
     const anyCardImage = images.find(img => img.toLowerCase().includes('card'));
 
     if (cardImage) return cardImage;

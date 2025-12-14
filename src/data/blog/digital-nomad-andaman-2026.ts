@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
   id: "digital-nomad-andaman-2026",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
   excerpt: "Is the internet finally good enough? We tested Starlink vs Fiber in Port Blair and Havelock. Here is the brutally honest guide to working remotely from the Andaman Islands.",
   image: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
   category: "Lifestyle",
-  author: {
-    name: "Rahul & Sarah",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-    bio: "Digital nomads who spent 3 months living in Havelock."
-  },
+  author: defaultAuthor,
   date: "2026-01-20",
   readTime: "12 min read",
   tags: ["Digital Nomad", "Workation", "Internet Speed", "Cost of Living", "Long Stay"],

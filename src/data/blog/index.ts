@@ -54,7 +54,16 @@ import scubaBeginnersGuide from './andaman-scuba-diving-beginners-guide';
 import bestBeachesRanked from './best-beaches-andaman-ranked';
 import packingListChecklist from './andaman-packing-list-checklist';
 
+import newFerryServices from './new-ferry-services-2025';
+import bestBeachAward from './best-beach-award-2024';
+import itf2026 from './island-tourism-festival-2026';
+import hiddenFacts from './hidden-andaman-facts-2026';
+
 const newPosts: BlogPost[] = [
+  newFerryServices,
+  bestBeachAward,
+  itf2026,
+  hiddenFacts,
   basePosts,
   bestTime,
   topThings,

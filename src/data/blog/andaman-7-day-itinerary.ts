@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = '7-day-andaman-itinerary';
 const imagePath = `/blog-assets/${slug}/`;
@@ -37,11 +38,7 @@ const post: BlogPost = {
   excerpt:
     'Plan the perfect 7-day Andaman trip in 2025 with this expert, day-by-day itinerary covering Port Blair, Havelock (Swaraj Dweep) and Neil (Shaheed Dweep)—complete with beaches, ferries, budgets, pro tips, and FAQs.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.',
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '11 min read',
   category: 'Itineraries',

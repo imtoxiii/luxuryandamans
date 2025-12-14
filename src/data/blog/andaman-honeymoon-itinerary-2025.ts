@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const images = {
   main: {
@@ -35,11 +36,7 @@ const post: BlogPost = {
   excerpt:
     'Planning the perfect romantic escape? Our 7-day Andaman honeymoon itinerary for 2025 is crafted for Indian couples, blending adventure with intimacy. Discover private beaches, candlelight dinners, and underwater wonders in this tropical paradise.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Local experts crafting unforgettable island experiences across the Andaman archipelago.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '15 min read',
   category: 'Honeymoon',

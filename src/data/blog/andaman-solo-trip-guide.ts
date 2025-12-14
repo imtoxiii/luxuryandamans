@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
     id: "andaman-solo-trip-guide",
@@ -7,11 +8,7 @@ export const post: BlogPost = {
     excerpt: "Is Andaman safe for solo travelers? Where to stay? How to meet people? We answer all your questions in this comprehensive solo travel guide.",
     image: "https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
     category: "Travel Guide",
-    author: {
-        name: "Arjun Patel",
-        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-        bio: "Solo traveler and photographer."
-    },
+    author: defaultAuthor,
     date: "2025-03-01",
     readTime: "8 min read",
     tags: ["Solo Travel", "Backpacking", "Budget Travel", "Safety", "Guide"],

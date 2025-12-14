@@ -104,22 +104,22 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-slate-50 font-sans selection:bg-teal-100 selection:text-teal-900">
       <SEO
-        title="Contact Us | Luxury Andamans"
-        description="Get in touch with Andaman Luxury for personalized travel planning, inquiries, and support. We're here to help you plan your perfect Andaman Islands getaway."
+        title="Contact Luxury Andamans | Book Your Dream Vacation"
+        description="Contact Luxury Andamans for bookings and inquiries. Call our expert team in Port Blair for personalized Andaman tour packages. 24/7 support available."
         pathname={location.pathname}
-        keywords="contact andaman luxury, travel inquiries, andaman islands travel support, luxury travel contact"
+        keywords="contact luxury andamans, andaman travel agency number, luxury andamans phone number, book andaman tour, port blair travel agent contact, andaman tourism enquiry"
         extraStructuredData={[breadcrumbStructuredData]}
       />
       <Toaster position="top-right" />
       <Header />
 
       {/* Hero Section */}
-<div className="relative bg-slate-900 pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
-  {/* Background Image */}
-  <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/10945169/pexels-photo-10945169.jpeg')] bg-cover bg-center opacity-60"></div>
+      <div className="relative bg-slate-900 pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/10945169/pexels-photo-10945169.jpeg')] bg-cover bg-center opacity-60"></div>
 
-  {/* Soft gradient overlay so image stays visible */}
-  <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 via-slate-900/30 to-slate-50/20"></div>
+        {/* Soft gradient overlay so image stays visible */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 via-slate-900/30 to-slate-50/20"></div>
 
         <div className="container mx-auto px-6 relative z-10 text-center">
           <motion.div
@@ -134,7 +134,7 @@ const ContactPage = () => {
               Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-400">Touch</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-              Have questions about your upcoming trip? Want to customize your itinerary? 
+              Have questions about your upcoming trip? Want to customize your itinerary?
               Our team of local experts is ready to assist you.
             </p>
           </motion.div>
@@ -143,9 +143,9 @@ const ContactPage = () => {
 
       <main className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-20 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          
+
           {/* Contact Info Card */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -155,11 +155,11 @@ const ContactPage = () => {
               <div className="p-8 bg-slate-900 text-white relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-blue-500/20 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2"></div>
-                
+
                 <h3 className="text-2xl font-bold font-display mb-2 relative z-10">Contact Information</h3>
                 <p className="text-slate-400 relative z-10">Reach out to us through any of these channels.</p>
               </div>
-              
+
               <div className="p-8 space-y-8 flex-grow flex flex-col justify-center">
                 <div className="group flex items-start gap-4 transition-all duration-300 hover:translate-x-1">
                   <div className="w-12 h-12 rounded-2xl bg-teal-50 flex items-center justify-center flex-shrink-0 group-hover:bg-teal-100 transition-colors">
@@ -198,7 +198,7 @@ const ContactPage = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="p-8 bg-slate-50 border-t border-slate-100">
                 <div className="flex items-center gap-3 text-slate-600">
                   <Clock className="w-5 h-5 text-slate-400" />
@@ -210,7 +210,7 @@ const ContactPage = () => {
           </motion.div>
 
           {/* Contact Form */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}

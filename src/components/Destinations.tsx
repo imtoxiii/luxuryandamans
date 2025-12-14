@@ -1,10 +1,9 @@
-
 import { motion } from 'framer-motion';
 import { MapPin, ArrowRight, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CardSlider from './CardSlider';
 import { destinations } from '../data/destinations';
-import destinationImages from '../data/destinationImages.json';
+import { getDestinationImages } from '../lib/images';
 
 const Destinations = () => {
   return (
@@ -38,7 +37,7 @@ const Destinations = () => {
         <div className="relative">
           <CardSlider showDots={true} autoScroll={false}>
             {destinations.map((dest, index) => {
-              const folderImages = (destinationImages as Record<string, string[]>)[dest.slug] || [];
+              const folderImages = getDestinationImages(dest.slug);
               
               // Card Image Priority: 'card' -> 'hero_card' -> 'hero' -> First available
               const specificCard = folderImages.find(img => img.toLowerCase().includes('card') && !img.toLowerCase().includes('hero_card'));

@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'how-to-visit-baratang-island';
 const imagePath = `/blog-assets/${slug}/`;
@@ -31,11 +32,7 @@ const post: BlogPost = {
   excerpt:
     'Planning a trip to the Limestone Caves? Here is everything you need to know about the Baratang permit, the Jarawa Reserve convoy timings, and how to book your tickets.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Explorers of the hidden gems of the archipelago.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '6 min read',
   category: 'Adventure',

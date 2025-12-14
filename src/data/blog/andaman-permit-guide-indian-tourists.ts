@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'andaman-permit-guide-indian-tourists';
 const imagePath = `/blog-assets/${slug}/`;
@@ -31,11 +32,7 @@ const post: BlogPost = {
   excerpt:
     'Confused about entry formalities? We clear up all doubts about passports, visas, and the Restricted Area Permit (RAP) for Indian and Foreign tourists visiting Andaman.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Simplifying your travel logistics so you can focus on the fun.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '4 min read',
   category: 'Travel Tips',

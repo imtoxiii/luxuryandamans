@@ -1,4 +1,5 @@
 import { BlogPost } from '../../types/blog';
+import { defaultAuthor } from './author';
 
 const slug = 'is-andaman-safe-for-tourists';
 const imagePath = `/blog-assets/${slug}/`;
@@ -31,11 +32,7 @@ const post: BlogPost = {
   excerpt:
     'Planning a solo trip or a family vacation? Discover why Andaman is considered one of the safest destinations in India. We cover crime rates, solo female travel safety, and water safety tips.',
   image: images.main.src,
-  author: {
-    name: 'Luxury Andamans Team',
-    avatar: '/images/luxury-andamans-logo.png',
-    bio: 'Ensuring your island adventures are safe, secure, and spectacular.'
-  },
+  author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '6 min read',
   category: 'Travel Tips',

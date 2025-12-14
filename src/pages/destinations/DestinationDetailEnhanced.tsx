@@ -23,7 +23,7 @@ import {
   generateDestinationFAQs,
   generateFAQSchema
 } from '../../lib/structuredData';
-import destinationImages from '../../data/destinationImages.json';
+import { getDestinationImages, getHighlightImage } from '../../lib/images';
 
 interface DestinationDetailProps {
   destination: Destination;
@@ -47,7 +47,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
   const faqSchema = generateFAQSchema(faqs);
 
   // Merge gallery images from static data and folder structure
-  const folderImages = (destinationImages as Record<string, string[]>)[destination.slug] || [];
+  const folderImages = getDestinationImages(destination.slug);
 
   // Image Priority Logic
   // 1. Hero Image (Banner): Check for 'hero_card' -> 'hero' -> First available image
@@ -594,7 +594,7 @@ const DestinationDetailEnhanced: React.FC<DestinationDetailProps> = ({ destinati
                   className="group relative overflow-hidden rounded-[2rem] shadow-xl hover:shadow-2xl transition-all duration-500 h-[400px] bg-gray-200"
                 >
                   <img
-                    src={highlight.image}
+                    src={getHighlightImage(destination.slug, highlight.title, index, highlight.image)}
                     alt={highlight.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"

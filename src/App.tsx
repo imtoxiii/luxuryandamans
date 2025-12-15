@@ -30,8 +30,7 @@ const NaturalBridge = lazy(() => import('./pages/destinations/natural-bridge'));
 const LimestoneCaves = lazy(() => import('./pages/destinations/limestone-caves'));
 const MudVolcano = lazy(() => import('./pages/destinations/mud-volcano'));
 const RossSmithIslands = lazy(() => import('./pages/destinations/ross-smith-islands'));
-const SaddlePeak = lazy(() => import('./pages/destinations/saddle-peak'));
-const CinqueIsland = lazy(() => import('./pages/destinations/cinque-island'));
+
 const BarrenIsland = lazy(() => import('./pages/destinations/barren-island'));
 // Destination category hub pages
 const PortBlairDestinations = lazy(() => import('./pages/destinations/PortBlairDestinations'));
@@ -106,8 +105,7 @@ function App() {
           <Route path="/destinations/limestone-caves" element={<LimestoneCaves />} />
           <Route path="/destinations/mud-volcano" element={<MudVolcano />} />
           <Route path="/destinations/ross-smith-islands" element={<RossSmithIslands />} />
-          <Route path="/destinations/saddle-peak" element={<SaddlePeak />} />
-          <Route path="/destinations/cinque-island" element={<CinqueIsland />} />
+
           <Route path="/destinations/barren-island" element={<BarrenIsland />} />
 
           {/* Fallback dynamic route */}

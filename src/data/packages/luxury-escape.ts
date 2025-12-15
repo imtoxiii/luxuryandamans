@@ -20,7 +20,7 @@ export const luxuryEscape: Package = {
   ],
   includes: [
     "6 nights luxury accommodation in 5-star resorts",
-    "Daily gourmet breakfast and dinner",
+    "Daily gourmet breakfast",
     "Premium scuba diving with professional videography",
     "Private speedboat to Elephant Beach with luxury setup",
     "Complimentary snorkeling with premium equipment",
@@ -83,7 +83,7 @@ export const luxuryEscape: Package = {
         "Premium seating at Cellular Jail Light & Sound Show",
         "Dinner at resort with ocean view"
       ],
-      meals: ["Breakfast", "Lunch", "Dinner"],
+      meals: ["Breakfast"],
       sightseeing: ["Cellular Jail", "Corbyn's Cove Beach", "Anthropological Museum", "Light & Sound Show"]
     },
     {
@@ -126,7 +126,7 @@ export const luxuryEscape: Package = {
         "Champagne and gourmet snacks on beach",
         "Return to resort for dinner"
       ],
-      meals: ["Breakfast", "Lunch", "Dinner"],
+      meals: ["Breakfast"],
       sightseeing: ["Premium Scuba Diving", "Elephant Beach VIP", "Coral Gardens"]
     },
     {
@@ -142,7 +142,7 @@ export const luxuryEscape: Package = {
         "Gourmet dinner at resort's specialty restaurant",
         "Optional: Private yacht cruise (additional cost)"
       ],
-      meals: ["Breakfast", "Lunch", "Dinner"],
+      meals: ["Breakfast"],
       sightseeing: ["Kalapathar Beach", "Resort Private Beach"]
     },
     {
@@ -190,9 +190,16 @@ export const luxuryEscape: Package = {
     5: [
       {
         day: "Day 1",
-        title: "Luxury Arrival",
-        description: "VIP Airport reception. Transfer to 5-star resort. Spa session.",
-        activities: ["VIP Reception", "Spa Session"],
+        title: "Luxury Arrival - Port Blair",
+        description: "VIP Airport reception. Transfer to 5-star resort. Spa session and sunset cocktails.",
+        activities: [
+          "VIP airport reception with garland welcome",
+          "Private luxury vehicle transfer to resort",
+          "Premium suite check-in with welcome drinks",
+          "Spa session (60 minutes) - Relaxation massage",
+          "Sunset cocktails at resort beach bar",
+          "Gourmet dinner at resort restaurant"
+        ],
         hotel: {
           name: "Fortune Resort Bay Island",
           location: "Port Blair",
@@ -201,14 +208,21 @@ export const luxuryEscape: Package = {
           amenities: ["Beachfront", "Spa"],
           description: "Luxury 5-star resort"
         },
-        meals: ["Welcome Drinks", "Dinner"],
-        sightseeing: ["Resort Beach"]
+        meals: ["Welcome Drinks", "Gourmet Dinner"],
+        sightseeing: ["Resort Beach", "Sunset Point"]
       },
       {
         day: "Day 2",
-        title: "Port Blair to Havelock",
-        description: "Premium ferry to Havelock. Check into Taj Exotica. Radhanagar Beach.",
-        activities: ["Premium Ferry", "Radhanagar Beach"],
+        title: "Port Blair to Havelock - Beach Paradise",
+        description: "Premium ferry to Havelock. Check into Taj Exotica. Radhanagar Beach sunset.",
+        activities: [
+          "Private transfer to jetty",
+          "Premium ferry to Havelock with lounge access",
+          "Luxury villa check-in at Taj Exotica",
+          "Afternoon at Radhanagar Beach (Asia's best)",
+          "Professional photography session (2 hours)",
+          "Candlelight dinner on beach"
+        ],
         hotel: {
           name: "Taj Exotica Resort & Spa",
           location: "Havelock Island",
@@ -217,22 +231,34 @@ export const luxuryEscape: Package = {
           amenities: ["Private Beach", "Butler Service"],
           description: "Ultra-luxury resort"
         },
-        meals: ["Breakfast", "Dinner"],
+        meals: ["Breakfast", "Candlelight Dinner"],
         sightseeing: ["Radhanagar Beach"]
       },
       {
         day: "Day 3",
-        title: "Scuba & Elephant Beach",
-        description: "Premium Scuba Diving. Private speedboat to Elephant Beach.",
-        activities: ["Scuba Diving", "Elephant Beach VIP"],
-        meals: ["Breakfast", "Lunch", "Dinner"],
-        sightseeing: ["Elephant Beach"]
+        title: "Scuba & Elephant Beach Luxury",
+        description: "Premium Scuba Diving. Private speedboat to Elephant Beach with luxury setup.",
+        activities: [
+          "Premium Scuba Diving with videography",
+          "Private speedboat to Elephant Beach",
+          "Luxury beach setup with champagne",
+          "Guided snorkeling session",
+          "Return to resort for leisure"
+        ],
+        meals: ["Breakfast"],
+        sightseeing: ["Elephant Beach", "Coral Reefs"]
       },
       {
         day: "Day 4",
-        title: "Havelock to Port Blair",
-        description: "Return to Port Blair. Ross Island VIP tour.",
-        activities: ["Premium Ferry", "Ross Island VIP"],
+        title: "Havelock to Port Blair - Ross Island",
+        description: "Return to Port Blair. Ross Island VIP tour and farewell dinner.",
+        activities: [
+          "Morning at leisure",
+          "Premium ferry return to Port Blair",
+          "Private boat to Ross Island",
+          "VIP guided tour of historical ruins",
+          "Farewell seafood dinner"
+        ],
         hotel: {
           name: "Fortune Resort Bay Island",
           location: "Port Blair",
@@ -247,8 +273,13 @@ export const luxuryEscape: Package = {
       {
         day: "Day 5",
         title: "Departure",
-        description: "Private transfer to airport.",
-        activities: ["Airport Transfer"],
+        description: "Private transfer to airport with assistance.",
+        activities: [
+          "Leisurely breakfast",
+          "Checkout with assistance",
+          "Private luxury transfer to airport",
+          "VIP airport lounge access (if available)"
+        ],
         meals: ["Breakfast"],
         sightseeing: []
       }
@@ -256,9 +287,16 @@ export const luxuryEscape: Package = {
     6: [
       {
         day: "Day 1",
-        title: "Luxury Arrival",
-        description: "VIP Airport reception. Transfer to 5-star resort. Spa session.",
-        activities: ["VIP Reception", "Spa Session"],
+        title: "Luxury Arrival - Port Blair",
+        description: "VIP Airport reception. Transfer to 5-star resort. Spa session and sunset cocktails.",
+        activities: [
+          "VIP airport reception with garland welcome",
+          "Private luxury vehicle transfer to resort",
+          "Premium suite check-in with welcome drinks",
+          "Spa session (60 minutes) - Relaxation massage",
+          "Sunset cocktails at resort beach bar",
+          "Gourmet dinner at resort restaurant"
+        ],
         hotel: {
           name: "Fortune Resort Bay Island",
           location: "Port Blair",
@@ -267,14 +305,21 @@ export const luxuryEscape: Package = {
           amenities: ["Beachfront", "Spa"],
           description: "Luxury 5-star resort"
         },
-        meals: ["Welcome Drinks", "Dinner"],
-        sightseeing: ["Resort Beach"]
+        meals: ["Welcome Drinks", "Gourmet Dinner"],
+        sightseeing: ["Resort Beach", "Sunset Point"]
       },
       {
         day: "Day 2",
-        title: "Port Blair to Havelock",
-        description: "Premium ferry to Havelock. Check into Taj Exotica. Radhanagar Beach.",
-        activities: ["Premium Ferry", "Radhanagar Beach"],
+        title: "Port Blair to Havelock - Beach Paradise",
+        description: "Premium ferry to Havelock. Check into Taj Exotica. Radhanagar Beach sunset.",
+        activities: [
+          "Private transfer to jetty",
+          "Premium ferry to Havelock with lounge access",
+          "Luxury villa check-in at Taj Exotica",
+          "Afternoon at Radhanagar Beach (Asia's best)",
+          "Professional photography session (2 hours)",
+          "Dinner at resort"
+        ],
         hotel: {
           name: "Taj Exotica Resort & Spa",
           location: "Havelock Island",
@@ -288,25 +333,43 @@ export const luxuryEscape: Package = {
       },
       {
         day: "Day 3",
-        title: "Scuba & Elephant Beach",
-        description: "Premium Scuba Diving. Private speedboat to Elephant Beach.",
-        activities: ["Scuba Diving", "Elephant Beach VIP"],
-        meals: ["Breakfast", "Lunch", "Dinner"],
-        sightseeing: ["Elephant Beach"]
+        title: "Scuba & Elephant Beach Luxury",
+        description: "Premium Scuba Diving. Private speedboat to Elephant Beach with luxury setup.",
+        activities: [
+          "Premium Scuba Diving with videography",
+          "Private speedboat to Elephant Beach",
+          "Luxury beach setup with champagne",
+          "Guided snorkeling session",
+          "Candlelight dinner on beach (resort)"
+        ],
+        meals: ["Breakfast", "Candlelight Dinner"],
+        sightseeing: ["Elephant Beach", "Coral Reefs"]
       },
       {
         day: "Day 4",
-        title: "Leisure Day",
-        description: "Relax at resort. Spa treatments. Sunset cruise (optional).",
-        activities: ["Spa Session", "Leisure"],
-        meals: ["Breakfast", "Dinner"],
-        sightseeing: ["Resort Beach"]
+        title: "Leisure Day & Sunset Cruise",
+        description: "Relax at resort. Spa treatments and optional sunset cruise.",
+        activities: [
+          "Leisurely breakfast in villa",
+          "Couple Spa Session (60 mins)",
+          "Infinity pool and beach time",
+          "Kalapathar Beach visit",
+          "Gourmet dinner"
+        ],
+        meals: ["Breakfast"],
+        sightseeing: ["Kalapathar Beach"]
       },
       {
         day: "Day 5",
-        title: "Havelock to Port Blair",
-        description: "Return to Port Blair. Ross Island VIP tour.",
-        activities: ["Premium Ferry", "Ross Island VIP"],
+        title: "Havelock to Port Blair - Ross Island",
+        description: "Return to Port Blair. Ross Island VIP tour and farewell dinner.",
+        activities: [
+          "Morning at leisure",
+          "Premium ferry return to Port Blair",
+          "Private boat to Ross Island",
+          "VIP guided tour of historical ruins",
+          "Farewell seafood dinner"
+        ],
         hotel: {
           name: "Fortune Resort Bay Island",
           location: "Port Blair",
@@ -321,8 +384,13 @@ export const luxuryEscape: Package = {
       {
         day: "Day 6",
         title: "Departure",
-        description: "Private transfer to airport.",
-        activities: ["Airport Transfer"],
+        description: "Private transfer to airport with assistance.",
+        activities: [
+          "Leisurely breakfast",
+          "Checkout with assistance",
+          "Private luxury transfer to airport",
+          "VIP airport lounge access (if available)"
+        ],
         meals: ["Breakfast"],
         sightseeing: []
       }
@@ -365,7 +433,7 @@ export const luxuryEscape: Package = {
           "Premium seating at Cellular Jail Light & Sound Show",
           "Dinner at resort with ocean view"
         ],
-        meals: ["Breakfast", "Lunch", "Dinner"],
+        meals: ["Breakfast"],
         sightseeing: ["Cellular Jail", "Corbyn's Cove Beach", "Anthropological Museum", "Light & Sound Show"]
       },
       {
@@ -408,7 +476,7 @@ export const luxuryEscape: Package = {
           "Champagne and gourmet snacks on beach",
           "Return to resort for dinner"
         ],
-        meals: ["Breakfast", "Lunch", "Dinner"],
+        meals: ["Breakfast"],
         sightseeing: ["Premium Scuba Diving", "Elephant Beach VIP", "Coral Gardens"]
       },
       {
@@ -424,7 +492,7 @@ export const luxuryEscape: Package = {
           "Gourmet dinner at resort's specialty restaurant",
           "Optional: Private yacht cruise (additional cost)"
         ],
-        meals: ["Breakfast", "Lunch", "Dinner"],
+        meals: ["Breakfast"],
         sightseeing: ["Kalapathar Beach", "Resort Private Beach"]
       },
       {
@@ -497,17 +565,17 @@ export const luxuryEscape: Package = {
   pricingOptions: [
     {
       days: 5,
-      pricePerPerson: 65000,
+      pricePerPerson: 75999,
       title: "5 Days Luxury Express"
     },
     {
       days: 6,
-      pricePerPerson: 75000,
+      pricePerPerson: 87999,
       title: "6 Days Luxury Retreat"
     },
     {
       days: 7,
-      pricePerPerson: 85000,
+      pricePerPerson: 99999,
       title: "7 Days Ultra Luxury Experience"
     }
   ],
@@ -615,3 +683,4 @@ export const luxuryEscape: Package = {
   cancellationPolicy: commonCancellationPolicy,
   slug: "luxury-island-escape-7-days"
 };
+

@@ -20,7 +20,7 @@ export const luxuryHoneymoon: Package = {
   ],
   includes: [
     "6 nights accommodation in 5-star luxury resorts",
-    "Daily breakfast and dinner",
+    "Daily breakfast",
     "Private AC car for all transfers and sightseeing",
     "Premium ferry tickets (Royal Class)",
     "Romantic candlelight dinner on the beach",
@@ -46,12 +46,12 @@ export const luxuryHoneymoon: Package = {
       title: "Arrival in Paradise",
       description: "Welcome to Port Blair. Luxury pickup and transfer to your sea-facing suite. Evening private sunset view at Chidiya Tapu.",
       activities: [
-        "Luxury car pickup from airport",
-        "Welcome drink and garland on arrival",
-        "Check-in to 5-star hotel",
-        "Relaxation and leisure time",
-        "Private sunset trip to Chidiya Tapu",
-        "Romantic dinner at hotel"
+        "Luxury car pickup from airport with bouquet",
+        "Welcome drink and traditional reception",
+        "Check-in to 5-star hotel with honeymoon suite",
+        "Flower bed decoration and honeymoon cake in room",
+        "Private sunset trip to Chidiya Tapu (Bird Island)",
+        "Romantic candlelight dinner at hotel"
       ],
       hotel: {
         name: "Taj Exotica Resort & Spa",
@@ -61,7 +61,7 @@ export const luxuryHoneymoon: Package = {
         amenities: ["Private Beach", "Spa", "Infinity Pool", "Fine Dining", "Butler Service"],
         description: "World-class luxury resort with private villas and direct beach access"
       },
-      meals: ["Dinner"],
+      meals: ["Welcome Drinks", "Romantic Dinner"],
       sightseeing: ["Chidiya Tapu Sunset"]
     },
     {
@@ -69,13 +69,13 @@ export const luxuryHoneymoon: Package = {
       title: "Port Blair to Havelock - Villa Experience",
       description: "Private cruise to Havelock. Check into your private pool villa. Evening romantic beach walk.",
       activities: [
-        "Breakfast at hotel",
-        "Private transfer to jetty",
+        "Breakfast in bed (optional)",
+        "Private luxury transfer to jetty",
         "Luxury cruise to Havelock (Royal Class)",
-        "Check-in to Private Pool Villa",
-        "Flower bed decoration in room",
+        "VIP Check-in to Private Pool Villa",
+        "Room decoration with exotic flowers",
         "Leisure time in private pool",
-        "Beachside candlelight dinner"
+        "Beachside candlelight dinner with wine"
       ],
       hotel: {
         name: "Taj Exotica Resort & Spa",
@@ -85,7 +85,7 @@ export const luxuryHoneymoon: Package = {
         amenities: ["Private Pool Villa", "Spa", "Beach Access", "Fine Dining"],
         description: "Luxury villa with private pool"
       },
-      meals: ["Breakfast", "Dinner"],
+      meals: ["Breakfast", "Candlelight Dinner"],
       sightseeing: ["Radhanagar Beach"]
     },
     {
@@ -93,14 +93,15 @@ export const luxuryHoneymoon: Package = {
       title: "Radhanagar Beach & Photoshoot",
       description: "Visit the world-famous Radhanagar Beach. Professional couple photoshoot session at sunset.",
       activities: [
-        "Breakfast in bed (optional)",
-        "Visit Radhanagar Beach",
-        "Private picnic lunch setup",
+        "Leisurely breakfast",
+        "Private transfer to Radhanagar Beach",
+        "Dedicated spot setup with umbrella and recliners",
+        "Gourmet picnic lunch on the beach",
         "Professional couple photoshoot (2 hours)",
-        "Sunset viewing",
+        "Sunset viewing with refreshments",
         "Return to villa"
       ],
-      meals: ["Breakfast", "Dinner"],
+      meals: ["Breakfast", "Picnic Lunch"],
       sightseeing: ["Radhanagar Beach", "Photoshoot Locations"]
     },
     {
@@ -108,14 +109,14 @@ export const luxuryHoneymoon: Package = {
       title: "Elephant Beach & Spa",
       description: "Private speedboat to Elephant Beach for snorkeling. Afternoon couple spa session.",
       activities: [
-        "Private speedboat to Elephant Beach",
-        "Guided snorkeling experience",
-        "Sea walk (optional)",
+        "Private speedboat charter to Elephant Beach",
+        "Exclusive guided snorkeling for couple",
+        "Underwater photography included",
         "Return to resort",
-        "Couple Spa Therapy (60 mins)",
-        "Relaxation time"
+        "Couple Spa Therapy (60 mins) - Swedish/Aroma",
+        "Jacuzzi and steam session"
       ],
-      meals: ["Breakfast", "Dinner"],
+      meals: ["Breakfast"],
       sightseeing: ["Elephant Beach"]
     },
     {
@@ -124,11 +125,11 @@ export const luxuryHoneymoon: Package = {
       description: "Cruise to Neil Island. Stay at a luxury resort. Visit Laxmanpur Beach for sunset.",
       activities: [
         "Breakfast and checkout",
-        "Cruise to Neil Island",
-        "Check-in to luxury resort",
-        "Visit Laxmanpur Beach",
-        "Sunset view at Natural Bridge",
-        "Dinner at resort"
+        "Cruise to Neil Island (Royal Class)",
+        "Check-in to luxury resort at Neil",
+        "Afternoon visit to Laxmanpur Beach",
+        "Private sunset viewing setup",
+        "Romantic dinner at resort"
       ],
       hotel: {
         name: "SeaShell Samssara",
@@ -146,11 +147,12 @@ export const luxuryHoneymoon: Package = {
       title: "Neil to Port Blair - Shopping & Dinner",
       description: "Return to Port Blair. Shopping for souvenirs. Farewell dinner.",
       activities: [
-        "Breakfast and checkout",
-        "Cruise to Port Blair",
+        "Breakfast and morning leisure",
+        "Cruise return to Port Blair",
         "Check-in to hotel",
         "Shopping at Sagarika Emporium",
-        "Farewell dinner with live music"
+        "Farewell dinner with live music",
+        "Gift presentation"
       ],
       hotel: {
         name: "Welcomhotel by ITC",
@@ -160,7 +162,7 @@ export const luxuryHoneymoon: Package = {
         amenities: ["Sea View", "Spa", "Pool", "Fine Dining"],
         description: "Luxury hotel overlooking the bay"
       },
-      meals: ["Breakfast", "Dinner"],
+      meals: ["Breakfast", "Farewell Dinner"],
       sightseeing: ["Shopping", "City Tour"]
     },
     {
@@ -169,9 +171,9 @@ export const luxuryHoneymoon: Package = {
       description: "Private transfer to airport with sweet memories.",
       activities: [
         "Breakfast",
-        "Checkout",
+        "Checkout assistance",
         "Gift hamper from Luxury Andamans",
-        "Airport drop"
+        "Private luxury airport drop"
       ],
       meals: ["Breakfast"],
       sightseeing: []
@@ -182,48 +184,78 @@ export const luxuryHoneymoon: Package = {
       {
         day: "Day 1",
         title: "Arrival in Paradise",
-        description: "Welcome to Port Blair. Luxury pickup and transfer to your sea-facing suite. Evening private sunset view at Chidiya Tapu.",
-        activities: ["Luxury car pickup", "Chidiya Tapu Sunset", "Romantic dinner"],
-        meals: ["Dinner"],
+        description: "Welcome to Port Blair. Luxury pickup. Flower bed decoration and romantic dinner.",
+        activities: [
+          "Luxury car pickup with bouquet",
+          "Check-in to Honeymoon Suite",
+          "Flower bed decoration & Honeymoon Cake",
+          "Chidiya Tapu Sunset",
+          "Romantic Candlelight Dinner"
+        ],
+        meals: ["Welcome Drinks", "Romantic Dinner"],
         sightseeing: ["Chidiya Tapu"]
       },
       {
         day: "Day 2",
         title: "Port Blair to Havelock - Villa Experience",
         description: "Private cruise to Havelock. Check into your private pool villa. Evening romantic beach walk.",
-        activities: ["Luxury cruise to Havelock", "Check-in to Private Pool Villa", "Beachside candlelight dinner"],
-        meals: ["Breakfast", "Dinner"],
+        activities: [
+          "Luxury cruise to Havelock (Royal Class)",
+          "VIP Check-in to Private Pool Villa",
+          "Room decoration with exotic flowers",
+          "Beachside candlelight dinner with wine"
+        ],
+        meals: ["Breakfast", "Candlelight Dinner"],
         sightseeing: ["Radhanagar Beach"]
       },
       {
         day: "Day 3",
         title: "Radhanagar Beach & Photoshoot",
         description: "Visit the world-famous Radhanagar Beach. Professional couple photoshoot session at sunset.",
-        activities: ["Radhanagar Beach", "Photoshoot", "Sunset viewing"],
-        meals: ["Breakfast", "Dinner"],
+        activities: [
+          "Private transfer to Radhanagar Beach",
+          "Gourmet picnic lunch on the beach",
+          "Professional couple photoshoot (2 hours)",
+          "Sunset viewing with refreshments"
+        ],
+        meals: ["Breakfast", "Picnic Lunch"],
         sightseeing: ["Radhanagar Beach"]
       },
       {
         day: "Day 4",
         title: "Elephant Beach & Spa",
         description: "Private speedboat to Elephant Beach for snorkeling. Afternoon couple spa session.",
-        activities: ["Elephant Beach", "Snorkeling", "Couple Spa Therapy"],
-        meals: ["Breakfast", "Dinner"],
+        activities: [
+          "Private speedboat charter to Elephant Beach",
+          "Exclusive guided snorkeling for couple",
+          "Couple Spa Therapy (60 mins) - Swedish/Aroma",
+          "Jacuzzi and steam session"
+        ],
+        meals: ["Breakfast"],
         sightseeing: ["Elephant Beach"]
       },
       {
         day: "Day 5",
         title: "Havelock to Port Blair",
         description: "Return to Port Blair. Shopping for souvenirs. Farewell dinner.",
-        activities: ["Cruise to Port Blair", "Shopping", "Farewell dinner"],
-        meals: ["Breakfast", "Dinner"],
+        activities: [
+          "Cruise return to Port Blair (Royal Class)",
+          "Shopping at Sagarika Emporium",
+          "Farewell dinner with live music",
+          "Gift presentation"
+        ],
+        meals: ["Breakfast", "Farewell Dinner"],
         sightseeing: ["Shopping"]
       },
       {
         day: "Day 6",
         title: "Departure",
         description: "Private transfer to airport with sweet memories.",
-        activities: ["Airport drop"],
+        activities: [
+          "Checkout assistance",
+          "Gift hamper from Luxury Andamans",
+          "Private luxury airport drop"
+        ],
         meals: ["Breakfast"],
         sightseeing: []
       }
@@ -233,55 +265,136 @@ export const luxuryHoneymoon: Package = {
         day: "Day 1",
         title: "Arrival in Paradise",
         description: "Welcome to Port Blair. Luxury pickup and transfer to your sea-facing suite. Evening private sunset view at Chidiya Tapu.",
-        activities: ["Luxury car pickup", "Chidiya Tapu Sunset", "Romantic dinner"],
-        meals: ["Dinner"],
-        sightseeing: ["Chidiya Tapu"]
+        activities: [
+          "Luxury car pickup from airport with bouquet",
+          "Welcome drink and traditional reception",
+          "Check-in to 5-star hotel with honeymoon suite",
+          "Flower bed decoration and honeymoon cake in room",
+          "Private sunset trip to Chidiya Tapu (Bird Island)",
+          "Romantic candlelight dinner at hotel"
+        ],
+        hotel: {
+          name: "Taj Exotica Resort & Spa",
+          location: "Havelock Island",
+          rating: 5,
+          image: "/images/packages/luxury-honeymoon/hotel-taj.jpg",
+          amenities: ["Private Beach", "Spa", "Infinity Pool", "Fine Dining", "Butler Service"],
+          description: "World-class luxury resort with private villas and direct beach access"
+        },
+        meals: ["Welcome Drinks", "Romantic Dinner"],
+        sightseeing: ["Chidiya Tapu Sunset"]
       },
       {
         day: "Day 2",
         title: "Port Blair to Havelock - Villa Experience",
         description: "Private cruise to Havelock. Check into your private pool villa. Evening romantic beach walk.",
-        activities: ["Luxury cruise to Havelock", "Check-in to Private Pool Villa", "Beachside candlelight dinner"],
-        meals: ["Breakfast", "Dinner"],
+        activities: [
+          "Breakfast at hotel",
+          "Private luxury transfer to jetty",
+          "Luxury cruise to Havelock (Royal Class)",
+          "VIP Check-in to Private Pool Villa",
+          "Room decoration with exotic flowers",
+          "Leisure time in private pool",
+          "Beachside candlelight dinner with wine"
+        ],
+        hotel: {
+          name: "Taj Exotica Resort & Spa",
+          location: "Havelock Island",
+          rating: 5,
+          image: "/images/packages/luxury-honeymoon/hotel-taj.jpg",
+          amenities: ["Private Pool Villa", "Spa", "Beach Access", "Fine Dining"],
+          description: "Luxury villa with private pool"
+        },
+        meals: ["Breakfast", "Candlelight Dinner"],
         sightseeing: ["Radhanagar Beach"]
       },
       {
         day: "Day 3",
         title: "Radhanagar Beach & Photoshoot",
         description: "Visit the world-famous Radhanagar Beach. Professional couple photoshoot session at sunset.",
-        activities: ["Radhanagar Beach", "Photoshoot", "Sunset viewing"],
-        meals: ["Breakfast", "Dinner"],
-        sightseeing: ["Radhanagar Beach"]
+        activities: [
+          "Leisurely breakfast",
+          "Private transfer to Radhanagar Beach",
+          "Dedicated spot setup with umbrella and recliners",
+          "Gourmet picnic lunch on the beach",
+          "Professional couple photoshoot (2 hours)",
+          "Sunset viewing with refreshments",
+          "Return to villa"
+        ],
+        meals: ["Breakfast", "Picnic Lunch"],
+        sightseeing: ["Radhanagar Beach", "Photoshoot Locations"]
       },
       {
         day: "Day 4",
         title: "Elephant Beach & Spa",
         description: "Private speedboat to Elephant Beach for snorkeling. Afternoon couple spa session.",
-        activities: ["Elephant Beach", "Snorkeling", "Couple Spa Therapy"],
-        meals: ["Breakfast", "Dinner"],
+        activities: [
+          "Private speedboat charter to Elephant Beach",
+          "Exclusive guided snorkeling for couple",
+          "Underwater photography included",
+          "Return to resort",
+          "Couple Spa Therapy (60 mins) - Swedish/Aroma",
+          "Jacuzzi and steam session"
+        ],
+        meals: ["Breakfast"],
         sightseeing: ["Elephant Beach"]
       },
       {
         day: "Day 5",
         title: "Havelock to Neil Island",
         description: "Cruise to Neil Island. Stay at a luxury resort. Visit Laxmanpur Beach for sunset.",
-        activities: ["Cruise to Neil Island", "Laxmanpur Beach", "Natural Bridge"],
+        activities: [
+          "Breakfast and checkout",
+          "Cruise to Neil Island (Royal Class)",
+          "Check-in to luxury resort at Neil",
+          "Afternoon visit to Laxmanpur Beach",
+          "Private sunset viewing setup",
+          "Romantic dinner at resort"
+        ],
+        hotel: {
+          name: "SeaShell Samssara",
+          location: "Neil Island",
+          rating: 5,
+          image: "/images/packages/luxury-honeymoon/hotel-neil.jpg",
+          amenities: ["Pool", "Spa", "Beach Access", "Luxury Rooms"],
+          description: "Premium resort on Neil Island"
+        },
         meals: ["Breakfast", "Dinner"],
         sightseeing: ["Laxmanpur Beach", "Natural Bridge"]
       },
       {
         day: "Day 6",
-        title: "Neil to Port Blair",
+        title: "Neil to Port Blair - Shopping & Dinner",
         description: "Return to Port Blair. Shopping for souvenirs. Farewell dinner.",
-        activities: ["Cruise to Port Blair", "Shopping", "Farewell dinner"],
-        meals: ["Breakfast", "Dinner"],
-        sightseeing: ["Shopping"]
+        activities: [
+          "Breakfast and morning leisure",
+          "Cruise return to Port Blair",
+          "Check-in to hotel",
+          "Shopping at Sagarika Emporium",
+          "Farewell dinner with live music",
+          "Gift presentation"
+        ],
+        hotel: {
+          name: "Welcomhotel by ITC",
+          location: "Port Blair",
+          rating: 5,
+          image: "/images/packages/luxury-honeymoon/hotel-itc.jpg",
+          amenities: ["Sea View", "Spa", "Pool", "Fine Dining"],
+          description: "Luxury hotel overlooking the bay"
+        },
+        meals: ["Breakfast", "Farewell Dinner"],
+        sightseeing: ["Shopping", "City Tour"]
       },
       {
         day: "Day 7",
         title: "Departure",
         description: "Private transfer to airport with sweet memories.",
-        activities: ["Airport drop"],
+        activities: [
+          "Breakfast",
+          "Checkout assistance",
+          "Gift hamper from Luxury Andamans",
+          "Private luxury airport drop"
+        ],
         meals: ["Breakfast"],
         sightseeing: []
       }
@@ -291,39 +404,66 @@ export const luxuryHoneymoon: Package = {
         day: "Day 1",
         title: "Arrival in Paradise",
         description: "Welcome to Port Blair. Luxury pickup and transfer to your sea-facing suite. Evening private sunset view at Chidiya Tapu.",
-        activities: ["Luxury car pickup", "Chidiya Tapu Sunset", "Romantic dinner"],
-        meals: ["Dinner"],
+        activities: [
+          "Luxury car pickup from airport with bouquet",
+          "Welcome drink and traditional reception",
+          "Check-in to 5-star hotel with honeymoon suite",
+          "Flower bed decoration and honeymoon cake in room",
+          "Private sunset trip to Chidiya Tapu (Bird Island)",
+          "Romantic candlelight dinner at hotel"
+        ],
+        meals: ["Welcome Drinks", "Romantic Dinner"],
         sightseeing: ["Chidiya Tapu"]
       },
       {
         day: "Day 2",
         title: "Port Blair to Havelock - Villa Experience",
         description: "Private cruise to Havelock. Check into your private pool villa. Evening romantic beach walk.",
-        activities: ["Luxury cruise to Havelock", "Check-in to Private Pool Villa", "Beachside candlelight dinner"],
-        meals: ["Breakfast", "Dinner"],
+        activities: [
+          "Luxury cruise to Havelock (Royal Class)",
+          "VIP Check-in to Private Pool Villa",
+          "Room decoration with exotic flowers",
+          "Beachside candlelight dinner with wine"
+        ],
+        meals: ["Breakfast", "Candlelight Dinner"],
         sightseeing: ["Radhanagar Beach"]
       },
       {
         day: "Day 3",
         title: "Radhanagar Beach & Photoshoot",
         description: "Visit the world-famous Radhanagar Beach. Professional couple photoshoot session at sunset.",
-        activities: ["Radhanagar Beach", "Photoshoot", "Sunset viewing"],
-        meals: ["Breakfast", "Dinner"],
+        activities: [
+          "Private transfer to Radhanagar Beach",
+          "Gourmet picnic lunch on the beach",
+          "Professional couple photoshoot (2 hours)",
+          "Sunset viewing with refreshments"
+        ],
+        meals: ["Breakfast", "Picnic Lunch"],
         sightseeing: ["Radhanagar Beach"]
       },
       {
         day: "Day 4",
         title: "Elephant Beach & Spa",
         description: "Private speedboat to Elephant Beach for snorkeling. Afternoon couple spa session.",
-        activities: ["Elephant Beach", "Snorkeling", "Couple Spa Therapy"],
-        meals: ["Breakfast", "Dinner"],
+        activities: [
+          "Private speedboat charter to Elephant Beach",
+          "Exclusive guided snorkeling for couple",
+          "Couple Spa Therapy (60 mins) - Swedish/Aroma",
+          "Jacuzzi and steam session"
+        ],
+        meals: ["Breakfast"],
         sightseeing: ["Elephant Beach"]
       },
       {
         day: "Day 5",
-        title: "Havelock Leisure",
+        title: "Havelock Leisure & Romance",
         description: "Day at leisure to enjoy the private pool villa.",
-        activities: ["Leisure", "Private Pool Time"],
+        activities: [
+          "Breakfast in bed",
+          "Full day access to private pool",
+          "Optional: Scuba Diving or Kayaking",
+          "Intimate 3-course dinner in villa"
+        ],
         meals: ["Breakfast", "Dinner"],
         sightseeing: []
       },
@@ -331,7 +471,13 @@ export const luxuryHoneymoon: Package = {
         day: "Day 6",
         title: "Havelock to Neil Island",
         description: "Cruise to Neil Island. Stay at a luxury resort. Visit Laxmanpur Beach for sunset.",
-        activities: ["Cruise to Neil Island", "Laxmanpur Beach", "Natural Bridge"],
+        activities: [
+          "Cruise to Neil Island (Royal Class)",
+          "Check-in to luxury resort at Neil",
+          "Afternoon visit to Laxmanpur Beach",
+          "Private sunset viewing setup",
+          "Romantic dinner at resort"
+        ],
         meals: ["Breakfast", "Dinner"],
         sightseeing: ["Laxmanpur Beach", "Natural Bridge"]
       },
@@ -339,15 +485,24 @@ export const luxuryHoneymoon: Package = {
         day: "Day 7",
         title: "Neil to Port Blair",
         description: "Return to Port Blair. Shopping for souvenirs. Farewell dinner.",
-        activities: ["Cruise to Port Blair", "Shopping", "Farewell dinner"],
-        meals: ["Breakfast", "Dinner"],
+        activities: [
+          "Cruise return to Port Blair",
+          "Shopping at Sagarika Emporium",
+          "Farewell dinner with live music",
+          "Gift presentation"
+        ],
+        meals: ["Breakfast", "Farewell Dinner"],
         sightseeing: ["Shopping"]
       },
       {
         day: "Day 8",
         title: "Departure",
         description: "Private transfer to airport with sweet memories.",
-        activities: ["Airport drop"],
+        activities: [
+          "Checkout assistance",
+          "Gift hamper from Luxury Andamans",
+          "Private luxury airport drop"
+        ],
         meals: ["Breakfast"],
         sightseeing: []
       }
@@ -374,9 +529,9 @@ export const luxuryHoneymoon: Package = {
   paymentPolicy: commonPaymentPolicy,
   tips: commonTips,
   pricingOptions: [
-    { days: 6, pricePerPerson: 75000, title: "6 Days Luxury Escape" },
-    { days: 7, pricePerPerson: 85000, title: "7 Days Luxury Honeymoon" },
-    { days: 8, pricePerPerson: 95000, title: "8 Days Royal Honeymoon" }
+    { days: 6, pricePerPerson: 89999, title: "6 Days Luxury Escape" },
+    { days: 7, pricePerPerson: 102999, title: "7 Days Luxury Honeymoon" },
+    { days: 8, pricePerPerson: 115999, title: "8 Days Royal Honeymoon" }
   ],
   hotels: [
     {
@@ -423,3 +578,4 @@ export const luxuryHoneymoon: Package = {
   cancellationPolicy: commonCancellationPolicy,
   slug: "luxury-honeymoon-bliss-7-days"
 };
+

@@ -181,8 +181,15 @@ export const familyParadise: Package = {
       {
         day: "Day 1",
         title: "Arrival & City Exploration",
-        description: "Arrival at Port Blair. Visit Cellular Jail and Light & Sound Show.",
-        activities: ["Airport Pickup", "Cellular Jail", "Light & Sound Show"],
+        description: "Arrival at Port Blair. Check into family hotel. Visit Cellular Jail and enjoy Light & Sound Show.",
+        activities: [
+          "Family pickup from airport",
+          "Check-in to family-friendly hotel",
+          "Lunch and rest",
+          "Visit Cellular Jail (History tour)",
+          "Light & Sound Show in evening",
+          "Dinner at family restaurant"
+        ],
         hotel: {
           name: "Hotel Sinclairs Bayview",
           location: "Port Blair",
@@ -196,9 +203,16 @@ export const familyParadise: Package = {
       },
       {
         day: "Day 2",
-        title: "Port Blair to Havelock",
-        description: "Ferry to Havelock. Visit Radhanagar Beach.",
-        activities: ["Ferry Transfer", "Radhanagar Beach"],
+        title: "Port Blair to Havelock - Beach Fun",
+        description: "Ferry to Havelock. Check into beach resort. Play at Radhanagar Beach.",
+        activities: [
+          "Ferry transfer to Havelock",
+          "Check-in to beach resort",
+          "Lunch at resort",
+          "Visit Radhanagar Beach for sunset",
+          "Beach games for kids",
+          "Dinner at resort"
+        ],
         hotel: {
           name: "SeaShell Havelock",
           location: "Havelock Island",
@@ -213,16 +227,29 @@ export const familyParadise: Package = {
       {
         day: "Day 3",
         title: "Elephant Beach Adventure",
-        description: "Speedboat to Elephant Beach. Snorkeling and Glass Bottom Boat.",
-        activities: ["Elephant Beach", "Snorkeling", "Glass Bottom Boat"],
+        description: "Speedboat to Elephant Beach. Snorkeling and Glass Bottom Boat ride for kids.",
+        activities: [
+          "Speedboat to Elephant Beach",
+          "Kid-friendly Snorkeling with guide",
+          "Glass Bottom Boat ride",
+          "Beach picnic",
+          "Return to resort for pool time"
+        ],
         meals: ["Breakfast"],
         sightseeing: ["Elephant Beach"]
       },
       {
         day: "Day 4",
-        title: "Havelock to Port Blair",
-        description: "Ferry back to Port Blair. Ross Island tour.",
-        activities: ["Ferry Transfer", "Ross Island"],
+        title: "Havelock to Port Blair - Ross Island",
+        description: "Ferry back to Port Blair. Visit Ross Island to spot deer and peacocks.",
+        activities: [
+          "Morning ferry to Port Blair",
+          "Boat ride to Ross Island",
+          "Wildlife spotting (deer & peacocks)",
+          "Explore historical ruins",
+          "Shopping at Aberdeen Bazaar",
+          "Farewell dinner"
+        ],
         hotel: {
           name: "Hotel Sinclairs Bayview",
           location: "Port Blair",
@@ -231,14 +258,18 @@ export const familyParadise: Package = {
           amenities: ["Family Rooms"],
           description: "Family-friendly hotel"
         },
-        meals: ["Breakfast"],
+        meals: ["Breakfast", "Farewell Dinner"],
         sightseeing: ["Ross Island"]
       },
       {
         day: "Day 5",
         title: "Departure",
-        description: "Transfer to airport.",
-        activities: ["Airport Transfer"],
+        description: "Transfer to airport with wonderful family memories.",
+        activities: [
+          "Breakfast at hotel",
+          "Checkout assistance",
+          "Airport transfer"
+        ],
         meals: ["Breakfast"],
         sightseeing: []
       }
@@ -378,8 +409,15 @@ export const familyParadise: Package = {
       {
         day: "Day 1",
         title: "Arrival & City Exploration",
-        description: "Arrival at Port Blair. Visit Cellular Jail and Light & Sound Show.",
-        activities: ["Airport Pickup", "Cellular Jail", "Light & Sound Show"],
+        description: "Arrival at Port Blair. Check into family hotel. Visit Cellular Jail and Light & Sound Show.",
+        activities: [
+          "Family pickup from airport",
+          "Check-in to family-friendly hotel",
+          "Lunch and rest",
+          "Visit Cellular Jail (History tour)",
+          "Light & Sound Show in evening",
+          "Dinner at family restaurant"
+        ],
         hotel: {
           name: "Hotel Sinclairs Bayview",
           location: "Port Blair",
@@ -393,9 +431,16 @@ export const familyParadise: Package = {
       },
       {
         day: "Day 2",
-        title: "Port Blair to Havelock",
-        description: "Ferry to Havelock. Visit Radhanagar Beach.",
-        activities: ["Ferry Transfer", "Radhanagar Beach"],
+        title: "Port Blair to Havelock - Beach Fun",
+        description: "Ferry to Havelock. Check into beach resort. Play at Radhanagar Beach.",
+        activities: [
+          "Ferry transfer to Havelock",
+          "Check-in to beach resort",
+          "Lunch at resort",
+          "Visit Radhanagar Beach for sunset",
+          "Beach games for kids",
+          "Dinner at resort"
+        ],
         hotel: {
           name: "SeaShell Havelock",
           location: "Havelock Island",
@@ -410,16 +455,29 @@ export const familyParadise: Package = {
       {
         day: "Day 3",
         title: "Elephant Beach Adventure",
-        description: "Speedboat to Elephant Beach. Snorkeling and Glass Bottom Boat.",
-        activities: ["Elephant Beach", "Snorkeling", "Glass Bottom Boat"],
+        description: "Speedboat to Elephant Beach. Snorkeling and Glass Bottom Boat ride for kids.",
+        activities: [
+          "Speedboat to Elephant Beach",
+          "Kid-friendly Snorkeling with guide",
+          "Glass Bottom Boat ride",
+          "Banana Boat ride",
+          "Beach picnic",
+          "Return to resort for pool time"
+        ],
         meals: ["Breakfast"],
         sightseeing: ["Elephant Beach"]
       },
       {
         day: "Day 4",
         title: "Havelock to Neil Island",
-        description: "Ferry to Neil Island. Visit Bharatpur Beach.",
-        activities: ["Ferry Transfer", "Bharatpur Beach"],
+        description: "Ferry to Neil Island. Visit Bharatpur Beach for shallow water swimming.",
+        activities: [
+          "Ferry transfer to Neil Island",
+          "Check-in to resort",
+          "Visit Bharatpur Beach",
+          "Glass bottom boat at Neil",
+          "Laxmanpur Beach sunset"
+        ],
         hotel: {
           name: "SeaShell Neil",
           location: "Neil Island",
@@ -429,13 +487,20 @@ export const familyParadise: Package = {
           description: "Beach resort"
         },
         meals: ["Breakfast"],
-        sightseeing: ["Bharatpur Beach"]
+        sightseeing: ["Bharatpur Beach", "Laxmanpur Beach"]
       },
       {
         day: "Day 5",
-        title: "Neil to Port Blair",
+        title: "Neil to Port Blair - Natural Wonders",
         description: "Visit Natural Bridge. Ferry to Port Blair. Chidiya Tapu Sunset.",
-        activities: ["Natural Bridge", "Ferry Transfer", "Chidiya Tapu"],
+        activities: [
+          "Visit Natural Bridge (marine life spotting)",
+          "Ferry transfer to Port Blair",
+          "Check-in to hotel",
+          "Trip to Chidiya Tapu (Bird Island)",
+          "Sunset view",
+          "Dinner"
+        ],
         hotel: {
           name: "Hotel Sinclairs Bayview",
           location: "Port Blair",
@@ -450,16 +515,27 @@ export const familyParadise: Package = {
       {
         day: "Day 6",
         title: "Ross Island & Shopping",
-        description: "Visit Ross Island. Shopping at Aberdeen Bazaar.",
-        activities: ["Ross Island", "Shopping"],
-        meals: ["Breakfast"],
+        description: "Visit Ross Island. Shopping at Aberdeen Bazaar for souvenirs.",
+        activities: [
+          "Boat ride to Ross Island",
+          "Spotting Deer and Peacocks",
+          "Explore bunkers and ruins",
+          "Shopping at Aberdeen Bazaar",
+          "Buy shell craft and pearls",
+          "Farewell dinner"
+        ],
+        meals: ["Breakfast", "Farewell Dinner"],
         sightseeing: ["Ross Island", "Aberdeen Bazaar"]
       },
       {
         day: "Day 7",
         title: "Departure",
-        description: "Transfer to airport.",
-        activities: ["Airport Transfer"],
+        description: "Transfer to airport with wonderful family memories.",
+        activities: [
+          "Breakfast at hotel",
+          "Checkout assistance",
+          "Airport transfer"
+        ],
         meals: ["Breakfast"],
         sightseeing: []
       }
@@ -493,17 +569,17 @@ export const familyParadise: Package = {
   pricingOptions: [
     {
       days: 5,
-      pricePerPerson: 32000,
+      pricePerPerson: 36999,
       title: "5 Days Family Express"
     },
     {
       days: 6,
-      pricePerPerson: 38500,
+      pricePerPerson: 44999,
       title: "6 Days Family Paradise"
     },
     {
       days: 7,
-      pricePerPerson: 45000,
+      pricePerPerson: 52999,
       title: "7 Days Grand Family Vacation"
     }
   ],
@@ -611,3 +687,4 @@ export const familyParadise: Package = {
   cancellationPolicy: commonCancellationPolicy,
   slug: "family-paradise-6-days"
 };
+

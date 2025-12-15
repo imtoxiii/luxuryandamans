@@ -173,7 +173,14 @@ export const honeymoon5n6d: Package = {
         day: "Day 1",
         title: "Arrival – Port Blair | Heritage & Beaches",
         description: "Arrive at Veer Savarkar International Airport. Visit Cellular Jail and Corbyn's Cove Beach. Evening Light & Sound Show.",
-        activities: ["Airport Pickup", "Cellular Jail", "Light & Sound Show"],
+        activities: [
+          "Airport pickup by private vehicle",
+          "Check-in to hotel with welcome drink",
+          "Visit Cellular Jail National Memorial",
+          "Relax at Corbyn's Cove Beach",
+          "Attend Light & Sound Show",
+          "Romantic dinner at hotel"
+        ],
         hotel: {
           name: "Hotel Sentinel",
           location: "Port Blair",
@@ -189,7 +196,14 @@ export const honeymoon5n6d: Package = {
         day: "Day 2",
         title: "Port Blair → Havelock Island",
         description: "Ferry to Havelock. Visit Radhanagar Beach for sunset.",
-        activities: ["Ferry Transfer", "Radhanagar Beach Sunset"],
+        activities: [
+          "Private ferry transfer to Havelock",
+          "Check-in to beach resort",
+          "Relax at resort",
+          "Visit Radhanagar Beach (Beach No. 7)",
+          "Sunset photography session",
+          "Candlelight dinner at resort"
+        ],
         hotel: {
           name: "Havelock Island Beach Resort",
           location: "Havelock Island",
@@ -205,7 +219,14 @@ export const honeymoon5n6d: Package = {
         day: "Day 3",
         title: "Havelock → Neil Island",
         description: "Morning Elephant Beach trip. Afternoon ferry to Neil Island. Sunset at Laxmanpur Beach.",
-        activities: ["Elephant Beach", "Ferry to Neil", "Laxmanpur Beach Sunset"],
+        activities: [
+          "Early morning trip to Elephant Beach",
+          "Complimentary Snorkeling session",
+          "Return to Havelock jetty",
+          "Ferry to Neil Island",
+          "Check-in to Neil resort",
+          "Laxmanpur Beach sunset"
+        ],
         hotel: {
           name: "Neil Island Beach Resort",
           location: "Neil Island",
@@ -221,7 +242,13 @@ export const honeymoon5n6d: Package = {
         day: "Day 4",
         title: "Neil → Port Blair",
         description: "Visit Natural Rock Bridge. Ferry back to Port Blair. Shopping in evening.",
-        activities: ["Natural Bridge", "Ferry to Port Blair", "Shopping"],
+        activities: [
+          "Visit Natural Rock Bridge (Howrah Bridge)",
+          "Ferry return to Port Blair",
+          "Check-in to Port Blair hotel",
+          "Shopping at Aberdeen Bazaar",
+          "Sunset at Chidiya Tapu (if time permits)"
+        ],
         hotel: {
           name: "Hotel Sentinel",
           location: "Port Blair",
@@ -237,7 +264,12 @@ export const honeymoon5n6d: Package = {
         day: "Day 5",
         title: "Departure",
         description: "Transfer to airport for departure.",
-        activities: ["Airport Transfer"],
+        activities: [
+          "Breakfast",
+          "Checkout from hotel",
+          "Private airport transfer",
+          "Departure with sweet memories"
+        ],
         meals: ["Breakfast"],
         sightseeing: []
       }
@@ -375,7 +407,13 @@ export const honeymoon5n6d: Package = {
         day: "Day 1",
         title: "Arrival – Port Blair",
         description: "Arrive at Port Blair. Visit Cellular Jail and Light & Sound Show.",
-        activities: ["Airport Pickup", "Cellular Jail", "Light & Sound Show"],
+        activities: [
+          "Airport Pickup with floral welcome",
+          "Check-in to Honeymoon Suite",
+          "Visit Cellular Jail",
+          "Light & Sound Show",
+          "Romantic Dinner"
+        ],
         hotel: {
           name: "Hotel Sentinel",
           location: "Port Blair",
@@ -391,7 +429,13 @@ export const honeymoon5n6d: Package = {
         day: "Day 2",
         title: "Port Blair → Havelock Island",
         description: "Ferry to Havelock. Visit Radhanagar Beach.",
-        activities: ["Ferry Transfer", "Radhanagar Beach"],
+        activities: [
+          "Transfer to Jetty",
+          "Ferry to Havelock Island",
+          "Check-in to Resort",
+          "Visit Radhanagar Beach for sunset",
+          "Candlelight Dinner"
+        ],
         hotel: {
           name: "Havelock Island Beach Resort",
           location: "Havelock Island",
@@ -405,9 +449,14 @@ export const honeymoon5n6d: Package = {
       },
       {
         day: "Day 3",
-        title: "Havelock - Scuba Diving",
-        description: "Morning Scuba Diving. Leisure afternoon.",
-        activities: ["Scuba Diving"],
+        title: "Havelock - Scuba & Leisure",
+        description: "Morning Scuba Diving optional. Leisure afternoon at resort.",
+        activities: [
+          "Scuba Diving Session (Optional)",
+          "Leisure time at Private Beach",
+          "Resort activities",
+          "Dinner"
+        ],
         meals: ["Breakfast"],
         sightseeing: ["Scuba Diving Site"]
       },
@@ -415,7 +464,13 @@ export const honeymoon5n6d: Package = {
         day: "Day 4",
         title: "Havelock - Elephant Beach",
         description: "Visit Elephant Beach for water sports.",
-        activities: ["Elephant Beach", "Snorkeling"],
+        activities: [
+          "Trip to Elephant Beach",
+          "Snorkeling Session",
+          "Glass bottom boat",
+          "Water sports (Jetski, etc.)",
+          "Return to resort"
+        ],
         meals: ["Breakfast"],
         sightseeing: ["Elephant Beach"]
       },
@@ -423,7 +478,13 @@ export const honeymoon5n6d: Package = {
         day: "Day 5",
         title: "Havelock → Neil Island",
         description: "Ferry to Neil Island. Visit Laxmanpur Beach.",
-        activities: ["Ferry Transfer", "Laxmanpur Beach"],
+        activities: [
+          "Ferry to Neil Island",
+          "Check-in to Neil Resort",
+          "Bharatpur Beach visit",
+          "Laxmanpur Beach Sunset",
+          "Romantic beach walk"
+        ],
         hotel: {
           name: "Neil Island Beach Resort",
           location: "Neil Island",
@@ -439,7 +500,13 @@ export const honeymoon5n6d: Package = {
         day: "Day 6",
         title: "Neil → Port Blair",
         description: "Visit Natural Bridge. Ferry to Port Blair. Chidiya Tapu Sunset.",
-        activities: ["Natural Bridge", "Ferry Transfer", "Chidiya Tapu"],
+        activities: [
+          "Visit Natural Rock Bridge",
+          "Ferry to Port Blair",
+          "Shopping at Aberdeen Bazaar",
+          "Chidiya Tapu Sunset",
+          "Farewell Dinner"
+        ],
         hotel: {
           name: "Hotel Sentinel",
           location: "Port Blair",
@@ -455,7 +522,11 @@ export const honeymoon5n6d: Package = {
         day: "Day 7",
         title: "Departure",
         description: "Transfer to airport.",
-        activities: ["Airport Transfer"],
+        activities: [
+          "Breakfast",
+          "Checkout",
+          "Airport Transfer"
+        ],
         meals: ["Breakfast"],
         sightseeing: []
       }
@@ -487,20 +558,20 @@ export const honeymoon5n6d: Package = {
   paymentPolicy: commonPaymentPolicy,
   tips: commonTips,
   pricingOptions: [
-    { 
-      days: 5, 
-      pricePerPerson: 32000, 
-      title: "5 Days Express Honeymoon" 
+    {
+      days: 5,
+      pricePerPerson: 38999,
+      title: "5 Days Express Honeymoon"
     },
-    { 
-      days: 6, 
-      pricePerPerson: 38000, 
-      title: "6 Days Time Mapped Honeymoon" 
+    {
+      days: 6,
+      pricePerPerson: 46999,
+      title: "6 Days Time Mapped Honeymoon"
     },
-    { 
-      days: 7, 
-      pricePerPerson: 45000, 
-      title: "7 Days Relaxed Honeymoon" 
+    {
+      days: 7,
+      pricePerPerson: 54999,
+      title: "7 Days Grand Honeymoon"
     }
   ],
   hotels: [
@@ -518,23 +589,23 @@ export const honeymoon5n6d: Package = {
         "/images/packages/honeymoon-5n6d/hotel-port-blair-3.jpg"
       ],
       roomTypes: [
-        { 
-          name: "Standard", 
-          pricePerNight: 2000, 
-          description: "Comfortable AC room with city view, TV, and modern bathroom", 
-          maxOccupancy: 2 
+        {
+          name: "Standard",
+          pricePerNight: 2000,
+          description: "Comfortable AC room with city view, TV, and modern bathroom",
+          maxOccupancy: 2
         },
-        { 
-          name: "Deluxe", 
-          pricePerNight: 3500, 
-          description: "Spacious room with partial sea view, balcony, and premium amenities", 
-          maxOccupancy: 2 
+        {
+          name: "Deluxe",
+          pricePerNight: 3500,
+          description: "Spacious room with partial sea view, balcony, and premium amenities",
+          maxOccupancy: 2
         },
-        { 
-          name: "Honeymoon Suite", 
-          pricePerNight: 5000, 
-          description: "Romantic suite with sea view, flower decoration, and special amenities", 
-          maxOccupancy: 2 
+        {
+          name: "Honeymoon Suite",
+          pricePerNight: 5000,
+          description: "Romantic suite with sea view, flower decoration, and special amenities",
+          maxOccupancy: 2
         }
       ]
     },
@@ -552,23 +623,23 @@ export const honeymoon5n6d: Package = {
         "/images/packages/honeymoon-5n6d/hotel-havelock-3.jpg"
       ],
       roomTypes: [
-        { 
-          name: "Garden View", 
-          pricePerNight: 3500, 
-          description: "Cozy room with garden view and beach access", 
-          maxOccupancy: 2 
+        {
+          name: "Garden View",
+          pricePerNight: 3500,
+          description: "Cozy room with garden view and beach access",
+          maxOccupancy: 2
         },
-        { 
-          name: "Beach View Deluxe", 
-          pricePerNight: 5000, 
-          description: "Beachfront room with direct sea view and private balcony", 
-          maxOccupancy: 2 
+        {
+          name: "Beach View Deluxe",
+          pricePerNight: 5000,
+          description: "Beachfront room with direct sea view and private balcony",
+          maxOccupancy: 2
         },
-        { 
-          name: "Honeymoon Cottage", 
-          pricePerNight: 7000, 
-          description: "Private cottage steps from beach with romantic setup", 
-          maxOccupancy: 2 
+        {
+          name: "Honeymoon Cottage",
+          pricePerNight: 7000,
+          description: "Private cottage steps from beach with romantic setup",
+          maxOccupancy: 2
         }
       ]
     },
@@ -586,17 +657,17 @@ export const honeymoon5n6d: Package = {
         "/images/packages/honeymoon-5n6d/hotel-neil-3.jpg"
       ],
       roomTypes: [
-        { 
-          name: "Standard", 
-          pricePerNight: 1800, 
-          description: "Comfortable room with garden view and basic amenities", 
-          maxOccupancy: 2 
+        {
+          name: "Standard",
+          pricePerNight: 1800,
+          description: "Comfortable room with garden view and basic amenities",
+          maxOccupancy: 2
         },
-        { 
-          name: "Deluxe", 
-          pricePerNight: 2800, 
-          description: "Spacious room near beach with modern amenities", 
-          maxOccupancy: 2 
+        {
+          name: "Deluxe",
+          pricePerNight: 2800,
+          description: "Spacious room near beach with modern amenities",
+          maxOccupancy: 2
         }
       ]
     }
@@ -642,3 +713,4 @@ export const honeymoon5n6d: Package = {
   cancellationPolicy: commonCancellationPolicy,
   slug: "5n6d-andaman-time-mapped-honeymoon"
 };
+

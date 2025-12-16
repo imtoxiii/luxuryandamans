@@ -9,62 +9,62 @@ const GameFishingPage = () => {
     {
       name: 'Half-Day Offshore Charter',
       duration: '4 hours',
-      price: '₹18,000 up to 4',
+      price: '₹28,000 (up to 4 pax)',
       includes: [
-        'Professional crew',
-        'All fishing gear & bait',
-        'Soft drinks & snacks',
-        'Catch-and-release encouraged',
-        'Safety equipment'
+        'Private Speedboat',
+        'Professional Crew',
+        'Fishing Gear & Bait',
+        'Drinks & Snacks',
+        'Safety Equipment'
       ],
       description:
-        'Perfect for beginners and families. Target species include trevally, snapper, and barracuda.',
+        'Ideal for families and beginners. Target coastal species like Grouper, Snapper, and Trevally.',
       image:
         'https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80',
       bestFor: 'Beginners, Families',
-      departure: 'Port Blair',
-      highlights: ['Beginner friendly', 'Family suitable', 'Professional crew', 'All equipment'],
-      targetSpecies: ['Giant Trevally', 'Snapper', 'Barracuda', 'Groupers']
+      departure: 'Port Blair / Havelock',
+      highlights: ['Private Boat', 'Family Friendly', 'Scenic Cruising', 'Catch & Cook option'],
+      targetSpecies: ['Bluefin Trevally', 'Snapper', 'Barracuda', 'Grouper']
     },
     {
-      name: 'Full-Day Big Game Charter',
+      name: 'Full-Day Big Game Action',
       duration: '8 hours',
-      price: '₹32,000 up to 4',
+      price: '₹48,000 (up to 4 pax)',
       includes: [
-        'Trolling and jigging setup',
-        'Expert captain & deckhand',
-        'Lunch & refreshments',
-        'Fuel and permits',
-        'Fishing license'
+        'Twin-engine Yacht',
+        'Expert Captain',
+        'Trolling & Jigging Gear',
+        'Lunch & Refreshments',
+        'Fishing Permits'
       ],
       description:
-        'Head into deeper waters for GT, tuna, and sailfish. Ideal for enthusiasts.',
+        'Venture deeper for big game action. Target Wahoo, Mahi Mahi, and Tuna.',
       image:
         'https://images.unsplash.com/photo-1469230529682-4b4f7572a2fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80',
-      bestFor: 'Enthusiasts, Experienced anglers',
-      departure: 'Havelock Island',
-      highlights: ['Deep waters', 'Trophy fish', 'Expert guidance', 'Full day adventure'],
-      targetSpecies: ['Giant Trevally', 'Tuna', 'Sailfish', 'Marlin']
+      bestFor: 'Enthusiasts, Groups',
+      departure: 'Havelock / Neil',
+      highlights: ['Deep Sea Fishing', 'Trolling', 'Big Game', 'Full Day Adventure'],
+      targetSpecies: ['Yellowfin Tuna', 'Wahoo', 'Dorado', 'King Mackerel']
     },
     {
-      name: 'Night Fishing Special',
-      duration: '6 hours',
-      price: '₹25,000 up to 4',
+      name: 'Extreme GT Popping',
+      duration: '8-9 hours',
+      price: '₹65,000 (up to 3 anglers)',
       includes: [
-        'Specialized night gear',
-        'Underwater lights',
-        'Dinner & refreshments',
-        'Safety instructor',
-        'Photography service'
+        'Specialized Casting Platform',
+        'Pro GT Gear',
+        'GT Specialist Guide',
+        'Gourmet Lunch',
+        'GoPro Footage'
       ],
       description:
-        'Experience the thrill of night fishing with specialized equipment and lighting.',
+        'The ultimate challenge. Hunt for the Monster Giant Trevally (GT) with heavy tackle.',
       image:
         'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80',
-      bestFor: 'Adventure seekers, Experienced anglers',
-      departure: 'Neil Island',
-      highlights: ['Unique experience', 'Night specialized', 'Photography', 'Dinner included'],
-      targetSpecies: ['Snappers', 'Groupers', 'Emperors', 'Night predators']
+      bestFor: 'Pro Anglers, Adrenaline Junkies',
+      departure: 'Havelock Island',
+      highlights: ['Monster GT Hunting', 'Popping Technique', 'Pro Guidance', 'Trophy Photos'],
+      targetSpecies: ['Giant Trevally (Up to 40kg+)', 'Dogtooth Tuna', 'Red Bass']
     }
   ];
 

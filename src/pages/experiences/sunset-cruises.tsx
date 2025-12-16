@@ -7,7 +7,7 @@ import FaqAccordion from '../../components/FaqAccordion';
 const SunsetCruisesPage = () => {
   const cruises = [
     {
-      name: "Luxury Andaman Team",
+      name: "Candlelight Dinner Cruise",
       duration: "3 hours",
       price: "₹7,500 per person",
       includes: [
@@ -24,7 +24,7 @@ const SunsetCruisesPage = () => {
       highlights: ["Gourmet dining", "Live entertainment", "Sunset views", "Professional photography"]
     },
     {
-      name: "Luxury Andaman Team",
+      name: "Private Yacht Celebration",
       duration: "4 hours",
       price: "₹15,000 per person",
       includes: [
@@ -41,7 +41,7 @@ const SunsetCruisesPage = () => {
       highlights: ["Complete privacy", "Customized route", "Premium service", "Champagne celebration"]
     },
     {
-      name: "Luxury Andaman Team",
+      name: "Sunset Catamaran Party",
       duration: "2.5 hours",
       price: "₹4,500 per person",
       includes: [
@@ -58,7 +58,7 @@ const SunsetCruisesPage = () => {
       highlights: ["Swimming opportunity", "Group activities", "Music", "Affordable fun"]
     },
     {
-      name: "Luxury Andaman Team",
+      name: "Traditional Dhow Sailing",
       duration: "3 hours",
       price: "₹5,500 per person",
       includes: [

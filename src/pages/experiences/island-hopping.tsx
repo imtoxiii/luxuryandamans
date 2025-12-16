@@ -64,36 +64,36 @@ const IslandHoppingPage = () => {
 
   const packages = [
     {
-      name: "Day Explorer",
+      name: "Ross & North Bay Day Trip",
       duration: "Full Day",
       price: "₹4,500 per person",
-      includes: ["2 Islands", "Lunch", "Transfer", "Guide", "Snorkeling equipment"],
-      description: "Perfect for a quick island adventure",
-      bestFor: "Day trippers, Budget travelers"
+      includes: ["2 Islands", "Boat Tickets", "Entry Permits", "Guide"],
+      description: "Visit the historic Ross Island ruins and the coral-rich North Bay in a single day.",
+      bestFor: "Day trippers, History buffs"
     },
     {
-      name: "Island Hopper Premium",
+      name: "Neil & Havelock Escape",
       duration: "2 Days",
-      price: "₹8,500 per person",
-      includes: ["4 Islands", "All Meals", "Luxury Transfer", "Expert Guide", "Water activities"],
-      description: "Comprehensive island exploration experience",
-      bestFor: "Adventure seekers, Small groups"
+      price: "₹12,000 per person",
+      includes: ["Luxury Cruise Ferries", "Hotel Pickup", "Breakfast", "Sightseeing"],
+      description: "Quick getaway to the two most popular islands. Experience Radhanagar and Bharatpur beaches.",
+      bestFor: "Couples, Weekend travelers"
     },
     {
-      name: "Andaman Island Circuit",
+      name: "Complete 3-Island Tour",
       duration: "5 Days",
-      price: "₹18,000 per person",
-      includes: ["7 Islands", "All Meals", "Accommodation", "All Transfers", "Activities"],
-      description: "Complete Andaman island exploration with accommodation",
-      bestFor: "Travelers, Island enthusiasts"
+      price: "₹24,000 per person",
+      includes: ["Port Blair, Havelock & Neil", "All Transfers", "3-Star Stays", "Breakfast"],
+      description: "The ultimate island hopping experience covering all major destinations at a relaxed pace.",
+      bestFor: "Families, First-timers"
     },
     {
-      name: "Private Island Hopping",
-      duration: "3 Days",
-      price: "₹25,000 per person",
-      includes: ["Custom route", "Private boat", "All Meals", "Luxury stays", "Personal guide"],
-      description: "Exclusive private island hopping experience",
-      bestFor: "Luxury travelers, Honeymooners"
+      name: "Private Speedboat Charter",
+      duration: "Full Day",
+      price: "₹45,000 per boat (up to 6)",
+      includes: ["Private Speedboat", "Custom Itinerary", "Snorkeling Gear", "Refreshments"],
+      description: "Charter your own boat and explore hidden coves and islands at your own pace.",
+      bestFor: "Groups, Luxury travelers"
     }
   ];
 

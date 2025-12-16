@@ -31,28 +31,28 @@ const MangroveCreekPage = () => {
 
     const packages = [
         {
-            name: "Baratang Day Trip",
+            name: "Limestone Cave Expedition",
             duration: "Full Day",
-            price: "₹4,500 per person",
-            includes: ["AC Transfers", "Boat Ride", "Cave Entry", "Breakfast & Lunch"],
-            description: "Complete tour including the famous limestone caves and mangrove tunnel.",
-            highlights: ["Limestone Caves", "Mangrove Tunnel", "Mud Volcano"]
+            price: "₹5,500 per person",
+            includes: ["Private Car Transfer", "Speed Boat Ride", "Cave Entry Permit", "Breakfast & Lunch"],
+            description: "A complete day trip to Baratang. Journey through the tribal reserve, ride a speedboat through mangroves, and explore ancient limestone caves.",
+            highlights: ["Tribal Reserve Drive", "Speedboat Thrill", "Limestone Formations"]
         },
         {
-            name: "Mangrove Kayaking",
+            name: "Guided Mangrove Kayak Safari",
             duration: "2.5 hours",
             price: "₹2,500 per person",
-            includes: ["Kayak Rental", "Guide", "Safety Gear", "Refreshments"],
-            description: "Paddle silently through the creeks for an up-close nature experience.",
+            includes: ["Professional Kayak", "Certified Naturalist", "Safety Gear", "Refreshments"],
+            description: "Paddle silently through dense mangrove creeks. Listen to the sounds of the forest and spot kingfishers, herons, and mudskippers.",
             highlights: ["Silent exploration", "Bird watching", "Eco-friendly"]
         },
         {
-            name: "Sunset Creek Safari",
-            duration: "3 hours",
-            price: "₹3,000 per person",
-            includes: ["Boat Safari", "Guide", "Evening Snacks", "Transfers"],
-            description: "Witness the golden hour reflections in the calm creek waters.",
-            highlights: ["Sunset views", "Wildlife activity", "Relaxing ride"]
+            name: "Yerrata Sunset Boat Ride",
+            duration: "2 hours",
+            price: "₹1,500 per person",
+            includes: ["Country Boat Ride", "Local Guide", "Evening Snacks", "Mangrove Walk"],
+            description: "A relaxing evening boat ride in Rangat. Witness the golden hour reflections in the calm creek waters giving a mirror-like effect.",
+            highlights: ["Sunset views", "Relaxing vibe", "Budget friendly"]
         }
     ];
 

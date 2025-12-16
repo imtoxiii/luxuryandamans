@@ -49,24 +49,24 @@ const SeaWalkPage = () => {
       visibility: 'Excellent'
     },
     {
-      name: 'Jolly Buoy Sea Walk',
+      name: 'Neil Island Sea Walk',
       duration: '30-40 minutes underwater',
-      price: '₹5,000 per person',
+      price: '₹4,000 per person',
       includes: [
         'Helmet with oxygen supply',
         'Underwater guide',
         'Photos & videos',
-        'Protected area permit',
-        'Boat transfers'
+        'Beach transfers',
+        'Safety briefing'
       ],
       description:
-        'Experience sea walking in the protected marine park with pristine coral gardens.',
+        'Walk through the crystal-clear waters of Bharatpur Beach, known for its extensive coral reefs.',
       image:
         'https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80',
-      bestFor: 'Nature enthusiasts, Photographers',
-      departure: 'Port Blair',
-      highlights: ['Protected marine park', 'Pristine corals', 'Abundant marine life', 'Conservation area'],
-      depth: '5-7 meters',
+      bestFor: 'Coral lovers, Beginners',
+      departure: 'Neil Island (Bharatpur Beach)',
+      highlights: ['Extensive coral reefs', 'Shallow calm waters', 'Rich fish life', 'Perfect for photos'],
+      depth: '4-6 meters',
       visibility: 'Outstanding'
     }
   ];

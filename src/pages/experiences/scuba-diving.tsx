@@ -77,40 +77,40 @@ const ScubaDivingPage = () => {
 
   const courses = [
     {
-      name: "Discover Scuba Diving",
-      duration: "1 Day",
-      price: "₹6,500",
-      description: "Perfect introduction to diving with basic skills and one open water dive",
+      name: "Discover Scuba (Boat)",
+      duration: "Half Day",
+      price: "₹5,500",
+      description: "Premium introductory dive from a boat. Experience deeper, clearer waters away from the shore crowds.",
       depth: "12m",
-      includes: ["Theory session", "Pool session", "1 open water dive", "Equipment", "Certificate"],
-      requirements: ["No experience needed", "Basic swimming ability", "Age 10+"]
+      includes: ["Theory session", "Boat trip", "1 open water dive", "Personal Instructor", "Photos & Video"],
+      requirements: ["No swimming needed", "Age 14+"]
     },
     {
-      name: "PADI Open Water Course",
-      duration: "3-4 Days",
-      price: "₹32,000",
-      description: "Complete certification course with theory, confined water, and 4 open water dives",
+      name: "PADI Open Water",
+      duration: "4 Days",
+      price: "₹26,000",
+      description: "Get certified to dive anywhere in the world. Comprehensive training with theory and 4 ocean dives.",
       depth: "18m",
-      includes: ["Theory sessions", "Pool sessions", "4 open water dives", "Equipment", "Certification", "Log book"],
-      requirements: ["Basic swimming ability", "Age 10+", "Good health condition"]
+      includes: ["All PADI materials", "Certification Card", "4 Open Water Dives", "Equipment Rental", "Logbook"],
+      requirements: ["Basic swimming", "Age 10+", "Medical fitness"]
     },
     {
       name: "Advanced Open Water",
       duration: "2-3 Days",
-      price: "₹28,000",
-      description: "Advanced certification with 5 adventure dives including deep and navigation",
+      price: "₹22,000",
+      description: "Expand your skills with 5 adventure dives including Deep Dive and Navigation.",
       depth: "30m",
-      includes: ["5 adventure dives", "Deep dive", "Navigation dive", "Equipment", "Certification"],
-      requirements: ["Open Water certification", "Age 12+", "Good health condition"]
+      includes: ["5 Adventure Dives", "Compass use", "Deep diving skills", "Equipment", "Certification"],
+      requirements: ["Open Water Certificate", "Age 12+"]
     },
     {
-      name: "Emergency First Response",
-      duration: "1 Day",
-      price: "₹8,000",
-      description: "Essential first aid and CPR training for divers and non-divers",
+      name: "Rescue Diver",
+      duration: "3-4 Days",
+      price: "₹24,000",
+      description: "Learn to prevent and manage problems in the water. Serious fun for committed divers.",
       depth: "N/A",
-      includes: ["First aid training", "CPR training", "AED training", "Certification"],
-      requirements: ["No prerequisites", "Age 12+"]
+      includes: ["Rescue scenarios", "Emergency management", "Equipment", "Certification"],
+      requirements: ["EFR Training", "Advanced Open Water"]
     }
   ];
 
@@ -145,36 +145,36 @@ const ScubaDivingPage = () => {
 
   const divePackages = [
     {
-      name: "Single Dive Experience",
+      name: "Shore Dive for Beginners",
+      dives: "1 dive",
+      duration: "2 hours",
+      price: "₹3,500",
+      includes: ["Equipment", "Training", "Personal Guide", "Photos"],
+      bestFor: "First-timers on a budget"
+    },
+    {
+      name: "Boat Dive Experience",
       dives: "1 dive",
       duration: "3-4 hours",
-      price: "₹3,500",
-      includes: ["Equipment", "Instructor", "Boat transfer", "Light refreshments"],
-      bestFor: "Beginners and first-timers"
+      price: "₹5,500",
+      includes: ["Boat Ride", "Equipment", "Training", "Personal Guide", "Videos"],
+      bestFor: "Best visual experience"
     },
     {
-      name: "Two Dive Package",
+      name: "Double Dive Special",
       dives: "2 dives",
-      duration: "Full day",
-      price: "₹6,000",
-      includes: ["Equipment", "Instructor", "Boat transfer", "Lunch", "Refreshments"],
-      bestFor: "Certified divers and enthusiasts"
+      duration: "Half day",
+      price: "₹9,000",
+      includes: ["1 Shore Dive", "1 Boat Dive", "Refreshments", "Full Equipment"],
+      bestFor: "Adventurous beginners"
     },
     {
-      name: "Fun Diving Package",
-      dives: "5 dives",
-      duration: "2-3 days",
-      price: "₹14,000",
-      includes: ["Equipment", "Dive master", "Boat transfers", "Tanks and weights"],
-      bestFor: "Certified divers wanting to explore multiple sites"
-    },
-    {
-      name: "Night Dive Special",
-      dives: "1 night dive",
-      duration: "3-4 hours",
-      price: "₹4,500",
-      includes: ["Equipment", "Instructor", "Underwater lights", "Boat transfer"],
-      bestFor: "Experienced divers looking for adventure"
+      name: "Private Yacht Dive",
+      dives: "Custom",
+      duration: "Full Day",
+      price: "On Request",
+      includes: ["Private Yacht", "Private Instructor", "Gourmet Lunch", "Multiple Dives"],
+      bestFor: "Ultimate luxury"
     }
   ];
 

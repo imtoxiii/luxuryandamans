@@ -517,6 +517,7 @@ export const standardAndaman: Package = {
   ],
   pickupLocations: ["Port Blair Airport"],
   cancellationPolicy: commonCancellationPolicy,
-  slug: "standard-andaman-package-5n6d"
+  slug: "standard-andaman-package-5n6d",
+  id: "standard-andaman"
 };
 

@@ -2,7 +2,8 @@ import { Package } from '../packages';
 import { commonPaymentPolicy, commonTips, commonCancellationPolicy, commonTerms } from '../commonPolicies';
 
 export const ultimateAdventure: Package = {
-  slug: 'ultimate-andaman-adventure',
+  slug: "ultimate-andaman-adventure",
+  id: "ultimate-adventure",
   title: 'Ultimate Andaman Adventure',
   description: 'A 7-day thrill-seeker\'s paradise exploring the depths and heights of the Andaman Islands.',
   longDescription: 'Experience the adrenaline of the Andaman Islands with our Ultimate Adventure package. From scuba diving in crystal clear waters to trekking through lush rainforests, this 7-day journey is designed for those who seek excitement and natural beauty. Discover hidden caves, pristine beaches, and vibrant coral reefs.',

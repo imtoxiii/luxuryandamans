@@ -2,7 +2,8 @@ import { Package } from '../packages';
 import { commonPaymentPolicy, commonTips, commonCancellationPolicy, commonTerms } from '../commonPolicies';
 
 export const romanticHideaway: Package = {
-    slug: 'romantic-island-hideaway',
+    slug: "romantic-island-hideaway",
+  id: "romantic-hideaway",
     title: 'Romantic Island Hideaway',
     description: 'A 6-day intimate escape designed for couples, featuring candlelight dinners and private beach moments.',
     longDescription: 'Celebrate your love in the lap of nature with our Romantic Island Hideaway package. Enjoy private beach walks, romantic candlelight dinners, and couple spa sessions. Stay in luxury cottages and experience the magic of the Andamans with your significant other.',

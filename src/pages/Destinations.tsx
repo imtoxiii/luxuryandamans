@@ -27,7 +27,7 @@ const Destinations = () => {
 
     // Priority: card.jpg -> hero_card.jpg -> any image with 'card' -> first image -> legacy dest.image
     // We use includes() instead of endsWith() to handle hashed filenames in production (e.g. card-hash.jpg)
-    
+
     // 1. Look for 'card' but NOT 'hero' (to avoid hero_card)
     const cardImage = images.find(img => {
       const lower = img.toLowerCase();
@@ -54,10 +54,29 @@ const Destinations = () => {
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900" ref={containerRef}>
       <SEO
-        title="Destinations - Andaman Islands | Luxury Travel Guide"
-        description="Explore the most beautiful destinations in the Andaman Islands. From Havelock to Neil Island, discover paradise with our curated travel guides."
-        keywords="andaman destinations, havelock island, neil island, port blair, baratang, luxury travel andaman"
+        title="Top 15 Places to Visit in Andaman 2025 | Best Destinations & Islands"
+        description="Discover the best places to visit in Andaman - Havelock Island, Neil Island, Port Blair, Radhanagar Beach, Cellular Jail & more. Complete guide to Andaman's top destinations with photos, activities & travel tips."
+        keywords="places to visit in andaman, andaman destinations, best islands in andaman, havelock island, neil island, port blair attractions, radhanagar beach, cellular jail, elephant beach, baratang limestone caves, ross island, north bay island, andaman sightseeing, andaman tourist places, must visit places andaman, andaman islands to visit, hidden gems andaman, beautiful beaches andaman, snorkeling spots andaman, scuba diving locations andaman"
         pathname="/destinations"
+        targetAudience="all"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Andaman Destinations - Top Places to Visit",
+          "description": "Complete guide to the best destinations and tourist places in Andaman and Nicobar Islands.",
+          "url": "https://luxuryandamans.com/destinations",
+          "mainEntity": {
+            "@type": "ItemList",
+            "name": "Andaman Tourist Destinations",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Havelock Island", "url": "https://luxuryandamans.com/destinations/havelock-island" },
+              { "@type": "ListItem", "position": 2, "name": "Neil Island", "url": "https://luxuryandamans.com/destinations/neil-island" },
+              { "@type": "ListItem", "position": 3, "name": "Port Blair", "url": "https://luxuryandamans.com/destinations/port-blair" },
+              { "@type": "ListItem", "position": 4, "name": "Radhanagar Beach", "url": "https://luxuryandamans.com/destinations/radhanagar-beach" },
+              { "@type": "ListItem", "position": 5, "name": "Cellular Jail", "url": "https://luxuryandamans.com/destinations/cellular-jail" }
+            ]
+          }
+        }}
       />
       <Header />
 

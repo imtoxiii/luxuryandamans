@@ -576,6 +576,7 @@ export const luxuryHoneymoon: Package = {
   ],
   pickupLocations: ["Port Blair Airport"],
   cancellationPolicy: commonCancellationPolicy,
-  slug: "luxury-honeymoon-bliss-7-days"
+  slug: "luxury-honeymoon-bliss-7-days",
+  id: "luxury-honeymoon"
 };
 

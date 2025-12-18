@@ -423,6 +423,7 @@ export const luxury4n5d: Package = {
   ],
   pickupLocations: ["Port Blair Airport VIP Lounge"],
   cancellationPolicy: commonCancellationPolicy,
-  slug: "luxury-escape-4n5d-premium"
+  slug: "luxury-escape-4n5d-premium",
+  id: "luxury-4n5d"
 };
 

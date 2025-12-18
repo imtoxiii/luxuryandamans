@@ -711,6 +711,7 @@ export const honeymoon5n6d: Package = {
     "Custom pickup location in Port Blair"
   ],
   cancellationPolicy: commonCancellationPolicy,
-  slug: "5n6d-andaman-time-mapped-honeymoon"
+  slug: "5n6d-andaman-time-mapped-honeymoon",
+  id: "honeymoon-5n6d"
 };
 

@@ -505,6 +505,7 @@ export const adventureThrill: Package = {
   ],
   pickupLocations: ["Port Blair Airport"],
   cancellationPolicy: commonCancellationPolicy,
-  slug: "andaman-adventure-thrill-6-days"
+  slug: "andaman-adventure-thrill-6-days",
+  id: "adventure-thrill"
 };
 

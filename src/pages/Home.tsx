@@ -108,11 +108,69 @@ const Home = () => {
   return (
     <div className="bg-white font-sans selection:bg-blue-100 selection:text-blue-900" ref={containerRef}>
       <SEO
-        title="Best Andaman Islands Tour Packages 2025 | Starting ₹15,000 | Book Now"
-        description="#1 Andaman tour packages with 4.8★ rating. Pristine beaches, scuba diving, premium resorts & honeymoon specials. 1000+ happy travelers. Free cancellation. Book today!"
+        title="Andaman Tour Packages 2026 | Starting ₹15,000 | Best Andaman Packages"
+        description="Book best Andaman tour packages starting ₹15,000 per person. 4.8★ rated luxury honeymoon, family & adventure packages. Includes ferry, hotels, scuba diving & all activities. Free cancellation. 1000+ happy travelers."
         pathname={location.pathname}
-        keywords="andaman tour packages, andaman islands packages, andaman packages 2025, best andaman packages, andaman honeymoon packages, scuba diving andaman, havelock island packages, neil island tour, radhanagar beach, andaman tourism, beach vacation india, island hopping packages, andaman resorts booking, cheap andaman packages, premium andaman packages, andaman family packages, port blair tour, cellular jail visit, andaman packages from delhi, andaman packages from chennai, andaman packages from kolkata, affordable andaman tour, value for money andaman trip"
+        keywords="andaman tour packages, andaman packages 2026, best andaman packages, andaman honeymoon packages, andaman family packages, cheap andaman packages, andaman islands trip, andaman vacation packages, havelock island packages, neil island tour, andaman tourism, beach holiday india, andaman trip cost, port blair packages, andaman packages from delhi, andaman packages from chennai, andaman packages from bangalore, andaman packages from kolkata, andaman packages from mumbai, budget andaman packages, luxury andaman trip, scuba diving andaman package, water sports andaman"
         targetAudience="all"
+        faqData={[
+          {
+            question: "How much does an Andaman tour package cost?",
+            answer: "Andaman tour packages start from ₹15,000 per person for 4 nights/5 days budget packages. Standard packages cost ₹20,000-30,000, premium packages ₹35,000-50,000, and luxury packages ₹60,000+ per person. This includes accommodation, meals, ferry tickets, airport transfers, and sightseeing."
+          },
+          {
+            question: "What is the best time to book Andaman packages?",
+            answer: "The best time to visit Andaman is October to May. Book 2-3 months in advance for peak season (Dec-Jan) to get better hotel rates and ferry availability. Monsoon (June-September) offers 30-40% discounts but some water activities may be closed."
+          },
+          {
+            question: "What is included in Andaman tour packages?",
+            answer: "Most Andaman packages include: Airport transfers, inter-island ferry tickets (Port Blair-Havelock-Neil), accommodation with breakfast, sightseeing tours, and guide. Premium packages also include water activities like scuba diving, snorkeling, and sea walking. Flights are usually not included."
+          },
+          {
+            question: "Which is the best Andaman package for couples?",
+            answer: "For couples, we recommend our 5N/6D Honeymoon Package starting at ₹35,000/person. It includes romantic stays in Havelock beach resorts, private candlelight dinner, couple spa, snorkeling at Elephant Beach, and sunset cruise. Perfect for honeymoon and anniversary celebrations."
+          }
+        ]}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "TravelAgency",
+          "name": "Luxury Andamans",
+          "description": "Best Andaman tour packages, honeymoon packages, and family vacation packages. Expert travel agency for Andaman Islands with 1000+ happy travelers.",
+          "url": "https://luxuryandamans.com",
+          "logo": "https://luxuryandamans.com/logo.png",
+          "priceRange": "₹₹ - ₹₹₹₹",
+          "areaServed": {
+            "@type": "Place",
+            "name": "Andaman and Nicobar Islands, India"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Andaman Tour Packages",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "TouristTrip",
+                  "name": "Andaman Honeymoon Package",
+                  "touristType": "Couples"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "TouristTrip",
+                  "name": "Andaman Family Package",
+                  "touristType": "Families"
+                }
+              }
+            ]
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "1000"
+          }
+        }}
       />
       
       {/* Preload Hero Image for LCP Optimization */}

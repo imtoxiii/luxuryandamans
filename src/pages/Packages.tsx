@@ -69,9 +69,36 @@ const PackagesPage = () => {
   return (
     <div className="min-h-screen bg-gray-50 font-sans selection:bg-blue-100 selection:text-blue-900">
       <SEO
-        title="Luxury Travel Packages | Andaman Islands"
-        description="Explore our exclusive collection of luxury travel packages for the Andaman Islands. Curated itineraries for honeymoons, families, and adventure seekers."
-        keywords="luxury packages, andaman tourism, honeymoon packages, family vacation, adventure tours"
+        title="Andaman Tour Packages 2025 with Price | Honeymoon, Family & Luxury Packages"
+        description="Browse all Andaman tour packages with prices. Honeymoon packages from ₹35,000, Family packages from ₹25,000, Luxury villa packages from ₹60,000. Includes ferry, hotels, meals & all activities. Compare & book online."
+        keywords="andaman packages with price, andaman tour packages 2025, andaman honeymoon packages, andaman family packages, luxury andaman packages, cheap andaman packages, andaman packages for couples, 4 nights andaman package, 5 days andaman package, 6 days andaman package, andaman packages from delhi with flights, best andaman deals, andaman package booking, havelock package, neil island package, all inclusive andaman package, customized andaman package"
+        pathname="/packages"
+        targetAudience="all"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "Andaman Tour Packages",
+          "description": "Browse our collection of Andaman tour packages for honeymoon, family, and adventure travel.",
+          "url": "https://luxuryandamans.com/packages",
+          "numberOfItems": "10+",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Andaman Honeymoon Package"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Andaman Family Package"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Luxury Andaman Package"
+            }
+          ]
+        }}
       />
       <Header />
 
@@ -125,8 +152,8 @@ const PackagesPage = () => {
                   key={c}
                   onClick={() => setCategory(c)}
                   className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap ${category === c
-                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-900'
+                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-900'
                     }`}
                 >
                   {c}
@@ -185,8 +212,8 @@ const PackagesPage = () => {
                           key={c}
                           onClick={() => { setCategory(c); setShowMobileFilters(false); }}
                           className={`px-4 py-2 rounded-full text-sm transition-colors ${category === c
-                              ? 'bg-blue-600 text-white'
-                              : 'bg-gray-100 text-gray-700'
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-gray-100 text-gray-700'
                             }`}
                         >
                           {c}
@@ -245,6 +272,7 @@ const PackagesPage = () => {
                       features={pkg.features}
                       image={pkg.image}
                       slug={pkg.slug}
+                      id={pkg.id}
                       delay={idx * 0.05}
                     />
                   </motion.div>

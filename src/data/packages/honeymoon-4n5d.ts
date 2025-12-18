@@ -357,17 +357,17 @@ export const honeymoon4n5d: Package = {
     {
       title: "Radhanagar Beach",
       description: "Visit Asia's best beach with crystal clear waters",
-      image: "/images/packages/honeymoon-4n5d/highlight-radhanagar.jpg"
+      image: "src/assets/images/destinations/radhanagar-beach/card.jpg"
     },
     {
       title: "Elephant Beach Snorkeling",
       description: "Complimentary snorkeling at vibrant coral reefs",
-      image: "/images/packages/honeymoon-4n5d/highlight-snorkeling.jpg"
+      image: "src/assets/images/destinations/elephant-beach/card.jpg"
     },
     {
       title: "Historical Heritage",
       description: "Explore Cellular Jail and Ross Island",
-      image: "/images/packages/honeymoon-4n5d/highlight-heritage.jpg"
+      image: "src\assets\images\destinations\cellular-jail\card.jpg"
     }
   ],
   terms: commonTerms,
@@ -408,9 +408,9 @@ export const honeymoon4n5d: Package = {
   ],
   supplements: [
     {
-      name: "Scuba Diving Add-on",
+      name: "Shore Diving",
       price: 3500,
-      description: "Professional scuba diving with equipment",
+      description: "Professional shore diving with equipment",
       availability: ["Havelock"]
     },
     {
@@ -428,6 +428,7 @@ export const honeymoon4n5d: Package = {
   ],
   pickupLocations: ["Port Blair Airport", "Port Blair Hotels"],
   cancellationPolicy: commonCancellationPolicy,
-  slug: "4n5d-andaman-honeymoon-special"
+  slug: "4n5d-andaman-honeymoon-special",
+  id: "honeymoon-4n5d"
 };
 

@@ -396,6 +396,7 @@ export const family4n5d: Package = {
   ],
   pickupLocations: ["Port Blair Airport"],
   cancellationPolicy: commonCancellationPolicy,
-  slug: "family-fun-4n5d-quick-getaway"
+  slug: "family-fun-4n5d-quick-getaway",
+  id: "family-4n5d"
 };
 

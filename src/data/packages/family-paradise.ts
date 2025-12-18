@@ -685,6 +685,7 @@ export const familyParadise: Package = {
     "Custom pickup location in Port Blair"
   ],
   cancellationPolicy: commonCancellationPolicy,
-  slug: "family-paradise-6-days"
+  slug: "family-paradise-6-days",
+  id: "family-paradise"
 };
 

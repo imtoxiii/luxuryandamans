@@ -106,14 +106,54 @@ const TravelGuide = () => {
   return (
     <div className="min-h-screen bg-pearl font-sans selection:bg-azure selection:text-white">
       <SEO 
-        title="The Ultimate Andaman Islands Travel Guide 2025 | Complete Handbook"
-        description="Your definitive guide to the Andaman Islands. Detailed information on flights, ferries, history, culture, best time to visit, and top things to do."
+        title="Complete Andaman Travel Guide 2025 | How to Reach, Best Time, Tips & Things to Do"
+        description="Ultimate Andaman travel guide for 2025. Learn how to reach Andaman by flight & ship, best time to visit (Oct-May), required documents, ferry booking tips, top places to visit & things to do. Updated weekly."
         pathname={location.pathname}
         type="article"
-        keywords="andaman travel guide, andaman islands guide, how to reach andaman, best time to visit andaman, andaman history, andaman culture, andaman tourism guide"
+        keywords="andaman travel guide 2025, how to reach andaman, best time to visit andaman, andaman trip planning, andaman nicobar travel guide, port blair guide, havelock travel guide, andaman tourism information, andaman flight booking, andaman ferry guide, andaman permit requirements, andaman weather, things to do in andaman, andaman itinerary, andaman trip tips, andaman for first timers, andaman visa requirements, andaman packing list, andaman currency, andaman safety tips"
         author="Luxury Andamans Editorial Team"
         publishedTime="2025-01-01"
         modifiedTime={new Date().toISOString().split('T')[0]}
+        faqData={[
+          {
+            question: "How to reach Andaman Islands?",
+            answer: "You can reach Andaman by flight or ship. Flights from Chennai (2h), Kolkata (2.5h), Delhi (3.5h via Chennai), and Bangalore (2.5h) land at Port Blair's Veer Savarkar Airport. Ships from Chennai, Kolkata, and Visakhapatnam take 50-70 hours. Flights are recommended for tourists."
+          },
+          {
+            question: "What is the best time to visit Andaman?",
+            answer: "The best time to visit Andaman is October to May. Peak season (Dec-Feb) has perfect weather with 25-30°C temperature and calm seas ideal for water sports. March-May is slightly warmer but less crowded. Avoid monsoon (June-September) as heavy rains may disrupt activities and ferries."
+          },
+          {
+            question: "Do I need a permit to visit Andaman?",
+            answer: "Indian citizens don't need any permit for tourist islands (Port Blair, Havelock, Neil). Just carry a valid photo ID. Foreign nationals need to register at the airport on arrival - this is free and takes 10 minutes. Special permits are required only for tribal reserve areas which tourists cannot visit anyway."
+          },
+          {
+            question: "How many days are enough for Andaman trip?",
+            answer: "5-6 days is ideal for first-time visitors covering Port Blair (2 days), Havelock Island (2-3 days), and Neil Island (1 day). For a comprehensive trip including Baratang or Diglipur, plan 8-10 days. Minimum 4 days required to cover the essentials without rushing."
+          },
+          {
+            question: "Is Andaman safe for tourists?",
+            answer: "Yes, Andaman is one of the safest tourist destinations in India. Crime rate is very low, locals are friendly, and tourist areas are well-patrolled. It's safe for solo travelers, women, and families. Just follow standard travel precautions and respect marine safety guidelines during water activities."
+          }
+        ]}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Complete Andaman Travel Guide 2025 - Everything You Need to Know",
+          "description": "Comprehensive guide covering how to reach Andaman, best time to visit, documents required, things to do, and essential travel tips.",
+          "author": {
+            "@type": "Organization",
+            "name": "Luxury Andamans"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Luxury Andamans",
+            "url": "https://luxuryandamans.com"
+          },
+          "datePublished": "2025-01-01",
+          "dateModified": new Date().toISOString().split('T')[0],
+          "mainEntityOfPage": "https://luxuryandamans.com/guide"
+        }}
       />
       <Header />
       

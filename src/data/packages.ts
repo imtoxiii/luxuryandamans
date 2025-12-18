@@ -87,6 +87,7 @@ export interface Package {
   pickupLocations: string[];
   cancellationPolicy: string[];
   slug: string;
+  id?: string; // Links to folder name in src/assets/images/packages
 }
 
 export const packages: Package[] = [

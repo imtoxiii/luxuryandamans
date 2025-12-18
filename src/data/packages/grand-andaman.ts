@@ -2,7 +2,8 @@ import { Package } from '../packages';
 import { commonPaymentPolicy, commonTips, commonCancellationPolicy, commonTerms } from '../commonPolicies';
 
 export const grandAndaman: Package = {
-  slug: 'grand-andaman-tour',
+  slug: "grand-andaman-tour",
+  id: "grand-andaman",
   title: 'Grand Andaman Tour',
   description: 'An 8-day comprehensive tour covering the best of Port Blair, Havelock, Neil, and Baratang.',
   longDescription: 'The Grand Andaman Tour is the ultimate way to experience the diversity of the islands. From the historical significance of Port Blair to the natural wonders of Baratang and the pristine beaches of Havelock and Neil, this 8-day itinerary covers it all. Perfect for families and groups who want to see everything.',

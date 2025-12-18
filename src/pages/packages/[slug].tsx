@@ -23,7 +23,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
 import { packages, Package } from '../../data/packages';
-import { filterExistingImages, getHeroImages } from '../../lib/imageLoader';
+import { filterExistingImages, getHeroImages, getHotelMainImage, getAllHotelImages, getDestinationCardImage, getDestinationImagesForHighlight } from '../../lib/imageLoader';
 import { generatePackageMetaTags, generatePackageStructuredData } from '../../lib/structuredData';
 
 const PackageDetailPage: React.FC = () => {
@@ -103,7 +103,8 @@ const PackageDetailPage: React.FC = () => {
     const loadPackageImages = async () => {
       if (!currentPackage || !slug) return;
 
-      const heroImages = getHeroImages(slug);
+      const imageId = currentPackage.id || slug;
+      const heroImages = getHeroImages(imageId);
       const existingImages = await filterExistingImages(heroImages);
 
       if (existingImages.length === 0) {
@@ -297,23 +298,59 @@ const PackageDetailPage: React.FC = () => {
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {currentPackage.highlights.map((highlight, idx) => (
-                          <div
-                            key={idx}
-                            className="group relative overflow-hidden rounded-2xl shadow-lg aspect-[4/3] cursor-pointer"
-                            onClick={() => openImageModal([highlight.image])}
-                          >
-                            <img
-                              src={highlight.image}
-                              alt={highlight.title}
-                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end">
-                              <h3 className="text-xl font-bold text-white mb-2">{highlight.title}</h3>
-                              <p className="text-white/80 text-sm line-clamp-2">{highlight.description}</p>
+                        {currentPackage.highlights.map((highlight, idx) => {
+                          // Resolve highlight image: extract destination slug from path or use directly
+                          const resolveHighlightImage = () => {
+                            const imgPath = highlight.image || '';
+                            // Check if it's a path to destinations folder
+                            const destMatch = imgPath.match(/destinations[/\\]([^/\\]+)[/\\]/);
+                            if (destMatch) {
+                              const destSlug = destMatch[1];
+                              return getDestinationCardImage(destSlug);
+                            }
+                            // If it's already a valid URL or public path, return as is
+                            if (imgPath.startsWith('http') || imgPath.startsWith('/images/')) {
+                              return imgPath;
+                            }
+                            return '';
+                          };
+                          
+                          const resolvedImage = resolveHighlightImage();
+                          
+                          // Get all images for gallery when clicking
+                          const getHighlightGallery = () => {
+                            const imgPath = highlight.image || '';
+                            const destMatch = imgPath.match(/destinations[/\\]([^/\\]+)[/\\]/);
+                            if (destMatch) {
+                              const destSlug = destMatch[1];
+                              return getDestinationImagesForHighlight(destSlug);
+                            }
+                            return resolvedImage ? [resolvedImage] : [];
+                          };
+                          
+                          return (
+                            <div
+                              key={idx}
+                              className="group relative overflow-hidden rounded-2xl shadow-lg aspect-[4/3] cursor-pointer"
+                              onClick={() => openImageModal(getHighlightGallery())}
+                            >
+                              <img
+                                src={resolvedImage}
+                                alt={highlight.title}
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                onError={(e) => {
+                                  // Fallback to a placeholder if image fails to load
+                                  const target = e.target as HTMLImageElement;
+                                  target.src = '/images/hero-home.webp';
+                                }}
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end">
+                                <h3 className="text-xl font-bold text-white mb-2">{highlight.title}</h3>
+                                <p className="text-white/80 text-sm line-clamp-2">{highlight.description}</p>
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </section>
 
@@ -469,7 +506,15 @@ const PackageDetailPage: React.FC = () => {
                       currentPackage.hotels.map((hotel, idx) => (
                         <div key={idx} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col md:flex-row">
                           <div className="md:w-1/3 h-64 md:h-auto relative">
-                            <img src={hotel.image} alt={hotel.name} className="w-full h-full object-cover" />
+                            <img
+                              src={getHotelMainImage(currentPackage.id || currentPackage.slug, hotel.name) || hotel.image}
+                              alt={hotel.name}
+                              className="w-full h-full object-cover cursor-pointer hover:opacity-90 transition-opacity"
+                              onClick={() => {
+                                const images = getAllHotelImages(currentPackage.id || currentPackage.slug, hotel.name);
+                                if (images.length > 0) openImageModal(images);
+                              }}
+                            />
                             <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 shadow-sm">
                               {hotel.starCategory || hotel.rating} Star
                             </div>

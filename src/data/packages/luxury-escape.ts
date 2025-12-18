@@ -681,6 +681,7 @@ export const luxuryEscape: Package = {
     "Private Yacht Marina"
   ],
   cancellationPolicy: commonCancellationPolicy,
-  slug: "luxury-island-escape-7-days"
+  slug: "luxury-island-escape-7-days",
+  id: "luxury-escape"
 };
 

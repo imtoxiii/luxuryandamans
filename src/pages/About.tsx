@@ -129,10 +129,11 @@ const GuidePage = () => {
   return (
     <div className="min-h-screen bg-pearl font-sans selection:bg-azure/20 selection:text-azure">
       <SEO
-        title="About Luxury Andamans | Premium Tour Operator in Port Blair"
-        description="Discover Luxury Andamans, the leading premium tour operator in Port Blair. specialized in bespoke Andaman holidays, luxury resorts, and curated island experiences since 2010."
+        title="Andaman Travel Guide 2025 | How to Reach, Best Time, Things to Do & Travel Tips"
+        description="Complete Andaman travel guide for 2025. Learn how to reach Andaman by flight & ship, best time to visit (Oct-May), required documents, ferry bookings, top places to visit, cuisine, shopping & essential tips. Free PDF guide."
         pathname={location.pathname}
-        keywords="about luxury andamans, andaman tour operators, luxury travel agency port blair, best andaman travel agent, premium andaman holidays, andaman experts, bespoke island tours"
+        keywords="andaman travel guide, andaman guide 2025, how to reach andaman, best time to visit andaman, andaman trip planning, andaman tourism, things to do in andaman, andaman itinerary, andaman permit requirements, andaman weather, port blair guide, havelock guide, andaman ferry guide, andaman for first timers, andaman packing list, andaman food guide, andaman shopping, andaman travel tips, andaman safety, andaman islands information"
+        targetAudience="all"
         extraStructuredData={[breadcrumbStructuredData, faqStructuredData]}
       />
       <Header />

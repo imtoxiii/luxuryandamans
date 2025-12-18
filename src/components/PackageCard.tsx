@@ -13,6 +13,7 @@ interface PackageCardProps {
   features: string[];
   image: string;
   slug: string;
+  id?: string;
   delay?: number;
 }
 
@@ -25,10 +26,11 @@ const PackageCard: React.FC<PackageCardProps> = ({
   features,
   image,
   slug,
+  id,
   delay = 0
 }) => {
   // Use dynamic image from folder or fallback to provided image
-  const cardImage = getPackageCardImage(slug);
+  const cardImage = getPackageCardImage(id || slug);
   const [displayImage, setDisplayImage] = useState(image);
   
   // Check if dynamic image exists, otherwise use fallback

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-    Users, Calendar, Hotel, Utensils, Ship, Camera, Check, Plus, Minus, RefreshCw, Sparkles, Shield, Trophy, Wind, Umbrella, ShoppingBag, Percent, ArrowLeft, ArrowRight, Mail, Phone, Calculator, Send, Loader2, User, Crown, Star, Fish, Waves, Sunset, MapPin, Info, HelpCircle, DollarSign
+    Users, Calendar, Hotel, Utensils, Ship, Camera, Check, Plus, Minus, RefreshCw, Sparkles, Trophy, Wind, Umbrella, ShoppingBag, Percent, ArrowLeft, ArrowRight, Mail, Phone, Calculator, Send, Loader2, User, Crown, Star, Fish, Waves, MapPin, HelpCircle, DollarSign
 } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -11,17 +11,28 @@ import { sendTelegramMessage, formatCalculatorMessage } from '../lib/telegram';
 import toast, { Toaster } from 'react-hot-toast';
 
 // --- DATA CONFIGURATION ---
+// Updated 2025-2026 pricing based on actual Andaman market rates
 
 const andamanDestinations = [
-    { id: "PB", name: "Port Blair", description: "Capital & History Hub", image: "https://images.unsplash.com/photo-1596402183181-3f67ee645816?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-    { id: "HV", name: "Havelock Island", description: "Beaches & Diving", image: "https://images.unsplash.com/photo-1590080552494-dcda538fa459?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-    { id: "NL", name: "Neil Island", description: "Pristine & Serene", image: "https://images.unsplash.com/photo-1589179447683-77a21578f21a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-    { id: "BR", name: "Baratang", description: "Caves & Mangroves", image: "https://images.unsplash.com/photo-1621543160215-2885994f71a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-    { id: "DG", name: "Diglipur", description: "Nature & Turtle Nesting", image: "https://images.unsplash.com/photo-1616738343166-a3d55b306b3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
-    { id: "LA", name: "Little Andaman", description: "Surfing & Waterfalls", image: "https://images.unsplash.com/photo-1541644031682-9f8d9515a133?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" },
+    { id: "PB", name: "Port Blair", description: "Capital & History Hub", nights: 1, image: "https://images.pexels.com/photos/19756138/pexels-photo-19756138.jpeg" },
+    { id: "HV", name: "Havelock Island", description: "Beaches & Diving", nights: 2, image: "https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg" },
+    { id: "NL", name: "Neil Island", description: "Pristine & Serene", nights: 1, image: "https://images.pexels.com/photos/1835718/pexels-photo-1835718.jpeg" },
+    { id: "BR", name: "Baratang", description: "Caves & Mangroves", nights: 1, image: "https://images.pexels.com/photos/18694893/pexels-photo-18694893.jpeg" },
+    { id: "DG", name: "Diglipur", description: "Nature & Turtle Nesting", nights: 2, image: "https://images.pexels.com/photos/240526/pexels-photo-240526.jpeg" },
+    { id: "LA", name: "Little Andaman", description: "Surfing & Waterfalls", nights: 2, image: "https://images.pexels.com/photos/67566/palm-tree-palm-ocean-summer-67566.jpeg" },
 ];
 
+// Accommodation pricing based on actual 2025-2026 Andaman hotel rates
+// Note: Havelock & Neil Island hotels cost MORE than Port Blair city hotels
+// Base prices below are for Port Blair. Islands have multiplier applied in calculation.
 const accommodationTiers = [
+    {
+        id: 'budget', name: 'Budget (2★)',
+        rooms: [
+            { id: 'bgt-std', name: 'Basic Room', price: 1800 },
+            { id: 'bgt-ac', name: 'AC Room', price: 2500 }
+        ]
+    },
     {
         id: 'standard', name: 'Standard (3★)',
         rooms: [
@@ -32,34 +43,55 @@ const accommodationTiers = [
     {
         id: 'premium', name: 'Premium (4★)',
         rooms: [
-            { id: 'prm-dlx', name: 'Premium Deluxe', price: 6500 },
-            { id: 'prm-sea', name: 'Sea View', price: 8500 }
+            { id: 'prm-dlx', name: 'Premium Deluxe', price: 6000 },
+            { id: 'prm-sea', name: 'Sea View', price: 8000 }
+        ]
+    },
+    {
+        id: 'beachresort', name: 'Beach Resort (4★)',
+        rooms: [
+            { id: 'bch-cottage', name: 'Beach Cottage', price: 8500 },
+            { id: 'bch-villa', name: 'Beach Villa', price: 12000 }
         ]
     },
     {
         id: 'luxury', name: 'Luxury (5★)',
         rooms: [
-            { id: 'lux-suite', name: 'Junior Suite', price: 14000 },
-            { id: 'lux-villa', name: 'Private Pool Villa', price: 22000 }
+            { id: 'lux-suite', name: 'Junior Suite', price: 15000 },
+            { id: 'lux-villa', name: 'Beachfront Villa', price: 22000 },
+            { id: 'lux-pool', name: 'Private Pool Villa', price: 35000 }
         ]
     }
 ];
 
+// Location-based hotel price multipliers (Havelock & Neil cost more)
+const HOTEL_LOCATION_MULTIPLIERS: { [key: string]: number } = {
+    PB: 1.0,    // Port Blair - base rate
+    HV: 1.35,   // Havelock Island - 35% more expensive
+    NL: 1.25,   // Neil Island - 25% more expensive
+    BR: 1.0,    // Baratang - same as Port Blair
+    DG: 1.15,   // Diglipur - 15% more
+    LA: 1.2,    // Little Andaman - 20% more
+};
+
+// Meal plans - actual rates at Andaman hotels/restaurants
 const mealPlans = [
-    { id: 'cp', name: 'Breakfast Only', price: 500, description: 'Start your day right' },
-    { id: 'map', name: 'Breakfast & Dinner', price: 1500, description: 'Convenient & tasty' },
-    { id: 'ap', name: 'All Meals Included', price: 2500, description: 'Completely carefree' },
+    { id: 'none', name: 'No Meals', price: 0, description: 'Self-arranged meals' },
+    { id: 'cp', name: 'Breakfast Only', price: 400, description: 'Morning breakfast at hotel' },
+    { id: 'map', name: 'Breakfast & Dinner', price: 1200, description: 'Convenient half-board' },
+    { id: 'ap', name: 'All Meals Included', price: 2000, description: 'Full board - carefree' },
 ];
 
 const tourTypes = [
-    { id: 'private', name: 'Private Tours', multiplier: 1.0, icon: <Crown className="w-5 h-5" />, description: "Exclusive, flexible & just for you" },
-    { id: 'group', name: 'Group Tours', multiplier: 1.0, icon: <Users className="w-5 h-5" />, description: "Social & fun with others" },
+    { id: 'private', name: 'Private Tours', multiplier: 1.0, icon: <Crown className="w-5 h-5" />, description: "Exclusive vehicle & flexible" },
+    { id: 'group', name: 'Group Tours', multiplier: 0.85, icon: <Users className="w-5 h-5" />, description: "Shared vehicle, lower cost" },
 ];
 
+// Activity prices - updated per user specifications
 const activities = [
     { id: 'scuba', name: 'Scuba Diving', icon: <Fish className="w-5 h-5" />, price: 5000, popular: true },
     { id: 'seawalk', name: 'Sea Walking', icon: <Sparkles className="w-5 h-5" />, price: 4000 },
-    { id: 'snorkeling', name: 'Snorkeling Trip', icon: <Waves className="w-5 h-5" />, price: 1500, popular: true },
+    { id: 'snorkeling', name: 'Snorkeling', icon: <Waves className="w-5 h-5" />, price: 1500, popular: true },
     { id: 'parasail', name: 'Parasailing', icon: <Wind className="w-5 h-5" />, price: 3500 },
     { id: 'kayak', name: 'Night Kayaking', icon: <Ship className="w-5 h-5" />, price: 3500, popular: true },
     { id: 'glassboat', name: 'Glass Bottom Boat', icon: <Trophy className="w-5 h-5" />, price: 2500 },
@@ -71,9 +103,34 @@ const activities = [
     { id: 'photo', name: 'Photography Tour', icon: <Camera className="w-5 h-5" />, price: 6000 },
 ];
 
+// Real Andaman transport costs 2025-2026
 const GST_RATE = 0.05; // 5% GST
-const CAB_COST_PER_ISLAND = 7000;
-const FERRY_COST_PER_LEG = 2000;
+
+// Progressive profit margin - increases with package value
+// This ensures higher-value packages generate more profit while keeping prices competitive
+const getProgressiveProfitMargin = (baseAmount: number): number => {
+    if (baseAmount <= 30000) return 0.15;       // 15% for budget packages
+    if (baseAmount <= 50000) return 0.18;       // 18% for standard packages
+    if (baseAmount <= 80000) return 0.22;       // 22% for premium packages
+    if (baseAmount <= 120000) return 0.25;      // 25% for luxury packages
+    return 0.28;                                 // 28% for ultra-luxury packages
+};
+
+// Cab costs per day based on location (includes driver, fuel, parking)
+const CAB_COSTS: { [key: string]: number } = {
+    PB: 3500,   // Port Blair sightseeing
+    HV: 3000,   // Havelock Island
+    NL: 2500,   // Neil Island
+    BR: 5500,   // Baratang (long drive, permit areas)
+    DG: 20000,  // Diglipur (very remote, long distance, 2-day trip usually)
+    LA: 4000,   // Little Andaman
+};
+
+// Ferry costs per person based on 2025-2026 rates
+const FERRY_COSTS = {
+    government: 600,    // ₹400-700 actual (basic, slow)
+    private: 1800,      // ₹1,200-2,500 actual (Makruzz, Nautika, Green Ocean)
+};
 
 // --- UTILITY & HELPER COMPONENTS ---
 
@@ -104,87 +161,129 @@ const NumberInput = ({ value, onChange, min, max, unit }: { value: number, onCha
 const useCalculator = () => {
     const [showForm, setShowForm] = useState(false);
     const [activeTab, setActiveTab] = useState('itinerary');
-    const [selectedDestinations, setSelectedDestinations] = useState<string[]>(['PB', 'HV']);
+    // Default: Port Blair + Havelock + Neil Island (most common itinerary)
+    const [selectedDestinations, setSelectedDestinations] = useState<string[]>(['PB', 'HV', 'NL']);
     const [travelers, setTravelers] = useState(2);
     const [duration, setDuration] = useState(5);
 
-    const [accommodationTier, setAccommodationTier] = useState('premium');
-    const [roomType, setRoomType] = useState('prm-dlx');
-    const [mealPlan, setMealPlan] = useState('map');
+    // Default: Standard 3-star accommodation (good balance of comfort & value)
+    const [accommodationTier, setAccommodationTier] = useState('standard');
+    const [roomType, setRoomType] = useState('std-dlx');
+    // Default: Breakfast Only (most common real preference)
+    const [mealPlan, setMealPlan] = useState('cp');
 
-    const [selectedActivities, setSelectedActivities] = useState<string[]>(['scuba', 'snorkeling']);
-    const [tourType, setTourType] = useState('private'); // Default to Private
+    const [selectedActivities, setSelectedActivities] = useState<string[]>(['snorkeling']);
+    const [tourType, setTourType] = useState('private');
+    // Default: Private ferry (most tourists prefer comfort)
+    const [ferryType, setFerryType] = useState<'government' | 'private'>('private');
 
     const [includeFlights, setIncludeFlights] = useState(false);
-    const [includeInsurance, setIncludeInsurance] = useState(false); // Default to Unchecked
-    const [miscBuffer, setMiscBuffer] = useState(10); // Percentage
+    const [includeInsurance, setIncludeInsurance] = useState(false);
+    const [miscBuffer, setMiscBuffer] = useState(5); // Reduced from 10% - more realistic
 
     const [totalCost, setTotalCost] = useState(0);
     const [breakdown, setBreakdown] = useState<{ category: string, amount: number }[]>([]);
 
     const calculateCost = useCallback(() => {
-        // Accommodation
+        // === ACCOMMODATION ===
         const tier = accommodationTiers.find(t => t.id === accommodationTier);
         const room = tier?.rooms.find(r => r.id === roomType);
-        const accommodationCost = (room?.price || 0) * (duration - 1);
+        const baseRoomPrice = room?.price || 0;
+        const nights = duration - 1; // Stays = days - 1
+        const roomsNeeded = Math.ceil(travelers / 2); // 2 people per room
+        
+        // Calculate average location multiplier based on selected destinations
+        let avgLocationMultiplier = 1.0;
+        if (selectedDestinations.length > 0) {
+            const totalMultiplier = selectedDestinations.reduce((sum, destId) => {
+                return sum + (HOTEL_LOCATION_MULTIPLIERS[destId] || 1.0);
+            }, 0);
+            avgLocationMultiplier = totalMultiplier / selectedDestinations.length;
+        }
+        
+        // Simple accommodation calculation: base price x nights x rooms x location factor
+        const accommodationCost = baseRoomPrice * nights * roomsNeeded * avgLocationMultiplier;
 
-        // Meals
+        // === MEALS ===
+        // Per person per day
         const meal = mealPlans.find(m => m.id === mealPlan);
         const mealCost = (meal?.price || 0) * travelers * duration;
 
-        // Transport (Cabs)
-        // Logic: 7000 per island visited. Assuming 1 cab per group (up to 4-6 pax).
-        // If travelers > 6, maybe need 2 cabs, but keeping it simple for now or scaling slightly.
-        const numberOfCabs = Math.ceil(travelers / 6);
-        const transportCost = (selectedDestinations.length * CAB_COST_PER_ISLAND) * numberOfCabs;
+        // === TRANSPORT (CABS) ===
+        // Calculate based on days per destination
+        let transportCost = 0;
+        const vehiclesNeeded = Math.ceil(travelers / 6); // Standard vehicle fits 6 pax
+        const destinationsCount = selectedDestinations.length || 1;
+        const daysPerDest = Math.ceil(duration / destinationsCount);
+        
+        selectedDestinations.forEach(destId => {
+            const cabCostPerDay = CAB_COSTS[destId] || 3000;
+            transportCost += cabCostPerDay * daysPerDest * vehiclesNeeded;
+        });
 
-        // Ferries
-        // Logic: If > 1 destination, assume circular route or return trip.
-        // Approx: N destinations = N ferry legs if circular (PB->HV->NL->PB).
-        // Or N-1 if linear? Usually it's PB -> Island -> Island -> PB.
-        // Let's assume number of ferry legs = number of islands visited (if > 1).
-        // Exception: If only 1 island (PB), 0 ferries.
+        // === FERRIES ===
         let ferryLegs = 0;
-        if (selectedDestinations.length > 1) {
-            ferryLegs = selectedDestinations.length; 
+        const islandDestinations = selectedDestinations.filter(d => d !== 'PB');
+        if (islandDestinations.length > 0) {
+            ferryLegs = islandDestinations.length + 1; // to first island + between islands + return
         }
-        const ferryCost = ferryLegs * FERRY_COST_PER_LEG * travelers;
+        
+        const ferryRate = ferryType === 'private' ? FERRY_COSTS.private : FERRY_COSTS.government;
+        const ferryCost = ferryLegs * ferryRate * travelers;
 
-        const baseTourCost = transportCost + ferryCost;
-
-        // Activities
+        // === ACTIVITIES ===
+        // Activities are pass-through - NO profit margin (you earn from vendor commissions)
+        // This ensures Scuba ₹5,000 x 2 persons = ₹10,000 exactly as shown
         const activitiesCost = selectedActivities.reduce((sum, id) => {
             const activity = activities.find(a => a.id === id);
-            const price = activity?.id === 'candle-dinner' ? activity.price : (activity?.price || 0) * travelers;
+            if (!activity) return sum;
+            // Candlelight dinner is per couple, not per person
+            const price = activity.id === 'candle-dinner'
+                ? activity.price * Math.ceil(travelers / 2)
+                : activity.price * travelers;
             return sum + price;
         }, 0);
 
-        const subTotal = accommodationCost + mealCost + baseTourCost + activitiesCost;
+        // === CORE SERVICES (apply profit margin only to these) ===
+        const coreServicesCost = accommodationCost + mealCost + transportCost + ferryCost;
         const tourTypeMultiplier = tourTypes.find(t => t.id === tourType)?.multiplier || 1;
-        const coreCost = subTotal * tourTypeMultiplier;
+        let coreWithTourType = coreServicesCost * tourTypeMultiplier;
+        
+        // Apply progressive profit margin ONLY to core services
+        const profitMargin = getProgressiveProfitMargin(coreWithTourType);
+        const coreWithMargin = coreWithTourType * (1 + profitMargin);
 
-        // Optional Add-ons
-        const flightCost = includeFlights ? 15000 * travelers : 0;
-        const insuranceCost = includeInsurance ? 800 * travelers : 0;
-        const miscCost = coreCost * (miscBuffer / 100);
+        // === SUBTOTAL ===
+        // Core services (with margin) + Activities (pass-through, no margin)
+        const subTotal = coreWithMargin + activitiesCost;
 
-        const preTaxTotal = coreCost + flightCost + insuranceCost + miscCost;
+        // === OPTIONAL ADD-ONS ===
+        const flightCost = includeFlights ? 12000 * travelers : 0;
+        const insuranceCost = includeInsurance ? 500 * travelers : 0;
+
+        // Miscellaneous buffer
+        const miscCost = subTotal * (miscBuffer / 100);
+
+        // === GST ===
+        const preTaxTotal = subTotal + flightCost + insuranceCost + miscCost;
         const gstAmount = preTaxTotal * GST_RATE;
+
+        // === FINAL TOTAL ===
         const total = preTaxTotal + gstAmount;
 
         setTotalCost(total);
         setBreakdown([
-            { category: 'Accommodation', amount: accommodationCost * tourTypeMultiplier },
-            { category: 'Food & Meals', amount: mealCost * tourTypeMultiplier },
-            { category: 'Transport (Cabs)', amount: transportCost * tourTypeMultiplier },
-            { category: 'Ferries', amount: ferryCost * tourTypeMultiplier },
-            { category: 'Activities', amount: activitiesCost * tourTypeMultiplier },
-            { category: 'Flights', amount: flightCost },
-            { category: 'Insurance', amount: insuranceCost },
-            { category: 'Misc. & Shopping', amount: miscCost },
+            { category: 'Accommodation', amount: accommodationCost * tourTypeMultiplier * (1 + profitMargin) },
+            { category: 'Meals', amount: mealCost * tourTypeMultiplier * (1 + profitMargin) },
+            { category: 'Transfers (Cabs)', amount: transportCost * tourTypeMultiplier * (1 + profitMargin) },
+            { category: 'Ferry Tickets', amount: ferryCost * tourTypeMultiplier * (1 + profitMargin) },
+            { category: 'Activities', amount: activitiesCost }, // No margin on activities
+            { category: 'Flights (Est.)', amount: flightCost },
+            { category: 'Travel Insurance', amount: insuranceCost },
+            { category: 'Misc. Budget', amount: miscCost },
             { category: 'GST (5%)', amount: gstAmount },
         ].filter(item => item.amount > 0));
-    }, [selectedDestinations, travelers, duration, accommodationTier, roomType, mealPlan, selectedActivities, tourType, includeFlights, includeInsurance, miscBuffer]);
+    }, [selectedDestinations, travelers, duration, accommodationTier, roomType, mealPlan, selectedActivities, tourType, ferryType, includeFlights, includeInsurance, miscBuffer]);
 
     useEffect(() => {
         const debouncedCalculate = debounce(calculateCost, 200);
@@ -204,24 +303,25 @@ const useCalculator = () => {
 
     const resetCalculator = () => {
         setActiveTab('itinerary');
-        setSelectedDestinations(['PB', 'HV']);
+        setSelectedDestinations(['PB', 'HV', 'NL']);
         setTravelers(2);
         setDuration(5);
-        setAccommodationTier('premium');
-        setRoomType('prm-dlx');
-        setMealPlan('map');
-        setSelectedActivities(['scuba', 'snorkeling']);
+        setAccommodationTier('standard');
+        setRoomType('std-dlx');
+        setMealPlan('cp');
+        setSelectedActivities(['snorkeling']);
         setTourType('private');
+        setFerryType('private');
         setIncludeFlights(false);
         setIncludeInsurance(false);
-        setMiscBuffer(10);
+        setMiscBuffer(5);
         setShowForm(false);
     };
 
     return {
-        activeTab, setActiveTab, selectedDestinations, travelers, duration, accommodationTier, roomType, mealPlan, selectedActivities, tourType, includeFlights, includeInsurance, miscBuffer, totalCost, breakdown,
+        activeTab, setActiveTab, selectedDestinations, travelers, duration, accommodationTier, roomType, mealPlan, selectedActivities, tourType, ferryType, includeFlights, includeInsurance, miscBuffer, totalCost, breakdown,
         showForm, setShowForm,
-        setTravelers, setDuration, setAccommodationTier, setRoomType, setMealPlan, setTourType, setIncludeFlights, setIncludeInsurance, setMiscBuffer,
+        setTravelers, setDuration, setAccommodationTier, setRoomType, setMealPlan, setTourType, setFerryType, setIncludeFlights, setIncludeInsurance, setMiscBuffer,
         toggleDestination: (item: string) => toggleSelection(setSelectedDestinations, item),
         toggleActivity: (item: string) => toggleSelection(setSelectedActivities, item),
         resetCalculator
@@ -251,10 +351,9 @@ const PricingGuide = () => (
     <div className="mt-20 border-t border-gray-100 pt-16">
         <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 font-display mb-4">Andaman Tour Cost Guide (2026 Updated)</h2>
+                <h2 className="text-3xl font-bold text-gray-900 font-display mb-4">How Much Does Andaman Trip Cost? Complete Budget Guide 2025-2026</h2>
                 <p className="text-gray-600 leading-relaxed">
-                    Planning a trip to the Andaman Islands? Understanding the costs involved is the first step.
-                    Here is a comprehensive breakdown of what you can expect to spend in 2026.
+                    Wondering how much money is required for an Andaman trip? Here's a detailed breakdown of Andaman vacation costs for couples, families, and solo travelers.
                 </p>
             </div>
 
@@ -262,20 +361,20 @@ const PricingGuide = () => (
                 <div className="bg-blue-50 p-8 rounded-3xl">
                     <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
                         <DollarSign className="w-5 h-5 mr-2 text-blue-600" />
-                        Average Trip Cost (Per Couple)
+                        Average Trip Cost (Per Person)
                     </h3>
                     <ul className="space-y-4">
                         <li className="flex justify-between items-center">
                             <span className="text-gray-600">Budget (4-5 Days)</span>
-                            <span className="font-bold text-gray-900">₹35,000 - ₹50,000</span>
+                            <span className="font-bold text-gray-900">₹18,000 - ₹28,000</span>
                         </li>
                         <li className="flex justify-between items-center">
                             <span className="text-gray-600">Standard (5-6 Days)</span>
-                            <span className="font-bold text-gray-900">₹60,000 - ₹85,000</span>
+                            <span className="font-bold text-gray-900">₹32,000 - ₹45,000</span>
                         </li>
                         <li className="flex justify-between items-center">
                             <span className="text-gray-600">Luxury (6-7 Days)</span>
-                            <span className="font-bold text-gray-900">₹1,20,000+</span>
+                            <span className="font-bold text-gray-900">₹65,000+</span>
                         </li>
                     </ul>
                     <p className="text-xs text-gray-500 mt-4">*Excluding flights. Prices vary by season.</p>
@@ -283,7 +382,7 @@ const PricingGuide = () => (
                 <div className="bg-cyan-50 p-8 rounded-3xl">
                     <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
                         <Sparkles className="w-5 h-5 mr-2 text-cyan-600" />
-                        Activity Prices (2026 Estimates)
+                        Activity Prices (2025-26)
                     </h3>
                     <ul className="space-y-4">
                         <li className="flex justify-between items-center">
@@ -295,9 +394,45 @@ const PricingGuide = () => (
                             <span className="font-bold text-gray-900">₹4,000</span>
                         </li>
                         <li className="flex justify-between items-center">
-                            <span className="text-gray-600">Private Ferry</span>
-                            <span className="font-bold text-gray-900">₹2,000 / leg</span>
+                            <span className="text-gray-600">Snorkeling</span>
+                            <span className="font-bold text-gray-900">₹1,500</span>
                         </li>
+                        <li className="flex justify-between items-center">
+                            <span className="text-gray-600">Glass Bottom Boat</span>
+                            <span className="font-bold text-gray-900">₹2,500</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-2xl">
+                    <h4 className="font-bold text-gray-900 mb-3 flex items-center"><Hotel className="w-4 h-4 mr-2 text-green-600" /> Hotel Rates/Night</h4>
+                    <ul className="space-y-2 text-sm">
+                        <li className="flex justify-between"><span className="text-gray-600">Budget (2★)</span><span className="font-semibold">₹1,800 - ₹2,500</span></li>
+                        <li className="flex justify-between"><span className="text-gray-600">Standard (3★)</span><span className="font-semibold">₹3,500 - ₹4,500</span></li>
+                        <li className="flex justify-between"><span className="text-gray-600">Beach Resort (4★)</span><span className="font-semibold">₹8,500 - ₹12,000</span></li>
+                        <li className="flex justify-between"><span className="text-gray-600">Luxury (5★)</span><span className="font-semibold">₹15,000 - ₹35,000</span></li>
+                        <p className="text-xs text-gray-500 mt-2">*Havelock & Neil +25-35% extra</p>
+                    </ul>
+                </div>
+                <div className="bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-2xl">
+                    <h4 className="font-bold text-gray-900 mb-3 flex items-center"><Ship className="w-4 h-4 mr-2 text-purple-600" /> Ferry Costs/Person</h4>
+                    <ul className="space-y-2 text-sm">
+                        <li className="flex justify-between"><span className="text-gray-600">Government</span><span className="font-semibold">₹400 - ₹700</span></li>
+                        <li className="flex justify-between"><span className="text-gray-600">Makruzz</span><span className="font-semibold">₹1,200 - ₹2,500</span></li>
+                        <li className="flex justify-between"><span className="text-gray-600">Nautika</span><span className="font-semibold">₹1,500 - ₹3,000</span></li>
+                        <li className="flex justify-between"><span className="text-gray-600">Green Ocean</span><span className="font-semibold">₹1,000 - ₹2,200</span></li>
+                    </ul>
+                </div>
+                <div className="bg-gradient-to-br from-orange-50 to-amber-50 p-6 rounded-2xl">
+                    <h4 className="font-bold text-gray-900 mb-3 flex items-center"><MapPin className="w-4 h-4 mr-2 text-orange-600" /> Cab Rates/Day</h4>
+                    <ul className="space-y-2 text-sm">
+                        <li className="flex justify-between"><span className="text-gray-600">Port Blair</span><span className="font-semibold">₹3,500/day</span></li>
+                        <li className="flex justify-between"><span className="text-gray-600">Havelock</span><span className="font-semibold">₹3,000/day</span></li>
+                        <li className="flex justify-between"><span className="text-gray-600">Neil Island</span><span className="font-semibold">₹2,500/day</span></li>
+                        <li className="flex justify-between"><span className="text-gray-600">Baratang</span><span className="font-semibold">₹5,500/day</span></li>
+                        <li className="flex justify-between"><span className="text-gray-600">Diglipur</span><span className="font-semibold">₹20,000 (full trip)</span></li>
                     </ul>
                 </div>
             </div>
@@ -309,9 +444,10 @@ const PricingGuide = () => (
                         Your total budget will largely depend on three factors: <strong>Accommodation</strong>, <strong>Transfers</strong>, and <strong>Activities</strong>.
                     </p>
                     <ul className="list-disc list-inside space-y-2 text-gray-600 ml-4">
-                        <li><strong>Accommodation:</strong> Ranges from ₹3,500 for standard rooms to ₹22,000+ for private pool villas.</li>
-                        <li><strong>Transfers:</strong> Private cabs cost around ₹7,000 per island for a complete tour. Ferries between islands (Port Blair, Havelock, Neil) cost approx ₹2,000 per person per trip.</li>
-                        <li><strong>Activities:</strong> Water sports are a major attraction. Budget at least ₹10,000 per person if you plan to do Scuba, Sea Walk, and Kayaking.</li>
+                        <li><strong>Accommodation:</strong> Ranges from ₹1,800/night for budget rooms to ₹28,000+ for private pool villas.</li>
+                        <li><strong>Transfers:</strong> Private cabs cost ₹2,000-5,000 per day depending on island. Ferries between islands range from ₹600-2,500 per person per trip.</li>
+                        <li><strong>Activities:</strong> Water sports are a major attraction. Budget ₹8,000-15,000 per person if you plan to do Scuba, Sea Walk, and Kayaking.</li>
+                        <li><strong>Meals:</strong> Breakfast at hotels costs ₹300-500/day. Dining out averages ₹500-1,000/day per person.</li>
                     </ul>
                 </div>
 
@@ -517,9 +653,9 @@ const EnquiryForm = ({ planDetails, onBack, onSubmitSuccess }: { planDetails: an
 
 const PricingCalculatorPage = () => {
     const {
-        activeTab, setActiveTab, selectedDestinations, travelers, duration, accommodationTier, roomType, mealPlan, selectedActivities, tourType, includeFlights, includeInsurance, miscBuffer, totalCost, breakdown,
+        activeTab, setActiveTab, selectedDestinations, travelers, duration, accommodationTier, roomType, mealPlan, selectedActivities, tourType, ferryType, includeFlights, includeInsurance, miscBuffer, totalCost, breakdown,
         showForm, setShowForm,
-        setTravelers, setDuration, setAccommodationTier, setRoomType, setMealPlan, setTourType, setIncludeFlights, setIncludeInsurance, setMiscBuffer,
+        setTravelers, setDuration, setAccommodationTier, setRoomType, setMealPlan, setTourType, setFerryType, setIncludeFlights, setIncludeInsurance, setMiscBuffer,
         toggleDestination, toggleActivity, resetCalculator
     } = useCalculator();
 
@@ -544,22 +680,26 @@ const PricingCalculatorPage = () => {
                     <motion.div key="itinerary" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
                         <Section title="Where do you want to go?">
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                {andamanDestinations.map(dest => (
-                                    <div key={dest.id} onClick={() => toggleDestination(dest.id)} className={`relative rounded-2xl p-3 border-2 cursor-pointer transition-all duration-300 group overflow-hidden ${selectedDestinations.includes(dest.id) ? 'border-blue-600 bg-blue-50 shadow-md' : 'border-gray-100 hover:border-blue-200 hover:shadow-md'}`}>
-                                        <div className="flex items-center relative z-10">
-                                            <img src={dest.image} className="w-12 h-12 rounded-xl mr-3 object-cover shadow-sm" alt={dest.name} />
-                                            <div>
-                                                <p className={`font-bold text-sm ${selectedDestinations.includes(dest.id) ? 'text-blue-700' : 'text-gray-700'}`}>{dest.name}</p>
-                                                <p className="text-[10px] text-gray-500 leading-tight mt-0.5">{dest.description}</p>
+                                {andamanDestinations.map(dest => {
+                                    const cabCost = CAB_COSTS[dest.id] || 3000;
+                                    return (
+                                        <div key={dest.id} onClick={() => toggleDestination(dest.id)} className={`relative rounded-2xl p-3 border-2 cursor-pointer transition-all duration-300 group overflow-hidden ${selectedDestinations.includes(dest.id) ? 'border-blue-600 bg-blue-50 shadow-md' : 'border-gray-100 hover:border-blue-200 hover:shadow-md'}`}>
+                                            <div className="flex items-center relative z-10">
+                                                <img src={dest.image} className="w-12 h-12 rounded-xl mr-3 object-cover shadow-sm" alt={dest.name} />
+                                                <div>
+                                                    <p className={`font-bold text-sm ${selectedDestinations.includes(dest.id) ? 'text-blue-700' : 'text-gray-700'}`}>{dest.name}</p>
+                                                    <p className="text-[10px] text-gray-500 leading-tight mt-0.5">{dest.description}</p>
+                                                    <p className="text-[10px] text-green-600 font-medium mt-0.5">Cab: ₹{cabCost.toLocaleString()}/day</p>
+                                                </div>
                                             </div>
+                                            {selectedDestinations.includes(dest.id) && (
+                                                <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute top-2 right-2 bg-blue-600 text-white w-5 h-5 flex items-center justify-center rounded-full shadow-sm z-10">
+                                                    <Check size={12} />
+                                                </motion.div>
+                                            )}
                                         </div>
-                                        {selectedDestinations.includes(dest.id) && (
-                                            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute top-2 right-2 bg-blue-600 text-white w-5 h-5 flex items-center justify-center rounded-full shadow-sm z-10">
-                                                <Check size={12} />
-                                            </motion.div>
-                                        )}
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
                         </Section>
                         <Section title="Trip Details">
@@ -657,6 +797,34 @@ const PricingCalculatorPage = () => {
             case 'addons':
                 return (
                     <motion.div key="addons" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+                        <Section title="Ferry Type">
+                            <div className="grid grid-cols-2 gap-4 mb-6">
+                                <button
+                                    onClick={() => setFerryType('private')}
+                                    className={`p-4 rounded-2xl border-2 text-left transition-all duration-300 ${ferryType === 'private' ? 'border-blue-600 bg-blue-50 shadow-md' : 'border-gray-100 hover:border-blue-200 hover:shadow-md'}`}
+                                >
+                                    <div className="flex items-center mb-2">
+                                        <Ship className={`w-5 h-5 mr-2 ${ferryType === 'private' ? 'text-blue-600' : 'text-gray-400'}`} />
+                                        <p className={`font-bold ${ferryType === 'private' ? 'text-blue-700' : 'text-gray-700'}`}>Private Ferry</p>
+                                    </div>
+                                    <p className="text-xs text-gray-500">Makruzz, Nautika, Green Ocean</p>
+                                    <p className="text-sm font-semibold text-gray-700 mt-1">₹1,800/person</p>
+                                    <p className="text-xs text-green-600 mt-1">Fast & Comfortable</p>
+                                </button>
+                                <button
+                                    onClick={() => setFerryType('government')}
+                                    className={`p-4 rounded-2xl border-2 text-left transition-all duration-300 ${ferryType === 'government' ? 'border-blue-600 bg-blue-50 shadow-md' : 'border-gray-100 hover:border-blue-200 hover:shadow-md'}`}
+                                >
+                                    <div className="flex items-center mb-2">
+                                        <Ship className={`w-5 h-5 mr-2 ${ferryType === 'government' ? 'text-blue-600' : 'text-gray-400'}`} />
+                                        <p className={`font-bold ${ferryType === 'government' ? 'text-blue-700' : 'text-gray-700'}`}>Govt. Ferry</p>
+                                    </div>
+                                    <p className="text-xs text-gray-500">Basic amenities</p>
+                                    <p className="text-sm font-semibold text-gray-700 mt-1">₹600/person</p>
+                                    <p className="text-xs text-orange-600 mt-1">Budget Option</p>
+                                </button>
+                            </div>
+                        </Section>
                         <Section title="Travel Essentials">
                             <div className="space-y-4">
                                 <div onClick={() => setIncludeFlights(!includeFlights)} className={`p-5 rounded-2xl border-2 text-left transition-all duration-300 flex items-center justify-between cursor-pointer ${includeFlights ? 'border-blue-600 bg-blue-50 shadow-md' : 'border-gray-100 hover:border-blue-200 hover:shadow-md'}`}>
@@ -666,7 +834,7 @@ const PricingCalculatorPage = () => {
                                         </div>
                                         <div>
                                             <p className={`font-bold ${includeFlights ? 'text-blue-700' : 'text-gray-700'}`}>Include Flight Estimates</p>
-                                            <p className="text-sm text-gray-500">Approx. ₹15,000/person round-trip</p>
+                                            <p className="text-sm text-gray-500">Approx. ₹12,000/person round-trip</p>
                                         </div>
                                     </div>
                                     <div className={`w-8 h-8 flex items-center justify-center rounded-full transition-colors ${includeFlights ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-400'}`}>
@@ -680,7 +848,7 @@ const PricingCalculatorPage = () => {
                                         </div>
                                         <div>
                                             <p className={`font-bold ${includeInsurance ? 'text-blue-700' : 'text-slate-700'}`}>Add Travel Insurance</p>
-                                            <p className="text-sm text-slate-500">Recommended for peace of mind</p>
+                                            <p className="text-sm text-slate-500">₹500/person - Recommended</p>
                                         </div>
                                     </div>
                                     <div className={`w-8 h-8 flex items-center justify-center rounded-full transition-colors ${includeInsurance ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-400'}`}>
@@ -689,19 +857,19 @@ const PricingCalculatorPage = () => {
                                 </div>
                             </div>
                         </Section>
-                        <Section title="Miscellaneous & Shopping Buffer">
+                        <Section title="Miscellaneous Budget">
                             <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
                                 <div className="flex justify-between items-center mb-4">
                                     <label className="text-sm font-bold text-slate-700 flex items-center">
                                         <ShoppingBag className="w-4 h-4 mr-2 text-blue-500" />
-                                        Buffer Percentage
+                                        Extra Budget (Shopping, Tips, Snacks)
                                     </label>
                                     <span className="px-3 py-1 text-sm font-bold bg-blue-100 text-blue-700 rounded-lg">{miscBuffer}%</span>
                                 </div>
                                 <input
                                     type="range"
                                     min="0"
-                                    max="30"
+                                    max="20"
                                     step="5"
                                     value={miscBuffer}
                                     onChange={(e) => setMiscBuffer(Number(e.target.value))}
@@ -709,8 +877,8 @@ const PricingCalculatorPage = () => {
                                 />
                                 <div className="flex justify-between text-xs text-slate-400 mt-2 font-medium">
                                     <span>0%</span>
-                                    <span>15%</span>
-                                    <span>30%</span>
+                                    <span>10%</span>
+                                    <span>20%</span>
                                 </div>
                             </div>
                         </Section>
@@ -723,10 +891,65 @@ const PricingCalculatorPage = () => {
 
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900">
-            <SEO 
-                title="Andaman Tour Cost Calculator 2026 | Check Trip Budget" 
-                description="Calculate your Andaman trip cost instantly for 2026. Estimate budget for honeymoon, family, or solo trips including hotels, scuba diving, ferries, and cabs." 
-                keywords="andaman tour cost calculator 2026, andaman trip budget, scuba diving price andaman, andaman ferry cost, andaman cab rates, havelock trip cost, port blair budget"
+            <SEO
+                title="How Much Does Andaman Trip Cost? | Andaman Tour Budget Calculator 2025-2026"
+                description="Calculate how much an Andaman trip costs for couples, families & solo travelers. Get instant budget estimate for 5-day trip to Andaman with hotels, scuba diving, ferries & activities. Average cost: ₹25,000-65,000 per person."
+                keywords="how much does andaman cost, andaman trip cost for couple, andaman tour budget 2025, andaman trip cost calculator, how much money required for andaman trip, andaman nicobar trip cost, havelock island trip cost, andaman honeymoon cost, andaman family trip budget, 5 days andaman trip cost, andaman tour package price, scuba diving cost andaman, ferry cost andaman, port blair trip budget, neil island trip cost, andaman vacation cost, cheap andaman trip, luxury andaman cost"
+                pathname="/calculator"
+                type="website"
+                targetAudience="all"
+                faqData={[
+                    {
+                        question: "How much does an Andaman trip cost for a couple?",
+                        answer: "An Andaman trip for a couple typically costs ₹50,000-90,000 for 5-6 days excluding flights. This includes 3-star hotels (₹3,500-4,500/night), private ferry tickets (₹1,800/person), cab transfers (₹2,500-3,500/day), and activities like scuba diving (₹5,000/person). Budget trips can start from ₹35,000 while luxury packages can go up to ₹1,50,000+."
+                    },
+                    {
+                        question: "What is the average daily budget for Andaman?",
+                        answer: "The average daily budget for Andaman is ₹5,000-8,000 per person for mid-range travel. This includes accommodation (₹2,500-3,500), meals (₹800-1,200), local transport (₹1,000-1,500), and activities. Budget travelers can manage with ₹3,000-4,000/day while luxury travelers should budget ₹12,000-20,000/day."
+                    },
+                    {
+                        question: "How much does scuba diving cost in Andaman?",
+                        answer: "Scuba diving in Andaman costs ₹3,500-5,500 per person for a beginner's introductory dive (Discover Scuba Diving). This includes equipment, instructor, and underwater photos. Certified divers pay ₹3,000-4,500 per dive. Sea walking costs around ₹3,500-4,000 per person."
+                    },
+                    {
+                        question: "What is the ferry cost from Port Blair to Havelock?",
+                        answer: "Ferry cost from Port Blair to Havelock ranges from ₹600-700 for government ferries to ₹1,200-2,500 for private ferries (Makruzz, Nautika, Green Ocean). Private ferries are faster (90 mins vs 2.5 hours), more comfortable, and recommended for tourists. Book 2-3 weeks in advance during peak season."
+                    },
+                    {
+                        question: "Is Andaman expensive for tourists?",
+                        answer: "Andaman is moderately priced compared to international beach destinations. A 5-day trip costs ₹25,000-45,000 per person for standard travel, making it affordable. However, being an island, some items cost more than mainland. Hotels in Havelock and Neil Island are 25-35% more expensive than Port Blair. Budget travelers can save by using government ferries and choosing guesthouses."
+                    },
+                    {
+                        question: "How much money is required for a 5-day Andaman trip?",
+                        answer: "For a 5-day Andaman trip, budget ₹25,000-35,000 per person for standard travel or ₹45,000-65,000 for premium experience (excluding flights). This covers 4 nights accommodation, meals, ferry tickets to Havelock/Neil, cab transfers, and 2-3 water activities. Add ₹10,000-15,000 per person for round-trip flights from major cities."
+                    }
+                ]}
+                structuredData={{
+                    "@context": "https://schema.org",
+                    "@type": "WebApplication",
+                    "name": "Andaman Trip Cost Calculator",
+                    "description": "Free online calculator to estimate Andaman tour cost for couples, families, and solo travelers. Get instant budget for hotels, ferries, activities, and transfers.",
+                    "url": "https://luxuryandamans.com/calculator",
+                    "applicationCategory": "TravelApplication",
+                    "operatingSystem": "Any",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "INR"
+                    },
+                    "provider": {
+                        "@type": "TravelAgency",
+                        "name": "Luxury Andamans",
+                        "url": "https://luxuryandamans.com"
+                    },
+                    "featureList": [
+                        "Calculate Andaman trip cost for 2-20 travelers",
+                        "Estimate hotel costs for Budget to Luxury stays",
+                        "Get ferry prices for Port Blair, Havelock, Neil Island",
+                        "Calculate scuba diving and water sports cost",
+                        "Instant price breakdown with GST"
+                    ]
+                }}
             />
             <Toaster position="top-right" />
             <Header />
@@ -752,10 +975,10 @@ const PricingCalculatorPage = () => {
                             <Calculator className="w-8 h-8 text-cyan-300" />
                         </div>
                         <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight font-display">
-                            Plan Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-cyan-300 to-teal-300">Perfect Trip</span>
+                            How Much Does <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-cyan-300 to-teal-300">Andaman Cost?</span>
                         </h1>
                         <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed font-light">
-                            Customize every detail of your Andaman vacation and get an instant, all-inclusive price estimate for 2026.
+                            Calculate your Andaman trip budget for couple, family or solo travel. Get instant cost estimate for 2025-2026 including hotels, ferries & activities.
                         </p>
                     </motion.div>
                 </div>
@@ -914,7 +1137,7 @@ const PricingCalculatorPage = () => {
                             </motion.div>
                         </motion.div>
                     </div>
-                    
+
                     {/* SEO Content Section */}
                     <PricingGuide />
                 </motion.div>

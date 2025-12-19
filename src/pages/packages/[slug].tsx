@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Users,
@@ -30,6 +30,8 @@ import { generatePackageMetaTags, generatePackageStructuredData } from '../../li
 const PackageDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const isFromOffer = searchParams.get('from') === 'offer';
   const [currentPackage, setCurrentPackage] = useState<Package | null>(null);
 
   // Booking configurator states
@@ -301,61 +303,96 @@ const PackageDetailPage: React.FC = () => {
                         </p>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {currentPackage.highlights.map((highlight, idx) => {
-                          // Resolve highlight image: extract destination slug from path or use directly
-                          const resolveHighlightImage = () => {
-                            const imgPath = highlight.image || '';
-                            // Check if it's a path to destinations folder
-                            const destMatch = imgPath.match(/destinations[/\\]([^/\\]+)[/\\]/);
-                            if (destMatch) {
-                              const destSlug = destMatch[1];
-                              return getDestinationCardImage(destSlug);
-                            }
-                            // If it's already a valid URL or public path, return as is
-                            if (imgPath.startsWith('http') || imgPath.startsWith('/images/')) {
-                              return imgPath;
-                            }
-                            return '';
-                          };
-                          
-                          const resolvedImage = resolveHighlightImage();
-                          
-                          // Get all images for gallery when clicking
-                          const getHighlightGallery = () => {
-                            const imgPath = highlight.image || '';
-                            const destMatch = imgPath.match(/destinations[/\\]([^/\\]+)[/\\]/);
-                            if (destMatch) {
-                              const destSlug = destMatch[1];
-                              return getDestinationImagesForHighlight(destSlug);
-                            }
-                            return resolvedImage ? [resolvedImage] : [];
-                          };
-                          
-                          return (
-                            <div
-                              key={idx}
-                              className="group relative overflow-hidden rounded-2xl shadow-lg aspect-[4/3] cursor-pointer"
-                              onClick={() => openImageModal(getHighlightGallery())}
-                            >
-                              <img
-                                src={resolvedImage}
-                                alt={highlight.title}
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                onError={(e) => {
-                                  // Fallback to a placeholder if image fails to load
-                                  const target = e.target as HTMLImageElement;
-                                  target.src = '/images/hero-home.webp';
-                                }}
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end">
-                                <h3 className="text-xl font-bold text-white mb-2">{highlight.title}</h3>
-                                <p className="text-white/80 text-sm line-clamp-2">{highlight.description}</p>
-                              </div>
+                      {isFromOffer ? (
+                        /* When coming from Offer page, show informative content instead of images */
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 border border-amber-100 shadow-sm">
+                            <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
+                              <Star className="w-6 h-6 text-amber-600" />
                             </div>
-                          );
-                        })}
-                      </div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Personalized Experience</h3>
+                            <p className="text-gray-600 text-sm leading-relaxed">Every detail of your trip will be tailored to your preferences. From hotel room selection to activity timings, we customize everything for you.</p>
+                          </div>
+                          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100 shadow-sm">
+                            <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                              <Shield className="w-6 h-6 text-blue-600" />
+                            </div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Best Price Guarantee</h3>
+                            <p className="text-gray-600 text-sm leading-relaxed">We ensure competitive pricing with no hidden costs. What you see is what you pay, with complete transparency throughout.</p>
+                          </div>
+                          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-100 shadow-sm">
+                            <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                              <Phone className="w-6 h-6 text-green-600" />
+                            </div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">24/7 Support</h3>
+                            <p className="text-gray-600 text-sm leading-relaxed">Our dedicated team is available round the clock during your trip. Any concerns or requests are just a call away.</p>
+                          </div>
+                          <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-100 shadow-sm">
+                            <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                              <Heart className="w-6 h-6 text-purple-600" />
+                            </div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Flexible Booking</h3>
+                            <p className="text-gray-600 text-sm leading-relaxed">Plans change, we understand. Enjoy flexible modification options and transparent cancellation policies.</p>
+                          </div>
+                        </div>
+                      ) : (
+                        /* Normal view with highlight images */
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          {currentPackage.highlights.map((highlight, idx) => {
+                            // Resolve highlight image: extract destination slug from path or use directly
+                            const resolveHighlightImage = () => {
+                              const imgPath = highlight.image || '';
+                              // Check if it's a path to destinations folder
+                              const destMatch = imgPath.match(/destinations[/\\]([^/\\]+)[/\\]/);
+                              if (destMatch) {
+                                const destSlug = destMatch[1];
+                                return getDestinationCardImage(destSlug);
+                              }
+                              // If it's already a valid URL or public path, return as is
+                              if (imgPath.startsWith('http') || imgPath.startsWith('/images/')) {
+                                return imgPath;
+                              }
+                              return '';
+                            };
+                            
+                            const resolvedImage = resolveHighlightImage();
+                            
+                            // Get all images for gallery when clicking
+                            const getHighlightGallery = () => {
+                              const imgPath = highlight.image || '';
+                              const destMatch = imgPath.match(/destinations[/\\]([^/\\]+)[/\\]/);
+                              if (destMatch) {
+                                const destSlug = destMatch[1];
+                                return getDestinationImagesForHighlight(destSlug);
+                              }
+                              return resolvedImage ? [resolvedImage] : [];
+                            };
+                            
+                            return (
+                              <div
+                                key={idx}
+                                className="group relative overflow-hidden rounded-2xl shadow-lg aspect-[4/3] cursor-pointer"
+                                onClick={() => openImageModal(getHighlightGallery())}
+                              >
+                                <img
+                                  src={resolvedImage}
+                                  alt={highlight.title}
+                                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                  onError={(e) => {
+                                    // Fallback to a placeholder if image fails to load
+                                    const target = e.target as HTMLImageElement;
+                                    target.src = '/images/hero-home.webp';
+                                  }}
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end">
+                                  <h3 className="text-xl font-bold text-white mb-2">{highlight.title}</h3>
+                                  <p className="text-white/80 text-sm line-clamp-2">{highlight.description}</p>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
                     </section>
 
                     {/* Inclusions & Exclusions */}
@@ -505,8 +542,40 @@ const PackageDetailPage: React.FC = () => {
                     transition={{ duration: 0.3 }}
                     className="space-y-6"
                   >
-                    <h2 className="text-3xl font-bold text-gray-900 font-display mb-6">Featured Hotels</h2>
-                    {currentPackage.hotels && currentPackage.hotels.length > 0 ? (
+                    <h2 className="text-3xl font-bold text-gray-900 font-display mb-6">Accommodation</h2>
+                    {isFromOffer ? (
+                      /* When coming from Offer page, always show customization message */
+                      <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 border border-amber-100 shadow-sm">
+                        <div className="flex flex-col md:flex-row items-start gap-6">
+                          <div className="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <Home className="w-8 h-8 text-amber-600" />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="text-xl font-bold text-gray-900 mb-3">Hotel options will be customized based on your preferences</h3>
+                            <p className="text-gray-600 leading-relaxed mb-4">
+                              We partner with a wide range of 3-star, 4-star, and 5-star properties across all Andaman destinations. Based on your budget and preferences, we'll recommend the best accommodations for your trip.
+                            </p>
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                              <div className="bg-white rounded-xl p-4 border border-amber-100 shadow-sm">
+                                <div className="text-amber-600 font-bold text-sm mb-1">Budget Friendly</div>
+                                <div className="text-gray-900 font-semibold">3-Star Hotels</div>
+                                <p className="text-xs text-gray-500 mt-1">Clean & comfortable stays</p>
+                              </div>
+                              <div className="bg-white rounded-xl p-4 border border-amber-100 shadow-sm">
+                                <div className="text-amber-600 font-bold text-sm mb-1">Most Popular</div>
+                                <div className="text-gray-900 font-semibold">4-Star Resorts</div>
+                                <p className="text-xs text-gray-500 mt-1">Best value for money</p>
+                              </div>
+                              <div className="bg-white rounded-xl p-4 border border-amber-100 shadow-sm">
+                                <div className="text-amber-600 font-bold text-sm mb-1">Premium</div>
+                                <div className="text-gray-900 font-semibold">5-Star Luxury</div>
+                                <p className="text-xs text-gray-500 mt-1">Ultimate comfort & service</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : currentPackage.hotels && currentPackage.hotels.length > 0 ? (
                       currentPackage.hotels.map((hotel, idx) => (
                         <div key={idx} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col md:flex-row">
                           <div className="md:w-1/3 h-64 md:h-auto relative">

@@ -54,23 +54,54 @@ const getImagesFromGlob = (pattern: string): string[] => {
       return regex.test(normalizedPath);
     })
     .sort(([a], [b]) => {
-      // Sort numerically if possible (1.jpg < 2.jpg)
+      // 1. Numerics: Sort numerically if possible (1.jpg < 2.jpg)
       const aNum = parseInt(a.match(/(\d+)\./)?.[1] || '0');
       const bNum = parseInt(b.match(/(\d+)\./)?.[1] || '0');
-      if (aNum && bNum) return aNum - bNum;
+      if (aNum && bNum && aNum !== bNum) return aNum - bNum;
 
-      // If numbers are equal or missing, check for specific filenames like 'card.jpg' to be first
-      const aName = a.split('/').pop()?.toLowerCase() || '';
-      const bName = b.split('/').pop()?.toLowerCase() || '';
+      // Helper to get filename and extension
+      const getDetails = (path: string) => {
+        const parts = path.split('/');
+        const nameFull = parts.pop()?.toLowerCase() || '';
+        const namePart = nameFull.split('.')[0];
+        const ext = nameFull.split('.').pop() || '';
+        return { nameFull, namePart, ext };
+      };
 
-      if (aName.includes('card') && !bName.includes('card')) return -1;
-      if (bName.includes('card') && !aName.includes('card')) return 1;
-      if (aName.includes('hero') && !bName.includes('hero')) return -1;
-      if (bName.includes('hero') && !aName.includes('hero')) return 1;
+      const aDet = getDetails(a);
+      const bDet = getDetails(b);
 
+      // 2. Specific Function: Card > Hero
+      const aIsCard = aDet.namePart.includes('card');
+      const bIsCard = bDet.namePart.includes('card');
+      if (aIsCard && !bIsCard) return -1;
+      if (bIsCard && !aIsCard) return 1;
+
+      const aIsHero = aDet.namePart.includes('hero');
+      const bIsHero = bDet.namePart.includes('hero');
+      if (aIsHero && !bIsHero) return -1;
+      if (bIsHero && !aIsHero) return 1;
+
+      // 3. Format Priority: AVIF > WebP > JPG/PNG
+      // If filenames (without extension) are effectively the same (or we just want to prefer better formats generally)
+      // We should check extension density.
+      const scoreFormat = (ext: string) => {
+        if (ext === 'avif') return 3;
+        if (ext === 'webp') return 2;
+        return 1;
+      };
+
+      if (aDet.namePart === bDet.namePart) {
+        const scoreA = scoreFormat(aDet.ext);
+        const scoreB = scoreFormat(bDet.ext);
+        if (scoreA > scoreB) return -1;
+        if (scoreB > scoreA) return 1;
+      }
+
+      // 4. Fallback to alphabetical
       return a.localeCompare(b);
     })
-    .map(([, url]) => url);
+    .map(([, url]) => url as string);
 };
 
 
@@ -90,12 +121,12 @@ const slugify = (text: string): string => {
  */
 export const getDestinationCardImage = (destinationSlug: string): string => {
   const normalizedSlug = destinationSlug.toLowerCase();
-  
+
   // Priority order: card.jpg > hero.jpg > any image
   let cardImage = '';
   let heroImage = '';
   let anyImage = '';
-  
+
   for (const [path, url] of Object.entries(allDestinationImages)) {
     const lowerPath = path.toLowerCase();
     if (lowerPath.includes(`/destinations/${normalizedSlug}/`)) {
@@ -109,7 +140,7 @@ export const getDestinationCardImage = (destinationSlug: string): string => {
       }
     }
   }
-  
+
   return cardImage || heroImage || anyImage || '';
 };
 
@@ -119,23 +150,23 @@ export const getDestinationCardImage = (destinationSlug: string): string => {
 export const getDestinationImagesForHighlight = (destinationSlug: string): string[] => {
   const normalizedSlug = destinationSlug.toLowerCase();
   const images: string[] = [];
-  
+
   for (const [path, url] of Object.entries(allDestinationImages)) {
     if (path.toLowerCase().includes(`/destinations/${normalizedSlug}/`)) {
       images.push(url as string);
     }
   }
-  
+
   // Sort to prioritize card and hero images
   return images.sort((a, b) => {
     const aName = a.split('/').pop()?.toLowerCase() || '';
     const bName = b.split('/').pop()?.toLowerCase() || '';
-    
+
     if (aName.includes('card') && !bName.includes('card')) return -1;
     if (bName.includes('card') && !aName.includes('card')) return 1;
     if (aName.includes('hero') && !bName.includes('hero')) return -1;
     if (bName.includes('hero') && !aName.includes('hero')) return 1;
-    
+
     return a.localeCompare(b);
   });
 };

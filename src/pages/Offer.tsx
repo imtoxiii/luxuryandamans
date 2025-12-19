@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { packages } from '../data/packages';
+import { getPackageCardImage } from '../lib/imageLoader';
 import { sendTelegramMessage, formatBookingMessage } from '../lib/telegram';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -28,8 +29,8 @@ const Offer = () => {
     const y1 = useTransform(scrollY, [0, 500], [0, 200]);
     const packagesRef = useRef<HTMLElement>(null);
 
-    // Filter premium packages for "God View"
-    const featuredPackages = packages.slice(0, 6);
+    // Show all packages
+    const featuredPackages = packages;
 
     const scrollToForm = () => {
         const formElement = document.getElementById('quick-enquiry');
@@ -102,7 +103,7 @@ const Offer = () => {
     }, []);
 
     // Handle contact button click - show popup on desktop
-     const handleContactClick = (e: React.MouseEvent, type: 'phone' | 'email') => {
+    const handleContactClick = (e: React.MouseEvent, type: 'phone' | 'email') => {
         // Check if desktop (screen width > 768px)
         if (window.innerWidth > 768) {
             e.preventDefault(); // Prevent default for both to handle manually
@@ -277,7 +278,7 @@ const Offer = () => {
                     className="absolute inset-0 z-0"
                 >
                     {/* Increased overlay opacity for better text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/10 to-slate-900/65 z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/10 to-slate-700/30 z-10" />
                     <img
                         src="https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
                         alt="Andaman Paradise"
@@ -456,71 +457,75 @@ const Offer = () => {
                     </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                        {featuredPackages.map((pkg, index) => (
-                            <motion.div
-                                key={pkg.slug}
-                                initial={{ opacity: 0, y: 50 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-50px" }}
-                                transition={{ duration: 0.7, delay: index * 0.1 }}
-                                whileHover={{ scale: 1.05, y: -4 }}
-                                className="group bg-white rounded-[2.5rem] overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-500 border border-slate-100 flex flex-col h-full hover:-translate-y-2"
-                            >
-                                <div className="relative h-80 overflow-hidden">
-                                    <img
-                                        src={pkg.image}
-                                        alt={pkg.title}
-                                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-80" />
+                        {featuredPackages.map((pkg, index) => {
+                            const cardImage = getPackageCardImage(pkg.id || pkg.slug) || pkg.image;
+                            return (
+                                <motion.div
+                                    key={pkg.slug}
+                                    initial={{ opacity: 0, y: 50 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: "-50px" }}
+                                    transition={{ duration: 0.7, delay: index * 0.1 }}
+                                    className="group"
+                                >
+                                    <Link
+                                        to={`/packages/${pkg.slug}?from=offer`}
+                                        className="block bg-white rounded-[2.5rem] overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-500 border border-slate-100 h-full hover:-translate-y-2"
+                                    >
+                                        <div className="relative h-80 overflow-hidden">
+                                            <img
+                                                src={cardImage}
+                                                alt={pkg.title}
+                                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-80" />
 
-                                    <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold text-slate-900 flex items-center gap-2 shadow-lg uppercase tracking-wide">
-                                        <Clock className="w-3 h-3" /> {pkg.duration}
-                                    </div>
-
-                                    <div className="absolute bottom-6 left-6 right-6 text-white">
-                                        <h3 className="text-3xl font-display font-bold mb-2 leading-tight">{pkg.title}</h3>
-                                        <div className="flex items-center gap-2 text-sm text-slate-200 font-medium">
-                                            <MapPin className="w-4 h-4 text-amber-400" />
-                                            <span>Port Blair • Havelock • Neil</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="p-8 flex flex-col flex-grow relative">
-                                    <div className="absolute -top-6 right-8 w-14 h-14 bg-amber-500 rounded-2xl flex items-center justify-center shadow-lg shadow-amber-500/30 group-hover:scale-110 transition-transform duration-300 rotate-3 group-hover:rotate-6">
-                                        <ArrowRight className="w-6 h-6 text-white -rotate-45 group-hover:rotate-0 transition-transform duration-500" />
-                                    </div>
-
-                                    <p className="text-slate-600 text-base mb-8 line-clamp-3 leading-relaxed flex-grow font-light">
-                                        {pkg.description}
-                                    </p>
-
-                                    <div className="space-y-6">
-                                        <div className="flex flex-wrap gap-2">
-                                            {pkg.features.slice(0, 3).map((feature, idx) => (
-                                                <span key={idx} className="text-xs bg-slate-50 text-slate-600 px-4 py-2 rounded-full font-medium border border-slate-100">
-                                                    {feature}
-                                                </span>
-                                            ))}
-                                        </div>
-
-                                        <div className="pt-6 border-t border-slate-100 flex items-end justify-between">
-                                            <div>
-                                                <p className="text-xs text-slate-400 font-bold uppercase tracking-widest mb-1">Starting From</p>
-                                                <p className="text-3xl font-display font-bold text-slate-900">₹{pkg.price.toLocaleString()}</p>
+                                            <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold text-slate-900 flex items-center gap-2 shadow-lg uppercase tracking-wide">
+                                                <Clock className="w-3 h-3" /> {pkg.duration}
                                             </div>
-                                            <Link
-                                                to={`/packages/${pkg.slug}`}
-                                                className="px-8 py-3 bg-slate-900 text-white rounded-2xl font-bold text-sm hover:bg-amber-500 transition-colors shadow-lg hover:shadow-amber-500/30"
-                                            >
-                                                View Plan
-                                            </Link>
+
+                                            <div className="absolute bottom-6 left-6 right-6 text-white">
+                                                <h3 className="text-3xl font-display font-bold mb-2 leading-tight">{pkg.title}</h3>
+                                                <div className="flex items-center gap-2 text-sm text-slate-200 font-medium">
+                                                    <MapPin className="w-4 h-4 text-amber-400" />
+                                                    <span>Port Blair • Havelock • Neil</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
+
+                                        <div className="p-8 flex flex-col relative">
+                                            <div className="absolute -top-6 right-8 w-14 h-14 bg-amber-500 rounded-2xl flex items-center justify-center shadow-lg shadow-amber-500/30 group-hover:scale-110 transition-transform duration-300 rotate-3 group-hover:rotate-6">
+                                                <ArrowRight className="w-6 h-6 text-white -rotate-45 group-hover:rotate-0 transition-transform duration-500" />
+                                            </div>
+
+                                            <p className="text-slate-600 text-base mb-8 line-clamp-3 leading-relaxed font-light">
+                                                {pkg.description}
+                                            </p>
+
+                                            <div className="space-y-6">
+                                                <div className="flex flex-wrap gap-2">
+                                                    {pkg.features.slice(0, 3).map((feature, idx) => (
+                                                        <span key={idx} className="text-xs bg-slate-50 text-slate-600 px-4 py-2 rounded-full font-medium border border-slate-100">
+                                                            {feature}
+                                                        </span>
+                                                    ))}
+                                                </div>
+
+                                                <div className="pt-6 border-t border-slate-100 flex items-end justify-between">
+                                                    <div>
+                                                        <p className="text-xs text-slate-400 font-bold uppercase tracking-widest mb-1">Starting From</p>
+                                                        <p className="text-3xl font-display font-bold text-slate-900">₹{pkg.price.toLocaleString()}</p>
+                                                    </div>
+                                                    <span className="px-8 py-3 bg-slate-900 text-white rounded-2xl font-bold text-sm group-hover:bg-amber-500 transition-colors shadow-lg group-hover:shadow-amber-500/30">
+                                                        View Plan
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </motion.div>
+                            );
+                        })}
                     </div>
 
                     <div className="mt-20 text-center">
@@ -587,7 +592,7 @@ const Offer = () => {
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80 transition-opacity" />
-                                    
+
                                     <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                                         <h3 className="text-3xl font-display font-bold text-white mb-3">{activity.title}</h3>
                                         <p className="text-slate-300 text-base leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">

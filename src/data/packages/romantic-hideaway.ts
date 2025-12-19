@@ -10,7 +10,7 @@ export const romanticHideaway: Package = {
     price: 65000,
     duration: '6 days',
     groupSize: 'Couple',
-    image: 'https://images.pexels.com/photos/1024960/pexels-photo-1024960.jpeg',
+    image: 'images\packages\romantic-hideaway\hero\hero.jpg',
     features: ['Candlelight Dinner', 'Couple Spa', 'Private Beach Access', 'Flower Decoration'],
     includes: [
         'Airport transfers in luxury sedan',

@@ -16,6 +16,7 @@ interface PackageCardProps {
   slug: string;
   id?: string;
   delay?: number;
+  linkSuffix?: string;
 }
 
 const PackageCard: React.FC<PackageCardProps> = ({
@@ -28,7 +29,8 @@ const PackageCard: React.FC<PackageCardProps> = ({
   image,
   slug,
   id,
-  delay = 0
+  delay = 0,
+  linkSuffix = ''
 }) => {
   // Use dynamic image from folder or fallback to provided image
   const cardImage = getPackageCardImage(id || slug);
@@ -59,7 +61,7 @@ const PackageCard: React.FC<PackageCardProps> = ({
       className="h-full"
     >
       <Link
-        to={`/packages/${slug}`}
+        to={`/packages/${slug}${linkSuffix}`}
         className="group h-full flex flex-col bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-blue-100/50 relative isolate"
       >
         {/* Image Section */}

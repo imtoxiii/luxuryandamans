@@ -22,6 +22,7 @@ import {
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
+import SmartImage from '../../components/SmartImage';
 import { packages, Package } from '../../data/packages';
 import { filterExistingImages, getHeroImages, getHotelMainImage, getAllHotelImages, getDestinationCardImage, getDestinationImagesForHighlight } from '../../lib/imageLoader';
 import { generatePackageMetaTags, generatePackageStructuredData } from '../../lib/structuredData';
@@ -213,10 +214,13 @@ const PackageDetailPage: React.FC = () => {
             transition={{ duration: 1.5 }}
             className="absolute inset-0"
           >
-            <img
+            <SmartImage
               src={packageImages[currentImageIndex] || currentPackage.image}
               alt={currentPackage.title}
-              className="w-full h-full object-cover"
+              containerType="hero"
+              fallbackSrc={currentPackage.image}
+              className="w-full h-full"
+              animateOnLoad={false}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80" />
           </motion.div>

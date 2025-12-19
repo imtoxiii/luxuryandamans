@@ -8,7 +8,7 @@ export const honeymoon5n6d: Package = {
   price: 38000,
   duration: "6 days",
   groupSize: "2",
-  image: "/images/packages/honeymoon-5n6d/hero.jpg",
+  image: "/images/packages/honeymoon-5n6d/hero/hero.jpg",
   features: [
     "Time-optimized schedule",
     "Scuba diving included",

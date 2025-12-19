@@ -8,7 +8,7 @@ export const luxuryEscape: Package = {
   price: 85000,
   duration: "7 days",
   groupSize: "2-4",
-  image: "/images/packages/luxury-escape/hero.jpg",
+  image: "/images/packages/luxury-escape/hero/hero.jpg",
   features: [
     "5-star luxury resorts",
     "Premium scuba diving with videography",

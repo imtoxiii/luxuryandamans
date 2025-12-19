@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   MapPin,
   Calendar,
   Plane,
   Compass,
   Sun,
-  Users,
+
   BookOpen,
   Thermometer,
   Cloud,
   History,
   Globe,
-  Languages,
+
   Navigation,
   Activity,
   Star,
@@ -24,7 +24,8 @@ import {
   AlertTriangle,
   Utensils,
   ShoppingBag,
-  Route
+  Route,
+  ArrowRight
 } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
@@ -139,58 +140,126 @@ const GuidePage = () => {
       <Header />
 
       {/* Hero Section - Redesigned */}
-      <div className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
-            alt="Andaman Islands Aerial View"
+
+      {/* Hero Section - Editorial Style */}
+      <div className="relative h-screen min-h-[650px] flex items-center justify-center overflow-hidden">
+        {/* Background Image with Parallax & Overlay */}
+        <motion.div 
+          className="absolute inset-0 z-0"
+          style={{ y: useTransform(useScroll().scrollY, [0, 1000], [0, 400]) }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 z-10" />
+          <motion.img
+            initial={{ scale: 1.15 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 2, ease: "easeOut" }}
+            src="https://images.pexels.com/photos/33638092/pexels-photo-33638092.jpeg"
+            alt="Andaman Islands Aerial"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-night/60 via-night/40 to-pearl"></div>
-        </div>
+        </motion.div>
 
-        <div className="container mx-auto px-4 sm:px-6 text-center relative z-10 pt-20">
+        {/* Main Content */}
+        <div className="container mx-auto px-4 relative z-20 flex flex-col items-center justify-center h-full pt-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-center"
           >
-            <span className="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-sm font-medium mb-4 tracking-wider uppercase">
-              The Ultimate Travel Guide
-            </span>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white font-display mb-6 drop-shadow-lg">
-              Discover Andaman
+            <div className="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-md">
+              <span className="w-2 h-2 rounded-full bg-azure animate-pulse"></span>
+              <span className="text-white/90 text-xs font-bold tracking-[0.2em] uppercase font-sans">The Official Guide 2025</span>
+            </div>
+
+            <h1 className="flex flex-col items-center text-white mb-6">
+              <span className="font-serif italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-2 opacity-90">Experience the</span>
+              <span className="font-display font-black text-6xl sm:text-7xl md:text-8xl lg:text-9xl uppercase tracking-tighter leading-[0.85] text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/70 drop-shadow-2xl">
+                Untouched
+              </span>
             </h1>
-            <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md mb-8">
-              Your comprehensive guide to the emerald islands of India. Plan your perfect escape to paradise.
+
+            <p className="max-w-xl mx-auto text-white/80 text-base sm:text-lg font-light leading-relaxed mb-10 px-6">
+              Your curated handbook to the 572 emerald islands. <br className="hidden md:block" />
+              Pristine beaches, hidden gems, and luxury stays.
             </p>
 
-            <button
-              onClick={() => scrollToSection('overview')}
-              className="px-8 py-3 bg-azure hover:bg-azure/90 text-white rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-azure/50"
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
             >
-              Start Exploring
-            </button>
+              <button 
+                onClick={() => scrollToSection('overview')}
+                className="w-full sm:w-auto px-8 py-3.5 bg-azure text-white rounded-full font-bold text-sm tracking-wide hover:bg-white hover:text-azure transition-all duration-300 shadow-lg shadow-azure/20"
+              >
+                Start Planning
+              </button>
+              <button 
+                onClick={() => scrollToSection('itineraries')}
+                className="w-full sm:w-auto px-8 py-3.5 bg-transparent border border-white/30 text-white rounded-full font-bold text-sm tracking-wide hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
+              >
+                View Itineraries
+              </button>
+            </motion.div>
+          </motion.div>
+
+          {/* Quick Stats Strip */}
+          <motion.div 
+             initial={{ opacity: 0, width: "0%" }}
+             animate={{ opacity: 1, width: "100%" }}
+             transition={{ delay: 1, duration: 1 }}
+             className="hidden lg:flex absolute bottom-8 left-0 right-0 max-w-4xl mx-auto py-6 px-10 rounded-2xl border border-white/10 bg-black/20 backdrop-blur-xl justify-between items-center text-white"
+          >
+             {[
+               { label: 'Best Time', val: 'Oct - May', icon: <Sun className="w-4 h-4 text-yellow-400" /> },
+               { label: 'Avg Temp', val: '24°-30°C', icon: <Thermometer className="w-4 h-4 text-orange-400" /> },
+               { label: 'Flight Time', val: '2 hrs from Chennai', icon: <Plane className="w-4 h-4 text-blue-400" /> },
+               { label: 'Islands', val: '37 Inhabited', icon: <Globe className="w-4 h-4 text-green-400" /> },
+             ].map((stat, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <div className="p-2 rounded-full bg-white/5 border border-white/10">
+                    {stat.icon}
+                  </div>
+                  <div className="text-left">
+                    <p className="text-[10px] uppercase tracking-widest text-white/50">{stat.label}</p>
+                    <p className="text-sm font-bold font-display tracking-wide">{stat.val}</p>
+                  </div>
+                  {i !== 3 && <div className="h-8 w-px bg-white/10 ml-8" />}
+                </div>
+             ))}
           </motion.div>
         </div>
       </div>
 
-      {/* Navigation Section - Sticky & Glassmorphism */}
-      <section className="sticky top-20 z-40 py-4 transition-all duration-300">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="bg-white/80 backdrop-blur-md shadow-lg rounded-2xl p-2 border border-white/50 overflow-x-auto hide-scrollbar">
-            <div className="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 min-w-max md:min-w-0">
+      {/* Navigation Section - Sticky & Stable */}
+      <section className="sticky top-20 z-40 py-2">
+        <div className="container mx-auto px-2 sm:px-6">
+          <div className="bg-white/95 backdrop-blur-md shadow-md rounded-xl p-1.5 border border-white/20 overflow-x-auto hide-scrollbar">
+            <div className="flex items-center md:justify-center gap-1 min-w-max">
               {navigationItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-300 text-sm whitespace-nowrap ${activeSection === item.id
-                      ? 'bg-azure text-white shadow-md transform scale-105'
-                      : 'bg-transparent text-night/70 hover:bg-azure/10 hover:text-azure'
-                    }`}
+                  className={`relative flex items-center gap-2 px-4 py-2.5 rounded-lg font-bold transition-all duration-300 text-sm whitespace-nowrap group ${
+                    activeSection === item.id
+                      ? 'text-white'
+                      : 'text-night/60 hover:text-azure hover:bg-azure/5'
+                  }`}
                 >
-                  {item.icon}
-                  <span>{item.label}</span>
+                  {/* Active Background */}
+                  {activeSection === item.id && (
+                    <motion.div 
+                      layoutId="activeNavBg"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      className="absolute inset-0 bg-gradient-to-r from-azure to-blue-600 rounded-lg shadow-sm z-0"
+                    />
+                  )}
+                  
+                  <span className="relative z-10 flex items-center gap-2">
+                    {item.label}
+                  </span>
                 </button>
               ))}
             </div>
@@ -199,10 +268,9 @@ const GuidePage = () => {
       </section>
 
       {/* Content Sections */}
-      <div className="pb-16 sm:pb-20 lg:pb-24 space-y-16 sm:space-y-24">
-
+      <div className="pb-16 sm:pb-20 lg:pb-24 space-y-16 sm:space-y-24 bg-pearl">
         {/* Overview Section */}
-        <section id="overview" className="pt-8 sm:pt-12">
+        <section id="overview" className="pt-12 sm:pt-20">
           <div className="container mx-auto px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -751,8 +819,6 @@ const LeafIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.77 10-10 10Z" /><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" /></svg>
 );
 
-const ArrowRight = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-);
+
 
 export default GuidePage;

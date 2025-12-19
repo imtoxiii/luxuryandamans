@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { MapPin, ArrowRight, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CardSlider from './CardSlider';
+import SmartImage from './SmartImage';
 import { destinations } from '../data/destinations';
 import { getDestinationImages } from '../lib/images';
 
@@ -38,15 +39,15 @@ const Destinations = () => {
           <CardSlider showDots={true} autoScroll={false}>
             {destinations.map((dest, index) => {
               const folderImages = getDestinationImages(dest.slug);
-              
+
               // Card Image Priority: 'card' -> 'hero_card' -> 'hero' -> First available
               const specificCard = folderImages.find(img => img.toLowerCase().includes('card') && !img.toLowerCase().includes('hero_card'));
               const specificHeroCard = folderImages.find(img => img.toLowerCase().includes('hero_card'));
               const specificHero = folderImages.find(img => img.toLowerCase().includes('hero') && !img.toLowerCase().includes('hero_card'));
-              
+
               // Fallback to any image in folder if specific ones not found
               const cardImage = specificCard || specificHeroCard || specificHero || folderImages[0] || dest.image || '/images/placeholder-destination.jpg';
-              
+
               // Debugging (remove later)
               // if (dest.slug === 'cellular-jail') console.log('Cellular Jail Card:', cardImage, folderImages);
 
@@ -66,10 +67,12 @@ const Destinations = () => {
                     {/* Image Section */}
                     <div className="relative h-[400px] overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-                      <img
+                      <SmartImage
                         src={cardImage}
                         alt={dest.name}
-                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                        containerType="card"
+                        className="w-full h-full transition-transform duration-1000 group-hover:scale-110"
+                        animateOnLoad={true}
                       />
 
                       {/* Floating Badge */}

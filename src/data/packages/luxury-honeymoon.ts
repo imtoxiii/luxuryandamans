@@ -8,7 +8,7 @@ export const luxuryHoneymoon: Package = {
   price: 85000,
   duration: "7 days",
   groupSize: "2",
-  image: "/images/packages/luxury-honeymoon/hero.jpg",
+  image: "/images/packages/luxury-honeymoon/hero/hero.jpg",
   features: [
     "Private Pool Villas",
     "Candlelight Dinner",

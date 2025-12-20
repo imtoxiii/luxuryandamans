@@ -1,29 +1,10 @@
 // Google Analytics 4 Configuration - Optimized for Performance
 // Replace 'GA_MEASUREMENT_ID' with your actual Google Analytics 4 Measurement ID
 
-(function() {
-  // Defer analytics loading until after critical resources
-  function loadAnalytics() {
-    // Load Google Analytics
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID';
-    document.head.appendChild(script);
-
+(function () {
+  // Ensure dataLayer exists
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'GA_MEASUREMENT_ID', {
-    // Enhanced tracking for SEO
-    page_title: document.title,
-    page_location: window.location.href,
-    content_group1: 'Andaman Tourism', // Content category
-    custom_map: {
-      'custom_parameter_1': 'package_type',
-      'custom_parameter_2': 'user_intent'
-    }
-  });
+  function gtag() { dataLayer.push(arguments); }
 
   // Enhanced Ecommerce Tracking for Package Bookings
   function trackPackageView(packageName, packagePrice, packageCategory) {
@@ -72,10 +53,10 @@
     let scrollDepths = [25, 50, 75, 100];
     let scrolled = [];
 
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
       let scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
-      
-      scrollDepths.forEach(function(depth) {
+
+      scrollDepths.forEach(function (depth) {
         if (scrollPercent >= depth && scrolled.indexOf(depth) === -1) {
           scrolled.push(depth);
           gtag('event', 'scroll', {
@@ -88,7 +69,7 @@
     });
 
     // Track external link clicks
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       if (e.target.tagName === 'A' && e.target.hostname !== window.location.hostname) {
         gtag('event', 'click', {
           event_category: 'external_link',
@@ -99,7 +80,7 @@
     });
 
     // Track internal navigation
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       if (e.target.tagName === 'A' && e.target.hostname === window.location.hostname) {
         gtag('event', 'click', {
           event_category: 'internal_link',
@@ -111,8 +92,8 @@
 
     // Track form interactions
     const forms = document.querySelectorAll('form');
-    forms.forEach(function(form) {
-      form.addEventListener('submit', function(e) {
+    forms.forEach(function (form) {
+      form.addEventListener('submit', function (e) {
         gtag('event', 'form_submit', {
           event_category: 'engagement',
           event_label: form.getAttribute('id') || 'unknown_form',
@@ -123,8 +104,8 @@
 
     // Track CTA button clicks
     const ctaButtons = document.querySelectorAll('[data-cta]');
-    ctaButtons.forEach(function(button) {
-      button.addEventListener('click', function(e) {
+    ctaButtons.forEach(function (button) {
+      button.addEventListener('click', function (e) {
         gtag('event', 'cta_click', {
           event_category: 'conversion',
           event_label: button.getAttribute('data-cta') || button.textContent,
@@ -141,25 +122,11 @@
     trackSEOEvents();
   }
 
-    // Make tracking functions globally available
-    window.trackPackageView = trackPackageView;
-    window.trackEnquiry = trackEnquiry;
-    window.trackBooking = trackBooking;
-  }
+  // Make tracking functions globally available
+  window.trackPackageView = trackPackageView;
+  window.trackEnquiry = trackEnquiry;
+  window.trackBooking = trackBooking;
 
-  // Load analytics after page load to avoid blocking render
-  if (document.readyState === 'complete') {
-    // If page is already loaded, load analytics immediately
-    setTimeout(loadAnalytics, 100);
-  } else {
-    // Otherwise wait for page load
-    window.addEventListener('load', function() {
-      setTimeout(loadAnalytics, 100);
-    });
-  }
-
-  // Fallback: Load analytics after 3 seconds regardless
-  setTimeout(loadAnalytics, 3000);
 })();
 
 // Facebook Pixel Configuration (optional)

@@ -12,12 +12,22 @@ const escapeHtml = (unsafe: any): string => {
         .replace(/'/g, "&#039;");
 };
 
+
 export const sendTelegramMessage = async (message: string): Promise<boolean> => {
-    // Hardcoded credentials as requested by user
-    const TELEGRAM_BOT_TOKEN = '7853333210:AAH0M-sHCpfADqFo8T8pfzmDxZqA00xC1pk';
-    const TELEGRAM_CHAT_ID = '1336330730';
+    // Use environment variables for security
+    const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
+    const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID || '1336330730';
+
+    if (!TELEGRAM_BOT_TOKEN) {
+        console.error('❌ Telegram Bot Token is missing in environment variables');
+        toast.error('Configuration error: Bot token missing');
+        return false;
+    }
 
     console.log('📤 Sending Telegram message...');
+
+    let status = 'failed';
+    let apiResponse = null;
 
     try {
         const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
@@ -33,18 +43,60 @@ export const sendTelegramMessage = async (message: string): Promise<boolean> => 
         });
 
         const data = await response.json();
+        apiResponse = data;
 
         if (data.ok) {
             console.log('✅ Telegram message sent successfully');
-            return true;
+            status = 'success';
         } else {
             console.error('❌ Telegram API Error:', data);
             toast.error('Unable to send enquiry. Please try again later.');
-            return false;
         }
+
+        // Backup Logging to Server Text File (PHP)
+        try {
+            // We use a relative path assuming the PHP file is at the root of the site (public folder)
+            // In production, this will be https://yourdomain.com/save_telegram_log.php
+            const logResponse = await fetch('/save_telegram_log.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: message,
+                    status: status,
+                    metadata: apiResponse
+                })
+            });
+            
+            if (logResponse.ok) {
+                console.log('💾 Message backed up to server text file');
+            } else {
+                console.warn('⚠️ Failed to back up log to server file');
+            }
+        } catch (logErr) {
+            console.error('⚠️ Error participating in backup logging:', logErr);
+        }
+
+        return data.ok;
+
     } catch (error) {
         console.error('❌ Network Error sending Telegram message:', error);
         toast.error('Network error. Please check your connection and try again.');
+        
+        // Attempt to log failure if possible
+        try {
+             await fetch('/save_telegram_log.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message: message,
+                    status: 'network_error',
+                    metadata: { error: String(error) }
+                })
+            });
+        } catch (e) { /* ignore */ }
+
         return false;
     }
 };

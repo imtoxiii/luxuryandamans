@@ -23,7 +23,13 @@ const OfferSticker = () => {
       whileHover={{ x: 2 }}
       whileTap={{ scale: 0.95 }}
       transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-      onClick={() => navigate('/offer')}
+      onClick={() => {
+        if (window.location.pathname === '/offer') {
+          window.dispatchEvent(new CustomEvent('openDiscountPopup'));
+        } else {
+          navigate('/offer');
+        }
+      }}
     >
       {/* Radiating Glow Pulse */}
       <motion.div

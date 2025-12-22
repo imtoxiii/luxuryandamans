@@ -11,6 +11,14 @@ import { removeLoader } from './lib/loader';
 import DiscountPopup from './components/DiscountPopup';
 import OfferSticker from './components/OfferSticker';
 
+// Offer sticker should show everywhere EXCEPT on the Offer page itself (as it's redundant there)
+const ShowOfferSticker = () => {
+  const location = useLocation();
+  // Don't show on offer page
+  if (location.pathname === '/offer') return null;
+  return <OfferSticker />;
+};
+
 // Lazy load non-critical pages
 const DestinationsPage = lazy(() => import('./pages/Destinations'));
 const PackagesPage = lazy(() => import('./pages/Packages'));
@@ -152,7 +160,7 @@ function App() {
         </Routes>
       </Suspense>
       <ChatWidget />
-      <OfferSticker />
+      <ShowOfferSticker />
       <DiscountPopup />
       <PrefetchManager />
 

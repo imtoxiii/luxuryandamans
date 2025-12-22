@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Phone, MessageCircle, Star, Clock, ArrowRight, MapPin, Shield, Users, CheckCircle2, Sparkles, Calendar, Mail, Copy, X, Check } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
@@ -9,9 +9,11 @@ import { packages } from '../data/packages';
 import { getPackageCardImage } from '../lib/imageLoader';
 import { sendTelegramMessage, formatBookingMessage } from '../lib/telegram';
 import toast, { Toaster } from 'react-hot-toast';
+import { family4n5d } from '../data/packages/family-4n5d';
 
 
 const Offer = () => {
+    const location = useLocation();
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -29,8 +31,107 @@ const Offer = () => {
     const y1 = useTransform(scrollY, [0, 500], [0, 200]);
     const packagesRef = useRef<HTMLElement>(null);
 
-    // Show all packages
-    const featuredPackages = packages;
+    // Dynamic City Logic
+    const getCityFromUrl = () => {
+        const searchParams = new URLSearchParams(location.search);
+        const cityParam = searchParams.get('city');
+        const pathSearch = location.search.toLowerCase();
+        
+        if (cityParam) return cityParam.toLowerCase();
+        if (pathSearch.includes('bangalore') || pathSearch.includes('bengaluru')) return 'bangalore';
+        if (pathSearch.includes('mumbai')) return 'mumbai';
+        if (pathSearch.includes('delhi') || pathSearch.includes('new delhi')) return 'delhi';
+        if (pathSearch.includes('chennai')) return 'chennai';
+        if (pathSearch.includes('kolkata')) return 'kolkata';
+        if (pathSearch.includes('hyderabad')) return 'hyderabad';
+        if (pathSearch.includes('ahmedabad')) return 'ahmedabad';
+        if (pathSearch.includes('pune')) return 'pune';
+        
+        return 'default';
+    };
+
+    const cityKey = getCityFromUrl();
+
+    // Configuration for each city's theme and visuals
+    const cityConfig: Record<string, { 
+        name: string, 
+        label: string,
+        airport: string,
+        colors: { from: string, to: string, text: string, bg: string, badge: string },
+        image: string 
+    }> = {
+        bangalore: { 
+            name: "Bangalore", 
+            label: "Bangalore to Andaman Specials",
+            airport: "Kempegowda Int'l Airport",
+            colors: { from: "from-emerald-400", to: "to-teal-600", text: "text-emerald-400", bg: "bg-emerald-950", badge: "bg-emerald-500" },
+            image: "https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
+        },
+        mumbai: { 
+            name: "Mumbai", 
+            label: "Mumbai to Andaman Specials",
+            airport: "Chhatrapati Shivaji Maharaj Int'l",
+            colors: { from: "from-amber-300", to: "to-yellow-600", text: "text-amber-400", bg: "bg-slate-900", badge: "bg-amber-500" },
+            image: "https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
+        },
+        delhi: { 
+            name: "Delhi", 
+            label: "Delhi to Andaman Specials",
+            airport: "Indira Gandhi Int'l Airport",
+            colors: { from: "from-rose-400", to: "to-orange-600", text: "text-rose-400", bg: "bg-slate-900", badge: "bg-rose-500" },
+            image: "https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
+        },
+        chennai: { 
+            name: "Chennai", 
+            label: "Chennai to Andaman Specials",
+            airport: "Chennai Int'l Airport",
+            colors: { from: "from-orange-400", to: "to-red-600", text: "text-orange-400", bg: "bg-orange-950", badge: "bg-orange-500" },
+            image: "https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
+        },
+        kolkata: { 
+            name: "Kolkata", 
+            label: "Kolkata to Andaman Specials",
+            airport: "Netaji Subhash Chandra Bose Int'l",
+            colors: { from: "from-red-400", to: "to-rose-700", text: "text-red-400", bg: "bg-red-950", badge: "bg-red-600" },
+            image: "https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
+        },
+        hyderabad: { 
+            name: "Hyderabad", 
+            label: "Hyderabad to Andaman Specials",
+            airport: "Rajiv Gandhi Int'l Airport",
+            colors: { from: "from-cyan-400", to: "to-blue-600", text: "text-cyan-400", bg: "bg-slate-900", badge: "bg-cyan-600" },
+            image: "https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
+        },
+        pune: { 
+            name: "Pune", 
+            label: "Pune to Andaman Specials",
+            airport: "Pune Int'l Airport",
+            colors: { from: "from-violet-400", to: "to-purple-600", text: "text-violet-400", bg: "bg-slate-900", badge: "bg-violet-600" },
+            image: "https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
+        },
+        ahmedabad: { 
+            name: "Ahmedabad", 
+            label: "Ahmedabad to Andaman Specials",
+            airport: "Sardar Vallabhbhai Patel Int'l",
+            colors: { from: "from-yellow-400", to: "to-orange-500", text: "text-yellow-400", bg: "bg-slate-900", badge: "bg-yellow-600" },
+            image: "https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
+        },
+        default: { 
+            name: "", 
+            label: "Exclusive Andaman Packages",
+            airport: "",
+            colors: { from: "from-amber-200", to: "to-yellow-500", text: "text-amber-300", bg: "bg-slate-900", badge: "bg-amber-500" },
+            image: "https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
+        }
+    };
+
+    const currentCity = cityConfig[cityKey] || cityConfig['default'];
+    // Use the specific city image if available, else fallback to the generic Andaman one if it's default
+    const heroImage = currentCity.image; 
+    const isGeneric = cityKey === 'default';
+
+    // Show 3 packages - 2 popular + 1 family package
+    const featuredPackages = [packages[0], packages[1], family4n5d];
 
     const scrollToForm = () => {
         const formElement = document.getElementById('quick-enquiry');
@@ -46,7 +147,7 @@ const Offer = () => {
         try {
             const message = formatBookingMessage({
                 ...formData,
-                tripType: 'Landing Page Enquiry',
+                tripType: `Landing Page Enquiry (${currentCity.name || 'Generic'})`,
                 date: new Date().toISOString().split('T')[0]
             });
 
@@ -134,10 +235,10 @@ const Offer = () => {
     };
 
     return (
-        <div className="min-h-screen font-sans bg-slate-50 selection:bg-purple-100 selection:text-purple-900 overflow-x-hidden">
+        <div className={`min-h-screen font-sans selection:bg-purple-100 selection:text-purple-900 overflow-x-hidden pb-24 md:pb-0 ${currentCity.colors.bg}`}>
             <SEO
-                title="Exclusive Andaman Tour Packages | 50% OFF Limited Time"
-                description="Book your dream Andaman vacation. Luxury stays, custom itineraries, and 24/7 support. Best price guarantee!"
+                title={`Exclusive Andaman Packages ${currentCity.name ? `from ${currentCity.name}` : ''} | 50% OFF`}
+                description={`Book your dream Andaman vacation ${currentCity.name ? `from ${currentCity.name}` : ''}. Luxury stays, custom itineraries, and 24/7 support.`}
             />
             <Header />
             <Toaster position="top-center" />
@@ -271,107 +372,111 @@ const Offer = () => {
                 )}
             </AnimatePresence>
 
-            {/* Hero Section - Cleaner & Brighter */}
-            <div className="relative h-screen flex items-center justify-center overflow-hidden bg-slate-900">
+            {/* Hero Section - Main with dynamic content */}
+            <div className={`relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden pb-12 pt-24 md:pt-0`}>
                 <motion.div
                     style={{ y: y1 }}
-                    className="absolute inset-0 z-0"
+                    className="absolute inset-0 z-0 text-center"
                 >
-                    {/* Increased overlay opacity for better text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/10 to-slate-700/30 z-10" />
+                    {/* Very light overlay to ensure text readability but keep image extremely bright and visible */}
+                    <div className="absolute inset-0 bg-black/10 z-10" />
                     <img
-                        src="https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
+                        src={heroImage}
                         alt="Andaman Paradise"
                         className="w-full h-full object-cover scale-105"
                     />
                 </motion.div>
 
-                <div className="relative z-20 container mx-auto px-4 text-center text-white mt-20">
+                <div className="relative z-20 container mx-auto px-4 text-center text-white mt-10 md:mt-20">
                     <motion.div
                         initial="hidden"
                         animate="visible"
                         variants={containerVariants}
-                        className="max-w-5xl mx-auto"
+                        className="max-w-4xl mx-auto"
                     >
-                        <motion.div variants={itemVariants} className="inline-flex items-center gap-2 py-2 px-6 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-sm font-semibold mb-8 hover:bg-white/20 transition-all cursor-default">
-                            <Sparkles className="w-4 h-4 text-amber-300" />
-                            <span className="tracking-wide uppercase text-xs text-white">Premium Travel Experience</span>
+                        <motion.div variants={itemVariants} className={`inline-flex items-center gap-2 py-2 px-6 rounded-full text-white text-sm font-bold mb-8 shadow-lg shadow-black/20 ${currentCity.colors.badge}`}>
+                            <MapPin className="w-4 h-4" />
+                            <span className="tracking-wide uppercase text-xs">{currentCity.label}</span>
                         </motion.div>
 
-                        <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl lg:text-9xl font-display font-bold mb-8 leading-[1.1] tracking-tight drop-shadow-lg">
-                            Paradise <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-500">Awaits</span>
+                        <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 leading-[1.2] tracking-tight drop-shadow-2xl">
+                            <span className="drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">Planning an Andaman Trip</span><br/> 
+                            <span className="inline-block mt-2 transform -rotate-1">
+                                <span className={`bg-white/95 backdrop-blur-xl rounded-2xl px-4 md:px-6 py-1 md:py-2 shadow-2xl border border-white/50 text-3xl md:text-5xl lg:text-7xl inline-block`}>
+                                    <span className={`text-transparent bg-clip-text bg-gradient-to-r ${currentCity.colors.from} ${currentCity.colors.to} font-extrabold tracking-tight`}>
+                                        {isGeneric ? 'for your loved ones?' : `from ${currentCity.name}?`}
+                                    </span>
+                                </span>
+                            </span>
                         </motion.h1>
 
-                        <motion.p variants={itemVariants} className="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md">
-                            Experience the untouched beauty of Andaman with our curated luxury packages.
-                            <span className="block mt-2 font-semibold text-white">Save up to 30% this season.</span>
+                        <motion.p variants={itemVariants} className="text-xl md:text-2xl text-white/90 mb-10 max-w-xl mx-auto font-light leading-relaxed drop-shadow-sm">
+                            Premium couple & family packages. <br className="hidden md:block"/>
+                            <span className="font-semibold text-white">Direct local pricing.</span>
                         </motion.p>
 
-                        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-3xl mx-auto">
-                            <motion.button
-                                onClick={scrollToForm}
-                                className="group relative w-full sm:w-auto px-10 py-5 bg-white text-slate-900 rounded-2xl font-bold text-lg hover:bg-amber-400 transition-all flex items-center justify-center gap-3 shadow-[0_10px_40px_rgba(255,255,255,0.2)] hover:shadow-[0_15px_50px_rgba(251,191,36,0.4)] transform hover:-translate-y-1"
-                                whileHover={{ scale: 1.02 }}
-                                animate={{
-                                    boxShadow: [
-                                        '0 10px 40px rgba(255,255,255,0.2)',
-                                        '0 10px 50px rgba(255,255,255,0.3)',
-                                        '0 10px 40px rgba(255,255,255,0.2)'
-                                    ]
-                                }}
-                                transition={{
-                                    boxShadow: {
-                                        duration: 2,
-                                        repeat: Infinity,
-                                        ease: "easeInOut"
-                                    }
-                                }}
-                            >
-                                Plan My Trip <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                            </motion.button>
+                        <motion.div variants={itemVariants} className="flex flex-col items-center justify-center gap-4 w-full max-w-sm mx-auto">
                             <a
-                                href="https://wa.me/916297576826?text=Hi,%20I%20want%20to%20plan%20my%20Andaman%20trip."
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-full sm:w-auto px-10 py-5 bg-green-500/20 hover:bg-green-500/30 backdrop-blur-md text-white border border-green-400/30 rounded-2xl font-bold text-lg transition-all flex items-center justify-center gap-3 shadow-lg shadow-green-500/20 transform hover:-translate-y-1"
+                                href="tel:+916297576826"
+                                onClick={(e) => handleContactClick(e, 'phone')}
+                                className="group relative w-full px-8 py-4 bg-white text-slate-900 rounded-full font-bold text-lg hover:bg-slate-50 transition-all flex items-center justify-center gap-3 shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:shadow-[0_0_50px_rgba(255,255,255,0.3)] transform hover:-translate-y-1"
                             >
-                                <MessageCircle className="w-5 h-5" /> WhatsApp Us
-                            </a>
-                            <a
-                                href="https://mail.google.com/mail/?view=cm&fs=1&to=luxuryandamans@gmail.com&su=Andaman%20Trip%20Enquiry&body=Hi,%0D%0A%0D%0AI%20want%20to%20plan%20my%20Andaman%20trip.%0D%0A%0D%0APlease%20contact%20me%20with%20more%20details.%0D%0A%0D%0AThank%20you!"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="hidden md:flex w-full sm:w-auto px-10 py-5 bg-white/10 backdrop-blur-md text-white border border-white/30 rounded-2xl font-bold text-lg hover:bg-white/20 transition-all items-center justify-center gap-3 shadow-lg transform hover:-translate-y-1"
-                            >
-                                <Mail className="w-5 h-5" /> Email Us
+                                <div className="absolute inset-0 rounded-full border border-slate-200 opacity-50 animate-pulse"></div>
+                                <Phone className={`w-5 h-5 fill-current ${currentCity.name ? currentCity.colors.text : 'text-amber-600'}`} />
+                                <span>Call for Best Price</span>
                             </a>
                         </motion.div>
 
-                        <motion.div variants={itemVariants} className="mt-16 flex flex-wrap items-center justify-center gap-8 md:gap-16 text-sm md:text-base text-white/80 font-medium tracking-wide">
-                            <div className="flex items-center gap-3">
-                                <div className="p-1 rounded-full bg-amber-500/30 backdrop-blur-sm"><CheckCircle2 className="w-4 h-4 text-amber-300" /></div>
-                                <span className="drop-shadow-sm">Verified Hotels</span>
+                        {/* Trust Indicators */}
+                        <motion.div variants={itemVariants} className="mt-12 pt-8 border-t border-white/10 flex flex-wrap justify-center gap-6 md:gap-12 text-sm text-white/90">
+                            <div className="flex items-center gap-2">
+                                <Shield className="w-5 h-5 text-amber-400" />
+                                <span>Govt. Registered</span>
                             </div>
-                            <div className="flex items-center gap-3">
-                                <div className="p-1 rounded-full bg-amber-500/30 backdrop-blur-sm"><CheckCircle2 className="w-4 h-4 text-amber-300" /></div>
-                                <span className="drop-shadow-sm">24/7 Support</span>
+                            <div className="flex items-center gap-2">
+                                <Star className="w-5 h-5 text-amber-400" />
+                                <span>4.9/5 Rated</span>
                             </div>
-                            <div className="flex items-center gap-3">
-                                <div className="p-1 rounded-full bg-amber-500/30 backdrop-blur-sm"><CheckCircle2 className="w-4 h-4 text-amber-300" /></div>
-                                <span className="drop-shadow-sm">Best Price Guarantee</span>
+                            <div className="flex items-center gap-2">
+                                <Users className="w-5 h-5 text-amber-400" />
+                                <span>10k+ Happy Guests</span>
                             </div>
                         </motion.div>
                     </motion.div>
                 </div>
             </div>
 
+            {/* Human Trust Section */}
+            <section className="bg-white py-12 border-b border-slate-100">
+                <div className="container mx-auto px-4 max-w-3xl">
+                    <div className="flex flex-col md:flex-row items-center gap-6 bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <div className="w-20 h-20 rounded-full bg-slate-200 overflow-hidden shrink-0 border-2 border-white shadow-md">
+                            {/* Placeholder for Sumeet's image */}
+                            <div className="w-full h-full flex items-center justify-center bg-slate-800 text-white font-bold text-xl">S</div>
+                        </div>
+                        <div className="text-center md:text-left">
+                            <p className="text-lg font-bold text-slate-800 mb-1">"Hi, I’m Sumeet – Local Andaman Travel Expert."</p>
+                            <p className="text-slate-600 mb-3">Call me directly for honest advice and best local pricing. No hidden costs.</p>
+                            <a 
+                                href={`https://wa.me/916297576826?text=Hi,%20I%E2%80%99m%20planning%20an%20Andaman%20trip${currentCity.name ? `%20from%20${currentCity.name}` : ''}.%20Please%20guide%20me.`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-green-600 font-bold hover:underline"
+                            >
+                                <MessageCircle className="w-5 h-5" /> Chat with me on WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Sticky Action Bar - Appears on Scroll */}
             <motion.div
-                className="fixed top-[72px] left-0 right-0 z-[100] md:block"
-                initial={{ y: -100, opacity: 0 }}
+                className="fixed left-0 right-0 z-[100] top-[72px] md:top-auto md:bottom-0"
+                initial={{ opacity: 0, y: 100 }}
                 animate={{
-                    y: showStickyBar ? 0 : -100,
-                    opacity: showStickyBar ? 1 : 0
+                    opacity: showStickyBar ? 1 : 0,
+                    y: showStickyBar ? 0 : 100
                 }}
                 transition={{
                     type: "spring",
@@ -385,7 +490,7 @@ const Offer = () => {
                             <a
                                 href="tel:+916297576826"
                                 onClick={(e) => handleContactClick(e, 'phone')}
-                                className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 min-w-[60px] md:min-w-0 text-slate-600 hover:text-amber-600 transition-colors group"
+                                className="hidden md:flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 min-w-[60px] md:min-w-0 text-slate-600 hover:text-amber-600 transition-colors group"
                             >
                                 <div className="w-10 h-10 md:w-9 md:h-9 rounded-full bg-amber-50 group-hover:bg-amber-100 flex items-center justify-center transition-colors">
                                     <Phone className="w-5 h-5 md:w-4 md:h-4 text-amber-600" />
@@ -405,7 +510,7 @@ const Offer = () => {
                                 href="https://wa.me/916297576826?text=Hi,%20I%20want%20to%20plan%20my%20Andaman%20trip."
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 min-w-[60px] md:min-w-0 text-slate-600 hover:text-green-600 transition-colors group"
+                                className="hidden md:flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 min-w-[60px] md:min-w-0 text-slate-600 hover:text-green-600 transition-colors group"
                             >
                                 <div className="w-10 h-10 md:w-9 md:h-9 rounded-full bg-green-50 group-hover:bg-green-100 flex items-center justify-center transition-colors">
                                     <MessageCircle className="w-5 h-5 md:w-4 md:h-4 text-green-600" />
@@ -428,16 +533,6 @@ const Offer = () => {
                 </div>
             </motion.div>
 
-            {/* Trust Bar - Clean & Minimal */}
-            <div className="bg-white border-b border-slate-100 py-8 overflow-hidden relative z-20">
-                <div className="container mx-auto px-4">
-                    <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-80">
-                        <div className="flex items-center gap-3 font-display font-bold text-lg md:text-xl text-slate-800"><Shield className="w-5 h-5 md:w-6 md:h-6 text-amber-500" /> SafeTravels</div>
-                        <div className="flex items-center gap-3 font-display font-bold text-lg md:text-xl text-slate-800"><Star className="w-5 h-5 md:w-6 md:h-6 text-amber-500" /> 4.9/5 Reviews</div>
-                        <div className="flex items-center gap-3 font-display font-bold text-lg md:text-xl text-slate-800"><Users className="w-5 h-5 md:w-6 md:h-6 text-amber-500" /> 10k+ Happy Guests</div>
-                    </div>
-                </div>
-            </div>
 
             {/* Packages Section - Refined Cards */}
             <section ref={packagesRef} className="py-16 md:py-24 bg-slate-50 relative">
@@ -459,6 +554,8 @@ const Offer = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {featuredPackages.map((pkg, index) => {
                             const cardImage = getPackageCardImage(pkg.id || pkg.slug) || pkg.image;
+                            const isMostBooked = index === 1; // Highlight the 2nd one
+
                             return (
                                 <motion.div
                                     key={pkg.slug}
@@ -466,13 +563,24 @@ const Offer = () => {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true, margin: "-50px" }}
                                     transition={{ duration: 0.7, delay: index * 0.1 }}
-                                    className="group"
+                                    className={`group relative ${isMostBooked ? 'md:-mt-4 md:mb-4' : ''}`}
                                 >
-                                    <Link
-                                        to={`/packages/${pkg.slug}?from=offer`}
-                                        className="block bg-white rounded-[2.5rem] overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-500 border border-slate-100 h-full hover:-translate-y-2"
+                                    {isMostBooked && (
+                                        <div className="absolute -top-4 left-0 right-0 z-20 flex justify-center">
+                                            <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-sm font-bold px-4 py-1.5 rounded-full shadow-lg shadow-amber-500/20 flex items-center gap-1.5 uppercase tracking-wide">
+                                                <Star className="w-3.5 h-3.5 fill-current" /> Most Booked by {currentCity.name || 'Couples'}
+                                            </span>
+                                        </div>
+                                    )}
+
+                                    <div
+                                        onClick={() => window.dispatchEvent(new CustomEvent('openDiscountPopup', { detail: { package: pkg.title } }))}
+                                        className={`block bg-white rounded-[2.5rem] overflow-hidden shadow-lg transition-all duration-500 border h-full cursor-pointer ${isMostBooked
+                                            ? 'shadow-xl shadow-amber-500/10 border-amber-200 scale-100 md:scale-105 z-10'
+                                            : 'border-slate-100 hover:shadow-2xl hover:shadow-amber-500/10 hover:-translate-y-2'
+                                            }`}
                                     >
-                                        <div className="relative h-80 overflow-hidden">
+                                        <div className="relative h-72 overflow-hidden">
                                             <img
                                                 src={cardImage}
                                                 alt={pkg.title}
@@ -485,7 +593,7 @@ const Offer = () => {
                                             </div>
 
                                             <div className="absolute bottom-6 left-6 right-6 text-white">
-                                                <h3 className="text-3xl font-display font-bold mb-2 leading-tight">{pkg.title}</h3>
+                                                <h3 className="text-2xl font-display font-bold mb-2 leading-tight">{pkg.title}</h3>
                                                 <div className="flex items-center gap-2 text-sm text-slate-200 font-medium">
                                                     <MapPin className="w-4 h-4 text-amber-400" />
                                                     <span>Port Blair • Havelock • Neil</span>
@@ -493,46 +601,67 @@ const Offer = () => {
                                             </div>
                                         </div>
 
-                                        <div className="p-8 flex flex-col relative">
-                                            <div className="absolute -top-6 right-8 w-14 h-14 bg-amber-500 rounded-2xl flex items-center justify-center shadow-lg shadow-amber-500/30 group-hover:scale-110 transition-transform duration-300 rotate-3 group-hover:rotate-6">
-                                                <ArrowRight className="w-6 h-6 text-white -rotate-45 group-hover:rotate-0 transition-transform duration-500" />
-                                            </div>
-
-                                            <p className="text-slate-600 text-base mb-8 line-clamp-3 leading-relaxed font-light">
+                                        <div className="p-6 md:p-8 flex flex-col relative text-left">
+                                            <p className="text-slate-600 text-sm md:text-base mb-6 line-clamp-3 leading-relaxed font-normal">
                                                 {pkg.description}
                                             </p>
 
                                             <div className="space-y-6">
                                                 <div className="flex flex-wrap gap-2">
                                                     {pkg.features.slice(0, 3).map((feature, idx) => (
-                                                        <span key={idx} className="text-xs bg-slate-50 text-slate-600 px-4 py-2 rounded-full font-medium border border-slate-100">
+                                                        <span key={idx} className="text-xs bg-slate-50 text-slate-600 px-3 py-1.5 rounded-full font-medium border border-slate-100">
                                                             {feature}
                                                         </span>
                                                     ))}
                                                 </div>
 
-                                                <div className="pt-6 border-t border-slate-100 flex items-end justify-between">
-                                                    <div>
-                                                        <p className="text-xs text-slate-400 font-bold uppercase tracking-widest mb-1">Starting From</p>
-                                                        <p className="text-3xl font-display font-bold text-slate-900">₹{pkg.price.toLocaleString()}</p>
+                                                <div className="pt-6 border-t border-slate-100">
+                                                    <div className="flex items-end justify-between mb-2">
+                                                        <div>
+                                                            <p className="text-xs text-slate-400 font-bold uppercase tracking-widest mb-1">Starting From</p>
+                                                            <p className="text-3xl font-display font-bold text-slate-900">₹{pkg.price.toLocaleString()}</p>
+                                                        </div>
                                                     </div>
-                                                    <span className="px-8 py-3 bg-slate-900 text-white rounded-2xl font-bold text-sm group-hover:bg-amber-500 transition-colors shadow-lg group-hover:shadow-amber-500/30">
-                                                        View Plan
-                                                    </span>
+                                                    <p className="text-xs text-red-500 font-medium mb-4 flex items-center gap-1">
+                                                        <Clock className="w-3 h-3" /> Ferry seats are limited – prices may change
+                                                    </p>
+
+                                                    <a
+                                                        href="tel:+916297576826"
+                                                        onClick={(e) => handleContactClick(e, 'phone')}
+                                                        className={`w-full py-4 text-white rounded-xl font-bold text-sm transition-all shadow-lg flex items-center justify-center gap-2 ${isMostBooked
+                                                            ? 'bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 shadow-amber-500/30'
+                                                            : 'bg-slate-900 hover:bg-slate-800'
+                                                            }`}
+                                                    >
+                                                        <Phone className="w-4 h-4" /> Call for Best Price
+                                                    </a>
+
+                                                    <Link
+                                                        to={`/packages/${pkg.slug}?from=offer`}
+                                                        className="block text-center mt-3 text-xs font-bold text-slate-500 hover:text-amber-600 underline"
+                                                    >
+                                                        View Full Itinerary
+                                                    </Link>
                                                 </div>
                                             </div>
                                         </div>
-                                    </Link>
+                                    </div>
                                 </motion.div>
                             );
                         })}
                     </div>
 
-                    <div className="mt-20 text-center">
-                        <Link to="/packages" className="inline-flex items-center gap-3 text-slate-900 font-bold text-lg hover:text-amber-600 transition-colors group">
-                            <span className="border-b-2 border-slate-900 group-hover:border-amber-600 pb-1 transition-colors">View All Packages</span>
+                    <div className="mt-16 text-center">
+                        <p className="text-slate-500 mb-4 font-medium">Not suitable? We customize.</p>
+                        <a
+                            href="tel:+916297576826"
+                            onClick={(e) => handleContactClick(e, 'phone')}
+                            className="inline-flex items-center gap-3 text-amber-600 font-bold text-lg hover:text-amber-700 transition-colors group"
+                        >
+                            <span className="border-b-2 border-amber-600/30 group-hover:border-amber-600 pb-1 transition-colors">Call us for a custom-made itinerary</span>
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -577,7 +706,12 @@ const Offer = () => {
                                 link: "/experiences/parasailing"
                             }
                         ].map((activity, idx) => (
-                            <Link key={idx} to={activity.link}>
+                            <a 
+                                key={idx} 
+                                href={`https://wa.me/916297576826?text=Hi,%20I'm%20interested%20in%20${encodeURIComponent(activity.title)}%20in%20Andaman.`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 <motion.div
                                     initial={{ opacity: 0, y: 30 }}
                                     whileInView={{ opacity: 1, y: 0 }}
@@ -600,7 +734,7 @@ const Offer = () => {
                                         </p>
                                     </div>
                                 </motion.div>
-                            </Link>
+                            </a>
                         ))}
                     </div>
 
@@ -716,13 +850,19 @@ const Offer = () => {
                                         <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
                                             <Phone className="w-6 h-6" />
                                         </div>
-                                        <span className="font-medium text-lg">+91 62975 76826</span>
+                                        <div className="flex flex-col">
+                                            <span className="text-xs text-slate-400 uppercase tracking-wider">Call Us 24/7</span>
+                                            <span className="font-medium text-lg">+91 62975 76826</span>
+                                        </div>
                                     </div>
                                     <div className="flex items-center gap-4">
                                         <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
                                             <MessageCircle className="w-6 h-6" />
                                         </div>
-                                        <span className="font-medium text-lg">Live Chat Available</span>
+                                         <div className="flex flex-col">
+                                            <span className="text-xs text-slate-400 uppercase tracking-wider">WhatsApp Support</span>
+                                            <span className="font-medium text-lg">Live Chat Available</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -794,6 +934,27 @@ const Offer = () => {
             </section>
 
             <Footer />
+
+            {/* Mobile Sticky Bottom Bar */}
+            <div className="fixed bottom-0 left-0 right-0 p-3 bg-white/90 backdrop-blur-xl border-t border-gray-100/50 z-[999] md:hidden shadow-[0_-8px_30px_rgba(0,0,0,0.12)]">
+                <div className="flex gap-3">
+                    <a
+                        href="tel:+916297576826"
+                        className="flex-1 flex items-center justify-center gap-2 bg-slate-900 text-white py-3.5 rounded-2xl font-bold text-base shadow-lg active:scale-95 transition-all relative overflow-hidden group"
+                    >
+                         <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                        <Phone className="w-5 h-5 animate-bounce" /> <span className="tracking-wide">Call Now</span>
+                    </a>
+                    <a
+                        href={`https://wa.me/916297576826?text=Hi,%20I%E2%80%99m%20planning%20an%20Andaman%20trip${currentCity.name ? `%20from%20${currentCity.name}` : ''}.%20Please%20guide%20me.`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-3.5 rounded-2xl font-bold text-base shadow-lg shadow-emerald-500/30 active:scale-95 transition-all"
+                    >
+                        <MessageCircle className="w-5 h-5" /> WhatsApp Quote
+                    </a>
+                </div>
+            </div>
         </div>
     );
 };

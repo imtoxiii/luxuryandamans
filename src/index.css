@@ -732,3 +732,53 @@ html.no-scroll {
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     @apply bg-slate-400;
   }
+
+/* Low Power Mode Optimizations */
+.low-power-mode * {
+  /* Disable heavy animations */
+  animation-duration: 0.1s !important;
+  transition-duration: 0.1s !important;
+  
+  /* Disable backdrop filters which are very expensive */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Specific overrides for glass classes in low power mode */
+.low-power-mode .glass-nav,
+.low-power-mode .glass-sunset,
+.low-power-mode .glass-sunset-button,
+.low-power-mode .glass-sunset-section,
+.low-power-mode .nav-solid,
+.low-power-mode .nav-white-bg {
+  background: rgba(22, 33, 62, 0.95); /* Opaque fallback for dark glass */
+}
+
+.low-power-mode .nav-white-bg {
+  background: rgba(255, 255, 255, 0.98) !important;
+}
+
+.low-power-mode .glass-sunset-button, 
+.low-power-mode .glass-sunset-button-dark,
+.low-power-mode .glass-sunset-button-mobile {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: none !important;
+}
+
+/* Remove expensive shadows */
+.low-power-mode .shadow-lg,
+.low-power-mode .shadow-xl,
+.low-power-mode .shadow-2xl {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+.low-power-mode .card-modern:hover {
+  transform: none !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Disable parallax or fixed backgrounds if they exist */
+.low-power-mode .bg-fixed {
+  background-attachment: scroll !important;
+}

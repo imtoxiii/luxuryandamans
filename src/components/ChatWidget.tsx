@@ -7,8 +7,8 @@ const ChatWidget = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const location = useLocation();
 
-  // Check if current page is a legal page
-  const isLegalPage = ['/privacy', '/terms', '/sitemap'].includes(location.pathname);
+  // Check if current page is excluded (legal pages or offer page)
+  const isLegalPage = ['/privacy', '/terms', '/sitemap', '/offer'].includes(location.pathname);
 
   const phoneNumber = '+916297576826';
   const whatsappMessage = encodeURIComponent('Hi, I want tour details for Andaman');

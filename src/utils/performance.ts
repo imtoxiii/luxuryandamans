@@ -11,14 +11,14 @@ export const isLowEndDevice = (): boolean => {
 
   // Hardware Concurrency (number of logic processors)
   const logicalProcessors = navigator.hardwareConcurrency;
-  if (logicalProcessors && logicalProcessors <= 4) {
-    return true; // Likely a low-end mobile device or older laptop
+  if (logicalProcessors && logicalProcessors <= 2) {
+    return true; // Likely a very low-end device
   }
 
   // Device Memory (RAM in GB) - API not available in all browsers
   // @ts-ignore
   const deviceMemory = navigator.deviceMemory;
-  if (deviceMemory && deviceMemory <= 4) {
+  if (deviceMemory && deviceMemory <= 2) {
     return true;
   }
 

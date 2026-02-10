@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Palmtree } from 'lucide-react';
+import { } from 'lucide-react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
@@ -45,22 +45,22 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
     // Prevent body scroll when menu is open
     if (!isMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('no-scroll');
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.classList.remove('no-scroll');
     }
   };
 
   // Close menu when clicking on a link
   const closeMenu = () => {
     setIsMenuOpen(false);
-    document.body.style.overflow = 'unset';
+    document.body.classList.remove('no-scroll');
   };
 
   // Clean up on unmount
   useEffect(() => {
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.classList.remove('no-scroll');
     };
   }, []);
 
@@ -209,8 +209,8 @@ const Header = () => {
                 <Link
                   to="/enquiry"
                   className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${showWhiteBackground
-                      ? 'bg-gradient-to-r from-teal-600 to-blue-600 text-white hover:shadow-lg'
-                      : 'bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white/30'
+                    ? 'bg-gradient-to-r from-teal-600 to-blue-600 text-white hover:shadow-lg'
+                    : 'bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white/30'
                     }`}
                 >
                   Book Now
@@ -222,8 +222,8 @@ const Header = () => {
             <button
               onClick={toggleMenu}
               className={`md:hidden ${isMenuOpen ? 'fixed top-4 right-4' : 'relative'} w-14 h-14 flex flex-col justify-center items-center z-[10002] rounded-full transition-all duration-300 ${isMenuOpen
-                  ? 'bg-white/30 backdrop-blur-lg border-2 border-white shadow-2xl'
-                  : (showWhiteBackground ? 'text-gray-900 hover:bg-gray-100' : 'text-white hover:bg-white/10')
+                ? 'bg-white/30 backdrop-blur-lg border-2 border-white shadow-2xl'
+                : (showWhiteBackground ? 'text-gray-900 hover:bg-gray-100' : 'text-white hover:bg-white/10')
                 } focus:outline-none`}
               aria-label="Toggle navigation menu"
             >
@@ -310,10 +310,10 @@ const Header = () => {
                       to={item.path}
                       onClick={closeMenu}
                       className={`block text-5xl md:text-6xl font-light tracking-wide transition-colors duration-300 ${item.name === 'Home'
-                          ? 'text-gray-400 hover:text-gray-300'
-                          : location.pathname === item.path
-                            ? 'text-teal-400'
-                            : 'text-white hover:text-gray-300'
+                        ? 'text-gray-400 hover:text-gray-300'
+                        : location.pathname === item.path
+                          ? 'text-teal-400'
+                          : 'text-white hover:text-gray-300'
                         }`}
                     >
                       {item.name.toUpperCase()}

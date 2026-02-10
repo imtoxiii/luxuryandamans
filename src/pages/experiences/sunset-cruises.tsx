@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
-import { Sunset, Ship, Wine, Camera, Clock, Users, MapPin, Music, Utensils, CheckCircle, Heart, Star, Calendar, Shield } from 'lucide-react';
+import { Sunset, Ship, Wine, Camera, Clock, MapPin, Music, Utensils, CheckCircle, Heart, Star } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const SunsetCruisesPage = () => {
@@ -144,7 +144,7 @@ const SunsetCruisesPage = () => {
       }}
       slug="sunset-cruises"
       seo={{
-        title: "Sunset Cruises in Andaman | Romantic Dinner & Private Yacht 2025",
+        title: "Sunset Cruises in Andaman | Romantic Dinner & Private Yacht 2026",
         description: "Enjoy romantic sunset cruises in Andaman Islands. Luxury dinner cruises, private yachts, catamaran rides. Starting ₹4,500 per person. Book online.",
         keywords: "sunset cruise andaman, andaman sunset cruise, dinner cruise port blair, private yacht andaman, catamaran cruise havelock, romantic cruise andaman, evening cruise andaman, sailing cruise andaman, sunset point andaman, andaman sea cruise"
       }}
@@ -328,7 +328,7 @@ const SunsetCruisesPage = () => {
                           slug: 'sunset-cruises',
                           selectedActivities: [cruise.name]
                         }));
-                      } catch (_) { /* no-op */ }
+                      } catch { /* no-op */ }
                     }}
                     className="block w-full py-3 bg-amber-600 text-white text-center rounded-xl font-bold hover:bg-amber-700 transition-colors shadow-lg shadow-amber-600/20 hover:shadow-amber-600/40"
                   >

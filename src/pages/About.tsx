@@ -130,10 +130,10 @@ const GuidePage = () => {
   return (
     <div className="min-h-screen bg-pearl font-sans selection:bg-azure/20 selection:text-azure">
       <SEO
-        title="Andaman Travel Guide 2025 | How to Reach, Best Time, Things to Do & Travel Tips"
-        description="Complete Andaman travel guide for 2025. Learn how to reach Andaman by flight & ship, best time to visit (Oct-May), required documents, ferry bookings, top places to visit, cuisine, shopping & essential tips. Free PDF guide."
+        title="Andaman Travel Guide 2026 | How to Reach, Best Time, Things to Do & Travel Tips"
+        description="Complete Andaman travel guide for 2026. Learn how to reach Andaman by flight & ship, best time to visit (Oct-May), required documents, ferry bookings, top places to visit, cuisine, shopping & essential tips. Free PDF guide."
         pathname={location.pathname}
-        keywords="andaman travel guide, andaman guide 2025, how to reach andaman, best time to visit andaman, andaman trip planning, andaman tourism, things to do in andaman, andaman itinerary, andaman permit requirements, andaman weather, port blair guide, havelock guide, andaman ferry guide, andaman for first timers, andaman packing list, andaman food guide, andaman shopping, andaman travel tips, andaman safety, andaman islands information"
+        keywords="andaman travel guide, andaman guide 2026, how to reach andaman, best time to visit andaman, andaman trip planning, andaman tourism, things to do in andaman, andaman itinerary, andaman permit requirements, andaman weather, port blair guide, havelock guide, andaman ferry guide, andaman for first timers, andaman packing list, andaman food guide, andaman shopping, andaman travel tips, andaman safety, andaman islands information"
         targetAudience="all"
         extraStructuredData={[breadcrumbStructuredData, faqStructuredData]}
       />
@@ -144,7 +144,7 @@ const GuidePage = () => {
       {/* Hero Section - Editorial Style */}
       <div className="relative h-screen min-h-[650px] flex items-center justify-center overflow-hidden">
         {/* Background Image with Parallax & Overlay */}
-        <motion.div 
+        <motion.div
           className="absolute inset-0 z-0"
           style={{ y: useTransform(useScroll().scrollY, [0, 1000], [0, 400]) }}
         >
@@ -169,7 +169,7 @@ const GuidePage = () => {
           >
             <div className="inline-flex items-center gap-3 mb-6 px-4 py-1.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-azure animate-pulse"></span>
-              <span className="text-white/90 text-xs font-bold tracking-[0.2em] uppercase font-sans">The Official Guide 2025</span>
+              <span className="text-white/90 text-xs font-bold tracking-[0.2em] uppercase font-sans">The Official Guide 2026</span>
             </div>
 
             <h1 className="flex flex-col items-center text-white mb-6">
@@ -184,19 +184,19 @@ const GuidePage = () => {
               Pristine beaches, hidden gems, and luxury stays.
             </p>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
             >
-              <button 
+              <button
                 onClick={() => scrollToSection('overview')}
                 className="w-full sm:w-auto px-8 py-3.5 bg-azure text-white rounded-full font-bold text-sm tracking-wide hover:bg-white hover:text-azure transition-all duration-300 shadow-lg shadow-azure/20"
               >
                 Start Planning
               </button>
-              <button 
+              <button
                 onClick={() => scrollToSection('itineraries')}
                 className="w-full sm:w-auto px-8 py-3.5 bg-transparent border border-white/30 text-white rounded-full font-bold text-sm tracking-wide hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
               >
@@ -206,29 +206,29 @@ const GuidePage = () => {
           </motion.div>
 
           {/* Quick Stats Strip */}
-          <motion.div 
-             initial={{ opacity: 0, width: "0%" }}
-             animate={{ opacity: 1, width: "100%" }}
-             transition={{ delay: 1, duration: 1 }}
-             className="hidden lg:flex absolute bottom-8 left-0 right-0 max-w-4xl mx-auto py-6 px-10 rounded-2xl border border-white/10 bg-black/20 backdrop-blur-xl justify-between items-center text-white"
+          <motion.div
+            initial={{ opacity: 0, width: "0%" }}
+            animate={{ opacity: 1, width: "100%" }}
+            transition={{ delay: 1, duration: 1 }}
+            className="hidden lg:flex absolute bottom-8 left-0 right-0 max-w-4xl mx-auto py-6 px-10 rounded-2xl border border-white/10 bg-black/20 backdrop-blur-xl justify-between items-center text-white"
           >
-             {[
-               { label: 'Best Time', val: 'Oct - May', icon: <Sun className="w-4 h-4 text-yellow-400" /> },
-               { label: 'Avg Temp', val: '24°-30°C', icon: <Thermometer className="w-4 h-4 text-orange-400" /> },
-               { label: 'Flight Time', val: '2 hrs from Chennai', icon: <Plane className="w-4 h-4 text-blue-400" /> },
-               { label: 'Islands', val: '37 Inhabited', icon: <Globe className="w-4 h-4 text-green-400" /> },
-             ].map((stat, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="p-2 rounded-full bg-white/5 border border-white/10">
-                    {stat.icon}
-                  </div>
-                  <div className="text-left">
-                    <p className="text-[10px] uppercase tracking-widest text-white/50">{stat.label}</p>
-                    <p className="text-sm font-bold font-display tracking-wide">{stat.val}</p>
-                  </div>
-                  {i !== 3 && <div className="h-8 w-px bg-white/10 ml-8" />}
+            {[
+              { label: 'Best Time', val: 'Oct - May', icon: <Sun className="w-4 h-4 text-yellow-400" /> },
+              { label: 'Avg Temp', val: '24°-30°C', icon: <Thermometer className="w-4 h-4 text-orange-400" /> },
+              { label: 'Flight Time', val: '2 hrs from Chennai', icon: <Plane className="w-4 h-4 text-blue-400" /> },
+              { label: 'Islands', val: '37 Inhabited', icon: <Globe className="w-4 h-4 text-green-400" /> },
+            ].map((stat, i) => (
+              <div key={i} className="flex items-center gap-3">
+                <div className="p-2 rounded-full bg-white/5 border border-white/10">
+                  {stat.icon}
                 </div>
-             ))}
+                <div className="text-left">
+                  <p className="text-[10px] uppercase tracking-widest text-white/50">{stat.label}</p>
+                  <p className="text-sm font-bold font-display tracking-wide">{stat.val}</p>
+                </div>
+                {i !== 3 && <div className="h-8 w-px bg-white/10 ml-8" />}
+              </div>
+            ))}
           </motion.div>
         </div>
       </div>
@@ -242,21 +242,20 @@ const GuidePage = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`relative flex items-center gap-2 px-4 py-2.5 rounded-lg font-bold transition-all duration-300 text-sm whitespace-nowrap group ${
-                    activeSection === item.id
+                  className={`relative flex items-center gap-2 px-4 py-2.5 rounded-lg font-bold transition-all duration-300 text-sm whitespace-nowrap group ${activeSection === item.id
                       ? 'text-white'
                       : 'text-night/60 hover:text-azure hover:bg-azure/5'
-                  }`}
+                    }`}
                 >
                   {/* Active Background */}
                   {activeSection === item.id && (
-                    <motion.div 
+                    <motion.div
                       layoutId="activeNavBg"
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                       className="absolute inset-0 bg-gradient-to-r from-azure to-blue-600 rounded-lg shadow-sm z-0"
                     />
                   )}
-                  
+
                   <span className="relative z-10 flex items-center gap-2">
                     {item.label}
                   </span>

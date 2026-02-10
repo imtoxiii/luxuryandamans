@@ -54,11 +54,25 @@ const Destinations = () => {
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900" ref={containerRef}>
       <SEO
-        title="Top 15 Places to Visit in Andaman 2025 | Best Destinations & Islands"
+        title="Top 15 Places to Visit in Andaman 2026 | Best Destinations & Islands"
         description="Discover the best places to visit in Andaman - Havelock Island, Neil Island, Port Blair, Radhanagar Beach, Cellular Jail & more. Complete guide to Andaman's top destinations with photos, activities & travel tips."
         keywords="places to visit in andaman, andaman destinations, best islands in andaman, havelock island, neil island, port blair attractions, radhanagar beach, cellular jail, elephant beach, baratang limestone caves, ross island, north bay island, andaman sightseeing, andaman tourist places, must visit places andaman, andaman islands to visit, hidden gems andaman, beautiful beaches andaman, snorkeling spots andaman, scuba diving locations andaman"
         pathname="/destinations"
         targetAudience="all"
+        faqData={[
+          {
+            question: "Which are the best islands to visit in Andaman?",
+            answer: "The top Andaman islands are: 1) Havelock Island (Swaraj Dweep) — Asia's best beach Radhanagar, scuba diving & nightlife. 2) Neil Island (Shaheed Dweep) — natural bridge, quiet beaches. 3) Port Blair — Cellular Jail, museums, gateway. 4) Baratang — limestone caves, mud volcanoes. 5) Ross Island — British-era ruins. Most visitors cover Havelock + Neil + Port Blair in 5-7 days."
+          },
+          {
+            question: "How many days do I need for each Andaman island?",
+            answer: "Recommended stays: Havelock Island — 2-3 nights (beaches, diving, bioluminescence). Neil Island — 1-2 nights (snorkeling, cycling, sunset). Port Blair — 1-2 nights (Cellular Jail, Ross Island, North Bay). Baratang — day trip. Total recommended: 5-7 days for a complete Andaman experience."
+          },
+          {
+            question: "What is the best time to visit Andaman Islands?",
+            answer: "October to May is the best time to visit Andaman. Peak season (Dec-Feb) offers perfect weather but higher prices. Shoulder season (Oct-Nov, Mar-May) has fewer crowds and good deals. Monsoon (Jun-Sep) sees heavy rainfall and many ferry services may be disrupted. Water visibility is best from January to April."
+          }
+        ]}
         structuredData={{
           "@context": "https://schema.org",
           "@type": "CollectionPage",

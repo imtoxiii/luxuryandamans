@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
-import { MapPin, Clock, Camera, Sun, Shield, CheckCircle, Zap, Anchor, Users } from 'lucide-react';
+import { Clock, Sun, Shield, CheckCircle, Zap, Anchor, Users } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const JetSkiPage = () => {
@@ -294,7 +294,7 @@ const JetSkiPage = () => {
                                                     slug: 'jet-ski',
                                                     selectedActivities: [pkg.name]
                                                 }));
-                                            } catch (_) { /* no-op */ }
+                                            } catch { /* no-op */ }
                                         }}
                                         className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-blue-600/30"
                                     >

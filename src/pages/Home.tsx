@@ -1,7 +1,7 @@
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, Star, MapPin, Calendar, CreditCard } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
 import Header from '../components/Header';
 import FeaturedPackages from '../components/FeaturedPackages';
@@ -18,14 +18,6 @@ import { removeLoader } from '../lib/loader';
 
 const Home = () => {
   const location = useLocation();
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   // Sliced image animation for mobile
   const [imagePart, setImagePart] = useState(0); // 0 = left, 1 = center, 2 = right
@@ -52,7 +44,7 @@ const Home = () => {
   useEffect(() => {
     const img = new Image();
     img.src = heroBg;
-    
+
     const handleLoad = () => {
       removeLoader();
     };
@@ -106,7 +98,7 @@ const Home = () => {
 
 
   return (
-    <div className="bg-white font-sans selection:bg-blue-100 selection:text-blue-900" ref={containerRef}>
+    <div className="bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
       <SEO
         title="Andaman Tour Packages 2026 | Starting ₹15,000 | Best Andaman Packages"
         description="Book best Andaman tour packages starting ₹15,000 per person. 4.8★ rated luxury honeymoon, family & adventure packages. Includes ferry, hotels, scuba diving & all activities. Free cancellation. 1000+ happy travelers."
@@ -172,7 +164,7 @@ const Home = () => {
           }
         }}
       />
-      
+
       {/* Preload Hero Image for LCP Optimization */}
       <link rel="preload" as="image" href={heroBg} />
 
@@ -180,10 +172,7 @@ const Home = () => {
 
       {/* Custom Parallax Hero */}
       <section className="relative h-screen min-h-[600px] flex flex-col justify-start pt-32 md:justify-center md:pt-0 items-center overflow-hidden">
-        <motion.div
-          style={{ y, opacity }}
-          className="absolute inset-0 z-0"
-        >
+        <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 z-10" />
           <img
             src={heroBg}
@@ -194,7 +183,7 @@ const Home = () => {
               transition: 'object-position 1s cubic-bezier(0.4,0,0.2,1)'
             }}
           />
-        </motion.div>
+        </div>
 
         <div className="container mx-auto px-4 relative z-20 text-center">
           <motion.div

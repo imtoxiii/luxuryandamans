@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Compass, Waves } from 'lucide-react';
+import { motion } from 'framer-motion';
+import {  } from 'lucide-react';
 
 interface PageTransitionProps {
   onComplete?: () => void;

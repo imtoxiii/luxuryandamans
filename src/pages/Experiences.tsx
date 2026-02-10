@@ -209,9 +209,47 @@ const ExperiencesPage = () => {
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900" ref={containerRef}>
       <SEO
-        title="Andaman Experiences - Adventure, Luxury & Family Activities"
-        description="Discover the best experiences in the Andaman Islands. From scuba diving and bioluminescence kayaking to luxury resorts and cultural tours."
+        title="Best Andaman Experiences 2026 | Adventure, Luxury & Family Activities"
+        description="Discover 50+ curated Andaman experiences — scuba diving from ₹3,500, bioluminescence kayaking, luxury resort stays, sunset cruises, snorkeling & more. Book online with instant confirmation."
         pathname={location.pathname}
+        keywords="andaman experiences, things to do in andaman, andaman activities, scuba diving andaman, snorkeling andaman, bioluminescence kayaking andaman, sea walking andaman, jet skiing andaman, parasailing andaman, glass bottom boat andaman, sunset cruise andaman, andaman adventure activities, andaman water sports, andaman family activities, andaman couple activities, andaman honeymoon experiences, luxury andaman experiences, andaman cultural tours, andaman island hopping, elephant beach activities, havelock activities, neil island activities"
+        targetAudience="all"
+        faqData={[
+          {
+            question: "What are the best experiences in Andaman Islands?",
+            answer: "Top Andaman experiences include: Scuba Diving at Havelock (₹3,500-6,000), Snorkeling at Elephant Beach (₹600-1,500), Bioluminescence Kayaking at Havelock (₹2,000), Sea Walking at North Bay (₹3,500), Glass Bottom Boat rides, Sunset Cruises, and Mangrove Kayaking at Baratang. Water activities are best enjoyed from October to May."
+          },
+          {
+            question: "How much do water activities cost in Andaman?",
+            answer: "Andaman water activity prices: Scuba Diving ₹3,500-6,000 per person, Snorkeling ₹600-1,500, Sea Walking ₹3,500, Jet Skiing ₹800-1,500, Parasailing ₹800-1,200, Glass Bottom Boat ₹600-800, Bioluminescence Kayaking ₹1,500-2,500, Banana Boat ₹400-600. Prices may vary by season."
+          },
+          {
+            question: "Is scuba diving safe for beginners in Andaman?",
+            answer: "Yes, scuba diving in Andaman is very safe for beginners. PADI/SSI certified instructors conduct all dives. No prior experience needed — a 30-minute briefing is provided. Beginners can dive up to 6-12 meters depth. Popular beginner sites include Havelock, North Bay, and Elephant Beach."
+          },
+          {
+            question: "Which is better for activities — Havelock or Neil Island?",
+            answer: "Havelock Island is better for adventure activities (scuba diving, bioluminescence kayaking, jet skiing). Neil Island is ideal for relaxed experiences (glass bottom boats, cycling, beach walks). For a complete experience, visit both islands — spend 2-3 days on Havelock and 1-2 on Neil."
+          }
+        ]}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Andaman Experiences - Adventure, Luxury & Family Activities",
+          "description": "Discover 50+ curated experiences in the Andaman Islands including scuba diving, snorkeling, kayaking, sunset cruises and more.",
+          "url": "https://luxuryandamans.com/experiences",
+          "mainEntity": {
+            "@type": "ItemList",
+            "name": "Andaman Island Experiences",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Scuba Diving", "url": "https://luxuryandamans.com/experiences/scuba-diving" },
+              { "@type": "ListItem", "position": 2, "name": "Island Hopping", "url": "https://luxuryandamans.com/experiences/island-hopping" },
+              { "@type": "ListItem", "position": 3, "name": "Sunset Cruises", "url": "https://luxuryandamans.com/experiences/sunset-cruises" },
+              { "@type": "ListItem", "position": 4, "name": "Bioluminescence Kayaking", "url": "https://luxuryandamans.com/experiences/bioluminescence-kayaking" },
+              { "@type": "ListItem", "position": 5, "name": "Family Adventures", "url": "https://luxuryandamans.com/experiences/family-adventures" }
+            ]
+          }
+        }}
       />
       <Header />
 

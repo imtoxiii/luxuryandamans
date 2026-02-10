@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
-import { MapPin, Clock, Camera, Sun, Shield, CheckCircle, Wind, Cloud, Heart } from 'lucide-react';
+import { Clock, Camera, Sun, Shield, CheckCircle, Wind, Cloud, Heart } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const ParasailingPage = () => {
@@ -97,7 +97,7 @@ const ParasailingPage = () => {
             }}
             slug="parasailing"
             seo={{
-                title: "Parasailing in Andaman | Best Prices & Safety Standards 2025",
+                title: "Parasailing in Andaman | Best Prices & Safety Standards 2026",
                 description: "Experience the thrill of parasailing in Andaman at Havelock, North Bay & Corbyn's Cove. Safe, certified instructors & breathtaking aerial views. Book now!",
                 keywords: "parasailing andaman price, parasailing in havelock, north bay island parasailing, water sports port blair, adventure sports andaman, parasailing cost"
             }}
@@ -294,7 +294,7 @@ const ParasailingPage = () => {
                                                     slug: 'parasailing',
                                                     selectedActivities: [pkg.name]
                                                 }));
-                                            } catch (_) { /* no-op */ }
+                                            } catch { /* no-op */ }
                                         }}
                                         className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-sky-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-sky-600/30"
                                     >

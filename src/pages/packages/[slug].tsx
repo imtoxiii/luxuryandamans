@@ -354,9 +354,9 @@ const PackageDetailPage: React.FC = () => {
                               }
                               return '';
                             };
-                            
+
                             const resolvedImage = resolveHighlightImage();
-                            
+
                             // Get all images for gallery when clicking
                             const getHighlightGallery = () => {
                               const imgPath = highlight.image || '';
@@ -367,7 +367,7 @@ const PackageDetailPage: React.FC = () => {
                               }
                               return resolvedImage ? [resolvedImage] : [];
                             };
-                            
+
                             return (
                               <div
                                 key={idx}

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
-import { Mountain, MapPin, Clock, Users, TreePine, Camera, Sun, Compass, Footprints, CheckCircle } from 'lucide-react';
+import { Mountain, MapPin, Clock, TreePine, Camera, Sun, Compass, Footprints, CheckCircle } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const TrekkingPage = () => {
@@ -142,7 +142,7 @@ const TrekkingPage = () => {
       }}
       slug="trekking"
       seo={{
-        title: "Jungle Trekking in Andaman | Mount Harriet & Saddle Peak 2025",
+        title: "Jungle Trekking in Andaman | Mount Harriet & Saddle Peak 2026",
         description: "Explore the pristine rainforests of Andaman with guided trekking tours. Trek Mount Harriet, Saddle Peak, and more. Discover endemic wildlife and panoramic views.",
         keywords: "trekking andaman, mount harriet trek, saddle peak andaman, jungle trails andaman, nature walks andaman, bird watching andaman, forest trekking, trekking packages andaman"
       }}
@@ -337,7 +337,7 @@ const TrekkingPage = () => {
                           slug: 'trekking',
                           selectedActivities: [pkg.name]
                         }));
-                      } catch (_) { /* no-op */ }
+                      } catch { /* no-op */ }
                     }}
                     className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-green-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-green-600/30"
                   >

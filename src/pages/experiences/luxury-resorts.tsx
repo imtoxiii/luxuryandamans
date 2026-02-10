@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
-import { Star, Wifi, Coffee, Utensils, Car, Space as Spa, Phone, MapPin, CheckCircle, Waves, Sunset, Users, Award, Heart } from 'lucide-react';
+import { Star, Wifi, Coffee, Utensils, Car, Space as Spa, MapPin, CheckCircle, Waves, Sunset, Users, Award, Heart } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const LuxuryResortsPage = () => {
@@ -286,7 +286,7 @@ const LuxuryResortsPage = () => {
                           slug: 'luxury-resorts',
                           selectedActivities: [resort.name]
                         }));
-                      } catch (_) { /* no-op */ }
+                      } catch { /* no-op */ }
                     }}
                     className="block w-full py-3 bg-amber-600 text-white text-center rounded-xl font-bold hover:bg-amber-700 transition-colors shadow-lg shadow-amber-600/20 hover:shadow-amber-600/40"
                   >
@@ -383,7 +383,7 @@ const LuxuryResortsPage = () => {
                             slug: 'luxury-resorts',
                             selectedActivities: [pkg.name]
                           }));
-                        } catch (_) { /* no-op */ }
+                        } catch { /* no-op */ }
                       }}
                       className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-amber-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-amber-600/30"
                     >

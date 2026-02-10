@@ -9,8 +9,20 @@ const Terms = () => {
   return (
     <div className="min-h-screen bg-pearl">
       <SEO
-        title="Terms and Conditions"
-        description="Terms and Conditions for booking tours and travel packages with Luxury Andamans."
+        title="Terms & Conditions | Luxury Andamans Booking Policy"
+        description="Terms and conditions for booking Andaman tour packages with Luxury Andamans. Includes cancellation policy, refund schedule, payment terms & guest responsibilities."
+        pathname="/terms"
+        keywords="luxury andamans terms, andaman tour cancellation policy, andaman package refund policy, luxury andamans booking terms"
+        faqData={[
+          {
+            question: "What is the cancellation policy for Luxury Andamans packages?",
+            answer: "30+ days before arrival: full refund (minus processing fee). 15-29 days: 50% refund. 7-14 days: 25% refund. Less than 7 days: no refund. Peak season (Dec 15-Jan 15) bookings are non-refundable if cancelled within 30 days."
+          },
+          {
+            question: "How much advance payment is needed to book an Andaman package?",
+            answer: "50% of the total tour cost is required at the time of booking. The remaining 50% must be cleared 15 days before arrival. For bookings within 15 days of travel or during peak season, 100% payment is required upfront."
+          }
+        ]}
       />
       <Header />
 

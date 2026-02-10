@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Anchor, Compass, Shield, Award, Clock, Users, Waves, MapPin, Sun, Fish, CheckCircle, AlertCircle, Camera } from 'lucide-react';
+import { Anchor, Compass, Shield, Award, Clock, Waves, MapPin, Sun, Fish, CheckCircle } from 'lucide-react';
 import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
 import FaqAccordion from '../../components/FaqAccordion';
@@ -218,7 +218,7 @@ const ScubaDivingPage = () => {
       }}
       slug="scuba-diving"
       seo={{
-        title: "Scuba Diving in Andaman | Best Diving Sites & Courses 2025",
+        title: "Scuba Diving in Andaman | Best Diving Sites & Courses 2026",
         description: "Explore underwater paradise with scuba diving in Andaman. 30+ dive sites, PADI certified instructors, beginner to advanced courses. Book diving packages from ₹3,500.",
         keywords: "scuba diving andaman, andaman diving packages, PADI diving andaman, havelock diving, neil island diving, north bay diving, best diving sites andaman, underwater photography, diving courses andaman, diving certification andaman, coral reef diving, beginner scuba diving"
       }}
@@ -386,7 +386,7 @@ const ScubaDivingPage = () => {
                           slug: 'scuba-diving',
                           selectedActivities: [pkg.name]
                         }));
-                      } catch (_) { /* no-op */ }
+                      } catch { /* no-op */ }
                     }}
                     className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-blue-600/30"
                   >
@@ -458,7 +458,7 @@ const ScubaDivingPage = () => {
                           slug: 'scuba-diving',
                           selectedActivities: [course.name]
                         }));
-                      } catch (_) { /* no-op */ }
+                      } catch { /* no-op */ }
                     }}
                     className="block w-full py-3 border-2 border-gray-200 text-gray-900 text-center rounded-xl font-bold hover:border-blue-600 hover:text-blue-600 transition-colors"
                   >

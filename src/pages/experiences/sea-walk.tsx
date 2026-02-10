@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
-import { Anchor, Shield, Clock, Users, MapPin, Camera, CheckCircle, Heart, Star, Waves } from 'lucide-react';
+import { Shield, Clock, MapPin, Camera, CheckCircle, Heart, Star, Waves } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const SeaWalkPage = () => {
@@ -205,7 +205,7 @@ const SeaWalkPage = () => {
       }}
       slug="sea-walk"
       seo={{
-        title: "Sea Walk in Andaman | North Bay & Elephant Beach | Best Price 2025",
+        title: "Sea Walk in Andaman | North Bay & Elephant Beach | Best Price 2026",
         description: "Experience walking on the sea bed in Andaman. Sea walk at North Bay and Elephant Beach with helmet oxygen supply, photos, and guides. Perfect for non-swimmers.",
         keywords: "sea walk andaman, north bay sea walk, elephant beach sea walk, sea bed walk andaman, underwater walking andaman, sea walk price andaman"
       }}
@@ -372,7 +372,7 @@ const SeaWalkPage = () => {
                           slug: 'sea-walk',
                           selectedActivities: [exp.name]
                         }));
-                      } catch (_) { /* no-op */ }
+                      } catch { /* no-op */ }
                     }}
                     className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-blue-600/30 mt-auto"
                   >

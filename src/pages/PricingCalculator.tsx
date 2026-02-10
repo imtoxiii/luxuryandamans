@@ -247,7 +247,7 @@ const useCalculator = () => {
         // === CORE SERVICES (apply profit margin only to these) ===
         const coreServicesCost = accommodationCost + mealCost + transportCost + ferryCost;
         const tourTypeMultiplier = tourTypes.find(t => t.id === tourType)?.multiplier || 1;
-        let coreWithTourType = coreServicesCost * tourTypeMultiplier;
+        const coreWithTourType = coreServicesCost * tourTypeMultiplier;
         
         // Apply progressive profit margin ONLY to core services
         const profitMargin = getProgressiveProfitMargin(coreWithTourType);

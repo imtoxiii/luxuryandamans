@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
-import { Fish, Anchor, Clock, Users, Trophy, MapPin, Camera, CheckCircle, Star, Waves, Compass, Calendar, Shield } from 'lucide-react';
+import { Fish, Anchor, Clock, Trophy, MapPin, CheckCircle, Star, Compass, Calendar, Shield } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const GameFishingPage = () => {
@@ -230,7 +230,7 @@ const GameFishingPage = () => {
       }}
       slug="game-fishing"
       seo={{
-        title: "Game Fishing in Andaman | Sport Fishing Charters 2025",
+        title: "Game Fishing in Andaman | Sport Fishing Charters 2026",
         description: "Book premium game fishing charters in Andaman. Target Giant Trevally, Tuna, and Marlin. Professional crew, modern boats, and top-quality gear provided.",
         keywords: "game fishing andaman, sport fishing charters, giant trevally fishing andaman, deep sea fishing port blair, fishing trips havelock, angling packages andaman"
       }}
@@ -449,7 +449,7 @@ const GameFishingPage = () => {
                     </span>
                   </div>
                   <p className="text-gray-600 mb-6 text-sm leading-relaxed">{c.description}</p>
-                  
+
                   <div className="mb-6 flex-grow">
                     <h4 className="font-bold text-gray-900 text-sm mb-3">Target Species:</h4>
                     <div className="flex flex-wrap gap-2">
@@ -486,7 +486,7 @@ const GameFishingPage = () => {
                           slug: 'game-fishing',
                           selectedActivities: [c.name]
                         }));
-                      } catch (_) { /* no-op */ }
+                      } catch { /* no-op */ }
                     }}
                     className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-blue-600/30 mt-auto"
                   >
@@ -524,11 +524,10 @@ const GameFishingPage = () => {
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className={`w-5 h-5 ${
-                        i < testimonial.rating
+                      className={`w-5 h-5 ${i < testimonial.rating
                           ? 'text-amber-400 fill-current'
                           : 'text-gray-300'
-                      }`}
+                        }`}
                     />
                   ))}
                 </div>

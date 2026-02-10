@@ -10,30 +10,25 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
-  overflow-y: auto; /* Single scrollbar */
-  /* Enhanced smooth scrolling for cursor/mouse wheel */
-  scroll-padding-top: 80px; /* Account for fixed header */
+  /* Ensure default scrolling works */
+  min-height: 100%;
 }
 
 body {
   overflow-x: hidden;
-  overflow-y: auto; /* Prevent double scrollbars */
   margin: 0;
   padding: 0;
+  min-height: 100vh;
   /* CSS Scroll Snap for ultra-smooth scrolling */
   -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
-  overscroll-behavior-y: none; /* Prevent scroll chaining */
 }
 
 /* Mobile scroll lock - prevents background scrolling during transitions */
-body.no-scroll,
-html.no-scroll {
-  position: fixed !important;
+body.no-scroll {
   overflow: hidden !important;
+  height: 100vh !important;
   width: 100% !important;
-  height: 100% !important;
-  touch-action: none !important;
-  -webkit-overflow-scrolling: auto !important;
+  position: fixed !important;
 }
 
 /* Remove any extra scrollbars from root */
@@ -734,12 +729,24 @@ html.no-scroll {
   }
 
 /* Low Power Mode Optimizations */
-.low-power-mode * {
-  /* Disable heavy animations */
+/* Note: Do NOT use * selector here — it breaks framer-motion scroll transforms.
+   Instead, target specific expensive elements while leaving motion elements alone. */
+.low-power-mode img,
+.low-power-mode .card,
+.low-power-mode .card-modern,
+.low-power-mode button,
+.low-power-mode a {
   animation-duration: 0.1s !important;
   transition-duration: 0.1s !important;
-  
-  /* Disable backdrop filters which are very expensive */
+}
+
+.low-power-mode .glass-nav,
+.low-power-mode .glass-sunset,
+.low-power-mode .glass-sunset-button,
+.low-power-mode .glass-sunset-section,
+.low-power-mode .nav-solid,
+.low-power-mode .nav-white-bg,
+.low-power-mode .nav-transparent {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }

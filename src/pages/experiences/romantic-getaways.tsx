@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
-import { Heart, Moon, Gift, Camera, Clock, Users, MapPin, CheckCircle, Star, Calendar, Sparkles, Sunset, Diamond } from 'lucide-react';
+import { Heart, Gift, Camera, Clock, MapPin, CheckCircle, Star, Calendar, Sparkles, Sunset, Diamond } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const RomanticGetawaysPage = () => {
@@ -205,7 +205,7 @@ const RomanticGetawaysPage = () => {
       }}
       slug="romantic-getaways"
       seo={{
-        title: "Romantic Getaways & Honeymoon Packages in Andaman | 2025 Specials",
+        title: "Romantic Getaways & Honeymoon Packages in Andaman | 2026 Specials",
         description: "Plan your dream honeymoon or romantic escape in Andaman. Private beach dinners, luxury villas, sunset cruises & couple spa treatments. Customize your package today.",
         keywords: "andaman honeymoon packages, romantic getaways andaman, couple tour packages andaman, candlelight dinner havelock, luxury honeymoon resorts andaman, beach wedding andaman"
       }}
@@ -289,9 +289,9 @@ const RomanticGetawaysPage = () => {
                       <p className="text-xl font-bold text-white">{pkg.price}</p>
                     </div>
                   </div>
-                  
+
                   <p className="text-gray-400 mb-6 text-sm leading-relaxed">{pkg.description}</p>
-                  
+
                   <div className="mb-6 flex-grow">
                     <h4 className="font-bold text-white text-sm mb-3">Includes:</h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -319,7 +319,7 @@ const RomanticGetawaysPage = () => {
                             slug: 'romantic-getaways',
                             selectedActivities: [pkg.name]
                           }));
-                        } catch (_) { /* no-op */ }
+                        } catch { /* no-op */ }
                       }}
                       className="px-6 py-2 bg-pink-600 text-white rounded-lg font-bold hover:bg-pink-700 transition-colors shadow-lg shadow-pink-600/20"
                     >
@@ -406,11 +406,10 @@ const RomanticGetawaysPage = () => {
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className={`w-4 h-4 ${
-                        i < testimonial.rating
+                      className={`w-4 h-4 ${i < testimonial.rating
                           ? 'text-amber-400 fill-current'
                           : 'text-gray-300'
-                      }`}
+                        }`}
                     />
                   ))}
                 </div>

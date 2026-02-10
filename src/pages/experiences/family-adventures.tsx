@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
-import { Ship, Sun, Zap, Mountain, Clock, Users, MapPin, CheckCircle, Star, Calendar, Shield, Camera, Fish, Trees } from 'lucide-react';
+import { Sun, Clock, Users, MapPin, CheckCircle, Star, Calendar, Shield, Camera, Fish, Trees } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const FamilyAdventuresPage = () => {
@@ -198,7 +198,7 @@ const FamilyAdventuresPage = () => {
       }}
       slug="family-adventures"
       seo={{
-        title: "Family Adventures in Andaman | Kid-Friendly Activities 2025",
+        title: "Family Adventures in Andaman | Kid-Friendly Activities 2026",
         description: "Plan the perfect family vacation in Andaman. Glass-bottom boat rides, jungle treks, and beach fun for kids. Safe, educational, and exciting adventures for all ages.",
         keywords: "family activities andaman, things to do with kids andaman, family vacation packages andaman, glass bottom boat andaman, kid friendly beaches andaman, family adventure tours"
       }}
@@ -323,7 +323,7 @@ const FamilyAdventuresPage = () => {
                             slug: 'family-adventures',
                             selectedActivities: [activity.name]
                           }));
-                        } catch (_) { /* no-op */ }
+                        } catch { /* no-op */ }
                       }}
                       className="px-6 py-2 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/20"
                     >

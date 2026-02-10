@@ -9,8 +9,10 @@ const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-pearl">
       <SEO
-        title="Privacy Policy"
-        description="Privacy Policy for Luxury Andamans - How we collect, use, and protect your personal information in compliance with the Digital Personal Data Protection Act, 2023."
+        title="Privacy Policy | Luxury Andamans"
+        description="Privacy Policy for Luxury Andamans - How we collect, use, and protect your personal information. Compliant with the Digital Personal Data Protection Act, 2023."
+        pathname="/privacy"
+        keywords="luxury andamans privacy policy, andaman travel agency data protection, DPDPA compliant travel agency"
       />
       <Header />
 
@@ -27,7 +29,7 @@ const PrivacyPolicy = () => {
                 <Shield className="w-8 h-8 mr-3" />
                 <h1 className="text-3xl font-bold">Privacy Policy</h1>
               </div>
-              <p className="text-white/90">Last Updated: November 26, 2025</p>
+              <p className="text-white/90">Last Updated: November 26, 2026</p>
               <p className="text-sm text-white/80 mt-2">Compliant with Digital Personal Data Protection Act, 2023</p>
             </div>
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { Phone, MessageCircle, Star, Clock, ArrowRight, MapPin, Shield, Users, CheckCircle2, Sparkles, Calendar, Mail, Copy, X, Check } from 'lucide-react';
+import { Phone, MessageCircle, Star, Clock, ArrowRight, MapPin, Shield, Users, Sparkles, Calendar, Mail, Copy, X, Check } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -36,7 +36,7 @@ const Offer = () => {
         const searchParams = new URLSearchParams(location.search);
         const cityParam = searchParams.get('city');
         const pathSearch = location.search.toLowerCase();
-        
+
         if (cityParam) return cityParam.toLowerCase();
         if (pathSearch.includes('bangalore') || pathSearch.includes('bengaluru')) return 'bangalore';
         if (pathSearch.includes('mumbai')) return 'mumbai';
@@ -46,78 +46,78 @@ const Offer = () => {
         if (pathSearch.includes('hyderabad')) return 'hyderabad';
         if (pathSearch.includes('ahmedabad')) return 'ahmedabad';
         if (pathSearch.includes('pune')) return 'pune';
-        
+
         return 'default';
     };
 
     const cityKey = getCityFromUrl();
 
     // Configuration for each city's theme and visuals
-    const cityConfig: Record<string, { 
-        name: string, 
+    const cityConfig: Record<string, {
+        name: string,
         label: string,
         airport: string,
         colors: { from: string, to: string, text: string, bg: string, badge: string },
-        image: string 
+        image: string
     }> = {
-        bangalore: { 
-            name: "Bangalore", 
+        bangalore: {
+            name: "Bangalore",
             label: "Bangalore to Andaman Specials",
             airport: "Kempegowda Int'l Airport",
             colors: { from: "from-emerald-400", to: "to-teal-600", text: "text-emerald-400", bg: "bg-emerald-950", badge: "bg-emerald-500" },
             image: "https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
         },
-        mumbai: { 
-            name: "Mumbai", 
+        mumbai: {
+            name: "Mumbai",
             label: "Mumbai to Andaman Specials",
             airport: "Chhatrapati Shivaji Maharaj Int'l",
             colors: { from: "from-amber-300", to: "to-yellow-600", text: "text-amber-400", bg: "bg-slate-900", badge: "bg-amber-500" },
             image: "https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
         },
-        delhi: { 
-            name: "Delhi", 
+        delhi: {
+            name: "Delhi",
             label: "Delhi to Andaman Specials",
             airport: "Indira Gandhi Int'l Airport",
             colors: { from: "from-rose-400", to: "to-orange-600", text: "text-rose-400", bg: "bg-slate-900", badge: "bg-rose-500" },
             image: "https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
         },
-        chennai: { 
-            name: "Chennai", 
+        chennai: {
+            name: "Chennai",
             label: "Chennai to Andaman Specials",
             airport: "Chennai Int'l Airport",
             colors: { from: "from-orange-400", to: "to-red-600", text: "text-orange-400", bg: "bg-orange-950", badge: "bg-orange-500" },
             image: "https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
         },
-        kolkata: { 
-            name: "Kolkata", 
+        kolkata: {
+            name: "Kolkata",
             label: "Kolkata to Andaman Specials",
             airport: "Netaji Subhash Chandra Bose Int'l",
             colors: { from: "from-red-400", to: "to-rose-700", text: "text-red-400", bg: "bg-red-950", badge: "bg-red-600" },
             image: "https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
         },
-        hyderabad: { 
-            name: "Hyderabad", 
+        hyderabad: {
+            name: "Hyderabad",
             label: "Hyderabad to Andaman Specials",
             airport: "Rajiv Gandhi Int'l Airport",
             colors: { from: "from-cyan-400", to: "to-blue-600", text: "text-cyan-400", bg: "bg-slate-900", badge: "bg-cyan-600" },
             image: "https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
         },
-        pune: { 
-            name: "Pune", 
+        pune: {
+            name: "Pune",
             label: "Pune to Andaman Specials",
             airport: "Pune Int'l Airport",
             colors: { from: "from-violet-400", to: "to-purple-600", text: "text-violet-400", bg: "bg-slate-900", badge: "bg-violet-600" },
             image: "https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
         },
-        ahmedabad: { 
-            name: "Ahmedabad", 
+        ahmedabad: {
+            name: "Ahmedabad",
             label: "Ahmedabad to Andaman Specials",
             airport: "Sardar Vallabhbhai Patel Int'l",
             colors: { from: "from-yellow-400", to: "to-orange-500", text: "text-yellow-400", bg: "bg-slate-900", badge: "bg-yellow-600" },
             image: "https://res.cloudinary.com/dyjofqrwl/image/upload/v1765701146/pexels-ollivves-931018_l0jblf.webp"
         },
-        default: { 
-            name: "", 
+        default: {
+            name: "",
             label: "Exclusive Andaman Packages",
             airport: "",
             colors: { from: "from-amber-200", to: "to-yellow-500", text: "text-amber-300", bg: "bg-slate-900", badge: "bg-amber-500" },
@@ -127,7 +127,7 @@ const Offer = () => {
 
     const currentCity = cityConfig[cityKey] || cityConfig['default'];
     // Use the specific city image if available, else fallback to the generic Andaman one if it's default
-    const heroImage = currentCity.image; 
+    const heroImage = currentCity.image;
     const isGeneric = cityKey === 'default';
 
     // Show 3 packages - 2 popular + 1 family package
@@ -237,8 +237,50 @@ const Offer = () => {
     return (
         <div className={`min-h-screen font-sans selection:bg-purple-100 selection:text-purple-900 overflow-x-hidden pb-24 md:pb-0 ${currentCity.colors.bg}`}>
             <SEO
-                title={`Exclusive Andaman Packages ${currentCity.name ? `from ${currentCity.name}` : ''} | 50% OFF`}
-                description={`Book your dream Andaman vacation ${currentCity.name ? `from ${currentCity.name}` : ''}. Luxury stays, custom itineraries, and 24/7 support.`}
+                title={`Exclusive Andaman Packages ${currentCity.name ? `from ${currentCity.name}` : ''} | 50% OFF | Starting ₹14,999`}
+                description={`Book your dream Andaman vacation ${currentCity.name ? `from ${currentCity.name}` : ''}. Luxury stays from ₹14,999/person, custom itineraries, all-inclusive packages with ferry, hotels & activities. 24/7 on-trip support. Limited time 50% OFF.`}
+                pathname={location.pathname}
+                keywords={`andaman packages ${currentCity.name ? `from ${currentCity.name.toLowerCase()}` : ''}, andaman tour offer, cheap andaman packages, andaman holiday deals, andaman discount packages, best andaman offer 2026, andaman package under 20000, andaman couple package offer, andaman family deal, andaman honeymoon offer, luxury andaman discount, andaman all inclusive deal, andaman last minute offer`.trim()}
+                targetAudience="all"
+                faqData={[
+                    {
+                        question: `What is the cheapest Andaman package ${currentCity.name ? `from ${currentCity.name}` : 'available'}?`,
+                        answer: `Our most affordable Andaman package ${currentCity.name ? `from ${currentCity.name}` : ''} starts at ₹14,999 per person for 4N/5D. This includes hotel stay, ferry transfers, sightseeing at Port Blair, Havelock & Neil Island, daily breakfast, and airport pickup/drop. ${currentCity.name ? `Flights from ${currentCity.name} are not included but we can help you find the best deals.` : 'Flight booking assistance is also available.'}`
+                    },
+                    {
+                        question: "Is the 50% OFF offer on Andaman packages real?",
+                        answer: "Yes, the 50% OFF is valid on select packages during the current promotional period. The discount applies to base package prices and includes accommodation, transfers, and activities. Terms apply — call us at +91 62975 76826 for exact pricing based on your travel dates and group size."
+                    },
+                    {
+                        question: "What do Luxury Andamans packages include?",
+                        answer: "All our packages include: 3-5 star hotel/resort stay, inter-island ferry transfers (Govt. or Makruzz/Nautika), airport pickup & drop, daily breakfast, sightseeing tours, water activities (snorkeling/scuba options), and 24/7 on-trip support. Premium packages add candle-light dinner, spa, and private yacht cruises."
+                    }
+                ]}
+                structuredData={{
+                    "@context": "https://schema.org",
+                    "@type": "Product",
+                    "name": `Andaman Tour Package ${currentCity.name ? `from ${currentCity.name}` : ''}`,
+                    "description": `Exclusive Andaman holiday packages ${currentCity.name ? `from ${currentCity.name}` : ''} with luxury stays, ferry transfers and guided tours.`,
+                    "url": `https://luxuryandamans.com${location.pathname}`,
+                    "brand": {
+                        "@type": "Organization",
+                        "name": "Luxury Andamans"
+                    },
+                    "offers": {
+                        "@type": "AggregateOffer",
+                        "lowPrice": "14999",
+                        "highPrice": "150000",
+                        "priceCurrency": "INR",
+                        "availability": "https://schema.org/InStock",
+                        "offerCount": "10+"
+                    },
+                    "aggregateRating": {
+                        "@type": "AggregateRating",
+                        "ratingValue": "4.9",
+                        "reviewCount": "1200",
+                        "bestRating": "5"
+                    }
+                }}
             />
             <Header />
             <Toaster position="top-center" />
@@ -400,7 +442,7 @@ const Offer = () => {
                         </motion.div>
 
                         <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 leading-[1.2] tracking-tight drop-shadow-2xl">
-                            <span className="drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">Planning an Andaman Trip</span><br/> 
+                            <span className="drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">Planning an Andaman Trip</span><br />
                             <span className="inline-block mt-2 transform -rotate-1">
                                 <span className={`bg-white/95 backdrop-blur-xl rounded-2xl px-4 md:px-6 py-1 md:py-2 shadow-2xl border border-white/50 text-3xl md:text-5xl lg:text-7xl inline-block`}>
                                     <span className={`text-transparent bg-clip-text bg-gradient-to-r ${currentCity.colors.from} ${currentCity.colors.to} font-extrabold tracking-tight`}>
@@ -411,7 +453,7 @@ const Offer = () => {
                         </motion.h1>
 
                         <motion.p variants={itemVariants} className="text-xl md:text-2xl text-white/90 mb-10 max-w-xl mx-auto font-light leading-relaxed drop-shadow-sm">
-                            Premium couple & family packages. <br className="hidden md:block"/>
+                            Premium couple & family packages. <br className="hidden md:block" />
                             <span className="font-semibold text-white">Direct local pricing.</span>
                         </motion.p>
 
@@ -457,7 +499,7 @@ const Offer = () => {
                         <div className="text-center md:text-left">
                             <p className="text-lg font-bold text-slate-800 mb-1">"Hi, I’m Sumeet – Local Andaman Travel Expert."</p>
                             <p className="text-slate-600 mb-3">Call me directly for honest advice and best local pricing. No hidden costs.</p>
-                            <a 
+                            <a
                                 href={`https://wa.me/916297576826?text=Hi,%20I%E2%80%99m%20planning%20an%20Andaman%20trip${currentCity.name ? `%20from%20${currentCity.name}` : ''}.%20Please%20guide%20me.`}
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -706,8 +748,8 @@ const Offer = () => {
                                 link: "/experiences/parasailing"
                             }
                         ].map((activity, idx) => (
-                            <a 
-                                key={idx} 
+                            <a
+                                key={idx}
                                 href={`https://wa.me/916297576826?text=Hi,%20I'm%20interested%20in%20${encodeURIComponent(activity.title)}%20in%20Andaman.`}
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -859,7 +901,7 @@ const Offer = () => {
                                         <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
                                             <MessageCircle className="w-6 h-6" />
                                         </div>
-                                         <div className="flex flex-col">
+                                        <div className="flex flex-col">
                                             <span className="text-xs text-slate-400 uppercase tracking-wider">WhatsApp Support</span>
                                             <span className="font-medium text-lg">Live Chat Available</span>
                                         </div>
@@ -942,7 +984,7 @@ const Offer = () => {
                         href="tel:+916297576826"
                         className="flex-1 flex items-center justify-center gap-2 bg-slate-900 text-white py-3.5 rounded-2xl font-bold text-base shadow-lg active:scale-95 transition-all relative overflow-hidden group"
                     >
-                         <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                        <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                         <Phone className="w-5 h-5 animate-bounce" /> <span className="tracking-wide">Call Now</span>
                     </a>
                     <a

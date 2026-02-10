@@ -69,11 +69,29 @@ const PackagesPage = () => {
   return (
     <div className="min-h-screen bg-gray-50 font-sans selection:bg-blue-100 selection:text-blue-900">
       <SEO
-        title="Andaman Tour Packages 2025 with Price | Honeymoon, Family & Luxury Packages"
+        title="Andaman Tour Packages 2026 with Price | Honeymoon, Family & Luxury Packages"
         description="Browse all Andaman tour packages with prices. Honeymoon packages from ₹35,000, Family packages from ₹25,000, Luxury villa packages from ₹60,000. Includes ferry, hotels, meals & all activities. Compare & book online."
-        keywords="andaman packages with price, andaman tour packages 2025, andaman honeymoon packages, andaman family packages, luxury andaman packages, cheap andaman packages, andaman packages for couples, 4 nights andaman package, 5 days andaman package, 6 days andaman package, andaman packages from delhi with flights, best andaman deals, andaman package booking, havelock package, neil island package, all inclusive andaman package, customized andaman package"
+        keywords="andaman packages with price, andaman tour packages 2026, andaman honeymoon packages, andaman family packages, luxury andaman packages, cheap andaman packages, andaman packages for couples, 4 nights andaman package, 5 days andaman package, 6 days andaman package, andaman packages from delhi with flights, best andaman deals, andaman package booking, havelock package, neil island package, all inclusive andaman package, customized andaman package"
         pathname="/packages"
         targetAudience="all"
+        faqData={[
+          {
+            question: "What is the cost of Andaman tour packages in 2026?",
+            answer: "Andaman tour packages in 2026 start from ₹15,000 per person for budget trips. Honeymoon packages range ₹35,000-80,000, Family packages ₹25,000-60,000, and Luxury villa packages from ₹60,000-1,50,000. Prices include hotel stay, ferry transfers, sightseeing, meals, and activities."
+          },
+          {
+            question: "What is included in Andaman tour packages?",
+            answer: "Luxury Andamans packages include: hotel/resort accommodation, inter-island ferry transfers, airport pickup/drop, daily breakfast (some include all meals), guided sightseeing, water activities (snorkeling, scuba diving), and 24/7 on-trip support. Flights are typically not included."
+          },
+          {
+            question: "How many days are ideal for an Andaman trip?",
+            answer: "5-7 days is ideal for Andaman. A 5-day package covers Port Blair, Havelock & Neil Island basics. 7 days allows deeper exploration with Baratang, Ross Island & more activities. For honeymoons, 6-7 days is recommended. 4-day packages are available for short trips."
+          },
+          {
+            question: "Which is the best Andaman package for honeymoon couples?",
+            answer: "Our bestselling honeymoon packages include: Romantic Andaman 5N/6D (₹45,000/couple) with private beach dinner, Luxury Honeymoon 6N/7D (₹75,000/couple) with overwater villa stay, and Premium Suite Honeymoon 7N/8D (₹1,20,000/couple) with yacht cruise & spa."
+          }
+        ]}
         structuredData={{
           "@context": "https://schema.org",
           "@type": "ItemList",

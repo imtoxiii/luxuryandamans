@@ -9,6 +9,9 @@ export const removeLoader = (immediate = false) => {
     }
 
     if (skeleton) {
+        // Immediately disable pointer events to prevent blocking interaction
+        skeleton.style.pointerEvents = 'none';
+        
         if (immediate) {
             skeleton.style.display = 'none';
             skeleton.remove();
@@ -24,7 +27,8 @@ export const removeLoader = (immediate = false) => {
             }, 500);
         } else {
             // Fallback if elements missing but regular removal requested
-            skeleton.remove();
+            skeleton.classList.add('hidden');
+            setTimeout(() => skeleton.remove(), 300);
         }
     }
 };

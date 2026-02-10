@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
-import { Flower2, Cog as Yoga, Space as Spa, Heart, Clock, Users, MapPin, CheckCircle, Star, Calendar, Utensils, Sun, Moon, Wind } from 'lucide-react';
+import { Cog as Yoga, Space as Spa, Heart, Clock, Users, MapPin, CheckCircle, Star, Utensils, Sun, Moon, Wind } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const WellnessRetreatsPage = () => {
@@ -361,7 +361,7 @@ const WellnessRetreatsPage = () => {
                             slug: 'wellness-retreats',
                             selectedActivities: [program.name]
                           }));
-                        } catch (_) { /* no-op */ }
+                        } catch { /* no-op */ }
                       }}
                       className="px-6 py-2 bg-green-600 text-white rounded-lg font-bold hover:bg-green-700 transition-colors shadow-lg shadow-green-600/20"
                     >

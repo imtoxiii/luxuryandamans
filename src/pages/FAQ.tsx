@@ -126,7 +126,7 @@ const FAQ = () => {
   ];
 
   const toggleItem = (question: string) => {
-    setOpenItems(prev => 
+    setOpenItems(prev =>
       prev.includes(question)
         ? prev.filter(item => item !== question)
         : [...prev, question]
@@ -135,23 +135,44 @@ const FAQ = () => {
 
   const filteredFAQs = faqs.filter(faq => {
     const matchesSearch = faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         faq.answer.toLowerCase().includes(searchTerm.toLowerCase());
+      faq.answer.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = activeCategory === 'all' || faq.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
 
   return (
     <div className="min-h-screen bg-pearl">
-      <SEO 
-        title="FAQ & Help Center"
-        description="Find answers to frequently asked questions about traveling to the Andaman Islands. Get help with bookings, activities, and travel arrangements."
-        keywords="andaman faq, travel help, booking assistance, andaman islands help"
+      <SEO
+        title="Andaman FAQ & Help Center | Travel Questions Answered"
+        description="Get answers to 50+ frequently asked questions about Andaman Islands travel — booking, visa, permits, activities, safety, weather, costs & more. Updated for 2026."
+        pathname="/faq"
+        keywords="andaman faq, andaman travel questions, do i need visa for andaman, andaman permit requirements, is andaman safe, best time to visit andaman, andaman booking help, andaman cancellation policy, andaman travel insurance, how to reach andaman, andaman water activities cost, andaman family travel, andaman honeymoon tips, andaman payment methods, andaman medical facilities, andaman internet connectivity, andaman ATM availability, andaman currency, andaman food options, andaman group booking"
+        targetAudience="all"
+        faqData={faqs.map(faq => ({
+          question: faq.question,
+          answer: faq.answer
+        }))}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "name": "Andaman Islands Travel FAQ",
+          "description": "Comprehensive answers to frequently asked questions about traveling to the Andaman Islands.",
+          "url": "https://luxuryandamans.com/faq",
+          "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
+        }}
       />
       <Header />
-      
+
       {/* Hero Section */}
       <div className="relative h-[40vh] overflow-hidden">
-        <img 
+        <img
           src="https://images.unsplash.com/photo-1583212292454-39d2a21af845?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
           alt="Help Center"
           className="absolute inset-0 w-full h-full object-cover"
@@ -200,11 +221,10 @@ const FAQ = () => {
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`px-6 py-2 rounded-full transition-all ${
-                  activeCategory === category.id
+                className={`px-6 py-2 rounded-full transition-all ${activeCategory === category.id
                     ? 'bg-azure text-white'
                     : 'bg-white text-night hover:bg-azure/10'
-                }`}
+                  }`}
               >
                 {category.name}
               </button>

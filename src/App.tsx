@@ -92,7 +92,6 @@ function App() {
 
   return (
     <>
-      {/* Page Content - shows the displayLocation (delayed during transition) */}
       <Suspense fallback={null}>
         <Routes location={displayLocation}>
           <Route path="/" element={<Home />} />
@@ -162,7 +161,6 @@ function App() {
       <ChatWidget />
       <ShowOfferSticker />
       <DiscountPopup />
-      <PrefetchManager />
 
       {/* Transition walls - appear over the page content */}
       <AnimatePresence>
@@ -170,6 +168,7 @@ function App() {
           <CurtainTransition />
         )}
       </AnimatePresence>
+      <PrefetchManager />
     </>
   );
 }

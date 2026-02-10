@@ -14,12 +14,12 @@ const Blog = () => {
   const [showFilters, setShowFilters] = useState(false);
 
   const categories = ['all', ...new Set(blogPosts.map(post => post.category.toLowerCase()))];
-  
+
   const filteredAndSortedPosts = useMemo(() => {
-    let filtered = blogPosts.filter(post => {
+    const filtered = blogPosts.filter(post => {
       const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+        post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
       const matchesCategory = selectedCategory === 'all' || post.category.toLowerCase() === selectedCategory;
       return matchesSearch && matchesCategory;
     });
@@ -43,22 +43,45 @@ const Blog = () => {
   const categoryStats = useMemo(() => {
     return categories.map(category => ({
       name: category,
-      count: category === 'all' 
-        ? blogPosts.length 
+      count: category === 'all'
+        ? blogPosts.length
         : blogPosts.filter(post => post.category.toLowerCase() === category).length
     }));
   }, [categories]);
 
   return (
     <div className="relative min-h-screen bg-pearl font-sans selection:bg-azure selection:text-white">
-      <SEO 
-        title="The Journal - Luxury Andamans"
-        description="Explore our curated collection of stories, guides, and insights about the Andaman Islands."
-        keywords="andaman blog, travel stories, luxury travel, island guide"
+      <SEO
+        title="Andaman Travel Blog 2026 | Tips, Guides & Island Stories"
+        description="Read expert Andaman travel guides, hidden gem recommendations, local food tips, budget planning advice & island stories. Updated weekly by local travel experts."
+        keywords="andaman travel blog, andaman travel tips, andaman travel guide blog, best andaman islands blog, andaman hidden gems, andaman local food guide, andaman budget travel tips, havelock island guide, neil island travel blog, port blair travel stories, andaman honeymoon tips, andaman family trip guide, andaman underwater photography, andaman culture blog, andaman island hopping guide"
         targetAudience="all"
+        pathname="/blog"
+        faqData={[
+          {
+            question: "Where can I find the best Andaman travel tips?",
+            answer: "The Luxury Andamans blog features weekly articles written by local Andaman travel experts. Topics include best beaches, hidden gems, budget tips, honeymoon planning, family activities, and seasonal travel guides — all based on first-hand local knowledge."
+          },
+          {
+            question: "What should first-time visitors know about Andaman?",
+            answer: "First-time Andaman visitors should know: 1) Best season is October-May, 2) You need an Indian visa + arrival permit, 3) Book ferries in advance during peak season, 4) Havelock Island is a must-visit, 5) Carry cash as ATMs are limited on smaller islands, 6) Book activities through a trusted local operator for best prices."
+          }
+        ]}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Andaman Travel Blog - Tips, Guides & Stories",
+          "description": "Expert travel guides and stories about the Andaman Islands.",
+          "url": "https://luxuryandamans.com/blog",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Luxury Andamans",
+            "url": "https://luxuryandamans.com"
+          }
+        }}
       />
       <Header />
-      
+
       {/* Decorative Background */}
       <div className="absolute top-0 left-0 w-full h-[600px] pointer-events-none">
         <div className="w-full h-full bg-[url('https://images.pexels.com/photos/907485/pexels-photo-907485.jpeg')] bg-cover bg-center">
@@ -70,7 +93,7 @@ const Blog = () => {
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row justify-between items-end gap-8 mb-20">
           <div className="max-w-3xl">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="flex items-center gap-3 mb-6"
@@ -78,18 +101,18 @@ const Blog = () => {
               <span className="h-px w-12 bg-white/80" />
               <span className="text-white/90 font-medium tracking-widest text-sm uppercase">The Journal</span>
             </motion.div>
-            
-            <motion.h1 
+
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
               className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white leading-[0.9] tracking-tight mb-8"
             >
-              Stories from <br/>
+              Stories from <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/80">Paradise</span>
             </motion.h1>
-            
-            <motion.p 
+
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
@@ -99,7 +122,7 @@ const Blog = () => {
             </motion.p>
           </div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
@@ -115,14 +138,13 @@ const Blog = () => {
                 className="w-full sm:w-72 pl-12 pr-4 py-3 bg-transparent border-none text-night placeholder:text-night/30 focus:outline-none focus:ring-0"
               />
             </div>
-            
+
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className={`flex items-center justify-center gap-2 px-6 py-3 rounded-2xl font-medium transition-all duration-300 ${
-                showFilters 
-                  ? 'bg-night text-white shadow-lg' 
+              className={`flex items-center justify-center gap-2 px-6 py-3 rounded-2xl font-medium transition-all duration-300 ${showFilters
+                  ? 'bg-night text-white shadow-lg'
                   : 'bg-gray-50 text-night hover:bg-gray-100'
-              }`}
+                }`}
             >
               <SlidersHorizontal className="w-4 h-4" />
               <span>Filters</span>
@@ -152,16 +174,14 @@ const Blog = () => {
                         <button
                           key={category.name}
                           onClick={() => setSelectedCategory(category.name)}
-                          className={`group relative px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 border ${
-                            selectedCategory === category.name
+                          className={`group relative px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 border ${selectedCategory === category.name
                               ? 'bg-azure border-azure text-white shadow-lg shadow-azure/20'
                               : 'bg-transparent border-black/5 text-night/60 hover:border-azure/30 hover:text-azure'
-                          }`}
+                            }`}
                         >
                           <span className="capitalize">{category.name}</span>
-                          <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${
-                            selectedCategory === category.name ? 'bg-white/20 text-white' : 'bg-black/5 text-night/40'
-                          }`}>
+                          <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${selectedCategory === category.name ? 'bg-white/20 text-white' : 'bg-black/5 text-night/40'
+                            }`}>
                             {category.count}
                           </span>
                         </button>
@@ -178,15 +198,13 @@ const Blog = () => {
                         { value: 'oldest', label: 'Oldest First' },
                         { value: 'readTime', label: 'Read Time' }
                       ].map((option) => (
-                        <label 
+                        <label
                           key={option.value}
-                          className={`flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all ${
-                            sortBy === option.value ? 'bg-azure/5 border border-azure/20' : 'hover:bg-gray-50 border border-transparent'
-                          }`}
+                          className={`flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all ${sortBy === option.value ? 'bg-azure/5 border border-azure/20' : 'hover:bg-gray-50 border border-transparent'
+                            }`}
                         >
-                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
-                            sortBy === option.value ? 'border-azure' : 'border-gray-300'
-                          }`}>
+                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${sortBy === option.value ? 'border-azure' : 'border-gray-300'
+                            }`}>
                             {sortBy === option.value && (
                               <div className="w-2.5 h-2.5 rounded-full bg-azure" />
                             )}
@@ -199,9 +217,8 @@ const Blog = () => {
                             onChange={(e) => setSortBy(e.target.value)}
                             className="hidden"
                           />
-                          <span className={`text-sm font-medium ${
-                            sortBy === option.value ? 'text-night' : 'text-night/60'
-                          }`}>
+                          <span className={`text-sm font-medium ${sortBy === option.value ? 'text-night' : 'text-night/60'
+                            }`}>
                             {option.label}
                           </span>
                         </label>
@@ -220,7 +237,7 @@ const Blog = () => {
             {filteredAndSortedPosts.map((post, index) => {
               // Featured layout logic: First post spans 2 columns if it's the first page/no search
               const isFeatured = index === 0 && !searchTerm && selectedCategory === 'all';
-              
+
               return (
                 <motion.article
                   key={post.id}
@@ -230,7 +247,7 @@ const Blog = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className={`group flex flex-col ${isFeatured ? 'lg:col-span-2 lg:row-span-2' : ''}`}
                 >
-                  <Link 
+                  <Link
                     to={`/blog/${post.slug}`}
                     className="block relative overflow-hidden rounded-[2rem] mb-8 aspect-[4/3] lg:aspect-auto lg:h-full shadow-lg group-hover:shadow-2xl transition-all duration-500"
                   >
@@ -241,7 +258,7 @@ const Blog = () => {
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     </div>
-                    
+
                     {/* Overlay Gradient */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
 
@@ -272,16 +289,14 @@ const Blog = () => {
                     </div>
 
                     <Link to={`/blog/${post.slug}`} className="group-hover:text-azure transition-colors duration-300">
-                      <h2 className={`font-display font-bold text-night leading-[1.1] mb-4 ${
-                        isFeatured ? 'text-3xl md:text-4xl lg:text-5xl' : 'text-2xl'
-                      }`}>
+                      <h2 className={`font-display font-bold text-night leading-[1.1] mb-4 ${isFeatured ? 'text-3xl md:text-4xl lg:text-5xl' : 'text-2xl'
+                        }`}>
                         {post.title}
                       </h2>
                     </Link>
 
-                    <p className={`text-night/60 leading-relaxed mb-6 line-clamp-3 ${
-                      isFeatured ? 'text-lg md:text-xl max-w-2xl' : 'text-base'
-                    }`}>
+                    <p className={`text-night/60 leading-relaxed mb-6 line-clamp-3 ${isFeatured ? 'text-lg md:text-xl max-w-2xl' : 'text-base'
+                      }`}>
                       {post.excerpt}
                     </p>
 
@@ -297,8 +312,8 @@ const Blog = () => {
                           <p className="text-xs text-night/40 font-medium">Author</p>
                         </div>
                       </div>
-                      
-                      <Link 
+
+                      <Link
                         to={`/blog/${post.slug}`}
                         className="w-12 h-12 rounded-full border border-black/10 flex items-center justify-center text-night/40 group-hover:bg-azure group-hover:border-azure group-hover:text-white transition-all duration-300 group-hover:scale-110"
                       >

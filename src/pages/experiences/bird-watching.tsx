@@ -97,7 +97,7 @@ const BirdWatchingPage = () => {
             }}
             slug="bird-watching"
             seo={{
-                title: "Bird Watching in Andaman | Guided Birding Tours 2025",
+                title: "Bird Watching in Andaman | Guided Birding Tours 2026",
                 description: "Join expert-led bird watching tours in Andaman. Spot rare endemic species like the Andaman Woodpecker and Narcondam Hornbill. Best spots: Chidiya Tapu, Mount Harriet.",
                 keywords: "bird watching andaman, birding tours andaman, chidiya tapu bird watching, andaman endemic birds, ornithology tours india, bird photography andaman, mount harriet birding"
             }}

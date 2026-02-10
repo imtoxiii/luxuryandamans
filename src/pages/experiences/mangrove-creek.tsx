@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
-import { MapPin, Clock, Camera, Sun, Shield, CheckCircle, Anchor, Leaf, Droplets } from 'lucide-react';
+import { Clock, Camera, Sun, Shield, CheckCircle, Anchor, Leaf, Droplets } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const MangroveCreekPage = () => {
@@ -294,7 +294,7 @@ const MangroveCreekPage = () => {
                                                     slug: 'mangrove-creek',
                                                     selectedActivities: [pkg.name]
                                                 }));
-                                            } catch (_) { /* no-op */ }
+                                            } catch { /* no-op */ }
                                         }}
                                         className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-emerald-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-emerald-600/30"
                                     >

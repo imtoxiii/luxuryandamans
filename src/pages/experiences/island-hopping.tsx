@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
-import { Compass, Anchor, Sun, Map, Clock, Users, MapPin, Camera, CheckCircle, Waves, Calendar, Shield } from 'lucide-react';
+import { Compass, Anchor, Sun, Map, CheckCircle } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const IslandHoppingPage = () => {
@@ -148,7 +148,7 @@ const IslandHoppingPage = () => {
       }}
       slug="island-hopping"
       seo={{
-        title: "Island Hopping in Andaman | Multi-Island Tour Packages 2025",
+        title: "Island Hopping in Andaman | Multi-Island Tour Packages 2026",
         description: "Explore the best of Andaman Islands with our island hopping tours. Visit Havelock, Neil, Ross & North Bay. Custom itineraries, ferry bookings, and guided tours.",
         keywords: "island hopping andaman, andaman island hopping packages, havelock neil island tour, ross and north bay island tour, andaman ferry booking, multi island tour andaman, best island hopping itinerary"
       }}
@@ -419,7 +419,7 @@ const IslandHoppingPage = () => {
                           slug: 'island-hopping',
                           selectedActivities: [pkg.name]
                         }));
-                      } catch (_) { /* no-op */ }
+                      } catch { /* no-op */ }
                     }}
                     className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-blue-600/30 mt-auto"
                   >

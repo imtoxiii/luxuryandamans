@@ -140,7 +140,7 @@ const ExperienceLayout: React.FC<ExperienceLayoutProps> = ({
                   if (bookingData) {
                     try {
                       localStorage.setItem('enquiryDetails', JSON.stringify(bookingData));
-                    } catch (_) { /* no-op */ }
+                    } catch { /* no-op */ }
                   }
                 }}
                 className="px-8 py-4 bg-white text-blue-900 rounded-full font-bold text-lg hover:bg-blue-50 transition-all duration-300 shadow-[0_0_40px_-10px_rgba(255,255,255,0.5)] hover:shadow-[0_0_60px_-15px_rgba(255,255,255,0.7)] hover:-translate-y-1 flex items-center justify-center gap-2 min-w-[200px]"

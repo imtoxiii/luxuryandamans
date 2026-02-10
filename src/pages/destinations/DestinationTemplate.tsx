@@ -996,7 +996,7 @@ export default function DestinationTemplate({ destination }: DestinationTemplate
                       slug: destination.slug,
                     };
                     localStorage.setItem('enquiryDetails', JSON.stringify(details));
-                  } catch (_) { /* no-op */ }
+                  } catch { /* no-op */ }
                 }}
                 className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-azure text-pearl rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105 text-sm sm:text-base font-medium"
               >

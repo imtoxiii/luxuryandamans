@@ -11,8 +11,25 @@ const DiscountPopup = () => {
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     useEffect(() => {
-        // Show popup after 10 seconds
+        if (isOpen) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
+        return () => {
+            document.body.classList.remove('no-scroll');
+        };
+    }, [isOpen]);
+
+    useEffect(() => {
+        // Show popup after 10 seconds, but only if the page is fully loaded
         const timer = setTimeout(() => {
+            // Don't show if loading skeleton is still visible
+            const skeleton = document.getElementById('loading-skeleton');
+            if (skeleton && !skeleton.classList.contains('hidden')) {
+                return;
+            }
+            
             const hasSeenPopup = sessionStorage.getItem('hasSeenDiscountPopup');
             if (!hasSeenPopup) {
                 setIsOpen(true);

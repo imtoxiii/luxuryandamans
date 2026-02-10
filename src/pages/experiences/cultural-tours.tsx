@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
-import { MapPin, Clock, Users, Camera, Calendar, Globe, Music, Utensils, CheckCircle, Info } from 'lucide-react';
+import { MapPin, Clock, Camera, Globe, Music, Utensils, CheckCircle, Info } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const CulturalToursPage = () => {
@@ -138,7 +138,7 @@ const CulturalToursPage = () => {
       }}
       slug="cultural-tours"
       seo={{
-        title: "Cultural Tours in Andaman | Heritage & Tribal Experiences 2025",
+        title: "Cultural Tours in Andaman | Heritage & Tribal Experiences 2026",
         description: "Discover the rich heritage of Andaman Islands. Visit Cellular Jail, Anthropological Museum, and experience local tribal culture. Book guided heritage tours now.",
         keywords: "cultural tours andaman, cellular jail light and sound show, anthropological museum port blair, tribal tours andaman, heritage walk port blair, andaman history tour, jarawa tribe information"
       }}
@@ -326,7 +326,7 @@ const CulturalToursPage = () => {
                           slug: 'cultural-tours',
                           selectedActivities: [pkg.name]
                         }));
-                      } catch (_) { /* no-op */ }
+                      } catch { /* no-op */ }
                     }}
                     className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-amber-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-amber-600/30"
                   >

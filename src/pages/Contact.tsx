@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, Send, MessageCircle, User, AtSign, CheckCircle, Loader2, ArrowRight, Sparkles } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, MessageCircle, User, AtSign, CheckCircle, Loader2, Sparkles } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { sendTelegramMessage, formatContactMessage } from '../lib/telegram';
 import toast, { Toaster } from 'react-hot-toast';
@@ -104,11 +104,60 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-slate-50 font-sans selection:bg-teal-100 selection:text-teal-900">
       <SEO
-        title="Contact Luxury Andamans | Book Your Dream Vacation"
-        description="Contact Luxury Andamans for bookings and inquiries. Call our expert team in Port Blair for personalized Andaman tour packages. 24/7 support available."
+        title="Contact Luxury Andamans | Call +91 62975 76826 | Book Dream Vacation"
+        description="Contact Luxury Andamans for personalized Andaman tour packages. Call +91 62975 76826 or WhatsApp us. Based in Port Blair with 24/7 expert support. Get instant quotes for honeymoon, family & adventure trips."
         pathname={location.pathname}
-        keywords="contact luxury andamans, andaman travel agency number, luxury andamans phone number, book andaman tour, port blair travel agent contact, andaman tourism enquiry"
-        extraStructuredData={[breadcrumbStructuredData]}
+        keywords="contact luxury andamans, andaman travel agency number, luxury andamans phone number, book andaman tour, port blair travel agent contact, andaman tourism enquiry, andaman trip planner, best andaman travel agent, andaman booking phone number, luxury andamans email, andaman whatsapp booking, port blair tour operator, andaman islands holiday planner, andaman custom tour, andaman package enquiry"
+        faqData={[
+          {
+            question: "How can I contact Luxury Andamans for booking?",
+            answer: "You can reach Luxury Andamans at +91 62975 76826 (call or WhatsApp), email luxuryandamans@gmail.com, or fill out the contact form on this page. Our travel experts respond within 10 minutes during business hours."
+          },
+          {
+            question: "What are Luxury Andamans' working hours?",
+            answer: "Our team is available 24/7 for trip support. For new bookings and enquiries, we are available from 9 AM to 9 PM IST, 7 days a week. WhatsApp messages are answered round the clock."
+          },
+          {
+            question: "Can I customize my Andaman trip package?",
+            answer: "Yes, Luxury Andamans specializes in 100% customized Andaman packages. Tell us your dates, budget, group size, and interests — our local experts will design the perfect itinerary for you. No hidden costs."
+          }
+        ]}
+        extraStructuredData={[
+          breadcrumbStructuredData,
+          {
+            "@context": "https://schema.org",
+            "@type": "TravelAgency",
+            "name": "Luxury Andamans",
+            "description": "Premium travel agency specializing in luxury, honeymoon, family & adventure Andaman tour packages.",
+            "url": "https://luxuryandamans.com",
+            "telephone": "+916297576826",
+            "email": "luxuryandamans@gmail.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Port Blair",
+              "addressRegion": "Andaman and Nicobar Islands",
+              "addressCountry": "IN"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "11.6234",
+              "longitude": "92.7265"
+            },
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+              "opens": "09:00",
+              "closes": "21:00"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "reviewCount": "1200",
+              "bestRating": "5"
+            },
+            "priceRange": "₹₹₹"
+          }
+        ]}
       />
       <Toaster position="top-right" />
       <Header />

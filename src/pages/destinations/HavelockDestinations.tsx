@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Calendar, ArrowRight, Navigation, Star, Waves, Camera } from 'lucide-react';
+import { Calendar, ArrowRight, Navigation, Star, Waves } from 'lucide-react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';

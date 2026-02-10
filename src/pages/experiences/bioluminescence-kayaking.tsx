@@ -194,7 +194,7 @@ const BioluminescenceKayakingPage = () => {
       }}
       slug="bioluminescence-kayaking"
       seo={{
-        title: "Bioluminescence Kayaking in Andaman | Night Glow Tours 2025",
+        title: "Bioluminescence Kayaking in Andaman | Night Glow Tours 2026",
         description: "Experience the magical bioluminescence in Havelock & Neil Island. Book guided night kayaking tours to see the glowing waters. Best time: Nov-Feb during new moon.",
         keywords: "bioluminescence kayaking andaman, night kayaking havelock, glowing water tour andaman, bioluminescence tour neil island, night activities in andaman, best night tour havelock, kayaking under stars andaman, bioluminescent plankton india"
       }}
@@ -408,7 +408,7 @@ const BioluminescenceKayakingPage = () => {
                           slug: 'bioluminescence-kayaking',
                           selectedActivities: [tour.name]
                         }));
-                      } catch (_) { /* no-op */ }
+                      } catch { /* no-op */ }
                     }}
                     className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-blue-600/30 mt-auto"
                   >

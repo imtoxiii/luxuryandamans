@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import ExperienceLayout from '../../components/ExperienceLayout';
 import { Link } from 'react-router-dom';
-import { Fish, MapPin, Clock, Users, Shield, Camera, Sun, Waves, CheckCircle } from 'lucide-react';
+import { Fish, Clock, Shield, Camera, Waves, CheckCircle } from 'lucide-react';
 import FaqAccordion from '../../components/FaqAccordion';
 
 const SnorkelingPage = () => {
@@ -119,7 +119,7 @@ const SnorkelingPage = () => {
       }}
       slug="snorkeling"
       seo={{
-        title: "Snorkeling in Andaman | Best Snorkeling Sites & Packages 2025",
+        title: "Snorkeling in Andaman | Best Snorkeling Sites & Packages 2026",
         description: "Discover the underwater paradise of Andaman with guided snorkeling tours. Explore vibrant coral reefs, tropical fish, and sea turtles at North Bay, Elephant Beach, and more.",
         keywords: "snorkeling andaman, north bay snorkeling, elephant beach snorkeling, jolly buoy snorkeling, red skin island snorkeling, coral reefs andaman, underwater life andaman, snorkeling price andaman"
       }}
@@ -286,7 +286,7 @@ const SnorkelingPage = () => {
                   </span>
                 </div>
                 <p className="text-gray-600 mb-6 text-sm leading-relaxed">{pkg.description}</p>
-                
+
                 <div className="mb-8 flex-grow">
                   <h4 className="font-bold text-gray-900 text-sm mb-3">Includes:</h4>
                   <ul className="space-y-3">
@@ -314,7 +314,7 @@ const SnorkelingPage = () => {
                           slug: 'snorkeling',
                           selectedActivities: [pkg.name]
                         }));
-                      } catch (_) { /* no-op */ }
+                      } catch { /* no-op */ }
                     }}
                     className="block w-full py-3 bg-gray-900 text-white text-center rounded-xl font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-gray-900/20 hover:shadow-blue-600/30"
                   >

@@ -52,9 +52,9 @@ const Blog = () => {
   return (
     <div className="relative min-h-screen bg-pearl font-sans selection:bg-azure selection:text-white">
       <SEO
-        title="Andaman Travel Blog 2026 | Tips, Guides & Island Stories"
+        title="Andaman Travel Blog 2026 | Tips, Guides & Stories"
         description="Read expert Andaman travel guides, hidden gem recommendations, local food tips, budget planning advice & island stories. Updated weekly by local travel experts."
-        keywords="andaman travel blog, andaman travel tips, andaman travel guide blog, best andaman islands blog, andaman hidden gems, andaman local food guide, andaman budget travel tips, havelock island guide, neil island travel blog, port blair travel stories, andaman honeymoon tips, andaman family trip guide, andaman underwater photography, andaman culture blog, andaman island hopping guide, destination wedding andaman, sea walking andaman blog, andaman packing list, andaman weather guide, andaman itinerary blog, best restaurants andaman, andaman nightlife, andaman for solo travelers, andaman photography spots, andaman first time visitor tips"
+        keywords="andaman travel blog, andaman travel tips, andaman travel guide, best andaman islands, andaman hidden gems, andaman food guide, andaman budget tips, havelock island guide, andaman honeymoon tips, andaman itinerary, andaman first time visitor"
         targetAudience="all"
         pathname="/blog"
         faqData={[
@@ -142,8 +142,8 @@ const Blog = () => {
             <button
               onClick={() => setShowFilters(!showFilters)}
               className={`flex items-center justify-center gap-2 px-6 py-3 rounded-2xl font-medium transition-all duration-300 ${showFilters
-                  ? 'bg-night text-white shadow-lg'
-                  : 'bg-gray-50 text-night hover:bg-gray-100'
+                ? 'bg-night text-white shadow-lg'
+                : 'bg-gray-50 text-night hover:bg-gray-100'
                 }`}
             >
               <SlidersHorizontal className="w-4 h-4" />
@@ -175,8 +175,8 @@ const Blog = () => {
                           key={category.name}
                           onClick={() => setSelectedCategory(category.name)}
                           className={`group relative px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 border ${selectedCategory === category.name
-                              ? 'bg-azure border-azure text-white shadow-lg shadow-azure/20'
-                              : 'bg-transparent border-black/5 text-night/60 hover:border-azure/30 hover:text-azure'
+                            ? 'bg-azure border-azure text-white shadow-lg shadow-azure/20'
+                            : 'bg-transparent border-black/5 text-night/60 hover:border-azure/30 hover:text-azure'
                             }`}
                         >
                           <span className="capitalize">{category.name}</span>

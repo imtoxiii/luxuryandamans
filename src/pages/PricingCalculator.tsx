@@ -892,9 +892,9 @@ const PricingCalculatorPage = () => {
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900">
             <SEO
-                title="How Much Does Andaman Trip Cost? | Andaman Tour Budget Calculator 2025-2026"
-                description="Calculate how much an Andaman trip costs for couples, families & solo travelers. Get instant budget estimate for 5-day trip to Andaman with hotels, scuba diving, ferries & activities. Average cost: ₹25,000-65,000 per person."
-                keywords="how much does andaman cost, andaman trip cost for couple, andaman tour budget 2025, andaman trip cost calculator, how much money required for andaman trip, andaman nicobar trip cost, havelock island trip cost, andaman honeymoon cost, andaman family trip budget, 5 days andaman trip cost, andaman tour package price, scuba diving cost andaman, ferry cost andaman, port blair trip budget, neil island trip cost, andaman vacation cost, cheap andaman trip, luxury andaman cost"
+                title="Andaman Trip Cost Calculator 2026 | Budget Planner"
+                description="Calculate your Andaman trip cost for couples, families & solo travelers. Get instant budget estimate with hotels, scuba diving, ferries & activities. Average: ₹25,000-65,000/person."
+                keywords="andaman trip cost, andaman tour budget, andaman cost calculator, how much andaman trip costs, andaman honeymoon cost, andaman family trip budget, 5 days andaman cost, havelock trip cost, scuba diving cost andaman, ferry cost andaman"
                 pathname="/calculator"
                 type="website"
                 targetAudience="all"

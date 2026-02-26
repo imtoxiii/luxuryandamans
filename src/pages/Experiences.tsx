@@ -209,10 +209,10 @@ const ExperiencesPage = () => {
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900" ref={containerRef}>
       <SEO
-        title="Best Andaman Experiences 2026 | Adventure, Luxury & Family Activities"
-        description="Discover 50+ curated Andaman experiences — scuba diving from ₹3,500, bioluminescence kayaking, luxury resort stays, sunset cruises, snorkeling & more. Book online with instant confirmation. Call +91 62975 76826."
+        title="Things to Do in Andaman 2026 | Activities & Adventures"
+        description="Discover 50+ Andaman experiences — scuba diving from ₹3,500, bioluminescence kayaking, sunset cruises, snorkeling & more. Book online with instant confirmation. Call +91 62975 76826."
         pathname={location.pathname}
-        keywords="andaman experiences, things to do in andaman, andaman activities, scuba diving andaman, snorkeling andaman, bioluminescence kayaking andaman, sea walking andaman, jet skiing andaman, parasailing andaman, glass bottom boat andaman, sunset cruise andaman, andaman adventure activities, andaman water sports, andaman family activities, andaman couple activities, andaman honeymoon experiences, luxury andaman experiences, andaman cultural tours, andaman island hopping, elephant beach activities, havelock activities, neil island activities, best water sports in andaman, andaman night activities, underwater walk andaman, banana ride andaman, kayaking in mangroves andaman, fishing in andaman, andaman trekking trails, andaman underwater photography"
+        keywords="things to do in andaman, andaman activities, scuba diving andaman, snorkeling andaman, bioluminescence kayaking, sea walking andaman, jet skiing andaman, parasailing andaman, sunset cruise andaman, andaman water sports, andaman adventure activities, island hopping andaman"
         targetAudience="all"
         faqData={[
           {

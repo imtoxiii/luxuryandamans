@@ -69,9 +69,9 @@ const PackagesPage = () => {
   return (
     <div className="min-h-screen bg-gray-50 font-sans selection:bg-blue-100 selection:text-blue-900">
       <SEO
-        title="Andaman Tour Packages 2026 with Price | Honeymoon, Family & Luxury Packages"
-        description="Browse all Andaman tour packages with prices. Honeymoon packages from ₹35,000, Family packages from ₹25,000, Luxury villa packages from ₹60,000. Includes ferry, hotels, meals & all activities. Compare & book online. Call +91 62975 76826."
-        keywords="andaman packages with price, andaman tour packages 2026, andaman honeymoon packages, andaman family packages, luxury andaman packages, cheap andaman packages, andaman packages for couples, 4 nights andaman package, 5 days andaman package, 6 days andaman package, 7 days andaman package, andaman packages from delhi with flights, best andaman deals, andaman package booking, havelock package, neil island package, all inclusive andaman package, customized andaman package, andaman package with scuba diving, compare andaman packages, andaman package under 20000, andaman package under 30000, andaman package under 50000, best honeymoon package for andaman, family trip to andaman cost, andaman trip total budget"
+        title="Andaman Tour Packages 2026 with Prices | Book Online"
+        description="Browse all Andaman tour packages with prices. Honeymoon from ₹35,000, Family from ₹25,000, Luxury from ₹60,000. Includes ferry, hotels, meals & activities. Compare & book online. Call +91 62975 76826."
+        keywords="andaman packages with price, andaman tour packages 2026, andaman honeymoon packages, andaman family packages, luxury andaman packages, cheap andaman packages, 5 days andaman package, best andaman deals, andaman package booking, havelock package, all inclusive andaman package"
         pathname="/packages"
         targetAudience="all"
         faqData={[

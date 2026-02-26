@@ -21,6 +21,7 @@ interface SEOProps {
   extraStructuredData?: any[];
   faqData?: { question: string; answer: string }[];
   destinationData?: any;
+  noindex?: boolean;
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -44,53 +45,33 @@ const SEO: React.FC<SEOProps> = ({
   extraStructuredData,
   faqData,
   destinationData,
+  noindex = false,
 }) => {
   const siteUrl = import.meta.env.VITE_SITE_URL || 'https://luxuryandamans.com';
   const safePathname = typeof window !== 'undefined' && window.location?.pathname ? window.location.pathname : '/';
 
-  // Comprehensive keyword strategy targeting different user intents and budgets
+  // Focused keyword strategy - Google recommends 5-15 keywords per page max
+  // Excessive keywords trigger "keyword stuffing" penalty
   const getKeywordsByAudience = (audience: string) => {
-    const baseKeywords = 'andaman islands, andaman tourism, andaman travel, andaman packages, andaman tour packages, andaman holiday packages, andaman vacation packages, andaman trip packages, port blair, havelock island, neil island, radhanagar beach, cellular jail, ross island, elephant beach, bharatpur beach, andaman and nicobar islands tour, andaman trip 2026';
+    const baseKeywords = 'andaman tour packages, andaman packages 2026, havelock island, neil island, port blair, andaman honeymoon packages, andaman family packages, best andaman travel agent, andaman trip cost, scuba diving andaman, andaman islands tour, budget andaman packages, luxury andaman resorts';
 
-    const budgetKeywords = 'cheap andaman packages, budget andaman tour, affordable andaman trip, low cost andaman packages, budget honeymoon andaman, cheap island vacation, budget beach holiday, affordable island packages, andaman packages under 20000, andaman packages under 30000, andaman packages under 40000, andaman packages under 50000, budget family vacation andaman, cheap andaman tour packages, economical andaman packages, discount andaman packages, best value andaman packages, budget andaman honeymoon packages, affordable andaman family packages, andaman packages on emi, all inclusive andaman packages, andaman family package under 1 lakh';
+    const audienceSpecific: Record<string, string> = {
+      budget: 'cheap andaman packages, affordable andaman trip, budget andaman tour, andaman packages under 20000, best value andaman packages',
+      luxury: 'premium andaman packages, 5 star andaman packages, luxury villa andaman, boutique resort andaman, exclusive andaman experience',
+      family: 'andaman family tour, family vacation andaman, kids friendly andaman, senior citizen andaman trip, safe family holiday',
+      honeymoon: 'romantic andaman packages, honeymoon destination andaman, couples packages andaman, candlelight dinner andaman, private beach andaman',
+      adventure: 'andaman adventure packages, water sports andaman, snorkeling andaman, sea walk andaman, parasailing andaman, trekking andaman',
+      all: 'andaman vacation packages, plan my andaman trip, andaman packages from delhi, andaman packages from mumbai, andaman packages from bangalore, andaman packages from chennai'
+    };
 
-    const premiumKeywords = 'premium andaman packages, boutique andaman tour, premium island resort, quality beach resort andaman, premium andaman vacation, curated honeymoon andaman, high-quality andaman packages, premium andaman tour packages, boutique beach vacation, premium island getaway, exclusive andaman packages, best rated andaman resorts, premium andaman experience, 4 star andaman packages, 5 star andaman packages, luxury villa andaman, overwater cottage andaman';
-
-    const familyKeywords = 'andaman family packages, family vacation andaman, family tour packages andaman, family friendly andaman, andaman packages for family, family holiday andaman, kids friendly andaman packages, family beach vacation, andaman family trip, family adventure packages andaman, andaman with kids, safe andaman packages for family, senior citizen andaman trip, andaman group tour packages';
-
-    const honeymoonKeywords = 'andaman honeymoon packages, romantic andaman packages, honeymoon tour packages andaman, andaman honeymoon trip, romantic island vacation, honeymoon beach packages, andaman romantic getaway, couples packages andaman, honeymoon destination andaman, romantic beach vacation, andaman honeymoon deals, romantic island packages, private beach dinner andaman, couple activities andaman, candlelight dinner andaman, best honeymoon resort andaman';
-
-    const adventureKeywords = 'andaman adventure packages, scuba diving andaman, snorkeling andaman, water sports andaman, adventure tour andaman, diving packages andaman, adventure activities andaman, water adventure andaman, island adventure packages, adventure vacation andaman, trekking andaman, sea walk andaman, parasailing andaman, jet ski andaman, glass bottom boat andaman, bioluminescence kayaking andaman, night kayaking andaman';
-
-    const competitorKeywords = 'maldives alternative, maldives vs andaman, cheaper than maldives, andaman vs maldives honeymoon, budget maldives alternative, maldives like destination india, tropical island vacation india, best beach destination india, island vacation india, beach holiday india, tropical paradise india, coral reef destination india, clear water beaches india, white sand beaches india, andaman vs thailand for indian family, andaman vs goa, andaman vs lakshadweep, better than goa';
-
-    const broadTravelKeywords = 'beach vacation, island holiday, tropical vacation, beach packages, island packages, beach tour packages, island tour packages, tropical island vacation, beach holiday packages, island getaway, beach destination, tropical destination, coral reef vacation, diving vacation, snorkeling vacation, water sports vacation, beach resort packages, island resort packages, tropical beach vacation, pristine beach vacation, crystal clear water vacation, white sand beach vacation, turquoise water vacation, beach paradise, island paradise, tropical paradise';
-
-    const seasonalKeywords = 'summer vacation packages, winter vacation packages, monsoon packages andaman, peak season andaman, off season andaman packages, best time visit andaman, december andaman packages, january andaman packages, february andaman packages, march andaman packages, april andaman packages, may andaman packages, andaman new year packages, andaman christmas packages, andaman diwali vacation';
-
-    const locationBasedKeywords = 'andaman nicobar islands, bay of bengal islands, indian ocean islands, south andaman, north andaman, middle andaman, andaman sea, indian islands, tropical islands india, beach islands india, coral islands india, diving destinations india, snorkeling destinations india, andaman tour from delhi, andaman tour from mumbai, andaman tour from chennai, andaman tour from kolkata, andaman tour from bangalore, andaman tour from hyderabad, andaman tour from pune, andaman tour from ahmedabad';
-
-    // Conversational / AI-search keywords - these match how people ask AI assistants
-    const aiSearchKeywords = 'how to plan andaman trip, what is the cost of andaman trip, how many days are enough for andaman, is andaman safe for couples, best andaman itinerary, andaman trip cost for 2 people, andaman trip cost for 4 people, andaman trip cost for family, which islands to visit in andaman, do i need passport for andaman, how to reach andaman from delhi, plan my andaman honeymoon, suggest andaman package for family, what to pack for andaman trip, best time to go to andaman islands, andaman travel agent near me, trusted andaman tour operator, andaman trip planner, custom andaman itinerary, personalized andaman package';
-
-    switch (audience) {
-      case 'budget':
-        return `${baseKeywords}, ${budgetKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}, ${aiSearchKeywords}`;
-      case 'luxury':
-        return `${baseKeywords}, ${premiumKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}, ${aiSearchKeywords}`;
-      case 'family':
-        return `${baseKeywords}, ${familyKeywords}, ${budgetKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}, ${aiSearchKeywords}`;
-      case 'honeymoon':
-        return `${baseKeywords}, ${honeymoonKeywords}, ${budgetKeywords}, ${premiumKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}, ${aiSearchKeywords}`;
-      case 'adventure':
-        return `${baseKeywords}, ${adventureKeywords}, ${budgetKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}, ${aiSearchKeywords}`;
-      default:
-        return `${baseKeywords}, ${budgetKeywords}, ${premiumKeywords}, ${familyKeywords}, ${honeymoonKeywords}, ${adventureKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}, ${aiSearchKeywords}`;
-    }
+    const specific = audienceSpecific[audience] || audienceSpecific.all;
+    return `${baseKeywords}, ${specific}`;
   };
 
   const defaultKeywords = keywords || getKeywordsByAudience(targetAudience);
-  const siteTitle = title.includes('Luxury Andaman') ? title : `${title} | Luxury Andaman`;
+  // Keep title under 60 chars for Google (truncation happens at ~60)
+  const siteTitle = title.includes('Luxury Andaman') ? title :
+    `${title} | Luxury Andaman`.length > 65 ? title : `${title} | Luxury Andaman`;
   const canonicalUrl = `${siteUrl}${pathname || safePathname}`;
 
   // Combine default keywords with any additional ones
@@ -315,7 +296,7 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="keywords" content={allKeywords} />
       <link rel="canonical" href={canonicalUrl} />
       <meta name="author" content={author} />
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
 
       {/* Open Graph */}
       <meta property="og:title" content={siteTitle} />

@@ -1,39 +1,39 @@
+# Robots.txt for luxuryandamans.com
+# Updated: 2026-02-26
+
 User-agent: *
 Allow: /
 
-# High priority pages for crawling
+# High priority pages
 Allow: /packages
 Allow: /destinations
+Allow: /experiences
 Allow: /blog
+Allow: /travel-guide
+Allow: /guide
 Allow: /enquiry
 Allow: /calculator
-Allow: /android-chrome-192x192.png
-Allow: /android-chrome-512x512.png
-Allow: /apple-touch-icon.png
-Allow: /favicon-32x32.png
-Allow: /favicon-16x16.png
+Allow: /faq
+Allow: /contact
+Allow: /offer
 
-# Block admin and private areas (if any exist)
+# Block non-content paths
 Disallow: /admin
-Disallow: /private
-Disallow: /.env
-Disallow: /config
+Disallow: /api/
+Disallow: /*.json$
 
-# Allow all image and asset files
-Allow: /images
-Allow: /assets
-Allow: /*.css$
-Allow: /*.js$
-Allow: /*.png$
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.gif$
-Allow: /*.svg$
-Allow: /*.webp$
-Allow: /*.ico$
+# Allow all assets for rich snippets
+Allow: /images/
+Allow: /assets/
+Allow: /*.js
+Allow: /*.css
+Allow: /*.webp
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.svg
+
+# Crawl rate - be gentle on server
+Crawl-delay: 2
 
 # Sitemap location
 Sitemap: https://luxuryandamans.com/sitemap.xml
-
-# Crawl delay (optional - helps prevent server overload)
-Crawl-delay: 1

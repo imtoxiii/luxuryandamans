@@ -166,6 +166,14 @@ const PackageDetailPage: React.FC = () => {
     document.body.style.overflow = 'unset';
   };
 
+  // Redirect invalid package slugs to /packages to avoid Soft 404s in Google
+  // Must be before any conditional returns to comply with React hooks rules
+  useEffect(() => {
+    if (!isLoading && !currentPackage) {
+      navigate('/packages', { replace: true });
+    }
+  }, [isLoading, currentPackage, navigate]);
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -176,15 +184,17 @@ const PackageDetailPage: React.FC = () => {
 
   if (!currentPackage) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">Package Not Found</h2>
-        <button
-          onClick={() => navigate('/packages')}
-          className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          Browse Packages
-        </button>
-      </div>
+      <>
+        <SEO
+          title="Redirecting to Packages"
+          description=""
+          pathname={`/packages/${slug}`}
+          noindex={true}
+        />
+        <div className="min-h-screen flex flex-col items-center justify-center">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Redirecting to Packages...</h2>
+        </div>
+      </>
     );
   }
 

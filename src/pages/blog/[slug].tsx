@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useParams, Link, useLocation } from 'react-router-dom';
+import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
 import { Calendar, User, Clock, Tag, ArrowLeft, Share2, BookOpen, ChevronRight, HelpCircle } from 'lucide-react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -37,7 +37,7 @@ const flattenChildren = (children: any): string => {
 const dedent = (str: string | undefined): string => {
   if (!str) return '';
   const lines = str.split('\n');
-  
+
   // Remove leading/trailing empty lines
   while (lines.length > 0 && lines[0].trim() === '') {
     lines.shift();
@@ -46,10 +46,10 @@ const dedent = (str: string | undefined): string => {
     lines.pop();
   }
   if (lines.length === 0) return '';
-  
+
   const baseIndentMatch = lines[0].match(/^\s*/);
   const baseIndent = baseIndentMatch ? baseIndentMatch[0] : '';
-  
+
   if (baseIndent) {
     return lines.map(line => line.startsWith(baseIndent) ? line.substring(baseIndent.length) : line).join('\n');
   }
@@ -59,9 +59,10 @@ const dedent = (str: string | undefined): string => {
 const BlogPost = () => {
   const { slug } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
   const post = blogPosts.find(p => p.slug === slug);
   const [activeSection, setActiveSection] = useState('');
-  const [tableOfContents, setTableOfContents] = useState<Array<{id: string, title: string, level: number}>>([]);
+  const [tableOfContents, setTableOfContents] = useState<Array<{ id: string, title: string, level: number }>>([]);
   const contentRef = useRef<HTMLDivElement>(null);
 
   const currentIndex = blogPosts.findIndex(p => p.slug === slug);
@@ -69,6 +70,13 @@ const BlogPost = () => {
   const nextPost = currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null;
 
   const processedContent = useMemo(() => dedent(post?.content), [post]);
+
+  // Redirect invalid blog slugs to /blog to avoid Soft 404s in Google
+  useEffect(() => {
+    if (!post) {
+      navigate('/blog', { replace: true });
+    }
+  }, [post, navigate]);
 
   useEffect(() => {
     if (processedContent) {
@@ -101,19 +109,19 @@ const BlogPost = () => {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-pearl flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-night mb-4">Post Not Found</h1>
-          <p className="text-night/70 mb-8">The blog post you're looking for doesn't exist.</p>
-          <Link 
-            to="/blog"
-            className="inline-flex items-center bg-azure text-white px-6 py-3 rounded-lg hover:bg-azure/90 transition-colors"
-          >
-            <ArrowLeft className="w-5 h-5 mr-2" />
-            Back to Blog
-          </Link>
+      <>
+        <SEO
+          title="Redirecting to Blog"
+          description=""
+          pathname={`/blog/${slug}`}
+          noindex={true}
+        />
+        <div className="min-h-screen bg-pearl flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-night mb-4">Redirecting to Blog...</h1>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
@@ -134,12 +142,12 @@ const BlogPost = () => {
     }
   };
 
-  const HeadingRenderer = (props: {level: number, children: any}) => {
+  const HeadingRenderer = (props: { level: number, children: any }) => {
     const { level, children } = props;
     const text = flattenChildren(children);
     const id = slugify(text);
     const Tag = `h${level}` as keyof JSX.IntrinsicElements;
-    const classes: {[key: number]: string} = {
+    const classes: { [key: number]: string } = {
       2: "text-2xl font-bold text-night mt-8 mb-4 text-azure",
       3: "text-xl font-semibold text-night mt-6 mb-3",
       4: "text-lg font-semibold text-night mt-4 mb-2",
@@ -148,7 +156,7 @@ const BlogPost = () => {
     };
     return <Tag id={id} className={classes[level] || ''}>{children}</Tag>;
   };
-  
+
   const markdownComponents = {
     h1: ({ children }: any) => <h1 className="text-3xl font-bold text-night mt-8 mb-4 border-b-2 border-azure/20 pb-2">{children}</h1>,
     h2: ({ children }: any) => <HeadingRenderer level={2}>{children}</HeadingRenderer>,
@@ -169,18 +177,18 @@ const BlogPost = () => {
       </blockquote>
     ),
     code({ node, inline, className, children, ...props }: any) {
-        const match = /language-(\w+)/.exec(className || '')
-        return !inline && match ? (
-            <div className="bg-night text-pearl p-4 rounded-lg overflow-x-auto my-4 text-sm">
-                <code className={className} {...props}>
-                    {children}
-                </code>
-            </div>
-        ) : (
-            <code className="bg-pearl px-2 py-1 rounded text-sm font-mono text-azure" {...props}>
-                {children}
-            </code>
-        )
+      const match = /language-(\w+)/.exec(className || '')
+      return !inline && match ? (
+        <div className="bg-night text-pearl p-4 rounded-lg overflow-x-auto my-4 text-sm">
+          <code className={className} {...props}>
+            {children}
+          </code>
+        </div>
+      ) : (
+        <code className="bg-pearl px-2 py-1 rounded text-sm font-mono text-azure" {...props}>
+          {children}
+        </code>
+      )
     },
     pre: ({ children }: any) => <>{children}</>,
   };
@@ -188,7 +196,7 @@ const BlogPost = () => {
   return (
     <div className="min-h-screen bg-pearl font-sans selection:bg-azure selection:text-white">
       <ScrollProgress showPercentage color="#0EA5E9" />
-      <SEO 
+      <SEO
         title={post.title}
         description={post.excerpt}
         pathname={location.pathname}
@@ -202,16 +210,16 @@ const BlogPost = () => {
         faqData={post.faq}
       />
       <Header />
-      
+
       {/* Hero Section */}
       <div className="relative h-[70vh] min-h-[600px] overflow-hidden">
-        <motion.div 
+        <motion.div
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.5 }}
           className="absolute inset-0"
         >
-          <img 
+          <img
             src={post.image}
             alt={post.title}
             className="w-full h-full object-cover"
@@ -227,32 +235,32 @@ const BlogPost = () => {
               transition={{ duration: 0.8 }}
               className="max-w-5xl mx-auto text-center"
             >
-              <Link 
+              <Link
                 to="/blog"
                 className="inline-flex items-center text-white/80 hover:text-white mb-8 transition-colors group backdrop-blur-sm bg-white/10 px-4 py-2 rounded-full"
               >
                 <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
                 Back to Journal
               </Link>
-              
+
               <div className="mb-6">
                 <span className="inline-block bg-azure text-white px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider shadow-lg shadow-azure/20">
                   {post.category}
                 </span>
               </div>
-              
+
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-[1.1] tracking-tight">
                 {post.title}
               </h1>
-              
+
               <p className="text-lg md:text-2xl text-white/90 mb-10 leading-relaxed max-w-3xl mx-auto font-light">
                 {post.excerpt}
               </p>
-              
+
               <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 text-white/90">
                 <div className="flex items-center gap-2">
-                  <img 
-                    src={post.author.avatar} 
+                  <img
+                    src={post.author.avatar}
                     alt={post.author.name}
                     className="w-8 h-8 rounded-full border-2 border-white/20"
                   />
@@ -284,7 +292,7 @@ const BlogPost = () => {
       <section className="relative py-20 px-4 md:px-8 lg:px-12">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            
+
             {/* Table of Contents - Sidebar */}
             <div className="hidden lg:block lg:col-span-3">
               <div className="sticky top-32">
@@ -299,11 +307,10 @@ const BlogPost = () => {
                         <a
                           key={item.id}
                           href={`#${item.id}`}
-                          className={`block text-sm py-1.5 transition-all duration-300 border-l-2 pl-4 ${
-                            activeSection === item.id 
-                              ? 'border-azure text-azure font-medium translate-x-1' 
+                          className={`block text-sm py-1.5 transition-all duration-300 border-l-2 pl-4 ${activeSection === item.id
+                              ? 'border-azure text-azure font-medium translate-x-1'
                               : 'border-transparent text-night/60 hover:text-night hover:border-black/10'
-                          } ${item.level > 1 ? 'ml-4' : ''}`}
+                            } ${item.level > 1 ? 'ml-4' : ''}`}
                         >
                           {item.title}
                         </a>
@@ -311,7 +318,7 @@ const BlogPost = () => {
                     </nav>
                   </div>
                 )}
-                
+
                 <div className="mt-8">
                   <button
                     onClick={sharePost}
@@ -328,7 +335,7 @@ const BlogPost = () => {
             <div className="lg:col-span-7">
               <div ref={contentRef} className="bg-white rounded-3xl shadow-glass p-6 md:p-12 lg:p-16">
                 <div className="prose prose-lg prose-headings:font-display prose-headings:font-bold prose-a:text-azure prose-img:rounded-2xl prose-img:shadow-lg max-w-none">
-                  <ReactMarkdown 
+                  <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={markdownComponents}
                   >
@@ -378,7 +385,7 @@ const BlogPost = () => {
               {/* Post Navigation */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
                 {prevPost ? (
-                  <Link 
+                  <Link
                     to={`/blog/${prevPost.slug}`}
                     className="group bg-white p-6 rounded-2xl border border-black/5 hover:border-azure/30 hover:shadow-lg transition-all duration-300"
                   >
@@ -388,9 +395,9 @@ const BlogPost = () => {
                     </h4>
                   </Link>
                 ) : <div />}
-                
+
                 {nextPost && (
-                  <Link 
+                  <Link
                     to={`/blog/${nextPost.slug}`}
                     className="group bg-white p-6 rounded-2xl border border-black/5 hover:border-azure/30 hover:shadow-lg transition-all duration-300 text-right"
                   >
@@ -409,7 +416,7 @@ const BlogPost = () => {
                 <h3 className="text-sm font-bold text-night/40 uppercase tracking-wider mb-6">Related Stories</h3>
                 <div className="space-y-6">
                   {relatedPosts.slice(0, 3).map((relatedPost) => (
-                    <Link 
+                    <Link
                       key={relatedPost?.id}
                       to={`/blog/${relatedPost?.slug}`}
                       className="group block"
@@ -440,7 +447,7 @@ const BlogPost = () => {
           <h3 className="text-2xl font-display font-bold text-night mb-8">More Stories</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {relatedPosts.map((relatedPost) => (
-              <Link 
+              <Link
                 key={relatedPost?.id}
                 to={`/blog/${relatedPost?.slug}`}
                 className="bg-white rounded-2xl overflow-hidden shadow-sm"

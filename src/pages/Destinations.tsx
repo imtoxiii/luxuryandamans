@@ -54,9 +54,9 @@ const Destinations = () => {
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900" ref={containerRef}>
       <SEO
-        title="Top 15 Places to Visit in Andaman 2026 | Best Destinations & Islands"
-        description="Discover the best places to visit in Andaman 2026 - Havelock Island, Neil Island, Port Blair, Radhanagar Beach, Cellular Jail & more. Complete guide to Andaman's top 15 destinations with photos, activities, how to reach & travel tips."
-        keywords="places to visit in andaman, andaman destinations, best islands in andaman, havelock island, neil island, port blair attractions, radhanagar beach, cellular jail, elephant beach, baratang limestone caves, ross island, north bay island, andaman sightseeing, andaman tourist places, must visit places andaman, andaman islands to visit, hidden gems andaman, beautiful beaches andaman, snorkeling spots andaman, scuba diving locations andaman, top 10 places in andaman, best beach in andaman, which island is best in andaman, andaman island hopping, kalapathar beach, jolly buoy island, wandoor beach, chidiya tapu, andaman viewpoints, instagram worthy places andaman, offbeat places in andaman"
+        title="Best Places to Visit in Andaman 2026 | Top Destinations"
+        description="Discover the best places to visit in Andaman 2026 — Havelock Island, Neil Island, Port Blair, Radhanagar Beach, Cellular Jail & more. Complete guide with photos, activities, how to reach & travel tips."
+        keywords="places to visit in andaman, andaman destinations, best islands in andaman, havelock island, neil island, port blair, radhanagar beach, cellular jail, elephant beach, ross island, north bay island, andaman tourist places, best beach in andaman"
         pathname="/destinations"
         targetAudience="all"
         faqData={[

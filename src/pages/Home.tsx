@@ -100,10 +100,10 @@ const Home = () => {
   return (
     <div className="bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
       <SEO
-        title="Andaman Tour Packages 2026 | Starting ₹14,999 | Best Andaman Packages"
-        description="Book best Andaman tour packages starting ₹14,999 per person. 4.9★ rated luxury honeymoon, family & adventure packages. Includes ferry, hotels, scuba diving & all activities. Free cancellation. 1200+ happy travelers. Call +91 62975 76826."
+        title="Andaman Tour Packages 2026 | Best Deals from ₹14,999"
+        description="Book Andaman tour packages from ₹14,999/person. 4.9★ rated by 1200+ travelers. Honeymoon, family & adventure packages with ferry, hotels, scuba diving included. Havelock, Neil Island & Port Blair. Free cancellation & custom itinerary. Call +91 62975 76826."
         pathname={location.pathname}
-        keywords="andaman tour packages, andaman packages 2026, best andaman packages, andaman honeymoon packages, andaman family packages, cheap andaman packages, andaman islands trip, andaman vacation packages, havelock island packages, neil island tour, andaman tourism, beach holiday india, andaman trip cost, port blair packages, andaman packages from delhi, andaman packages from chennai, andaman packages from bangalore, andaman packages from kolkata, andaman packages from mumbai, budget andaman packages, luxury andaman trip, scuba diving andaman package, water sports andaman, how to plan andaman trip, andaman trip cost for 2 people, best time to visit andaman, andaman package with flights, andaman all inclusive package, andaman couple package, plan my andaman vacation, trusted andaman travel agent, andaman trip planner near me"
+        keywords="andaman tour packages, andaman tour packages 2026, andaman honeymoon packages, andaman family packages, andaman packages from delhi, andaman packages from mumbai, andaman packages from bangalore, andaman packages from chennai, havelock island packages, neil island tour, port blair tour, scuba diving andaman, best andaman travel agent, andaman trip cost, budget andaman packages, luxury andaman trip, best time to visit andaman"
         targetAudience="all"
         faqData={[
           {

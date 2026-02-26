@@ -106,11 +106,11 @@ const TravelGuide = () => {
   return (
     <div className="min-h-screen bg-pearl font-sans selection:bg-azure selection:text-white">
       <SEO
-        title="Complete Andaman Travel Guide 2026 | How to Reach, Best Time, Tips & Things to Do"
-        description="Ultimate Andaman travel guide for 2026. Learn how to reach Andaman by flight & ship, best time to visit (Oct-May), required documents, ferry booking tips, top places to visit & things to do. Updated weekly."
+        title="Andaman Travel Guide 2026 | Plan Your Perfect Trip"
+        description="Ultimate Andaman travel guide for 2026. How to reach Andaman by flight & ship, best time to visit (Oct-May), required documents, ferry booking tips, top places to visit & things to do. Updated weekly."
         pathname={location.pathname}
         type="article"
-        keywords="andaman travel guide 2026, how to reach andaman, best time to visit andaman, andaman trip planning, andaman nicobar travel guide, port blair guide, havelock travel guide, andaman tourism information, andaman flight booking, andaman ferry guide, andaman permit requirements, andaman weather, things to do in andaman, andaman itinerary, andaman trip tips, andaman for first timers, andaman visa requirements, andaman packing list, andaman currency, andaman safety tips, complete andaman guide, andaman travel checklist, step by step andaman trip plan, what to know before visiting andaman, andaman food guide, andaman local transport, andaman hospital and medical, andaman for elderly, andaman accessibility, andaman adventure sports guide"
+        keywords="andaman travel guide, how to reach andaman, best time to visit andaman, andaman trip planning, andaman permit requirements, andaman ferry guide, things to do in andaman, andaman itinerary, andaman for first timers, andaman packing list, andaman safety tips"
         author="Luxury Andamans Editorial Team"
         publishedTime="2026-01-01"
         modifiedTime={new Date().toISOString().split('T')[0]}

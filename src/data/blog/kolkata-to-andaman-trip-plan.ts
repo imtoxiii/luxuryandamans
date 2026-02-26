@@ -5,13 +5,13 @@ const slug = 'kolkata-to-andaman-trip-plan';
 
 const images = {
   main: {
-    src: `/blog-assets/${slug}/kolkata-to-andaman-flight-view.jpg`,
+    src: 'https://images.pexels.com/photos/30693592/pexels-photo-30693592/free-photo-of-dramatic-aerial-view-of-secluded-tropical-beach.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'An airplane flying over the Bay of Bengal, representing the short flight from Kolkata to the Andamans.',
     width: 1920,
     height: 1080
   },
   imageOne: {
-    src: `/blog-assets/${slug}/radhanagar-beach-havelock.jpg`,
+    src: 'https://images.pexels.com/photos/34519393/pexels-photo-34519393/free-photo-of-man-relaxing-with-surfboard-on-maldives-beach.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Tourists relaxing on the white sands of Radhanagar Beach in Havelock Island.',
     width: 1200,
     height: 800
@@ -67,7 +67,7 @@ This plan is designed to maximize your vacation time, blending popular sights wi
 - **Day 6: Island Exploration & Return:** Enjoy the morning at Bharatpur Beach, known for its calm waters. Take an afternoon ferry back to Port Blair for a relaxed final evening.
 - **Day 7: Departure:** Depending on your flight time, you can do some last-minute souvenir shopping before heading to the airport for your quick flight back to Kolkata.
 
-![${images.imageOne.alt}](${images.imageOne.src})
+![${images.imageOne.alt}](https://images.pexels.com/photos/4762395/pexels-photo-4762395.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## Budgeting Your Trip: A Couple's Guide from Kolkata
 

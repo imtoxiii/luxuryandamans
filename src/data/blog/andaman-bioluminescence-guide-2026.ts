@@ -1,29 +1,29 @@
 import { BlogPost } from '../../types/blog';
 import { defaultAuthor } from './author';
 
-const imagePath = '/img/blog/andaman-bioluminescence-guide-2025/';
+const imagePath = '/img/blog/andaman-bioluminescence-guide-2026/';
 
 const images = {
   main: {
-    src: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1887&q=80',
+    src: 'https://images.pexels.com/photos/4762395/pexels-photo-4762395.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Glowing seas of Andaman at night',
     width: 1887,
     height: 1258,
   },
   planktonTrail: {
-    src: `${imagePath}plankton-trail.jpg`,
+    src: 'https://images.pexels.com/photos/1059161/pexels-photo-1059161.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A paddle creating a glowing trail of bioluminescent plankton in the water',
     width: 800,
     height: 400,
   },
   kayakingHavelock: {
-    src: `${imagePath}kayaking-havelock.jpg`,
+    src: 'https://images.pexels.com/photos/4762395/pexels-photo-4762395.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Night kayaking through the serene mangrove creeks of Havelock Island',
     width: 800,
     height: 400,
   },
   safetyBriefing: {
-    src: `${imagePath}safety-briefing.jpg`,
+    src: 'https://images.pexels.com/photos/2100918/pexels-photo-2100918.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A group of tourists receiving a safety briefing before a night kayaking tour',
     width: 800,
     height: 400,
@@ -31,11 +31,11 @@ const images = {
 };
 
 const post: BlogPost = {
-  id: 'andaman-bioluminescence-guide-2025',
-  title: 'Andaman Bioluminescence 2025: A Complete Guide to the Sea of Stars',
-  slug: 'andaman-bioluminescence-guide-2025',
+  id: 'andaman-bioluminescence-guide-2026',
+  title: 'Andaman Bioluminescence 2026: A Complete Guide to the Sea of Stars',
+  slug: 'andaman-bioluminescence-guide-2026',
   excerpt:
-    "Unlock the secrets of Andaman's magical bioluminescence. This complete 2025 guide covers the best time, moon phases, kayaking spots in Havelock, tour prices, safety, and FAQs for witnessing the 'sea of stars'.",
+    "Unlock the secrets of Andaman's magical bioluminescence. This complete 2026 guide covers the best time, moon phases, kayaking spots in Havelock, tour prices, safety, and FAQs for witnessing the 'sea of stars'.",
   image: images.main.src,
   author: defaultAuthor,
   date: new Date().toISOString(),
@@ -47,7 +47,7 @@ const post: BlogPost = {
     'best time andaman',
     'night kayaking havelock',
     'sea of stars andaman',
-    'andaman travel guide 2025',
+    'andaman travel guide 2026',
   ],
   relatedPosts: [
     'andaman-best-time',
@@ -90,11 +90,11 @@ const post: BlogPost = {
 ## What is Andaman's Bioluminescence? The Science Behind the Magic
 The magical glow you see in Andaman's waters is caused by microscopic organisms called dinoflagellates (a type of phytoplankton). When the water they live in is agitated—by a paddle, a fish, or the kayak itself—they emit a beautiful, ghostly blue light. It's a natural defense mechanism that creates an otherworldly "sea of stars" effect, turning every paddle stroke into a trail of liquid light. This enchanting display is nature's own light show, and Andaman's pristine conditions make it one of the best places in the world to witness it.
 
-<img src="${images.planktonTrail.src}" alt="${images.planktonTrail.alt}" width="${images.planktonTrail.width}" height="${images.planktonTrail.height}" />
+<img src="https://images.pexels.com/photos/2690764/pexels-photo-2690764.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.planktonTrail.alt}" width="${images.planktonTrail.width}" height="${images.planktonTrail.height}" />
 
 ---
 
-## Best Time to Witness Bioluminescence in 2025
+## Best Time to Witness Bioluminescence in 2026
 Timing is crucial for the best experience.
 - **Peak Season (November to February):** This is the ideal window. The skies are clear, the seas are calm, and the water has higher concentrations of phytoplankton, leading to a more vibrant glow.
 - **Shoulder Season (October & March-April):** Good sightings are still possible, but conditions can be less predictable.
@@ -108,7 +108,7 @@ While it can occur anywhere, certain spots offer consistently better experiences
 ### 1. Havelock Island (Swaraj Dweep) - The Premier Destination
 The undisputed champion for bioluminescence tours. The island's sheltered mangrove creeks are away from any light pollution and have calm, nutrient-rich waters, creating the perfect environment for dinoflagellates to thrive. You'll paddle through narrow, silent channels under a canopy of stars, with every movement creating a swirl of mesmerizing blue light. The silence of the mangroves, broken only by your paddle, makes the experience deeply immersive.
 
-<img src="${images.kayakingHavelock.src}" alt="${images.kayakingHavelock.alt}" width="${images.kayakingHavelock.width}" height="${images.kayakingHavelock.height}" />
+<img src="https://images.pexels.com/photos/5878513/pexels-photo-5878513.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.kayakingHavelock.alt}" width="${images.kayakingHavelock.width}" height="${images.kayakingHavelock.height}" />
 
 ### 2. Port Blair - Convenient Yet Captivating
 Several tour operators explore the mangrove creeks around Port Blair. While convenient for those on a tight schedule, the experience can be slightly diminished by the distant city glow compared to the pristine darkness of Havelock. It remains a great option if you have a short layover in the capital.
@@ -139,7 +139,7 @@ A typical bioluminescence kayaking tour is a well-organized and safe adventure.
 - **Embrace the Dark:** Allow your eyes to adjust to the darkness for about 15-20 minutes. Avoid using flashlights or phone screens, as this will ruin your night vision and detract from the experience.
 - **Manage Expectations:** Remember that this is a natural event. The brightness can vary based on many factors. Go with a spirit of adventure and appreciate the unique opportunity!
 
-<img src="${images.safetyBriefing.src}" alt="${images.safetyBriefing.alt}" width="${images.safetyBriefing.width}" height="${images.safetyBriefing.height}" />
+<img src="https://images.pexels.com/photos/5878513/pexels-photo-5878513.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.safetyBriefing.alt}" width="${images.safetyBriefing.width}" height="${images.safetyBriefing.height}" />
 
 ---
 
@@ -156,6 +156,12 @@ Your experience heavily depends on your guide. Look for operators who:
 Bioluminescence kayaking is a perfect addition to any Andaman itinerary.
 - Pair it with our recommended [Andaman Honeymoon Guide](/blog/andaman-honeymoon-guide) for a romantic escape.
 - Discover more unique experiences in our list of [Top Things to Do in Andaman](/blog/andaman-top-things-to-do).
+
+---
+
+## Plan Your Dream Trip! 
+Want a hassle-free Andaman experience? Let our local experts plan your 2026 getaway. 
+[**Contact Us Now**](/contact) for customized packages and best deals.
 `
 };
 

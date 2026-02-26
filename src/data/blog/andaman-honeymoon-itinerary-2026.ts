@@ -3,25 +3,25 @@ import { defaultAuthor } from './author';
 
 const images = {
   main: {
-    src: '/blog-assets/andaman-honeymoon-itinerary-2025/main.jpg',
+    src: 'https://images.pexels.com/photos/18505543/pexels-photo-18505543/free-photo-of-people-diving-underwater.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Couple enjoying a romantic sunset on a pristine Andaman beach.',
     width: 1200,
     height: 800
   },
   imageOne: {
-    src: '/blog-assets/andaman-honeymoon-itinerary-2025/radhanagar-beach-sunset.jpg',
+    src: 'https://images.pexels.com/photos/35252466/pexels-photo-35252466/free-photo-of-group-of-divers-exploring-underwater-depths.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Stunning sunset view with vibrant colours at Radhanagar Beach, Havelock Island.',
     width: 800,
     height: 600
   },
   imageTwo: {
-    src: '/blog-assets/andaman-honeymoon-itinerary-2025/scuba-diving-couple.jpg',
+    src: 'https://images.pexels.com/photos/18505543/pexels-photo-18505543/free-photo-of-people-diving-underwater.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A couple experiencing the thrill of their first scuba dive in the crystal-clear waters of Andaman.',
     width: 800,
     height: 600
   },
   imageThree: {
-    src: '/blog-assets/andaman-honeymoon-itinerary-2025/neil-island-natural-bridge.jpg',
+    src: 'https://images.pexels.com/photos/15763623/pexels-photo-15763623/free-photo-of-scuba-divers-swimming-near-shipwreck.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'The magnificent natural rock bridge formation at Laxmanpur Beach, Neil Island, during low tide.',
     width: 800,
     height: 600
@@ -29,19 +29,19 @@ const images = {
 };
 
 const post: BlogPost = {
-  id: 'andaman-honeymoon-itinerary-2025',
+  id: 'andaman-honeymoon-itinerary-2026',
   title:
-    'The Ultimate Andaman Honeymoon Itinerary 2025: A 7-Day Guide to Paradise',
-  slug: 'andaman-honeymoon-itinerary-2025',
+    'The Ultimate Andaman Honeymoon Itinerary 2026: A 7-Day Guide to Paradise',
+  slug: 'andaman-honeymoon-itinerary-2026',
   excerpt:
-    'Planning the perfect romantic escape? Our 7-day Andaman honeymoon itinerary for 2025 is crafted for Indian couples, blending adventure with intimacy. Discover private beaches, candlelight dinners, and underwater wonders in this tropical paradise.',
+    'Planning the perfect romantic escape? Our 7-day Andaman honeymoon itinerary for 2026 is crafted for Indian couples, blending adventure with intimacy. Discover private beaches, candlelight dinners, and underwater wonders in this tropical paradise.',
   image: images.main.src,
   author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '15 min read',
   category: 'Honeymoon',
   tags: [
-    'andaman honeymoon itinerary 2025',
+    'andaman honeymoon itinerary 2026',
     '7 day andaman honeymoon package',
     'best andaman itinerary for couple',
     'havelock island honeymoon',
@@ -78,7 +78,7 @@ const post: BlogPost = {
     - **Afternoon:** Check into your pre-booked beach resort. We highly recommend one with a private beach for those uninterrupted moments.
     - **Evening:** Head to the world-famous **Radhanagar Beach (Beach No. 7)**. Voted one of Asia's best beaches, its sunset is a spectacle you'll cherish forever. The sky explodes in shades of orange, pink, and purple. It's the perfect moment for that classic honeymoon silhouette photo.
 
-    ![${images.imageOne.alt}](${images.imageOne.src})
+    ![${images.imageOne.alt}](https://images.pexels.com/photos/18505543/pexels-photo-18505543/free-photo-of-people-diving-underwater.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
     ### Day 3: Havelock – Underwater Wonders & Beach Bliss
     Time to discover what lies beneath the shimmering surface of the Andaman Sea.
@@ -86,7 +86,7 @@ const post: BlogPost = {
     - **Afternoon:** For more water-based fun, take a boat to **Elephant Beach**. It's the hub for water sports like snorkelling, sea walking, and jet skiing.
     - **Evening:** This is the night for the ultimate romantic gesture: a **private candlelight dinner** on the beach. With the sound of the waves and a star-studded sky, it’s a memory you'll both treasure.
 
-    ![${images.imageTwo.alt}](${images.imageTwo.src})
+    ![${images.imageTwo.alt}](https://images.pexels.com/photos/16851074/pexels-photo-16851074/free-photo-of-couple-in-scuba-diving-equipment-in-water.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
     ### Day 4: Havelock – Leisure, Exploration, and a Magical Evening
     Today is all about finding your own pace.
@@ -100,7 +100,7 @@ const post: BlogPost = {
     - **Afternoon:** Visit **Bharatpur Beach**, famous for its shallow waters and beautiful coral reefs. A ride in a glass-bottom boat is a must-do here.
     - **Evening:** Go to **Laxmanpur Beach** for another spectacular sunset. At low tide, you can walk to see the stunning **Natural Bridge**, a natural rock formation that is one of Neil's most famous landmarks.
 
-    ![${images.imageThree.alt}](${images.imageThree.src})
+    ![${images.imageThree.alt}](https://images.pexels.com/photos/28800340/pexels-photo-28800340/free-photo-of-silhouetted-scuba-divers-underwater-adventure.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
     ### Day 6: Neil Island – Sunrise, Relaxation, and Rustic Charm
     Your last full day in paradise.
@@ -127,7 +127,13 @@ const post: BlogPost = {
     - **Cash is King:** While UPI is available in Port Blair and Havelock, it's wise to carry enough cash, especially in Neil Island.
 
     ## Frequently Asked Questions (FAQ)
-  `,
+  
+---
+
+## Plan Your Dream Trip! 
+Want a hassle-free Andaman experience? Let our local experts plan your 2026 getaway. 
+[**Contact Us Now**](/contact) for customized packages and best deals.
+`,
   faq: [
     {
       question: 'Is Andaman a good destination for a honeymoon?',

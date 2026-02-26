@@ -6,19 +6,19 @@ const imagePath = `/blog-assets/${slug}/`;
 
 const images = {
   main: {
-    src: `${imagePath}andaman-best-time-main.jpg`,
+    src: 'https://images.pexels.com/photos/12934731/pexels-photo-12934731.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Sunny Andaman beach with clear turquoise water and gentle waves',
     width: 1200,
     height: 800,
   },
   calmSeason: {
-    src: `${imagePath}calm-seas-nov-feb.jpg`,
+    src: 'https://images.pexels.com/photos/5598760/pexels-photo-5598760.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Calm seas and blue skies in peak season November to February in Andaman',
     width: 800,
     height: 533,
   },
   monsoonGreens: {
-    src: `${imagePath}monsoon-greens.jpg`,
+    src: 'https://images.pexels.com/photos/34519397/pexels-photo-34519397/free-photo-of-tropical-palm-tree-on-maldivian-beach.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Lush monsoon greenery and dramatic skies in the Andaman Islands during July to September',
     width: 800,
     height: 533,
@@ -83,7 +83,7 @@ The Andaman Islands offer stunning beaches, coral reefs, and warm tropical weath
 - **Shoulder Season (October & March–April):** Mostly great weather, improving/waning seas; good balance of value and conditions.
 - **Monsoon (May–September):** Lush landscapes, fewer tourists, best deals; intermittent rain and occasional rough seas.
 
-<img src="${images.calmSeason.src}" alt="${images.calmSeason.alt}" width="${images.calmSeason.width}" height="${images.calmSeason.height}" />
+<img src="https://images.pexels.com/photos/4766819/pexels-photo-4766819.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.calmSeason.alt}" width="${images.calmSeason.width}" height="${images.calmSeason.height}" />
 
 ---
 
@@ -114,7 +114,7 @@ The Andaman Islands offer stunning beaches, coral reefs, and warm tropical weath
 - **Underwater:** Conditions vary; snorkeling close to shore on calm windows.
 - **Good for:** Value seekers, slow travelers, photographers of moody seascapes.
 
-<img src="${images.monsoonGreens.src}" alt="${images.monsoonGreens.alt}" width="${images.monsoonGreens.width}" height="${images.monsoonGreens.height}" />
+<img src="https://images.pexels.com/photos/4766819/pexels-photo-4766819.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.monsoonGreens.alt}" width="${images.monsoonGreens.width}" height="${images.monsoonGreens.height}" />
 
 ### October: Transition to Peak—Fresh, Green, and Promising
 - **Weather:** Rains retreat; sunny periods increase.

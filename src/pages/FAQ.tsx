@@ -146,7 +146,7 @@ const FAQ = () => {
         title="Andaman FAQ & Help Center | Travel Questions Answered"
         description="Get answers to 50+ frequently asked questions about Andaman Islands travel — booking, visa, permits, activities, safety, weather, costs & more. Updated for 2026."
         pathname="/faq"
-        keywords="andaman faq, andaman travel questions, do i need visa for andaman, andaman permit requirements, is andaman safe, best time to visit andaman, andaman booking help, andaman cancellation policy, andaman travel insurance, how to reach andaman, andaman water activities cost, andaman family travel, andaman honeymoon tips, andaman payment methods, andaman medical facilities, andaman internet connectivity, andaman ATM availability, andaman currency, andaman food options, andaman group booking"
+        keywords="andaman faq, andaman travel questions, do i need visa for andaman, andaman permit requirements, is andaman safe, best time to visit andaman, andaman booking help, andaman cancellation policy, andaman travel insurance, how to reach andaman, andaman water activities cost, andaman family travel, andaman honeymoon tips, andaman payment methods, andaman medical facilities, andaman internet connectivity, andaman ATM availability, andaman currency, andaman food options, andaman group booking, is passport needed for andaman, can i pay emi for andaman trip, is andaman safe for solo female travelers, what documents needed for andaman, how to book ferry in andaman, can i drink tap water in andaman, is there uber in andaman, best sim card for andaman, andaman covid rules 2026, andaman vegetarian food options"
         targetAudience="all"
         faqData={faqs.map(faq => ({
           question: faq.question,

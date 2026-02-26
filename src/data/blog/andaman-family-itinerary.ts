@@ -6,19 +6,19 @@ const imagePath = `/blog-assets/${slug}/`;
 
 const images = {
   main: {
-    src: `${imagePath}andaman-family-beach.jpg`,
+    src: 'https://images.pexels.com/photos/3551208/pexels-photo-3551208.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A family with kids playing on a beautiful, sandy Andaman beach.',
     width: 1200,
     height: 800,
   },
   glassBottomBoat: {
-    src: `${imagePath}glass-bottom-boat-kids.jpg`,
+    src: 'https://images.pexels.com/photos/3551208/pexels-photo-3551208.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Children looking amazed at the coral reefs through a glass-bottom boat in the Andamans.',
     width: 800,
     height: 533,
   },
   radhanagarShallows: {
-    src: `${imagePath}radhanagar-beach-shallows.jpg`,
+    src: 'https://images.pexels.com/photos/3551208/pexels-photo-3551208.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Kids safely playing in the shallow, calm waters of Radhanagar Beach at sunset.',
     width: 800,
     height: 533,
@@ -99,7 +99,7 @@ Time to hit the islands!
 - **Afternoon:** Check into your family-friendly resort and have a relaxed lunch.
 - **Evening:** Visit the world-famous Radhanagar Beach (Beach No. 7) for sunset. Its vast expanse of soft sand and calm, shallow waters make it the perfect natural swimming pool for kids.
 
-<img src="${images.radhanagarShallows.src}" alt="${images.radhanagarShallows.alt}" width="${images.radhanagarShallows.width}" height="${images.radhanagarShallows.height}" />
+<img src="https://images.pexels.com/photos/5945867/pexels-photo-5945867.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.radhanagarShallows.alt}" width="${images.radhanagarShallows.width}" height="${images.radhanagarShallows.height}" />
 
 ## Day 3: Underwater Wonders at Elephant Beach
 A day of excitement and marine exploration.
@@ -107,7 +107,7 @@ A day of excitement and marine exploration.
 - **Activity:** This is the best spot for a **glass-bottom boat ride**. It's a fantastic way for kids to see the vibrant coral reefs and colorful fish without needing to snorkel.
 - **Afternoon:** Return to the hotel for a well-deserved nap. The evening is free for ice cream and a casual stroll.
 
-<img src="${images.glassBottomBoat.src}" alt="${images.glassBottomBoat.alt}" width="${images.glassBottomBoat.width}" height="${images.glassBottomBoat.height}" />
+<img src="https://images.pexels.com/photos/6158116/pexels-photo-6158116.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.glassBottomBoat.alt}" width="${images.glassBottomBoat.width}" height="${images.glassBottomBoat.height}" />
 
 ## Day 4: Neil Island’s Laid-Back Charm
 Discover the tranquil beauty of Neil Island (Shaheed Dweep).

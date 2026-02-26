@@ -6,19 +6,19 @@ const imagePath = `/blog-assets/${slug}/`;
 
 const images = {
   main: {
-    src: `${imagePath}makruzz-ferry-andaman.jpg`,
+    src: 'https://images.pexels.com/photos/3551208/pexels-photo-3551208.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Makruzz luxury catamaran sailing in Andaman waters',
     width: 1200,
     height: 800,
   },
   interior: {
-    src: `${imagePath}ferry-interior-premium.jpg`,
+    src: 'https://images.pexels.com/photos/2846820/pexels-photo-2846820.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Premium class interior of a private ferry',
     width: 800,
     height: 533,
   },
   jetty: {
-    src: `${imagePath}havelock-jetty-view.jpg`,
+    src: 'https://images.pexels.com/photos/3551208/pexels-photo-3551208.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Tourists boarding a ferry at Havelock Jetty',
     width: 800,
     height: 533,
@@ -108,7 +108,7 @@ These are fast, comfortable, air-conditioned, and bookable online.
 ### Green Ocean 2
 - **The Hybrid:** Faster than GO1, but fully AC like Makruzz. No open deck.
 
-<img src="${images.interior.src}" alt="${images.interior.alt}" width="${images.interior.width}" height="${images.interior.height}" />
+<img src="https://images.pexels.com/photos/2100918/pexels-photo-2100918.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.interior.alt}" width="${images.interior.width}" height="${images.interior.height}" />
 
 ---
 
@@ -135,7 +135,7 @@ These are fast, comfortable, air-conditioned, and bookable online.
 - **Timings:** Mostly afternoon (returns you by evening).
 - **Duration:** 60-90 mins
 
-<img src="${images.jetty.src}" alt="${images.jetty.alt}" width="${images.jetty.width}" height="${images.jetty.height}" />
+<img src="https://images.pexels.com/photos/2100918/pexels-photo-2100918.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.jetty.alt}" width="${images.jetty.width}" height="${images.jetty.height}" />
 
 ---
 

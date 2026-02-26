@@ -6,7 +6,7 @@ export const post: BlogPost = {
     slug: "andaman-vs-lakshadweep",
     title: "Andaman vs Lakshadweep: Which Island Paradise Should You Choose in 2025?",
     excerpt: "Confused between Andaman and Lakshadweep? We break down the differences in cost, accessibility, activities, and vibe to help you decide your perfect island getaway.",
-    image: "https://images.unsplash.com/photo-1598091383021-15ddea10925d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    image: 'https://images.pexels.com/photos/18505543/pexels-photo-18505543/free-photo-of-people-diving-underwater.jpeg?auto=compress&cs=tinysrgb&w=1200',
     category: "Destination Comparison",
     author: defaultAuthor,
     date: "2025-02-15",
@@ -20,7 +20,7 @@ Choosing between India's two stunning archipelagos, Andaman & Nicobar and Laksha
 
 In this detailed comparison, we'll help you decide which island chain is right for your next vacation.
 
-![Andaman vs Lakshadweep](https://images.unsplash.com/photo-1598091383021-15ddea10925d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
+![Andaman vs Lakshadweep](https://images.pexels.com/photos/16851074/pexels-photo-16851074/free-photo-of-couple-in-scuba-diving-equipment-in-water.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## At a Glance: The Vibe
 
@@ -51,7 +51,7 @@ In this detailed comparison, we'll help you decide which island chain is right f
 ### **Andaman**
 Andaman is a large archipelago with diverse landscapes. You have the world-famous **Radhanagar Beach** (white sand), limestone caves in Baratang, active volcanoes (Barren Island), and dense tropical rainforests. It's not just about the beach; it's about the jungle too.
 
-![Radhanagar Beach](https://images.unsplash.com/photo-1550951298-5c7b95a66b6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
+![Radhanagar Beach](https://images.pexels.com/photos/16851074/pexels-photo-16851074/free-photo-of-couple-in-scuba-diving-equipment-in-water.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ### **Lakshadweep**
 Lakshadweep is a collection of coral atolls. The lagoons here are shallow, calm, and incredibly blue—often compared to the Maldives. The landscape is flatter, with coconut groves and endless lagoons. It's pure beach bliss but lacks the hills and forests of Andaman.

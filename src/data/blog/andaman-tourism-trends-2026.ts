@@ -18,7 +18,7 @@ export const post: BlogPost = {
 
 If you thought you knew Andaman, think again. 2026 marks a pivotal year for the islands, with massive infrastructure upgrades and new luxury destinations opening up. Here is everything you need to know about the "New Andaman."
 
-![New Airport Terminal](https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
+![New Airport Terminal](https://images.pexels.com/photos/5878513/pexels-photo-5878513.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## 1. The New "Shell" Terminal is Fully Operational
 The Veer Savarkar International Airport's new integrated terminal (shaped like a shell) is now fully operational.

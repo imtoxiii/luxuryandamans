@@ -1,24 +1,24 @@
 import { BlogPost } from '../../types/blog';
 import { defaultAuthor } from './author';
 
-const slug = 'andaman-budget-emi-2025';
+const slug = 'andaman-budget-emi-2026';
 const imagePath = `/blog-assets/${slug}/`;
 
 const images = {
   main: {
-    src: `${imagePath}andaman-emi-main.jpg`,
+    src: 'https://images.pexels.com/photos/16900409/pexels-photo-16900409/free-photo-of-tropical-fruits-on-a-wooden-tray.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A couple enjoying a serene Andaman beach, representing an affordable dream holiday.',
     width: 1200,
     height: 800,
   },
   imageOne: {
-    src: `${imagePath}budget-planning.jpg`,
+    src: 'https://images.pexels.com/photos/17249035/pexels-photo-17249035/free-photo-of-exotic-fruit-on-yellow-background.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A person planning a travel budget with a calculator and a map of the Andaman Islands.',
     width: 800,
     height: 533,
   },
   imageTwo: {
-    src: `${imagePath}local-cuisine.jpg`,
+    src: 'https://images.pexels.com/photos/6158116/pexels-photo-6158116.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Enjoying affordable and delicious local seafood at a beachside shack in the Andamans.',
     width: 800,
     height: 533,
@@ -27,10 +27,10 @@ const images = {
 
 const post: BlogPost = {
   id: slug,
-  title: 'Andaman on a Budget with EMI in 2025: Your Dream Trip Made Easy',
+  title: 'Andaman on a Budget with EMI in 2026: Your Dream Trip Made Easy',
   slug: slug,
   excerpt:
-    "Dreaming of the Andamans but worried about the cost? Our 2025 guide explores how to finance your trip with easy EMIs. Learn about budget planning, finding the best EMI options, and making your island getaway a reality without breaking the bank.",
+    "Dreaming of the Andamans but worried about the cost? Our 2026 guide explores how to finance your trip with easy EMIs. Learn about budget planning, finding the best EMI options, and making your island getaway a reality without breaking the bank.",
   image: images.main.src,
   author: defaultAuthor,
   date: new Date().toISOString(),
@@ -41,13 +41,13 @@ const post: BlogPost = {
     'andaman budget trip',
     'travel now pay later',
     'andaman financing',
-    'budget travel 2025',
+    'budget travel 2026',
     'emi travel packages',
     'luxury andamans',
   ],
   relatedPosts: [
     'andaman-budget-guide',
-    'andaman-honeymoon-itinerary-2025',
+    'andaman-honeymoon-itinerary-2026',
     'andaman-best-time',
   ],
   faq: [
@@ -84,7 +84,7 @@ const post: BlogPost = {
   ],
   content: `
 ## Turn Your Andaman Dream into Reality with Smart EMIs
-The turquoise waters, pristine beaches, and vibrant coral reefs of the Andaman Islands are on every traveler's bucket list. But often, the upfront cost can feel daunting. What if you could experience this paradise without draining your savings? In 2025, flexible Equated Monthly Installment (EMI) options make an Andaman holiday more accessible than ever. This guide will walk you through everything you need to know about planning your dream trip on a budget, with the convenience of paying over time.
+The turquoise waters, pristine beaches, and vibrant coral reefs of the Andaman Islands are on every traveler's bucket list. But often, the upfront cost can feel daunting. What if you could experience this paradise without draining your savings? In 2026, flexible Equated Monthly Installment (EMI) options make an Andaman holiday more accessible than ever. This guide will walk you through everything you need to know about planning your dream trip on a budget, with the convenience of paying over time.
 
 ---
 
@@ -107,7 +107,7 @@ First, create a realistic budget. A typical 5-6 day budget trip to the Andamans 
 - **Food:** Eating at local restaurants and beach shacks.
 - **Activities:** Entry fees for beaches, museums, and popular water sports like snorkeling.
 
-<img src="${images.imageOne.src}" alt="${images.imageOne.alt}" width="${images.imageOne.width}" height="${images.imageOne.height}" />
+<img src="https://images.pexels.com/photos/5878513/pexels-photo-5878513.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.imageOne.alt}" width="${images.imageOne.width}" height="${images.imageOne.height}" />
 
 ### Step 2: Choose the Right EMI Provider
 Many travel companies, banks, and fintech platforms offer travel EMI options. When booking with **Luxury Andamans**, you can inquire directly about our EMI partners. Look for providers with:
@@ -144,7 +144,7 @@ This itinerary focuses on affordable transport and activities, which can easily 
 - **Eat Local:** Savor delicious and affordable seafood at local eateries instead of expensive resorts.
 - **Rent a Scooter:** Renting a scooter on islands like Havelock and Neil is a cheap and fun way to explore.
 
-<img src="${images.imageTwo.src}" alt="${images.imageTwo.alt}" width="${images.imageTwo.width}" height="${images.imageTwo.height}" />
+<img src="https://images.pexels.com/photos/5878513/pexels-photo-5878513.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.imageTwo.alt}" width="${images.imageTwo.width}" height="${images.imageTwo.height}" />
 
 ---
 
@@ -154,6 +154,12 @@ Financing your Andaman trip with an EMI is a smart way to make your dream vacati
 - Explore our [Andaman Budget Guide](/blog/andaman-budget-guide) for more money-saving tips.
 - Check out our customizable [Andaman Tour Packages](/packages) that can be tailored to your budget.
 - [Contact us](/contact) today to learn more about our easy EMI options and start planning!
+
+---
+
+## Plan Your Dream Trip! 
+Want a hassle-free Andaman experience? Let our local experts plan your 2026 getaway. 
+[**Contact Us Now**](/contact) for customized packages and best deals.
 `,
 };
 

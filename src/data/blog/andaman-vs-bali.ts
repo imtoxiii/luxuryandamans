@@ -6,7 +6,7 @@ export const post: BlogPost = {
     slug: "andaman-vs-bali",
     title: "Andaman vs Bali: The Ultimate Tropical Showdown for Indian Travelers (2025)",
     excerpt: "Deciding between a domestic paradise and an international getaway? We compare Andaman and Bali on cost, visa, food, and experiences to help you choose.",
-    image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    image: 'https://images.pexels.com/photos/14565669/pexels-photo-14565669.jpeg?auto=compress&cs=tinysrgb&w=1200',
     category: "Destination Comparison",
     author: defaultAuthor,
     date: "2025-02-10",
@@ -20,7 +20,7 @@ For Indian travelers, the choice often boils down to this: **Andaman (Domestic)*
 
 Let's break it down.
 
-![Andaman vs Bali](https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
+![Andaman vs Bali](https://images.pexels.com/photos/7001664/pexels-photo-7001664.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## 1. Visa and Documentation
 
@@ -53,7 +53,7 @@ Let's break it down.
 ### **Andaman**
 Andaman's beaches, especially **Radhanagar** and **Elephant Beach**, are world-class. The water is crystal clear, turquoise, and perfect for swimming. The coral reefs are vibrant and alive.
 
-![Andaman Beach](https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
+![Andaman Beach](https://images.pexels.com/photos/18505543/pexels-photo-18505543/free-photo-of-people-diving-underwater.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ### **Bali**
 Bali's beaches (Kuta, Seminyak) are famous but often crowded and better for surfing than swimming. For pristine blue water, you often need to take a boat to Nusa Penida.

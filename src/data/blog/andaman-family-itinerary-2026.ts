@@ -18,7 +18,7 @@ export const post: BlogPost = {
 
 Planning a family trip is tricky. Kids want adventure, parents want relaxation, and grandparents want comfort. We've balanced it all in these plans.
 
-![Family Vacation](https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
+![Family Vacation](https://images.pexels.com/photos/5878513/pexels-photo-5878513.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## Key Features of These Plans
 - **Less Ferry Hopping:** To avoid sea sickness.

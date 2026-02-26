@@ -6,7 +6,7 @@ export const post: BlogPost = {
   slug: "new-eco-resorts-andaman-2026",
   title: "Luxury in Nature: New Eco-Resorts Opening in Andaman (2026)",
   excerpt: "Discover the stunning new sustainable resorts in Aves Island, Smith Island, and Long Island redefining luxury in 2026.",
-  image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+  image: 'https://images.pexels.com/photos/5878513/pexels-photo-5878513.jpeg?auto=compress&cs=tinysrgb&w=1200',
   category: "Luxury Travel",
   author: defaultAuthor,
   date: "2026-01-10",
@@ -18,7 +18,7 @@ export const post: BlogPost = {
 
 Andaman has always been beautiful, but it lacked the "ultra-luxury" options found in Maldives. That changes in 2026. A wave of new Public-Private Partnership (PPP) resorts is opening, focusing on sustainability without compromising on comfort.
 
-![Luxury Eco Resort](https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
+![Luxury Eco Resort](https://images.pexels.com/photos/2100918/pexels-photo-2100918.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## 1. Aves Island Resort (Mayabunder)
 **The Vibe:** Robinson Crusoe meets Ritz Carlton.

@@ -6,19 +6,19 @@ const imagePath = `/blog-assets/${slug}/`;
 
 const images = {
   main: {
-    src: `${imagePath}andaman-budget-main.jpg`,
+    src: 'https://images.pexels.com/photos/137089/pexels-photo-137089.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Traveler on a budget enjoying a stunning, sunny Andaman beach.',
     width: 1200,
     height: 800,
   },
   localEats: {
-    src: `${imagePath}andaman-local-eats.jpg`,
+    src: 'https://images.pexels.com/photos/137089/pexels-photo-137089.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Eating affordable and delicious seafood at a local beachside shack in the Andamans.',
     width: 800,
     height: 533,
   },
   scooterRental: {
-    src: `${imagePath}andaman-scooter-rental.jpg`,
+    src: 'https://images.pexels.com/photos/16900409/pexels-photo-16900409/free-photo-of-tropical-fruits-on-a-wooden-tray.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A rented scooter parked on a scenic road in Havelock Island, a key budget travel hack.',
     width: 800,
     height: 533,
@@ -109,12 +109,12 @@ For inter-island travel (e.g., Port Blair to Havelock), government ferries are y
 ### 4. Eat at Local "Dhabas" and Eateries
 Skip the fancy resort restaurants. The best and most affordable food is found in small, local eateries. A seafood thali at a local joint is both delicious and easy on the wallet.
 
-<img src="${images.localEats.src}" alt="${images.localEats.alt}" width="${images.localEats.width}" height="${images.localEats.height}" />
+<img src="https://images.pexels.com/photos/3098980/pexels-photo-3098980.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.localEats.alt}" width="${images.localEats.width}" height="${images.localEats.height}" />
 
 ### 5. Rent a Scooter
 On islands like Havelock and Neil, renting a scooter for ₹400-₹600 per day is the cheapest and most flexible way to explore all the beaches at your own pace.
 
-<img src="${images.scooterRental.src}" alt="${images.scooterRental.alt}" width="${images.scooterRental.width}" height="${images.scooterRental.height}" />
+<img src="https://images.pexels.com/photos/12626990/pexels-photo-12626990.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.scooterRental.alt}" width="${images.scooterRental.width}" height="${images.scooterRental.height}" />
 
 ### 6. Limit Your Islands
 Island hopping adds to your ferry costs and travel time. For a trip under 6 days, stick to two main islands like Port Blair and Havelock to minimize expenses.

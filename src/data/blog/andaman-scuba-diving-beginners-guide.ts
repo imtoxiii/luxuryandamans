@@ -6,7 +6,7 @@ export const post: BlogPost = {
     slug: "andaman-scuba-diving-beginners-guide",
     title: "Scuba Diving in Andaman: The Complete Beginner's Guide (2026)",
     excerpt: "Scared of water? Don't know how to swim? This guide answers every question you have about your first scuba dive in Andaman, from safety to pricing.",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    image: 'https://images.pexels.com/photos/35252466/pexels-photo-35252466/free-photo-of-group-of-divers-exploring-underwater-depths.jpeg?auto=compress&cs=tinysrgb&w=1200',
     category: "Adventure",
     author: defaultAuthor,
     date: "2026-02-10",

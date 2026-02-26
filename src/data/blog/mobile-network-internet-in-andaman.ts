@@ -6,19 +6,19 @@ const imagePath = `/blog-assets/${slug}/`;
 
 const images = {
   main: {
-    src: `${imagePath}digital-detox-andaman.jpg`,
+    src: 'https://images.pexels.com/photos/2227827/pexels-photo-2227827.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Tourist checking phone on a beach with weak signal - digital detox concept',
     width: 1200,
     height: 800,
   },
   wifi: {
-    src: `${imagePath}hotel-wifi-zone.jpg`,
+    src: 'https://images.pexels.com/photos/14036446/pexels-photo-14036446.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Hotel lobby with Wi-Fi zone sign',
     width: 800,
     height: 533,
   },
   tower: {
-    src: `${imagePath}mobile-tower-island.jpg`,
+    src: 'https://images.pexels.com/photos/9400917/pexels-photo-9400917.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Mobile tower amidst coconut trees in Andaman',
     width: 800,
     height: 533,
@@ -103,7 +103,7 @@ Here is your survival guide to staying connected in Andaman in 2025.
 ### ❌ Vodafone / Vi
 - **Status:** Practically non-existent. Do not depend on it.
 
-<img src="${images.tower.src}" alt="${images.tower.alt}" width="${images.tower.width}" height="${images.tower.height}" />
+<img src="https://images.pexels.com/photos/2724079/pexels-photo-2724079.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.tower.alt}" width="${images.tower.width}" height="${images.tower.height}" />
 
 ---
 
@@ -124,7 +124,7 @@ Don't expect blazing fast Wi-Fi in every hotel.
 - **Budget Hotels:** Often rely on mobile hotspots or slow dongles.
 - **Tip:** If internet is crucial for you, ask the hotel specifically: *"Do you have a fiber connection?"* before booking.
 
-<img src="${images.wifi.src}" alt="${images.wifi.alt}" width="${images.wifi.width}" height="${images.wifi.height}" />
+<img src="https://images.pexels.com/photos/2227827/pexels-photo-2227827.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.wifi.alt}" width="${images.wifi.width}" height="${images.wifi.height}" />
 
 ## Tips for a Stress-Free Trip
 1.  **Carry Two SIMs:** Ideally one Airtel and one Jio/BSNL.

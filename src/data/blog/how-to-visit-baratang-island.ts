@@ -6,19 +6,19 @@ const imagePath = `/blog-assets/${slug}/`;
 
 const images = {
   main: {
-    src: `${imagePath}baratang-mangrove-tunnel.jpg`,
+    src: 'https://images.pexels.com/photos/12090153/pexels-photo-12090153.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Boat passing through the dense mangrove tunnel at Baratang Island',
     width: 1200,
     height: 800,
   },
   limestone: {
-    src: `${imagePath}limestone-caves-inside.jpg`,
+    src: 'https://images.pexels.com/photos/2846820/pexels-photo-2846820.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Natural limestone formations inside the Baratang caves',
     width: 800,
     height: 533,
   },
   convoy: {
-    src: `${imagePath}jarawa-reserve-road.jpg`,
+    src: 'https://images.pexels.com/photos/12090153/pexels-photo-12090153.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'The road through the Jarawa Tribal Reserve',
     width: 800,
     height: 533,
@@ -105,7 +105,7 @@ From the Baratang jetty, you take a small fiber boat through a **magical mangrov
 - **What to see:** massive stalactites and stalagmites formed over millions of years.
 - **Note:** It gets dark inside; carry a torch or use your phone light.
 
-<img src="${images.limestone.src}" alt="${images.limestone.alt}" width="${images.limestone.width}" height="${images.limestone.height}" />
+<img src="https://images.pexels.com/photos/1059161/pexels-photo-1059161.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.limestone.alt}" width="${images.limestone.width}" height="${images.limestone.height}" />
 
 ### 2. Mud Volcano 🌋
 A rare geological phenomenon where mud bubbles out of the ground due to natural gas.

@@ -1,23 +1,23 @@
 import { BlogPost } from '../../types/blog';
 import { defaultAuthor } from './author';
 
-const slug = 'andaman-monsoon-travel-guide-2025';
+const slug = 'andaman-monsoon-travel-guide-2026';
 
 const images = {
   main: {
-    src: `/blog-assets/${slug}/andaman-monsoon.jpg`,
+    src: 'https://images.pexels.com/photos/4766819/pexels-photo-4766819.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Dramatic monsoon clouds over a serene Andaman beach.',
     width: 1200,
     height: 800
   },
   imageOne: {
-    src: `/blog-assets/${slug}/lush-greenery-andaman.jpg`,
+    src: 'https://images.pexels.com/photos/35252466/pexels-photo-35252466/free-photo-of-group-of-divers-exploring-underwater-depths.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Lush green landscapes of Andaman during the monsoon.',
     width: 800,
     height: 600
   },
   imageTwo: {
-    src: `/blog-assets/${slug}/indoor-activities-andaman.jpg`,
+    src: 'https://images.pexels.com/photos/15763623/pexels-photo-15763623/free-photo-of-scuba-divers-swimming-near-shipwreck.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Tourists enjoying indoor activities at a luxury resort in Andaman.',
     width: 800,
     height: 600
@@ -48,18 +48,18 @@ const faqs = [
 ];
 
 const post: BlogPost = {
-  id: 'andaman-monsoon-travel-guide-2025',
-  title: 'Andaman in Monsoon 2025: Is It Worth It? Deals, What’s Open, Tips',
-  slug: 'andaman-monsoon-travel-guide-2025',
+  id: 'andaman-monsoon-travel-guide-2026',
+  title: 'Andaman in Monsoon 2026: Is It Worth It? Deals, What’s Open, Tips',
+  slug: 'andaman-monsoon-travel-guide-2026',
   excerpt:
-    'Planning an Andaman trip during the monsoon? Discover what stays open, safety tips, ferry schedules, top activities, and exclusive 2025 monsoon deals. Your complete guide to an off-season Andaman adventure.',
+    'Planning an Andaman trip during the monsoon? Discover what stays open, safety tips, ferry schedules, top activities, and exclusive 2026 monsoon deals. Your complete guide to an off-season Andaman adventure.',
   image: images.main.src,
   author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '8 min read',
   category: 'Seasonal',
   tags: [
-    'andaman monsoon 2025',
+    'andaman monsoon 2026',
     'andaman off season',
     'andaman deals monsoon',
     'monsoon travel India',
@@ -81,7 +81,7 @@ Imagine sipping chai while watching the rain kiss the sea, exploring lush, fresh
 
 **Weather & Scenery:** The Andamans don't see continuous downpours. Expect a cycle of rain and sun, with dramatic, cloudy skies perfect for photography. The islands are at their greenest, making for breathtaking views.
 
-![${images.imageOne.alt}](${images.imageOne.src})
+![${images.imageOne.alt}](https://images.pexels.com/photos/14565669/pexels-photo-14565669.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 **What's Open?**
 *   **Most Attractions:** Cellular Jail, Ross Island (now Netaji Subhash Chandra Bose Dweep), and museums in Port Blair are open.
@@ -99,7 +99,7 @@ Imagine sipping chai while watching the rain kiss the sea, exploring lush, fresh
 3.  **Explore Port Blair:** Discover the capital's attractions, from the Anthropological Museum to the Corbyn's Cove Beach.
 4.  **Go Cafe Hopping:** Havelock and Neil have charming cafes that are perfect for enjoying a cup of coffee and a good book on a rainy day.
 
-![${images.imageTwo.alt}](${images.imageTwo.src})
+![${images.imageTwo.alt}](https://images.pexels.com/photos/35252466/pexels-photo-35252466/free-photo-of-group-of-divers-exploring-underwater-depths.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ### Travel & Safety Tips for a Flawless Monsoon Trip
 
@@ -114,6 +114,12 @@ The Andaman Islands offer a unique and refreshing experience in the monsoon. Wit
 
 *   Check out our [Andaman Tour Packages](/packages) for the best monsoon deals.
 *   Read our guide on the [Best Time to Visit Andaman](/blog/best-time-to-visit-andaman) for a seasonal comparison.
+
+---
+
+## Plan Your Dream Trip! 
+Want a hassle-free Andaman experience? Let our local experts plan your 2026 getaway. 
+[**Contact Us Now**](/contact) for customized packages and best deals.
 `
 };
 

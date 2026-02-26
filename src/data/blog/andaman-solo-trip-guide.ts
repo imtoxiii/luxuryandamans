@@ -6,7 +6,7 @@ export const post: BlogPost = {
     slug: "andaman-solo-trip-guide",
     title: "Solo Trip to Andaman: The Ultimate Guide for Backpackers (2025)",
     excerpt: "Is Andaman safe for solo travelers? Where to stay? How to meet people? We answer all your questions in this comprehensive solo travel guide.",
-    image: "https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    image: 'https://images.pexels.com/photos/18505543/pexels-photo-18505543/free-photo-of-people-diving-underwater.jpeg?auto=compress&cs=tinysrgb&w=1200',
     category: "Travel Guide",
     author: defaultAuthor,
     date: "2025-03-01",
@@ -18,7 +18,7 @@ export const post: BlogPost = {
 
 Traveling solo is a liberating experience, and the Andaman Islands are one of the best places in India to do it. With its safe environment, friendly locals, and growing hostel culture, Andaman is perfect for your first (or fiftieth) solo adventure.
 
-![Solo Traveler](https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
+![Solo Traveler](https://images.pexels.com/photos/4766819/pexels-photo-4766819.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## Is Andaman Safe for Solo Travelers?
 
@@ -56,7 +56,7 @@ The hostel culture is booming in Andaman! Here are some top picks for meeting fe
 3. **Trekking:** Join a group trek to **Elephant Beach** or **Mount Harriet**.
 4. **Rent a Bike:** Just ride along the coast of Neil Island. Pure bliss.
 
-![Scooter Ride](https://images.unsplash.com/photo-1558981403-c5f9899a28bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
+![Scooter Ride](https://images.pexels.com/photos/16851074/pexels-photo-16851074/free-photo-of-couple-in-scuba-diving-equipment-in-water.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## Budget for a Solo Trip (6 Days)
 

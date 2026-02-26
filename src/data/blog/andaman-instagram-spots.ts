@@ -6,7 +6,7 @@ export const post: BlogPost = {
     slug: "andaman-instagram-spots",
     title: "Top 10 Instagram Spots in Andaman: The Most Photogenic Locations (2025)",
     excerpt: "Want to light up your feed? Here are the 10 most aesthetic, Instagram-worthy locations in Andaman that you simply cannot miss.",
-    image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    image: 'https://images.pexels.com/photos/28800340/pexels-photo-28800340/free-photo-of-silhouetted-scuba-divers-underwater-adventure.jpeg?auto=compress&cs=tinysrgb&w=1200',
     category: "Travel Guide",
     author: defaultAuthor,
     date: "2025-03-05",
@@ -18,7 +18,7 @@ export const post: BlogPost = {
 
 Andaman is a photographer's dream. From turquoise waters to lush green mangroves, every corner is a postcard waiting to happen. If you're looking to curate the perfect vacation feed, these 10 spots are non-negotiable.
 
-![Andaman Photography](https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
+![Andaman Photography](https://images.pexels.com/photos/35252466/pexels-photo-35252466/free-photo-of-group-of-divers-exploring-underwater-depths.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## 1. Radhanagar Beach Sunset (Havelock)
 **The Shot:** Silhouette against the golden/pink sky.
@@ -55,7 +55,7 @@ Andaman is a photographer's dream. From turquoise waters to lush green mangroves
 **Best Time:** Morning.
 **Vibe:** Mysterious, Tomb Raider-esque.
 
-![Ross Island](https://images.unsplash.com/photo-1590053165656-406052520460?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
+![Ross Island](https://images.pexels.com/photos/3098980/pexels-photo-3098980.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## 8. Kalapathar Beach Road
 **The Shot:** The winding black road with turquoise ocean on one side and green jungle on the other.

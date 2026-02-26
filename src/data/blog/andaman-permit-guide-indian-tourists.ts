@@ -6,19 +6,19 @@ const imagePath = `/blog-assets/${slug}/`;
 
 const images = {
   main: {
-    src: `${imagePath}immigration-check-andaman.jpg`,
+    src: 'https://images.pexels.com/photos/5598760/pexels-photo-5598760.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Tourists at the immigration check post in Port Blair airport',
     width: 1200,
     height: 800,
   },
   permit: {
-    src: `${imagePath}rap-permit-document.jpg`,
+    src: 'https://images.pexels.com/photos/17320214/pexels-photo-17320214/free-photo-of-palm-fronds.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Sample of the Restricted Area Permit (RAP) document',
     width: 800,
     height: 533,
   },
   airport: {
-    src: `${imagePath}veer-savarkar-airport.jpg`,
+    src: 'https://images.pexels.com/photos/34519393/pexels-photo-34519393/free-photo-of-man-relaxing-with-surfboard-on-maldives-beach.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Veer Savarkar International Airport terminal entrance',
     width: 800,
     height: 533,
@@ -89,7 +89,7 @@ You just need to carry a valid Government-issued Photo ID.
 - **For Children:** School ID or Birth Certificate (if they don't have Aadhaar).
 - **Why is it needed?** You will need to show ID at the airport, at hotel check-ins, and before boarding ferries/ships.
 
-<img src="${images.airport.src}" alt="${images.airport.alt}" width="${images.airport.width}" height="${images.airport.height}" />
+<img src="https://images.pexels.com/photos/3617141/pexels-photo-3617141.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.airport.alt}" width="${images.airport.width}" height="${images.airport.height}" />
 
 ---
 
@@ -117,7 +117,7 @@ Even for Indians, some specific islands require a local forest permit because th
 
 **Don't worry:** If you book a package with us, **we handle all these local permits for you.** You just need to enjoy the ride!
 
-<img src="${images.permit.src}" alt="${images.permit.alt}" width="${images.permit.width}" height="${images.permit.height}" />
+<img src="https://images.pexels.com/photos/4837939/pexels-photo-4837939.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.permit.alt}" width="${images.permit.width}" height="${images.permit.height}" />
 
 ---
 

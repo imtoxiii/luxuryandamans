@@ -5,13 +5,13 @@ const slug = 'port-blair-one-day-itinerary';
 
 const images = {
   main: {
-    src: `/blog-assets/${slug}/cellular-jail-port-blair.jpg`,
+    src: 'https://images.pexels.com/photos/17320214/pexels-photo-17320214/free-photo-of-palm-fronds.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A panoramic view of the historic Cellular Jail in Port Blair, the primary attraction in the city.',
     width: 1920,
     height: 1080
   },
   imageOne: {
-    src: `/blog-assets/${slug}/chidiya-tapu-sunset.jpg`,
+    src: 'https://images.pexels.com/photos/34777916/pexels-photo-34777916/free-photo-of-luxurious-floating-breakfast-in-the-maldives.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A stunning, colourful sunset over the sea at Chidiya Tapu, also known as the bird island.',
     width: 1200,
     height: 800
@@ -62,7 +62,7 @@ If you want to take it easy and soak in the natural beauty, this itinerary is fo
 - **Afternoon (1:00 PM - 5:00 PM):** After a seaside lunch, do some souvenir shopping at **Aberdeen Bazaar** or the **Sagarika Emporium**. Later, drive to **Chidiya Tapu**, the "Bird Island," located about 25 km from Port Blair.
 - **Evening (5:00 PM onwards):** Chidiya Tapu is famous for its breathtaking sunsets. Find a comfortable spot and watch the sun dip below the horizon in a spectacular display of colours.
 
-![${images.imageOne.alt}](${images.imageOne.src})
+![${images.imageOne.alt}](https://images.pexels.com/photos/2690764/pexels-photo-2690764.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ---
 

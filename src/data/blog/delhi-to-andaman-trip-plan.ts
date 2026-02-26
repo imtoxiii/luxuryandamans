@@ -5,13 +5,13 @@ const slug = 'delhi-to-andaman-trip-plan';
 
 const images = {
   main: {
-    src: `/blog-assets/${slug}/delhi-to-andaman-journey.jpg`,
+    src: 'https://images.pexels.com/photos/27830772/pexels-photo-27830772/free-photo-of-the-pool-at-the-resort-in-spain.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'An airplane window view of the Andaman Islands, symbolizing the travel journey from Delhi.',
     width: 1920,
     height: 1080
   },
   imageOne: {
-    src: `/blog-assets/${slug}/havelock-island-beach-resort.jpg`,
+    src: 'https://images.pexels.com/photos/13221389/pexels-photo-13221389.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A beautiful beach resort in Havelock Island, a key destination for Delhi travelers.',
     width: 1200,
     height: 800
@@ -60,7 +60,7 @@ Getting to the Andamans from Delhi requires a bit of planning, but it's straight
 
 This itinerary is designed to maximize your island time and minimize travel fatigue.
 
-![${images.imageOne.alt}](${images.imageOne.src})
+![${images.imageOne.alt}](https://images.pexels.com/photos/18505543/pexels-photo-18505543/free-photo-of-people-diving-underwater.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 - **Day 1: Arrival in Port Blair & Relaxation:** Your flight will likely arrive in the afternoon. Check into your hotel, relax, and take a leisurely stroll at Corbyn's Cove Beach in the evening.
 - **Day 2-4: Havelock (Swaraj Dweep) - The Island Jewel:** Take an early morning ferry. Over the next three days, immerse yourself in the island's beauty. Witness the magical sunset at Radhanagar Beach, go snorkeling at Elephant Beach, and perhaps even try a Discover Scuba Dive.

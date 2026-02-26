@@ -6,7 +6,7 @@ export const post: BlogPost = {
     slug: "island-tourism-festival-2026",
     title: "Island Tourism Festival 2026: A Cultural Extravaganza",
     excerpt: "Discover the vibrancy of Andaman at the Island Tourism Festival 2026. Ten days of culture, music, food, and festivities in Port Blair.",
-    image: "https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    image: 'https://images.pexels.com/photos/2690764/pexels-photo-2690764.jpeg?auto=compress&cs=tinysrgb&w=1200',
     category: "Events",
     author: defaultAuthor,
     date: "2025-12-15",
@@ -18,7 +18,7 @@ export const post: BlogPost = {
 
 The biggest cultural event of the year is back! The **Island Tourism Festival (ITF) 2026** is set to light up Port Blair this January, transforming the islands into a vibrant hub of music, dance, food, and culture.
 
-![Island Tourism Festival](https://images.unsplash.com/photo-1543051932-6ef9fecfbc80?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80)
+![Island Tourism Festival](https://images.pexels.com/photos/5878513/pexels-photo-5878513.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## Dates & Venue
 *   **Dates:** January 5th - January 14th, 2026

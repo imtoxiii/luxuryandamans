@@ -6,19 +6,19 @@ const imagePath = `/blog-assets/${slug}/`;
 
 const images = {
   main: {
-    src: `${imagePath}flight-vs-ship-main.jpg`,
+    src: 'https://images.pexels.com/photos/3617141/pexels-photo-3617141.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Aerial view of a flight landing in Port Blair vs a ship sailing in the Andaman Sea',
     width: 1200,
     height: 800,
   },
   flightView: {
-    src: `${imagePath}flight-landing-port-blair.jpg`,
+    src: 'https://images.pexels.com/photos/3551208/pexels-photo-3551208.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Stunning view of Andaman islands from an airplane window',
     width: 800,
     height: 533,
   },
   shipDeck: {
-    src: `${imagePath}ship-deck-view.jpg`,
+    src: 'https://images.pexels.com/photos/3617141/pexels-photo-3617141.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'View from the deck of a passenger ship traveling to Andaman',
     width: 800,
     height: 533,
@@ -97,7 +97,7 @@ Flying is the most popular, convenient, and time-saving way to reach Andaman. Th
 - **Chennai & Kolkata:** Highest frequency (Daily flights). Flight time: ~2 hours.
 - **Delhi, Mumbai, Bangalore, Hyderabad:** Direct flights available (mostly daily or seasonal). Flight time: ~3-5 hours.
 
-<img src="${images.flightView.src}" alt="${images.flightView.alt}" width="${images.flightView.width}" height="${images.flightView.height}" />
+<img src="https://images.pexels.com/photos/3551208/pexels-photo-3551208.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.flightView.alt}" width="${images.flightView.width}" height="${images.flightView.height}" />
 
 ### Flight Tips for 2025
 1.  **Book Early:** Fares can jump from ₹5,000 to ₹15,000+ one way if you book last minute. Aim for 2-3 months in advance.
@@ -121,7 +121,7 @@ Taking a ship to Andaman is often romanticized, but it's important to know the r
 - **Experience Seekers:** If you genuinely love the open ocean and want a digital detox for 3 days.
 - **Locals:** Many islanders use ships for transporting goods and travel.
 
-<img src="${images.shipDeck.src}" alt="${images.shipDeck.alt}" width="${images.shipDeck.width}" height="${images.shipDeck.height}" />
+<img src="https://images.pexels.com/photos/4837939/pexels-photo-4837939.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.shipDeck.alt}" width="${images.shipDeck.width}" height="${images.shipDeck.height}" />
 
 ### Why We Don't Recommend Ships for Short Holidays
 If you have a 5-7 day vacation plan, taking a ship means you spend **6-8 days just traveling** to and fro. You lose precious time that could be spent on the beaches of Havelock or Neil Island.

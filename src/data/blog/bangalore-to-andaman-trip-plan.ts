@@ -5,13 +5,13 @@ const slug = 'bangalore-to-andaman-trip-plan';
 
 const images = {
   main: {
-    src: `/blog-assets/${slug}/bangalore-to-andaman-flight-path.jpg`,
+    src: 'https://images.pexels.com/photos/32932742/pexels-photo-32932742/free-photo-of-relaxing-on-palm-tree-at-maldives-beach.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'An airplane flying over the Andaman Islands, symbolizing the journey from Bangalore.',
     width: 1920,
     height: 1080
   },
   imageOne: {
-    src: `/blog-assets/${slug}/andaman-7-day-itinerary-map.jpg`,
+    src: 'https://images.pexels.com/photos/32932742/pexels-photo-32932742/free-photo-of-relaxing-on-palm-tree-at-maldives-beach.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A map showcasing a 7-day island hopping itinerary for the Andamans, including Port Blair, Havelock, and Neil Island.',
     width: 1200,
     height: 800
@@ -60,7 +60,7 @@ This is your first and most important booking. Bangalore has excellent connectiv
 
 This classic itinerary gives you the perfect blend of adventure, relaxation, and exploration.
 
-![${images.imageOne.alt}](${images.imageOne.src})
+![${images.imageOne.alt}](https://images.pexels.com/photos/28800340/pexels-photo-28800340/free-photo-of-silhouetted-scuba-divers-underwater-adventure.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 - **Day 1: Arrival in Port Blair & Cellular Jail:** Arrive in Port Blair, check into your hotel, and spend the evening at the historic Cellular Jail for the moving Light and Sound Show.
 - **Day 2-4: Havelock Island (Swaraj Dweep):** Take a morning ferry to Havelock. Spend the next three days exploring the world-famous Radhanagar Beach, snorkeling at Elephant Beach, and enjoying the island's vibrant cafe scene.

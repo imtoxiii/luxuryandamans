@@ -5,13 +5,13 @@ const slug = 'pune-to-andaman-trip-plan';
 
 const images = {
   main: {
-    src: `/blog-assets/${slug}/pune-to-andaman-journey.jpg`,
+    src: 'https://images.pexels.com/photos/240526/pexels-photo-240526.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'An airplane flying over a tropical island, symbolizing the journey from Pune to the Andamans.',
     width: 1920,
     height: 1080
   },
   imageOne: {
-    src: `/blog-assets/${slug}/andaman-beach-swing.jpg`,
+    src: 'https://images.pexels.com/photos/12579155/pexels-photo-12579155.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A tourist enjoying a swing on a picturesque beach in the Andaman Islands.',
     width: 1200,
     height: 800
@@ -59,7 +59,7 @@ While there are no direct flights from Pune, a smooth one-stop journey is easy t
 
 This itinerary is paced perfectly to help you unwind after your travel day.
 
-![${images.imageOne.alt}](${images.imageOne.src})
+![${images.imageOne.alt}](https://images.pexels.com/photos/5878513/pexels-photo-5878513.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 - **Day 1: Arrival & Local Vistas:** After arriving in Port Blair, check into your hotel. Spend a relaxed evening at Marina Park, enjoying the sea breeze and local snacks.
 - **Day 2-4: Havelock Island Adventures:** Take a morning ferry to Havelock (Swaraj Dweep). Over the next three days, you can witness the magical sunset at Radhanagar Beach, go snorkeling at Elephant Beach, and explore the vibrant cafes.

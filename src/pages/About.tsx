@@ -133,7 +133,7 @@ const GuidePage = () => {
         title="Andaman Travel Guide 2026 | How to Reach, Best Time, Things to Do & Travel Tips"
         description="Complete Andaman travel guide for 2026. Learn how to reach Andaman by flight & ship, best time to visit (Oct-May), required documents, ferry bookings, top places to visit, cuisine, shopping & essential tips. Free PDF guide."
         pathname={location.pathname}
-        keywords="andaman travel guide, andaman guide 2026, how to reach andaman, best time to visit andaman, andaman trip planning, andaman tourism, things to do in andaman, andaman itinerary, andaman permit requirements, andaman weather, port blair guide, havelock guide, andaman ferry guide, andaman for first timers, andaman packing list, andaman food guide, andaman shopping, andaman travel tips, andaman safety, andaman islands information"
+        keywords="andaman travel guide, andaman guide 2026, how to reach andaman, best time to visit andaman, andaman trip planning, andaman tourism, things to do in andaman, andaman itinerary, andaman permit requirements, andaman weather, port blair guide, havelock guide, andaman ferry guide, andaman for first timers, andaman packing list, andaman food guide, andaman shopping, andaman travel tips, andaman safety, andaman islands information, andaman trip budget calculator, andaman travel checklist, andaman dos and donts, andaman culture and history, andaman souvenirs, best month for andaman trip, andaman monsoon travel, how many days for andaman trip, vegetarian food in andaman, andaman medical facilities"
         targetAudience="all"
         extraStructuredData={[breadcrumbStructuredData, faqStructuredData]}
       />
@@ -243,8 +243,8 @@ const GuidePage = () => {
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={`relative flex items-center gap-2 px-4 py-2.5 rounded-lg font-bold transition-all duration-300 text-sm whitespace-nowrap group ${activeSection === item.id
-                      ? 'text-white'
-                      : 'text-night/60 hover:text-azure hover:bg-azure/5'
+                    ? 'text-white'
+                    : 'text-night/60 hover:text-azure hover:bg-azure/5'
                     }`}
                 >
                   {/* Active Background */}

@@ -6,19 +6,19 @@ const imagePath = `/blog-assets/${slug}/`;
 
 const images = {
   main: {
-    src: `${imagePath}veg-thali-andaman.jpg`,
+    src: 'https://images.pexels.com/photos/6158116/pexels-photo-6158116.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Delicious South Indian vegetarian thali served in Andaman',
     width: 1200,
     height: 800,
   },
   restaurant: {
-    src: `${imagePath}veg-restaurant-havelock.jpg`,
+    src: 'https://images.pexels.com/photos/137089/pexels-photo-137089.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Cozy vegetarian friendly cafe in Havelock',
     width: 800,
     height: 533,
   },
   fruits: {
-    src: `${imagePath}tropical-fruits-andaman.jpg`,
+    src: 'https://images.pexels.com/photos/137089/pexels-photo-137089.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Fresh tropical fruits and coconuts available in Andaman markets',
     width: 800,
     height: 533,
@@ -95,7 +95,7 @@ Havelock is more tourist-centric, with multi-cuisine cafes.
 2.  **Anju Coco:** Famous for its massive menu. Their veg breakfast platters and pancakes are a hit.
 3.  **Welcome Restaurant:** A budget-friendly spot in the market serving simple, homely Indian veg meals.
 
-<img src="${images.restaurant.src}" alt="${images.restaurant.alt}" width="${images.restaurant.width}" height="${images.restaurant.height}" />
+<img src="https://images.pexels.com/photos/6158116/pexels-photo-6158116.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.restaurant.alt}" width="${images.restaurant.width}" height="${images.restaurant.height}" />
 
 ### In Neil Island (Shaheed Dweep)
 Neil is known as the "Vegetable Bowl" of Andaman because lots of farming happens here!
@@ -118,7 +118,7 @@ Since you are on a tropical island, make the most of the local produce!
 - **Tropical Fruits:** Look out for local bananas, papayas, and in summer, the sweetest mangoes.
 - **Tubers:** Tapioca and sweet potato dishes are traditional to the settlers.
 
-<img src="${images.fruits.src}" alt="${images.fruits.alt}" width="${images.fruits.width}" height="${images.fruits.height}" />
+<img src="https://images.pexels.com/photos/17249035/pexels-photo-17249035/free-photo-of-exotic-fruit-on-yellow-background.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.fruits.alt}" width="${images.fruits.width}" height="${images.fruits.height}" />
 
 ## Conclusion
 Vegetarians need not worry. You will be well-fed and happy in Andaman. In fact, a simple meal of hot rice, dal, and a vegetable stir-fry by the beach often tastes better than any fancy dinner!

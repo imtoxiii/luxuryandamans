@@ -6,7 +6,7 @@ export const post: BlogPost = {
     slug: "first-timers-guide-andaman-2026",
     title: "First-Timer's Guide to Andaman (2026 Edition): Everything You Need to Know",
     excerpt: "Planning your first trip to Andaman in 2026? From permits to packing, here is the only guide you need to avoid rookie mistakes.",
-    image: "https://images.unsplash.com/photo-1540206395-688085723adb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    image: 'https://images.pexels.com/photos/16851074/pexels-photo-16851074/free-photo-of-couple-in-scuba-diving-equipment-in-water.jpeg?auto=compress&cs=tinysrgb&w=1200',
     category: "Travel Guide",
     author: defaultAuthor,
     date: "2026-01-05",
@@ -18,7 +18,7 @@ export const post: BlogPost = {
 
 So, you've finally decided to visit the Andaman Islands. Good choice! But with 572 islands (only a few are open to tourists), planning can be overwhelming. Here is your 2026 cheat sheet.
 
-![Andaman Arrival](https://images.unsplash.com/photo-1540206395-688085723adb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
+![Andaman Arrival](https://images.pexels.com/photos/7001664/pexels-photo-7001664.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## 1. The "Golden Triangle" of Andaman
 If it's your first time, stick to these three islands:

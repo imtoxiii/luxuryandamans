@@ -6,19 +6,19 @@ const imagePath = `/blog-assets/${slug}/`;
 
 const images = {
   main: {
-    src: `${imagePath}andaman-safety-main.jpg`,
+    src: 'https://images.pexels.com/photos/13180497/pexels-photo-13180497.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Solo female traveler enjoying a sunset on a safe Andaman beach',
     width: 1200,
     height: 800,
   },
   police: {
-    src: `${imagePath}tourist-police-andaman.jpg`,
+    src: 'https://images.pexels.com/photos/14923409/pexels-photo-14923409.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Friendly tourist police assistance in Andaman',
     width: 800,
     height: 533,
   },
   family: {
-    src: `${imagePath}family-safety-beach.jpg`,
+    src: 'https://images.pexels.com/photos/33457520/pexels-photo-33457520/free-photo-of-scenic-beach-view-with-mountains-and-clouds-in-the-philippines.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Family playing safely on Radhanagar beach',
     width: 800,
     height: 533,
@@ -93,7 +93,7 @@ Andaman is a haven for solo female travelers.
 - **Transport:** Taxis and autos are generally safe. Drivers are registered and respectful.
 - **Accommodation:** Most hotels and resorts are very secure. Hostels in Havelock are great places to meet other solo travelers safely.
 
-<img src="${images.main.src}" alt="${images.main.alt}" width="${images.main.width}" height="${images.main.height}" />
+<img src="https://images.pexels.com/photos/5878513/pexels-photo-5878513.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.main.alt}" width="${images.main.width}" height="${images.main.height}" />
 
 ## 3. Water Safety 🌊
 The ocean is the main attraction, but it demands respect.
@@ -106,7 +106,7 @@ The ocean is the main attraction, but it demands respect.
 - **North Sentinel Island:** This is a no-go zone. No boat will take you there.
 - **Safety:** As long as you stick to the tourist islands (Port Blair, Havelock, Neil, Baratang tour), you are perfectly safe and following the law.
 
-<img src="${images.family.src}" alt="${images.family.alt}" width="${images.family.width}" height="${images.family.height}" />
+<img src="https://images.pexels.com/photos/2690764/pexels-photo-2690764.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.family.alt}" width="${images.family.width}" height="${images.family.height}" />
 
 ## 5. Health & Medical Safety 🏥
 - **Hospitals:** Port Blair has the G.B. Pant Hospital (government) and private clinics.

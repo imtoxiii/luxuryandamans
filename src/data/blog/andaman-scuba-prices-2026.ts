@@ -1,17 +1,17 @@
 import { BlogPost } from '../../types/blog';
 import { defaultAuthor } from './author';
 
-const slug = 'andaman-scuba-prices-2025';
+const slug = 'andaman-scuba-prices-2026';
 
 const images = {
   main: {
-    src: `/blog-assets/${slug}/scuba-diver-checking-gear.jpg`,
+    src: 'https://images.pexels.com/photos/12626990/pexels-photo-12626990.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A scuba diver checking their equipment before a dive in the Andaman Islands.',
     width: 1920,
     height: 1080
   },
   imageOne: {
-    src: `/blog-assets/${slug}/dive-price-list-andaman.jpg`,
+    src: 'https://images.pexels.com/photos/7001664/pexels-photo-7001664.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A sample price list for scuba diving courses and fun dives in Havelock, Andaman.',
     width: 1200,
     height: 800
@@ -20,17 +20,17 @@ const images = {
 
 const post: BlogPost = {
   id: slug,
-  title: 'Andaman Scuba Diving Cost in 2025: A Complete Price List & Guide',
+  title: 'Andaman Scuba Diving Cost in 2026: A Complete Price List & Guide',
   slug: slug,
   excerpt:
-    'Planning a dive trip to the Andamans? Our 2025 guide breaks down the costs for everything from intro dives to PADI courses in Havelock and Neil Island. Get updated prices, tips, and a full FAQ.',
+    'Planning a dive trip to the Andamans? Our 2026 guide breaks down the costs for everything from intro dives to PADI courses in Havelock and Neil Island. Get updated prices, tips, and a full FAQ.',
   image: images.main.src,
   author: defaultAuthor,
   date: new Date().toISOString(),
   readTime: '10 min read',
   category: 'Adventure',
   tags: [
-    'andaman scuba prices 2025',
+    'andaman scuba prices 2026',
     'scuba diving cost',
     'havelock scuba price',
     'neil island diving cost',
@@ -43,9 +43,9 @@ const post: BlogPost = {
     '7-day-andaman-itinerary'
   ],
   content: `
-## Budgeting for Your Underwater Adventure: Andaman Scuba Costs in 2025
+## Budgeting for Your Underwater Adventure: Andaman Scuba Costs in 2026
 
-So, you're ready to explore the breathtaking underwater world of the Andaman Islands? Awesome choice! But before you take the plunge, let's talk about one of the most important parts of planning: the budget. This guide gives you a clear and updated breakdown of scuba diving prices in Andaman for 2025, so you can plan your trip without any surprises.
+So, you're ready to explore the breathtaking underwater world of the Andaman Islands? Awesome choice! But before you take the plunge, let's talk about one of the most important parts of planning: the budget. This guide gives you a clear and updated breakdown of scuba diving prices in Andaman for 2026, so you can plan your trip without any surprises.
 
 ## For Beginners: Your First Dive Experience
 
@@ -63,7 +63,7 @@ Already have your certification? Great! The Andamans are your playground. Fun di
 - **Two-Tank Dive (2 Dives):** ₹5,500 – ₹7,000
 - **Dive Packages:** Booking multiple dives (e.g., 6 or 10 dives) can bring the per-dive cost down significantly. It's the best option for avid divers.
 
-![${images.imageOne.alt}](${images.imageOne.src})
+![${images.imageOne.alt}](https://images.pexels.com/photos/3098980/pexels-photo-3098980.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## Getting Certified: PADI/SSI Course Costs
 
@@ -85,6 +85,12 @@ Andaman is a fantastic and affordable place to get your diving license.
 3.  **Travel in the Shoulder Season:** Months like October, November, February, and March offer fantastic diving conditions with fewer crowds.
 
 Ready to plan your entire trip? Dive into our comprehensive [Andaman Scuba Diving Guide](/blog/andaman-scuba-guide) and use our [7-Day Andaman Itinerary](/blog/7-day-andaman-itinerary) to build your perfect vacation.
+
+---
+
+## Plan Your Dream Trip! 
+Want a hassle-free Andaman experience? Let our local experts plan your 2026 getaway. 
+[**Contact Us Now**](/contact) for customized packages and best deals.
 `,
   faq: [
     {

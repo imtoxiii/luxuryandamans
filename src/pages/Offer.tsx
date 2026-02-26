@@ -240,7 +240,7 @@ const Offer = () => {
                 title={`Exclusive Andaman Packages ${currentCity.name ? `from ${currentCity.name}` : ''} | 50% OFF | Starting ₹14,999`}
                 description={`Book your dream Andaman vacation ${currentCity.name ? `from ${currentCity.name}` : ''}. Luxury stays from ₹14,999/person, custom itineraries, all-inclusive packages with ferry, hotels & activities. 24/7 on-trip support. Limited time 50% OFF.`}
                 pathname={location.pathname}
-                keywords={`andaman packages ${currentCity.name ? `from ${currentCity.name.toLowerCase()}` : ''}, andaman tour offer, cheap andaman packages, andaman holiday deals, andaman discount packages, best andaman offer 2026, andaman package under 20000, andaman couple package offer, andaman family deal, andaman honeymoon offer, luxury andaman discount, andaman all inclusive deal, andaman last minute offer`.trim()}
+                keywords={`andaman packages ${currentCity.name ? `from ${currentCity.name.toLowerCase()}` : ''}, andaman tour offer, cheap andaman packages, andaman holiday deals, andaman discount packages, best andaman offer 2026, andaman package under 20000, andaman couple package offer, andaman family deal, andaman honeymoon offer, luxury andaman discount, andaman all inclusive deal, andaman last minute offer, andaman packages on emi, andaman flash sale, andaman weekend getaway, andaman short trip package, andaman 3 day package, andaman special offer today, cheapest andaman deal, andaman booking offer`.trim()}
                 targetAudience="all"
                 faqData={[
                     {

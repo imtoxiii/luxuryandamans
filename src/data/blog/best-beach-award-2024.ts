@@ -6,7 +6,7 @@ export const post: BlogPost = {
   slug: "best-beach-award-2024",
   title: "Radhanagar Beach Wins 'Best Beach in Asia' 2024 Award",
   excerpt: "Andaman's crown jewel, Radhanagar Beach, has once again been voted as the Best Beach in Asia. Find out what makes it so special.",
-  image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+  image: 'https://images.pexels.com/photos/4762395/pexels-photo-4762395.jpeg?auto=compress&cs=tinysrgb&w=1200',
   category: "Travel News",
   author: defaultAuthor,
   date: "2024-11-28",
@@ -18,7 +18,7 @@ export const post: BlogPost = {
 
 It's official! **Radhanagar Beach (Havelock Island)** has been voted the **"Best Beach in Asia"** for 2024 by TripAdvisor's Travelers' Choice Awards. This isn't the first time; Radhanagar has consistently held its spot among the world's elite beaches.
 
-![Radhanagar Beach](https://images.unsplash.com/photo-1589136777351-94328b9f4753?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80)
+![Radhanagar Beach](https://images.pexels.com/photos/5878513/pexels-photo-5878513.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## What The Awards Say
 The award highlights Radhanagar's unique combination of:

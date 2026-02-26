@@ -50,39 +50,42 @@ const SEO: React.FC<SEOProps> = ({
 
   // Comprehensive keyword strategy targeting different user intents and budgets
   const getKeywordsByAudience = (audience: string) => {
-    const baseKeywords = 'andaman islands, andaman tourism, andaman travel, andaman packages, andaman tour packages, andaman holiday packages, andaman vacation packages, andaman trip packages, port blair, havelock island, neil island, radhanagar beach, cellular jail, ross island, elephant beach, bharatpur beach';
+    const baseKeywords = 'andaman islands, andaman tourism, andaman travel, andaman packages, andaman tour packages, andaman holiday packages, andaman vacation packages, andaman trip packages, port blair, havelock island, neil island, radhanagar beach, cellular jail, ross island, elephant beach, bharatpur beach, andaman and nicobar islands tour, andaman trip 2026';
 
     const budgetKeywords = 'cheap andaman packages, budget andaman tour, affordable andaman trip, low cost andaman packages, budget honeymoon andaman, cheap island vacation, budget beach holiday, affordable island packages, andaman packages under 20000, andaman packages under 30000, andaman packages under 40000, andaman packages under 50000, budget family vacation andaman, cheap andaman tour packages, economical andaman packages, discount andaman packages, best value andaman packages, budget andaman honeymoon packages, affordable andaman family packages, andaman packages on emi, all inclusive andaman packages, andaman family package under 1 lakh';
 
-    const premiumKeywords = 'premium andaman packages, boutique andaman tour, premium island resort, quality beach resort andaman, premium andaman vacation, curated honeymoon andaman, high-quality andaman packages, premium andaman tour packages, boutique beach vacation, premium island getaway, exclusive andaman packages, best rated andaman resorts, premium andaman experience, 4 star andaman packages, 5 star andaman packages';
+    const premiumKeywords = 'premium andaman packages, boutique andaman tour, premium island resort, quality beach resort andaman, premium andaman vacation, curated honeymoon andaman, high-quality andaman packages, premium andaman tour packages, boutique beach vacation, premium island getaway, exclusive andaman packages, best rated andaman resorts, premium andaman experience, 4 star andaman packages, 5 star andaman packages, luxury villa andaman, overwater cottage andaman';
 
-    const familyKeywords = 'andaman family packages, family vacation andaman, family tour packages andaman, family friendly andaman, andaman packages for family, family holiday andaman, kids friendly andaman packages, family beach vacation, andaman family trip, family adventure packages andaman, andaman with kids, safe andaman packages for family';
+    const familyKeywords = 'andaman family packages, family vacation andaman, family tour packages andaman, family friendly andaman, andaman packages for family, family holiday andaman, kids friendly andaman packages, family beach vacation, andaman family trip, family adventure packages andaman, andaman with kids, safe andaman packages for family, senior citizen andaman trip, andaman group tour packages';
 
-    const honeymoonKeywords = 'andaman honeymoon packages, romantic andaman packages, honeymoon tour packages andaman, andaman honeymoon trip, romantic island vacation, honeymoon beach packages, andaman romantic getaway, couples packages andaman, honeymoon destination andaman, romantic beach vacation, andaman honeymoon deals, romantic island packages, private beach dinner andaman, couple activities andaman';
+    const honeymoonKeywords = 'andaman honeymoon packages, romantic andaman packages, honeymoon tour packages andaman, andaman honeymoon trip, romantic island vacation, honeymoon beach packages, andaman romantic getaway, couples packages andaman, honeymoon destination andaman, romantic beach vacation, andaman honeymoon deals, romantic island packages, private beach dinner andaman, couple activities andaman, candlelight dinner andaman, best honeymoon resort andaman';
 
-    const adventureKeywords = 'andaman adventure packages, scuba diving andaman, snorkeling andaman, water sports andaman, adventure tour andaman, diving packages andaman, adventure activities andaman, water adventure andaman, island adventure packages, adventure vacation andaman, trekking andaman, sea walk andaman';
+    const adventureKeywords = 'andaman adventure packages, scuba diving andaman, snorkeling andaman, water sports andaman, adventure tour andaman, diving packages andaman, adventure activities andaman, water adventure andaman, island adventure packages, adventure vacation andaman, trekking andaman, sea walk andaman, parasailing andaman, jet ski andaman, glass bottom boat andaman, bioluminescence kayaking andaman, night kayaking andaman';
 
-    const competitorKeywords = 'maldives alternative, maldives vs andaman, cheaper than maldives, andaman vs maldives honeymoon, budget maldives alternative, maldives like destination india, tropical island vacation india, best beach destination india, island vacation india, beach holiday india, tropical paradise india, coral reef destination india, clear water beaches india, white sand beaches india, andaman vs thailand for indian family, andaman vs goa';
+    const competitorKeywords = 'maldives alternative, maldives vs andaman, cheaper than maldives, andaman vs maldives honeymoon, budget maldives alternative, maldives like destination india, tropical island vacation india, best beach destination india, island vacation india, beach holiday india, tropical paradise india, coral reef destination india, clear water beaches india, white sand beaches india, andaman vs thailand for indian family, andaman vs goa, andaman vs lakshadweep, better than goa';
 
     const broadTravelKeywords = 'beach vacation, island holiday, tropical vacation, beach packages, island packages, beach tour packages, island tour packages, tropical island vacation, beach holiday packages, island getaway, beach destination, tropical destination, coral reef vacation, diving vacation, snorkeling vacation, water sports vacation, beach resort packages, island resort packages, tropical beach vacation, pristine beach vacation, crystal clear water vacation, white sand beach vacation, turquoise water vacation, beach paradise, island paradise, tropical paradise';
 
-    const seasonalKeywords = 'summer vacation packages, winter vacation packages, monsoon packages andaman, peak season andaman, off season andaman packages, best time visit andaman, december andaman packages, january andaman packages, february andaman packages, march andaman packages, april andaman packages, may andaman packages';
+    const seasonalKeywords = 'summer vacation packages, winter vacation packages, monsoon packages andaman, peak season andaman, off season andaman packages, best time visit andaman, december andaman packages, january andaman packages, february andaman packages, march andaman packages, april andaman packages, may andaman packages, andaman new year packages, andaman christmas packages, andaman diwali vacation';
 
-    const locationBasedKeywords = 'andaman nicobar islands, bay of bengal islands, indian ocean islands, south andaman, north andaman, middle andaman, andaman sea, indian islands, tropical islands india, beach islands india, coral islands india, diving destinations india, snorkeling destinations india, andaman tour from delhi, andaman tour from mumbai, andaman tour from chennai, andaman tour from kolkata, andaman tour from bangalore, andaman tour from hyderabad, andaman tour from pune';
+    const locationBasedKeywords = 'andaman nicobar islands, bay of bengal islands, indian ocean islands, south andaman, north andaman, middle andaman, andaman sea, indian islands, tropical islands india, beach islands india, coral islands india, diving destinations india, snorkeling destinations india, andaman tour from delhi, andaman tour from mumbai, andaman tour from chennai, andaman tour from kolkata, andaman tour from bangalore, andaman tour from hyderabad, andaman tour from pune, andaman tour from ahmedabad';
+
+    // Conversational / AI-search keywords - these match how people ask AI assistants
+    const aiSearchKeywords = 'how to plan andaman trip, what is the cost of andaman trip, how many days are enough for andaman, is andaman safe for couples, best andaman itinerary, andaman trip cost for 2 people, andaman trip cost for 4 people, andaman trip cost for family, which islands to visit in andaman, do i need passport for andaman, how to reach andaman from delhi, plan my andaman honeymoon, suggest andaman package for family, what to pack for andaman trip, best time to go to andaman islands, andaman travel agent near me, trusted andaman tour operator, andaman trip planner, custom andaman itinerary, personalized andaman package';
 
     switch (audience) {
       case 'budget':
-        return `${baseKeywords}, ${budgetKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
+        return `${baseKeywords}, ${budgetKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}, ${aiSearchKeywords}`;
       case 'luxury':
-        return `${baseKeywords}, ${premiumKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
+        return `${baseKeywords}, ${premiumKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}, ${aiSearchKeywords}`;
       case 'family':
-        return `${baseKeywords}, ${familyKeywords}, ${budgetKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
+        return `${baseKeywords}, ${familyKeywords}, ${budgetKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}, ${aiSearchKeywords}`;
       case 'honeymoon':
-        return `${baseKeywords}, ${honeymoonKeywords}, ${budgetKeywords}, ${premiumKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
+        return `${baseKeywords}, ${honeymoonKeywords}, ${budgetKeywords}, ${premiumKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}, ${aiSearchKeywords}`;
       case 'adventure':
-        return `${baseKeywords}, ${adventureKeywords}, ${budgetKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
+        return `${baseKeywords}, ${adventureKeywords}, ${budgetKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}, ${aiSearchKeywords}`;
       default:
-        return `${baseKeywords}, ${budgetKeywords}, ${premiumKeywords}, ${familyKeywords}, ${honeymoonKeywords}, ${adventureKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}`;
+        return `${baseKeywords}, ${budgetKeywords}, ${premiumKeywords}, ${familyKeywords}, ${honeymoonKeywords}, ${adventureKeywords}, ${competitorKeywords}, ${broadTravelKeywords}, ${seasonalKeywords}, ${locationBasedKeywords}, ${aiSearchKeywords}`;
     }
   };
 
@@ -97,14 +100,15 @@ const SEO: React.FC<SEOProps> = ({
   const travelAgencySchema = {
     '@context': 'https://schema.org',
     '@type': 'TravelAgency',
-    name: 'Luxury Andaman',
-    description: '#1 Andaman Islands tour operator with 4.8★ rating. Expert-crafted packages starting ₹15,000. 1000+ happy travelers, free cancellation, 24/7 support.',
+    name: 'Luxury Andamans',
+    alternateName: 'Luxury Andaman Travel',
+    description: '#1 Andaman Islands tour operator with 4.9★ rating. Expert-crafted packages starting ₹14,999. 1200+ happy travelers, free cancellation, 24/7 support.',
     url: siteUrl,
     logo: `${siteUrl}/favicon.png`,
     image: image,
-    priceRange: '₹15000-₹150000',
+    priceRange: '₹14999-₹150000',
     telephone: '+91-6297576826',
-    email: 'info@luxuryandamans.com',
+    email: 'luxuryandamans@gmail.com',
     areaServed: [
       {
         '@type': 'Place',
@@ -131,8 +135,8 @@ const SEO: React.FC<SEOProps> = ({
         {
           '@type': 'Offer',
           name: 'Budget Andaman Package',
-          description: 'Affordable 4-day Andaman tour package starting from ₹15,000 - Perfect Maldives alternative',
-          price: '15000',
+          description: 'Affordable 4-day Andaman tour package starting from ₹14,999 - Perfect Maldives alternative',
+          price: '14999',
           priceCurrency: 'INR',
           availability: 'https://schema.org/InStock',
           itemOffered: {
@@ -184,8 +188,8 @@ const SEO: React.FC<SEOProps> = ({
     },
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '1247',
+      ratingValue: '4.9',
+      reviewCount: '1200',
       bestRating: '5',
       worstRating: '1'
     },
@@ -349,6 +353,14 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="geo.position" content="11.7401;92.6586" />
       <meta name="ICBM" content="11.7401, 92.6586" />
 
+      {/* AI Search Optimization */}
+      <meta name="subject" content="Andaman Islands Tour Packages and Travel Planning" />
+      <meta name="classification" content="Travel and Tourism" />
+      <meta name="coverage" content="Andaman and Nicobar Islands, India" />
+      <meta name="target" content="all" />
+      <meta name="HandheldFriendly" content="True" />
+      <meta name="MobileOptimized" content="320" />
+
       {/* Preconnect to required origins */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -398,7 +410,21 @@ const SEO: React.FC<SEOProps> = ({
       {/* Alternate Languages */}
       <link rel="alternate" href={siteUrl} hrefLang="x-default" />
       <link rel="alternate" href={siteUrl} hrefLang="en" />
-      <link rel="alternate" href={`${siteUrl}/hi`} hrefLang="hi" />
+      <link rel="alternate" href={siteUrl} hrefLang="en-IN" />
+
+      {/* Speakable Schema for Voice Search / AI Assistants */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: siteTitle,
+          speakable: {
+            '@type': 'SpeakableSpecification',
+            cssSelector: ['h1', '.hero-description', '[role="main"] p:first-of-type']
+          },
+          url: canonicalUrl
+        })}
+      </script>
     </Helmet>
   );
 };

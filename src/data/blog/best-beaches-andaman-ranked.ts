@@ -6,7 +6,7 @@ export const post: BlogPost = {
     slug: "best-beaches-andaman-ranked",
     title: "10 Best Beaches in Andaman Ranked: From Hidden Gems to World Famous",
     excerpt: "We visited 30+ beaches across the Andaman archipelago. Here is our definitive ranking of the top 10, including secret spots you won't find on Google Maps.",
-    image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    image: 'https://images.pexels.com/photos/1059161/pexels-photo-1059161.jpeg?auto=compress&cs=tinysrgb&w=1200',
     category: "Travel Guide",
     author: defaultAuthor,
     date: "2026-02-15",

@@ -6,19 +6,19 @@ const imagePath = `/blog-assets/${slug}/`;
 
 const images = {
   main: {
-    src: `${imagePath}water-sports-collage.jpg`,
+    src: 'https://images.pexels.com/photos/3098980/pexels-photo-3098980.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Collage of jet ski, parasailing, and sea walk activities in Andaman',
     width: 1200,
     height: 800,
   },
   seaWalk: {
-    src: `${imagePath}sea-walk-north-bay.jpg`,
+    src: 'https://images.pexels.com/photos/35252466/pexels-photo-35252466/free-photo-of-group-of-divers-exploring-underwater-depths.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Tourist doing underwater sea walk at North Bay',
     width: 800,
     height: 533,
   },
   parasailing: {
-    src: `${imagePath}parasailing-havelock.jpg`,
+    src: 'https://images.pexels.com/photos/3098980/pexels-photo-3098980.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Parasailing high above the blue waters of Havelock',
     width: 800,
     height: 533,
@@ -93,14 +93,14 @@ Walk on the ocean floor with a helmet. No swimming needed!
 - **Elephant Beach (Havelock):** ₹3,500 - ₹4,000
 - **Includes:** Photos and video (usually).
 
-<img src="${images.seaWalk.src}" alt="${images.seaWalk.alt}" width="${images.seaWalk.width}" height="${images.seaWalk.height}" />
+<img src="https://images.pexels.com/photos/12626990/pexels-photo-12626990.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.seaWalk.alt}" width="${images.seaWalk.width}" height="${images.seaWalk.height}" />
 
 ## 3. Parasailing 🪂
 Fly high above the sea.
 - **Corbyn's Cove / North Bay:** ₹3,000 - ₹3,500
 - **Havelock (Elephant Beach):** ₹3,500 - ₹4,000
 
-<img src="${images.parasailing.src}" alt="${images.parasailing.alt}" width="${images.parasailing.width}" height="${images.parasailing.height}" />
+<img src="https://images.pexels.com/photos/3098980/pexels-photo-3098980.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.parasailing.alt}" width="${images.parasailing.width}" height="${images.parasailing.height}" />
 
 ## 4. Surface Water Sports 🚤
 - **Jet Ski:** ₹600 - ₹1,000 (per ride/person)

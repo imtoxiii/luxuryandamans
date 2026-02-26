@@ -6,7 +6,7 @@ export const post: BlogPost = {
     slug: "is-andaman-safe-2026",
     title: "Is Andaman Safe? 2026 Travel Safety Report (Solo Female & Family)",
     excerpt: "Andaman remains one of the safest destinations in India. We cover crime rates, scams, water safety, and health tips for 2026.",
-    image: "https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    image: 'https://images.pexels.com/photos/5878513/pexels-photo-5878513.jpeg?auto=compress&cs=tinysrgb&w=1200',
     category: "Safety",
     author: defaultAuthor,
     date: "2026-01-30",
@@ -18,7 +18,7 @@ export const post: BlogPost = {
 
 The short answer: **Yes, Andaman is incredibly safe.** It has one of the lowest crime rates in India. But "safe" doesn't mean "risk-free." Here is the reality check.
 
-![Safety](https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
+![Safety](https://images.pexels.com/photos/4762395/pexels-photo-4762395.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## 1. Crime & Harassment
 - **Theft:** Rare. You can leave your helmet on your bike, and it will likely be there when you return.

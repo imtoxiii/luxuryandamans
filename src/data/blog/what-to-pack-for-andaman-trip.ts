@@ -6,19 +6,19 @@ const imagePath = `/blog-assets/${slug}/`;
 
 const images = {
   main: {
-    src: `${imagePath}packing-list-main.jpg`,
+    src: 'https://images.pexels.com/photos/34519393/pexels-photo-34519393/free-photo-of-man-relaxing-with-surfboard-on-maldives-beach.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Flat lay of travel essentials for a beach trip to Andaman',
     width: 1200,
     height: 800,
   },
   clothing: {
-    src: `${imagePath}beach-wear-andaman.jpg`,
+    src: 'https://images.pexels.com/photos/30693592/pexels-photo-30693592/free-photo-of-dramatic-aerial-view-of-secluded-tropical-beach.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Tourist wearing comfortable cotton clothes on a sunny beach',
     width: 800,
     height: 533,
   },
   essentials: {
-    src: `${imagePath}sunscreen-hat-sunglasses.jpg`,
+    src: 'https://images.pexels.com/photos/12579155/pexels-photo-12579155.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Sunscreen, hat, and sunglasses on sand',
     width: 800,
     height: 533,
@@ -88,7 +88,7 @@ Cotton and linen are your best friends. Synthetics will make you sweat.
 - **Cover-ups:** Sarongs or kaftans for walking to/from the beach.
 - **Undergarments:** Pack extra! Humidity means things don't dry quickly.
 
-<img src="${images.clothing.src}" alt="${images.clothing.alt}" width="${images.clothing.width}" height="${images.clothing.height}" />
+<img src="https://images.pexels.com/photos/2227827/pexels-photo-2227827.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.clothing.alt}" width="${images.clothing.width}" height="${images.clothing.height}" />
 
 ## 2. Footwear: Comfort is Key 🩴
 - **Flip-flops/Sliders:** For the beach and hotel.
@@ -102,7 +102,7 @@ Cotton and linen are your best friends. Synthetics will make you sweat.
 - **Hair Care:** Humidity causes frizz. Bring your conditioner/serum.
 - **Medication:** Motion sickness pills (for ferries), painkillers, band-aids, and any personal prescription meds.
 
-<img src="${images.essentials.src}" alt="${images.essentials.alt}" width="${images.essentials.width}" height="${images.essentials.height}" />
+<img src="https://images.pexels.com/photos/4628191/pexels-photo-4628191.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.essentials.alt}" width="${images.essentials.width}" height="${images.essentials.height}" />
 
 ## 4. Electronics & Gadgets 📷
 - **Power Bank:** Essential for long days out.

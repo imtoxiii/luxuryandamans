@@ -6,19 +6,19 @@ const imagePath = `/blog-assets/${slug}/`;
 
 const images = {
   main: {
-    src: `${imagePath}andaman-seafood-platter.jpg`,
+    src: 'https://images.pexels.com/photos/8696533/pexels-photo-8696533.jpeg',
     alt: 'A vibrant seafood platter with grilled fish and prawns, showcasing Andaman cuisine.',
     width: 1200,
     height: 800,
   },
   havelockCafe: {
-    src: `${imagePath}havelock-cafe.jpg`,
+    src: 'https://images.pexels.com/photos/16900409/pexels-photo-16900409/free-photo-of-tropical-fruits-on-a-wooden-tray.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A cozy, well-lit cafe in Havelock Island, perfect for relaxing after a day at the beach.',
     width: 800,
     height: 533,
   },
   vegetarianThali: {
-    src: `${imagePath}andaman-vegetarian-thali.jpg`,
+    src: 'https://images.pexels.com/photos/16900409/pexels-photo-16900409/free-photo-of-tropical-fruits-on-a-wooden-tray.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A delicious and colorful vegetarian thali served at a local restaurant in the Andamans.',
     width: 800,
     height: 533,
@@ -105,7 +105,7 @@ Port Blair has the widest variety of dining options, from upscale restaurants to
 - **For Local Thalis:** Annapurna Cafeteria in Aberdeen Bazaar is a top choice for delicious and affordable vegetarian South Indian thalis.
 - **For Ambience:** SeaShell Hotel's Amaya rooftop bar and restaurant offers stunning views and a great multi-cuisine menu.
 
-![${images.havelockCafe.alt}](${images.havelockCafe.src})
+![${images.havelockCafe.alt}](https://images.pexels.com/photos/5878513/pexels-photo-5878513.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ### Havelock Island (Swaraj Dweep): Beach Shacks and Trendy Cafés
 Havelock is famous for its laid-back vibe, which extends to its food scene.
@@ -124,7 +124,7 @@ The food scene in Neil is more rustic and centered around fresh, local ingredien
 ## A Note for Vegetarians
 Don't worry, you won't go hungry! The Andamans are very accommodating to vegetarians. Every restaurant has a substantial vegetarian menu. You'll find everything from Paneer Butter Masala and Dal Makhani to vegetable curries made with local produce. Many places also serve excellent vegetarian thalis, which are a great way to sample multiple dishes.
 
-![${images.vegetarianThali.alt}](${images.vegetarianThali.src})
+![${images.vegetarianThali.alt}](https://images.pexels.com/photos/4762395/pexels-photo-4762395.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ---
 

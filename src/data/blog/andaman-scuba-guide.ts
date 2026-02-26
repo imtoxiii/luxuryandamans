@@ -5,19 +5,19 @@ const slug = 'andaman-scuba-diving-guide';
 
 const images = {
   main: {
-    src: `/blog-assets/${slug}/scuba-diver-andaman.jpg`,
+    src: 'https://images.pexels.com/photos/4766819/pexels-photo-4766819.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A scuba diver exploring a vibrant coral reef in the Andaman Islands.',
     width: 1920,
     height: 1080
   },
   imageOne: {
-    src: `/blog-assets/${slug}/havelock-dive-sites.jpg`,
+    src: 'https://images.pexels.com/photos/18505543/pexels-photo-18505543/free-photo-of-people-diving-underwater.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Map of popular scuba diving sites around Havelock Island, Andaman.',
     width: 1200,
     height: 800
   },
   imageTwo: {
-    src: `/blog-assets/${slug}/padi-open-water-course.jpg`,
+    src: 'https://images.pexels.com/photos/12626990/pexels-photo-12626990.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A group of students during a PADI Open Water Diver course in Andaman.',
     width: 1200,
     height: 800
@@ -60,7 +60,7 @@ Never tried scuba diving before? You're in for a treat! The **Discover Scuba Div
 
 It's the safest and most exhilarating way to get a taste of the underwater world without committing to a full course.
 
-![${images.imageOne.alt}](${images.imageOne.src})
+![${images.imageOne.alt}](https://images.pexels.com/photos/15763623/pexels-photo-15763623/free-photo-of-scuba-divers-swimming-near-shipwreck.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## The Best Dive Sites in the Andamans
 
@@ -80,7 +80,7 @@ Andaman's dive sites are legendary, offering everything from gentle coral garden
 
 Ready to take the plunge and become a certified diver? Andaman is one of the best and most affordable places in India to get your PADI or SSI certification.
 
-![${images.imageTwo.alt}](${images.imageTwo.src})
+![${images.imageTwo.alt}](https://images.pexels.com/photos/14565669/pexels-photo-14565669.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 - **Open Water Diver (3-4 days):** This is your ticket to diving anywhere in the world. The course involves theory, confined water training, and four open water dives. Costs range from ₹24,000 to ₹28,000.
 - **Advanced Open Water Diver (2 days):** For certified divers who want to explore deeper sites and try specialty dives like night diving, deep diving, or underwater photography. Costs are around ₹20,000 to ₹24,000.

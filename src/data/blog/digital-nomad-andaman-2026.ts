@@ -6,7 +6,7 @@ export const post: BlogPost = {
   slug: "digital-nomad-andaman-2026",
   title: "Work from Paradise: The Honest Digital Nomad Guide to Andaman (2026)",
   excerpt: "Is the internet finally good enough? We tested Starlink vs Fiber in Port Blair and Havelock. Here is the brutally honest guide to working remotely from the Andaman Islands.",
-  image: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+  image: 'https://images.pexels.com/photos/2690764/pexels-photo-2690764.jpeg?auto=compress&cs=tinysrgb&w=1200',
   category: "Lifestyle",
   author: defaultAuthor,
   date: "2026-01-20",

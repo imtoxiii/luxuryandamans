@@ -6,7 +6,7 @@ export const post: BlogPost = {
   slug: "andaman-top-things-to-do-2025",
   title: "Top 25 Things to Do in Andaman: The Ultimate 2025 Bucket List",
   excerpt: "From walking on the sea floor to exploring active volcanoes, here is the definitive list of must-do experiences in Andaman for 2025.",
-  image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+  image: 'https://images.pexels.com/photos/35252466/pexels-photo-35252466/free-photo-of-group-of-divers-exploring-underwater-depths.jpeg?auto=compress&cs=tinysrgb&w=1200',
   category: "Travel Guide",
   author: defaultAuthor,
   date: "2025-01-15",
@@ -18,7 +18,7 @@ export const post: BlogPost = {
 
 Planning a trip to Andaman? Don't just sit on the beach (though you should do that too). Here are the top 25 experiences that define an Andaman vacation in 2025.
 
-![Andaman Adventure](https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
+![Andaman Adventure](https://images.pexels.com/photos/14565669/pexels-photo-14565669.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## Water Sports & Adventure
 1. **Scuba Diving:** Dive with Nemo at Havelock or Neil. No swimming skills needed for introductory dives!

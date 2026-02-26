@@ -54,7 +54,7 @@ const Blog = () => {
       <SEO
         title="Andaman Travel Blog 2026 | Tips, Guides & Island Stories"
         description="Read expert Andaman travel guides, hidden gem recommendations, local food tips, budget planning advice & island stories. Updated weekly by local travel experts."
-        keywords="andaman travel blog, andaman travel tips, andaman travel guide blog, best andaman islands blog, andaman hidden gems, andaman local food guide, andaman budget travel tips, havelock island guide, neil island travel blog, port blair travel stories, andaman honeymoon tips, andaman family trip guide, andaman underwater photography, andaman culture blog, andaman island hopping guide"
+        keywords="andaman travel blog, andaman travel tips, andaman travel guide blog, best andaman islands blog, andaman hidden gems, andaman local food guide, andaman budget travel tips, havelock island guide, neil island travel blog, port blair travel stories, andaman honeymoon tips, andaman family trip guide, andaman underwater photography, andaman culture blog, andaman island hopping guide, destination wedding andaman, sea walking andaman blog, andaman packing list, andaman weather guide, andaman itinerary blog, best restaurants andaman, andaman nightlife, andaman for solo travelers, andaman photography spots, andaman first time visitor tips"
         targetAudience="all"
         pathname="/blog"
         faqData={[

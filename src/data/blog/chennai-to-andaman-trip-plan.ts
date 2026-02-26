@@ -5,13 +5,13 @@ const slug = 'chennai-to-andaman-trip-plan';
 
 const images = {
   main: {
-    src: `/blog-assets/${slug}/chennai-to-andaman-direct-flight.jpg`,
+    src: 'https://images.pexels.com/photos/3617141/pexels-photo-3617141.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'An airplane flying over a tropical coastline, representing the direct flight from Chennai to the Andaman Islands.',
     width: 1920,
     height: 1080
   },
   imageOne: {
-    src: `/blog-assets/${slug}/andaman-island-hopping-ferry.jpg`,
+    src: 'https://images.pexels.com/photos/2846820/pexels-photo-2846820.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A high-speed ferry cruising between the Andaman Islands, a key part of the travel experience.',
     width: 1200,
     height: 800
@@ -54,7 +54,7 @@ Chennai (MAA) enjoys the best flight connectivity to the Andamans among all Indi
 - **Flight Duration:** You can be in Port Blair in just 2 hours and 15 minutes. This short travel time means you can land and start your vacation on the same day.
 - **Booking Strategy:** For the best prices (usually ₹5,500 - ₹11,000 one-way), book 30-45 days in advance. Last-minute fares can be significantly higher.
 
-![${images.imageOne.alt}](${images.imageOne.src})
+![${images.imageOne.alt}](https://images.pexels.com/photos/35252466/pexels-photo-35252466/free-photo-of-group-of-divers-exploring-underwater-depths.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## The Ideal 6-Night, 7-Day Island-Hopping Itinerary
 

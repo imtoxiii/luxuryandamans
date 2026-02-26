@@ -2,11 +2,11 @@ import { BlogPost } from '../../types/blog';
 import { defaultAuthor } from './author';
 
 export const post: BlogPost = {
-  id: "new-ferry-services-2025",
-  slug: "new-ferry-services-2025",
-  title: "New Luxury Ferry Services Launched for 2025 Season",
+  id: "new-ferry-services-2026",
+  slug: "new-ferry-services-2026",
+  title: "New Luxury Ferry Services Launched for 2026 Season",
   excerpt: "Experience faster and more comfortable island hopping with the newly launched luxury ferry services connecting Port Blair, Havelock, and Neil.",
-  image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+  image: 'https://images.pexels.com/photos/2690764/pexels-photo-2690764.jpeg?auto=compress&cs=tinysrgb&w=1200',
   category: "Travel News",
   author: defaultAuthor,
   date: "2024-12-10",
@@ -14,11 +14,11 @@ export const post: BlogPost = {
   tags: ["Travel News", "Ferry", "Transport", "Luxury Travel"],
   relatedPosts: ["andaman-ferry-guide-2026", "how-to-reach-andaman-flight-vs-ship"],
   content: `
-# New Luxury Ferry Services for 2025
+# New Luxury Ferry Services for 2026
 
-Great news for travelers visiting the Andaman Islands in 2025! The island administration and private operators have announced the launch of new luxury ferry services that promise to transform the island-hopping experience.
+Great news for travelers visiting the Andaman Islands in 2026! The island administration and private operators have announced the launch of new luxury ferry services that promise to transform the island-hopping experience.
 
-![Luxury Ferry](https://images.unsplash.com/photo-1566373722234-a498063f251f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80)
+![Luxury Ferry](https://images.pexels.com/photos/2100918/pexels-photo-2100918.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## Nautika's New Catamaran: "Nautika Lite"
 Nautika, one of the premier private ferry operators, has introduced "Nautika Lite," a high-speed catamaran designed for speed and comfort.
@@ -39,11 +39,17 @@ Previously, peak season (December - January) saw tickets selling out weeks in ad
 - **Seasickness:** These larger catamarans are much more stable, significantly reducing seasickness compared to older government ferries.
 
 Planning your trip? Check out our complete [Ferry Guide 2026](/blog/andaman-ferry-guide-2026) for schedules and booking tips.
-  `,
+  
+---
+
+## Plan Your Dream Trip! 
+Want a hassle-free Andaman experience? Let our local experts plan your 2026 getaway. 
+[**Contact Us Now**](/contact) for customized packages and best deals.
+`,
   faq: [
     {
       question: "When do the new ferries start operating?",
-      answer: "Both Nautika Lite and Makruzz Pearl are operational as of December 2024, ready for the 2025 season."
+      answer: "Both Nautika Lite and Makruzz Pearl are operational as of December 2024, ready for the 2026 season."
     },
     {
       question: "Are the ticket prices higher?",

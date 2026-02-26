@@ -3,37 +3,37 @@ import { defaultAuthor } from './author';
 
 const images = {
   main: {
-    src: 'https://images.unsplash.com/photo-1519822472753-2f5a6fc7682e?q=80&w=1935&auto=format&fit=crop',
+    src: 'https://images.pexels.com/photos/3098980/pexels-photo-3098980.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Romantic couple on a beautiful Andaman beach at sunset.',
     width: 1935,
     height: 1290,
   },
   imageOne: {
-    src: '/blog-assets/andaman-honeymoon-guide/radhanagar-beach.jpg',
+    src: 'https://images.pexels.com/photos/12626990/pexels-photo-12626990.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Pristine white sands and turquoise waters of Radhanagar Beach in Havelock.',
     width: 1200,
     height: 800,
   },
   imageTwo: {
-    src: '/blog-assets/andaman-honeymoon-guide/candlelight-dinner.jpg',
+    src: 'https://images.pexels.com/photos/18505543/pexels-photo-18505543/free-photo-of-people-diving-underwater.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Romantic candlelight dinner setup on an Andaman beach.',
     width: 1200,
     height: 800,
   },
   imageThree: {
-    src: '/blog-assets/andaman-honeymoon-guide/scuba-diving-couple.jpg',
+    src: 'https://images.pexels.com/photos/4766819/pexels-photo-4766819.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A couple scuba diving together in the clear waters of Andaman.',
     width: 1200,
     height: 800,
   },
   imageFour: {
-    src: '/blog-assets/andaman-honeymoon-guide/luxury-resort-pool.jpg',
+    src: 'https://images.pexels.com/photos/4766819/pexels-photo-4766819.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'An infinity pool at a luxury resort in Havelock overlooking the ocean.',
     width: 1200,
     height: 800,
   },
   imageFive: {
-    src: '/blog-assets/andaman-honeymoon-guide/bioluminescence-kayaking.jpg',
+    src: 'https://images.pexels.com/photos/12626990/pexels-photo-12626990.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A couple kayaking at night surrounded by magical bioluminescence.',
     width: 1200,
     height: 800,
@@ -95,7 +95,7 @@ Unlike other popular destinations, the Andamans offer a unique blend of seclusio
 Havelock is the most popular choice for honeymooners, and for good reason. It's famous for its breathtaking beaches and world-class luxury resorts.
 
 *   **Radhanagar Beach:** Often voted Asia's best beach, its vast expanse of white sand and crystal-clear water is perfect for long romantic walks, especially during sunset.
-![${images.imageOne.alt}](${images.imageOne.src})
+![${images.imageOne.alt}](https://images.pexels.com/photos/14565669/pexels-photo-14565669.jpeg?auto=compress&cs=tinysrgb&w=1200)
 *   **Elephant Beach:** Reachable by a short boat ride, it's a great spot for couples who love adventure. Enjoy snorkeling and other water sports together.
 *   **Kalapathar Beach:** A quieter beach known for its serene beauty and the striking contrast of black rocks against the white sand.
 
@@ -103,7 +103,7 @@ Havelock is the most popular choice for honeymooners, and for good reason. It's 
 *   **Taj Exotica Resort & Spa:** For ultimate luxury, with sprawling villas, a private beach, and exceptional service.
 *   **Barefoot at Radhanagar:** A jungle resort offering a rustic-luxe experience right next to the famous Radhanagar Beach.
 *   **SeaShell, Havelock:** Offers beautiful pool villas and cottages with a private beach area.
-![${images.imageFour.alt}](${images.imageFour.src})
+![${images.imageFour.alt}](https://images.pexels.com/photos/16851074/pexels-photo-16851074/free-photo-of-couple-in-scuba-diving-equipment-in-water.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 
 **2. Neil Island (Shaheed Dweep) - Tranquil & Charming**
@@ -138,14 +138,14 @@ If you want to avoid the selfie-taking crowds at Radhanagar, try these spots:
 
 ## Unforgettable Romantic Experiences
 
-![${images.imageTwo.alt}](${images.imageTwo.src})
+![${images.imageTwo.alt}](https://images.pexels.com/photos/18505543/pexels-photo-18505543/free-photo-of-people-diving-underwater.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 *   **Private Candlelight Dinner:** Almost every resort in Havelock and Neil can arrange a private, romantic dinner on the beach for you. It's an absolute must-do.
 *   **Sunset Cruise:** Sail into the horizon on a private cruise, sipping champagne as you watch the sun dip below the sea.
 *   **Couples Scuba Diving:** Discover the vibrant underwater world together. Many dive centers offer introductory "Discover Scuba Diving" programs perfect for beginners.
-![${images.imageThree.alt}](${images.imageThree.src})
+![${images.imageThree.alt}](https://images.pexels.com/photos/28800340/pexels-photo-28800340/free-photo-of-silhouetted-scuba-divers-underwater-adventure.jpeg?auto=compress&cs=tinysrgb&w=1200)
 *   **Bioluminescence Kayaking:** A truly magical experience. Paddle through the water at night and watch it light up with glowing plankton. This is a must-do if available during your visit (usually best on new moon nights).
-![${images.imageFive.alt}](${images.imageFive.src})
+![${images.imageFive.alt}](https://images.pexels.com/photos/3098980/pexels-photo-3098980.jpeg?auto=compress&cs=tinysrgb&w=1200)
 *   **Seaplane Ride:** Get a breathtaking aerial view of the islands. It's a thrilling experience that offers a unique perspective of the archipelago's beauty.
 *   **Couples Spa Therapy:** Indulge in relaxing spa treatments offered by the luxury resorts.
 

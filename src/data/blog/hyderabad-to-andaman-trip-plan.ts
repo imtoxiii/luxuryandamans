@@ -5,13 +5,13 @@ const slug = 'hyderabad-to-andaman-trip-plan';
 
 const images = {
   main: {
-    src: `/blog-assets/${slug}/hyderabad-to-andaman-flight-journey.jpg`,
+    src: 'https://images.pexels.com/photos/14923409/pexels-photo-14923409.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'An airplane flying over the Andaman sea, illustrating the journey from Hyderabad.',
     width: 1920,
     height: 1080
   },
   imageOne: {
-    src: `/blog-assets/${slug}/andaman-beach-with-clear-water.jpg`,
+    src: 'https://images.pexels.com/photos/12579155/pexels-photo-12579155.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Crystal clear turquoise waters of a beach in the Andaman Islands.',
     width: 1200,
     height: 800
@@ -59,7 +59,7 @@ Booking the right flight is the first step to a great vacation. Here's what you 
 
 This itinerary ensures you experience the best of the Andamans at a relaxed pace.
 
-![${images.imageOne.alt}](${images.imageOne.src})
+![${images.imageOne.alt}](https://images.pexels.com/photos/14565669/pexels-photo-14565669.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 - **Day 1: Arrival and Port Blair Exploration:** Arrive at Port Blair, transfer to your hotel. In the evening, immerse yourself in history with the light and sound show at the Cellular Jail.
 - **Day 2-4: Discovering Havelock Island (Swaraj Dweep):** Take a morning ferry to the famous Havelock Island. Spend your days relaxing on the world-renowned Radhanagar Beach, snorkeling amidst the vibrant corals of Elephant Beach, and enjoying the island's unique atmosphere.

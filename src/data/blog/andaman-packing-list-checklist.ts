@@ -6,7 +6,7 @@ export const post: BlogPost = {
     slug: "andaman-packing-list-checklist",
     title: "The Ultimate Andaman Packing List: Printable Checklist (2026)",
     excerpt: "Don't overpack! Here is the exact list of what you need for a 5-7 day trip to Andaman, including the one item everyone forgets.",
-    image: "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    image: 'https://images.pexels.com/photos/30363423/pexels-photo-30363423.jpeg',
     category: "Travel Tips",
     author: defaultAuthor,
     date: "2026-02-20",

@@ -5,13 +5,13 @@ const slug = 'mumbai-to-andaman-trip-plan';
 
 const images = {
   main: {
-    src: `/blog-assets/${slug}/mumbai-to-andaman-journey-plane.jpg`,
+    src: 'https://images.pexels.com/photos/16851074/pexels-photo-16851074/free-photo-of-couple-in-scuba-diving-equipment-in-water.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'An airplane flying over a tropical archipelago, representing the journey from Mumbai to the Andaman Islands.',
     width: 1920,
     height: 1080
   },
   imageOne: {
-    src: `/blog-assets/${slug}/scuba-diving-andaman-islands.jpg`,
+    src: 'https://images.pexels.com/photos/7001664/pexels-photo-7001664.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A scuba diver exploring a vibrant coral reef in the Andaman Islands, a popular activity for tourists.',
     width: 1200,
     height: 800
@@ -60,7 +60,7 @@ Getting to the Andamans from Mumbai is straightforward with a little planning.
 
 This itinerary is designed to make the most of your time after the flight from Mumbai.
 
-![${images.imageOne.alt}](${images.imageOne.src})
+![${images.imageOne.alt}](https://images.pexels.com/photos/7001664/pexels-photo-7001664.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 - **Day 1: Arrival & Unwind:** Your flight will likely land in the afternoon. Check into your Port Blair hotel and unwind. An evening visit to the Cellular Jail for the Light and Sound show is a great start.
 - **Day 2-4: Havelock's Charms:** Take an early morning ferry to Havelock Island (Swaraj Dweep). Spend three days here: witness the breathtaking sunset at Radhanagar Beach, go snorkeling at Elephant Beach, and try a Discover Scuba Dive.

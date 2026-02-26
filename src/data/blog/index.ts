@@ -16,12 +16,12 @@ import chennaiPlan from './chennai-to-andaman-trip-plan';
 import hyderabadPlan from './hyderabad-to-andaman-trip-plan';
 import kolkataPlan from './kolkata-to-andaman-trip-plan';
 import punePlan from './pune-to-andaman-trip-plan';
-import bioluminescence2025 from './andaman-bioluminescence-guide-2025';
-import scubaPrices2025 from './andaman-scuba-prices-2025';
-import budgetEmi2025 from './andaman-budget-emi-2025';
-import honeymoonItin2025 from './andaman-honeymoon-itinerary-2025';
-import monsoonGuide2025 from './andaman-monsoon-travel-guide-2025';
-import luxuryResorts2025 from './andaman-luxury-resorts-2025';
+import bioluminescence2026 from './andaman-bioluminescence-guide-2026';
+import scubaPrices2026 from './andaman-scuba-prices-2026';
+import budgetEmi2026 from './andaman-budget-emi-2026';
+import honeymoonItin2026 from './andaman-honeymoon-itinerary-2026';
+import monsoonGuide2026 from './andaman-monsoon-travel-guide-2026';
+import luxuryResorts2026 from './andaman-luxury-resorts-2026';
 import flightVsShip from './how-to-reach-andaman-flight-vs-ship';
 import safetyGuide from './is-andaman-safe-for-tourists';
 import internetGuide from './mobile-network-internet-in-andaman';
@@ -54,13 +54,23 @@ import scubaBeginnersGuide from './andaman-scuba-diving-beginners-guide';
 import bestBeachesRanked from './best-beaches-andaman-ranked';
 import packingListChecklist from './andaman-packing-list-checklist';
 
-import newFerryServices from './new-ferry-services-2025';
+import newFerryServices2026 from './new-ferry-services-2026';
 import bestBeachAward from './best-beach-award-2024';
 import itf2026 from './island-tourism-festival-2026';
 import hiddenFacts from './hidden-andaman-facts-2026';
+import destinationWedding from './andaman-destination-wedding-guide-2026';
+import seaWalkGuide from './andaman-sea-walk-guide-2026';
+import glassBottomBoat from './andaman-glass-bottom-boat-guide-2026';
+import internetGuide2026 from './andaman-internet-connectivity-guide-2026';
+import vegFood2026 from './andaman-vegetarian-food-guide-2026';
+import havelockVsNeil2026 from './havelock-vs-neil-island-guide-2026';
+import scooterGuide2026 from './how-to-rent-scooter-andaman-2026';
+import tribesGuide2026 from './what-tribes-live-in-andaman-2026';
+import rainyDayGuide2026 from './what-to-do-rainy-day-andaman-2026';
+import bestRestaurants2026 from './best-restaurants-in-andaman-2026';
 
 const newPosts: BlogPost[] = [
-  newFerryServices,
+  newFerryServices2026,
   bestBeachAward,
   itf2026,
   hiddenFacts,
@@ -80,12 +90,12 @@ const newPosts: BlogPost[] = [
   hyderabadPlan,
   kolkataPlan,
   punePlan,
-  bioluminescence2025,
-  scubaPrices2025,
-  budgetEmi2025,
-  honeymoonItin2025,
-  monsoonGuide2025,
-  luxuryResorts2025,
+  bioluminescence2026,
+  scubaPrices2026,
+  budgetEmi2026,
+  honeymoonItin2026,
+  monsoonGuide2026,
+  luxuryResorts2026,
   flightVsShip,
   safetyGuide,
   internetGuide,
@@ -114,7 +124,17 @@ const newPosts: BlogPost[] = [
   familyItinerary2026,
   scubaBeginnersGuide,
   bestBeachesRanked,
-  packingListChecklist
+  packingListChecklist,
+  destinationWedding,
+  seaWalkGuide,
+  glassBottomBoat,
+  internetGuide2026,
+  vegFood2026,
+  havelockVsNeil2026,
+  scooterGuide2026,
+  tribesGuide2026,
+  rainyDayGuide2026,
+  bestRestaurants2026
 ];
 
 // Merge and sort by date (newest first)

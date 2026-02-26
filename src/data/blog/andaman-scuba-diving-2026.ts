@@ -27,8 +27,19 @@ Prices have seen a slight correction due to standardized safety norms.
 | :--- | :--- | :--- |
 | **Shore Dive (Beginners)** | North Bay / Nemo Reef | ₹3,500 - ₹4,500 |
 | **Boat Dive (Beginners)** | Havelock / Neil | ₹5,500 - ₹6,500 |
+| **Standard Package** | **Havelock** | **₹5,000 per person** |
 | **PADI Open Water Course** | Havelock | ₹26,000 - ₹28,000 |
 | **Fun Dive (Certified)** | Johnny's Gorge / Dixon's | ₹4,500 per dive |
+
+## Special 2026 Offer: ₹5,000 Scuba Package! 🤿
+
+We have curated a special deal for 2026 travelers.
+- **Price:** ₹5,000 per person
+- **Location:** Havelock Island (Nemo Reef) or North Bay
+- **Inclusions:** Training, Equipment, Photos & Videos, Boat Ride
+- **Duration:** 45 Minutes Underwater
+
+[**Book Your Dive Now at ₹5,000**](/contact) - *Limited slots available!*
 
 ## Top Dive Sites for 2026
 

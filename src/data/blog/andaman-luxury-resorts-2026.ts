@@ -3,37 +3,37 @@ import { defaultAuthor } from './author';
 
 const images = {
   main: {
-    src: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1887&q=80',
+    src: 'https://images.pexels.com/photos/2506988/pexels-photo-2506988.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Luxurious resort infinity pool overlooking the ocean in the Andamans.',
     width: 1887,
     height: 1258,
   },
   tajExotica: {
-    src: '/blog-assets/andaman-luxury-resorts-2025/taj-exotica.jpg',
+    src: 'https://images.pexels.com/photos/1488515/pexels-photo-1488515.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A stunning villa at Taj Exotica Resort & Spa in Havelock.',
     width: 1200,
     height: 800,
   },
   barefoot: {
-    src: '/blog-assets/andaman-luxury-resorts-2025/barefoot-radhanagar.jpg',
+    src: 'https://images.pexels.com/photos/1488515/pexels-photo-1488515.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A rustic-luxe cottage at Barefoot at Radhanagar amidst the jungle.',
     width: 1200,
     height: 800,
   },
   seashellNeil: {
-    src: '/blog-assets/andaman-luxury-resorts-2025/seashell-neil.jpg',
+    src: 'https://images.pexels.com/photos/2724079/pexels-photo-2724079.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'The beautiful swimming pool at SeaShell resort in Neil Island.',
     width: 1200,
     height: 800,
   },
   munjoh: {
-    src: '/blog-assets/andaman-luxury-resorts-2025/munjoh-resort.jpg',
+    src: 'https://images.pexels.com/photos/28443535/pexels-photo-28443535/free-photo-of-atlantis-nassau.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'A luxurious beachfront villa at Munjoh Ocean Resort.',
     width: 1200,
     height: 800,
   },
   symphony: {
-    src: '/blog-assets/andaman-luxury-resorts-2025/symphony-samudra.jpg',
+    src: 'https://images.pexels.com/photos/28443535/pexels-photo-28443535/free-photo-of-atlantis-nassau.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'The sprawling Symphony Samudra Beachside Jungle Resort & Spa.',
     width: 1200,
     height: 800,
@@ -41,14 +41,14 @@ const images = {
 };
 
 const post: BlogPost = {
-  id: 'andaman-luxury-resorts-2025',
-  title: 'Top 8 Luxury Resorts in Andaman (2025): A Guide for the Discerning Indian Traveller',
-  slug: 'andaman-luxury-resorts-2025',
+  id: 'andaman-luxury-resorts-2026',
+  title: 'Top 8 Luxury Resorts in Andaman (2026): A Guide for the Discerning Indian Traveller',
+  slug: 'andaman-luxury-resorts-2026',
   excerpt:
-    'Discover the best 5-star and luxury resorts in Andaman for 2025. Our handpicked guide covers the top properties in Havelock, Neil, and Port Blair, with a focus on family stays, vegetarian cuisine, and getting the best value.',
+    'Discover the best 5-star and luxury resorts in Andaman for 2026. Our handpicked guide covers the top properties in Havelock, Neil, and Port Blair, with a focus on family stays, vegetarian cuisine, and getting the best value.',
   image: images.main.src,
   author: defaultAuthor,
-  date: new Date('2025-07-20').toISOString(),
+  date: new Date('2026-07-20').toISOString(),
   readTime: '20 min read',
   category: 'Luxury Stays',
   tags: [
@@ -116,21 +116,21 @@ Planning a trip to the Andamans is exciting, but choosing the right place to sta
 Havelock is the epicentre of luxury in the Andamans. It's home to the most famous beaches and the most opulent resorts.
 
 #### 1. Taj Exotica Resort & Spa
-![${images.tajExotica.alt}](${images.tajExotica.src})
+![${images.tajExotica.alt}](https://images.pexels.com/photos/1059161/pexels-photo-1059161.jpeg?auto=compress&cs=tinysrgb&w=1200)
 *   **The Vibe:** The pinnacle of luxury in the Andamans. Think sprawling villas, impeccable service, and a feeling of complete seclusion on a private beachfront estate.
 *   **Perfect For:** Honeymooners, celebrities, and families seeking the absolute best without a budget constraint. Excellent for multi-generational trips as their large villas and buggies make it comfortable for all ages.
 *   **Don't Miss:** The exceptional regional coastal cuisine at 'The Settlers', their world-class Jiva Spa, and simply relaxing by your private pool. Their chefs are known for catering brilliantly to vegetarian and Jain culinary requests.
 *   **Price Band:** ₹₹₹₹₹ (Ultra Luxury)
 
 #### 2. Barefoot at Radhanagar
-![${images.barefoot.alt}](${images.barefoot.src})
+![${images.barefoot.alt}](https://images.pexels.com/photos/2690764/pexels-photo-2690764.jpeg?auto=compress&cs=tinysrgb&w=1200)
 *   **The Vibe:** An eco-conscious resort offering a 'jungle-by-the-beach' experience. It's rustic, romantic, and encourages you to connect with nature. No Wi-Fi in rooms is a feature, not a flaw.
 *   **Perfect For:** Nature lovers, couples seeking a digital detox, and those who prioritize sustainability and tranquility over glitz.
 *   **Don't Miss:** Walking through their private pathway to the pristine Radhanagar Beach at sunset. Their seafood is legendary, but their farm-to-table vegetarian fare is equally delightful.
 *   **Price Band:** ₹₹₹₹ (Premium Luxury)
 
 #### 3. Munjoh Ocean Resort
-![${images.munjoh.alt}](${images.munjoh.src})
+![${images.munjoh.alt}](https://images.pexels.com/photos/5878513/pexels-photo-5878513.jpeg?auto=compress&cs=tinysrgb&w=1200)
 *   **The Vibe:** Intimate and serene, with luxurious villas and suites, some with private pools, nestled amidst lush greenery and leading to a private beach. It feels like your own secret hideaway.
 *   **Perfect For:** Couples and families looking for privacy, excellent service, and direct beach access away from the main crowds.
 *   **Don't Miss:** Arranging a private dinner on the beach. Their in-house bakery is a treat, and they offer fantastic water sports right from their beachfront.
@@ -149,7 +149,7 @@ Havelock is the epicentre of luxury in the Andamans. It's home to the most famou
 Neil Island offers a more serene, 'barefoot luxury' experience. The resorts here are charming, intimate, and surrounded by nature.
 
 #### 1. SeaShell, Neil
-![${images.seashellNeil.alt}](${images.seashellNeil.src})
+![${images.seashellNeil.alt}](https://images.pexels.com/photos/1059161/pexels-photo-1059161.jpeg?auto=compress&cs=tinysrgb&w=1200)
 *   **The Vibe:** Modern comforts meet island tranquility. This is arguably the most polished luxury stay on Neil, perfect for a slow-paced, relaxing holiday.
 *   **Perfect For:** Families and couples who want a reliable and comfortable base to explore Neil Island's laid-back charm.
 *   **Don't Miss:** The stunning sunset views from their property, which is a short walk from Laxmanpur Beach. Their multi-cuisine restaurant is a hit with Indian families.
@@ -168,7 +168,7 @@ Neil Island offers a more serene, 'barefoot luxury' experience. The resorts here
 While the main islands are the draw, Port Blair has some excellent luxury options, perfect for a comfortable start or end to your trip.
 
 #### 1. Symphony Samudra Beachside Jungle Resort & Spa
-![${images.symphony.alt}](${images.symphony.src})
+![${images.symphony.alt}](https://images.pexels.com/photos/4762395/pexels-photo-4762395.jpeg?auto=compress&cs=tinysrgb&w=1200)
 *   **The Vibe:** Grand and expansive, this is a wellness-focused resort with a huge infinity pool and even a sunset point on a lake. It feels secluded and away from the city bustle.
 *   **Perfect For:** Wellness seekers, large family groups, and those wanting a resort experience without leaving Port Blair.
 *   **Don't Miss:** The spectacular sunset view from their infinity pool, and the unique 'Aqua' pool bar. It is a bit far from the city, ensuring peace and quiet.
@@ -190,6 +190,12 @@ While the main islands are the draw, Port Blair has some excellent luxury option
 *   **Look for Packages:** Often, booking a complete package that includes flights, ferries, and hotels through a trusted operator can offer better value and a more seamless experience than booking each component separately.
 
 Ready to indulge? Explore our [tour packages](/packages) which include stays at these fabulous properties, or [contact us](/contact) for a custom luxury itinerary.
+
+---
+
+## Plan Your Dream Trip! 
+Want a hassle-free Andaman experience? Let our local experts plan your 2026 getaway. 
+[**Contact Us Now**](/contact) for customized packages and best deals.
 `
 };
 

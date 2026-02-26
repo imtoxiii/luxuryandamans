@@ -6,19 +6,19 @@ const imagePath = `/blog-assets/${slug}/`;
 
 const images = {
   main: {
-    src: `${imagePath}andaman-souvenirs-main.jpg`,
+    src: 'https://images.pexels.com/photos/1320674/pexels-photo-1320674.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Colorful shell handicrafts and souvenirs in a Port Blair shop',
     width: 1200,
     height: 800,
   },
   market: {
-    src: `${imagePath}aberdeen-bazaar.jpg`,
+    src: 'https://images.pexels.com/photos/34519397/pexels-photo-34519397/free-photo-of-tropical-palm-tree-on-maldivian-beach.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Bustling Aberdeen Bazaar in Port Blair',
     width: 800,
     height: 533,
   },
   handicrafts: {
-    src: `${imagePath}wooden-crafts-andaman.jpg`,
+    src: 'https://images.pexels.com/photos/5390337/pexels-photo-5390337.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Handcrafted wooden items and coconut shell products',
     width: 800,
     height: 533,
@@ -100,7 +100,7 @@ Like Kerala, Andaman grows excellent spices. Look for fresh black pepper, cloves
 ### 5. Coconut Handicrafts
 Bowls, spoons, and lamps made from coconut shells are eco-friendly and beautiful.
 
-<img src="${images.handicrafts.src}" alt="${images.handicrafts.alt}" width="${images.handicrafts.width}" height="${images.handicrafts.height}" />
+<img src="https://images.pexels.com/photos/17249035/pexels-photo-17249035/free-photo-of-exotic-fruit-on-yellow-background.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.handicrafts.alt}" width="${images.handicrafts.width}" height="${images.handicrafts.height}" />
 
 ---
 
@@ -121,7 +121,7 @@ Bowls, spoons, and lamps made from coconut shells are eco-friendly and beautiful
 *   **Best for:** Beach clothes, sarongs, and small trinkets.
 *   **Vibe:** Laid-back island market.
 
-<img src="${images.market.src}" alt="${images.market.alt}" width="${images.market.width}" height="${images.market.height}" />
+<img src="https://images.pexels.com/photos/6158116/pexels-photo-6158116.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.market.alt}" width="${images.market.width}" height="${images.market.height}" />
 
 ---
 

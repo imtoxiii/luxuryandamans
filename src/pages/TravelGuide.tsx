@@ -110,7 +110,7 @@ const TravelGuide = () => {
         description="Ultimate Andaman travel guide for 2026. Learn how to reach Andaman by flight & ship, best time to visit (Oct-May), required documents, ferry booking tips, top places to visit & things to do. Updated weekly."
         pathname={location.pathname}
         type="article"
-        keywords="andaman travel guide 2026, how to reach andaman, best time to visit andaman, andaman trip planning, andaman nicobar travel guide, port blair guide, havelock travel guide, andaman tourism information, andaman flight booking, andaman ferry guide, andaman permit requirements, andaman weather, things to do in andaman, andaman itinerary, andaman trip tips, andaman for first timers, andaman visa requirements, andaman packing list, andaman currency, andaman safety tips"
+        keywords="andaman travel guide 2026, how to reach andaman, best time to visit andaman, andaman trip planning, andaman nicobar travel guide, port blair guide, havelock travel guide, andaman tourism information, andaman flight booking, andaman ferry guide, andaman permit requirements, andaman weather, things to do in andaman, andaman itinerary, andaman trip tips, andaman for first timers, andaman visa requirements, andaman packing list, andaman currency, andaman safety tips, complete andaman guide, andaman travel checklist, step by step andaman trip plan, what to know before visiting andaman, andaman food guide, andaman local transport, andaman hospital and medical, andaman for elderly, andaman accessibility, andaman adventure sports guide"
         author="Luxury Andamans Editorial Team"
         publishedTime="2026-01-01"
         modifiedTime={new Date().toISOString().split('T')[0]}
@@ -225,8 +225,8 @@ const TravelGuide = () => {
                 <button
                   onClick={() => scrollToSection(item.id)}
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${activeSection === item.id
-                      ? 'bg-night text-white shadow-lg scale-105'
-                      : 'text-night/60 hover:bg-gray-100 hover:text-night'
+                    ? 'bg-night text-white shadow-lg scale-105'
+                    : 'text-night/60 hover:bg-gray-100 hover:text-night'
                     }`}
                 >
                   {item.icon}
@@ -496,7 +496,7 @@ const TravelGuide = () => {
                   <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
                     {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].map((m, i) => (
                       <div key={i} className={`text-center p-2 rounded-xl text-sm ${[0, 1, 9, 10, 11].includes(i) ? 'bg-green-400/20 text-green-200 border border-green-400/30' :
-                          [5, 6, 7, 8].includes(i) ? 'bg-blue-400/10 text-blue-300' : 'bg-orange-400/10 text-orange-200'
+                        [5, 6, 7, 8].includes(i) ? 'bg-blue-400/10 text-blue-300' : 'bg-orange-400/10 text-orange-200'
                         }`}>
                         {m}
                       </div>

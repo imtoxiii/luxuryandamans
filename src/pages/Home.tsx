@@ -100,15 +100,15 @@ const Home = () => {
   return (
     <div className="bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
       <SEO
-        title="Andaman Tour Packages 2026 | Starting ₹15,000 | Best Andaman Packages"
-        description="Book best Andaman tour packages starting ₹15,000 per person. 4.8★ rated luxury honeymoon, family & adventure packages. Includes ferry, hotels, scuba diving & all activities. Free cancellation. 1000+ happy travelers."
+        title="Andaman Tour Packages 2026 | Starting ₹14,999 | Best Andaman Packages"
+        description="Book best Andaman tour packages starting ₹14,999 per person. 4.9★ rated luxury honeymoon, family & adventure packages. Includes ferry, hotels, scuba diving & all activities. Free cancellation. 1200+ happy travelers. Call +91 62975 76826."
         pathname={location.pathname}
-        keywords="andaman tour packages, andaman packages 2026, best andaman packages, andaman honeymoon packages, andaman family packages, cheap andaman packages, andaman islands trip, andaman vacation packages, havelock island packages, neil island tour, andaman tourism, beach holiday india, andaman trip cost, port blair packages, andaman packages from delhi, andaman packages from chennai, andaman packages from bangalore, andaman packages from kolkata, andaman packages from mumbai, budget andaman packages, luxury andaman trip, scuba diving andaman package, water sports andaman"
+        keywords="andaman tour packages, andaman packages 2026, best andaman packages, andaman honeymoon packages, andaman family packages, cheap andaman packages, andaman islands trip, andaman vacation packages, havelock island packages, neil island tour, andaman tourism, beach holiday india, andaman trip cost, port blair packages, andaman packages from delhi, andaman packages from chennai, andaman packages from bangalore, andaman packages from kolkata, andaman packages from mumbai, budget andaman packages, luxury andaman trip, scuba diving andaman package, water sports andaman, how to plan andaman trip, andaman trip cost for 2 people, best time to visit andaman, andaman package with flights, andaman all inclusive package, andaman couple package, plan my andaman vacation, trusted andaman travel agent, andaman trip planner near me"
         targetAudience="all"
         faqData={[
           {
             question: "How much does an Andaman tour package cost?",
-            answer: "Andaman tour packages start from ₹15,000 per person for 4 nights/5 days budget packages. Standard packages cost ₹20,000-30,000, premium packages ₹35,000-50,000, and luxury packages ₹60,000+ per person. This includes accommodation, meals, ferry tickets, airport transfers, and sightseeing."
+            answer: "Andaman tour packages start from ₹14,999 per person for 4 nights/5 days budget packages. Standard packages cost ₹20,000-30,000, premium packages ₹35,000-50,000, and luxury packages ₹60,000+ per person. This includes accommodation, meals, ferry tickets, airport transfers, and sightseeing. Call Luxury Andamans at +91 62975 76826 for personalized quotes."
           },
           {
             question: "What is the best time to book Andaman packages?",
@@ -127,17 +127,18 @@ const Home = () => {
           "@context": "https://schema.org",
           "@type": "TravelAgency",
           "name": "Luxury Andamans",
-          "description": "Best Andaman tour packages, honeymoon packages, and family vacation packages. Expert travel agency for Andaman Islands with 1000+ happy travelers.",
+          "description": "Best Andaman tour packages starting ₹14,999. Honeymoon, family & adventure vacation packages with 1200+ happy travelers. Expert travel agency for Andaman Islands.",
           "url": "https://luxuryandamans.com",
           "logo": "https://luxuryandamans.com/logo.png",
           "priceRange": "₹₹ - ₹₹₹₹",
+          "telephone": "+91-6297576826",
           "areaServed": {
             "@type": "Place",
             "name": "Andaman and Nicobar Islands, India"
           },
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
-            "name": "Andaman Tour Packages",
+            "name": "Andaman Tour Packages 2026",
             "itemListElement": [
               {
                 "@type": "Offer",
@@ -154,13 +155,22 @@ const Home = () => {
                   "name": "Andaman Family Package",
                   "touristType": "Families"
                 }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "TouristTrip",
+                  "name": "Andaman Adventure Package",
+                  "touristType": "Adventure Seekers"
+                }
               }
             ]
           },
           "aggregateRating": {
             "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "reviewCount": "1000"
+            "ratingValue": "4.9",
+            "reviewCount": "1200",
+            "bestRating": "5"
           }
         }}
       />

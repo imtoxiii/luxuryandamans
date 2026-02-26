@@ -6,25 +6,25 @@ const imagePath = `/blog-assets/${slug}/`;
 
 const images = {
   main: {
-    src: `${imagePath}andaman-itinerary-main.jpg`,
+    src: 'https://images.pexels.com/photos/5598760/pexels-photo-5598760.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Pristine Andaman beach with turquoise waters and white sand at sunset',
     width: 1200,
     height: 800,
   },
   radhanagarSunset: {
-    src: `${imagePath}radhanagar-sunset.jpg`,
+    src: 'https://images.pexels.com/photos/14923409/pexels-photo-14923409.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Golden hour at Radhanagar Beach, Havelock Island with soft waves',
     width: 800,
     height: 533,
   },
   elephantSnorkel: {
-    src: `${imagePath}elephant-beach-snorkeling.jpg`,
+    src: 'https://images.pexels.com/photos/15796414/pexels-photo-15796414/free-photo-of-beach-restaurant-tropical-paradise-pool.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Snorkeling over coral reefs in clear waters near Elephant Beach',
     width: 800,
     height: 533,
   },
   neilNaturalBridge: {
-    src: `${imagePath}neil-natural-bridge.jpg`,
+    src: 'https://images.pexels.com/photos/17320214/pexels-photo-17320214/free-photo-of-palm-fronds.jpeg?auto=compress&cs=tinysrgb&w=1200',
     alt: 'Natural rock bridge formation on Neil Island at low tide',
     width: 800,
     height: 533,
@@ -104,14 +104,14 @@ This itinerary balances beaches, experiences, and travel time so you never feel 
 - Check-in and relax near Govind Nagar or Radhanagar side
 - Late afternoon: Radhanagar Beach for Asia’s most photogenic sunset
 
-<img src="${images.radhanagarSunset.src}" alt="${images.radhanagarSunset.alt}" width="${images.radhanagarSunset.width}" height="${images.radhanagarSunset.height}" />
+<img src="https://images.pexels.com/photos/14565669/pexels-photo-14565669.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.radhanagarSunset.alt}" width="${images.radhanagarSunset.width}" height="${images.radhanagarSunset.height}" />
 
 ## Day 3: Havelock — Elephant Beach Adventure
 - Speedboat to Elephant Beach (book a morning slot)
 - Snorkeling, sea walk, or parasailing options
 - Leisure afternoon; café hop along the main market
 
-<img src="${images.elephantSnorkel.src}" alt="${images.elephantSnorkel.alt}" width="${images.elephantSnorkel.width}" height="${images.elephantSnorkel.height}" />
+<img src="https://images.pexels.com/photos/3098980/pexels-photo-3098980.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.elephantSnorkel.alt}" width="${images.elephantSnorkel.width}" height="${images.elephantSnorkel.height}" />
 
 ## Day 4: Havelock — Kalapathar Sunrise + Optional Scuba
 - Early sunrise at Kalapathar Beach; emerald hues in soft light
@@ -123,7 +123,7 @@ This itinerary balances beaches, experiences, and travel time so you never feel 
 - Check in and head to Bharatpur Beach for shallow, clear lagoon waters
 - Sunset at Natural Bridge (Howrah Bridge) and Laxmanpur Beach
 
-<img src="${images.neilNaturalBridge.src}" alt="${images.neilNaturalBridge.alt}" width="${images.neilNaturalBridge.width}" height="${images.neilNaturalBridge.height}" />
+<img src="https://images.pexels.com/photos/4766819/pexels-photo-4766819.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.neilNaturalBridge.alt}" width="${images.neilNaturalBridge.width}" height="${images.neilNaturalBridge.height}" />
 
 ## Day 6: Neil — Laze & Explore
 - Cycle between beaches; distances are short and scenic
@@ -176,6 +176,12 @@ Your total can vary based on season and stay choices. For ultra-budget or premiu
 - Hungry? See our [Andaman Food Guide](/blog/andaman-food-guide)
 - Want to spread costs? Read our guide to [Andaman on EMI 2025](/blog/andaman-budget-emi-2025)
 - Ready to go? Explore [Packages](/packages) or [Contact us](/contact)
+
+---
+
+## Plan Your Dream Trip! 
+Want a hassle-free Andaman experience? Let our local experts plan your 2026 getaway. 
+[**Contact Us Now**](/contact) for customized packages and best deals.
 `,
 };
 

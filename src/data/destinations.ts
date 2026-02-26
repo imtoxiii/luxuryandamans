@@ -131,7 +131,7 @@ export const destinations: Destination[] = [
     longDescription: `The Cellular Jail, also known as Kala Pani, is a colonial prison situated in Port Blair. It was used by the British to exile Indian political prisoners to the remote archipelago. Today, it stands as a national memorial and museum showcasing India's struggle for independence.
 
     Completed in 1906, this prison was designed for solitary confinement with seven blocks radiating from a central tower. Many freedom fighters including Vinayak Damodar Savarkar were imprisoned here. The jail is famous for its Light and Sound Show that narrates the heroic saga of the Indian freedom struggle.`,
-    image: "",
+    image: "https://images.unsplash.com/photo-1584507305093-a4e42d1632c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     gallery: [],
     activities: ["Historical Tours", "Light & Sound Show", "Museum Visits", "Photography"],
     detailedActivities: [
@@ -346,7 +346,7 @@ export const destinations: Destination[] = [
     longDescription: `Ross Island, officially known as Netaji Subhas Chandra Bose Island, served as the administrative headquarters for the British in the Andaman Islands from 1858 to 1941. Today, it stands as a testament to the colonial past with ruins of buildings that once housed the British elite.
 
     The island features remnants of a church, hospital, bakery, press, swimming pool, cemetery, and the Chief Commissioner's residence. During World War II, the Japanese occupied the island and built several bunkers, which can still be seen today.`,
-    image: "",
+    image: "https://www.remotelands.com/travelogues/app/uploads/2022/10/Ross-island-Andaman-Islands-India-2-1200x800.jpg",
     gallery: [],
     activities: ["Historical Walk", "Deer Feeding", "Photography", "Museum Visit"],
     detailedActivities: [
@@ -558,7 +558,7 @@ export const destinations: Destination[] = [
     longDescription: `North Bay Island is a popular destination for water sports and coral viewing in the Andaman Islands. The island is famous for its lighthouse and offers some of the best snorkeling and sea walking experiences in the region.
 
     The crystal-clear waters around North Bay are perfect for underwater activities, and the island serves as a hub for various water sports. It's also known for its lighthouse, which has been guiding ships safely to Port Blair for decades.`,
-    image: "",
+    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     gallery: [],
     activities: ["Snorkeling", "Sea Walking", "Glass Bottom Boat", "Jet Skiing", "Parasailing"],
     detailedActivities: [
@@ -781,7 +781,7 @@ export const destinations: Destination[] = [
     longDescription: `Radhanagar Beach, also known as Beach No. 7, is consistently ranked as one of Asia's best beaches. Located on the western coast of Havelock Island, this pristine stretch of white sand and turquoise waters offers one of the most spectacular sunset views in the Andamans.
 
     The beach is surrounded by lush green forests and offers a perfect blend of natural beauty and tranquility. Unlike many other beaches in Andaman, Radhanagar has no coral reefs in the swimming area, making it safe for swimming and ideal for families.`,
-    image: "",
+    image: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     gallery: [],
     activities: ["Swimming", "Beach Walking", "Sunset Viewing", "Photography", "Sunbathing"],
     detailedActivities: [
@@ -998,7 +998,7 @@ export const destinations: Destination[] = [
     longDescription: `Elephant Beach is one of the most popular destinations in Havelock Island for water sports and snorkeling. The beach is famous for its shallow coral reefs that are easily accessible from the shore, making it perfect for snorkeling even for beginners.
 
     The journey to Elephant Beach is an adventure in itself - you can either take a boat ride or trek through the lush tropical forest. The beach offers a wide range of water sports activities and is considered one of the best snorkeling spots in the Andaman Islands.`,
-    image: "",
+    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     gallery: [],
     activities: ["Snorkeling", "Sea Walking", "Jet Skiing", "Banana Boat", "Parasailing", "Trekking"],
     detailedActivities: [
@@ -1229,7 +1229,7 @@ export const destinations: Destination[] = [
     longDescription: `Bharatpur Beach is one of the most beautiful beaches on Neil Island, known for its pristine white sand and crystal-clear waters. The beach is perfect for swimming, snorkeling, and various water sports activities.
 
     The coral reefs near the shore make it an excellent spot for snorkeling, where you can see a variety of colorful fish and marine life. The beach is also famous for its glass-bottom boat rides that allow you to view the underwater world without getting wet.`,
-    image: "",
+    image: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     gallery: [],
     activities: ["Snorkeling", "Glass Bottom Boat", "Swimming", "Beach Walking", "Photography"],
     detailedActivities: [
@@ -1440,7 +1440,7 @@ export const destinations: Destination[] = [
     longDescription: `The Natural Bridge, locally known as Howrah Bridge, is a unique coral formation that connects two small islands. This natural wonder is one of the most photographed spots on Neil Island and offers spectacular views during low tide.
 
     The bridge is formed by years of natural erosion and coral growth, creating a stunning arch-like structure. It's best visited during low tide when you can walk closer to the formation and get better photographs.`,
-    image: "",
+    image: "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     gallery: [],
     activities: ["Photography", "Nature Viewing", "Rock Exploration", "Sunrise Viewing", "Tide Pool Exploration"],
     detailedActivities: [
@@ -1642,7 +1642,7 @@ export const destinations: Destination[] = [
     longDescription: `The Limestone Caves of Baratang are among the most spectacular natural formations in the Andaman Islands. These caves, formed over millions of years, feature stunning stalactites and stalagmites that create an otherworldly underground landscape.
 
     The journey to the caves is an adventure itself, involving a boat ride through mangrove creeks and a trek through dense forest. The caves are home to various species of bats and offer a unique spelunking experience.`,
-    image: "",
+    image: "https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     gallery: [],
     activities: ["Cave Exploration", "Photography", "Boat Ride", "Nature Walk", "Geological Study", "Mangrove Tour"],
     detailedActivities: [
@@ -1808,7 +1808,7 @@ export const destinations: Destination[] = [
     name: "Mud Volcano",
     description: "Unique geological phenomenon",
     longDescription: `The Mud Volcano in Baratang is a rare geological phenomenon where natural gas pushes mud and water up through the earth's surface, creating small volcano-like formations. This unique attraction offers visitors a chance to witness an active geological process.`,
-    image: "",
+    image: "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     gallery: [],
     activities: ["Geological Study", "Photography", "Nature Observation", "Scientific Education", "Landscape Exploration"],
     detailedActivities: [
@@ -2007,7 +2007,7 @@ export const destinations: Destination[] = [
     longDescription: `Ross and Smith Islands are twin islands connected by a natural white sand bar that appears during low tide. This phenomenon creates one of the most spectacular and unique beaches in the Andaman Islands.
 
     During low tide, you can walk from one island to another on the natural sandbar, offering a surreal experience of walking on water. The islands are known for their pristine beaches, clear waters, and excellent snorkeling opportunities.`,
-    image: "",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     gallery: [],
     activities: ["Beach Walking", "Snorkeling", "Photography", "Swimming", "Island Hopping", "Tide Pool Exploration"],
     detailedActivities: [
@@ -2236,7 +2236,7 @@ export const destinations: Destination[] = [
     The island is uninhabited and can only be approached by boat from a safe distance due to ongoing volcanic activity. The volcanic activity has created a unique marine ecosystem around the island, making it an excellent spot for deep-sea diving and marine life observation.
 
     This extraordinary geological wonder offers visitors a rare opportunity to witness an active volcano in the Indian Ocean. The island's volcanic landscape, combined with the crystal-clear waters surrounding it, creates a surreal and awe-inspiring experience. The nutrient-rich volcanic waters have fostered exceptional marine biodiversity, making the surrounding waters a haven for manta rays, whale sharks, and diverse coral species.`,
-    image: "",
+    image: "https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
     gallery: [],
     activities: ["Volcano Viewing", "Boat Tours", "Marine Life Observation", "Photography", "Deep Sea Diving", "Scientific Observation"],
     detailedActivities: [

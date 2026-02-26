@@ -70,14 +70,14 @@ const PackagesPage = () => {
     <div className="min-h-screen bg-gray-50 font-sans selection:bg-blue-100 selection:text-blue-900">
       <SEO
         title="Andaman Tour Packages 2026 with Price | Honeymoon, Family & Luxury Packages"
-        description="Browse all Andaman tour packages with prices. Honeymoon packages from ₹35,000, Family packages from ₹25,000, Luxury villa packages from ₹60,000. Includes ferry, hotels, meals & all activities. Compare & book online."
-        keywords="andaman packages with price, andaman tour packages 2026, andaman honeymoon packages, andaman family packages, luxury andaman packages, cheap andaman packages, andaman packages for couples, 4 nights andaman package, 5 days andaman package, 6 days andaman package, andaman packages from delhi with flights, best andaman deals, andaman package booking, havelock package, neil island package, all inclusive andaman package, customized andaman package"
+        description="Browse all Andaman tour packages with prices. Honeymoon packages from ₹35,000, Family packages from ₹25,000, Luxury villa packages from ₹60,000. Includes ferry, hotels, meals & all activities. Compare & book online. Call +91 62975 76826."
+        keywords="andaman packages with price, andaman tour packages 2026, andaman honeymoon packages, andaman family packages, luxury andaman packages, cheap andaman packages, andaman packages for couples, 4 nights andaman package, 5 days andaman package, 6 days andaman package, 7 days andaman package, andaman packages from delhi with flights, best andaman deals, andaman package booking, havelock package, neil island package, all inclusive andaman package, customized andaman package, andaman package with scuba diving, compare andaman packages, andaman package under 20000, andaman package under 30000, andaman package under 50000, best honeymoon package for andaman, family trip to andaman cost, andaman trip total budget"
         pathname="/packages"
         targetAudience="all"
         faqData={[
           {
             question: "What is the cost of Andaman tour packages in 2026?",
-            answer: "Andaman tour packages in 2026 start from ₹15,000 per person for budget trips. Honeymoon packages range ₹35,000-80,000, Family packages ₹25,000-60,000, and Luxury villa packages from ₹60,000-1,50,000. Prices include hotel stay, ferry transfers, sightseeing, meals, and activities."
+            answer: "Andaman tour packages in 2026 start from ₹14,999 per person for budget trips. Honeymoon packages range ₹35,000-80,000, Family packages ₹25,000-60,000, and Luxury villa packages from ₹60,000-1,50,000. Prices include hotel stay, ferry transfers, sightseeing, meals, and activities. Call +91 62975 76826 for exact quotes."
           },
           {
             question: "What is included in Andaman tour packages?",

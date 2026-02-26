@@ -6,7 +6,7 @@ export const post: BlogPost = {
     slug: "andaman-nightlife-guide",
     title: "Andaman Nightlife Guide: Best Bars, Beach Parties, and Night Activities (2025)",
     excerpt: "Think Andaman sleeps after sunset? Think again! From candlelight dinners to lively beach bars, discover the best of Andaman's nightlife.",
-    image: "https://images.unsplash.com/photo-1514525253440-b393452e3383?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+    image: 'https://images.pexels.com/photos/3098980/pexels-photo-3098980.jpeg?auto=compress&cs=tinysrgb&w=1200',
     category: "Travel Guide",
     author: defaultAuthor,
     date: "2025-03-10",
@@ -18,7 +18,7 @@ export const post: BlogPost = {
 
 While Andaman isn't Ibiza, it has a charming, laid-back nightlife scene that's perfect for unwinding after a day of diving. Whether you want a romantic dinner or a few cocktails with music, here's where to go.
 
-![Andaman Nightlife](https://images.unsplash.com/photo-1514525253440-b393452e3383?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
+![Andaman Nightlife](https://images.pexels.com/photos/4766819/pexels-photo-4766819.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## Top Bars & Pubs
 

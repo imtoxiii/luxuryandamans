@@ -18,7 +18,7 @@ export const post: BlogPost = {
 
 In Andaman, the ocean is your highway. Ferries are the only way to hop between Port Blair, Havelock, and Neil. Here is the updated comparison for 2026.
 
-![Andaman Ferry](https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80)
+![Andaman Ferry](https://images.pexels.com/photos/5878513/pexels-photo-5878513.jpeg?auto=compress&cs=tinysrgb&w=1200)
 
 ## Private Ferries (The Tourist Choice)
 Fast, comfortable, and air-conditioned.

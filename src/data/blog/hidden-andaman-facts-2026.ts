@@ -6,7 +6,7 @@ export const post: BlogPost = {
   slug: "hidden-andaman-facts-2026",
   title: "7 Hidden Facts Every 2026 Traveller Must Know",
   excerpt: "Going beyond the beaches? Here are 7 lesser-known facts and tips about Andaman that will save you money and enhance your 2026 trip.",
-  image: "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+  image: 'https://images.pexels.com/photos/18505543/pexels-photo-18505543/free-photo-of-people-diving-underwater.jpeg?auto=compress&cs=tinysrgb&w=1200',
   category: "Travel Tips",
   author: defaultAuthor,
   date: "2025-12-18",

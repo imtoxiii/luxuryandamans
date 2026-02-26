@@ -45,6 +45,24 @@
   <meta name="distribution" content="global" />
   <meta name="revisit-after" content="3 days" />
 
+  <!-- Bing Webmaster Tools Verification -->
+  <meta name="msvalidate.01" content="14265E6AF81FA7C6BC446483ED94C80D" />
+
+  <!-- Meta Pixel Code (Facebook Tag) -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID'); /* REPLACE YOUR_PIXEL_ID WITH ACTUAL ID */
+    fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
+
   <!-- Geo Tags -->
   <meta name="geo.region" content="IN-AN" />
   <meta name="geo.placename" content="Andaman and Nicobar Islands, India" />
@@ -582,6 +600,12 @@
 </head>
 
 <body class="bg-light text-dark antialiased">
+  <!-- Meta Pixel Code (noscript) -->
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
   <!-- New Loading Screen -->
   <div id="loading-skeleton">
     <div class="bg-pattern"></div>
@@ -708,9 +732,6 @@
   <!-- <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" /> -->
   <!-- ⚠️ ACTION REQUIRED: Go to https://search.google.com/search-console → Add Property → HTML Tag → Paste the code above -->
 
-  <!-- Bing Webmaster Tools Verification - IMPORTANT: Replace with actual code from Bing Webmaster -->
-<meta name="msvalidate.01" content="14265E6AF81FA7C6BC446483ED94C80D" />
-  <!-- ⚠️ ACTION REQUIRED: Go to https://www.bing.com/webmasters → Add Site → Paste the code above -->
 </body>
 
 </html>

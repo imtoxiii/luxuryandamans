@@ -8,7 +8,6 @@ import FeaturedPackages from '../components/FeaturedPackages';
 import PopularIslands from '../components/PopularIslands';
 import Destinations from '../components/Destinations';
 import Testimonials from '../components/Testimonials';
-import InstagramFeed from '../components/InstagramFeed';
 import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
 import CardSlider from '../components/CardSlider';
@@ -72,7 +71,7 @@ const Home = () => {
     {
       title: "Scuba Diving",
       description: "Explore vibrant coral reefs and marine life",
-      image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "https://images.pexels.com/photos/3046582/pexels-photo-3046582.jpeg",
       link: "/experiences/scuba-diving"
     },
     {
@@ -296,11 +295,6 @@ const Home = () => {
         </section>
 
         <Testimonials />
-
-        {/* Modern Instagram Feed */}
-        <section className="py-12 md:py-16 bg-gray-50">
-          <InstagramFeed />
-        </section>
 
         <Newsletter />
 

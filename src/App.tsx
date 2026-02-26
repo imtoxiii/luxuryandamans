@@ -74,6 +74,8 @@ const TrekkingPage = lazy(() => import('./pages/experiences/trekking'));
 const CulturalToursPage = lazy(() => import('./pages/experiences/cultural-tours'));
 const BirdWatchingPage = lazy(() => import('./pages/experiences/bird-watching'));
 const ParasailingPage = lazy(() => import('./pages/experiences/parasailing'));
+const JetSkiPage = lazy(() => import('./pages/experiences/jet-ski'));
+const MangroveCreekPage = lazy(() => import('./pages/experiences/mangrove-creek'));
 
 function App() {
   const { transitionPhase, displayLocation } = usePageTransition();
@@ -153,6 +155,8 @@ function App() {
           <Route path="/experiences/cultural-tours" element={<CulturalToursPage />} />
           <Route path="/experiences/bird-watching" element={<BirdWatchingPage />} />
           <Route path="/experiences/parasailing" element={<ParasailingPage />} />
+          <Route path="/experiences/jet-ski" element={<JetSkiPage />} />
+          <Route path="/experiences/mangrove-creek" element={<MangroveCreekPage />} />
 
           {/* 404 Catch-all */}
           <Route path="*" element={<Navigate to="/" replace />} />

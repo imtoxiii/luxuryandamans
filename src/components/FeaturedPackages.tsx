@@ -13,9 +13,10 @@ const FeaturedPackages = () => {
       price: 85000,
       duration: "7 days",
       groupSize: "2-4",
-      image: "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/images/packages/luxury-escape/hero/hero.jpg",
       features: ["5-star luxury resorts", "Premium scuba diving", "Private transfers", "Gourmet dining"],
-      slug: "luxury-island-escape-7-days"
+      slug: "luxury-island-escape-7-days",
+      id: "luxury-escape"
     },
     {
       title: "Luxury Adventure",
@@ -23,9 +24,10 @@ const FeaturedPackages = () => {
       price: 65000,
       duration: "5 days",
       groupSize: "2",
-      image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/images/packages/luxury-4n5d/hero.jpg",
       features: ["Premium scuba diving", "Private beach access", "Spa treatments", "5-star accommodation"],
-      slug: "luxury-escape-4n5d-premium"
+      slug: "luxury-escape-4n5d-premium",
+      id: "luxury-4n5d"
     },
     {
       title: "Family Paradise",
@@ -33,9 +35,10 @@ const FeaturedPackages = () => {
       price: 32000,
       duration: "6 days",
       groupSize: "4-6",
-      image: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/images/packages/family-paradise/hero.jpg",
       features: ["Kid-friendly activities", "Family rooms", "Safe water sports", "Educational experiences"],
-      slug: "family-paradise-6-days"
+      slug: "family-paradise-6-days",
+      id: "family-paradise"
     },
     {
       title: "Honeymoon Special",
@@ -43,9 +46,10 @@ const FeaturedPackages = () => {
       price: 38000,
       duration: "6 days",
       groupSize: "2",
-      image: "https://images.unsplash.com/photo-1586611292717-f828b167408c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/images/packages/honeymoon-5n6d/hero/hero.jpg",
       features: ["Candlelit beach dinners", "Couple spa treatments", "Private beach picnic", "Romantic villa"],
-      slug: "5n6d-andaman-time-mapped-honeymoon"
+      slug: "5n6d-andaman-time-mapped-honeymoon",
+      id: "honeymoon-5n6d"
     },
     {
       title: "Standard Andaman",
@@ -53,9 +57,10 @@ const FeaturedPackages = () => {
       price: 25000,
       duration: "6 days",
       groupSize: "2-6",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      image: "/images/packages/standard-andaman/hero.jpg",
       features: ["All major islands covered", "Essential water activities", "Comfortable hotels", "Complete sightseeing"],
-      slug: "standard-andaman-package-5n6d"
+      slug: "standard-andaman-package-5n6d",
+      id: "standard-andaman"
     }
   ];
 
@@ -102,6 +107,7 @@ const FeaturedPackages = () => {
                   features={pkg.features}
                   image={pkg.image}
                   slug={pkg.slug}
+                  id={pkg.id}
                   delay={index * 0.1}
                 />
               ))}

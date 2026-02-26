@@ -68,6 +68,9 @@ import scooterGuide2026 from './how-to-rent-scooter-andaman-2026';
 import tribesGuide2026 from './what-tribes-live-in-andaman-2026';
 import rainyDayGuide2026 from './what-to-do-rainy-day-andaman-2026';
 import bestRestaurants2026 from './best-restaurants-in-andaman-2026';
+import snorkelingGuide2026 from './andaman-snorkeling-guide-2026';
+import photographyGuide2026 from './andaman-photography-guide-2026';
+import tripCost2026 from './andaman-trip-cost-2026';
 
 const newPosts: BlogPost[] = [
   newFerryServices2026,
@@ -134,7 +137,10 @@ const newPosts: BlogPost[] = [
   scooterGuide2026,
   tribesGuide2026,
   rainyDayGuide2026,
-  bestRestaurants2026
+  bestRestaurants2026,
+  snorkelingGuide2026,
+  photographyGuide2026,
+  tripCost2026
 ];
 
 // Merge and sort by date (newest first)

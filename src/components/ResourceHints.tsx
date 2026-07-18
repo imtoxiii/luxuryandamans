@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { HOME_HERO_DESKTOP, HOME_HERO_MOBILE } from '../lib/heroImages';
 
 /**
  * Component to add dynamic resource hints based on the current route
@@ -39,7 +40,8 @@ export const ResourceHints = () => {
     if (path === '/') {
       return (
         <>
-          <link rel="preload" href="/src/img/hero-background.png" as="image" fetchPriority="high" />
+          <link rel="preload" href={HOME_HERO_MOBILE} as="image" type="image/webp" fetchPriority="high" media="(max-width: 767px)" />
+          <link rel="preload" href={HOME_HERO_DESKTOP} as="image" type="image/webp" fetchPriority="high" media="(min-width: 768px)" />
         </>
       );
     }

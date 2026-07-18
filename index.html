@@ -29,10 +29,10 @@
 
   <!-- Enhanced SEO Meta Tags -->
   <meta name="description"
-    content="Best Andaman tour packages 2026 starting ₹14,999 per person. Honeymoon, family & budget trips from Delhi, Mumbai, Bangalore, Chennai. 4.9★ rated by 1200+ travelers. Havelock, Neil Island & Port Blair with scuba diving, ferry, hotels included. Book now +91 62975 76826." />
+    content="Best Andaman tour packages 2026 from ₹14,999/person. Honeymoon, family & budget trips to Havelock, Neil & Port Blair. 4.9★ by 1200+ travelers. Book now." />
   <meta name="keywords"
     content="andaman tour packages, andaman tour packages 2026, andaman honeymoon packages, andaman family packages, andaman packages from delhi, andaman packages from mumbai, andaman packages from bangalore, andaman packages from chennai, havelock island packages, neil island tour, port blair tour packages, scuba diving andaman, best andaman travel agent, andaman trip cost, budget andaman packages, luxury andaman resorts, andaman couple packages, andaman 5 days package, how to plan andaman trip" />
-  <title>Andaman Tour Packages 2026 | Starting ₹14,999 | Luxury Andamans</title>
+  <title>Andaman Tour Packages 2026 | From ₹14,999</title>
   <!-- Enhanced SEO Tags -->
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
@@ -73,9 +73,9 @@
   <meta name="ICBM" content="11.7401, 92.6586" />
 
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="Andaman Tour Packages 2026 | Best Deals from ₹14,999" />
+  <meta property="og:title" content="Andaman Tour Packages 2026 | From ₹14,999" />
   <meta property="og:description"
-    content="Book Andaman tour packages from ₹14,999. Honeymoon, family & budget trips to Havelock, Neil Island & Port Blair. Scuba diving, luxury resorts, ferry included. 4.9★ rated by 1200+ travelers. Free custom itinerary." />
+    content="Best Andaman tour packages 2026 from ₹14,999/person. Honeymoon, family & budget trips to Havelock, Neil & Port Blair. 4.9★ by 1200+ travelers. Book now." />
   <meta property="og:image"
     content="https://images.unsplash.com/photo-1583212292454-39d2a21af845?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" />
   <meta property="og:image:width" content="1200" />
@@ -86,15 +86,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Luxury Andamans" />
   <meta property="og:locale" content="en_IN" />
-  <meta property="og:locale:alternate" content="en_US" />
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@luxuryandaman" />
   <meta name="twitter:creator" content="@luxuryandaman" />
-  <meta name="twitter:title" content="Andaman Tour Packages 2026 | Best Deals from ₹14,999" />
+  <meta name="twitter:title" content="Andaman Tour Packages 2026 | From ₹14,999" />
   <meta name="twitter:description"
-    content="Book Andaman tour packages from ₹14,999. Honeymoon, family & budget trips to Havelock, Neil Island & Port Blair. Scuba diving, luxury resorts, ferry included. 4.9★ rated. Book now!" />
+    content="Best Andaman tour packages 2026 from ₹14,999/person. Honeymoon, family & budget trips to Havelock, Neil & Port Blair. 4.9★ by 1200+ travelers. Book now." />
   <meta name="twitter:image"
     content="https://images.unsplash.com/photo-1583212292454-39d2a21af845?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" />
   <meta name="twitter:image:alt"
@@ -121,8 +120,23 @@
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://images.unsplash.com" />
 
-  <!-- CRITICAL: Preload hero image for instant display -->
-  <link rel="preload" href="/src/img/hero-background.png" as="image" fetchpriority="high" />
+  <!-- CRITICAL: Preload homepage LCP hero (stable public paths — same in dev & production) -->
+  <link rel="preload" href="/images/hero-home-mobile.webp" as="image" type="image/webp" fetchpriority="high"
+    media="(max-width: 767px)" />
+  <link rel="preload" href="/images/hero-home.webp" as="image" type="image/webp" fetchpriority="high"
+    media="(min-width: 768px)" />
+  <script>
+    (function () {
+      var path = window.location.pathname;
+      if (path === '/' || path === '/index.html') {
+        var mobile = window.matchMedia('(max-width: 767px)').matches;
+        var img = new Image();
+        img.fetchPriority = 'high';
+        img.decoding = 'async';
+        img.src = mobile ? '/images/hero-home-mobile.webp' : '/images/hero-home.webp';
+      }
+    })();
+  </script>
 
   <!-- Preconnect to Unsplash with higher priority for mobile -->
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
@@ -298,7 +312,7 @@
     }
 
     /* Force GPU acceleration for hero image */
-    img[src*="hero-background"] {
+    img[src*="hero-home"] {
       transform: translateZ(0);
       backface-visibility: hidden;
       will-change: transform;

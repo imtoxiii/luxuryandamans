@@ -70,7 +70,9 @@ const Header = () => {
     { name: 'Packages', path: '/packages' },
     { name: 'Experiences', path: '/experiences' },
     { name: 'Blog', path: '/blog' },
+    { name: 'FAQ', path: '/faq' },
     { name: 'Guide', path: '/guide' },
+    { name: 'Itineraries', path: '/travel-guide' },
     { name: 'Calculator', path: '/calculator' },
     { name: 'Contact', path: '/contact' },
   ];

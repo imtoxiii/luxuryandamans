@@ -116,7 +116,7 @@ const post: BlogPost = {
     - **Private Candlelight Dinner:** An absolute must for honeymooners.
     - **Couples Scuba Diving:** Discover a new world together.
     - **Sunset Cruise:** Sail into the sunset on a private boat.
-    - **Couples Photoshoot:** Capture your love against the stunning Andaman backdrop. Check out our <a href="/packages/andaman-honeymoon-package">honeymoon packages</a> which can include this.
+    - **Couples Photoshoot:** Capture your love against the stunning Andaman backdrop. Check out our <a href="/packages/4n5d-andaman-honeymoon-special">honeymoon packages</a> which can include this.
     - **Stay in a Beach Villa:** Wake up to the sound of the waves.
 
     ## Practical Tips for the Perfect Andaman Honeymoon

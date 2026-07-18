@@ -1,5 +1,5 @@
 import { StrictMode, useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
@@ -36,8 +36,14 @@ const AppWrapper = () => {
   );
 };
 
-const root = document.getElementById('root');
+const container = document.getElementById('root');
 
-if (root) {
-  createRoot(root).render(<AppWrapper />);
+if (container) {
+  const app = <AppWrapper />;
+  // Reuse prerendered DOM when present; otherwise createRoot for empty #root (dev / first visit)
+  if (container.hasChildNodes()) {
+    hydrateRoot(container, app);
+  } else {
+    createRoot(container).render(app);
+  }
 }

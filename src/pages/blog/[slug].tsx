@@ -80,7 +80,7 @@ const BlogPost = () => {
 
   useEffect(() => {
     if (processedContent) {
-      const headings = processedContent.match(/#{2,6}\s+.+/g) || [];
+      const headings = processedContent.match(/#{1,6}\s+.+/g) || [];
       const toc = headings.map((heading) => {
         const level = (heading.match(/^#+/)?.[0].length || 2);
         const title = heading.replace(/^#+\s+/, '');
@@ -158,11 +158,15 @@ const BlogPost = () => {
   };
 
   const markdownComponents = {
-    h1: ({ children }: any) => <h1 className="text-3xl font-bold text-night mt-8 mb-4 border-b-2 border-azure/20 pb-2">{children}</h1>,
-    h2: ({ children }: any) => <HeadingRenderer level={2}>{children}</HeadingRenderer>,
-    h3: ({ children }: any) => <HeadingRenderer level={3}>{children}</HeadingRenderer>,
-    h4: ({ children }: any) => <HeadingRenderer level={4}>{children}</HeadingRenderer>,
-    h5: ({ children }: any) => <HeadingRenderer level={5}>{children}</HeadingRenderer>,
+    h1: ({ children }: any) => {
+      const text = flattenChildren(children);
+      const id = slugify(text);
+      return <h2 id={id} className="text-3xl font-bold text-night mt-8 mb-4 border-b-2 border-azure/20 pb-2">{children}</h2>;
+    },
+    h2: ({ children }: any) => <HeadingRenderer level={3}>{children}</HeadingRenderer>,
+    h3: ({ children }: any) => <HeadingRenderer level={4}>{children}</HeadingRenderer>,
+    h4: ({ children }: any) => <HeadingRenderer level={5}>{children}</HeadingRenderer>,
+    h5: ({ children }: any) => <HeadingRenderer level={6}>{children}</HeadingRenderer>,
     h6: ({ children }: any) => <HeadingRenderer level={6}>{children}</HeadingRenderer>,
     p: ({ children }: any) => <p className="text-night/80 leading-relaxed mb-4 text-lg">{children}</p>,
     ul: ({ children }: any) => <ul className="list-disc list-inside mb-4 space-y-2 text-night/80">{children}</ul>,

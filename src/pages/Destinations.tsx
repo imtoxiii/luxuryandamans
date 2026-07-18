@@ -83,11 +83,12 @@ const Destinations = () => {
             "@type": "ItemList",
             "name": "Andaman Tourist Destinations",
             "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Havelock Island", "url": "https://luxuryandamans.com/destinations/havelock-island" },
-              { "@type": "ListItem", "position": 2, "name": "Neil Island", "url": "https://luxuryandamans.com/destinations/neil-island" },
-              { "@type": "ListItem", "position": 3, "name": "Port Blair", "url": "https://luxuryandamans.com/destinations/port-blair" },
-              { "@type": "ListItem", "position": 4, "name": "Radhanagar Beach", "url": "https://luxuryandamans.com/destinations/radhanagar-beach" },
-              { "@type": "ListItem", "position": 5, "name": "Cellular Jail", "url": "https://luxuryandamans.com/destinations/cellular-jail" }
+              { "@type": "ListItem", "position": 1, "name": "Havelock Island", "url": "https://luxuryandamans.com/destinations/havelock-destinations" },
+              { "@type": "ListItem", "position": 2, "name": "Neil Island", "url": "https://luxuryandamans.com/destinations/neil-destinations" },
+              { "@type": "ListItem", "position": 3, "name": "Port Blair", "url": "https://luxuryandamans.com/destinations/port-blair-destinations" },
+              { "@type": "ListItem", "position": 4, "name": "Baratang", "url": "https://luxuryandamans.com/destinations/baratang-destinations" },
+              { "@type": "ListItem", "position": 5, "name": "Radhanagar Beach", "url": "https://luxuryandamans.com/destinations/radhanagar-beach" },
+              { "@type": "ListItem", "position": 6, "name": "Cellular Jail", "url": "https://luxuryandamans.com/destinations/cellular-jail" }
             ]
           }
         }}
@@ -105,6 +106,9 @@ const Destinations = () => {
             src="https://images.pexels.com/photos/10945169/pexels-photo-10945169.jpeg"
             alt="Destinations Hero"
             className="w-full h-full object-cover scale-110"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
           />
         </motion.div>
 
@@ -121,8 +125,8 @@ const Destinations = () => {
             </div>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 tracking-tight leading-tight drop-shadow-2xl font-display">
-              Discover Our <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-blue-200 to-white">Paradise Islands</span>
+              Places to Visit in <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-blue-200 to-white">Andaman</span>
             </h1>
 
             <p className="text-lg md:text-2xl text-gray-100 max-w-2xl mx-auto leading-relaxed font-light drop-shadow-md">

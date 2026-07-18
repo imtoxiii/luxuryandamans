@@ -52,26 +52,26 @@ export const budgetTravelLinks: InternalLink[] = [
 // Package links for internal linking
 export const packageLinks: InternalLink[] = [
   {
-    url: '/packages/budget-explorer',
-    title: 'Budget Explorer Package - From ₹15,000',
+    url: '/packages/standard-andaman-package-5n6d',
+    title: 'Standard Andaman Package 5N/6D - From ₹15,000',
     keywords: ['budget packages', 'cheap andaman packages', 'affordable packages'],
     priority: 'high'
   },
   {
-    url: '/packages/honeymoon-special',
-    title: 'Honeymoon Special Package - From ₹25,000',
+    url: '/packages/4n5d-andaman-honeymoon-special',
+    title: '4N/5D Andaman Honeymoon Special - From ₹25,000',
     keywords: ['honeymoon packages', 'romantic packages', 'couple packages'],
     priority: 'high'
   },
   {
-    url: '/packages/family-paradise',
-    title: 'Family Paradise Package - From ₹20,000',
+    url: '/packages/family-paradise-6-days',
+    title: 'Family Paradise Package 6 Days - From ₹20,000',
     keywords: ['family packages', 'family vacation', 'kid friendly packages'],
     priority: 'high'
   },
   {
-    url: '/packages/luxury-island-escape',
-    title: 'Luxury Island Escape - From ₹45,000',
+    url: '/packages/luxury-island-escape-7-days',
+    title: 'Luxury Island Escape 7 Days - From ₹45,000',
     keywords: ['luxury packages', 'premium packages', 'luxury andaman'],
     priority: 'medium'
   }

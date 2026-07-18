@@ -219,8 +219,56 @@ export function generateDestinationStructuredData(destination: Destination) {
   return schemas;
 }
 
+/** Truncate on word boundary for meta strings. */
+function truncateAtWord(text: string, max: number): string {
+  const clean = text.replace(/\s+/g, ' ').trim();
+  if (clean.length <= max) return clean;
+  const slice = clean.slice(0, max + 1);
+  const lastSpace = slice.lastIndexOf(' ');
+  const cut = lastSpace > Math.floor(max * 0.55) ? lastSpace : max;
+  return clean.slice(0, cut).replace(/[\s|,;:\-–—/]+$/u, '');
+}
+
+/** Fit meta description into ~140–160 characters. */
+function fitMetaDescription(text: string, min = 140, max = 160): string {
+  let clean = text.replace(/\s+/g, ' ').trim();
+  if (clean.length > max) {
+    let t = truncateAtWord(clean, max - 3);
+    if (!/[.!?…]$/.test(t)) t += '...';
+    if (t.length > max) t = truncateAtWord(clean, max);
+    return t;
+  }
+  if (clean.length < min) {
+    const pads = [
+      ' Expert tips from Luxury Andamans.',
+      ' Plan with Luxury Andamans.',
+      ' Book hotels & ferries with us.',
+      ' Free custom itinerary help.',
+      ' Plan your visit today.',
+      ' See our guide.',
+    ];
+    for (const pad of pads) {
+      const room = max - clean.length;
+      if (pad.length <= room) {
+        clean += pad;
+        if (clean.length >= min) break;
+      }
+    }
+    // Fill remaining room if still short
+    if (clean.length < min) {
+      const filler = ' Plan your Andaman trip today.';
+      const room = max - clean.length;
+      if (room >= 8) {
+        clean += truncateAtWord(filler, room);
+      }
+    }
+  }
+  return clean;
+}
+
 /**
  * Generate destination-specific meta tags for SEO
+ * Title target ≤60 (SEO may append brand); description 140–160.
  */
 export function generateDestinationMetaTags(destination: Destination) {
   const keywords = [
@@ -234,18 +282,33 @@ export function generateDestinationMetaTags(destination: Destination) {
     'travel guide'
   ].join(', ');
 
+  // Keep base ≤43 so SEO can add " | Luxury Andaman" (17) within 60
+  const TITLE_BASE_MAX = 43;
+  let title = `${destination.name} Guide 2026 | Things to Do`;
+  if (title.length > TITLE_BASE_MAX) {
+    title = `${destination.name} Andaman Guide 2026`;
+  }
+  if (title.length > TITLE_BASE_MAX) {
+    title = truncateAtWord(`${destination.name} Guide 2026`, TITLE_BASE_MAX);
+  }
+
+  const audience = destination.bestFor?.slice(0, 2).join(' & ') || 'travelers';
+  const description = fitMetaDescription(
+    `Visit ${destination.name} in Andaman. Best time, how to reach, top activities & tips for ${audience}. Plan your 2026 trip.`
+  );
+
   return {
-    title: `${destination.name} Travel Guide 2025 | Best Time, Places & Activities`,
-    description: `Plan your trip to ${destination.name}, Andaman. Discover hidden gems, best beaches, activities, and timings. Expert guide for ${destination.bestFor?.join(', ') || 'travelers'}.`,
+    title,
+    description,
     keywords,
     canonical: `https://luxuryandamans.com/destinations/${destination.slug}`,
-    ogTitle: `Explore ${destination.name} - The Jewel of Andaman`,
-    ogDescription: destination.description,
+    ogTitle: title,
+    ogDescription: description,
     ogImage: destination.image,
     ogUrl: `https://luxuryandamans.com/destinations/${destination.slug}`,
     twitterCard: 'summary_large_image',
-    twitterTitle: `${destination.name} Travel Guide - Luxury Andamans`,
-    twitterDescription: destination.description,
+    twitterTitle: title,
+    twitterDescription: description,
     twitterImage: destination.image,
   };
 }
@@ -323,7 +386,7 @@ export function generateProductSchema(pkg: Package) {
       url: `https://luxuryandamans.com/packages/${pkg.slug}`,
       priceCurrency: 'INR',
       price: pkg.price,
-      priceValidUntil: '2025-12-31',
+      priceValidUntil: '2026-12-31',
       availability: 'https://schema.org/InStock',
     },
     aggregateRating: {
@@ -366,6 +429,7 @@ export function generatePackageBreadcrumbSchema(pkg: Package) {
 
 /**
  * Generate package-specific meta tags for SEO
+ * Title target ≤60 after SEO brand handling; description 140–160.
  */
 export function generatePackageMetaTags(pkg: Package) {
   const keywords = [
@@ -380,18 +444,37 @@ export function generatePackageMetaTags(pkg: Package) {
     'all inclusive andaman'
   ].join(', ');
 
+  const priceStr = `₹${pkg.price.toLocaleString('en-IN')}`;
+  const durShort = pkg.duration.replace(/\s*days?/i, 'D').replace(/\s*nights?/i, 'N').trim();
+  // Prefer base ≤43 chars so SEO can append " | Luxury Andaman"
+  const TITLE_BASE_MAX = 43;
+  let title = `${pkg.title} | ${durShort} ${priceStr}`;
+  if (title.length > TITLE_BASE_MAX) {
+    title = `${pkg.title} | ${priceStr}`;
+  }
+  if (title.length > TITLE_BASE_MAX) {
+    const room = TITLE_BASE_MAX - priceStr.length - 3;
+    title = `${truncateAtWord(pkg.title, Math.max(12, room))} | ${priceStr}`;
+  }
+
+  const includes = pkg.includes?.slice(0, 2).join(', ') || 'hotels & ferry transfers';
+  const feature = pkg.features?.[0] || 'Andaman holidays';
+  const description = fitMetaDescription(
+    `Book ${pkg.title} (${pkg.duration}) from ${priceStr}. Includes ${includes}. Great for ${feature}. 4.9★ rated.`
+  );
+
   return {
-    title: `${pkg.title} | ${pkg.duration} Luxury Andaman Package | ₹${pkg.price}`,
-    description: `Book ${pkg.title} (${pkg.duration}). Includes ${pkg.includes?.slice(0, 3).join(', ')}. Perfect for ${pkg.features?.slice(0, 3).join(', ') || 'vacations'}. Rated 4.9/5 stars.`,
+    title,
+    description,
     keywords,
     canonical: `https://luxuryandamans.com/packages/${pkg.slug}`,
-    ogTitle: `${pkg.title} - Premium Andaman Tour Package`,
-    ogDescription: `Experience the best of Andaman with our ${pkg.title}. ${pkg.duration} of luxury, adventure, and relaxation. Book now for ₹${pkg.price}.`,
+    ogTitle: title,
+    ogDescription: description,
     ogImage: pkg.image,
     ogUrl: `https://luxuryandamans.com/packages/${pkg.slug}`,
     twitterCard: 'summary_large_image',
-    twitterTitle: `${pkg.title} | Luxury Andamans`,
-    twitterDescription: pkg.description,
+    twitterTitle: title,
+    twitterDescription: description,
     twitterImage: pkg.image,
   };
 }

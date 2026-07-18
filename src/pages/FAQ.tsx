@@ -186,7 +186,7 @@ const FAQ = () => {
             className="max-w-4xl px-4"
           >
             <h1 className="text-4xl md:text-5xl font-bold text-pearl mb-4">
-              Help Center
+              Andaman Travel FAQ
             </h1>
             <p className="text-xl text-pearl/90">
               Find answers to your questions about traveling to Andaman

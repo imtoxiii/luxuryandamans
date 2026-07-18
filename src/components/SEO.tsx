@@ -36,7 +36,7 @@ const SEO: React.FC<SEOProps> = ({
   modifiedTime,
   section,
   tags = [],
-  locale = 'en_US',
+  locale = 'en_IN',
   siteName = 'Luxury Andamans',
   twitterHandle = '@andamanluxury',
   targetAudience = 'all',
@@ -49,6 +49,77 @@ const SEO: React.FC<SEOProps> = ({
 }) => {
   const siteUrl = import.meta.env.VITE_SITE_URL || 'https://luxuryandamans.com';
   const safePathname = typeof window !== 'undefined' && window.location?.pathname ? window.location.pathname : '/';
+
+  const TITLE_MAX = 60;
+  const DESC_MIN = 140;
+  const DESC_MAX = 160;
+  const BRAND_SUFFIX = ' | Luxury Andaman';
+
+  /** Truncate on a word boundary; avoid cutting mid-word. */
+  const truncateAtWord = (text: string, max: number): string => {
+    const clean = text.replace(/\s+/g, ' ').trim();
+    if (clean.length <= max) return clean;
+    const slice = clean.slice(0, max + 1);
+    const lastSpace = slice.lastIndexOf(' ');
+    const cut = lastSpace > Math.floor(max * 0.55) ? lastSpace : max;
+    return clean.slice(0, cut).replace(/[\s|,;:\-–—/]+$/u, '');
+  };
+
+  /**
+   * Final <title> ≤ 60 chars (incl. brand suffix when used).
+   * Prefer dropping suffix or shortening the title — never mid-word chops into the suffix.
+   */
+  const buildSiteTitle = (rawTitle: string): string => {
+    const title = rawTitle.replace(/\s+/g, ' ').trim();
+    if (/Luxury Andaman/i.test(title)) {
+      return truncateAtWord(title, TITLE_MAX);
+    }
+    const withSuffix = `${title}${BRAND_SUFFIX}`;
+    if (withSuffix.length <= TITLE_MAX) return withSuffix;
+    // Title alone fits — drop suffix rather than awkward partial brand
+    if (title.length <= TITLE_MAX) return title;
+    // Shorten title to leave room for suffix when possible
+    const room = TITLE_MAX - BRAND_SUFFIX.length;
+    if (room >= 24) {
+      return `${truncateAtWord(title, room)}${BRAND_SUFFIX}`;
+    }
+    return truncateAtWord(title, TITLE_MAX);
+  };
+
+  /** Prefer meta descriptions in the 140–160 range. */
+  const clampDescription = (raw: string): string => {
+    let text = raw.replace(/\s+/g, ' ').trim();
+    if (text.length > DESC_MAX) {
+      let truncated = truncateAtWord(text, DESC_MAX - 3);
+      if (!/[.!?…]$/.test(truncated)) truncated += '...';
+      if (truncated.length > DESC_MAX) truncated = truncateAtWord(text, DESC_MAX);
+      return truncated;
+    }
+    if (text.length < DESC_MIN) {
+      const pads = [
+        ' Expert Andaman trip planning.',
+        ' Plan with Luxury Andamans.',
+        ' Hotels, ferries & support included.',
+        ' Book with us today.',
+        ' Free itinerary help.',
+        ' See details inside.',
+      ];
+      for (const pad of pads) {
+        const room = DESC_MAX - text.length;
+        if (pad.length <= room) {
+          text += pad;
+          if (text.length >= DESC_MIN) break;
+        }
+      }
+      if (text.length < DESC_MIN) {
+        const room = DESC_MAX - text.length;
+        if (room >= 8) {
+          text += truncateAtWord(' Plan your Andaman trip today.', room);
+        }
+      }
+    }
+    return text;
+  };
 
   // Focused keyword strategy - Google recommends 5-15 keywords per page max
   // Excessive keywords trigger "keyword stuffing" penalty
@@ -69,9 +140,8 @@ const SEO: React.FC<SEOProps> = ({
   };
 
   const defaultKeywords = keywords || getKeywordsByAudience(targetAudience);
-  // Keep title under 60 chars for Google (truncation happens at ~60)
-  const siteTitle = title.includes('Luxury Andaman') ? title :
-    `${title} | Luxury Andaman`.length > 65 ? title : `${title} | Luxury Andaman`;
+  const siteTitle = buildSiteTitle(title);
+  const metaDescription = clampDescription(description);
   const canonicalUrl = `${siteUrl}${pathname || safePathname}`;
 
   // Combine default keywords with any additional ones
@@ -202,8 +272,8 @@ const SEO: React.FC<SEOProps> = ({
     '@context': 'https://schema.org',
     '@type': type === 'article' ? 'Article' : 'WebPage',
     name: siteTitle,
-    headline: title,
-    description,
+    headline: siteTitle,
+    description: metaDescription,
     image,
     url: canonicalUrl,
     author: {
@@ -292,7 +362,7 @@ const SEO: React.FC<SEOProps> = ({
     <Helmet>
       {/* Basic */}
       <title>{siteTitle}</title>
-      <meta name="description" content={description} />
+      <meta name="description" content={metaDescription} />
       <meta name="keywords" content={allKeywords} />
       <link rel="canonical" href={canonicalUrl} />
       <meta name="author" content={author} />
@@ -300,7 +370,7 @@ const SEO: React.FC<SEOProps> = ({
 
       {/* Open Graph */}
       <meta property="og:title" content={siteTitle} />
-      <meta property="og:description" content={description} />
+      <meta property="og:description" content={metaDescription} />
       <meta property="og:image" content={image} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content={type} />
@@ -318,7 +388,7 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="twitter:site" content={twitterHandle} />
       <meta name="twitter:creator" content={twitterHandle} />
       <meta name="twitter:title" content={siteTitle} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:image" content={image} />
 
       {/* Additional SEO */}
@@ -387,11 +457,6 @@ const SEO: React.FC<SEOProps> = ({
           {JSON.stringify(obj)}
         </script>
       ))}
-
-      {/* Alternate Languages */}
-      <link rel="alternate" href={siteUrl} hrefLang="x-default" />
-      <link rel="alternate" href={siteUrl} hrefLang="en" />
-      <link rel="alternate" href={siteUrl} hrefLang="en-IN" />
 
       {/* Speakable Schema for Voice Search / AI Assistants */}
       <script type="application/ld+json">

@@ -48,8 +48,14 @@ const SmartImage: React.FC<SmartImageProps> = ({
   onImageError,
   blurOnLoad = false,
   forcePosition,
+  loading: loadingProp,
+  fetchPriority: fetchPriorityProp,
   ...imgProps
 }) => {
+  const isHero = containerType === 'hero';
+  const loading = loadingProp ?? (isHero ? 'eager' : 'lazy');
+  const fetchPriority = fetchPriorityProp ?? (isHero ? 'high' : undefined);
+  const shouldAnimateOnLoad = animateOnLoad && !isHero;
   const imgRef = useRef<HTMLImageElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -123,7 +129,7 @@ const SmartImage: React.FC<SmartImageProps> = ({
   const baseClasses = `
     w-full h-full object-cover transition-all duration-700
     ${blurOnLoad && !isLoaded ? 'blur-sm scale-105' : 'blur-0 scale-100'}
-    ${animateOnLoad && !isLoaded ? 'opacity-0' : 'opacity-100'}
+    ${shouldAnimateOnLoad && !isLoaded ? 'opacity-0' : 'opacity-100'}
   `;
 
   // Container-specific tweaks
@@ -155,7 +161,8 @@ const SmartImage: React.FC<SmartImageProps> = ({
       }}
       onLoad={handleLoad}
       onError={handleError}
-      loading="lazy"
+      loading={loading}
+      fetchPriority={fetchPriority}
       decoding="async"
       {...imgProps}
     />

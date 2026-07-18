@@ -1,54 +1,67 @@
 import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  Instagram, 
-  Facebook, 
-  Twitter, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Globe,
+import {
+  Instagram,
+  Facebook,
+  Twitter,
+  Mail,
+  Phone,
+  MapPin,
   ChevronRight
 } from 'lucide-react';
 import { gsap } from 'gsap';
+import { destinations } from '../data/destinations';
+import { experiences } from '../data/experiences';
+import { locations } from '../data/locations';
 
 const Footer = () => {
   const quickLinks = [
-    { name: 'Travel Guide', href: '/guide' },
+    { name: 'Logistics Guide', href: '/guide' },
+    { name: 'Itinerary Guide', href: '/travel-guide' },
     { name: 'Destinations', href: '/destinations' },
     { name: 'Experiences', href: '/experiences' },
     { name: 'Packages', href: '/packages' },
     { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/contact' }
+    { name: 'FAQ', href: '/faq' },
+    { name: 'Trip Calculator', href: '/calculator' },
+    { name: 'Contact', href: '/contact' },
+    ...locations.map((location) => ({
+      name: location.name,
+      href: `/locations/${location.slug}`,
+    })),
   ];
 
-  const destinations = [
-    { name: 'Havelock Island', href: '/destinations/radhanagar-beach' },
-    { name: 'Neil Island', href: '/destinations/bharatpur-beach' },
-    { name: 'Port Blair', href: '/destinations/cellular-jail' },
-    { name: 'Ross Island', href: '/destinations/ross-island' },
-    { name: 'Barren Island', href: '/destinations/barren-island' }
+  const destinationHubs = [
+    { name: 'Port Blair Guide', href: '/destinations/port-blair-destinations' },
+    { name: 'Havelock Guide', href: '/destinations/havelock-destinations' },
+    { name: 'Neil Island Guide', href: '/destinations/neil-destinations' },
+    { name: 'Baratang Guide', href: '/destinations/baratang-destinations' },
   ];
 
-  const experiences = [
-    { name: 'Scuba Diving', href: '/experiences/scuba-diving' },
-    { name: 'Island Hopping', href: '/experiences/island-hopping' },
-    { name: 'Luxury Resorts', href: '/experiences/luxury-resorts' },
-    { name: 'Wellness Retreats', href: '/experiences/wellness-retreats' },
-    { name: 'Sunset Cruises', href: '/experiences/sunset-cruises' }
+  const destinationLinks = [
+    ...destinationHubs,
+    ...destinations.map((destination) => ({
+      name: destination.name,
+      href: `/destinations/${destination.slug}`,
+    })),
   ];
+
+  const experienceLinks = experiences.map((experience) => ({
+    name: experience.title,
+    href: `/experiences/${experience.slug}`,
+  }));
 
   const gradientTextRef = useRef(null);
 
   useEffect(() => {
     if (gradientTextRef.current) {
       gsap.to(gradientTextRef.current, {
-        backgroundPosition: "200% center",
+        backgroundPosition: '200% center',
         repeat: -1,
         yoyo: true,
-        ease: "power1.inOut",
-        duration: 3
+        ease: 'power1.inOut',
+        duration: 3,
       });
     }
   }, []);
@@ -57,7 +70,7 @@ const Footer = () => {
     <footer className="bg-night text-pearl">
       {/* Main Footer */}
       <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Company Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -70,15 +83,33 @@ const Footer = () => {
               Discover paradise with our curated luxury travel services.
             </p>
             <div className="flex space-x-4">
-              <Link to="#" className="w-10 h-10 rounded-full bg-azure/10 flex items-center justify-center hover:bg-azure/20 transition-colors">
+              <a
+                href="https://www.instagram.com/luxuryandaman"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="w-10 h-10 rounded-full bg-azure/10 flex items-center justify-center hover:bg-azure/20 transition-colors"
+              >
                 <Instagram className="w-5 h-5" />
-              </Link>
-              <Link to="#" className="w-10 h-10 rounded-full bg-azure/10 flex items-center justify-center hover:bg-azure/20 transition-colors">
+              </a>
+              <a
+                href="https://www.facebook.com/luxuryandaman"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="w-10 h-10 rounded-full bg-azure/10 flex items-center justify-center hover:bg-azure/20 transition-colors"
+              >
                 <Facebook className="w-5 h-5" />
-              </Link>
-              <Link to="#" className="w-10 h-10 rounded-full bg-azure/10 flex items-center justify-center hover:bg-azure/20 transition-colors">
+              </a>
+              <a
+                href="https://twitter.com/luxuryandaman"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter"
+                className="w-10 h-10 rounded-full bg-azure/10 flex items-center justify-center hover:bg-azure/20 transition-colors"
+              >
                 <Twitter className="w-5 h-5" />
-              </Link>
+              </a>
             </div>
           </motion.div>
 
@@ -90,10 +121,10 @@ const Footer = () => {
           >
             <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
             <ul className="space-y-3">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
-                  <Link 
-                    to={link.href} 
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    to={link.href}
                     className="text-pearl/80 hover:text-pearl transition-colors inline-flex items-center group"
                   >
                     <ChevronRight className="w-4 h-4 mr-2 transform group-hover:translate-x-1 transition-transform" />
@@ -110,12 +141,12 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h4 className="text-lg font-semibold mb-6">Popular Destinations</h4>
+            <h4 className="text-lg font-semibold mb-6">Destinations</h4>
             <ul className="space-y-3">
-              {destinations.map((dest, index) => (
-                <li key={index}>
-                  <Link 
-                    to={dest.href} 
+              {destinationLinks.map((dest) => (
+                <li key={dest.href}>
+                  <Link
+                    to={dest.href}
                     className="text-pearl/80 hover:text-pearl transition-colors inline-flex items-center group"
                   >
                     <ChevronRight className="w-4 h-4 mr-2 transform group-hover:translate-x-1 transition-transform" />
@@ -123,6 +154,46 @@ const Footer = () => {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  to="/destinations"
+                  className="text-azure hover:text-pearl transition-colors inline-flex items-center group font-medium"
+                >
+                  <ChevronRight className="w-4 h-4 mr-2 transform group-hover:translate-x-1 transition-transform" />
+                  View all destinations
+                </Link>
+              </li>
+            </ul>
+          </motion.div>
+
+          {/* Experiences */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+          >
+            <h4 className="text-lg font-semibold mb-6">Experiences</h4>
+            <ul className="space-y-3">
+              {experienceLinks.map((experience) => (
+                <li key={experience.href}>
+                  <Link
+                    to={experience.href}
+                    className="text-pearl/80 hover:text-pearl transition-colors inline-flex items-center group"
+                  >
+                    <ChevronRight className="w-4 h-4 mr-2 transform group-hover:translate-x-1 transition-transform" />
+                    {experience.name}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link
+                  to="/experiences"
+                  className="text-azure hover:text-pearl transition-colors inline-flex items-center group font-medium"
+                >
+                  <ChevronRight className="w-4 h-4 mr-2 transform group-hover:translate-x-1 transition-transform" />
+                  View all experiences
+                </Link>
+              </li>
             </ul>
           </motion.div>
 

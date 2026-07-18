@@ -64,7 +64,8 @@ const Sitemap = () => {
       title: "Main Pages",
       links: [
         { name: "Home", path: "/" },
-        { name: "Travel Guide", path: "/guide" },
+        { name: "Logistics Guide", path: "/guide" },
+        { name: "Itinerary Guide", path: "/travel-guide" },
         { name: "Contact", path: "/contact" },
         { name: "Price Calculator", path: "/calculator" },
         { name: "FAQ", path: "/faq" },

@@ -56,6 +56,7 @@ const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Sitemap = lazy(() => import('./pages/Sitemap'));
 const Offer = lazy(() => import('./pages/Offer'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 const LuxuryResortsPage = lazy(() => import('./pages/experiences/luxury-resorts'));
 const ScubaDivingPage = lazy(() => import('./pages/experiences/scuba-diving'));
@@ -91,6 +92,70 @@ function App() {
         removeLoader(isBlog);
     }
   }, [location.pathname]);
+
+  // Signal for post-build Puppeteer prerender: wait until THIS route's Helmet SEO is applied
+  useEffect(() => {
+    const path = displayLocation.pathname;
+    document.documentElement.removeAttribute('data-prerender-ready');
+    document.documentElement.setAttribute('data-prerender-path', path);
+
+    let cancelled = false;
+    const started = Date.now();
+    const initialTitle = document.title;
+
+    const canonicalMatches = () => {
+      const links = Array.from(document.querySelectorAll('link[rel="canonical"]')) as HTMLLinkElement[];
+      const hrefs = links.map((link) => link.getAttribute('href') || link.href || '');
+      if (!hrefs.length) return false;
+      if (path === '/') {
+        return hrefs.some((href) => {
+          try {
+            const u = new URL(href, window.location.origin);
+            return u.pathname === '/' || u.pathname === '';
+          } catch {
+            return /luxuryandamans\.com\/?$/i.test(href);
+          }
+        });
+      }
+      // Prefer a Helmet-added canonical that includes this path (static homepage one may remain)
+      return hrefs.some((href) => href.includes(path));
+    };
+
+    const tryMarkReady = () => {
+      if (cancelled) return false;
+
+      const root = document.getElementById('root');
+      const textLen = root?.textContent?.trim().length ?? 0;
+      const hasTitle = Boolean(document.title?.trim());
+      const hasContent = textLen > 80;
+      const titleChanged = path === '/' || document.title !== initialTitle;
+      const seoReady =
+        path === '/'
+          ? hasTitle && hasContent
+          : (canonicalMatches() && titleChanged) || (titleChanged && Date.now() - started > 1500);
+
+      if (hasTitle && hasContent && seoReady) {
+        document.documentElement.setAttribute('data-prerender-path', path);
+        document.documentElement.setAttribute('data-prerender-ready', 'true');
+        return true;
+      }
+      if (Date.now() - started > 12000 && hasTitle && hasContent && (path === '/' || titleChanged)) {
+        document.documentElement.setAttribute('data-prerender-path', path);
+        document.documentElement.setAttribute('data-prerender-ready', 'true');
+        return true;
+      }
+      return false;
+    };
+
+    const interval = window.setInterval(() => {
+      if (tryMarkReady()) window.clearInterval(interval);
+    }, 50);
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(interval);
+    };
+  }, [displayLocation.pathname]);
 
   return (
     <>
@@ -158,8 +223,8 @@ function App() {
           <Route path="/experiences/jet-ski" element={<JetSkiPage />} />
           <Route path="/experiences/mangrove-creek" element={<MangroveCreekPage />} />
 
-          {/* 404 Catch-all */}
-          <Route path="*" element={<Navigate to="/" replace />} />
+          {/* 404 Catch-all — render NotFound, do not redirect home */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
       <ChatWidget />

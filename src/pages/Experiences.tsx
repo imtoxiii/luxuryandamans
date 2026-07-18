@@ -264,6 +264,9 @@ const ExperiencesPage = () => {
             src="https://images.pexels.com/photos/1078983/pexels-photo-1078983.jpeg"
             alt="Experiences Hero"
             className="w-full h-full object-cover scale-110"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
           />
         </motion.div>
 
@@ -280,8 +283,8 @@ const ExperiencesPage = () => {
             </div>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 tracking-tight leading-tight drop-shadow-2xl font-display">
-              Curated <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-blue-200 to-white">Adventures</span>
+              Things to Do in <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-blue-200 to-white">Andaman</span>
             </h1>
 
             <p className="text-lg md:text-2xl text-gray-100 max-w-2xl mx-auto leading-relaxed font-light drop-shadow-md">

@@ -132,6 +132,9 @@ const PackagesPage = () => {
             src="https://images.pexels.com/photos/631477/pexels-photo-631477.jpeg"
             alt="Andaman Luxury"
             className="w-full h-full object-cover"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
           />
         </div>
 
@@ -147,8 +150,8 @@ const PackagesPage = () => {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight drop-shadow-lg font-display">
-              Discover Your <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200">Perfect Getaway</span>
+              Andaman Tour Packages <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200">For Every Traveler</span>
             </h1>
 
             <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed font-light">

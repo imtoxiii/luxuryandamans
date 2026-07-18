@@ -1,0 +1,4 @@
+# Netlify SPA fallback — existing static files (including prerendered
+# dist/packages/.../index.html) are served first; this only applies when
+# no matching file/directory exists.
+/*    /index.html   200

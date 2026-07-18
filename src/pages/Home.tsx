@@ -12,7 +12,11 @@ import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
 import CardSlider from '../components/CardSlider';
 import ExperienceCard from '../components/ExperienceCard';
-import heroBg from '../img/pexels-nabilnaidu-106714031 (1).webp';
+import {
+  HOME_HERO_DESKTOP,
+  HOME_HERO_MOBILE,
+  HOME_HERO_DESKTOP_DIMENSIONS,
+} from '../lib/heroImages';
 import { removeLoader } from '../lib/loader';
 
 const Home = () => {
@@ -39,26 +43,9 @@ const Home = () => {
     }
   }, [isMobile]);
 
-  // Preload hero image and hide loader when ready
+  // Hero is preloaded in index.html — don't block the UI waiting for it
   useEffect(() => {
-    const img = new Image();
-    img.src = heroBg;
-
-    const handleLoad = () => {
-      removeLoader();
-    };
-
-    if (img.complete) {
-      handleLoad();
-    } else {
-      img.onload = handleLoad;
-      img.onerror = handleLoad; // Hide loader even if image fails
-    }
-
-    // Safety timeout in case image hangs
-    const timeout = setTimeout(handleLoad, 5000);
-
-    return () => clearTimeout(timeout);
+    removeLoader(true);
   }, []);
 
   const experiences = [
@@ -99,8 +86,8 @@ const Home = () => {
   return (
     <div className="bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
       <SEO
-        title="Andaman Tour Packages 2026 | Best Deals from ₹14,999"
-        description="Book Andaman tour packages from ₹14,999/person. 4.9★ rated by 1200+ travelers. Honeymoon, family & adventure packages with ferry, hotels, scuba diving included. Havelock, Neil Island & Port Blair. Free cancellation & custom itinerary. Call +91 62975 76826."
+        title="Andaman Tour Packages 2026 | From ₹14,999"
+        description="Best Andaman tour packages 2026 from ₹14,999/person. Honeymoon, family & budget trips to Havelock, Neil & Port Blair. 4.9★ by 1200+ travelers. Book now."
         pathname={location.pathname}
         keywords="andaman tour packages, andaman tour packages 2026, andaman honeymoon packages, andaman family packages, andaman packages from delhi, andaman packages from mumbai, andaman packages from bangalore, andaman packages from chennai, havelock island packages, neil island tour, port blair tour, scuba diving andaman, best andaman travel agent, andaman trip cost, budget andaman packages, luxury andaman trip, best time to visit andaman"
         targetAudience="all"
@@ -174,24 +161,30 @@ const Home = () => {
         }}
       />
 
-      {/* Preload Hero Image for LCP Optimization */}
-      <link rel="preload" as="image" href={heroBg} />
-
       <Header />
 
       {/* Custom Parallax Hero */}
       <section className="relative h-screen min-h-[600px] flex flex-col justify-start pt-32 md:justify-center md:pt-0 items-center overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 z-10" />
-          <img
-            src={heroBg}
-            alt="Andaman Paradise"
-            className="w-full h-full object-cover scale-110"
-            style={{
-              objectPosition: window.innerWidth < 768 ? objectPositions[imagePart] : 'center',
-              transition: 'object-position 1s cubic-bezier(0.4,0,0.2,1)'
-            }}
-          />
+          <picture>
+            <source media="(max-width: 767px)" srcSet={HOME_HERO_MOBILE} type="image/webp" />
+            <img
+              src={HOME_HERO_DESKTOP}
+              alt="Andaman Paradise"
+              className="w-full h-full object-cover scale-110"
+              width={HOME_HERO_DESKTOP_DIMENSIONS.width}
+              height={HOME_HERO_DESKTOP_DIMENSIONS.height}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              style={{
+                objectPosition: isMobile ? objectPositions[imagePart] : 'center',
+                transition: 'object-position 1s cubic-bezier(0.4,0,0.2,1)',
+                aspectRatio: `${HOME_HERO_DESKTOP_DIMENSIONS.width} / ${HOME_HERO_DESKTOP_DIMENSIONS.height}`,
+              }}
+            />
+          </picture>
         </div>
 
         <div className="container mx-auto px-4 relative z-20 text-center">
@@ -206,8 +199,8 @@ const Home = () => {
             </div>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight leading-tight drop-shadow-2xl font-display">
-              Paradise <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-cyan-200 to-white">Found Here</span>
+              Andaman Tour Packages <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-cyan-200 to-white">Starting ₹14,999</span>
             </h1>
 
             <p className="text-lg md:text-2xl text-gray-100 max-w-3xl mx-auto leading-relaxed font-light mb-10 drop-shadow-md">
@@ -305,6 +298,7 @@ const Home = () => {
               src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
               alt="Background"
               className="w-full h-full object-cover opacity-20 mix-blend-overlay"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-blue-800/90 to-cyan-900/90" />
           </div>

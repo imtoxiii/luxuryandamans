@@ -3630,7 +3630,7 @@ Elephant Beach offers the perfect introduction to Andaman's underwater world for
 - **Swimming Safety:** Always supervise children near water
 - **Sun Exposure:** Limit midday activities, use shade whenever possible
 
-## [Plan Your Perfect Family Adventure in Andaman!](/packages/family)
+## [Plan Your Perfect Family Adventure in Andaman!](/packages/family-paradise-6-days)
 
 Ready to create unforgettable memories with your family? Our family-friendly Andaman packages include kid-safe activities, comfortable accommodations, and expert guides who love working with children.
 

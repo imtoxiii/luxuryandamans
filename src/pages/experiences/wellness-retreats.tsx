@@ -236,7 +236,7 @@ const WellnessRetreatsPage = () => {
       }}
       slug="wellness-retreats"
       seo={{
-        title: "Wellness Retreats in Andaman | Yoga, Spa & Ayurveda 2025",
+        title: "Wellness Retreats in Andaman | Yoga, Spa & Ayurveda 2026",
         description: "Rejuvenate with wellness retreats in Andaman Islands. Choose from yoga, spa, digital detox and Ayurvedic programs. Beachfront accommodation, healthy meals, expert guidance.",
         keywords: "wellness retreat andaman, yoga retreat andaman, spa retreat andaman, ayurvedic retreat andaman, detox retreat andaman, luxury wellness andaman, meditation retreat andaman"
       }}

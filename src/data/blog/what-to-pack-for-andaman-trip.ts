@@ -72,7 +72,7 @@ const post: BlogPost = {
     }
   ],
   content: `
-## Pack Smart for Paradise 🎒
+## Pack Smart for Paradise �
 
 Packing for an island trip seems simple—swimsuit and sunscreen, right? But Andaman has its own quirks. You'll be hopping on ferries, walking on corals, and dealing with tropical humidity.
 
@@ -80,7 +80,7 @@ Here is the ultimate packing list to ensure you have everything you need without
 
 ---
 
-## 1. Clothing: Think Light & Breathable 👕
+## 1. Clothing: Think Light & Breathable �
 Cotton and linen are your best friends. Synthetics will make you sweat.
 - **Beachwear:** 2-3 Swimsuits/Trunks.
 - **Day Wear:** Cotton t-shirts, shorts, sundresses, flowy skirts.
@@ -90,13 +90,13 @@ Cotton and linen are your best friends. Synthetics will make you sweat.
 
 <img src="https://images.pexels.com/photos/2227827/pexels-photo-2227827.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.clothing.alt}" width="${images.clothing.width}" height="${images.clothing.height}" />
 
-## 2. Footwear: Comfort is Key 🩴
+## 2. Footwear: Comfort is Key �
 - **Flip-flops/Sliders:** For the beach and hotel.
 - **Water Shoes (Aqua Shoes):** Highly recommended! Some beaches have dead corals that can cut your feet.
 - **Walking Sandals/Sneakers:** For Cellular Jail, trekking to Elephant Beach, or exploring caves.
 - **Leave behind:** High heels. They are useless in the sand and on jetties.
 
-## 3. Toiletries & Health 🧴
+## 3. Toiletries & Health �
 - **Sunscreen:** SPF 50+ is non-negotiable. Please buy **Reef-Safe Sunscreen** to protect the corals.
 - **Insect Repellent:** Mosquitoes can be active in the evenings.
 - **Hair Care:** Humidity causes frizz. Bring your conditioner/serum.
@@ -104,14 +104,14 @@ Cotton and linen are your best friends. Synthetics will make you sweat.
 
 <img src="https://images.pexels.com/photos/4628191/pexels-photo-4628191.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.essentials.alt}" width="${images.essentials.width}" height="${images.essentials.height}" />
 
-## 4. Electronics & Gadgets 📷
+## 4. Electronics & Gadgets �
 - **Power Bank:** Essential for long days out.
 - **Waterproof Phone Pouch:** For taking photos in the water.
 - **Camera/GoPro:** If you have one, bring it!
 - **Universal Adapter:** Most hotels have standard Indian plugs, but an adapter helps if you have multiple devices.
 - **Downloaded Content:** Download maps, music, and movies offline.
 
-## 5. Documents 📄
+## 5. Documents �
 - **ID Proof:** Original Aadhaar/Voter ID/Passport (mandatory for ferries/hotels).
 - **Permits:** If you are a foreign national, keep your passport and visa handy.
 - **Tickets:** Printed copies or offline PDFs of flight and ferry tickets.

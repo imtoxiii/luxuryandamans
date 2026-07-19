@@ -31,7 +31,7 @@ Prices have seen a slight correction due to standardized safety norms.
 | **PADI Open Water Course** | Havelock | ₹26,000 - ₹28,000 |
 | **Fun Dive (Certified)** | Johnny's Gorge / Dixon's | ₹4,500 per dive |
 
-## Special 2026 Offer: ₹5,000 Scuba Package! 🤿
+## Special 2026 Offer: ₹5,000 Scuba Package! �
 
 We have curated a special deal for 2026 travelers.
 - **Price:** ₹5,000 per person

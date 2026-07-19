@@ -59,7 +59,7 @@ Here is the only checklist you need.
 *   **Heels/Boots:** Sand gets everywhere. Stick to flats or sandals.
 *   **Drone:** You need special permission to fly drones in many areas. It's often more hassle than it's worth unless you are a pro.
 
-## Sustainable Travel Tip 🌿
+## Sustainable Travel Tip �
 Bring a **refillable water bottle**. Most hotels and resorts have RO water dispensers. This saves you money and saves the island from plastic bottle waste.
 
 > **The "One Item Everyone Forgets":** A **Dry Bag** (5L or 10L). It keeps your electronics, wallet, and clothes dry when you are on a small boat or kayaking. You can buy one in Port Blair if you forget.

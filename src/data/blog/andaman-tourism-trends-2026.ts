@@ -44,7 +44,7 @@ Gone are the days of "No Signal."
 ## 5. International Flights?
 Talks are in final stages to start direct flights from **Bangkok** and **Singapore** to Port Blair. This will turn Andaman into a true international hub.
 
-## Conclusion
+## Final thoughts
 2026 is the year Andaman moves from a "rustic" destination to a "world-class" one. Whether you're an investor or a traveler, now is the time to look at the islands.
   `,
   faq: [

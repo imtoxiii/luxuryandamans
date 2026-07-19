@@ -38,7 +38,6 @@ import andamanVsBali from './andaman-vs-bali';
 import soloTripGuide from './andaman-solo-trip-guide';
 import instagramSpots from './andaman-instagram-spots';
 import nightlifeGuide from './andaman-nightlife-guide';
-import topThings2025 from './andaman-top-things-to-do';
 import andamanTourism2026 from './andaman-tourism-trends-2026';
 import firstTimers2026 from './first-timers-guide-andaman-2026';
 import ecoResorts2026 from './new-eco-resorts-andaman-2026';
@@ -71,6 +70,11 @@ import bestRestaurants2026 from './best-restaurants-in-andaman-2026';
 import snorkelingGuide2026 from './andaman-snorkeling-guide-2026';
 import photographyGuide2026 from './andaman-photography-guide-2026';
 import tripCost2026 from './andaman-trip-cost-2026';
+import tourPackagesGuide2026 from './andaman-tour-packages-guide-2026';
+import radhanagarGuide2026 from './radhanagar-beach-guide-2026';
+import elephantBeachGuide2026 from './elephant-beach-havelock-guide-2026';
+import permitsForeigners2026 from './andaman-permits-foreign-tourists-2026';
+import { applyBlogSeoOverrides } from './blogSeoConfig';
 
 const newPosts: BlogPost[] = [
   newFerryServices2026,
@@ -114,7 +118,6 @@ const newPosts: BlogPost[] = [
   soloTripGuide,
   instagramSpots,
   nightlifeGuide,
-  topThings2025,
   andamanTourism2026,
   firstTimers2026,
   ecoResorts2026,
@@ -140,13 +143,23 @@ const newPosts: BlogPost[] = [
   bestRestaurants2026,
   snorkelingGuide2026,
   photographyGuide2026,
-  tripCost2026
+  tripCost2026,
+  tourPackagesGuide2026,
+  radhanagarGuide2026,
+  elephantBeachGuide2026,
+  permitsForeigners2026,
 ];
 
-// Merge and sort by date (newest first)
-export const blogPosts: BlogPost[] = [...newPosts, ...existingPosts].sort(
-  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-);
+// Merge, apply SEO overrides, dedupe by slug (newer file wins), sort by date
+const merged = [...newPosts, ...existingPosts].map(applyBlogSeoOverrides);
+const seen = new Set<string>();
+export const blogPosts: BlogPost[] = merged
+  .filter((post) => {
+    if (seen.has(post.slug)) return false;
+    seen.add(post.slug);
+    return true;
+  })
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 export default blogPosts;
 

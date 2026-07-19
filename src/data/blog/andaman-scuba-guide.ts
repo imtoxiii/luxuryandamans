@@ -3,128 +3,161 @@ import { defaultAuthor } from './author';
 
 const slug = 'andaman-scuba-diving-guide';
 
-const images = {
-  main: {
-    src: 'https://images.pexels.com/photos/4766819/pexels-photo-4766819.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'A scuba diver exploring a vibrant coral reef in the Andaman Islands.',
-    width: 1920,
-    height: 1080
-  },
-  imageOne: {
-    src: 'https://images.pexels.com/photos/18505543/pexels-photo-18505543/free-photo-of-people-diving-underwater.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Map of popular scuba diving sites around Havelock Island, Andaman.',
-    width: 1200,
-    height: 800
-  },
-  imageTwo: {
-    src: 'https://images.pexels.com/photos/12626990/pexels-photo-12626990.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'A group of students during a PADI Open Water Diver course in Andaman.',
-    width: 1200,
-    height: 800
-  }
-};
-
 const post: BlogPost = {
   id: slug,
-  title: 'Scuba Diving in Andaman: The Ultimate 2025 Guide for Beginners & Pros',
-  slug: 'andaman-scuba-diving-guide',
+  title: 'Scuba Diving in Andaman (2026): Sites, Prices & Safety',
+  slug,
   excerpt:
-    'Your complete guide to scuba diving in the Andamans. Discover the best dive sites, PADI/SSI courses, costs, safety tips, and the perfect time to explore this underwater paradise.',
-  image: images.main.src,
+    'Discover Scuba from ₹3,500, Open Water courses, best Havelock dive sites, season timing, and which shops we trust — written for beginners and certified divers alike.',
+  image: 'https://images.pexels.com/photos/4766819/pexels-photo-4766819.jpeg?auto=compress&cs=tinysrgb&w=1200',
   author: defaultAuthor,
-  date: new Date().toISOString(),
-  readTime: '15 min read',
+  date: '2026-07-11',
+  readTime: '14 min read',
   category: 'Adventure',
   tags: [
     'scuba diving andaman',
     'andaman scuba cost',
-    'padi course andaman',
-    'havelock diving',
-    'neil island diving',
-    'scuba for beginners',
-    'andaman water sports'
+    'padi course havelock',
+    'elephant beach diving',
+    'discover scuba andaman',
+    'best dive sites andaman',
   ],
-  relatedPosts: ['andaman-best-time', 'andaman-top-things-to-do', '7-day-andaman-itinerary'],
+  relatedPosts: ['elephant-beach-havelock-guide-2026', 'andaman-scuba-diving-beginners-guide', 'best-time-to-visit-andaman'],
   content: `
-## An Ocean of Wonder Awaits: Your Andaman Scuba Adventure Begins Here
+## Andaman is where most Indians learn to dive properly
 
-Ever dreamt of leaving the city buzz behind and floating weightlessly in a world of vibrant corals, shimmering fish, and ancient sea turtles? That dream is a reality in the Andaman Islands, India's very own underwater paradise. Whether you're a complete beginner curious about breathing underwater or a seasoned diver seeking new thrills, Andaman's crystal-clear waters have something magical for you. This guide is your one-stop resource for planning the ultimate scuba diving trip in 2025.
+Warm water (27–30°C most of year), English-speaking instructors, and sites 20 minutes from shore — Havelock (Swaraj Dweep) beats mainland options for first dives. Visibility hits 15–25m in season; marine life ranges from reef fish and turtles to occasional reef sharks on advanced sites.
 
-## First-Timer? No Problem! Your First Dive in Andaman
+You do not need to swim like a competitive athlete for a **Discover Scuba Dive (DSD)**. You do need to listen to briefing, equalise ears, and respect no-fly rules after diving.
 
-Never tried scuba diving before? You're in for a treat! The **Discover Scuba Dive (DSD)** is designed for absolute beginners. No swimming skills are needed, just a sense of adventure!
+Experience page: [Scuba Diving](/experiences/scuba-diving).
 
-- **What to Expect:** A certified instructor will give you a brief theory session, teach you basic skills in shallow water, and then take you on a guided dive. You'll be underwater for about 30-45 minutes, exploring depths of up to 12 meters.
-- **Best Spots for Beginners:** Elephant Beach and Lighthouse in Havelock (Swaraj Dweep) are perfect for your first dive, with calm waters and abundant marine life.
-- **Cost:** DSDs in Andaman typically range from ₹3,500 to ₹5,000, including equipment rental and a guide.
+---
 
-It's the safest and most exhilarating way to get a taste of the underwater world without committing to a full course.
+## Discover Scuba vs certification
 
-![${images.imageOne.alt}](https://images.pexels.com/photos/15763623/pexels-photo-15763623/free-photo-of-scuba-divers-swimming-near-shipwreck.jpeg?auto=compress&cs=tinysrgb&w=1200)
+**Discover Scuba (try dive):** Half day, pool or shallow skills, then guided dive to ~12m with instructor holding you. **₹3,500–5,500** including gear. No certificate. Best at [Elephant Beach](/blog/elephant-beach-havelock-guide-2026) operators or shore centres like Dive India / Barefoot Scuba.
 
-## The Best Dive Sites in the Andamans
+**PADI/SSI Open Water:** 3–4 days, theory + confined + 4 open water dives. Certificate valid worldwide. **₹24,000–30,000** in Havelock — cheaper than Thailand for many Indians.
 
-Andaman's dive sites are legendary, offering everything from gentle coral gardens to challenging deep-water pinnacles.
+**Fun dives (certified):** ₹3,000–4,500 per dive with gear and guide. Multi-dive packages discount.
 
-### For All Levels (Havelock & Neil Island)
-- **Lighthouse (Havelock):** A classic and one of the most popular sites. Famous for its easy access and suitability for night dives, where you can see octopuses, lobsters, and sleeping parrotfish.
-- **Elephant Beach Reef (Havelock):** A shallow reef teeming with colourful fish, sea snakes, and vibrant corals. Perfect for beginners and snorkelers.
-- **Johnny’s Gorge (Havelock):** For the more experienced. This is a deep-dive site where you can spot reef sharks, rays, and huge schools of barracuda.
-- **Margherita's Mischief (Neil Island):** A beautiful site with clear water and a sandy bottom, known for its dugong sightings (if you're very lucky!).
+Beginner-focused companion: [scuba beginners guide](/blog/andaman-scuba-diving-beginners-guide).
 
-### For Advanced Divers
-- **The Wall (Havelock):** A submerged pinnacle that drops dramatically into the deep blue. A fantastic wall dive for spotting Napoleon Wrasse and large pelagic fish.
-- **Dixon’s Pinnacle (Havelock):** A cluster of three massive pinnacles covered in corals and surrounded by marine life, including giant trevallies and turtles.
+---
 
-## Get Certified: PADI & SSI Courses in Andaman
+## Dive sites that matter
 
-Ready to take the plunge and become a certified diver? Andaman is one of the best and most affordable places in India to get your PADI or SSI certification.
+### Havelock
+- **Lighthouse:** Night dives famous — lobsters, sleeping parrotfish. Day dives good for novices.
+- **Elephant Beach reef:** Shallow, colourful, busy — great first open water location.
+- **Johnny's Gorge / Dixon's Pinnacle:** Advanced — currents, depth, sharks possible. Not for day-one tourists.
+- **The Wall:** Drop-off dive for experienced divers comfortable with blue water.
 
-![${images.imageTwo.alt}](https://images.pexels.com/photos/14565669/pexels-photo-14565669.jpeg?auto=compress&cs=tinysrgb&w=1200)
+### Neil Island
+- **Margherita's Mischief:** Sandy bottom, clear water, dugong rumours (luck-dependent).
+- Quieter than Havelock — fewer shops, slower pace.
 
-- **Open Water Diver (3-4 days):** This is your ticket to diving anywhere in the world. The course involves theory, confined water training, and four open water dives. Costs range from ₹24,000 to ₹28,000.
-- **Advanced Open Water Diver (2 days):** For certified divers who want to explore deeper sites and try specialty dives like night diving, deep diving, or underwater photography. Costs are around ₹20,000 to ₹24,000.
-- **Rescue Diver & Divemaster:** For those looking to make diving a career, these advanced courses are also widely available.
+### Port Blair area
+- Limited recreational scuba compared to Havelock. Most tourists dive after ferry to Havelock.
 
-## Practical Tips for Your Dive Trip
+---
 
-- **Best Time to Visit:** The best season for diving is from **October to May**, when the seas are calm and visibility is excellent.
-- **Booking Your Dives:** It's a good idea to book your dives or courses in advance, especially during peak season (December-January). Check out our [Andaman Packages](/packages) for all-inclusive deals.
-- **Safety First:** Always choose a reputable, certified dive shop. Don't be afraid to ask about their safety standards and equipment.
-- **Flying After Diving:** Remember the golden rule: wait at least 18-24 hours after your last dive before flying to avoid decompression sickness.
-- **What to Pack:** Sunscreen (reef-safe if possible), a hat, sunglasses, a reusable water bottle, and of course, your excitement!
+## Best season
 
-Explore our [7-Day Andaman Itinerary](/blog/7-day-andaman-itinerary) to perfectly balance your diving adventures with island exploration. For any custom plans, feel free to [Contact Us](/contact).
+**November–April:** Default recommendation. Calm seas, boat dives run daily.
+
+**May–June:** Often fine; check daily.
+
+**July–September:** Boat dives cancel frequently; shore-based try dives may still run on calm windows.
+
+Align trip dates: [best time to visit](/blog/best-time-to-visit-andaman).
+
+---
+
+## Choosing a dive shop
+
+Look for: PADI/SSI registration displayed, equipment rinse tanks, dated tanks with visual inspection tags, small student-to-instructor ratio (4:1 max for courses).
+
+Ask: "What if sea cancels boat?" — good shops reschedule or refund dive portion.
+
+Avoid: Street touts selling "scuba" without shop name; ultra-cheap uncertified operators.
+
+---
+
+## Health and safety rules
+
+- **Fly wait:** 18–24 hours after last dive before flying from Port Blair — non-negotiable for pressure injury risk.
+- **Medical:** Asthma, ear surgery, pregnancy — disclose on form. Some conditions need doctor clearance.
+- **Alcohol:** No diving hungover — dehydration worsens narcosis risk and judgment.
+- **Equalisation:** If ears hurt, ascend slightly and try again — never push through sharp pain.
+
+---
+
+## What to bring
+
+Swimsuit, towel, reef-safe sunscreen (apply 30 min before, not right before dive). Motion sickness tab if boat rides affect you. Certification card + logbook if certified. GoPro available for rent ~₹800–1,500 — ask about red filter for depth.
+
+---
+
+## Sample dive holiday (5 days on Havelock)
+
+| Day | Plan |
+|-----|------|
+| 1 | Arrive, rest, no dive after travel |
+| 2 | Discover Scuba or OW pool session |
+| 3 | OW dives 1–2 or second fun dive |
+| 4 | OW dives 3–4 or Johnny's (if qualified) |
+| 5 | Buffer / Radhanagar — **no fly same day after diving** |
+
+Build into [7-day itinerary](/blog/7-day-andaman-itinerary) with Neil after dive days complete.
+
+---
+
+## Prices snapshot 2026
+
+| Activity | Range (INR) |
+|----------|-------------|
+| Discover Scuba | ₹3,500–5,500 |
+| Open Water course | ₹24,000–30,000 |
+| Advanced OW | ₹20,000–26,000 |
+| Fun dive (single) | ₹3,000–4,500 |
+| Night dive add-on | ₹4,000–5,500 |
+
+Detailed pricing notes: [scuba prices 2026](/blog/andaman-scuba-prices-2026).
+
+---
+
+## Bundled packages
+
+[Diving + island package](/packages/andaman-adventure-thrill-6-days) locks ferry timing so you are not on Neil the same day you planned a two-tank morning.
+
+Questions on certification while on honeymoon? [Romantic packages](/packages/5n6d-andaman-time-mapped-honeymoon) with optional dive add-on.
+
+[Enquiry](/enquiry) with "PADI OW" in message — we slot course days before Neil ferry in peak season.
 `,
   faq: [
     {
-      question: 'Do I need to know how to swim to try scuba diving?',
-      answer:
-        "No, you don't need to be a swimmer for a Discover Scuba Dive (DSD). Your certified instructor will be with you at all times. However, for a certification course like Open Water Diver, basic swimming skills are required."
+      question: 'Do I need to know swimming for scuba in Andaman?',
+      answer: 'Not for Discover Scuba — instructor manages buoyancy. Open Water certification requires basic water comfort (200m swim/float skills vary by agency).',
     },
     {
-      question: 'What is the minimum age for scuba diving in Andaman?',
-      answer:
-        'The minimum age for a Discover Scuba Dive is 10 years. The same age limit applies to the Junior Open Water Diver certification.'
+      question: 'What is the minimum age for scuba diving?',
+      answer: 'Discover Scuba typically 10 years with parental consent. Junior Open Water from 10–14 with depth limits.',
     },
     {
-      question: 'Is scuba diving in Andaman safe?',
-      answer:
-        'Absolutely. Andaman has a very high safety record. All dive centers are registered and follow international safety standards set by organizations like PADI and SSI. Always dive with a certified and reputable operator.'
+      question: 'Is scuba diving safe in Andaman?',
+      answer: 'With registered PADI/SSI shops, safety standards match international norms. Risk rises with uncertified operators and ignoring no-fly intervals.',
     },
     {
-      question: 'What is the average cost of a fun dive for certified divers?',
-      answer:
-        'A single fun dive for a certified diver typically costs between ₹3,000 and ₹4,500, including equipment rental and a guide. Packages for multiple dives are usually more economical.'
+      question: 'Can I dive if I wear glasses?',
+      answer: 'Yes — prescription masks available at most shops (-2 to -8 common). Notify when booking.',
     },
     {
-      question: 'Can I wear glasses or contact lenses while diving?',
-      answer:
-        "Contact lenses can be worn without any issues. If you wear glasses, you can get a prescription mask. Many dive shops have them for rent, but it's best to check with them in advance."
-    }
-  ]
+      question: 'When should I not dive?',
+      answer: 'Cold/flu with congestion, ear infection, pregnancy, recent surgery, or within 24 hours of a flight after diving.',
+    },
+  ],
 };
 
 export default post;
-
-

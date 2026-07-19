@@ -51,7 +51,7 @@ const post: BlogPost = {
         }
     ],
     content: `
-## Freedom on Two Wheels 🛵
+## Freedom on Two Wheels �
 
 The best way to feel the island breeze is by renting a scooter. Unlike Port Blair, where autos are king, Havelock and Neil Island are perfect for two-wheelers. The roads are scenic, distances are short, and the freedom is unmatched.
 
@@ -87,7 +87,7 @@ Here is how to do it right in 2026.
 
 ---
 
-## 4. Important Rules to Follow ⚠️
+## 4. Important Rules to Follow ⚠
 
 - **Helmets are Mandatory:** For BOTH the rider and the pillion rider. Police checks are frequent, and fines are hefty.
 - **No Beach Riding:** Driving strictly on the road. Taking vehicles onto the sand is illegal and damages the ecosystem.

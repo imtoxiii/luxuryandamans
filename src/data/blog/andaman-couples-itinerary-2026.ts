@@ -46,7 +46,7 @@ Andaman is made for romance. Whether you have 5 days or a week, we have crafted 
 ---
 
 ## Option 3: The "Ultimate Romance" (7 Days / 6 Nights)
-*Relaxed pace with hidden gems.*
+*Relaxed pace with worth visiting spots.*
 
 - **Day 1:** Arrive in Port Blair. Cellular Jail.
 - **Day 2:** Ferry to **Havelock**. Radhanagar Beach.

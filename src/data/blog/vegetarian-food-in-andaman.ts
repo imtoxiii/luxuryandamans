@@ -73,7 +73,7 @@ const post: BlogPost = {
     }
   ],
   content: `
-## A Vegetarian's Paradise? Yes, Really! 🥗
+## A Vegetarian's Paradise? Yes, Really! �
 
 A common myth about the Andaman Islands is that you will struggle if you don't eat fish. This couldn't be further from the truth.
 
@@ -81,7 +81,7 @@ Thanks to a diverse population of settlers from Tamil Nadu, West Bengal, Kerala,
 
 ---
 
-## Best Places for Vegetarians 🍽️
+## Best Places for Vegetarians 🍽
 
 ### In Port Blair
 Port Blair is the capital and has the most options.
@@ -104,7 +104,7 @@ Neil is known as the "Vegetable Bowl" of Andaman because lots of farming happens
 
 ---
 
-## Jain Food Availability 🥬
+## Jain Food Availability �
 If you follow a Jain diet, you don't need to carry instant noodles.
 - **Hotels:** Most 3-star and above hotels (like Taj Exotica, Silver Sand, SeaShell) are happy to prepare Jain meals on request.
 - **Restaurants:** Places like Annapurna in Port Blair serve Jain-friendly options.
@@ -120,7 +120,7 @@ Since you are on a tropical island, make the most of the local produce!
 
 <img src="https://images.pexels.com/photos/17249035/pexels-photo-17249035/free-photo-of-exotic-fruit-on-yellow-background.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.fruits.alt}" width="${images.fruits.width}" height="${images.fruits.height}" />
 
-## Conclusion
+## Final thoughts
 Vegetarians need not worry. You will be well-fed and happy in Andaman. In fact, a simple meal of hot rice, dal, and a vegetable stir-fry by the beach often tastes better than any fancy dinner!
 
 ---

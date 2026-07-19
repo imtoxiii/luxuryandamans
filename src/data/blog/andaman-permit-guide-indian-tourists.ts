@@ -73,7 +73,7 @@ const post: BlogPost = {
     }
   ],
   content: `
-## The "Passport" Confusion 🛂
+## The "Passport" Confusion �
 
 We get this question almost every day: *"I am an Indian citizen. Do I need a passport to visit Andaman?"*
 
@@ -83,7 +83,7 @@ The Andaman and Nicobar Islands are a Union Territory of India. Flying from Delh
 
 ---
 
-## Documents Required for Indian Citizens 🇮🇳
+## Documents Required for Indian Citizens 🇮�
 You just need to carry a valid Government-issued Photo ID.
 - **Accepted IDs:** Aadhaar Card, Voter ID, Driving License, Passport, or PAN Card.
 - **For Children:** School ID or Birth Certificate (if they don't have Aadhaar).
@@ -93,7 +93,7 @@ You just need to carry a valid Government-issued Photo ID.
 
 ---
 
-## Rules for Foreign Nationals 🌍
+## Rules for Foreign Nationals �
 If you are not an Indian citizen (holding a foreign passport), the rules are slightly different.
 
 ### 1. Indian Visa
@@ -109,7 +109,7 @@ Citizens of Pakistan, China, and Afghanistan may have additional prior clearance
 
 ---
 
-## Special Permits for Specific Islands 🏝️
+## Special Permits for Specific Islands 🏝
 Even for Indians, some specific islands require a local forest permit because they are protected marine parks.
 - **Jolly Buoy / Red Skin:** Requires a forest permit (issued one day prior).
 - **Ross & Smith Islands (Diglipur):** Requires a forest permit.

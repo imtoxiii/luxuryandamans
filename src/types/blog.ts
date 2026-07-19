@@ -22,4 +22,8 @@ export interface BlogPost {
   relatedPosts: string[];
   faq?: { question: string; answer: string }[];
   content: string;
+  /** When true, page stays live but is excluded from sitemap and marked noindex */
+  noindex?: boolean;
+  /** Preferred indexed slug for duplicate content */
+  canonicalSlug?: string;
 }

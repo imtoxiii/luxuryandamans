@@ -72,13 +72,13 @@ const post: BlogPost = {
     }
   ],
   content: `
-## The Hidden Gem of North & Middle Andaman 🌿
+## The worth visiting spot of North & Middle Andaman �
 
 Baratang Island, located about 100km from Port Blair, offers a completely different experience from the beaches of Havelock. It is famous for its **Limestone Caves** and **Mud Volcanoes**, but the journey itself—through the dense tropical forest of the Jarawa Reserve—is the real highlight.
 
 ---
 
-## How to Reach Baratang 🚗
+## How to Reach Baratang �
 
 The only way to reach Baratang is by road from Port Blair.
 1.  **Port Blair to Jirkatang (1.5 hrs):** Start early (around 3:30 AM or 4:00 AM) to catch the first convoy.
@@ -87,7 +87,7 @@ The only way to reach Baratang is by road from Port Blair.
 4.  **Middle Strait Jetty:** Cross the creek on a vehicle ferry.
 5.  **Baratang Jetty:** You have arrived!
 
-### ⚠️ Important: The Convoy System
+## # ⚠ Important: The Convoy System
 You cannot just drive through the reserve anytime. You must join one of the convoys at Jirkatang:
 - **6:00 AM** (Most popular, allows full day sightseeing)
 - **9:00 AM**
@@ -100,26 +100,26 @@ You cannot just drive through the reserve anytime. You must join one of the conv
 
 ## Top Attractions in Baratang
 
-### 1. Limestone Caves 🔦
+## # 1. Limestone Caves �
 From the Baratang jetty, you take a small fiber boat through a **magical mangrove tunnel**. It’s a 20-minute ride followed by a 1.5km trek (easy flat walk) to reach the caves.
 - **What to see:** massive stalactites and stalagmites formed over millions of years.
 - **Note:** It gets dark inside; carry a torch or use your phone light.
 
 <img src="https://images.pexels.com/photos/1059161/pexels-photo-1059161.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.limestone.alt}" width="${images.limestone.width}" height="${images.limestone.height}" />
 
-### 2. Mud Volcano 🌋
+## # 2. Mud Volcano �
 A rare geological phenomenon where mud bubbles out of the ground due to natural gas.
 - **How to reach:** A short jeep ride from the jetty.
 - **Verdict:** It's a small bubbling puddle, not a massive eruption. Interesting for geology buffs, but don't expect lava!
 
-### 3. Parrot Island 🦜
+## # 3. Parrot Island �
 A tiny island that hosts thousands of parrots at sunset.
 - **Best time:** Sunset.
 - **Note:** Requires an overnight stay in Baratang as you will miss the return convoy to Port Blair.
 
 ---
 
-## Rules of the Jarawa Reserve 🚫
+## Rules of the Jarawa Reserve 
 The road passes through the home of the indigenous Jarawa tribe. To protect them:
 1.  **NO Photography/Video:** Strictly enforced. Cameras can be confiscated.
 2.  **NO Stopping:** Vehicles must keep moving.
@@ -128,7 +128,7 @@ The road passes through the home of the indigenous Jarawa tribe. To protect them
 
 ---
 
-## Sample Itinerary (Day Trip) 🗓️
+## Sample Itinerary (Day Trip) 🗓
 - **03:30 AM:** Depart Port Blair.
 - **05:30 AM:** Reach Jirkatang check post.
 - **06:00 AM:** Enter convoy.

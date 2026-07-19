@@ -84,7 +84,7 @@ Bali's beaches (Kuta, Seminyak) are famous but often crowded and better for surf
 - **Cuisine:** Nasi Goreng, Satay, Smoothie Bowls, Vegan cafes.
 - **Taste:** Distinct Southeast Asian flavors.
 
-## Conclusion: The Verdict
+## Final thoughts
 
 ### **Choose Andaman If:**
 - You want a **budget-friendly** tropical vacation.

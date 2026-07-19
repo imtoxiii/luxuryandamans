@@ -51,7 +51,7 @@ const post: BlogPost = {
         }
     ],
     content: `
-## The Great Island Debate 🏝️
+## The Great Island Debate 🏝
 
 Every traveler asks this question. If you are short on time, do you choose the famous Havelock or the laid-back Neil? In 2026, both islands have distinct personalities.
 

@@ -2,24 +2,17 @@ import { BlogPost } from '../../types/blog';
 import { defaultAuthor } from './author';
 
 const slug = 'andaman-ferry-booking-guide';
-const imagePath = `/blog-assets/${slug}/`;
 
 const images = {
   main: {
     src: 'https://images.pexels.com/photos/3551208/pexels-photo-3551208.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Makruzz luxury catamaran sailing in Andaman waters',
+    alt: 'Makruzz catamaran at Phoenix Bay Jetty Port Blair',
     width: 1200,
     height: 800,
   },
   interior: {
     src: 'https://images.pexels.com/photos/2846820/pexels-photo-2846820.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Premium class interior of a private ferry',
-    width: 800,
-    height: 533,
-  },
-  jetty: {
-    src: 'https://images.pexels.com/photos/3551208/pexels-photo-3551208.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Tourists boarding a ferry at Havelock Jetty',
+    alt: 'Air-conditioned cabin inside an Andaman private ferry',
     width: 800,
     height: 533,
   },
@@ -27,125 +20,148 @@ const images = {
 
 const post: BlogPost = {
   id: 'andaman-ferry-booking-guide',
-  title: 'Andaman Ferry Guide 2025: Makruzz vs Green Ocean vs Govt Ferries',
-  slug: 'andaman-ferry-booking-guide',
+  title: 'Andaman Ferry Booking 2026: Makruzz vs Nautika vs Green Ocean',
+  slug,
   excerpt:
-    'How do you get from Port Blair to Havelock? We compare Makruzz, Nautika, Green Ocean, and Government ferries to help you choose the best ride.',
+    'Port Blair to Havelock ferries compared — prices, open deck access, booking windows, jetty check-in, and why your flight landing time matters more than which operator you pick.',
   image: images.main.src,
   author: defaultAuthor,
-  date: new Date().toISOString(),
-  readTime: '8 min read',
+  date: '2026-07-12',
+  readTime: '10 min read',
   category: 'Travel Guide',
   tags: [
     'andaman ferry booking',
     'makruzz vs green ocean',
     'port blair to havelock ferry',
-    'nautika ferry review',
-    'govt ferry booking andaman',
+    'nautika ferry andaman',
     'havelock to neil ferry',
+    'phoenix bay jetty',
   ],
-  relatedPosts: ['how-to-reach-andaman-flight-vs-ship', 'andaman-7-day-itinerary', 'what-to-pack-for-andaman-trip'],
+  relatedPosts: ['how-to-reach-andaman-flight-vs-ship', '7-day-andaman-itinerary', 'new-ferry-services-2026'],
   faq: [
     {
-      question: 'Which is the best ferry for Havelock?',
+      question: 'Which ferry is best from Port Blair to Havelock?',
       answer:
-        '**Makruzz** and **Nautika** are the most popular for speed and comfort. **Green Ocean** is great if you want an open deck to walk around.'
+        'Makruzz and Nautika are fastest and most reliable for tourists — book online 2–4 weeks ahead in peak season. Green Ocean 1 suits you if an open deck matters more than speed.',
     },
     {
-      question: 'Do I need to book ferry tickets in advance?',
+      question: 'How early should I book Andaman ferries?',
       answer:
-        '**Yes!** In peak season (Oct-Mar), tickets sell out weeks in advance. Do not rely on buying tickets at the jetty. Book online at least 15-20 days prior.'
+        'Peak (Dec–Feb): 3–4 weeks minimum for Makruzz Premium. Shoulder: 1–2 weeks. Monsoon: sometimes days ahead is enough unless holidays overlap.',
     },
     {
-      question: 'Can tourists take Government ferries?',
+      question: 'Can I buy ferry tickets at the jetty?',
       answer:
-        'Yes, but it is difficult. Tickets are issued offline at the counter 1-2 days prior, with long queues. They are primarily meant for locals. We recommend private ferries for a stress-free holiday.'
+        'Private ferries — rarely in peak; counters exist but sell out. Government ferries — counter queue 1–2 days before, not same-day guaranteed for tourists.',
     },
     {
-      question: 'How long is the journey from Port Blair to Havelock?',
+      question: 'How long is Port Blair to Havelock by ferry?',
       answer:
-        'It takes about **90 minutes to 2 hours** by private catamaran. Government ferries can take 2.5 to 3 hours.'
+        'Private catamarans: 90–120 minutes. Green Ocean 1: up to 2.5 hours. Government ferries: 2.5–3+ hours.',
     },
     {
-      question: 'Is there an open deck on Makruzz?',
+      question: 'What ID is required for ferry check-in?',
       answer:
-        'No, Makruzz is a sealed, air-conditioned catamaran. You cannot go outside. If you want an open deck experience, choose **Green Ocean 1** or **Nautika** (limited deck access).'
-    }
+        'Original government photo ID — Aadhaar for Indians, passport for foreign nationals. Name on ticket must match exactly.',
+    },
   ],
   content: `
-## Island Hopping 101 🛥️
+## Ferries are the trip — treat them like flights
 
-The Andaman experience is incomplete without the ferry rides. Since there are no bridges connecting the islands, ferries are the lifeline.
+No bridge connects Port Blair to Havelock. Every "5-day Andaman package" is really a ferry schedule with hotels attached. Get the sailings wrong and Radhanagar sunset becomes a WhatsApp argument with your hotel.
 
-For tourists, the main route is: **Port Blair -> Havelock -> Neil -> Port Blair**.
-
-Here is a comparison of your options.
+Main tourist circuit: **Port Blair → Havelock (Swaraj Dweep) → Neil (Shaheed Dweep) → Port Blair**. Book it as a circuit when possible — one-way tickets during peak leave you stranded.
 
 ---
 
-## 1. Private Ferries (Recommended for Tourists)
-These are fast, comfortable, air-conditioned, and bookable online.
+## Private operators compared
 
 ### Makruzz
-- **The Pioneer:** The oldest and most famous private ferry.
-- **Vibe:** Airport-like interiors, sealed AC cabin.
-- **Pros:** Very fast, reliable, professional service.
-- **Cons:** No open deck access.
-- **Classes:** Premium, Deluxe, Royal.
+The default choice for first-timers. Catamaran, sealed AC cabin, assigned seats (Premium / Deluxe / Royal). **No open deck** — photographers sometimes regret this.
 
-### Nautika (formerly Sealink)
-- **The New Star:** A newer, faster vessel.
-- **Vibe:** Modern and sleek.
-- **Pros:** Very stable ride (less seasickness), allows limited access to the deck for photos.
-- **Cons:** Slightly more expensive.
+Typical PB–Havelock fare: **₹1,200–2,000** by class and season. Runs morning and mid-day sailings; exact times shift — check PDF ticket.
+
+Pros: punctual, professional crew, easy online booking. Cons: cabin-only views, upper deck feels sway on rough days.
+
+### Nautika
+Similar speed class to Makruzz. Slightly newer feel on some routes. Limited deck access on certain sailings for fresh air — verify when booking if seasickness is a concern.
+
+Pricing comparable to Makruzz. Good alternative when Makruzz class is sold out — not a downgrade.
 
 ### Green Ocean 1
-- **The Open Deck:** Not a catamaran, but a ship.
-- **Vibe:** More relaxed, slower.
-- **Pros:** **Has a huge open deck.** You can stand outside, feel the breeze, and watch the sea. Best for photographers.
-- **Cons:** Slower than Makruzz/Nautika. Interiors are a bit older.
+Slower ship-style vessel with **large open deck** — best if you want wind and photos. Takes longer (~2–2.5 hrs PB–Havelock). Interiors older than Makruzz.
+
+Choose this when experience > speed. Rough days: open deck closes — you still feel swell.
 
 ### Green Ocean 2
-- **The Hybrid:** Faster than GO1, but fully AC like Makruzz. No open deck.
+Faster, fully AC, no deck — sits between GO1 and Makruzz in vibe.
 
-<img src="https://images.pexels.com/photos/2100918/pexels-photo-2100918.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.interior.alt}" width="${images.interior.width}" height="${images.interior.height}" />
-
----
-
-## 2. Government Ferries (The Budget Option)
-- **Cost:** Very cheap (₹400-₹600).
-- **Booking:** Offline only (mostly). You have to stand in queues at the STAR ticket counter.
-- **Comfort:** Basic. Non-AC and AC seats available.
-- **Verdict:** Avoid unless you are on a strict shoestring budget and have extra time to queue up.
+<img src="${images.interior.src}" alt="${images.interior.alt}" width="${images.interior.width}" height="${images.interior.height}" />
 
 ---
 
-## Ferry Routes & Timings 🕒
+## Government ferries
 
-### Port Blair to Havelock (Swaraj Dweep)
-- **First Ferry:** ~6:00 AM (Govt) / ~7:30 AM (Private)
-- **Last Ferry:** ~2:00 PM
-- **Duration:** 90 mins - 2.5 hrs
+**₹400–600** per leg. STAR counters in Port Blair — queues, limited tourist quota, Hindi/Bengali signage confusing for some. Timing slips.
 
-### Havelock to Neil (Shaheed Dweep)
-- **Timings:** Mostly morning and early afternoon.
-- **Duration:** 60 mins
-
-### Neil to Port Blair
-- **Timings:** Mostly afternoon (returns you by evening).
-- **Duration:** 60-90 mins
-
-<img src="https://images.pexels.com/photos/2100918/pexels-photo-2100918.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.jetty.alt}" width="${images.jetty.width}" height="${images.jetty.height}" />
+Works for budget travellers with flexible days. Bad fit if you land Day 1 and need guaranteed Havelock that afternoon.
 
 ---
 
-## Booking Tips for 2025 💡
-1.  **Book the Circuit:** Don't book one-way. Book Port Blair -> Havelock -> Neil -> Port Blair all at once.
-2.  **Buffer Time:** If your flight lands at 12:00 PM, don't book a 12:30 PM ferry. You need at least 90 minutes to reach the jetty from the airport.
-3.  **Seasickness:** If you get seasick, choose the **Premium** class (lower deck) on Makruzz/Nautika. It sways less than the upper decks.
+## Sample timings (verify on booking day)
+
+| Route | Typical window | Duration |
+|-------|----------------|----------|
+| Port Blair → Havelock | 07:00–14:00 departures | 1.5–3 hrs |
+| Havelock → Neil | 08:30–13:00 | ~1 hr |
+| Neil → Port Blair | 12:00–16:00 | 1–1.5 hrs |
+
+First ferry after international arrival: only if you land before 9 am and pre-arranged rush transfer. Safer pattern — **night Port Blair, ferry next morning**.
 
 ---
-*Want us to handle the bookings? Our [Tour Packages](/packages) include all ferry transfers, so you don't have to worry about availability.*
+
+## Check-in reality at Phoenix Bay Jetty
+
+- Arrive **60 minutes early** (90 in peak)
+- Original ID + printed/PDF ticket
+- Luggage scanned; large bags tagged
+- Motion sickness meds **before** boarding — cabin doors close fast
+
+Weight limits exist; excess rare for normal suitcases. Scooter on ferry — separate booking category if allowed on your sailing.
+
+---
+
+## Booking tactics that save trips
+
+1. **Book circuit PB–Havelock–Neil–PB** in one session when websites allow.
+2. **Flight buffer:** If landing 11:30 am, do not book 12:30 pm ferry — immigration, baggage, 45 min drive minimum.
+3. **Seasickness:** Lower/mid deck Premium seats, face forward, avoid heavy breakfast. Open deck (GO1) worse for nausea on swell.
+4. **Monsoon:** Morning sailings cancel less often than afternoon. Keep backup day before flight out.
+5. **Neil ATM/cash** — fine; but return ferry to Port Blair same day as flight needs 6+ hour gap.
+
+---
+
+## Havelock ↔ Neil notes
+
+Short hop, smaller boats sometimes. Bags stay on deck or front hold — carry valuables. Morning Neil→PB connects to afternoon flights if Neil hotel arranges 6 am transfer to jetty.
+
+Compare islands: [Havelock vs Neil guide](/blog/havelock-vs-neil-island-guide-2026).
+
+---
+
+## When ferries cancel
+
+Coast guard advisories stop private operators — refunds or next sailing per policy. Insurance helps for missed flights. Our [packages](/packages) rebook ferries internally when possible — DIY travellers chase operator WhatsApp lines.
+
+---
+
+## Bottom line
+
+Pick Makruzz/Nautika for speed and certainty. Pick Green Ocean 1 for deck experience. Pick government for price and patience.
+
+Still juggling timings? [Enquiry form](/enquiry) with flight landing time — we reply with a ferry matrix, not generic "book early" advice.
+
+First trip context: [first-timer guide](/blog/first-timers-guide-andaman-2026).
 `,
 };
 

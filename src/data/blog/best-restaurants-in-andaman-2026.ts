@@ -51,7 +51,7 @@ const post: BlogPost = {
         }
     ],
     content: `
-## A Culinary Paradise 🦞
+## A Culinary Paradise �
 
 Andaman key food scene has evolved far beyond basic thalis. In 2026, you can find everything from wood-fired pizzas to authentic island curries. Whether you are a foodie or just hungry after a swim, here are the top picks.
 

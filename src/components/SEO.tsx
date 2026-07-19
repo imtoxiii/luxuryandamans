@@ -22,6 +22,8 @@ interface SEOProps {
   faqData?: { question: string; answer: string }[];
   destinationData?: any;
   noindex?: boolean;
+  /** Override canonical path (e.g. point duplicate posts at the primary slug) */
+  canonicalPathname?: string;
   /** TravelAgency, WebSite & nav schemas — homepage only to avoid duplicate sitewide JSON-LD */
   includeSiteSchemas?: boolean;
 }
@@ -48,6 +50,7 @@ const SEO: React.FC<SEOProps> = ({
   faqData,
   destinationData,
   noindex = false,
+  canonicalPathname,
   includeSiteSchemas = false,
 }) => {
   const siteUrl = import.meta.env.VITE_SITE_URL || 'https://luxuryandamans.com';
@@ -145,7 +148,7 @@ const SEO: React.FC<SEOProps> = ({
   const defaultKeywords = keywords || getKeywordsByAudience(targetAudience);
   const siteTitle = buildSiteTitle(title);
   const metaDescription = clampDescription(description);
-  const canonicalUrl = `${siteUrl}${pathname || safePathname}`;
+  const canonicalUrl = `${siteUrl}${canonicalPathname || pathname || safePathname}`;
 
   // Combine default keywords with any additional ones
   const allKeywords = `${defaultKeywords}${tags.length > 0 ? `, ${tags.join(', ')}` : ''}`;

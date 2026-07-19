@@ -1,128 +1,138 @@
 import { BlogPost } from '../../types/blog';
 import { defaultAuthor } from './author';
 
-const slug = 'is-andaman-safe-for-tourists';
-const imagePath = `/blog-assets/${slug}/`;
-
-const images = {
-  main: {
-    src: 'https://images.pexels.com/photos/13180497/pexels-photo-13180497.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Solo female traveler enjoying a sunset on a safe Andaman beach',
-    width: 1200,
-    height: 800,
-  },
-  police: {
-    src: 'https://images.pexels.com/photos/14923409/pexels-photo-14923409.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Friendly tourist police assistance in Andaman',
-    width: 800,
-    height: 533,
-  },
-  family: {
-    src: 'https://images.pexels.com/photos/33457520/pexels-photo-33457520/free-photo-of-scenic-beach-view-with-mountains-and-clouds-in-the-philippines.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Family playing safely on Radhanagar beach',
-    width: 800,
-    height: 533,
-  },
-};
-
 const post: BlogPost = {
   id: 'is-andaman-safe-for-tourists',
-  title: 'Is Andaman Safe for Tourists? A Guide for Solo, Female & Family Travelers',
+  title: 'Is Andaman Safe for Tourists? Honest 2026 Safety Guide',
   slug: 'is-andaman-safe-for-tourists',
   excerpt:
-    'Planning a solo trip or a family vacation? Discover why Andaman is considered one of the safest destinations in India. We cover crime rates, solo female travel safety, and water safety tips.',
-  image: images.main.src,
+    'Crime, solo female travel, crocodiles, ferry safety, medical facilities — straight answers from people who run trips here year-round. No scare tactics, no sugar-coating.',
+  image: 'https://images.pexels.com/photos/13180497/pexels-photo-13180497.jpeg?auto=compress&cs=tinysrgb&w=1200',
   author: defaultAuthor,
-  date: new Date().toISOString(),
-  readTime: '6 min read',
+  date: '2026-07-10',
+  readTime: '9 min read',
   category: 'Travel Tips',
   tags: [
     'is andaman safe',
     'solo female travel andaman',
     'andaman safety tips',
-    'crime rate andaman',
-    'tourist safety andaman',
-    'family travel safety',
+    'family travel andaman',
+    'andaman crocodile safety',
+    'tourist safety india',
   ],
-  relatedPosts: ['andaman-family-itinerary', 'how-to-reach-andaman-flight-vs-ship', 'andaman-top-things-to-do'],
+  relatedPosts: ['andaman-solo-trip-guide', 'first-timers-guide-andaman-2026', 'andaman-family-itinerary'],
   faq: [
     {
-      question: 'Is Andaman safe for solo female travelers?',
+      question: 'Is Andaman safe for solo female travellers?',
       answer:
-        '**Yes, absolutely.** Andaman is widely regarded as one of the safest places in India for women. The locals are respectful, crime against tourists is extremely rare, and there is a strong sense of community safety.'
+        'Yes — it is one of the safer destinations in India for women travelling alone. Harassment is rare, hotel staff are used to solo guests, and main tourist areas (Port Blair, Havelock, Neil) have tourist police presence. Standard precautions apply: share your itinerary, avoid isolated beaches after dark, use registered taxis.',
     },
     {
-      question: 'Are there dangerous animals in Andaman?',
+      question: 'Are saltwater crocodiles a real danger?',
       answer:
-        'On land, there are no large predators. In the water, saltwater crocodiles exist in specific mangrove areas (marked with warning signs). Always swim in designated tourist beaches like Radhanagar or Elephant Beach where it is perfectly safe.'
+        'They exist in mangrove creeks and certain backwaters — not at designated swimming beaches. Never swim at Wandoor mangroves, Chidiyatapu backwaters, or unmarked creeks. Radhanagar, Elephant Beach, and Bharatpur have lifeguards and are safe swimming zones when flags allow.',
     },
     {
-      question: 'Is it safe to walk around at night?',
+      question: 'Is it safe to rent a scooter in Havelock?',
       answer:
-        'Yes, major tourist areas in Port Blair and Havelock are safe at night. However, street lighting can be dim in remote areas, so it’s best to stick to main roads or use a cab/auto after dark.'
+        'Roads are narrow and unlit in parts. Wear a helmet — police fine pillion riders too. Avoid riding after heavy rain; potholes appear fast. Speed limit is low for a reason.',
     },
     {
-      question: 'What about the Sentinelese tribe?',
+      question: 'What about the Sentinelese and tribal areas?',
       answer:
-        'North Sentinel Island is a prohibited area. Tourists are strictly banned from going anywhere near it. As long as you follow the law and visit standard tourist islands, you are nowhere near any restricted tribal zones.'
+        'North Sentinel Island and Jarawa reserve areas are strictly off-limits. Standard tourist routes (Port Blair, Havelock, Neil, Baratang day trip) do not enter these zones. Follow your guide\'s instructions on the Baratang convoy — photography of Jarawa is illegal.',
     },
     {
-      question: 'Is the water safe for swimming?',
+      question: 'Can I get medical help on remote islands?',
       answer:
-        'Yes, designated beaches have lifeguards and safe swimming zones. Always heed lifeguard warnings, especially during monsoon when currents can be strong.'
-    }
+        'Basic care exists at PHCs on Havelock and Neil. Serious cases get ferried or airlifted to G.B. Pant Hospital, Port Blair. Carry personal medication; there is no 24-hour pharmacy on Neil.',
+    },
   ],
   content: `
-## Is Andaman Safe? The Short Answer: YES.
+## Short answer: yes — with the usual travel sense
 
-When planning a trip to a remote island, safety is naturally a top concern. Whether you are a solo female traveler, a family with kids, or a couple on honeymoon, you'll be relieved to know that **Andaman is one of the safest tourist destinations in India.**
+Parents ask us this before every school holiday booking. Solo travellers DM us at midnight. The answer is consistent: Andaman has a low crime rate, helpful locals, and infrastructure built around tourism on the main islands. The risks that actually hurt people are almost always water-related — currents, alcohol and swimming, ignoring lifeguard flags — not muggings or scams.
 
-Here is a detailed breakdown of safety in the Andaman Islands.
+That said, "safe" does not mean "casual." You are on remote islands with limited hospitals and weather-dependent transport. Here is what matters.
+
+---
+
+## Crime and street safety
+
+Petty theft happens — unattended phones on beach towels, bags in open scooter baskets — but violent crime against tourists is extremely rare. Port Blair's Aberdeen Bazaar and Havelock's Market No. 3 are crowded and fine during the day.
+
+Tourist Police (+91-9434288888) operates near major jetties. Hotels can reach them faster than dialling from a patchy network.
+
+**Scams to know (minor but annoying):**
+- Jetty touts selling "discounted" ferry tickets above face value — book [Makruzz/Nautika online](/blog/andaman-ferry-booking-guide) or through your operator.
+- "Coral safari" middlemen at Rajiv Gandhi Water Sports Complex adding ₹500–800 commission.
+- Port Blair auto drivers quoting flat ₹300 for a ₹80 meter ride — insist on meter or use Ola where available.
 
 ---
 
-## 1. Crime & Personal Safety 🛡️
-The crime rate in Andaman is incredibly low compared to mainland India. 
-- **Locals:** The islanders are known for being warm, helpful, and honest. Scams and touts are rare.
-- **Theft:** Petty theft is uncommon, but standard travel precautions (don't leave valuables unattended on the beach) apply.
-- **Police:** There is a dedicated **Tourist Police** force. You will find them helpful and visible at major jetties and attractions.
+## Solo and female travellers
 
-## 2. Solo Female Travel Safety 👩‍🦰
-Andaman is a haven for solo female travelers.
-- **Harassment:** Catcalling and staring are significantly less common here than in many other parts of the world.
-- **Transport:** Taxis and autos are generally safe. Drivers are registered and respectful.
-- **Accommodation:** Most hotels and resorts are very secure. Hostels in Havelock are great places to meet other solo travelers safely.
+We run trips for hundreds of solo women each season. Havelock hostels (Bonova, Orient Legend area) are social and safe. Neil is quieter — fine for couples and families, less solo infrastructure.
 
-<img src="https://images.pexels.com/photos/5878513/pexels-photo-5878513.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.main.alt}" width="${images.main.width}" height="${images.main.height}" />
-
-## 3. Water Safety 🌊
-The ocean is the main attraction, but it demands respect.
-- **Lifeguards:** Popular beaches like Radhanagar (Havelock) and Bharatpur (Neil) have active lifeguards.
-- **Crocodiles:** You might have heard rumors. Saltwater crocodiles do inhabit the Andamans, but they live in deep mangroves and creeks. **Attacks on tourist beaches are virtually unheard of.** Always swim in designated zones and avoid swimming in restricted creeks or at night.
-- **Corals:** Don't stand on corals! It kills them and can cut your feet.
-
-## 4. Tribal Areas & Restrictions 🚫
-- **Jarawa & Sentinelese:** The indigenous tribes are protected. Tourists are **strictly prohibited** from interacting with them, taking photos, or entering their reserves.
-- **North Sentinel Island:** This is a no-go zone. No boat will take you there.
-- **Safety:** As long as you stick to the tourist islands (Port Blair, Havelock, Neil, Baratang tour), you are perfectly safe and following the law.
-
-<img src="https://images.pexels.com/photos/2690764/pexels-photo-2690764.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="${images.family.alt}" width="${images.family.width}" height="${images.family.height}" />
-
-## 5. Health & Medical Safety 🏥
-- **Hospitals:** Port Blair has the G.B. Pant Hospital (government) and private clinics.
-- **Remote Islands:** Havelock and Neil have Primary Health Centers (PHCs) for basic aid. For serious emergencies, patients are airlifted or ferried to Port Blair.
-- **Tips:** Carry your personal medication. If you have a serious condition, consult your doctor before traveling to remote islands.
-
-## Top Safety Tips for 2025
-1.  **Download Offline Maps:** Internet can be patchy.
-2.  **Carry Cash:** ATMs can run dry in Havelock/Neil.
-3.  **Respect the Ocean:** Don't swim under the influence of alcohol.
-4.  **Wear a Helmet:** If renting a scooter, police are strict about helmets (for pillion riders too!).
-
-**Conclusion:** Andaman offers a stress-free, safe environment where you can let your guard down and truly relax.
+Walking alone at 10 pm on Havelock main road? Normal. Walking empty beach trails after dark? Skip it. Dress is relaxed — beachwear on beaches, casual elsewhere. No special clothing rules beyond standard India sensitivity near temples or government offices.
 
 ---
-*Ready for a safe and stunning vacation? Browse our [Family Packages](/packages) designed with safety and comfort in mind.*
+
+## Water safety (the part people underestimate)
+
+This is where injuries happen.
+
+**Rip currents:** Radhanagar and Laxmanpur look gentle. On rough days, lifeguards at Radhanagar whistle people back in. If you are unsure, ask the lifeguard — they are not decoration.
+
+**Swimming zones:** Green flag = swim. Red flag = do not. Elephant Beach snorkel boats drop you in deep water — life jackets are not optional if you are not a strong swimmer.
+
+**Crocodiles:** Real, but confined to mangrove habitats. In 15 years of operations we have never had a tourist incident at a designated beach. Problems start when people swim in signed prohibited areas near Wandoor or after dark in creeks.
+
+**Corals:** Cuts infect quickly in warm water. Reef shoes help; do not stand on coral to rest.
+
+**Alcohol:** Bar tables are metres from the sea at some Havelock shacks. Drunk swimming kills — we say this bluntly because we have seen close calls.
+
+---
+
+## Transport and ferry safety
+
+Private catamarans (Makruzz, Nautika, Green Ocean) are coast-guard inspected. Life jackets are under seats — crew briefs before departure. Government ferries are slower, less comfortable, but not inherently unsafe.
+
+Monsoon cancellations protect passengers — annoying, but correct. Do not pressure operators to sail in red alerts.
+
+Scooter accidents are the main land-based injury we see. Helmets, slow speed, no riding on wet laterite roads at night.
+
+---
+
+## Health and hospitals
+
+**Port Blair:** G.B. Pant Hospital (government), Apollo / other private clinics for non-emergency care.
+
+**Havelock:** Community Health Centre handles stitches, dehydration, minor infections. No MRI. Serious trauma → ferry to Port Blair (2 hours minimum).
+
+**Neil:** Basic PHC only. Plan accordingly if you have heart conditions, pregnancy complications, or mobility needs.
+
+Mosquitoes carry dengue — repellent in evening hours, especially Port Blair and forested areas. Tap water: drink bottled. Reef-safe sunscreen is better for you and the marine parks.
+
+---
+
+## Tribal areas and legal restrictions
+
+The Jarawa reserve highway (Andaman Trunk Road sections) has strict rules: no stopping, no photos, no interaction. Baratang convoy tours are escorted — stay with your vehicle.
+
+Foreign nationals: RAP requirements were relaxed for 30 islands, but carry passport and Indian visa always. See our [permit guide for foreign tourists](/blog/andaman-permits-foreign-tourists-2026).
+
+---
+
+## What we tell every guest before they fly
+
+1. Share ferry PDFs and hotel contacts with family — network drops between islands.
+2. Carry ₹5,000–10,000 cash; ATMs on Neil fail often.
+3. Download offline maps for Havelock scooter routes.
+4. Keep one buffer day before your return flight in monsoon.
+5. Buy travel insurance that covers medical evacuation.
+
+Andaman rewards prepared travellers. If you want an operator who checks weather before confirming your [Elephant Beach](/destinations/elephant-beach) slot, browse our [packages](/packages) or [send an enquiry](/enquiry).
 `,
 };
 

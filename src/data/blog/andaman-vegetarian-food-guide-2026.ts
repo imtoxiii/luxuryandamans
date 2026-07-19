@@ -51,7 +51,7 @@ const post: BlogPost = {
         }
     ],
     content: `
-## Don't Panic, It's Not Just Fish! 🥦
+## Don't Panic, It's Not Just Fish! �
 
 A common misconception is that island life means only seafood. But Andaman is part of India! With tourists pouring in from Gujarat, Bengal, and Tamil Nadu, the vegetarian food scene is thriving in 2026.
 
@@ -85,7 +85,7 @@ When you see "local food," it's usually fish. But don't miss these:
 
 ---
 
-## A Note for Vegans 🥑
+## A Note for Vegans �
 Veganism is growing in popularity here. Coconut milk is a staple, making dairy-free requests easy. Smoothies, fruit bowls, and vegetable stir-fries are available almost everywhere.
 
 ---

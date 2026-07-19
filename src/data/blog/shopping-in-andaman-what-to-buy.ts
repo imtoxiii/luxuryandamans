@@ -73,7 +73,7 @@ const post: BlogPost = {
     }
   ],
   content: `
-## Retail Therapy, Island Style 🛍️
+## Retail Therapy, Island Style 🛍
 
 Shopping in Andaman isn't about malls and designer brands. It's about quaint little shops smelling of the ocean, selling treasures crafted by local artisans.
 
@@ -81,7 +81,7 @@ Whether you want a gift for family or a memento for yourself, here is your guide
 
 ---
 
-## Top Things to Buy 🐚
+## Top Things to Buy �
 
 ### 1. Shell Handicrafts
 The most iconic souvenir. You'll find everything from earrings and necklaces to intricate lampshades and bowls made of sea shells.
@@ -104,7 +104,7 @@ Bowls, spoons, and lamps made from coconut shells are eco-friendly and beautiful
 
 ---
 
-## Best Shopping Spots 📍
+## Best Shopping Spots �
 
 ### 1. Sagarika Government Emporium (Port Blair)
 *   **Best for:** Authentic handicrafts, fixed prices, guaranteed receipts.
@@ -125,7 +125,7 @@ Bowls, spoons, and lamps made from coconut shells are eco-friendly and beautiful
 
 ---
 
-## Important: The "No-No" List 🚫
+## Important: The "No-No" List 
 To protect the fragile ecosystem, the administration is strict.
 *   **DO NOT** pick up shells or dead corals from the beach.
 *   **DO NOT** buy shells from roadside vendors who can't give a receipt.

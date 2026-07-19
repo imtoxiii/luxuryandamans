@@ -22,7 +22,7 @@ Andaman has always been beautiful, but it lacked the "ultra-luxury" options foun
 
 ## 1. Aves Island Resort (Mayabunder)
 **The Vibe:** Robinson Crusoe meets Ritz Carlton.
-**The Details:** 50 luxury tents nestled in coconut plantations.
+**The Details:** 50 luxury tents Located in coconut plantations.
 **Why Go:** It's a private island experience. No day trippers, just guests.
 **Best For:** Honeymooners seeking absolute privacy.
 

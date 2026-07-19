@@ -74,7 +74,7 @@ const post: BlogPost = {
     }
   ],
   content: `
-## The Truth About Internet in Paradise 📶
+## The Truth About Internet in Paradise �
 
 "Will I be able to post my stories?" "Can I check my work emails?"
 These are the most common questions we get. The Andaman Islands are remote, and while connectivity has improved massively since the undersea optical fiber cable (CANI) launch, it is still not like Bangalore or Mumbai.
@@ -83,7 +83,7 @@ Here is your survival guide to staying connected in Andaman in 2025.
 
 ---
 
-## Mobile Networks: The Big Three 📱
+## Mobile Networks: The Big Three �
 
 ### 1. Airtel (Recommended)
 - **Coverage:** Excellent in Port Blair, Havelock, and Neil.
@@ -118,7 +118,7 @@ Here is your survival guide to staying connected in Andaman in 2025.
 
 ---
 
-## Wi-Fi in Hotels 🏨
+## Wi-Fi in Hotels �
 Don't expect blazing fast Wi-Fi in every hotel.
 - **Luxury Resorts:** Usually have high-speed fiber connections in the lobby and rooms (e.g., Taj, Barefoot, SeaShell).
 - **Budget Hotels:** Often rely on mobile hotspots or slow dongles.

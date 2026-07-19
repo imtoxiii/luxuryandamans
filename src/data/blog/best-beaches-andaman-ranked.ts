@@ -40,7 +40,7 @@ We've ranked the top 10 beaches based on **swimmability, beauty, and crowd level
 *   **The Vibe:** Action-packed. Jet skis, banana boats, and snorkelers everywhere.
 *   **Insider Tip:** Trek through the jungle (2km) to reach here instead of taking the boat. It's free and adventurous.
 
-## The Hidden Gems (Escape the Crowds)
+## The worth visiting spots (Escape the Crowds)
 
 ### 4. Lalaji Bay (Long Island)
 *   **Rank:** #4

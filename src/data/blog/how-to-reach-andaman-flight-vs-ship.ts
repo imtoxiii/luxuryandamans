@@ -83,7 +83,7 @@ In this guide, we’ll break down the pros and cons of both to help you decide t
 
 ---
 
-## Option 1: By Flight (Recommended) ✈️
+## Option 1: By Flight (Recommended) ✈
 
 Flying is the most popular, convenient, and time-saving way to reach Andaman. The Veer Savarkar International Airport (IXZ) in Port Blair is the main gateway.
 
@@ -106,7 +106,7 @@ Flying is the most popular, convenient, and time-saving way to reach Andaman. Th
 
 ---
 
-## Option 2: By Ship (For the Adventurous) 🚢
+## Option 2: By Ship (For the Adventurous) �
 
 Taking a ship to Andaman is often romanticized, but it's important to know the reality. These are **passenger vessels** operated by the Shipping Corporation of India, not luxury cruise liners like Royal Caribbean.
 

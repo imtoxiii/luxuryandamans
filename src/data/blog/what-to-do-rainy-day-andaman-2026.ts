@@ -51,7 +51,7 @@ const post: BlogPost = {
         }
     ],
     content: `
-## Rain, Rain, Go Away? Or Stay! 🌧️
+## Rain, Rain, Go Away? Or Stay! 🌧
 
 Andaman weather is tropical. A sudden shower can hit anytime, even in peak season. But that doesn't mean your day is wasted. The islands have a moody charm in the rain, and there are plenty of indoor (or rain-friendly) activities.
 

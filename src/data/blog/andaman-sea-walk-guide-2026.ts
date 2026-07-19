@@ -58,7 +58,7 @@ const post: BlogPost = {
         }
     ],
     content: `
-## Walk Amongst the Fish! 🐠
+## Walk Amongst the Fish! �
 
 Sea Walking is one of the most unique and accessible underwater activities in the world. Unlike scuba diving, which requires technical skills or swimming ability, sea walking allows you to simply stroll on the seabed while breathing naturally.
 

@@ -122,7 +122,7 @@ Neil Island is smaller, more tranquil, and perfect for couples seeking peace and
 
 For couples wanting to get off the beaten path, Long Island offers a rustic and untouched paradise. It's less developed, which is a huge part of its charm. Think dense forests, empty beaches like Lalaji Bay, and a real sense of seclusion.
 
-## Hidden Gems for Couples (Escape the Crowds)
+## worth visiting spots for Couples (Escape the Crowds)
 
 If you want to avoid the selfie-taking crowds at Radhanagar, try these spots:
 

@@ -204,6 +204,7 @@ const BlogPost = () => {
         title={post.title}
         description={post.excerpt}
         pathname={location.pathname}
+        canonicalPathname={post.canonicalSlug ? `/blog/${post.canonicalSlug}` : location.pathname}
         keywords={post.tags.join(', ')}
         image={post.image}
         type="article"
@@ -212,6 +213,7 @@ const BlogPost = () => {
         section={post.category}
         tags={post.tags}
         faqData={post.faq}
+        noindex={post.noindex}
       />
       <Header />
 

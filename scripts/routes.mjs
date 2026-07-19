@@ -48,7 +48,22 @@ function listSlugsFromDir(dir, { exclude = [] } = {}) {
 }
 
 /**
- * Shared route list for sitemap + prerender (pathname only, leading slash).
+ * Slugs marked noindex in blogSeoConfig.ts — excluded from sitemap.xml
+ */
+function getNoindexBlogSlugs() {
+  const configFile = path.join(projectRoot, 'src', 'data', 'blog', 'blogSeoConfig.ts');
+  const content = readFileSafe(configFile);
+  if (!content) return [];
+  const slugs = [];
+  const regex = /['"]([^'"]+)['"]\s*:\s*\{[^}]*noindex:\s*true/g;
+  let match;
+  while ((match = regex.exec(content)) !== null) {
+    slugs.push(match[1]);
+  }
+  return slugs;
+}
+
+/**
  * One source of truth — do not duplicate route discovery elsewhere.
  */
 export function getAllRoutes() {
@@ -143,7 +158,9 @@ export function getAllRoutes() {
   extractSlugsFromFile(legacyBlogFile).forEach((slug) => blogSlugs.add(slug));
 
   Array.from(blogSlugs).forEach((slug) => {
-    routes.add(`/blog/${slug}`);
+    if (!getNoindexBlogSlugs().includes(slug)) {
+      routes.add(`/blog/${slug}`);
+    }
   });
 
   // Redirect-only routes are intentionally omitted (/about, /experiences/luxury-beach-resorts)

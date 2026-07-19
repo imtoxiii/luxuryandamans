@@ -41,7 +41,7 @@ Andaman is mostly scam-free, but watch out for:
 - **Remote Islands:** Havelock and Neil have basic PHCs (Primary Health Centers). For serious issues, you will be airlifted to Port Blair.
 - **Mosquitoes:** Dengue can be an issue. Carry repellent.
 
-## Conclusion
+## Final thoughts
 Use common sense, respect the ocean, and you will have the safest trip of your life.
   `,
     faq: [

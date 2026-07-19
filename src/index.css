@@ -199,7 +199,7 @@ body.no-scroll {
 
   body {
     scroll-padding-top: 120px; /* Increased for better header clearance */
-    @apply text-base leading-relaxed;
+    @apply font-sans antialiased text-base leading-relaxed;
     overflow-x: hidden; /* Prevent horizontal scroll */
     margin: 0;
     padding: 0;

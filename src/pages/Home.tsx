@@ -89,6 +89,7 @@ const Home = () => {
         title="Andaman Tour Packages 2026 | From ₹14,999"
         description="Best Andaman tour packages 2026 from ₹14,999/person. Honeymoon, family & budget trips to Havelock, Neil & Port Blair. 4.9★ by 1200+ travelers. Book now."
         pathname={location.pathname}
+        includeSiteSchemas={true}
         keywords="andaman tour packages, andaman tour packages 2026, andaman honeymoon packages, andaman family packages, andaman packages from delhi, andaman packages from mumbai, andaman packages from bangalore, andaman packages from chennai, havelock island packages, neil island tour, port blair tour, scuba diving andaman, best andaman travel agent, andaman trip cost, budget andaman packages, luxury andaman trip, best time to visit andaman"
         targetAudience="all"
         faqData={[
@@ -109,56 +110,6 @@ const Home = () => {
             answer: "For couples, we recommend our 5N/6D Honeymoon Package starting at ₹35,000/person. It includes romantic stays in Havelock beach resorts, private candlelight dinner, couple spa, snorkeling at Elephant Beach, and sunset cruise. Perfect for honeymoon and anniversary celebrations."
           }
         ]}
-        structuredData={{
-          "@context": "https://schema.org",
-          "@type": "TravelAgency",
-          "name": "Luxury Andamans",
-          "description": "Best Andaman tour packages starting ₹14,999. Honeymoon, family & adventure vacation packages with 1200+ happy travelers. Expert travel agency for Andaman Islands.",
-          "url": "https://luxuryandamans.com",
-          "logo": "https://luxuryandamans.com/logo.png",
-          "priceRange": "₹₹ - ₹₹₹₹",
-          "telephone": "+91-6297576826",
-          "areaServed": {
-            "@type": "Place",
-            "name": "Andaman and Nicobar Islands, India"
-          },
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Andaman Tour Packages 2026",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "TouristTrip",
-                  "name": "Andaman Honeymoon Package",
-                  "touristType": "Couples"
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "TouristTrip",
-                  "name": "Andaman Family Package",
-                  "touristType": "Families"
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "TouristTrip",
-                  "name": "Andaman Adventure Package",
-                  "touristType": "Adventure Seekers"
-                }
-              }
-            ]
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "1200",
-            "bestRating": "5"
-          }
-        }}
       />
 
       <Header />
@@ -171,7 +122,7 @@ const Home = () => {
             <source media="(max-width: 767px)" srcSet={HOME_HERO_MOBILE} type="image/webp" />
             <img
               src={HOME_HERO_DESKTOP}
-              alt="Andaman Paradise"
+              alt="Turquoise Andaman beach with palm trees and clear water"
               className="w-full h-full object-cover scale-110"
               width={HOME_HERO_DESKTOP_DIMENSIONS.width}
               height={HOME_HERO_DESKTOP_DIMENSIONS.height}
@@ -199,11 +150,17 @@ const Home = () => {
             </div>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight leading-tight drop-shadow-2xl font-display">
-              Andaman Tour Packages <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-cyan-200 to-white">Starting ₹14,999</span>
+              <span className="sr-only">
+                Andaman Tour Packages 2026 — Honeymoon, Family & Luxury Island Trips from ₹14,999.
+                Book Havelock, Neil Island & Port Blair tours for international and Indian travelers.
+              </span>
+              <span aria-hidden="true">
+                Paradise <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-cyan-200 to-white">Found Here</span>
+              </span>
             </h1>
 
-            <p className="text-lg md:text-2xl text-gray-100 max-w-3xl mx-auto leading-relaxed font-light mb-10 drop-shadow-md">
+            <p className="hero-description text-lg md:text-2xl text-gray-100 max-w-3xl mx-auto leading-relaxed font-light mb-10 drop-shadow-md">
               Experience the untouched beauty of the Andaman Islands with our curated luxury packages and bespoke itineraries.
             </p>
 
@@ -296,7 +253,7 @@ const Home = () => {
           <div className="absolute inset-0 bg-blue-900">
             <img
               src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
-              alt="Background"
+              alt="Andaman island coastline at sunset for tour package booking"
               className="w-full h-full object-cover opacity-20 mix-blend-overlay"
               loading="lazy"
             />

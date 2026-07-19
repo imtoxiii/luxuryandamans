@@ -273,12 +273,6 @@ const Offer = () => {
                         "priceCurrency": "INR",
                         "availability": "https://schema.org/InStock",
                         "offerCount": "10+"
-                    },
-                    "aggregateRating": {
-                        "@type": "AggregateRating",
-                        "ratingValue": "4.9",
-                        "reviewCount": "1200",
-                        "bestRating": "5"
                     }
                 }}
             />
@@ -424,7 +418,7 @@ const Offer = () => {
                     <div className="absolute inset-0 bg-black/10 z-10" />
                     <img
                         src={heroImage}
-                        alt="Andaman Paradise"
+                        alt="Andaman Islands beach paradise with crystal clear water"
                         className="w-full h-full object-cover scale-105"
                     />
                 </motion.div>

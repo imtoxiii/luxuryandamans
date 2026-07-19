@@ -98,8 +98,9 @@ const Sitemap = () => {
   return (
     <div className="min-h-screen bg-pearl">
       <SEO 
-        title="Sitemap"
-        description="Navigate through all pages and sections of Andaman Luxury website."
+        title="HTML Sitemap | Luxury Andamans"
+        description="Browse all Andaman tour packages, destinations, experiences, and travel guides on Luxury Andamans."
+        pathname="/sitemap"
       />
       <Header />
       

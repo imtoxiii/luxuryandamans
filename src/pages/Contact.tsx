@@ -149,12 +149,6 @@ const ContactPage = () => {
               "opens": "09:00",
               "closes": "21:00"
             },
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "reviewCount": "1200",
-              "bestRating": "5"
-            },
             "priceRange": "₹₹₹"
           }
         ]}

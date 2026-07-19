@@ -32,8 +32,5 @@ Allow: /*.png
 Allow: /*.jpg
 Allow: /*.svg
 
-# Crawl rate - be gentle on server
-Crawl-delay: 2
-
 # Sitemap location
 Sitemap: https://luxuryandamans.com/sitemap.xml

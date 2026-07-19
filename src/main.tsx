@@ -3,6 +3,7 @@ import { createRoot, hydrateRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
+import './fonts.css';
 import './index.css';
 import { requestIdleTask } from './lib/performanceOptimizer';
 import { applyPerformanceOptimizations } from './utils/performance';

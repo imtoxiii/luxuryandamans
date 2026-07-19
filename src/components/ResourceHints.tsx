@@ -65,13 +65,6 @@ export const ResourceHints = () => {
       {/* DNS prefetch for external resources */}
       <link rel="dns-prefetch" href="https://images.unsplash.com" />
       <link rel="dns-prefetch" href="https://plus.unsplash.com" />
-      
-      {/* Preload critical fonts */}
-      <link
-        rel="preload"
-        href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap"
-        as="style"
-      />
     </Helmet>
   );
 };

@@ -22,6 +22,8 @@ interface SEOProps {
   faqData?: { question: string; answer: string }[];
   destinationData?: any;
   noindex?: boolean;
+  /** TravelAgency, WebSite & nav schemas — homepage only to avoid duplicate sitewide JSON-LD */
+  includeSiteSchemas?: boolean;
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -38,7 +40,7 @@ const SEO: React.FC<SEOProps> = ({
   tags = [],
   locale = 'en_IN',
   siteName = 'Luxury Andamans',
-  twitterHandle = '@andamanluxury',
+  twitterHandle = '@luxuryandaman',
   targetAudience = 'all',
 
   structuredData,
@@ -46,6 +48,7 @@ const SEO: React.FC<SEOProps> = ({
   faqData,
   destinationData,
   noindex = false,
+  includeSiteSchemas = false,
 }) => {
   const siteUrl = import.meta.env.VITE_SITE_URL || 'https://luxuryandamans.com';
   const safePathname = typeof window !== 'undefined' && window.location?.pathname ? window.location.pathname : '/';
@@ -153,7 +156,7 @@ const SEO: React.FC<SEOProps> = ({
     '@type': 'TravelAgency',
     name: 'Luxury Andamans',
     alternateName: 'Luxury Andaman Travel',
-    description: '#1 Andaman Islands tour operator with 4.9★ rating. Expert-crafted packages starting ₹14,999. 1200+ happy travelers, free cancellation, 24/7 support.',
+    description: 'Expert Andaman Islands tour operator. Curated packages starting ₹14,999 with ferry, hotels, and activities. Free cancellation and 24/7 support.',
     url: siteUrl,
     logo: `${siteUrl}/favicon.png`,
     image: image,
@@ -237,13 +240,6 @@ const SEO: React.FC<SEOProps> = ({
         }
       ]
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '1200',
-      bestRating: '5',
-      worstRating: '1'
-    },
     serviceType: [
       'Travel Agency',
       'Tour Operator',
@@ -289,7 +285,11 @@ const SEO: React.FC<SEOProps> = ({
       }
     },
     datePublished: publishedTime,
-    dateModified: modifiedTime || publishedTime
+    dateModified: modifiedTime || publishedTime,
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['h1', '.hero-description', '[role="main"] p:first-of-type'],
+    },
   };
 
   // Site-level WebSite schema with SearchAction for sitelinks search box
@@ -365,6 +365,9 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="description" content={metaDescription} />
       <meta name="keywords" content={allKeywords} />
       <link rel="canonical" href={canonicalUrl} />
+      {import.meta.env.VITE_GSC_VERIFICATION && (
+        <meta name="google-site-verification" content={import.meta.env.VITE_GSC_VERIFICATION} />
+      )}
       <meta name="author" content={author} />
       <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
 
@@ -426,17 +429,21 @@ const SEO: React.FC<SEOProps> = ({
       <script type="application/ld+json">
         {JSON.stringify(contentSchema)}
       </script>
-      <script type="application/ld+json">
-        {JSON.stringify(websiteSchema)}
-      </script>
-      {navigationSchemas.map((obj, idx) => (
-        <script key={`nav-${idx}`} type="application/ld+json">
-          {JSON.stringify(obj)}
-        </script>
-      ))}
-      <script type="application/ld+json">
-        {JSON.stringify(travelAgencySchema)}
-      </script>
+      {includeSiteSchemas && (
+        <>
+          <script type="application/ld+json">
+            {JSON.stringify(websiteSchema)}
+          </script>
+          {navigationSchemas.map((obj, idx) => (
+            <script key={`nav-${idx}`} type="application/ld+json">
+              {JSON.stringify(obj)}
+            </script>
+          ))}
+          <script type="application/ld+json">
+            {JSON.stringify(travelAgencySchema)}
+          </script>
+        </>
+      )}
       {destinationData && (
         <script type="application/ld+json">
           {JSON.stringify(destinationData)}
@@ -457,20 +464,6 @@ const SEO: React.FC<SEOProps> = ({
           {JSON.stringify(obj)}
         </script>
       ))}
-
-      {/* Speakable Schema for Voice Search / AI Assistants */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'WebPage',
-          name: siteTitle,
-          speakable: {
-            '@type': 'SpeakableSpecification',
-            cssSelector: ['h1', '.hero-description', '[role="main"] p:first-of-type']
-          },
-          url: canonicalUrl
-        })}
-      </script>
     </Helmet>
   );
 };

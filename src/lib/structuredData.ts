@@ -107,12 +107,6 @@ export function generatePlaceSchema(destination: Destination) {
       addressRegion: 'Andaman and Nicobar Islands',
       addressCountry: 'IN',
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '150',
-      bestRating: '5',
-    },
   };
 }
 
@@ -388,11 +382,6 @@ export function generateProductSchema(pkg: Package) {
       price: pkg.price,
       priceValidUntil: '2026-12-31',
       availability: 'https://schema.org/InStock',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '85',
     },
   };
 }

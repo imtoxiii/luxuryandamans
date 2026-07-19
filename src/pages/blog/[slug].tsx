@@ -386,6 +386,28 @@ const BlogPost = () => {
                 </div>
               </div>
 
+              {/* Internal linking — packages & enquiry */}
+              <div className="mt-12 p-8 bg-gradient-to-br from-azure/5 to-blue-50 rounded-2xl border border-azure/10">
+                <h3 className="text-xl font-display font-bold text-night mb-3">Ready to Plan Your Andaman Trip?</h3>
+                <p className="text-night/70 mb-6">
+                  Browse our curated tour packages with hotels, ferries, and activities included — or get a free custom itinerary.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link
+                    to="/packages"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-azure text-white rounded-xl font-semibold hover:bg-azure/90 transition-colors"
+                  >
+                    View Tour Packages
+                  </Link>
+                  <Link
+                    to="/enquiry"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-white text-night border border-night/10 rounded-xl font-semibold hover:border-azure/30 transition-colors"
+                  >
+                    Get Free Itinerary
+                  </Link>
+                </div>
+              </div>
+
               {/* Post Navigation */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
                 {prevPost ? (

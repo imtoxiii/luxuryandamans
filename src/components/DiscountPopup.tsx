@@ -103,7 +103,7 @@ const DiscountPopup = () => {
                         <div className="absolute inset-0 z-0">
                             <img
                                 src="/images/mhmb4l407dbbye0c06am.webp"
-                                alt="Background"
+                                alt="Andaman beach discount offer background"
                                 className="w-full h-full object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-white/40 to-transparent" />

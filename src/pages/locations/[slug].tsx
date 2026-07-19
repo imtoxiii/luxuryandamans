@@ -1,16 +1,13 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { 
   MapPin, 
   Calendar, 
   Clock, 
   Plane, 
-  Hotel, 
-  Activity,
   AlertTriangle,
   ArrowLeft,
-  Navigation
 } from 'lucide-react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -20,17 +17,39 @@ import InteractiveMap from '../../components/InteractiveMap';
 
 const LocationPage = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const location = locations.find(l => l.slug === slug);
 
+  useEffect(() => {
+    if (!location) {
+      navigate('/destinations', { replace: true });
+    }
+  }, [location, navigate]);
+
   if (!location) {
-    return <div>Location not found</div>;
+    return (
+      <div className="min-h-screen bg-pearl">
+        <SEO
+          title="Location Not Found | Luxury Andamans"
+          description="This location page does not exist. Browse our Andaman destinations instead."
+          pathname={`/locations/${slug}`}
+          noindex={true}
+        />
+        <Header />
+        <div className="pt-32 pb-20 container mx-auto px-4 text-center">
+          <p className="text-night/70">Redirecting to destinations...</p>
+        </div>
+        <Footer />
+      </div>
+    );
   }
 
   return (
     <div className="min-h-screen bg-pearl">
       <SEO 
-        title={`${location.name} - Complete Travel Guide`}
+        title={`${location.name} Travel Guide 2026 | Luxury Andamans`}
         description={location.description}
+        pathname={`/locations/${location.slug}`}
         image={location.image}
       />
       <Header />
@@ -39,7 +58,7 @@ const LocationPage = () => {
       <div className="relative h-[70vh] overflow-hidden">
         <img 
           src={location.image}
-          alt={location.name}
+          alt={`${location.name} — Andaman Islands travel destination`}
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-night/60 to-night/30" />
@@ -90,6 +109,20 @@ const LocationPage = () => {
             >
               <h2 className="text-3xl font-bold text-night mb-6">Overview</h2>
               <p className="text-night/70 whitespace-pre-line">{location.longDescription}</p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link
+                  to="/packages"
+                  className="inline-flex items-center px-6 py-3 bg-azure text-white rounded-xl font-semibold hover:bg-azure/90 transition-colors"
+                >
+                  View Tour Packages
+                </Link>
+                <Link
+                  to="/experiences/scuba-diving"
+                  className="inline-flex items-center px-6 py-3 bg-white text-night border border-night/10 rounded-xl font-semibold hover:border-azure/30 transition-colors"
+                >
+                  Explore Activities
+                </Link>
+              </div>
             </motion.div>
           </div>
         </div>

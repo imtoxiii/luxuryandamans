@@ -239,7 +239,7 @@ const HavelockDestinations = () => {
         <div className="absolute inset-0 bg-blue-900">
           <img 
             src="https://images.unsplash.com/photo-1586611292717-f828b167408c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-            alt="Background" 
+            alt="Havelock Island beach with turquoise water and palm trees"
             className="w-full h-full object-cover opacity-20 mix-blend-overlay"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-blue-800/90 to-cyan-900/90" />

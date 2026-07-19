@@ -256,7 +256,7 @@ const PortBlairDestinations = () => {
         <div className="absolute inset-0 bg-blue-900">
           <img 
             src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" 
-            alt="Background" 
+            alt="Port Blair and Andaman Islands aerial coastline view"
             className="w-full h-full object-cover opacity-20 mix-blend-overlay"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-blue-800/90 to-cyan-900/90" />

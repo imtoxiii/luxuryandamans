@@ -140,7 +140,7 @@ const Enquiry = () => {
   if (isSuccess) {
     return (
       <div className="min-h-screen font-sans bg-pearl">
-        <SEO title="Enquiry Submitted | Luxury Andamans" description="Thank you for your enquiry." />
+        <SEO title="Enquiry Submitted | Luxury Andamans" description="Thank you for your enquiry." pathname="/enquiry" noindex={true} />
         <Header />
         <div className="pt-32 pb-20 container mx-auto px-6 flex items-center justify-center min-h-[60vh]">
           <motion.div 
@@ -175,6 +175,7 @@ const Enquiry = () => {
       <SEO 
         title="Plan Your Trip | Luxury Andamans"
         description="Start planning your dream Andaman vacation. Custom packages, luxury resorts, and unforgettable experiences."
+        pathname="/enquiry"
       />
       <Header />
       <Toaster position="top-right" />

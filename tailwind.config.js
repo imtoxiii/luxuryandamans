@@ -14,9 +14,10 @@ export default {
       fontFamily: {
         sans: ['Plus Jakarta Sans', 'sans-serif'],
         display: ['Clash Display', 'sans-serif'],
-        serif: ['Playfair Display', 'serif'],
-        fancy: ['Philosopher', 'sans-serif'],
-        script: ['Rouge Script', 'cursive']
+        // Decorative Google fonts removed (render-blocking) — elegant system fallbacks
+        serif: ['Georgia', 'Times New Roman', 'serif'],
+        fancy: ['Plus Jakarta Sans', 'sans-serif'],
+        script: ['Segoe Script', 'Brush Script MT', 'cursive']
       },
       boxShadow: {
         'glass': '0 8px 32px 0 rgba(28, 91, 147, 0.07)',

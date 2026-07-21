@@ -197,6 +197,21 @@ const BlogPost = () => {
     pre: ({ children }: any) => <>{children}</>,
   };
 
+  const blogBreadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://luxuryandamans.com' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://luxuryandamans.com/blog' },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: `https://luxuryandamans.com/blog/${post.canonicalSlug || post.slug}`,
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-pearl font-sans selection:bg-azure selection:text-white">
       <ScrollProgress showPercentage color="#0EA5E9" />
@@ -214,6 +229,7 @@ const BlogPost = () => {
         tags={post.tags}
         faqData={post.faq}
         noindex={post.noindex}
+        extraStructuredData={[blogBreadcrumbSchema]}
       />
       <Header />
 

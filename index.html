@@ -4,14 +4,51 @@
 <head>
   <meta charset="UTF-8" />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17715152498"></script>
+  <!-- Google tag (gtag.js) + Meta Pixel — stubs queue events immediately; the heavy
+       third-party scripts load on first interaction or shortly after page load,
+       keeping them off the critical path for LCP/FCP. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'AW-17715152498');
+
+    !function (f, b) {
+      if (f.fbq) return; var n = f.fbq = function () {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+    }(window, document);
+    fbq('init', '1481700080630119');
+    fbq('track', 'PageView');
+
+    (function () {
+      var loaded = false;
+      function loadAnalytics() {
+        if (loaded) return; loaded = true;
+        var g = document.createElement('script');
+        g.async = true;
+        g.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17715152498';
+        g.setAttribute('data-delayed-analytics', '1');
+        document.head.appendChild(g);
+        var fb = document.createElement('script');
+        fb.async = true;
+        fb.src = 'https://connect.facebook.net/en_US/fbevents.js';
+        fb.setAttribute('data-delayed-analytics', '1');
+        document.head.appendChild(fb);
+        ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (e) {
+          window.removeEventListener(e, loadAnalytics);
+        });
+      }
+      ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (e) {
+        window.addEventListener(e, loadAnalytics, { passive: true, once: true });
+      });
+      if (document.readyState === 'complete') {
+        setTimeout(loadAnalytics, 3000);
+      } else {
+        window.addEventListener('load', function () { setTimeout(loadAnalytics, 3000); });
+      }
+    })();
   </script>
 
   <!-- Favicon and App Icons (Prefer PNG/ICO for search engines) -->
@@ -48,23 +85,7 @@
   <!-- Bing Webmaster Tools Verification -->
   <meta name="msvalidate.01" content="14265E6AF81FA7C6BC446483ED94C80D" />
 
-  <!-- Meta Pixel Code -->
-  <script>
-    !function (f, b, e, v, n, t, s) {
-      if (f.fbq) return; n = f.fbq = function () {
-        n.callMethod ?
-        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-      };
-      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-      n.queue = []; t = b.createElement(e); t.async = !0;
-      t.src = v; s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s)
-    }(window, document, 'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1481700080630119');
-    fbq('track', 'PageView');
-  </script>
-  <!-- End Meta Pixel Code (noscript fallback is in <body>) -->
+  <!-- Meta Pixel loads via the delayed analytics loader above (noscript fallback is in <body>) -->
 
   <!-- Geo Tags -->
   <meta name="geo.region" content="IN-AN" />
@@ -76,8 +97,7 @@
   <meta property="og:title" content="Andaman Tour Packages 2026 | From ₹14,999" />
   <meta property="og:description"
     content="Best Andaman tour packages 2026 from ₹14,999/person. Honeymoon, family & budget trips to Havelock, Neil & Port Blair. 4.9★ by 1200+ travelers. Book now." />
-  <meta property="og:image"
-    content="https://images.unsplash.com/photo-1583212292454-39d2a21af845?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" />
+  <meta property="og:image" content="https://luxuryandamans.com/og-default.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt"
@@ -94,8 +114,7 @@
   <meta name="twitter:title" content="Andaman Tour Packages 2026 | From ₹14,999" />
   <meta name="twitter:description"
     content="Best Andaman tour packages 2026 from ₹14,999/person. Honeymoon, family & budget trips to Havelock, Neil & Port Blair. 4.9★ by 1200+ travelers. Book now." />
-  <meta name="twitter:image"
-    content="https://images.unsplash.com/photo-1583212292454-39d2a21af845?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" />
+  <meta name="twitter:image" content="https://luxuryandamans.com/og-default.webp" />
   <meta name="twitter:image:alt"
     content="Beautiful Andaman Islands beach destination - Luxury Andamans Tour Packages" />
 
@@ -110,12 +129,9 @@
   <link rel="canonical" href="https://luxuryandamans.com/" />
 
   <!-- Preconnect to external domains for faster resource loading -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://images.pexels.com" crossorigin />
 
   <!-- DNS prefetch for additional performance -->
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://images.unsplash.com" />
 
   <!-- CRITICAL: Preload homepage LCP hero (stable public paths — same in dev & production) -->
@@ -140,16 +156,12 @@
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
   <link rel="preconnect" href="https://plus.unsplash.com" crossorigin />
 
-  <!-- Local fonts (Plus Jakarta Sans + Clash Display) — see src/fonts.css -->
+  <!-- Local fonts (Plus Jakarta Sans + Clash Display) — see src/fonts.css.
+       Decorative Google fonts (Playfair/Philosopher/Rouge Script) were removed:
+       they render-blocked every page and are barely used — system serif fallback
+       covers the single decorative heading that referenced them. -->
   <link rel="preload" href="/fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/clash-display-700.woff2" as="font" type="font/woff2" crossorigin />
-
-  <!-- Secondary Google fonts (sync) -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap"
-    rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Rouge+Script&family=Style+Script&display=swap"
-    rel="stylesheet" />
 
   <!-- Structured data is injected per-page by React Helmet after prerender -->
   <!-- Critical CSS for instant load -->
@@ -227,11 +239,12 @@
       pointer-events: none;
     }
 
-    /* Background effects */
+    /* Background effects (pure CSS — no external image request during load) */
     .bg-pattern {
       position: absolute;
       inset: 0;
-      background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+      background-image: radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px);
+      background-size: 24px 24px;
       opacity: 0.1;
     }
 

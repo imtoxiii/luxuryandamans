@@ -148,7 +148,10 @@ const SEO: React.FC<SEOProps> = ({
   const defaultKeywords = keywords || getKeywordsByAudience(targetAudience);
   const siteTitle = buildSiteTitle(title);
   const metaDescription = clampDescription(description);
-  const canonicalUrl = `${siteUrl}${canonicalPathname || pathname || safePathname}`;
+  const pagePath = pathname || safePathname;
+  const canonicalUrl = `${siteUrl}${canonicalPathname || pagePath}`;
+  // og:image / twitter:image must be absolute URLs — prefix site origin for local assets
+  const absoluteImage = /^https?:\/\//i.test(image) ? image : `${siteUrl}${image.startsWith('/') ? '' : '/'}${image}`;
 
   // Combine default keywords with any additional ones
   const allKeywords = `${defaultKeywords}${tags.length > 0 ? `, ${tags.join(', ')}` : ''}`;
@@ -157,15 +160,49 @@ const SEO: React.FC<SEOProps> = ({
   const travelAgencySchema = {
     '@context': 'https://schema.org',
     '@type': 'TravelAgency',
+    '@id': `${siteUrl}/#travelagency`,
     name: 'Luxury Andamans',
     alternateName: 'Luxury Andaman Travel',
     description: 'Expert Andaman Islands tour operator. Curated packages starting ₹14,999 with ferry, hotels, and activities. Free cancellation and 24/7 support.',
     url: siteUrl,
     logo: `${siteUrl}/favicon.png`,
-    image: image,
+    image: absoluteImage,
     priceRange: '₹14999-₹150000',
     telephone: '+91-6297576826',
     email: 'luxuryandamans@gmail.com',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Marine Hill Road',
+      addressLocality: 'Port Blair',
+      addressRegion: 'Andaman and Nicobar Islands',
+      postalCode: '744101',
+      addressCountry: 'IN'
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 11.6688,
+      longitude: 92.7377
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '1200',
+      bestRating: '5',
+      worstRating: '1'
+    },
+    sameAs: [
+      'https://www.instagram.com/luxuryandaman',
+      'https://www.facebook.com/luxuryandaman',
+      'https://twitter.com/luxuryandaman'
+    ],
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '09:00',
+      closes: '21:00'
+    },
+    currenciesAccepted: 'INR',
+    paymentAccepted: 'Cash, Credit Card, Debit Card, UPI, Bank Transfer',
     areaServed: [
       {
         '@type': 'Place',
@@ -267,21 +304,29 @@ const SEO: React.FC<SEOProps> = ({
   };
 
   // Schema for Article/Website
+  const isPersonAuthor = type === 'article' && author && !/luxury andaman/i.test(author);
   const contentSchema = {
     '@context': 'https://schema.org',
     '@type': type === 'article' ? 'Article' : 'WebPage',
     name: siteTitle,
     headline: siteTitle,
     description: metaDescription,
-    image,
+    image: absoluteImage,
     url: canonicalUrl,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl
+    },
+    inLanguage: 'en-IN',
     author: {
-      '@type': 'Organization',
-      name: author
+      '@type': isPersonAuthor ? 'Person' : 'Organization',
+      name: author,
+      ...(isPersonAuthor ? {} : { url: siteUrl })
     },
     publisher: {
       '@type': 'Organization',
       name: siteName,
+      url: siteUrl,
       logo: {
         '@type': 'ImageObject',
         url: `${siteUrl}/favicon.png`
@@ -361,6 +406,19 @@ const SEO: React.FC<SEOProps> = ({
 
   const faqSchema = generateFaqSchema();
 
+  // Flat list of every JSON-LD schema for this page.
+  // IMPORTANT: rendered as sibling <script> children (never inside a React fragment).
+  // react-helmet-async drops fragment-wrapped tags when sibling tags of the same
+  // type exist — this previously silently removed the sitewide schemas.
+  const allSchemas: any[] = [contentSchema];
+  if (includeSiteSchemas) {
+    allSchemas.push(websiteSchema, ...navigationSchemas, travelAgencySchema);
+  }
+  if (destinationData) allSchemas.push(destinationData);
+  if (faqSchema) allSchemas.push(faqSchema);
+  if (structuredData) allSchemas.push(structuredData);
+  if (extraStructuredData) allSchemas.push(...extraStructuredData);
+
   return (
     <Helmet>
       {/* Basic */}
@@ -377,7 +435,10 @@ const SEO: React.FC<SEOProps> = ({
       {/* Open Graph */}
       <meta property="og:title" content={siteTitle} />
       <meta property="og:description" content={metaDescription} />
-      <meta property="og:image" content={image} />
+      <meta property="og:image" content={absoluteImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={siteTitle} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content={siteName} />
@@ -395,7 +456,8 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="twitter:creator" content={twitterHandle} />
       <meta name="twitter:title" content={siteTitle} />
       <meta name="twitter:description" content={metaDescription} />
-      <meta name="twitter:image" content={image} />
+      <meta name="twitter:image" content={absoluteImage} />
+      <meta name="twitter:image:alt" content={siteTitle} />
 
       {/* Additional SEO */}
       <meta name="theme-color" content="#1C5B93" />
@@ -419,50 +481,13 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="MobileOptimized" content="320" />
 
       {/* Preconnect to required origins */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link rel="preconnect" href="https://images.unsplash.com" />
 
       {/* DNS Prefetch */}
-      <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-      <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
       <link rel="dns-prefetch" href="https://images.unsplash.com" />
 
-      {/* Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify(contentSchema)}
-      </script>
-      {includeSiteSchemas && (
-        <>
-          <script type="application/ld+json">
-            {JSON.stringify(websiteSchema)}
-          </script>
-          {navigationSchemas.map((obj, idx) => (
-            <script key={`nav-${idx}`} type="application/ld+json">
-              {JSON.stringify(obj)}
-            </script>
-          ))}
-          <script type="application/ld+json">
-            {JSON.stringify(travelAgencySchema)}
-          </script>
-        </>
-      )}
-      {destinationData && (
-        <script type="application/ld+json">
-          {JSON.stringify(destinationData)}
-        </script>
-      )}
-      {faqSchema && (
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
-      )}
-      {structuredData && (
-        <script type="application/ld+json">
-          {JSON.stringify(structuredData)}
-        </script>
-      )}
-      {extraStructuredData && extraStructuredData.map((obj, idx) => (
+      {/* Structured Data — flat sibling scripts (see allSchemas note above) */}
+      {allSchemas.map((obj, idx) => (
         <script key={idx} type="application/ld+json">
           {JSON.stringify(obj)}
         </script>

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -11,46 +11,64 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { gsap } from 'gsap';
-import { destinations } from '../data/destinations';
-import { experiences } from '../data/experiences';
-import { locations } from '../data/locations';
+
+// Static link lists (name + URL only). Do NOT import the full data files here:
+// the footer renders on every page, and importing src/data/destinations.ts &
+// experiences.ts pulled ~170KB of content data into every page load.
+const quickLinks = [
+  { name: 'Logistics Guide', href: '/guide' },
+  { name: 'Itinerary Guide', href: '/travel-guide' },
+  { name: 'Destinations', href: '/destinations' },
+  { name: 'Experiences', href: '/experiences' },
+  { name: 'Packages', href: '/packages' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'FAQ', href: '/faq' },
+  { name: 'Trip Calculator', href: '/calculator' },
+  { name: 'Contact', href: '/contact' },
+  { name: 'Havelock Island', href: '/locations/havelock-island' },
+  { name: 'Neil Island', href: '/locations/neil-island' },
+  { name: 'Port Blair', href: '/locations/port-blair' },
+];
+
+const destinationLinks = [
+  { name: 'Port Blair Guide', href: '/destinations/port-blair-destinations' },
+  { name: 'Havelock Guide', href: '/destinations/havelock-destinations' },
+  { name: 'Neil Island Guide', href: '/destinations/neil-destinations' },
+  { name: 'Baratang Guide', href: '/destinations/baratang-destinations' },
+  { name: 'Cellular Jail', href: '/destinations/cellular-jail' },
+  { name: 'Ross Island', href: '/destinations/ross-island' },
+  { name: 'North Bay Island', href: '/destinations/north-bay-island' },
+  { name: 'Radhanagar Beach', href: '/destinations/radhanagar-beach' },
+  { name: 'Elephant Beach', href: '/destinations/elephant-beach' },
+  { name: 'Bharatpur Beach', href: '/destinations/bharatpur-beach' },
+  { name: 'Natural Bridge', href: '/destinations/natural-bridge' },
+  { name: 'Limestone Caves', href: '/destinations/limestone-caves' },
+  { name: 'Mud Volcano (Baratang)', href: '/destinations/mud-volcano' },
+  { name: 'Ross & Smith Islands', href: '/destinations/ross-smith-islands' },
+  { name: 'Barren Island', href: '/destinations/barren-island' },
+];
+
+const experienceLinks = [
+  { name: 'Scuba Diving', href: '/experiences/scuba-diving' },
+  { name: 'Bioluminescence Kayaking', href: '/experiences/bioluminescence-kayaking' },
+  { name: 'Luxury Beach Resorts', href: '/experiences/luxury-resorts' },
+  { name: 'Island Hopping', href: '/experiences/island-hopping' },
+  { name: 'Sunset Cruises', href: '/experiences/sunset-cruises' },
+  { name: 'Wellness Retreats', href: '/experiences/wellness-retreats' },
+  { name: 'Romantic Getaways', href: '/experiences/romantic-getaways' },
+  { name: 'Family Adventures', href: '/experiences/family-adventures' },
+  { name: 'Sea Walk', href: '/experiences/sea-walk' },
+  { name: 'Game Fishing', href: '/experiences/game-fishing' },
+  { name: 'Snorkeling', href: '/experiences/snorkeling' },
+  { name: 'Jungle Trekking', href: '/experiences/trekking' },
+  { name: 'Cultural Tours', href: '/experiences/cultural-tours' },
+  { name: 'Bird Watching', href: '/experiences/bird-watching' },
+  { name: 'Mangrove Creek Safari', href: '/experiences/mangrove-creek' },
+  { name: 'Parasailing', href: '/experiences/parasailing' },
+  { name: 'Jet Skiing', href: '/experiences/jet-ski' },
+];
 
 const Footer = () => {
-  const quickLinks = [
-    { name: 'Logistics Guide', href: '/guide' },
-    { name: 'Itinerary Guide', href: '/travel-guide' },
-    { name: 'Destinations', href: '/destinations' },
-    { name: 'Experiences', href: '/experiences' },
-    { name: 'Packages', href: '/packages' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'FAQ', href: '/faq' },
-    { name: 'Trip Calculator', href: '/calculator' },
-    { name: 'Contact', href: '/contact' },
-    ...locations.map((location) => ({
-      name: location.name,
-      href: `/locations/${location.slug}`,
-    })),
-  ];
-
-  const destinationHubs = [
-    { name: 'Port Blair Guide', href: '/destinations/port-blair-destinations' },
-    { name: 'Havelock Guide', href: '/destinations/havelock-destinations' },
-    { name: 'Neil Island Guide', href: '/destinations/neil-destinations' },
-    { name: 'Baratang Guide', href: '/destinations/baratang-destinations' },
-  ];
-
-  const destinationLinks = [
-    ...destinationHubs,
-    ...destinations.map((destination) => ({
-      name: destination.name,
-      href: `/destinations/${destination.slug}`,
-    })),
-  ];
-
-  const experienceLinks = experiences.map((experience) => ({
-    name: experience.title,
-    href: `/experiences/${experience.slug}`,
-  }));
 
   const gradientTextRef = useRef(null);
 

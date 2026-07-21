@@ -8,6 +8,7 @@ import Home from './pages/Home'; // Keep Home page eager for faster initial load
 import ChatWidget from './components/ChatWidget';
 import PrefetchManager from './components/PrefetchManager';
 import { removeLoader } from './lib/loader';
+import { resetPrerenderSignal, evaluatePrerenderReady, signalPrerenderReady } from './lib/prerenderReady';
 import DiscountPopup from './components/DiscountPopup';
 import OfferSticker from './components/OfferSticker';
 
@@ -93,63 +94,25 @@ function App() {
     }
   }, [location.pathname]);
 
-  // Signal for post-build Puppeteer prerender: wait until THIS route's Helmet SEO is applied
+  // Signal for post-build Puppeteer prerender (see scripts/prerender.mjs)
   useEffect(() => {
     const path = displayLocation.pathname;
-    document.documentElement.removeAttribute('data-prerender-ready');
-    document.documentElement.setAttribute('data-prerender-path', path);
+    resetPrerenderSignal(path);
 
     let cancelled = false;
     const started = Date.now();
     const initialTitle = document.title;
 
-    const canonicalMatches = () => {
-      const links = Array.from(document.querySelectorAll('link[rel="canonical"]')) as HTMLLinkElement[];
-      const hrefs = links.map((link) => link.getAttribute('href') || link.href || '');
-      if (!hrefs.length) return false;
-      if (path === '/') {
-        return hrefs.some((href) => {
-          try {
-            const u = new URL(href, window.location.origin);
-            return u.pathname === '/' || u.pathname === '';
-          } catch {
-            return /luxuryandamans\.com\/?$/i.test(href);
-          }
-        });
+    const tick = () => {
+      if (cancelled) return;
+      if (evaluatePrerenderReady(path, initialTitle, started)) {
+        signalPrerenderReady(path);
+        window.clearInterval(interval);
       }
-      // Prefer a Helmet-added canonical that includes this path (static homepage one may remain)
-      return hrefs.some((href) => href.includes(path));
     };
 
-    const tryMarkReady = () => {
-      if (cancelled) return false;
-
-      const root = document.getElementById('root');
-      const textLen = root?.textContent?.trim().length ?? 0;
-      const hasTitle = Boolean(document.title?.trim());
-      const hasContent = textLen > 80;
-      const titleChanged = path === '/' || document.title !== initialTitle;
-      const seoReady =
-        path === '/'
-          ? hasTitle && hasContent
-          : (canonicalMatches() && titleChanged) || (titleChanged && Date.now() - started > 1500);
-
-      if (hasTitle && hasContent && seoReady) {
-        document.documentElement.setAttribute('data-prerender-path', path);
-        document.documentElement.setAttribute('data-prerender-ready', 'true');
-        return true;
-      }
-      if (Date.now() - started > 12000 && hasTitle && hasContent && (path === '/' || titleChanged)) {
-        document.documentElement.setAttribute('data-prerender-path', path);
-        document.documentElement.setAttribute('data-prerender-ready', 'true');
-        return true;
-      }
-      return false;
-    };
-
-    const interval = window.setInterval(() => {
-      if (tryMarkReady()) window.clearInterval(interval);
-    }, 50);
+    const interval = window.setInterval(tick, 50);
+    tick();
 
     return () => {
       cancelled = true;

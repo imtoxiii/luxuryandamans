@@ -1,15 +1,15 @@
 import fs from 'fs';
 import http from 'http';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import { getAllRoutes, projectRoot } from './routes.mjs';
+import {
+  PRERENDER_CONFIG,
+  getRouteTimeout,
+  partitionRoutes,
+  shouldAbortPrerenderRequest,
+} from './prerenderConfig.mjs';
 
 const DIST = path.join(projectRoot, 'dist');
-const PREFERRED_PORT = Number(process.env.PRERENDER_PORT) || 4179;
-const CONCURRENCY = Number(process.env.PRERENDER_CONCURRENCY) || 3;
-const ROUTE_TIMEOUT_MS = Number(process.env.PRERENDER_TIMEOUT_MS) || 60000;
-const MAX_FAILURE_RATIO = 0.15;
-const MAX_ABSOLUTE_FAILURES = 20;
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -36,21 +36,11 @@ function contentType(filePath) {
   return MIME[path.extname(filePath).toLowerCase()] || 'application/octet-stream';
 }
 
-/**
- * Static server for dist/ with SPA fallback to the ORIGINAL Vite shell
- * (kept in memory). Never serve a previously prerendered index.html as the
- * client bootstrap — that would poison other routes with homepage HTML and
- * a stale data-prerender-ready attribute.
- */
 function startStaticServer(spaShellHtml) {
   const server = http.createServer((req, res) => {
     try {
       const urlPath = decodeURIComponent((req.url || '/').split('?')[0]);
 
-      // Always serve the pristine SPA shell for document navigations that
-      // are not already-written prerender files (assets, etc.).
-      // For prerender we visit routes before their output files exist, so
-      // fallback to spaShellHtml. Do NOT read dist/index.html from disk.
       if (urlPath === '/' || urlPath === '/index.html') {
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
         res.end(spaShellHtml);
@@ -66,9 +56,6 @@ function startStaticServer(spaShellHtml) {
       }
 
       if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
-        // Prefer directory index only for assets/folders that aren't the
-        // route we're currently prerendering into — during the crawl those
-        // folders usually don't exist yet.
         const dirIndex = path.join(filePath, 'index.html');
         if (fs.existsSync(dirIndex)) {
           res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
@@ -83,7 +70,6 @@ function startStaticServer(spaShellHtml) {
         return;
       }
 
-      // SPA fallback: pristine Vite shell so React Router can render the route
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       res.end(spaShellHtml);
     } catch (err) {
@@ -114,7 +100,7 @@ function startStaticServer(spaShellHtml) {
         resolve({ server, port: boundPort });
       });
     };
-    tryListen(PREFERRED_PORT, 20);
+    tryListen(PRERENDER_CONFIG.preferredPort, 20);
   });
 }
 
@@ -126,38 +112,51 @@ function routeToOutputPath(route) {
   return path.join(DIST, ...segments, 'index.html');
 }
 
-/**
- * Prefer Helmet-managed tags; drop stale static homepage meta that Vite's
- * index.html left in <head> when duplicates remain.
- */
 function cleanupCapturedHtml(html, route) {
   let out = html;
 
-  // Remove prerender signal so deployed HTML doesn't short-circuit a future run
   out = out.replace(/\s*data-prerender-ready="[^"]*"/g, '');
   out = out.replace(/\s*data-prerender-path="[^"]*"/g, '');
 
-  // If multiple canonicals, keep the one matching this route (else last)
+  // Analytics <script> tags injected by the delayed loader must not be baked
+  // into the static HTML (they would then load on the critical path).
+  out = out.replace(/<script[^>]+data-delayed-analytics[^>]*>\s*<\/script>/gi, '');
+
+  // The homepage hero preloads come from the static shell — on every other
+  // route they force visitors to download ~66-188KB of unused hero image.
+  if (route !== '/') {
+    out = out.replace(/<link[^>]+rel=["']preload["'][^>]*hero-home[^>]*>/gi, '');
+  }
+
   const canonicals = [...out.matchAll(/<link[^>]+rel=["']canonical["'][^>]*>/gi)];
   if (canonicals.length > 1) {
-    const matchIdx = canonicals.findIndex((m) => m[0].includes(route === '/' ? 'luxuryandamans.com/"' : route));
+    const matchIdx = canonicals.findIndex((m) =>
+      m[0].includes(route === '/' ? 'luxuryandamans.com/"' : route)
+    );
     const keep = matchIdx >= 0 ? matchIdx : canonicals.length - 1;
     canonicals.forEach((m, i) => {
       if (i !== keep) out = out.replace(m[0], '');
     });
   }
 
-  // If multiple meta descriptions, keep the last (Helmet)
-  const descs = [...out.matchAll(/<meta[^>]+name=["']description["'][^>]*>/gi)];
-  if (descs.length > 1) {
-    for (let i = 0; i < descs.length - 1; i++) {
-      out = out.replace(descs[i][0], '');
-    }
-  }
-
-  // Multiple og:url / og:title / og:description — keep last of each
-  for (const prop of ['og:url', 'og:title', 'og:description']) {
-    const re = new RegExp(`<meta[^>]+property=["']${prop}["'][^>]*>`, 'gi');
+  // Keep only the LAST occurrence (Helmet's, page-specific) of every meta that
+  // exists both in the static shell and in the Helmet output.
+  const dedupeByName = [
+    'description',
+    'keywords',
+    'robots',
+    'author',
+    'theme-color',
+    'twitter:title',
+    'twitter:description',
+    'twitter:image',
+    'twitter:image:alt',
+    'twitter:card',
+    'twitter:site',
+    'twitter:creator',
+  ];
+  for (const name of dedupeByName) {
+    const re = new RegExp(`<meta[^>]+name=["']${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'][^>]*>`, 'gi');
     const matches = [...out.matchAll(re)];
     if (matches.length > 1) {
       for (let i = 0; i < matches.length - 1; i++) {
@@ -166,7 +165,28 @@ function cleanupCapturedHtml(html, route) {
     }
   }
 
-  // Ensure doctype
+  const dedupeByProperty = [
+    'og:url',
+    'og:title',
+    'og:description',
+    'og:image',
+    'og:image:width',
+    'og:image:height',
+    'og:image:alt',
+    'og:type',
+    'og:site_name',
+    'og:locale',
+  ];
+  for (const prop of dedupeByProperty) {
+    const re = new RegExp(`<meta[^>]+property=["']${prop.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'][^>]*>`, 'gi');
+    const matches = [...out.matchAll(re)];
+    if (matches.length > 1) {
+      for (let i = 0; i < matches.length - 1; i++) {
+        out = out.replace(matches[i][0], '');
+      }
+    }
+  }
+
   if (!/^<!DOCTYPE/i.test(out)) {
     out = '<!DOCTYPE html>\n' + out;
   }
@@ -174,20 +194,34 @@ function cleanupCapturedHtml(html, route) {
   return out;
 }
 
+function waitForRouteReady(page, route, timeoutMs) {
+  return page.waitForFunction(
+    (expectedPath) => {
+      const ready = document.documentElement.getAttribute('data-prerender-ready') === 'true';
+      const markedPath = document.documentElement.getAttribute('data-prerender-path');
+      if (!ready || markedPath !== expectedPath) return false;
+      if (expectedPath === '/') return true;
+
+      const title = document.title || '';
+      const stillShell = /^Andaman Tour Packages 2026\s*\|\s*(Starting|From)/i.test(title);
+      return Boolean(title) && !stillShell;
+    },
+    { timeout: timeoutMs },
+    route
+  );
+}
+
 async function prerenderRoute(browser, baseUrl, route) {
+  const timeoutMs = getRouteTimeout(route);
   const page = await browser.newPage();
+
   try {
     await page.setViewport({ width: 1280, height: 800 });
     await page.setRequestInterception(true);
     page.on('request', (req) => {
       const url = req.url();
       const type = req.resourceType();
-      if (
-        type === 'media' ||
-        /google-analytics|googletagmanager|googleadservices|facebook|hotjar|clarity|doubleclick|gtag\/js/i.test(
-          url
-        )
-      ) {
+      if (shouldAbortPrerenderRequest(url, type, baseUrl)) {
         req.abort();
       } else {
         req.continue();
@@ -195,29 +229,9 @@ async function prerenderRoute(browser, baseUrl, route) {
     });
 
     const url = `${baseUrl}${route === '/' ? '/' : route}`;
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: ROUTE_TIMEOUT_MS });
-
-    // Wait until App marks this exact pathname ready and title is no longer the static homepage default.
-    await page.waitForFunction(
-      (expectedPath) => {
-        const ready = document.documentElement.getAttribute('data-prerender-ready') === 'true';
-        const markedPath = document.documentElement.getAttribute('data-prerender-path');
-        if (!ready || markedPath !== expectedPath) return false;
-        if (expectedPath === '/') return true;
-
-        const title = document.title || '';
-        // Static index.html homepage title only — Offer page legitimately mentions ₹14,999
-        const stillDefault =
-          /^Andaman Tour Packages 2026\s*\|\s*Starting/i.test(title);
-
-        return Boolean(title) && !stillDefault;
-      },
-      { timeout: ROUTE_TIMEOUT_MS },
-      route
-    );
-
-    // Extra settle for Helmet tag flush
-    await new Promise((r) => setTimeout(r, 250));
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: timeoutMs });
+    await waitForRouteReady(page, route, timeoutMs);
+    await new Promise((r) => setTimeout(r, 200));
 
     const raw = await page.evaluate(() => document.documentElement.outerHTML);
     const html = cleanupCapturedHtml(raw, route);
@@ -236,7 +250,7 @@ async function prerenderRoute(browser, baseUrl, route) {
 }
 
 async function mapPool(items, concurrency, worker) {
-  const results = [];
+  const results = new Array(items.length);
   let index = 0;
 
   async function run() {
@@ -246,9 +260,26 @@ async function mapPool(items, concurrency, worker) {
     }
   }
 
-  const runners = Array.from({ length: Math.min(concurrency, items.length) }, () => run());
-  await Promise.all(runners);
+  await Promise.all(
+    Array.from({ length: Math.min(concurrency, items.length) }, () => run())
+  );
   return results;
+}
+
+async function prerenderBatch(browser, baseUrl, routes, concurrency, label) {
+  if (!routes.length) return [];
+
+  if (label) console.log(`\n${label}`);
+
+  return mapPool(routes, concurrency, async (route) => {
+    const result = await prerenderRoute(browser, baseUrl, route);
+    if (result.ok) {
+      console.log(`  ✓ ${route} — ${result.title}`);
+    } else {
+      console.error(`  ✗ ${route} — ${result.error}`);
+    }
+    return result;
+  });
 }
 
 async function main() {
@@ -258,15 +289,12 @@ async function main() {
     process.exit(1);
   }
 
-  // Snapshot the Vite-built shell BEFORE any prerender overwrites it
-  // Prefer spa-shell.html if a previous run saved it; otherwise snapshot index.html
   const shellCachePath = path.join(DIST, 'spa-shell.html');
   let spaShellHtml;
   if (fs.existsSync(shellCachePath)) {
     spaShellHtml = fs.readFileSync(shellCachePath, 'utf8');
   } else {
     spaShellHtml = fs.readFileSync(spaIndexPath, 'utf8');
-    // Only cache if this looks like the Vite shell (no prerendered root content)
     if (!spaShellHtml.includes('data-prerender-path') && spaShellHtml.includes('<div id="root"></div>')) {
       fs.writeFileSync(shellCachePath, spaShellHtml, 'utf8');
     }
@@ -280,7 +308,6 @@ async function main() {
     process.exit(1);
   }
 
-  // Optional: PRERENDER_ONLY=/blog,/offer for targeted re-runs
   const only = (process.env.PRERENDER_ONLY || '')
     .split(',')
     .map((s) => s.trim())
@@ -293,7 +320,10 @@ async function main() {
     console.log(`PRERENDER_ONLY active: ${routes.join(', ')}`);
   }
 
-  console.log(`Prerendering ${routes.length} routes (concurrency=${CONCURRENCY})…`);
+  const { standard, heavy } = partitionRoutes(routes);
+  console.log(
+    `Prerendering ${routes.length} routes (${standard.length} standard @ concurrency ${PRERENDER_CONFIG.concurrency.standard}, ${heavy.length} heavy @ concurrency ${PRERENDER_CONFIG.concurrency.heavy})…`
+  );
 
   const { server, port } = await startStaticServer(spaShellHtml);
   const baseUrl = `http://127.0.0.1:${port}`;
@@ -306,32 +336,31 @@ async function main() {
       args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
     });
 
-    let results = await mapPool(routes, CONCURRENCY, async (route) => {
-      const result = await prerenderRoute(browser, baseUrl, route);
-      if (result.ok) {
-        console.log(`  ✓ ${route} — ${result.title}`);
-      } else {
-        console.error(`  ✗ ${route} — ${result.error}`);
-      }
-      return result;
-    });
+    const standardResults = await prerenderBatch(
+      browser,
+      baseUrl,
+      standard,
+      PRERENDER_CONFIG.concurrency.standard
+    );
 
-    // One retry pass for transient timeouts (heavy pages / concurrency pressure)
+    const heavyResults = await prerenderBatch(
+      browser,
+      baseUrl,
+      heavy,
+      PRERENDER_CONFIG.concurrency.heavy,
+      `Heavy routes (${heavy.length}) — large lazy chunks, processed sequentially:`
+    );
+
+    let results = [...standardResults, ...heavyResults];
+
     const firstFailures = results.filter((r) => !r.ok);
     if (firstFailures.length) {
-      console.log(`\nRetrying ${firstFailures.length} failed route(s)…`);
-      const retries = await mapPool(
+      console.log(`\nRetrying ${firstFailures.length} failed route(s) at concurrency 1…`);
+      const retries = await prerenderBatch(
+        browser,
+        baseUrl,
         firstFailures.map((f) => f.route),
-        Math.min(2, CONCURRENCY),
-        async (route) => {
-          const result = await prerenderRoute(browser, baseUrl, route);
-          if (result.ok) {
-            console.log(`  ✓ (retry) ${route} — ${result.title}`);
-          } else {
-            console.error(`  ✗ (retry) ${route} — ${result.error}`);
-          }
-          return result;
-        }
+        1
       );
       const byRoute = new Map(results.map((r) => [r.route, r]));
       retries.forEach((r) => byRoute.set(r.route, r));
@@ -348,7 +377,10 @@ async function main() {
     }
 
     const failRatio = failures.length / results.length;
-    if (failures.length > MAX_ABSOLUTE_FAILURES || failRatio > MAX_FAILURE_RATIO) {
+    if (
+      failures.length > PRERENDER_CONFIG.maxAbsoluteFailures ||
+      failRatio > PRERENDER_CONFIG.maxFailureRatio
+    ) {
       console.error(
         `Too many prerender failures (${failures.length}, ${(failRatio * 100).toFixed(1)}%). Failing build.`
       );

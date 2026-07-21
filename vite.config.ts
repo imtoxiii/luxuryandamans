@@ -88,7 +88,9 @@ export default defineConfig({
   build: {
     sourcemap: false,
     minify: 'terser',
-    target: 'es2015',
+    // es2019: supported by every browser since ~2019 (and Googlebot's Chromium).
+    // The old es2015 target inflated bundles with unnecessary transforms.
+    target: 'es2019',
     cssCodeSplit: true,
     rollupOptions: {
       output: {
@@ -101,6 +103,13 @@ export default defineConfig({
           // UI components - split by priority
           'vendor-ui': ['lucide-react', 'react-hot-toast'],
           'vendor-seo': ['react-helmet-async'],
+          // Large content-data modules — separate chunk so app-code changes
+          // don't invalidate the (rarely changing) data in browser caches
+          'data-content': [
+            './src/data/destinations.ts',
+            './src/data/experiences.ts',
+            './src/data/locations.ts',
+          ],
           // Below-fold components (lazy loaded) - aggressive splitting
           'components-testimonials': ['./src/components/Testimonials.tsx'],
           'components-instagram': ['./src/components/InstagramFeed.tsx'],

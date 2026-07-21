@@ -3,6 +3,14 @@
 import type { Destination } from '../data/destinations';
 import type { Package } from '../data/packages';
 
+const SITE_URL = 'https://luxuryandamans.com';
+
+/** Schema image URLs must be absolute */
+function absUrl(url: string): string {
+  if (!url) return url;
+  return /^https?:\/\//i.test(url) ? url : `${SITE_URL}${url.startsWith('/') ? '' : '/'}${url}`;
+}
+
 /**
  * Generate TouristAttraction Schema for destination pages
  */
@@ -12,7 +20,7 @@ export function generateTouristAttractionSchema(destination: Destination) {
     '@type': 'TouristAttraction',
     name: destination.name,
     description: destination.longDescription,
-    image: destination.gallery?.map(img => img.url) || [destination.image],
+    image: destination.gallery?.map(img => absUrl(img.url)) || [absUrl(destination.image)],
     url: `https://luxuryandamans.com/destinations/${destination.slug}`,
     address: {
       '@type': 'PostalAddress',
@@ -364,12 +372,17 @@ export function generateDestinationFAQs(destination: Destination) {
  * Generate Product Schema for Tour Packages
  */
 export function generateProductSchema(pkg: Package) {
+  // Always ~11 months out so the offer never silently expires in search results
+  const priceValidUntil = new Date(Date.now() + 335 * 24 * 60 * 60 * 1000)
+    .toISOString()
+    .split('T')[0];
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: pkg.title,
     description: pkg.description,
-    image: [pkg.image],
+    image: [absUrl(pkg.image)],
     sku: pkg.slug,
     brand: {
       '@type': 'Brand',
@@ -380,8 +393,13 @@ export function generateProductSchema(pkg: Package) {
       url: `https://luxuryandamans.com/packages/${pkg.slug}`,
       priceCurrency: 'INR',
       price: pkg.price,
-      priceValidUntil: '2026-12-31',
+      priceValidUntil,
       availability: 'https://schema.org/InStock',
+      seller: {
+        '@type': 'TravelAgency',
+        name: 'Luxury Andamans',
+        url: 'https://luxuryandamans.com',
+      },
     },
   };
 }

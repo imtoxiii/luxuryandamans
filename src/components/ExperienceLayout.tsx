@@ -57,6 +57,44 @@ const ExperienceLayout: React.FC<ExperienceLayoutProps> = ({
     { name: title, path: `/experiences/${slug}` },
   ];
 
+  const siteUrl = 'https://luxuryandamans.com';
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbItems.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.path === '/' ? siteUrl : `${siteUrl}${item.path}`,
+    })),
+  };
+
+  const priceDigits = stats?.price ? stats.price.replace(/[^\d]/g, '') : '';
+  const attractionSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'TouristAttraction',
+    name: title,
+    description: description,
+    url: `${siteUrl}/experiences/${slug}`,
+    image: /^https?:\/\//i.test(image) ? image : `${siteUrl}${image}`,
+    touristType: ['Couples', 'Families', 'Adventure travelers'],
+    address: {
+      '@type': 'PostalAddress',
+      addressRegion: 'Andaman and Nicobar Islands',
+      addressCountry: 'IN',
+    },
+    ...(priceDigits
+      ? {
+          offers: {
+            '@type': 'Offer',
+            price: priceDigits,
+            priceCurrency: 'INR',
+            availability: 'https://schema.org/InStock',
+          },
+        }
+      : {}),
+  };
+
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900" ref={containerRef}>
       {seo && (
@@ -67,6 +105,7 @@ const ExperienceLayout: React.FC<ExperienceLayoutProps> = ({
           image={seo.image || image}
           pathname={`/experiences/${slug}`}
           faqData={faqData}
+          extraStructuredData={[breadcrumbSchema, attractionSchema]}
         />
       )}
 

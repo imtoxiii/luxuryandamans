@@ -151,8 +151,7 @@ const Home = () => {
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight leading-tight drop-shadow-2xl font-display">
               <span className="sr-only">
-                Andaman Tour Packages 2026 — Honeymoon, Family & Luxury Island Trips from ₹14,999.
-                Book Havelock, Neil Island & Port Blair tours for international and Indian travelers.
+                Andaman Tour Packages 2026 — Honeymoon, Family & Luxury Trips from ₹14,999
               </span>
               <span aria-hidden="true">
                 Paradise <br />

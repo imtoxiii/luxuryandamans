@@ -773,9 +773,9 @@ body.no-scroll {
   }
 }
 
-/* Reduced motion support */
+/* Reduced motion support — keep 404 ocean out of the global snap */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *:not(.nf-hero):not(.nf-hero *) {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -809,6 +809,17 @@ body.no-scroll {
 .low-power-mode a {
   animation-duration: 0.1s !important;
   transition-duration: 0.1s !important;
+}
+
+/* 404 page — low-power mode must not snap ocean or link transitions */
+.low-power-mode .nf-hero,
+.low-power-mode .nf-hero * {
+  animation-duration: unset !important;
+  transition-duration: unset !important;
+}
+.low-power-mode .nf-hero a,
+.low-power-mode .nf-hero button {
+  transition-duration: 0.35s !important;
 }
 
 .low-power-mode .glass-nav,

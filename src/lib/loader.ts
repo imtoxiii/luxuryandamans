@@ -1,34 +1,39 @@
+/**
+ * Hands control of the boot preloader (see index.html) back to the page.
+ *
+ * The preloader owns its own progress simulation and exit choreography via
+ * `window.__luxalLoader.finish()`. When the exit sweep begins it dispatches a
+ * `luxal:reveal` event on `window` so pages can start their entrance animations
+ * in sync with the reveal.
+ *
+ * @param immediate skip the choreography and remove the loader instantly
+ *                  (used for blog deep-links and other content-first routes)
+ */
 export const removeLoader = (immediate = false) => {
-    const skeleton = document.getElementById('loading-skeleton');
-    const progressBar = document.getElementById('progress-bar');
-    const progressText = document.getElementById('progress-text');
+    if (typeof window === 'undefined') return;
 
-    // Clear the simulation interval
+    const engine = (window as unknown as {
+        __luxalLoader?: { finish: (immediate?: boolean) => void };
+    }).__luxalLoader;
+
+    if (engine?.finish) {
+        engine.finish(immediate);
+        return;
+    }
+
+    // Legacy fallback: stale cached HTML may still carry the old loader markup
     if ((window as any).loaderInterval) {
         clearInterval((window as any).loaderInterval);
     }
-
+    const skeleton = document.getElementById('loading-skeleton');
     if (skeleton) {
-        // Immediately disable pointer events to prevent blocking interaction
         skeleton.style.pointerEvents = 'none';
-        
-        if (immediate) {
-            skeleton.style.display = 'none';
-            skeleton.remove();
-        } else if (progressBar && progressText) {
-            // Force progress to 100%
-            progressBar.style.width = '100%';
-            progressText.textContent = '100%';
-
-            // Wait a moment for the 100% to be seen, then fade out
-            setTimeout(() => {
-                skeleton.classList.add('hidden');
-                setTimeout(() => skeleton.remove(), 500);
-            }, 500);
-        } else {
-            // Fallback if elements missing but regular removal requested
-            skeleton.classList.add('hidden');
-            setTimeout(() => skeleton.remove(), 300);
-        }
+        skeleton.classList.add('hidden');
+        window.setTimeout(() => skeleton.remove(), immediate ? 0 : 500);
+    }
+    try {
+        window.dispatchEvent(new Event('luxal:reveal'));
+    } catch {
+        /* no-op */
     }
 };

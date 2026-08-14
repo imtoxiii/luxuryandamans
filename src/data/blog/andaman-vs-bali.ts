@@ -4,7 +4,7 @@ import { defaultAuthor } from './author';
 export const post: BlogPost = {
     id: "andaman-vs-bali",
     slug: "andaman-vs-bali",
-    title: "Andaman vs Bali: The Ultimate Tropical Showdown for Indian Travelers (2025)",
+    title: "Andaman vs Bali 2026: Cost, Visa & Which Trip to Book",
     excerpt: "Deciding between a domestic paradise and an international getaway? We compare Andaman and Bali on cost, visa, food, and experiences to help you choose.",
     image: 'https://images.pexels.com/photos/14565669/pexels-photo-14565669.jpeg?auto=compress&cs=tinysrgb&w=1200',
     category: "Destination Comparison",
@@ -12,7 +12,7 @@ export const post: BlogPost = {
     date: "2025-02-10",
     readTime: "12 min read",
     tags: ["Andaman", "Bali", "Comparison", "International Travel", "Budget Travel"],
-    relatedPosts: ["andaman-vs-lakshadweep", "budget-honeymoon-andaman", "best-time-visit-thailand"],
+    relatedPosts: ["andaman-vs-goa-2026", "andaman-vs-lakshadweep", "andaman-packages-from-india-2026"],
     content: `
 # Andaman vs Bali: Which Tropical Paradise Wins?
 

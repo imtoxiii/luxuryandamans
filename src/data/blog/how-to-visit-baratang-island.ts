@@ -27,7 +27,7 @@ const images = {
 
 const post: BlogPost = {
   id: 'how-to-visit-baratang-island',
-  title: 'How to Visit Baratang Island: Limestone Caves & Mud Volcano Guide (2025)',
+  title: 'How to Visit Baratang Island 2026: Caves, Convoy & Mud Volcano',
   slug: 'how-to-visit-baratang-island',
   excerpt:
     'Planning a trip to the Limestone Caves? Here is everything you need to know about the Baratang permit, the Jarawa Reserve convoy timings, and how to book your tickets.',

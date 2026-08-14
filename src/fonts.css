@@ -22,3 +22,5 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* Premium hero fonts load from Google (see index.html). Fallbacks keep layout stable. */

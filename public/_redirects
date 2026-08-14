@@ -1,9 +1,16 @@
-# Canonical host — force non-www HTTPS (must come before SPA fallback)
+# Canonical host — force non-www HTTPS
 https://www.luxuryandamans.com/*  https://luxuryandamans.com/:splat  301!
 http://www.luxuryandamans.com/*   https://luxuryandamans.com/:splat  301!
 http://luxuryandamans.com/*       https://luxuryandamans.com/:splat  301!
 
-# Netlify SPA fallback — existing static files (including prerendered
-# dist/packages/.../index.html) are served first; this only applies when
-# no matching file/directory exists.
-/*    /index.html   200
+# Legacy paths (HTTP 301)
+/about    /guide  301
+/about/   /guide  301
+/experiences/luxury-beach-resorts   /experiences/luxury-resorts  301
+/experiences/luxury-beach-resorts/  /experiences/luxury-resorts  301
+
+# Strip trailing slashes to match sitemap + canonicals (except root)
+/*/  /:splat  301!
+
+# Prerendered files are served first; unknown paths return a real 404
+/*    /404.html   404

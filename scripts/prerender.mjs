@@ -108,8 +108,41 @@ function routeToOutputPath(route) {
   if (route === '/') {
     return path.join(DIST, 'index.html');
   }
+  if (route === '/404') {
+    return path.join(DIST, '404.html');
+  }
   const segments = route.replace(/^\//, '').split('/');
   return path.join(DIST, ...segments, 'index.html');
+}
+
+/** Boot loader markup from the Vite shell — prerender removes it when React runs. */
+let bootLoaderMarkup = '';
+
+function extractBootLoaderMarkup(shellHtml) {
+  const start = shellHtml.indexOf('<div id="loading-skeleton"');
+  const end = shellHtml.indexOf('<!-- Preloader engine');
+  if (start < 0 || end <= start) return '';
+  return shellHtml.slice(start, end).trim();
+}
+
+function restoreBootLoaderInHtml(html) {
+  if (!bootLoaderMarkup || html.includes('id="loading-skeleton"')) {
+    return html;
+  }
+
+  // Puppeteer capture leaves an empty "<!-- Preloader -->" placeholder
+  if (html.includes('<!-- Preloader -->')) {
+    return html.replace(
+      /<!-- Preloader -->\s*/,
+      `<!-- Preloader -->\n  ${bootLoaderMarkup}\n\n  `
+    );
+  }
+
+  // Fallback: inject immediately before the inline loader engine script
+  return html.replace(
+    /(\s*)(<!-- Preloader engine)/,
+    `$1${bootLoaderMarkup}\n$1$2`
+  );
 }
 
 function cleanupCapturedHtml(html, route) {
@@ -190,6 +223,10 @@ function cleanupCapturedHtml(html, route) {
   if (!/^<!DOCTYPE/i.test(out)) {
     out = '<!DOCTYPE html>\n' + out;
   }
+
+  // React removes #loading-skeleton during prerender capture — put it back so
+  // the deployed HTML still runs the boot intro on first visit.
+  out = restoreBootLoaderInHtml(out);
 
   return out;
 }
@@ -290,14 +327,12 @@ async function main() {
   }
 
   const shellCachePath = path.join(DIST, 'spa-shell.html');
-  let spaShellHtml;
-  if (fs.existsSync(shellCachePath)) {
-    spaShellHtml = fs.readFileSync(shellCachePath, 'utf8');
-  } else {
-    spaShellHtml = fs.readFileSync(spaIndexPath, 'utf8');
-    if (!spaShellHtml.includes('data-prerender-path') && spaShellHtml.includes('<div id="root"></div>')) {
-      fs.writeFileSync(shellCachePath, spaShellHtml, 'utf8');
-    }
+  // Always snapshot the fresh Vite shell before prerender overwrites index.html
+  const spaShellHtml = fs.readFileSync(spaIndexPath, 'utf8');
+  fs.writeFileSync(shellCachePath, spaShellHtml, 'utf8');
+  bootLoaderMarkup = extractBootLoaderMarkup(spaShellHtml);
+  if (!bootLoaderMarkup) {
+    console.warn('⚠️  Boot loader markup not found in dist/index.html — intro screen may be missing after prerender.');
   }
 
   let puppeteer;
@@ -314,6 +349,8 @@ async function main() {
     .filter(Boolean);
 
   let routes = getAllRoutes().filter((r) => r !== '/');
+  // Not in sitemap — Apache ErrorDocument 404 /404.html
+  routes.push('/404');
   routes.push('/');
   if (only.length) {
     routes = routes.filter((r) => only.includes(r));
@@ -377,13 +414,21 @@ async function main() {
     }
 
     const failRatio = failures.length / results.length;
-    if (
-      failures.length > PRERENDER_CONFIG.maxAbsoluteFailures ||
-      failRatio > PRERENDER_CONFIG.maxFailureRatio
-    ) {
+    if (failures.length > 0) {
       console.error(
-        `Too many prerender failures (${failures.length}, ${(failRatio * 100).toFixed(1)}%). Failing build.`
+        `Prerender failures (${failures.length}, ${(failRatio * 100).toFixed(1)}%). Sitemap URLs must all succeed.`
       );
+      process.exit(1);
+    }
+
+    const notFoundHtml = path.join(DIST, '404.html');
+    if (!fs.existsSync(notFoundHtml)) {
+      console.error('dist/404.html missing — Apache ErrorDocument would fall back to a generic 404.');
+      process.exit(1);
+    }
+    const notFoundBody = fs.readFileSync(notFoundHtml, 'utf8');
+    if (!/noindex/i.test(notFoundBody)) {
+      console.error('dist/404.html is missing noindex — refusing to ship.');
       process.exit(1);
     }
   } finally {

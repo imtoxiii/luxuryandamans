@@ -130,7 +130,7 @@ const SEO: React.FC<SEOProps> = ({
   // Focused keyword strategy - Google recommends 5-15 keywords per page max
   // Excessive keywords trigger "keyword stuffing" penalty
   const getKeywordsByAudience = (audience: string) => {
-    const baseKeywords = 'andaman tour packages, andaman packages 2026, havelock island, neil island, port blair, andaman honeymoon packages, andaman family packages, best andaman travel agent, andaman trip cost, scuba diving andaman, andaman islands tour, budget andaman packages, luxury andaman resorts';
+    const baseKeywords = 'andaman tour packages, andaman packages 2026, best travel agency in andaman, best andaman travel agent, andaman travel agency port blair, havelock island, neil island, port blair, andaman honeymoon packages, andaman family packages, andaman trip cost, scuba diving andaman, andaman islands tour, budget andaman packages, luxury andaman resorts';
 
     const audienceSpecific: Record<string, string> = {
       budget: 'cheap andaman packages, affordable andaman trip, budget andaman tour, andaman packages under 20000, best value andaman packages',
@@ -148,8 +148,12 @@ const SEO: React.FC<SEOProps> = ({
   const defaultKeywords = keywords || getKeywordsByAudience(targetAudience);
   const siteTitle = buildSiteTitle(title);
   const metaDescription = clampDescription(description);
-  const pagePath = pathname || safePathname;
-  const canonicalUrl = `${siteUrl}${canonicalPathname || pagePath}`;
+  // Normalize trailing slash so canonical matches sitemap (except homepage "/")
+  const rawPath = pathname || safePathname;
+  const pagePath = rawPath.length > 1 ? rawPath.replace(/\/+$/, '') : rawPath || '/';
+  const canonicalUrl = `${siteUrl}${canonicalPathname
+    ? (canonicalPathname.length > 1 ? canonicalPathname.replace(/\/+$/, '') : canonicalPathname)
+    : pagePath}`;
   // og:image / twitter:image must be absolute URLs — prefix site origin for local assets
   const absoluteImage = /^https?:\/\//i.test(image) ? image : `${siteUrl}${image.startsWith('/') ? '' : '/'}${image}`;
 
@@ -163,7 +167,7 @@ const SEO: React.FC<SEOProps> = ({
     '@id': `${siteUrl}/#travelagency`,
     name: 'Luxury Andamans',
     alternateName: 'Luxury Andaman Travel',
-    description: 'Expert Andaman Islands tour operator. Curated packages starting ₹14,999 with ferry, hotels, and activities. Free cancellation and 24/7 support.',
+    description: 'Port Blair–based Andaman travel agency and tour operator. Honeymoon, family and custom packages from ₹14,999 with ferry, hotels, and activities. Local desk, free cancellation, 24/7 support.',
     url: siteUrl,
     logo: `${siteUrl}/favicon.png`,
     image: absoluteImage,
@@ -183,17 +187,10 @@ const SEO: React.FC<SEOProps> = ({
       latitude: 11.6688,
       longitude: 92.7377
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '1200',
-      bestRating: '5',
-      worstRating: '1'
-    },
     sameAs: [
-      'https://www.instagram.com/luxuryandaman',
-      'https://www.facebook.com/luxuryandaman',
-      'https://twitter.com/luxuryandaman'
+      'https://www.instagram.com/luxuryandamans',
+      'https://www.facebook.com/luxuryandamans',
+      'https://x.com/luxuryandaman'
     ],
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
@@ -203,6 +200,15 @@ const SEO: React.FC<SEOProps> = ({
     },
     currenciesAccepted: 'INR',
     paymentAccepted: 'Cash, Credit Card, Debit Card, UPI, Bank Transfer',
+    knowsAbout: [
+      'Andaman tour packages',
+      'Best travel agency in Andaman',
+      'Havelock Island',
+      'Neil Island',
+      'Andaman honeymoon packages',
+      'Andaman family packages',
+      'Scuba diving in Andaman',
+    ],
     areaServed: [
       {
         '@type': 'Place',
@@ -348,7 +354,7 @@ const SEO: React.FC<SEOProps> = ({
     url: siteUrl,
     potentialAction: {
       '@type': 'SearchAction',
-      target: `${siteUrl}/packages?search={search_term_string}`,
+      target: `${siteUrl}/experiences?search={search_term_string}`,
       'query-input': 'required name=search_term_string'
     }
   };

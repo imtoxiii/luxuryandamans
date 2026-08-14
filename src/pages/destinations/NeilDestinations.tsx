@@ -19,9 +19,9 @@ const NeilDestinations = () => {
   return (
     <div className="min-h-screen bg-pearl">
       <SEO
-        title="Neil Island Destinations - Peaceful Paradise & Coral Reef Beaches"
-        description="Explore Bharatpur Beach, Natural Bridge, and Neil Island attractions. Complete guide to coral reefs, snorkeling, and serene island life."
-        keywords="neil island, bharatpur beach, natural bridge, neil destinations, shaheed dweep, neil island tourism, coral reefs neil, snorkeling neil, peaceful island, neil island guide"
+        title="Neil Island Guide 2026 | Bharatpur & Natural Bridge"
+        description="Neil Island (Shaheed Dweep) guide: Bharatpur Beach, Natural Bridge tides, Laxmanpur sunset, ferries from Havelock, and whether Neil is worth a night on a short trip."
+        keywords="neil island, neil island guide, shaheed dweep, bharatpur beach, natural bridge neil, laxmanpur beach, snorkeling neil island, neil island ferry, things to do neil island"
         pathname="/destinations/neil-destinations"
       />
       
@@ -96,7 +96,11 @@ const NeilDestinations = () => {
                   The island is famous for Bharatpur Beach with its shallow coral reefs perfect for snorkeling, 
                   and the Natural Bridge (Howrah Bridge), a natural rock formation that's one of the most photographed 
                   spots in the Andamans. Neil Island moves at a slower pace, perfect for honeymooners and those 
-                  seeking tranquility.
+                  seeking tranquility. Details:{' '}
+                  <Link to="/destinations/bharatpur-beach" className="text-blue-600 hover:underline">Bharatpur Beach</Link>,{' '}
+                  <Link to="/destinations/natural-bridge" className="text-blue-600 hover:underline">Natural Bridge</Link>,{' '}
+                  <Link to="/locations/neil-island" className="text-blue-600 hover:underline">Neil Island guide</Link>, and our{' '}
+                  <Link to="/blog/neil-island-travel-guide-2026" className="text-blue-600 hover:underline">2026 Neil travel notes</Link>.
                 </p>
                 <p>
                   Located about 40 km from Port Blair and just 20 km from Havelock Island, Neil is easily accessible 

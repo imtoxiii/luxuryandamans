@@ -173,7 +173,7 @@ Andaman is a photographer's dream — turquoise lagoons that glow at dawn, lush 
 
 ## Share Your Shots
 
-Tag **@luxuryandaman** on Instagram and we'll feature the best shots on our page!
+Tag **@luxuryandamans** on Instagram and we'll feature the best shots on our page!
 
 - Explore more: [Instagram-Worthy Spots in Andaman](/blog/andaman-instagram-spots)
 - Plan your trip: [Packages](/packages) | [Contact Us](/contact)

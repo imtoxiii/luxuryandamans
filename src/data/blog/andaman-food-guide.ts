@@ -27,10 +27,10 @@ const images = {
 
 const post: BlogPost = {
   id: 'andaman-food-guide',
-  title: 'Andaman Food Guide 2025: 10 Must-Try Dishes & Best Restaurants',
+  title: 'Andaman Food Guide 2026: Dishes, Cafes & Where to Eat',
   slug: 'andaman-food-guide',
   excerpt:
-    'From fresh seafood grills on the beach to cozy cafés and surprising vegetarian delights, our 2025 Andaman food guide covers the 10 must-try dishes and best restaurants in Port Blair, Havelock, and Neil Island.',
+    'What to eat in Port Blair, Havelock and Neil — seafood grills, veg thalis, cafes worth the detour, and the tourist restaurants we skip.',
   image: images.main.src,
   author: defaultAuthor,
   date: new Date().toISOString(),

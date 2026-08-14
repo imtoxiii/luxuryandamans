@@ -71,7 +71,7 @@ const PackagesPage = () => {
       <SEO
         title="Andaman Tour Packages 2026 with Prices | Book Online"
         description="Browse all Andaman tour packages with prices. Honeymoon from ₹35,000, Family from ₹25,000, Luxury from ₹60,000. Includes ferry, hotels, meals & activities. Compare & book online. Call +91 62975 76826."
-        keywords="andaman packages with price, andaman tour packages 2026, andaman honeymoon packages, andaman family packages, luxury andaman packages, cheap andaman packages, 5 days andaman package, best andaman deals, andaman package booking, havelock package, all inclusive andaman package"
+        keywords="andaman packages with price, andaman tour packages 2026, andaman honeymoon packages, andaman family packages, luxury andaman packages, cheap andaman packages, 5 days andaman package, best andaman deals, andaman package booking, havelock package, all inclusive andaman package, best andaman travel agent, andaman travel agency packages"
         pathname="/packages"
         targetAudience="all"
         faqData={[

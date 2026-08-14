@@ -47,10 +47,11 @@ const LocationPage = () => {
   return (
     <div className="min-h-screen bg-pearl">
       <SEO 
-        title={`${location.name} Travel Guide 2026 | Luxury Andamans`}
+        title={`${location.name} Travel Guide 2026`}
         description={location.description}
         pathname={`/locations/${location.slug}`}
         image={location.image}
+        keywords={`${location.name.toLowerCase()}, ${location.name.toLowerCase()} andaman, ${location.name.toLowerCase()} travel guide, things to do in ${location.name.toLowerCase()}, ${location.slug.replace(/-/g, ' ')}, andaman islands, andaman tour packages`}
       />
       <Header />
       

@@ -20,7 +20,11 @@ const post: BlogPost = {
     'luxury andaman packages',
     'andaman trip cost',
   ],
-  relatedPosts: ['andaman-trip-cost-complete-breakdown-2026', '7-day-andaman-itinerary', 'andaman-budget-travel-guide'],
+  relatedPosts: [
+    'best-travel-agency-andaman-2026',
+    'how-to-choose-andaman-travel-agent-2026',
+    'andaman-trip-cost-complete-breakdown-2026',
+  ],
   content: `
 ## Packages exist because ferries are annoying to book alone
 
@@ -113,6 +117,8 @@ Full breakdown: [Andaman trip cost 2026](/blog/andaman-trip-cost-complete-breakd
 3. Compare 2–3 quotes with same hotel category and ferry class.
 4. Confirm cancellation policy — monsoon trips need flexibility.
 5. Pay deposit only after written itinerary with ferry timings.
+
+If you are comparing operators, use [how to choose an Andaman travel agent](/blog/how-to-choose-andaman-travel-agent-2026) and the longer [best travel agency in Andaman](/blog/best-travel-agency-andaman-2026) piece before you pay anyone — including us.
 
 [Free custom quote](/enquiry) — we respond with day-by-day PDF, not generic brochure text.
 `,

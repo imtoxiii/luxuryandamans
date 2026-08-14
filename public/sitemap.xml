@@ -6,16 +6,23 @@
 
 <url>
   <loc>https://luxuryandamans.com/</loc>
-  <lastmod>2026-07-19T06:10:09.000Z</lastmod>
+  <lastmod>2026-07-21T13:09:54.000Z</lastmod>
   <changefreq>weekly</changefreq>
   <priority>1.0</priority>
 </url>
 
 <url>
   <loc>https://luxuryandamans.com/blog</loc>
-  <lastmod>2026-07-18T00:00:00.000Z</lastmod>
+  <lastmod>2026-08-14T00:00:00.000Z</lastmod>
   <changefreq>daily</changefreq>
   <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/7-day-andaman-itinerary</loc>
+  <lastmod>2026-07-19T06:26:32.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
 </url>
 
 <url>
@@ -26,7 +33,28 @@
 </url>
 
 <url>
+  <loc>https://luxuryandamans.com/blog/andaman-5-days-itinerary-2026</loc>
+  <lastmod>2026-08-13T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/andaman-6-days-itinerary-2026</loc>
+  <lastmod>2026-08-14T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
   <loc>https://luxuryandamans.com/blog/andaman-bioluminescence-guide-2026</loc>
+  <lastmod>2026-07-19T06:26:32.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/andaman-budget-emi-2026</loc>
   <lastmod>2026-07-19T06:26:32.000Z</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.7</priority>
@@ -41,7 +69,14 @@
 
 <url>
   <loc>https://luxuryandamans.com/blog/andaman-couples-itinerary-2026</loc>
-  <lastmod>2026-02-10T00:00:00.000Z</lastmod>
+  <lastmod>2026-08-14T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/andaman-december-january-travel-guide-2026</loc>
+  <lastmod>2026-08-13T00:00:00.000Z</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.7</priority>
 </url>
@@ -56,6 +91,13 @@
 <url>
   <loc>https://luxuryandamans.com/blog/andaman-family-itinerary</loc>
   <lastmod>2026-07-19T06:26:32.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/andaman-ferry-booking-guide</loc>
+  <lastmod>2026-07-12T00:00:00.000Z</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.7</priority>
 </url>
@@ -76,7 +118,7 @@
 
 <url>
   <loc>https://luxuryandamans.com/blog/andaman-honeymoon-guide</loc>
-  <lastmod>2026-07-19T06:26:32.000Z</lastmod>
+  <lastmod>2026-08-14T00:00:00.000Z</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.7</priority>
 </url>
@@ -84,6 +126,13 @@
 <url>
   <loc>https://luxuryandamans.com/blog/andaman-honeymoon-itinerary-2026</loc>
   <lastmod>2026-07-19T06:26:32.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/andaman-in-february-march-2026</loc>
+  <lastmod>2026-08-14T00:00:00.000Z</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.7</priority>
 </url>
@@ -117,6 +166,20 @@
 </url>
 
 <url>
+  <loc>https://luxuryandamans.com/blog/andaman-october-november-guide-2026</loc>
+  <lastmod>2026-08-14T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/andaman-packages-from-india-2026</loc>
+  <lastmod>2026-08-14T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
   <loc>https://luxuryandamans.com/blog/andaman-permit-guide-indian-tourists</loc>
   <lastmod>2026-07-19T06:26:32.000Z</lastmod>
   <changefreq>monthly</changefreq>
@@ -140,6 +203,20 @@
 <url>
   <loc>https://luxuryandamans.com/blog/andaman-scuba-diving-beginners-guide</loc>
   <lastmod>2026-02-10T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/andaman-scuba-diving-guide</loc>
+  <lastmod>2026-07-11T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/andaman-scuba-prices-2026</loc>
+  <lastmod>2026-07-19T06:26:32.000Z</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.7</priority>
 </url>
@@ -194,6 +271,13 @@
 </url>
 
 <url>
+  <loc>https://luxuryandamans.com/blog/andaman-vs-goa-2026</loc>
+  <lastmod>2026-08-13T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
   <loc>https://luxuryandamans.com/blog/andaman-vs-lakshadweep</loc>
   <lastmod>2025-02-15T00:00:00.000Z</lastmod>
   <changefreq>monthly</changefreq>
@@ -203,6 +287,20 @@
 <url>
   <loc>https://luxuryandamans.com/blog/andaman-vs-maldives-budget</loc>
   <lastmod>2024-01-28T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/andaman-with-parents-2026</loc>
+  <lastmod>2026-08-14T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/bangalore-to-andaman-trip-plan</loc>
+  <lastmod>2026-07-19T06:26:32.000Z</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.7</priority>
 </url>
@@ -236,6 +334,20 @@
 </url>
 
 <url>
+  <loc>https://luxuryandamans.com/blog/best-time-to-visit-andaman</loc>
+  <lastmod>2026-07-15T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/best-travel-agency-andaman-2026</loc>
+  <lastmod>2026-08-14T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
   <loc>https://luxuryandamans.com/blog/budget-honeymoon-andaman</loc>
   <lastmod>2024-01-25T00:00:00.000Z</lastmod>
   <changefreq>monthly</changefreq>
@@ -243,8 +355,29 @@
 </url>
 
 <url>
+  <loc>https://luxuryandamans.com/blog/cheap-flights-to-andaman-2026</loc>
+  <lastmod>2026-08-13T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
   <loc>https://luxuryandamans.com/blog/cheapest-tropical-destinations-from-india</loc>
   <lastmod>2024-02-01T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/chennai-to-andaman-trip-plan</loc>
+  <lastmod>2026-07-19T06:26:32.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/delhi-to-andaman-trip-plan</loc>
+  <lastmod>2026-07-19T06:26:32.000Z</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.7</priority>
 </url>
@@ -278,6 +411,20 @@
 </url>
 
 <url>
+  <loc>https://luxuryandamans.com/blog/how-many-days-in-andaman-2026</loc>
+  <lastmod>2026-08-14T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/how-to-choose-andaman-travel-agent-2026</loc>
+  <lastmod>2026-08-14T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
   <loc>https://luxuryandamans.com/blog/how-to-reach-andaman-flight-vs-ship</loc>
   <lastmod>2026-07-19T06:26:32.000Z</lastmod>
   <changefreq>monthly</changefreq>
@@ -299,6 +446,13 @@
 </url>
 
 <url>
+  <loc>https://luxuryandamans.com/blog/hyderabad-to-andaman-trip-plan</loc>
+  <lastmod>2026-07-19T06:26:32.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
   <loc>https://luxuryandamans.com/blog/is-andaman-safe-for-tourists</loc>
   <lastmod>2026-07-10T00:00:00.000Z</lastmod>
   <changefreq>monthly</changefreq>
@@ -313,7 +467,56 @@
 </url>
 
 <url>
+  <loc>https://luxuryandamans.com/blog/kolkata-to-andaman-trip-plan</loc>
+  <lastmod>2026-07-19T06:26:32.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/last-minute-andaman-trip-2026</loc>
+  <lastmod>2026-08-14T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
   <loc>https://luxuryandamans.com/blog/mobile-network-internet-in-andaman</loc>
+  <lastmod>2026-07-19T06:26:32.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/mumbai-to-andaman-trip-plan</loc>
+  <lastmod>2026-07-19T06:26:32.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/neil-island-travel-guide-2026</loc>
+  <lastmod>2026-08-13T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/port-blair-one-day-itinerary</loc>
+  <lastmod>2026-07-19T06:26:32.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/private-vs-group-andaman-tour-2026</loc>
+  <lastmod>2026-08-14T00:00:00.000Z</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://luxuryandamans.com/blog/pune-to-andaman-trip-plan</loc>
   <lastmod>2026-07-19T06:26:32.000Z</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.7</priority>
@@ -629,7 +832,7 @@
 
 <url>
   <loc>https://luxuryandamans.com/faq</loc>
-  <lastmod>2026-07-18T17:45:42.000Z</lastmod>
+  <lastmod>2026-07-21T13:09:54.000Z</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.6</priority>
 </url>

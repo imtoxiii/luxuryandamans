@@ -27,7 +27,7 @@ const images = {
 
 const post: BlogPost = {
   id: 'how-to-reach-andaman-flight-vs-ship',
-  title: 'How to Reach Andaman: Flight vs Ship – The Complete Guide (2025)',
+  title: 'How to Reach Andaman: Flight vs Ship (2026 Guide)',
   slug: 'how-to-reach-andaman-flight-vs-ship',
   excerpt:
     'Confused about how to reach Andaman? We compare flights vs ships in detail. Find out why flying is the best option for tourists and what the ship journey is really like.',

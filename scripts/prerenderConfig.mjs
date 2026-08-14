@@ -10,8 +10,10 @@ export const PRERENDER_CONFIG = {
     standard: Number(process.env.PRERENDER_TIMEOUT_MS) || 60000,
     heavy: Number(process.env.PRERENDER_HEAVY_TIMEOUT_MS) || 90000,
   },
-  maxFailureRatio: 0.15,
-  maxAbsoluteFailures: 20,
+  // Sitemap URLs must all prerender. A failed route ships homepage HTML and
+  // would be submitted to Google as a duplicate.
+  maxFailureRatio: 0,
+  maxAbsoluteFailures: 0,
 };
 
 /**

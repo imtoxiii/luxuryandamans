@@ -27,7 +27,7 @@ const images = {
 
 const post: BlogPost = {
   id: 'mobile-network-internet-in-andaman',
-  title: 'Mobile Network & Internet in Andaman: What Works in 2025?',
+  title: 'Mobile Network & Internet in Andaman 2026: Airtel, Jio, Wi-Fi',
   slug: 'mobile-network-internet-in-andaman',
   excerpt:
     'Worried about staying connected? Here is the honest truth about mobile networks (Airtel vs Jio vs BSNL) and Wi-Fi speed in Port Blair, Havelock, and Neil Island.',

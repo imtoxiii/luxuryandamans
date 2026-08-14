@@ -20,10 +20,10 @@ const images = {
 
 const post: BlogPost = {
   id: slug,
-  title: 'Mumbai to Andaman Trip (2025): Your Ultimate Guide for Flights, Budget & Itinerary',
+  title: 'Mumbai to Andaman Trip 2026: Flights, Budget & Itinerary',
   slug: slug,
   excerpt:
-    'Planning to swap Mumbai’s hustle for Andaman’s serene beaches? Our 2025 guide for Mumbaikars covers the best flight options, a perfect 7-day itinerary, a detailed budget, and essential travel tips.',
+    'Flights from BOM to Port Blair, how many days you need, couple budget, and why afternoon Mumbai landings mean a Port Blair first night.',
   image: images.main.src,
   author: defaultAuthor,
   date: new Date().toISOString(),
@@ -38,9 +38,9 @@ const post: BlogPost = {
     'andaman trip cost'
   ],
   relatedPosts: [
-    '7-day-andaman-itinerary',
-    'andaman-best-time',
-    'andaman-budget-guide'
+    'andaman-packages-from-india-2026',
+    'andaman-itinerary-7-days',
+    'cheap-flights-to-andaman-2026',
   ],
   content: `
 ## From the City of Dreams to an Island Paradise: The Mumbai to Andaman Plan

@@ -20,7 +20,7 @@ const images = {
 
 const post: BlogPost = {
   id: slug,
-  title: 'Chennai to Andaman Trip (2025): Your Guide to Direct Flights, Budget & Itinerary',
+  title: 'Chennai to Andaman Trip 2026: Direct Flights, Budget & Plan',
   slug: slug,
   excerpt:
     'Planning your Andaman trip from Chennai? You are in the right place. This guide covers direct flights, a perfect 7-day itinerary, a detailed budget for couples, and essential tips for a seamless journey.',
@@ -37,14 +37,14 @@ const post: BlogPost = {
     'andaman trip cost'
   ],
   relatedPosts: [
-    '7-day-andaman-itinerary',
-    'andaman-best-time',
-    'andaman-scuba-guide'
+    'andaman-packages-from-india-2026',
+    'andaman-itinerary-7-days',
+    'cheap-flights-to-andaman-2026',
   ],
   content: `
 ## The Easiest Gateway to Paradise: Your Andaman Trip from Chennai
 
-For residents of Chennai, the Andaman Islands aren't just a dream destination; they are the most accessible tropical paradise you can fly to. With the shortest flight times and excellent connectivity, planning a trip from Chennai is a breeze. This comprehensive guide will walk you through everything you need to know, from booking direct flights to crafting the perfect budget and itinerary for 2025.
+For residents of Chennai, the Andaman Islands aren't just a dream destination; they are the most accessible tropical paradise you can fly to. With the shortest flight times and excellent connectivity, planning a trip from Chennai is a breeze. This comprehensive guide will walk you through everything you need to know, from booking direct flights to crafting the perfect budget and itinerary for 2026.
 
 ## Flights: The Chennai Advantage - Fly Direct to Port Blair (IXZ)
 

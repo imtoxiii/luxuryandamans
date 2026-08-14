@@ -13,10 +13,13 @@ const Blog = () => {
   const [sortBy, setSortBy] = useState('newest');
   const [showFilters, setShowFilters] = useState(false);
 
-  const categories = ['all', ...new Set(blogPosts.map(post => post.category.toLowerCase()))];
+  // Exclude noindex duplicates from the public listing (they stay live via direct URL)
+  const indexablePosts = useMemo(() => blogPosts.filter((post) => !post.noindex), []);
+
+  const categories = ['all', ...new Set(indexablePosts.map(post => post.category.toLowerCase()))];
 
   const filteredAndSortedPosts = useMemo(() => {
-    const filtered = blogPosts.filter(post => {
+    const filtered = indexablePosts.filter(post => {
       const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
         post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -38,23 +41,23 @@ const Blog = () => {
     });
 
     return filtered;
-  }, [searchTerm, selectedCategory, sortBy]);
+  }, [indexablePosts, searchTerm, selectedCategory, sortBy]);
 
   const categoryStats = useMemo(() => {
     return categories.map(category => ({
       name: category,
       count: category === 'all'
-        ? blogPosts.length
-        : blogPosts.filter(post => post.category.toLowerCase() === category).length
+        ? indexablePosts.length
+        : indexablePosts.filter(post => post.category.toLowerCase() === category).length
     }));
-  }, [categories]);
+  }, [categories, indexablePosts]);
 
   return (
     <div className="relative min-h-screen bg-pearl font-sans selection:bg-azure selection:text-white">
       <SEO
-        title="Andaman Travel Blog 2026 | Tips, Guides & Stories"
-        description="Read expert Andaman travel guides, hidden gem recommendations, local food tips, budget planning advice & island stories. Updated weekly by local travel experts."
-        keywords="andaman travel blog, andaman travel tips, andaman travel guide, best andaman islands, andaman hidden gems, andaman food guide, andaman budget tips, havelock island guide, andaman honeymoon tips, andaman itinerary, andaman first time visitor"
+        title="Andaman Travel Blog 2026 | Guides from Port Blair"
+        description="Andaman travel guides written from Port Blair — ferries, packages, best time to go, honeymoon plans, and how to pick a travel agency. Practical, not brochure copy."
+        keywords="andaman travel blog, andaman travel tips, andaman travel guide 2026, best travel agency in andaman, andaman itinerary, havelock island guide, andaman honeymoon tips, andaman trip cost, best time to visit andaman, andaman first time visitor, andaman tour packages guide"
         targetAudience="all"
         pathname="/blog"
         faqData={[
@@ -64,7 +67,11 @@ const Blog = () => {
           },
           {
             question: "What should first-time visitors know about Andaman?",
-            answer: "First-time Andaman visitors should know: 1) Best season is October-May, 2) You need an Indian visa + arrival permit, 3) Book ferries in advance during peak season, 4) Havelock Island is a must-visit, 5) Carry cash as ATMs are limited on smaller islands, 6) Book activities through a trusted local operator for best prices."
+            answer: "First-time Andaman visitors should know: 1) Best season is October-May, 2) Indian citizens need photo ID, not a passport, 3) Book ferries in advance during peak season, 4) Havelock Island is a must-visit, 5) Carry cash as ATMs are limited on smaller islands, 6) Book through a trusted Port Blair travel agency if you do not want to juggle ferry sites yourself."
+          },
+          {
+            question: "Which is the best travel agency in Andaman?",
+            answer: "Look for a Port Blair office, named ferry operators on the voucher, GST invoices, and a phone that works after 8 pm on Havelock. Read our 2026 guide: https://luxuryandamans.com/blog/best-travel-agency-andaman-2026"
           }
         ]}
         structuredData={{

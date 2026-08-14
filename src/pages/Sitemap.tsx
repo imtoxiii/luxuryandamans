@@ -34,7 +34,14 @@ const Sitemap = () => {
     'family-adventures',
     'bioluminescence-kayaking',
     'sea-walk',
-    'game-fishing'
+    'game-fishing',
+    'snorkeling',
+    'trekking',
+    'cultural-tours',
+    'bird-watching',
+    'parasailing',
+    'jet-ski',
+    'mangrove-creek',
   ];
 
   const destinationLinks = [
@@ -56,7 +63,9 @@ const Sitemap = () => {
 
   const blogLinks = [
     { name: 'Blog Home', path: '/blog' },
-    ...blogPosts.map(p => ({ name: p.title, path: `/blog/${p.slug}` }))
+    ...blogPosts
+      .filter((p) => !p.noindex)
+      .map((p) => ({ name: p.title, path: `/blog/${p.slug}` })),
   ];
 
   const sections: SitemapSection[] = [

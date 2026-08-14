@@ -20,10 +20,10 @@ const images = {
 
 const post: BlogPost = {
   id: slug,
-  title: 'Pune to Andaman Trip (2025): The Complete Guide to Flights, Itinerary & Budget',
+  title: 'Pune to Andaman Trip 2026: Flights, Budget & Itinerary',
   slug: slug,
   excerpt:
-    'Planning your Andaman escape from Pune? Our 2025 guide details the best flight routes, a perfect 7-day itinerary for Punekars, a realistic budget breakdown, and essential travel tips.',
+    'Planning your Andaman escape from Pune? 2026 flight routes, a 7-day itinerary, and a realistic budget for Punekars.',
   image: images.main.src,
   author: defaultAuthor,
   date: new Date().toISOString(),
@@ -37,14 +37,14 @@ const post: BlogPost = {
     'andaman trip cost'
   ],
   relatedPosts: [
-    '7-day-andaman-itinerary',
-    'andaman-top-things-to-do',
-    'andaman-budget-guide'
+    'andaman-packages-from-india-2026',
+    'andaman-itinerary-7-days',
+    'cheap-flights-to-andaman-2026',
   ],
   content: `
 ## Swapping the Deccan Plateau for Tropical Shores: Your Pune to Andaman Guide
 
-Ready to trade the pleasant climate of Pune for the stunning turquoise waters and white sandy beaches of the Andaman Islands? An island getaway is the perfect antidote to city life, and this guide is specially designed for Punekars. We'll walk you through the smartest way to travel, what to do, and how to budget for an unforgettable trip in 2025.
+Ready to trade the pleasant climate of Pune for the stunning turquoise waters and white sandy beaches of the Andaman Islands? An island getaway is the perfect antidote to city life, and this guide is specially designed for Punekars. We'll walk you through the smartest way to travel, what to do, and how to budget for an unforgettable trip in 2026.
 
 ## Flights: Planning Your Journey from Pune (PNQ) to Port Blair (IXZ)
 

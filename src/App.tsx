@@ -186,6 +186,8 @@ function App() {
           <Route path="/experiences/jet-ski" element={<JetSkiPage />} />
           <Route path="/experiences/mangrove-creek" element={<MangroveCreekPage />} />
 
+          {/* Explicit /404 for prerender → dist/404.html (Apache ErrorDocument) */}
+          <Route path="/404" element={<NotFound />} />
           {/* 404 Catch-all — render NotFound, do not redirect home */}
           <Route path="*" element={<NotFound />} />
         </Routes>

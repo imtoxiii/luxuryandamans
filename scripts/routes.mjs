@@ -18,16 +18,24 @@ function readFileSafe(filePath) {
 }
 
 /**
- * Extract slugs from a TS file using a regex like slug: '...'
+ * Extract slugs from a TS file.
+ * Supports both:
+ *   slug: 'my-slug'
+ *   const slug = 'my-slug'   (shorthand property later)
  */
 function extractSlugsFromFile(filePath) {
   const content = readFileSafe(filePath);
   if (!content) return [];
   const slugs = new Set();
-  const regex = /slug\s*:\s*['"]([^'"\n]+)['"]/g;
-  let match;
-  while ((match = regex.exec(content)) !== null) {
-    if (match[1]) slugs.add(match[1].trim());
+  const patterns = [
+    /slug\s*:\s*['"]([^'"\n]+)['"]/g,
+    /\b(?:const|let|var)\s+slug\s*=\s*['"]([^'"\n]+)['"]/g,
+  ];
+  for (const regex of patterns) {
+    let match;
+    while ((match = regex.exec(content)) !== null) {
+      if (match[1]) slugs.add(match[1].trim());
+    }
   }
   return Array.from(slugs);
 }

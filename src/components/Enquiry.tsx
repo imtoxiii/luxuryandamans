@@ -173,9 +173,10 @@ const Enquiry = () => {
   return (
     <div className="min-h-screen font-sans bg-pearl">
       <SEO 
-        title="Plan Your Trip | Luxury Andamans"
-        description="Start planning your dream Andaman vacation. Custom packages, luxury resorts, and unforgettable experiences."
+        title="Plan Your Andaman Trip | Custom Package Quote"
+        description="Get a custom Andaman itinerary from a Port Blair travel agency. Tell us dates and budget — we reply with ferries, hotels, and a clear quote. Call +91 62975 76826."
         pathname="/enquiry"
+        keywords="andaman trip planner, custom andaman package, andaman itinerary quote, plan andaman trip, andaman travel agency enquiry"
       />
       <Header />
       <Toaster position="top-right" />

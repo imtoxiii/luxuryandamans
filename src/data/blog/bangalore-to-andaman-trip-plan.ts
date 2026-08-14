@@ -20,10 +20,10 @@ const images = {
 
 const post: BlogPost = {
   id: slug,
-  title: 'Bangalore to Andaman Trip (2025): A Complete Plan for Flights, Budget & Itinerary',
+  title: 'Bangalore to Andaman Trip 2026: Flights, Budget & Itinerary',
   slug: slug,
   excerpt:
-    "Your ultimate guide for planning a trip from Bangalore to the Andamans. Get expert tips on booking the cheapest flights, a perfect 7-day itinerary, a detailed budget breakdown, and FAQs for 2025.",
+    "Your ultimate guide for planning a trip from Bangalore to the Andamans. Get expert tips on booking the cheapest flights, a perfect 7-day itinerary, a detailed budget breakdown, and FAQs for 2026.",
   image: images.main.src,
   author: defaultAuthor,
   date: new Date().toISOString(),
@@ -38,9 +38,9 @@ const post: BlogPost = {
     'andaman trip cost'
   ],
   relatedPosts: [
-    '7-day-andaman-itinerary',
-    'andaman-top-things-to-do',
-    'andaman-budget-guide'
+    'andaman-packages-from-india-2026',
+    'andaman-itinerary-7-days',
+    'cheap-flights-to-andaman-2026',
   ],
   content: `
 ## Your Andaman Escape from Bangalore Starts Here

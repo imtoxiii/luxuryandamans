@@ -19,9 +19,9 @@ const BaratangDestinations = () => {
   return (
     <div className="min-h-screen bg-pearl">
       <SEO
-        title="Baratang Island Destinations - Limestone Caves & Mud Volcano Adventure"
-        description="Explore Limestone Caves, Mud Volcano, and Baratang's natural wonders. Complete guide to convoy travel, tribal reserves, and unique geological formations."
-        keywords="baratang island, limestone caves, mud volcano, baratang destinations, baratang tourism, jarawa reserve, baratang convoy, mangrove creek, parrot island, baratang adventure"
+        title="Baratang Island Guide 2026 | Caves, Mud Volcano"
+        description="Baratang day trip from Port Blair: limestone caves, mud volcano, mangrove creek, convoy timing, and whether it is worth a day on a 5–7 day Andaman itinerary."
+        keywords="baratang island, baratang limestone caves, mud volcano baratang, baratang day trip, jarawa convoy, mangrove creek baratang, how to visit baratang, parrot island baratang"
         pathname="/destinations/baratang-destinations"
       />
       
@@ -94,7 +94,10 @@ const BaratangDestinations = () => {
                   Baratang is perfect for adventure seekers and nature enthusiasts. The island sees fewer tourists, 
                   making it ideal for those seeking off-the-beaten-path experiences. The journey requires careful 
                   planning - convoy times are fixed (usually 6 AM, 9 AM, 2 PM from Port Blair), and it's typically 
-                  done as a long day trip or overnight stay.
+                  done as a long day trip or overnight stay. Practical write-up:{' '}
+                  <Link to="/blog/how-to-visit-baratang-island" className="text-azure hover:underline">how to visit Baratang</Link>, plus{' '}
+                  <Link to="/destinations/limestone-caves" className="text-azure hover:underline">limestone caves</Link> and the{' '}
+                  <Link to="/destinations/mud-volcano" className="text-azure hover:underline">mud volcano</Link>.
                 </p>
               </div>
             </motion.div>

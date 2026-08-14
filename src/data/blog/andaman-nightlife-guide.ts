@@ -4,7 +4,7 @@ import { defaultAuthor } from './author';
 export const post: BlogPost = {
     id: "andaman-nightlife-guide",
     slug: "andaman-nightlife-guide",
-    title: "Andaman Nightlife Guide: Best Bars, Beach Parties, and Night Activities (2025)",
+    title: "Andaman Nightlife 2026: Bars, Beach Dinners & What Closes Early",
     excerpt: "Think Andaman sleeps after sunset? Think again! From candlelight dinners to lively beach bars, discover the best of Andaman's nightlife.",
     image: 'https://images.pexels.com/photos/3098980/pexels-photo-3098980.jpeg?auto=compress&cs=tinysrgb&w=1200',
     category: "Travel Guide",

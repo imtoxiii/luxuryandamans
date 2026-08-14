@@ -4,7 +4,7 @@ import { defaultAuthor } from './author';
 export const post: BlogPost = {
     id: "andaman-instagram-spots",
     slug: "andaman-instagram-spots",
-    title: "Top 10 Instagram Spots in Andaman: The Most Photogenic Locations (2025)",
+    title: "Top 10 Instagram Spots in Andaman 2026: Beaches Worth the Photo",
     excerpt: "Want to light up your feed? Here are the 10 most aesthetic, Instagram-worthy locations in Andaman that you simply cannot miss.",
     image: 'https://images.pexels.com/photos/28800340/pexels-photo-28800340/free-photo-of-silhouetted-scuba-divers-underwater-adventure.jpeg?auto=compress&cs=tinysrgb&w=1200',
     category: "Travel Guide",

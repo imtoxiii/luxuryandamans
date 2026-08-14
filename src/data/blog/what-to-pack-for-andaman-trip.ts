@@ -27,7 +27,7 @@ const images = {
 
 const post: BlogPost = {
   id: 'what-to-pack-for-andaman-trip',
-  title: 'Ultimate Andaman Packing List 2025: What to Bring & What to Leave',
+  title: 'Andaman Packing List 2026: What to Bring (and Leave at Home)',
   slug: 'what-to-pack-for-andaman-trip',
   excerpt:
     'Don\'t overpack! Here is the definitive checklist of clothes, gadgets, and essentials you actually need for your Andaman island vacation.',

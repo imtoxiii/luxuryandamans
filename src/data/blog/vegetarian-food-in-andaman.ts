@@ -27,7 +27,7 @@ const images = {
 
 const post: BlogPost = {
   id: 'vegetarian-food-in-andaman',
-  title: 'Vegetarian Food in Andaman: A Complete Guide for 2025',
+  title: 'Vegetarian Food in Andaman 2026: Pure Veg, Jain & What to Order',
   slug: 'vegetarian-food-in-andaman',
   excerpt:
     'Worried that Andaman is only for seafood lovers? Think again! Discover the best pure veg restaurants, Jain food options, and what to eat in Port Blair and Havelock.',

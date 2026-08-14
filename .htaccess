@@ -1,123 +1,100 @@
-# Luxury Andamans Website - Performance & Security Configuration
+# Luxury Andamans — Apache SEO + SPA config
+# Canonical: https://luxuryandamans.com (no www, no trailing slash)
+# Keep in sync with public/.htaccess (deployed copy).
 
-# Enable compression for better performance
-<IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/plain
-    AddOutputFilterByType DEFLATE text/html
-    AddOutputFilterByType DEFLATE text/xml
-    AddOutputFilterByType DEFLATE text/css
-    AddOutputFilterByType DEFLATE text/javascript
-    AddOutputFilterByType DEFLATE application/xml
-    AddOutputFilterByType DEFLATE application/xhtml+xml
-    AddOutputFilterByType DEFLATE application/rss+xml
-    AddOutputFilterByType DEFLATE application/javascript
-    AddOutputFilterByType DEFLATE application/x-javascript
-    AddOutputFilterByType DEFLATE application/json
-    AddOutputFilterByType DEFLATE image/svg+xml
-</IfModule>
+DirectorySlash Off
 
-# Enable browser caching for better performance
-<IfModule mod_expires.c>
-    ExpiresActive On
-    
-    # Images - cache for 1 year
-    ExpiresByType image/jpg "access plus 1 year"
-    ExpiresByType image/jpeg "access plus 1 year"
-    ExpiresByType image/gif "access plus 1 year"
-    ExpiresByType image/png "access plus 1 year"
-    ExpiresByType image/webp "access plus 1 year"
-    ExpiresByType image/svg+xml "access plus 1 year"
-    ExpiresByType image/x-icon "access plus 1 year"
-    
-    # CSS and JavaScript - cache for 1 year
-    ExpiresByType text/css "access plus 1 year"
-    ExpiresByType application/javascript "access plus 1 year"
-    ExpiresByType text/javascript "access plus 1 year"
-    
-    # Fonts - cache for 1 year
-    ExpiresByType font/woff "access plus 1 year"
-    ExpiresByType font/woff2 "access plus 1 year"
-    ExpiresByType application/font-woff "access plus 1 year"
-    ExpiresByType application/font-woff2 "access plus 1 year"
-    
-    # HTML files - cache for 1 hour
-    ExpiresByType text/html "access plus 1 hour"
-    
-    # JSON and XML - cache for 1 hour
-    ExpiresByType application/json "access plus 1 hour"
-    ExpiresByType application/xml "access plus 1 hour"
-    ExpiresByType text/xml "access plus 1 hour"
-</IfModule>
-
-# Cache-Control headers for better performance
-<IfModule mod_headers.c>
-    # Cache static assets for 1 year
-    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|webp|svg|woff|woff2|ttf|eot|ico)$">
-        Header set Cache-Control "max-age=31536000, public, immutable"
-    </FilesMatch>
-    
-    # HTML - no cache, always revalidate to pick up new deploys
-    <FilesMatch "\.(html|htm)$">
-        Header set Cache-Control "no-cache, max-age=0, must-revalidate"
-        Header set Pragma "no-cache"
-        Header set Expires "0"
-    </FilesMatch>
-    
-    # Security headers
-    Header always set X-Content-Type-Options nosniff
-    Header always set X-Frame-Options DENY
-    Header always set X-XSS-Protection "1; mode=block"
-    Header always set Referrer-Policy "strict-origin-when-cross-origin"
-    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
-    
-    # CORS headers for API requests
-    Header set Access-Control-Allow-Origin "*"
-    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
-    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
-</IfModule>
-
-# Handle React Router (for SPA routing)
 <IfModule mod_rewrite.c>
-    RewriteEngine On
-    
-    # Handle Angular and React Router - redirect all requests to index.html unless file exists
-    RewriteBase /
-    RewriteRule ^index\.html$ - [L]
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} !^/backend/
-    RewriteRule . /index.html [L]
+  RewriteEngine On
+  RewriteBase /
+
+  # --- Canonical host: HTTPS + non-www (must be first) ---
+  RewriteCond %{HTTP_HOST} ^www\.luxuryandamans\.com$ [NC]
+  RewriteRule ^ https://luxuryandamans.com%{REQUEST_URI} [L,R=301]
+
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+  RewriteRule ^ https://luxuryandamans.com%{REQUEST_URI} [L,R=301]
+
+  # --- Legacy path redirects (HTTP 301, not client-side) ---
+  RewriteRule ^about/?$ /guide [L,R=301]
+  RewriteRule ^experiences/luxury-beach-resorts/?$ /experiences/luxury-resorts [L,R=301]
+
+  # --- Strip trailing slash (except root) — matches sitemap + canonicals ---
+  RewriteCond %{REQUEST_URI} ^(.+)/$
+  RewriteRule ^ %1 [L,R=301]
+
+  # --- Prerendered directories: serve index.html without redirect ---
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}/index.html -f
+  RewriteRule ^(.*)$ $1/index.html [L]
+
+  # --- Existing files pass through ---
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  # --- Unknown paths: stop rewriting so Apache returns a real HTTP 404 ---
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ - [L]
 </IfModule>
 
-# Security - Prevent access to sensitive files
+ErrorDocument 404 /404.html
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css text/javascript
+  AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/rss+xml
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/json image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/json "access plus 1 hour"
+  ExpiresByType application/xml "access plus 1 hour"
+  ExpiresByType text/xml "access plus 1 hour"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js|png|jpg|jpeg|gif|webp|svg|woff|woff2|ttf|eot|ico)$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "no-cache, max-age=0, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+  Header always set X-Content-Type-Options nosniff
+  Header always set X-Frame-Options DENY
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
 <FilesMatch "(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op])|~)$">
-    Require all denied
+  Require all denied
 </FilesMatch>
 
-# Prevent access to .env files
 <FilesMatch "^\.env">
-    Require all denied
+  Require all denied
 </FilesMatch>
 
-# Prevent access to configuration files
-<FilesMatch "\.(env|json|lock)$">
-    Require all denied
-</FilesMatch>
-
-# Enable ETags for better caching
+ServerSignature Off
 FileETag MTime Size
 
-# Remove server signature for security
-ServerSignature Off
-
-# MIME types for better handling
 <IfModule mod_mime.c>
-    AddType application/font-woff2 .woff2
-    AddType application/font-woff .woff
-    AddType image/webp .webp
+  AddType application/font-woff2 .woff2
+  AddType application/font-woff .woff
+  AddType image/webp .webp
 </IfModule>
-
-# Error documents
-ErrorDocument 404 /index.html
-ErrorDocument 403 /index.html
-ErrorDocument 500 /index.html

@@ -126,7 +126,7 @@ const GuidePage = () => {
         title="Andaman Logistics Guide 2026 | Flights, Ferries & Permits"
         description="Practical Andaman logistics for 2026: flights to Port Blair, ship options, inter-island ferry booking, permits & documents, cash & connectivity tips. Plan the how — then build your itinerary."
         pathname={location.pathname}
-        keywords="andaman flights, andaman ferry booking, andaman permits, how to reach andaman, andaman documents, andaman logistics, port blair airport, makruzz ferry, andaman travel tips 2026"
+        keywords="andaman flights, andaman ferry booking, andaman permits, how to reach andaman, andaman documents, andaman logistics, port blair airport, makruzz ferry, andaman travel tips 2026, andaman travel agency help"
         targetAudience="all"
         extraStructuredData={[breadcrumbStructuredData, faqStructuredData]}
       />

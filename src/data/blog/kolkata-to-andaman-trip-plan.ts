@@ -20,7 +20,7 @@ const images = {
 
 const post: BlogPost = {
   id: slug,
-  title: 'Kolkata to Andaman Trip (2025): A Complete Guide to Flights, Itinerary & Budget',
+  title: 'Kolkata to Andaman Trip 2026: Flights, Budget & Itinerary',
   slug: slug,
   excerpt:
     'As the closest metro city, Kolkata is the perfect gateway to the Andamans. Our 2025 guide covers direct flights, a detailed 7-day itinerary, a realistic budget, and special tips for travelers from Kolkata.',
@@ -38,14 +38,14 @@ const post: BlogPost = {
     'west bengal to andaman'
   ],
   relatedPosts: [
-    '7-day-andaman-itinerary',
-    'andaman-best-time',
-    'andaman-family-itinerary'
+    'andaman-packages-from-india-2026',
+    'andaman-itinerary-7-days',
+    'cheap-flights-to-andaman-2026',
   ],
   content: `
 ## Your Quickest Escape to Paradise: The Kolkata to Andaman Guide
 
-For the people of Kolkata, the Andaman Islands are practically a weekend getaway extension. As the closest major metro city, Kolkata offers the fastest and often cheapest flights to this tropical haven. If you're planning to trade the city's vibrant culture for tranquil beaches, this guide is your perfect starting point, covering everything from flight tips to a fantastic itinerary for 2025.
+For the people of Kolkata, the Andaman Islands are practically a weekend getaway extension. As the closest major metro city, Kolkata offers the fastest and often cheapest flights to this tropical haven. If you're planning to trade the city's vibrant culture for tranquil beaches, this guide is your perfect starting point, covering everything from flight tips to a fantastic itinerary for 2026.
 
 ## Flights: The Kolkata Advantage - Quick & Direct
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export const usePageTransition = () => {
@@ -13,23 +13,24 @@ export const usePageTransition = () => {
       setIsTransitioning(true);
       setTransitionPhase('wipe-in');
 
-      // Phase 1: Walls close over current page (0-600ms)
+      // Phase 1: Curtains close over the current page (panels take 800ms —
+      // swap only once the screen is fully covered to avoid a visible content pop)
       const wipeInTimer = setTimeout(() => {
         setTransitionPhase('content-swap');
-        // Update displayed location while walls are closed
+        // Update displayed location while the screen is covered
         setDisplayLocation(currentLocation);
-      }, 600);
+      }, 850);
 
-      // Phase 2: Hold closed while new page renders (600-1200ms)
+      // Phase 2: Hold closed while the new page renders (850-1250ms)
       const contentSwapTimer = setTimeout(() => {
         setTransitionPhase('wipe-out');
-      }, 1200);
+      }, 1250);
 
-      // Phase 3: Walls open to reveal new page (1200-2200ms)
+      // Phase 3: Curtains slide out to reveal the new page (1250-2100ms)
       const wipeOutTimer = setTimeout(() => {
         setTransitionPhase('idle');
         setIsTransitioning(false);
-      }, 2200);
+      }, 2100);
 
       return () => {
         clearTimeout(wipeInTimer);

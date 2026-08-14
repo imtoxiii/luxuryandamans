@@ -4,19 +4,21 @@ import { defaultAuthor } from './author';
 export const post: BlogPost = {
   id: "andaman-top-things-to-do-2025",
   slug: "andaman-top-things-to-do-2025",
-  title: "Top 25 Things to Do in Andaman: The Ultimate 2025 Bucket List",
-  excerpt: "From walking on the sea floor to exploring active volcanoes, here is the definitive list of must-do experiences in Andaman for 2025.",
+  title: 'Top 25 Things to Do in Andaman (2026): Beaches, Scuba & What to Skip',
+  excerpt: 'Scuba, Radhanagar, Baratang, Cellular Jail, bioluminescence — the 25 Andaman experiences worth your days, plus the tourist traps we tell clients to skip.',
   image: 'https://images.pexels.com/photos/35252466/pexels-photo-35252466/free-photo-of-group-of-divers-exploring-underwater-depths.jpeg?auto=compress&cs=tinysrgb&w=1200',
   category: "Travel Guide",
   author: defaultAuthor,
   date: "2025-01-15",
   readTime: "15 min read",
-  tags: ["Activities", "Bucket List", "Adventure", "Guide", "2025"],
-  relatedPosts: ["andaman-scuba-guide", "andaman-instagram-spots", "andaman-nightlife-guide"],
+  tags: ["things to do in andaman", "andaman activities", "scuba diving andaman", "andaman bucket list", "2026"],
+  relatedPosts: ["andaman-scuba-guide", "andaman-5-days-itinerary-2026", "andaman-tour-packages-guide-2026"],
   content: `
-# The Ultimate Andaman Bucket List for 2025
+# Things to do in Andaman in 2026 (the useful list)
 
-Planning a trip to Andaman? Don't just sit on the beach (though you should do that too). Here are the top 25 experiences that define an Andaman vacation in 2025.
+You cannot do 25 things in 5 days. Pick 8–10. Scuba and Radhanagar sunset are the two we refuse to cut. Barren Island is a charter, not a Tuesday outing.
+
+Full activity pages: [scuba](/experiences/scuba-diving), [snorkeling](/experiences/snorkeling), [sea walk](/experiences/sea-walk), [bioluminescence](/experiences/bioluminescence-kayaking). Packages that already bundle a few: [adventure 6D](/packages/andaman-adventure-thrill-6-days).
 
 ![Andaman Adventure](https://images.pexels.com/photos/14565669/pexels-photo-14565669.jpeg?auto=compress&cs=tinysrgb&w=1200)
 

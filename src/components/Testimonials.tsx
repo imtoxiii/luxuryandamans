@@ -32,7 +32,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="py-24 bg-blue-900 relative overflow-hidden">
+    <section className="py-24 bg-blue-900 relative overflow-hidden rounded-[2rem] md:rounded-[3rem]">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-blue-900 via-blue-900/95 to-blue-800" />

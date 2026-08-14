@@ -27,10 +27,10 @@ const images = {
 
 const post: BlogPost = {
   id: 'andaman-budget-guide',
-  title: 'Andaman Budget Trip 2025: Costs, Itinerary & 15 Smart Savings Tips',
+  title: 'Andaman Budget Trip 2026: Real Costs & 15 Ways to Spend Less',
   slug: 'andaman-budget-travel-guide',
   excerpt:
-    'Think an Andaman trip is expensive? Think again! Our 2025 budget guide breaks down costs for flights, ferries, and hotels, offering 15 smart tips to help you save money and plan an affordable island holiday.',
+    'What a cheap Andaman trip actually costs in 2026 — flights, government ferries, guesthouses, food — plus 15 cuts that do not delete Havelock from the plan.',
   image: images.main.src,
   author: defaultAuthor,
   date: new Date().toISOString(),
@@ -43,12 +43,13 @@ const post: BlogPost = {
     'save money in andaman',
     'andaman on a shoestring',
     'andaman budget hotels',
-    'andaman travel guide 2025',
+    'cheap andaman trip 2026',
+    'andaman on a budget',
   ],
   relatedPosts: [
-    'andaman-best-time',
-    '7-day-andaman-itinerary',
-    'andaman-budget-emi-2025',
+    'andaman-trip-cost-complete-breakdown-2026',
+    'andaman-budget-emi-2026',
+    'andaman-tour-packages-guide-2026',
   ],
   faq: [
     {
@@ -78,12 +79,15 @@ const post: BlogPost = {
     },
   ],
   content: `
-## Can You Really Do an Andaman Trip on a Budget?
-Yes, absolutely! While the Andaman Islands are often seen as a luxury destination, a budget-friendly trip is entirely possible with smart planning. You don't have to sacrifice the stunning beaches and incredible experiences. This guide will break down the real costs for 2025 and give you 15 actionable tips to save money without compromising on the magic of the islands.
+## Yes — if you stop paying peak-season prices for a monsoon trip
+
+Andaman looks expensive because December hotels and Makruzz tickets are expensive. A May–September or early-October trip with government ferries and a Havelock guesthouse is a different invoice. You still get Radhanagar. You do not get guaranteed scuba every morning.
+
+Line-item numbers: [Andaman trip cost 2026](/blog/andaman-trip-cost-complete-breakdown-2026). Cheapest ready bundle: [standard 5N/6D](/packages/standard-andaman-package-5n6d).
 
 ---
 
-## Andaman Trip Cost Breakdown 2025 (Per Person Estimates)
+## Andaman trip cost breakdown 2026 (per person, rough)
 Understanding where your money goes is the first step. Here’s a realistic breakdown:
 
 - **Flights:** (The biggest variable) ₹8,000 - ₹25,000 round trip from major Indian cities. Book 3-4 months in advance for the best prices.
@@ -152,7 +156,7 @@ At local markets for souvenirs or with auto-rickshaw drivers, it's okay to barga
 A trip to the Andamans doesn't have to be a splurge. With these tips, you can experience the best of the islands while keeping your budget in check.
 
 - See how to fit this into a schedule with our [7-Day Andaman Itinerary](/blog/7-day-andaman-itinerary).
-- Learn about financing options in our [Andaman on EMI 2025 Guide](/blog/andaman-budget-emi-2025).
+- Spread the cost: [Andaman on EMI](/blog/andaman-budget-emi-2026).
 - Find the cheapest months to travel in our [Best Time to Visit Andaman Guide](/blog/best-time-to-visit-andaman).
 - Ready to book? [Contact us](/contact) for a customized budget-friendly package!
 `,

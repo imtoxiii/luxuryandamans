@@ -27,7 +27,7 @@ const images = {
 
 const post: BlogPost = {
   id: 'andaman-permit-guide-indian-tourists',
-  title: 'Do Indians Need a Passport for Andaman? Permit Guide 2025',
+  title: 'Do Indians Need a Passport for Andaman? Permit Guide 2026',
   slug: 'andaman-permit-guide-indian-tourists',
   excerpt:
     'Confused about entry formalities? We clear up all doubts about passports, visas, and the Restricted Area Permit (RAP) for Indian and Foreign tourists visiting Andaman.',

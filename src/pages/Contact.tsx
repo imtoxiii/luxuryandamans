@@ -104,10 +104,10 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-slate-50 font-sans selection:bg-teal-100 selection:text-teal-900">
       <SEO
-        title="Contact Us | Luxury Andamans | +91 62975 76826"
-        description="Contact Luxury Andamans for personalized Andaman tour packages. Call +91 62975 76826 or WhatsApp us. Based in Port Blair with 24/7 support. Get instant quotes for honeymoon, family & adventure trips."
+        title="Andaman Travel Agency Port Blair | Contact Us"
+        description="Talk to a Port Blair Andaman travel agency. Call or WhatsApp +91 62975 76826 for honeymoon, family and custom packages. Local desk, ferry booking help, replies within minutes."
         pathname={location.pathname}
-        keywords="contact luxury andamans, andaman travel agency, andaman tour booking, port blair travel agent, andaman trip planner, best andaman travel agent, andaman custom tour, andaman package enquiry"
+        keywords="andaman travel agency, andaman travel agency port blair, best travel agency in andaman, best andaman travel agent, port blair travel agent, andaman tour operator, contact luxury andamans, andaman package enquiry, andaman custom tour"
         faqData={[
           {
             question: "How can I contact Luxury Andamans for booking?",
@@ -120,6 +120,10 @@ const ContactPage = () => {
           {
             question: "Can I customize my Andaman trip package?",
             answer: "Yes, Luxury Andamans specializes in 100% customized Andaman packages. Tell us your dates, budget, group size, and interests — our local experts will design the perfect itinerary for you. No hidden costs."
+          },
+          {
+            question: "Are you a local Andaman travel agency?",
+            answer: "Yes. Luxury Andamans is a Port Blair–based Andaman travel agency and tour operator. We book named ferries, issue GST invoices, and have coordinators on Havelock and Neil — not a mainland call centre forwarding your chat."
           }
         ]}
         extraStructuredData={[

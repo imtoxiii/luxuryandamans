@@ -13,7 +13,11 @@ export const post: BlogPost = {
   date: '2026-07-01',
   readTime: '13 min read',
   tags: ['first time andaman', 'andaman beginner guide', 'andaman planning 2026', 'port blair havelock neil', 'andaman mistakes'],
-  relatedPosts: ['7-day-andaman-itinerary', 'andaman-ferry-booking-guide', 'best-time-to-visit-andaman'],
+  relatedPosts: [
+    'best-travel-agency-andaman-2026',
+    'andaman-ferry-booking-guide',
+    'andaman-packages-from-india-2026',
+  ],
   content: `
 ## You do not need all 572 islands
 
@@ -119,6 +123,8 @@ We run this route constantly as the [Standard 5N/6D package](/packages/standard-
 ## Still planning?
 
 First trip anxiety is normal. Send your dates and group size through [enquiry](/enquiry) — we will tell you honestly if your plan has too many island hops for the days you have. Or start with [tour packages](/packages) where ferries, hotels, and pickups are already aligned.
+
+Flying from a metro? [Andaman packages from India](/blog/andaman-packages-from-india-2026) maps Delhi, Mumbai, Bangalore, Chennai and the rest. If you would rather a local desk handle ferries, read [best travel agency in Andaman](/blog/best-travel-agency-andaman-2026).
 `,
   faq: [
     {

@@ -28,10 +28,6 @@ export function generateTouristAttractionSchema(destination: Destination) {
       addressRegion: 'Andaman and Nicobar Islands',
       addressCountry: 'IN',
     },
-    geo: {
-      '@type': 'GeoCoordinates',
-      // These would be filled with actual coordinates from destination data
-    },
     openingHoursSpecification: destination.timings ? {
       '@type': 'OpeningHoursSpecification',
       opens: destination.timings.openTime || '09:00',
@@ -448,7 +444,9 @@ export function generatePackageMetaTags(pkg: Package) {
     ...pkg.includes?.slice(0, 5) || [],
     ...pkg.features || [],
     'best andaman packages',
-    'all inclusive andaman'
+    'all inclusive andaman',
+    'andaman travel agency',
+    'best andaman travel agent'
   ].join(', ');
 
   const priceStr = `₹${pkg.price.toLocaleString('en-IN')}`;

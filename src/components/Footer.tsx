@@ -25,6 +25,8 @@ const quickLinks = [
   { name: 'FAQ', href: '/faq' },
   { name: 'Trip Calculator', href: '/calculator' },
   { name: 'Contact', href: '/contact' },
+  { name: 'Best Travel Agency', href: '/blog/best-travel-agency-andaman-2026' },
+  { name: 'Packages from India', href: '/blog/andaman-packages-from-india-2026' },
   { name: 'Havelock Island', href: '/locations/havelock-island' },
   { name: 'Neil Island', href: '/locations/neil-island' },
   { name: 'Port Blair', href: '/locations/port-blair' },
@@ -97,12 +99,12 @@ const Footer = () => {
           >
             <h3 ref={gradientTextRef} className="text-2xl font-bold mb-6 bg-gradient-to-r from-azure via-lagoon to-azure bg-clip-text text-transparent" style={{ backgroundSize: '200% auto' }}>Luxury Andamans</h3>
             <p className="text-pearl/80 mb-6">
-              Your gateway to the most exclusive experiences in the Andaman Islands.
-              Discover paradise with our curated luxury travel services.
+              Port Blair–based Andaman travel agency for honeymoon, family, and custom island trips.
+              We lock ferries, hotels, and activities so you spend the holiday on the beach — not on WhatsApp.
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://www.instagram.com/luxuryandaman"
+                href="https://www.instagram.com/luxuryandamans"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -111,7 +113,7 @@ const Footer = () => {
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="https://www.facebook.com/luxuryandaman"
+                href="https://www.facebook.com/luxuryandamans"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -120,7 +122,7 @@ const Footer = () => {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="https://twitter.com/luxuryandaman"
+                href="https://x.com/luxuryandaman"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter"
@@ -270,7 +272,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-pearl/60 text-sm">
-              © 2025 Luxury Andamans. All rights reserved.
+              © 2026 Luxury Andamans. All rights reserved.
             </p>
             <div className="flex items-center space-x-6 mt-4 md:mt-0">
               <Link to="/privacy" className="text-pearl/60 hover:text-pearl text-sm transition-colors">

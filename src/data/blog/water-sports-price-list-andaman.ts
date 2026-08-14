@@ -27,10 +27,10 @@ const images = {
 
 const post: BlogPost = {
   id: 'water-sports-price-list-andaman',
-  title: 'Andaman Water Sports Price List 2025: Jet Ski, Sea Walk, Parasailing Costs',
+  title: 'Andaman Water Sports Price List 2026: Scuba, Sea Walk, Jet Ski',
   slug: 'water-sports-price-list-andaman',
   excerpt:
-    'Budgeting for adventure? Here is the updated 2025 price list for all water sports in Andaman, including Scuba, Sea Walk, Parasailing, and Jet Skiing.',
+    '2026 prices for scuba, sea walk, parasailing, jet ski and snorkeling — what a package includes versus what you pay on the beach.',
   image: images.main.src,
   author: defaultAuthor,
   date: new Date().toISOString(),

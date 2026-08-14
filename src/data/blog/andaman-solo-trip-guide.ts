@@ -4,7 +4,7 @@ import { defaultAuthor } from './author';
 export const post: BlogPost = {
     id: "andaman-solo-trip-guide",
     slug: "andaman-solo-trip-guide",
-    title: "Solo Trip to Andaman: The Ultimate Guide for Backpackers (2025)",
+    title: "Solo Trip to Andaman 2026: Safety, Hostels & A Realistic Plan",
     excerpt: "Is Andaman safe for solo travelers? Where to stay? How to meet people? We answer all your questions in this comprehensive solo travel guide.",
     image: 'https://images.pexels.com/photos/18505543/pexels-photo-18505543/free-photo-of-people-diving-underwater.jpeg?auto=compress&cs=tinysrgb&w=1200',
     category: "Travel Guide",

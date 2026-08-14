@@ -25,8 +25,8 @@ const post: BlogPost = {
         'andaman honeymoon cost',
     ],
     relatedPosts: [
-        'andaman-budget-travel-guide',
-        '7-day-andaman-itinerary',
+        'andaman-packages-from-india-2026',
+        'private-vs-group-andaman-tour-2026',
         'andaman-honeymoon-guide',
     ],
     faq: [

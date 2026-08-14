@@ -111,7 +111,7 @@ const TravelGuide = () => {
         description="Plan your Andaman itinerary for 2026: how many days you need, which islands to visit, and the best Port Blair–Havelock–Neil combos. Sample 4, 6 & 8-day plans."
         pathname={location.pathname}
         type="article"
-        keywords="andaman itinerary, how many days andaman, andaman island hopping plan, havelock neil itinerary, port blair itinerary, andaman trip plan 2026, best andaman combo"
+        keywords="andaman itinerary, how many days andaman, how many days in andaman, 6 day andaman itinerary, 5 day andaman itinerary, 7 day andaman itinerary, andaman island hopping plan, havelock neil itinerary, port blair itinerary, andaman trip plan 2026, best andaman combo"
         author="Luxury Andamans Editorial Team"
         publishedTime="2026-01-01"
         modifiedTime={new Date().toISOString().split('T')[0]}

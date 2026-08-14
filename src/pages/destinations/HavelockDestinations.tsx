@@ -19,9 +19,9 @@ const HavelockDestinations = () => {
   return (
     <div className="min-h-screen bg-pearl">
       <SEO
-        title="Havelock Island Destinations - Asia's Best Beach & Water Sports Paradise"
-        description="Explore Radhanagar Beach (Asia's Best), Elephant Beach, and top Havelock attractions. Complete guide to water sports, diving, and island activities."
-        keywords="havelock island, radhanagar beach, elephant beach, havelock destinations, asia best beach, havelock water sports, scuba diving havelock, snorkeling havelock, havelock tourism, swaraj dweep"
+        title="Havelock Island Guide 2026 | Beaches, Scuba & Stay"
+        description="Havelock (Swaraj Dweep) guide: Radhanagar Beach, Elephant Beach, scuba sites, ferries from Port Blair, where to stay, and how many nights you actually need."
+        keywords="havelock island, havelock island guide, swaraj dweep, radhanagar beach, elephant beach, scuba diving havelock, havelock ferry, things to do in havelock, havelock island packages, best beach andaman"
         pathname="/destinations/havelock-destinations"
       />
       
@@ -95,7 +95,12 @@ const HavelockDestinations = () => {
                 <p>
                   The island offers an incredible blend of pristine white-sand beaches, crystal-clear turquoise waters, 
                   and lush tropical forests. Havelock is a diver's paradise with some of the world's best dive sites, 
-                  featuring vibrant coral reefs teeming with marine life.
+                  featuring vibrant coral reefs teeming with marine life. Start with the{' '}
+                  <Link to="/locations/havelock-island" className="text-blue-600 hover:underline">Havelock island guide</Link>,{' '}
+                  <Link to="/destinations/radhanagar-beach" className="text-blue-600 hover:underline">Radhanagar Beach</Link>,{' '}
+                  <Link to="/destinations/elephant-beach" className="text-blue-600 hover:underline">Elephant Beach</Link>, and{' '}
+                  <Link to="/experiences/scuba-diving" className="text-blue-600 hover:underline">scuba diving</Link>. Ready-made stays sit on our{' '}
+                  <Link to="/packages" className="text-blue-600 hover:underline">packages</Link> page.
                 </p>
                 <p>
                   Located about 70 km northeast of Port Blair, Havelock is easily accessible by ferry (2-3 hours) or 

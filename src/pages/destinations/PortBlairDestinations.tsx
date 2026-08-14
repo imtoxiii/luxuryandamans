@@ -19,9 +19,9 @@ const PortBlairDestinations = () => {
   return (
     <div className="min-h-screen bg-pearl">
       <SEO
-        title="Port Blair Destinations - Explore the Capital of Andaman Islands"
-        description="Discover top attractions in Port Blair including Cellular Jail, Ross Island, North Bay Island, and more. Complete travel guide with activities, timings, and tips."
-        keywords="port blair destinations, port blair attractions, cellular jail, ross island, north bay island, port blair sightseeing, places to visit port blair, port blair tourism, andaman capital, port blair travel guide"
+        title="Port Blair Guide 2026 | Cellular Jail & Sightseeing"
+        description="Port Blair travel guide: Cellular Jail, Ross Island, North Bay, Corbyn's Cove, ferry jetty tips, and how long to stay before you hop to Havelock."
+        keywords="port blair, port blair sightseeing, cellular jail, ross island, north bay island, places to visit in port blair, port blair travel guide, corbyn cove, port blair itinerary, andaman capital"
         pathname="/destinations/port-blair-destinations"
       />
       
@@ -96,7 +96,11 @@ const PortBlairDestinations = () => {
                 <p>
                   Named after Lieutenant Archibald Blair, Port Blair is home to the iconic Cellular Jail, a testament to India's 
                   freedom struggle. The city also serves as a base for exploring nearby islands like Ross Island and North Bay Island, 
-                  each offering unique experiences from historical ruins to thrilling water sports.
+                  each offering unique experiences from historical ruins to thrilling water sports. See{' '}
+                  <Link to="/destinations/cellular-jail" className="text-blue-600 hover:underline">Cellular Jail</Link>,{' '}
+                  <Link to="/destinations/ross-island" className="text-blue-600 hover:underline">Ross Island</Link>,{' '}
+                  <Link to="/destinations/north-bay-island" className="text-blue-600 hover:underline">North Bay</Link>, and the{' '}
+                  <Link to="/locations/port-blair" className="text-blue-600 hover:underline">Port Blair travel guide</Link>.
                 </p>
                 <p>
                   With Veer Savarkar International Airport connecting Port Blair to major Indian cities, it's easily accessible 

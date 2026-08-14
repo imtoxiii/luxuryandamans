@@ -4,7 +4,7 @@ import { defaultAuthor } from './author';
 export const post: BlogPost = {
     id: "andaman-vs-lakshadweep",
     slug: "andaman-vs-lakshadweep",
-    title: "Andaman vs Lakshadweep: Which Island Paradise Should You Choose in 2025?",
+    title: "Andaman vs Lakshadweep 2026: Which Islands Should You Book?",
     excerpt: "Confused between Andaman and Lakshadweep? We break down the differences in cost, accessibility, activities, and vibe to help you decide your perfect island getaway.",
     image: 'https://images.pexels.com/photos/18505543/pexels-photo-18505543/free-photo-of-people-diving-underwater.jpeg?auto=compress&cs=tinysrgb&w=1200',
     category: "Destination Comparison",

@@ -20,10 +20,10 @@ const images = {
 
 const post: BlogPost = {
   id: slug,
-  title: 'Hyderabad to Andaman Trip (2025): A Complete Plan for Flights, Itinerary & Budget',
+  title: 'Hyderabad to Andaman Trip 2026: Flights, Budget & Itinerary',
   slug: slug,
   excerpt:
-    'Your essential guide for planning an unforgettable trip from Hyderabad to the Andaman Islands. Discover the best flight routes, a perfect 7-day itinerary, a detailed budget, and expert tips for 2025.',
+    'Your essential guide for planning an unforgettable trip from Hyderabad to the Andaman Islands. Discover the best flight routes, a perfect 7-day itinerary, a detailed budget, and expert tips for 2026.',
   image: images.main.src,
   author: defaultAuthor,
   date: new Date().toISOString(),
@@ -37,9 +37,9 @@ const post: BlogPost = {
     'andaman trip cost'
   ],
   relatedPosts: [
-    '7-day-andaman-itinerary',
-    'andaman-budget-guide',
-    'andaman-best-time'
+    'andaman-packages-from-india-2026',
+    'andaman-itinerary-7-days',
+    'cheap-flights-to-andaman-2026',
   ],
   content: `
 ## From the City of Pearls to a Tropical Paradise: Your Andaman Plan from Hyderabad

@@ -84,7 +84,10 @@ function buildBlogDateMap() {
     } catch {
       continue;
     }
-    const slugMatches = [...content.matchAll(/slug\s*:\s*['"]([^'"\n]+)['"]/g)];
+    const slugMatches = [
+      ...content.matchAll(/slug\s*:\s*['"]([^'"\n]+)['"]/g),
+      ...content.matchAll(/\b(?:const|let|var)\s+slug\s*=\s*['"]([^'"\n]+)['"]/g),
+    ];
     const dateMatches = [...content.matchAll(/date\s*:\s*['"]([^'"\n]+)['"]/g)];
     for (const slugMatch of slugMatches) {
       const slug = slugMatch[1].trim();

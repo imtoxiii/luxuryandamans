@@ -74,9 +74,39 @@ import tourPackagesGuide2026 from './andaman-tour-packages-guide-2026';
 import radhanagarGuide2026 from './radhanagar-beach-guide-2026';
 import elephantBeachGuide2026 from './elephant-beach-havelock-guide-2026';
 import permitsForeigners2026 from './andaman-permits-foreign-tourists-2026';
+import fiveDayItinerary2026 from './andaman-5-days-itinerary-2026';
+import cheapFlights2026 from './cheap-flights-to-andaman-2026';
+import neilIslandGuide2026 from './neil-island-travel-guide-2026';
+import andamanVsGoa2026 from './andaman-vs-goa-2026';
+import decemberJanuaryGuide2026 from './andaman-december-january-travel-guide-2026';
+import bestTravelAgency2026 from './best-travel-agency-andaman-2026';
+import chooseTravelAgent2026 from './how-to-choose-andaman-travel-agent-2026';
+import lastMinuteAndaman2026 from './last-minute-andaman-trip-2026';
+import octoberNovemberGuide2026 from './andaman-october-november-guide-2026';
+import privateVsGroup2026 from './private-vs-group-andaman-tour-2026';
+import packagesFromIndia2026 from './andaman-packages-from-india-2026';
+import howManyDays2026 from './how-many-days-in-andaman-2026';
+import sixDayItinerary2026 from './andaman-6-days-itinerary-2026';
+import februaryMarch2026 from './andaman-in-february-march-2026';
+import withParents2026 from './andaman-with-parents-2026';
 import { applyBlogSeoOverrides } from './blogSeoConfig';
 
 const newPosts: BlogPost[] = [
+  howManyDays2026,
+  sixDayItinerary2026,
+  februaryMarch2026,
+  withParents2026,
+  bestTravelAgency2026,
+  chooseTravelAgent2026,
+  lastMinuteAndaman2026,
+  octoberNovemberGuide2026,
+  privateVsGroup2026,
+  packagesFromIndia2026,
+  fiveDayItinerary2026,
+  cheapFlights2026,
+  neilIslandGuide2026,
+  andamanVsGoa2026,
+  decemberJanuaryGuide2026,
   newFerryServices2026,
   bestBeachAward,
   itf2026,

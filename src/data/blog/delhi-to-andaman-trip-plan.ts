@@ -20,10 +20,10 @@ const images = {
 
 const post: BlogPost = {
   id: slug,
-  title: 'Delhi to Andaman Trip (2025): A Complete Guide to Flights, Budget & Itinerary',
+  title: 'Delhi to Andaman Trip 2026: Flights, Budget & 7-Day Plan',
   slug: slug,
   excerpt:
-    'The ultimate 2025 guide for planning your Andaman vacation from Delhi. Get detailed info on the best flight options, a perfect 7-day itinerary, a realistic budget breakdown, and essential travel tips.',
+    'Flights from DEL to Port Blair, how long to stay, what a couple actually spends, and why same-day Havelock ferries usually fail from Delhi.',
   image: images.main.src,
   author: defaultAuthor,
   date: new Date().toISOString(),
@@ -38,14 +38,16 @@ const post: BlogPost = {
     'andaman trip cost'
   ],
   relatedPosts: [
-    '7-day-andaman-itinerary',
-    'andaman-best-time',
-    'andaman-budget-guide'
+    'andaman-packages-from-india-2026',
+    'andaman-itinerary-7-days',
+    'cheap-flights-to-andaman-2026'
   ],
   content: `
-## Trading Cityscapes for Seascapes: Your Andaman Journey from Delhi
+## Delhi to Andaman is a long day. Plan 7 calendar days.
 
-Escaping the hustle and bustle of Delhi for the serene, palm-fringed shores of the Andaman Islands is the perfect way to reset and rejuvenate. While the journey is longer than from other metros, a well-planned trip makes it absolutely worth it. This guide is tailor-made for Delhiites, covering everything from the smartest flight bookings to an itinerary that makes the most of your travel time.
+There is rarely a useful direct DEL–IXZ. You connect in Chennai or Kolkata, land mid-afternoon, and miss the last tourist ferry to Havelock. Night 1 is Port Blair. That is not a failure — it is geography.
+
+City hub for all metros: [Andaman packages from India](/blog/andaman-packages-from-india-2026). Fares: [cheap flights](/blog/cheap-flights-to-andaman-2026).
 
 ## Flights: Navigating Your Trip from Delhi (DEL) to Port Blair (IXZ)
 

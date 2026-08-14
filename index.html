@@ -66,9 +66,9 @@
 
   <!-- Enhanced SEO Meta Tags -->
   <meta name="description"
-    content="Best Andaman tour packages 2026 from ₹14,999/person. Honeymoon, family & budget trips to Havelock, Neil & Port Blair. 4.9★ by 1200+ travelers. Book now." />
+    content="Port Blair travel agency for Andaman tour packages from ₹14,999. Honeymoon, family & budget trips to Havelock, Neil & Port Blair. 4.9★ from 1200+ travellers." />
   <meta name="keywords"
-    content="andaman tour packages, andaman tour packages 2026, andaman honeymoon packages, andaman family packages, andaman packages from delhi, andaman packages from mumbai, andaman packages from bangalore, andaman packages from chennai, havelock island packages, neil island tour, port blair tour packages, scuba diving andaman, best andaman travel agent, andaman trip cost, budget andaman packages, luxury andaman resorts, andaman couple packages, andaman 5 days package, how to plan andaman trip" />
+    content="andaman tour packages, andaman tour packages 2026, best travel agency in andaman, best andaman travel agent, andaman travel agency port blair, andaman honeymoon packages, andaman family packages, andaman packages from delhi, andaman packages from mumbai, andaman packages from bangalore, andaman packages from chennai, havelock island packages, neil island tour, port blair tour packages, scuba diving andaman, andaman trip cost, budget andaman packages, luxury andaman resorts, andaman couple packages, andaman 5 days package, how to plan andaman trip, best andaman tour operator" />
   <title>Andaman Tour Packages 2026 | From ₹14,999</title>
   <!-- Enhanced SEO Tags -->
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -84,6 +84,7 @@
 
   <!-- Bing Webmaster Tools Verification -->
   <meta name="msvalidate.01" content="14265E6AF81FA7C6BC446483ED94C80D" />
+  <meta name="google-site-verification" content="WrdzF3YzYHD6eKNiQubbV3uoUr0JdeIFTxvtiezS2K8" />
 
   <!-- Meta Pixel loads via the delayed analytics loader above (noscript fallback is in <body>) -->
 
@@ -96,7 +97,7 @@
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Andaman Tour Packages 2026 | From ₹14,999" />
   <meta property="og:description"
-    content="Best Andaman tour packages 2026 from ₹14,999/person. Honeymoon, family & budget trips to Havelock, Neil & Port Blair. 4.9★ by 1200+ travelers. Book now." />
+    content="Port Blair travel agency for Andaman tour packages from ₹14,999. Honeymoon, family & budget trips to Havelock, Neil & Port Blair. 4.9★ from 1200+ travellers." />
   <meta property="og:image" content="https://luxuryandamans.com/og-default.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -113,7 +114,7 @@
   <meta name="twitter:creator" content="@luxuryandaman" />
   <meta name="twitter:title" content="Andaman Tour Packages 2026 | From ₹14,999" />
   <meta name="twitter:description"
-    content="Best Andaman tour packages 2026 from ₹14,999/person. Honeymoon, family & budget trips to Havelock, Neil & Port Blair. 4.9★ by 1200+ travelers. Book now." />
+    content="Port Blair travel agency for Andaman tour packages from ₹14,999. Honeymoon, family & budget trips to Havelock, Neil & Port Blair. 4.9★ from 1200+ travellers." />
   <meta name="twitter:image" content="https://luxuryandamans.com/og-default.webp" />
   <meta name="twitter:image:alt"
     content="Beautiful Andaman Islands beach destination - Luxury Andamans Tour Packages" />
@@ -156,16 +157,30 @@
   <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
   <link rel="preconnect" href="https://plus.unsplash.com" crossorigin />
 
-  <!-- Local fonts (Plus Jakarta Sans + Clash Display) — see src/fonts.css.
-       Decorative Google fonts (Playfair/Philosopher/Rouge Script) were removed:
-       they render-blocked every page and are barely used — system serif fallback
-       covers the single decorative heading that referenced them. -->
+  <!-- Local fonts (Plus Jakarta Sans + Clash Display) — see src/fonts.css. -->
   <link rel="preload" href="/fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/clash-display-700.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Premium Google fonts for hero: Cormorant Garamond (serif) + Great Vibes (cursive) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&display=swap"
+    rel="stylesheet" />
 
   <!-- Structured data is injected per-page by React Helmet after prerender -->
   <!-- Critical CSS for instant load -->
   <style>
+    /* Loader typography — Clash Display is preloaded above; declaring the face here
+       makes it available to the preloader before the app CSS bundle arrives. */
+    @font-face {
+      font-family: 'Clash Display';
+      src: url('/fonts/clash-display-700.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
     /* Performance optimizations */
     * {
       -webkit-font-smoothing: antialiased;
@@ -189,290 +204,291 @@
       padding: 0;
       overflow-x: hidden;
       overflow-y: auto !important;
-      background-color: #172554;
-      /* blue-950 */
+      background-color: #06121f;
+      /* deep ocean ink — matches preloader */
     }
 
     * {
       box-sizing: border-box;
     }
 
-    /* Mobile optimization - reduce animations on slower devices */
+    /* Mobile optimization - reduce animations on slower devices.
+       Excluded: the preloader (choreography needs full-length transitions) and
+       looping ambient animations (marquee, scroll cue) which must keep their pace. */
     @media (max-width: 768px) {
-      * {
+      :not(#loading-skeleton):not(#loading-skeleton *):not(.marquee-track):not(.scroll-cue-dot) {
         animation-duration: 0.5s !important;
         transition-duration: 0.2s !important;
       }
     }
 
-    /* New Loading Screen matching React Component */
+    /* ============================================================
+       PRELOADER — "editorial ink" intro screen
+       Solid deep-ink stage, masked wordmark reveal, giant counter,
+       hairline progress. Exits with a two-tone upward curtain sweep.
+       ============================================================ */
     #loading-skeleton {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background-color: #172554;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      inset: 0;
+      /* Above the site nav (z-index 9999 !important) and floating widgets */
+      z-index: 100000;
       overflow: hidden;
-      transition: opacity 0.5s ease-out;
-      /* CRITICAL: Allow scrolling behind the loader */
+      /* Purely visual — the page beneath stays interactive */
       pointer-events: none;
-    }
-
-    /* Allow pointer events ONLY on the loader content itself */
-    #loading-skeleton .loader-content {
-      pointer-events: auto;
     }
 
     #loading-skeleton.hidden {
       opacity: 0;
-      pointer-events: none;
       visibility: hidden;
     }
 
-    /* Ensure skeleton never blocks interaction after certain time */
-    #loading-skeleton.fade-interaction {
-      pointer-events: none;
-    }
-
-    /* Background effects (pure CSS — no external image request during load) */
-    .bg-pattern {
+    /* Trailing accent panel (sand) — revealed briefly as the ink panel sweeps up */
+    .ldr-shade {
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px);
-      background-size: 24px 24px;
-      opacity: 0.1;
+      z-index: 1;
+      background: #f2ece4;
+      transform: translateY(0);
     }
 
-    .bg-gradient {
+    /* Main ink panel — carries all the content */
+    .ldr-ink {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(30, 58, 138, 0.2), transparent, rgba(88, 28, 135, 0.2));
+      inset: 0;
+      z-index: 2;
+      background: radial-gradient(130% 130% at 50% 18%, #0a1a2c 0%, #06121f 52%, #040d17 100%);
+      color: #f2ece4;
+      transform: translateY(0);
     }
 
-    /* Animated Blobs */
-    .blob {
+    #loading-skeleton.is-done .ldr-ink {
+      transform: translateY(-101%);
+      transition: transform 0.9s cubic-bezier(0.83, 0, 0.17, 1) !important;
+    }
+
+    #loading-skeleton.is-done .ldr-shade {
+      transform: translateY(-101%);
+      transition: transform 0.9s cubic-bezier(0.83, 0, 0.17, 1) 0.11s !important;
+    }
+
+    /* Film grain — kills flat digital look, no network request */
+    .ldr-grain {
       position: absolute;
-      border-radius: 50%;
-      filter: blur(64px);
-      opacity: 0.3;
-      animation: blob-float 10s infinite linear;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.07;
     }
 
-    .blob-1 {
-      top: 25%;
-      left: 25%;
-      width: 24rem;
-      height: 24rem;
-      background-color: rgba(59, 130, 246, 0.2);
-    }
-
-    .blob-2 {
-      bottom: 25%;
-      right: 25%;
-      width: 24rem;
-      height: 24rem;
-      background-color: rgba(6, 182, 212, 0.2);
-      animation-duration: 15s;
-      animation-direction: reverse;
-    }
-
-    @keyframes blob-float {
-      0% {
-        transform: scale(1) rotate(0deg);
-        opacity: 0.3;
-      }
-
-      50% {
-        transform: scale(1.2) rotate(90deg);
-        opacity: 0.5;
-      }
-
-      100% {
-        transform: scale(1) rotate(0deg);
-        opacity: 0.3;
-      }
-    }
-
-    /* Central Content */
-    .loader-content {
-      position: relative;
-      z-index: 10;
+    .ldr-frame {
+      position: absolute;
+      inset: 0;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      padding: clamp(20px, 4vw, 52px);
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     }
 
-    .logo-container {
-      position: relative;
-      margin-bottom: 3rem;
-      width: 8rem;
-      height: 8rem;
-    }
-
-    .ring {
-      position: absolute;
-      inset: -1rem;
-      border-radius: 50%;
-      border: 1px solid transparent;
-    }
-
-    .ring-1 {
-      border-top-color: rgba(96, 165, 250, 0.3);
-      border-right-color: rgba(96, 165, 250, 0.3);
-      animation: spin 8s linear infinite;
-    }
-
-    .ring-2 {
-      inset: -2rem;
-      border-bottom-color: rgba(34, 211, 238, 0.2);
-      border-left-color: rgba(34, 211, 238, 0.2);
-      animation: spin 12s linear infinite reverse;
-    }
-
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
-
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .icon-circle {
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px);
-      border-radius: 50%;
+    /* --- top meta row --- */
+    .ldr-top {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      position: relative;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    .ldr-meta {
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(242, 236, 228, 0.55);
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.7s ease 0.55s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.55s;
+    }
+
+    #loading-skeleton.is-in .ldr-meta {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- center wordmark --- */
+    .ldr-center {
+      text-align: center;
+    }
+
+    .ldr-eyebrow {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: rgba(242, 236, 228, 0.5);
+      margin-bottom: clamp(14px, 2.5vw, 24px);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.7s ease 0.45s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.45s;
+    }
+
+    #loading-skeleton.is-in .ldr-eyebrow {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ldr-line {
+      display: block;
       overflow: hidden;
+      padding-bottom: 0.06em;
     }
 
-    .icon-circle::before {
-      content: '';
+    .ldr-line-inner {
+      display: block;
+      font-family: 'Clash Display', 'Arial Black', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.8rem, 11vw, 7.5rem);
+      line-height: 0.98;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      transform: translateY(112%);
+      will-change: transform;
+    }
+
+    #loading-skeleton.is-in .ldr-line:nth-child(2) .ldr-line-inner {
+      transform: translateY(0);
+      transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s !important;
+    }
+
+    #loading-skeleton.is-in .ldr-line:nth-child(3) .ldr-line-inner {
+      transform: translateY(0);
+      transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.28s !important;
+    }
+
+    /* Second line: outlined type — editorial accent */
+    .ldr-line-outline {
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(242, 236, 228, 0.9);
+    }
+
+    @media (max-width: 768px) {
+      .ldr-line-outline {
+        -webkit-text-stroke-width: 1px;
+      }
+    }
+
+    /* Island ticker under the wordmark */
+    .ldr-ticker {
+      display: block;
+      margin-top: clamp(16px, 3vw, 28px);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+      letter-spacing: 0.04em;
+      color: rgba(242, 236, 228, 0.55);
+      opacity: 0;
+      transition: opacity 0.24s ease;
+    }
+
+    #loading-skeleton.is-in .ldr-ticker {
+      opacity: 1;
+    }
+
+    /* --- bottom row: giant counter + caption --- */
+    .ldr-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+    }
+
+    .ldr-count {
+      font-family: 'Clash Display', 'Arial Black', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(4rem, 12vw, 8.5rem);
+      line-height: 0.82;
+      letter-spacing: -0.01em;
+      color: #f2ece4;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s ease 0.35s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.35s;
+    }
+
+    #loading-skeleton.is-in .ldr-count {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ldr-count sup {
+      font-size: 0.22em;
+      letter-spacing: 0.1em;
+      vertical-align: super;
+      color: rgba(242, 236, 228, 0.45);
+    }
+
+    .ldr-caption {
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      text-align: right;
+      color: rgba(242, 236, 228, 0.55);
+      padding-bottom: 0.5rem;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.7s ease 0.65s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.65s;
+    }
+
+    #loading-skeleton.is-in .ldr-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- hairline progress along the bottom edge --- */
+    .ldr-track {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(168, 85, 247, 0.2));
-    }
-
-    .palm-icon {
-      width: 3rem;
-      height: 3rem;
-      color: white;
-      position: relative;
-      z-index: 10;
-    }
-
-    .wave {
-      position: absolute;
-      bottom: 0;
       left: 0;
       right: 0;
-      height: 33%;
-      background: rgba(59, 130, 246, 0.3);
-      filter: blur(4px);
-      animation: wave 3s ease-in-out infinite;
+      bottom: 0;
+      height: 2px;
+      background: rgba(242, 236, 228, 0.12);
     }
 
-    @keyframes wave {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
+    .ldr-bar {
+      position: absolute;
+      inset: 0;
+      background: #f2ece4;
+      transform: scaleX(0);
+      transform-origin: left center;
     }
 
-    .text-container {
-      text-align: center;
-      margin-bottom: 3rem;
+    /* --- exit: content leaves before the curtain sweep --- */
+    #loading-skeleton.is-exiting .ldr-line-inner {
+      transform: translateY(-112%) !important;
+      transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1) !important;
     }
 
-    .title {
-      font-family: 'Clash Display', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: white;
-      margin: 0 0 1rem 0;
-      letter-spacing: -0.025em;
+    #loading-skeleton.is-exiting .ldr-line:nth-child(3) .ldr-line-inner {
+      transition-delay: 0.06s !important;
+    }
+
+    #loading-skeleton.is-exiting .ldr-eyebrow,
+    #loading-skeleton.is-exiting .ldr-meta,
+    #loading-skeleton.is-exiting .ldr-ticker,
+    #loading-skeleton.is-exiting .ldr-caption {
+      opacity: 0 !important;
+      transition: opacity 0.35s ease !important;
+    }
+
+    #loading-skeleton.is-exiting .ldr-count {
       opacity: 0;
-      animation: fade-up 0.8s ease-out 0.3s forwards;
+      transform: translateY(-14px);
+      transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s !important;
     }
 
-    .title span {
-      background: linear-gradient(to right, #93c5fd, #67e8f9);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+    @media (prefers-reduced-motion: reduce) {
 
-    .subtitle {
-      color: rgba(191, 219, 254, 0.8);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-size: 0.875rem;
-      font-weight: 500;
-      margin: 0;
-      opacity: 0;
-      animation: fade-up 0.8s ease-out 0.6s forwards;
-    }
-
-    @keyframes fade-up {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .progress-container {
-      width: 16rem;
-      height: 0.25rem;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 9999px;
-      overflow: hidden;
-    }
-
-    .progress-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(to right, #60a5fa, #22d3ee);
-      transition: width 0.1s linear;
-    }
-
-    .progress-text {
-      margin-top: 0.5rem;
-      color: rgba(147, 197, 253, 0.6);
-      font-family: monospace;
-      font-size: 0.75rem;
-      text-align: center;
-    }
-
-    @media (min-width: 768px) {
-      .title {
-        font-size: 3rem;
+      #loading-skeleton *,
+      #loading-skeleton {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
       }
     }
   </style>
@@ -485,99 +501,159 @@
       src="https://www.facebook.com/tr?id=1481700080630119&ev=PageView&noscript=1"></noscript>
   <!-- End Meta Pixel Code -->
 
-  <!-- New Loading Screen -->
-  <div id="loading-skeleton">
-    <div class="bg-pattern"></div>
-    <div class="bg-gradient"></div>
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
+  <!-- Preloader -->
+  <div id="loading-skeleton" aria-hidden="true">
+    <div class="ldr-shade"></div>
+    <div class="ldr-ink">
+      <div class="ldr-grain"></div>
 
-    <div class="loader-content">
-      <div class="logo-container">
-        <div class="ring ring-1"></div>
-        <div class="ring ring-2"></div>
-        <div class="icon-circle">
-          <svg class="palm-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M13 8c0-2.76-2.46-5-5.5-5S2 5.24 2 8h2l1-1 1 1h4" />
-            <path d="M13 7.14A5.82 5.82 0 0 1 16.5 6c3.04 0 5.5 2.24 5.5 5h-3l-1-1-1 1h-3" />
-            <path
-              d="M5.89 9.71c-2.15 2.15-2.3 5.47-.35 7.43l4.24-4.25.7-.7.71-.71 2.12-2.12c-1.95-1.96-5.27-1.8-7.42.35z" />
-            <path d="M11 15.5c.5 2.5-.17 4.5-1 6.5h4c2-5.5-.5-12-1-14" />
-          </svg>
-          <div class="wave"></div>
+      <div class="ldr-frame">
+        <div class="ldr-top">
+          <span class="ldr-meta">Luxury Andamans</span>
+          <span class="ldr-meta">11.62&deg; N &mdash; 92.72&deg; E</span>
+        </div>
+
+        <div class="ldr-center">
+          <span class="ldr-eyebrow">Andaman &amp; Nicobar Islands</span>
+          <span class="ldr-line"><span class="ldr-line-inner">Luxury</span></span>
+          <span class="ldr-line"><span class="ldr-line-inner ldr-line-outline">Andamans</span></span>
+          <span class="ldr-ticker" id="ldr-ticker">Havelock</span>
+        </div>
+
+        <div class="ldr-bottom">
+          <span class="ldr-count"><span id="ldr-count">0</span><sup>%</sup></span>
+          <span class="ldr-caption">Experience<br />Paradise</span>
         </div>
       </div>
 
-      <div class="text-container">
-        <h1 class="title">Luxury <span>Andamans</span></h1>
-        <p class="subtitle">Experience Paradise</p>
+      <div class="ldr-track">
+        <div class="ldr-bar" id="ldr-bar"></div>
       </div>
-
-      <div class="progress-container">
-        <div class="progress-bar" id="progress-bar"></div>
-      </div>
-      <div class="progress-text" id="progress-text">0%</div>
     </div>
   </div>
 
-  <!-- Script to animate progress bar immediately -->
+  <!-- Preloader engine: progress simulation + exit choreography.
+       React hands control back via window.__luxalLoader.finish() (src/lib/loader.ts). -->
   <script>
     (function () {
-      // Instant check for blog pages or search results to bypass loader
-      if (window.location.pathname.startsWith('/blog') || window.location.search.includes('?q=')) {
-        const skeleton = document.getElementById('loading-skeleton');
-        if (skeleton) {
-          skeleton.style.display = 'none';
-          skeleton.remove();
-        }
+      var el = document.getElementById('loading-skeleton');
+      if (!el) return;
+
+      var revealed = false;
+      function reveal() {
+        if (revealed) return;
+        revealed = true;
+        try { window.dispatchEvent(new Event('luxal:reveal')); } catch (e) { }
+      }
+
+      function kill() {
+        if (el) { el.remove(); el = null; }
+      }
+
+      // Bypass entirely for: prerender bots (navigator.webdriver), blog deep-links,
+      // and search-result landings — these need instant content.
+      if (navigator.webdriver === true ||
+        window.location.pathname.indexOf('/blog') === 0 ||
+        window.location.search.indexOf('?q=') !== -1) {
+        kill();
+        window.__luxalLoader = { finish: reveal, bypassed: true };
+        reveal();
         return;
       }
 
-      const bar = document.getElementById('progress-bar');
-      const text = document.getElementById('progress-text');
-      let width = 0;
+      var seen = false;
+      try { seen = sessionStorage.getItem('la_intro_seen') === '1'; } catch (e) { }
+      var countEl = document.getElementById('ldr-count');
+      var barEl = document.getElementById('ldr-bar');
+      var tickerEl = document.getElementById('ldr-ticker');
+      var start = performance.now();
+      var shown = 0;
+      var finished = false;
+      var rafId = 0;
 
-      // Simulate loading progress
-      const interval = setInterval(() => {
-        if (width >= 90) {
-          // Slow down significantly after 90% to wait for React
-          if (width < 98) {
-            width += 0.1;
-          }
-        } else {
-          // Fast initial load
-          width += Math.random() * 2;
+      // Kick off entrance transitions after first paint
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { if (el) el.classList.add('is-in'); });
+      });
+
+      // Island name ticker
+      var islands = ['Havelock', 'Neil Island', 'Port Blair', 'Baratang', 'Ross Island'];
+      var tickIdx = 0;
+      var tickerTimer = setInterval(function () {
+        if (!tickerEl || !el) return;
+        tickIdx = (tickIdx + 1) % islands.length;
+        tickerEl.style.opacity = '0';
+        setTimeout(function () {
+          if (!tickerEl) return;
+          tickerEl.textContent = islands[tickIdx];
+          tickerEl.style.opacity = '';
+        }, 240);
+      }, 1000);
+
+      function paint(v) {
+        var n = Math.min(100, Math.max(0, Math.round(v)));
+        if (countEl) countEl.textContent = String(n);
+        if (barEl) barEl.style.transform = 'scaleX(' + (n / 100) + ')';
+      }
+
+      // Eased progress simulation: quick ramp, then crawl toward 92 while assets load
+      function frame(now) {
+        if (finished) return;
+        var t = now - start;
+        var target = t < 600 ? (t / 600) * 44 : Math.min(92, 44 + ((t - 600) / 1000) * 16);
+        shown += (target - shown) * 0.09;
+        paint(shown);
+        rafId = requestAnimationFrame(frame);
+      }
+      rafId = requestAnimationFrame(frame);
+
+      var MIN_SHOW = seen ? 500 : 1700; // repeat visits get a short intro
+
+      function finish(immediate) {
+        if (finished || !el) return;
+        finished = true;
+        cancelAnimationFrame(rafId);
+        clearInterval(tickerTimer);
+        try { sessionStorage.setItem('la_intro_seen', '1'); } catch (e) { }
+
+        if (immediate) {
+          el.classList.add('hidden');
+          kill();
+          reveal();
+          return;
         }
 
-        if (bar) bar.style.width = width + '%';
-        if (text) text.textContent = Math.round(width) + '%';
-      }, 50);
+        var wait = Math.max(0, MIN_SHOW - (performance.now() - start));
+        setTimeout(function () {
+          if (!el) return;
 
-      // Store interval to clear it when React loads
-      window.loaderInterval = interval;
+          // Sprint the counter to 100
+          var from = shown;
+          var t0 = performance.now();
+          (function toHundred(now) {
+            var p = Math.min(1, (now - t0) / 340);
+            paint(from + (100 - from) * (1 - Math.pow(1 - p, 3)));
+            if (p < 1 && el) requestAnimationFrame(toHundred);
+          })(t0);
 
-      // EARLY FAILSAFE: Disable pointer events after 3 seconds to allow scrolling
-      // even if loading skeleton is still visible
-      setTimeout(function () {
-        const skeleton = document.getElementById('loading-skeleton');
-        if (skeleton && !skeleton.classList.contains('hidden')) {
-          skeleton.classList.add('fade-interaction');
-        }
-      }, 3000);
-
-      // FAILSAFE: Force remove skeleton after 8 seconds if React hasn't loaded
-      // This prevents the page from being stuck if there's a loading issue
-      setTimeout(function () {
-        const skeleton = document.getElementById('loading-skeleton');
-        if (skeleton) {
-          console.log('⚠️ Failsafe: Removing loading skeleton after timeout');
-          skeleton.classList.add('hidden');
+          // 1) content slides away  2) two-tone curtain sweeps up  3) node removed
+          setTimeout(function () { if (el) el.classList.add('is-exiting'); }, 400);
           setTimeout(function () {
-            skeleton.remove();
-          }, 500);
-        }
-      }, 8000);
+            if (!el) return;
+            el.classList.add('is-done');
+            reveal();
+          }, 740);
+          setTimeout(function () {
+            if (el) el.classList.add('hidden');
+            kill();
+          }, 1850);
+        }, wait);
+      }
+
+      window.__luxalLoader = { finish: finish };
+
+      // FAILSAFE: never trap the user if React fails to boot
+      setTimeout(function () { finish(false); }, 9000);
     })();
   </script>
 
@@ -607,8 +683,7 @@
     })();
   </script>
 
-  <!-- Google Search Console: add VITE_GSC_VERIFICATION=your-code to .env (injected via SEO component) -->
-  <!-- Or paste directly: <meta name="google-site-verification" content="YOUR_CODE" /> -->
+  <!-- GSC verification is also in <head> (google-site-verification) and via VITE_GSC_VERIFICATION -->
 
 </body>
 

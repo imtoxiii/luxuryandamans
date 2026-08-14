@@ -22,7 +22,11 @@ const post: BlogPost = {
     'andaman monsoon travel',
     'when to visit havelock',
   ],
-  relatedPosts: ['7-day-andaman-itinerary', 'andaman-top-things-to-do-2025', 'andaman-monsoon-travel-guide-2026'],
+  relatedPosts: [
+    'andaman-october-november-guide-2026',
+    'andaman-december-january-travel-guide-2026',
+    'andaman-in-february-march-2026',
+  ],
   faq: [
     {
       question: 'What is the best month to visit Andaman?',
@@ -107,7 +111,7 @@ Transition month. Risky to promise perfect weather, but the past few years have 
 
 **Budget trip:** May–September or early October. Pair with our [budget travel guide](/blog/andaman-budget-travel-guide) and government ferry where possible.
 
-**Photography:** October–November for lush frames; January–February for turquoise water and golden-hour clarity at [Radhanagar Beach](/destinations/radhanagar-beach).
+**Photography:** October–November for lush frames; January–February for turquoise water and golden-hour clarity at [Radhanagar Beach](/destinations/radhanagar-beach). Shoulder-season detail: [Andaman in October & November](/blog/andaman-october-november-guide-2026).
 
 ---
 

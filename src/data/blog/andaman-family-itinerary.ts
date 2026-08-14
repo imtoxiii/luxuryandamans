@@ -27,10 +27,10 @@ const images = {
 
 const post: BlogPost = {
   id: 'andaman-family-itinerary',
-  title: 'Andaman with Kids: The Perfect 5-Day Family Itinerary for 2025',
+  title: 'Andaman with Kids 2026: A Relaxed 5-Day Family Itinerary',
   slug: 'andaman-family-itinerary',
   excerpt:
-    'Planning a family trip to the Andamans? Our 2025 guide offers a relaxed 5-day, kid-friendly itinerary covering Port Blair, Havelock, and Neil, focusing on safe beaches, short travel times, and fun for all ages.',
+    'A 5-day Andaman plan that does not punish children with back-to-back ferries — safe beaches, glass-bottom boats, nap windows, and what to skip.',
   image: images.main.src,
   author: defaultAuthor,
   date: new Date().toISOString(),
@@ -43,12 +43,13 @@ const post: BlogPost = {
     'havelock with family',
     '5 day andaman itinerary',
     'safe beaches for kids',
-    'andaman travel guide 2025',
+    'andaman family trip 2026',
+    'andaman with children',
   ],
   relatedPosts: [
-    'andaman-top-things-to-do',
+    'andaman-with-parents-2026',
     'andaman-best-time',
-    'andaman-food-guide',
+    'andaman-tour-packages-guide-2026',
   ],
   faq: [
     {
@@ -78,19 +79,22 @@ const post: BlogPost = {
     },
   ],
   content: `
-## Your Ultimate Andaman Family Adventure Awaits!
-Dreaming of a family vacation where turquoise waters meet pristine sands? The Andaman Islands are a perfect playground for families, offering a blend of adventure and relaxation. But planning a trip with kids requires a different approach—shorter travel times, safer activities, and a relaxed pace. This 5-day itinerary for 2025 is designed specifically for families, ensuring a stress-free and memorable holiday for everyone.
+## Kids and Andaman work if you protect nap time
+
+The mistake is treating a 5-year-old like a backpacker: Cellular Jail, then a 90-minute ferry, then Elephant Beach, then sunset. Someone will melt down. This 5-day version keeps hops short, beaches shallow, and one afternoon empty on purpose.
+
+If grandparents are coming too, use [Andaman with parents](/blog/andaman-with-parents-2026). Longer family shape: [Family Paradise 6D](/packages/family-paradise-6-days).
 
 ---
 
-## Why This 5-Day Itinerary is Perfect for Families
+## Why this 5-day plan
 This plan minimizes travel fatigue by focusing on short ferry hops and maximizing beach time. The activities are chosen to be safe, engaging, and suitable for all ages, from toddlers to teens.
 
 ---
 
 ## Day 1: Arrival in Port Blair & A Touch of History
 Your Andaman adventure begins in Port Blair.
-- **Morning/Afternoon:** Arrive at Veer Savarkar International Airport (IXB), and we'll transfer you to your hotel. Let the kids settle in and acclimatize to the island air.
+- **Morning/Afternoon:** Arrive at Veer Savarkar International Airport (IXZ), and we'll transfer you to your hotel. Let the kids settle in and acclimatize to the island air.
 - **Evening:** Head to the Cellular Jail. The history might be too intense for very young children, but the impressive architecture is worth seeing. The evening Light and Sound Show is often a hit with older kids.
 
 ## Day 2: Ferry to Havelock & Asia's Best Beach

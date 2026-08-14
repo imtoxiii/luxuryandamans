@@ -33,10 +33,10 @@ const images = {
 
 const post: BlogPost = {
   id: 'andaman-itinerary-7-days',
-  title: 'Ultimate 7-Day Andaman Itinerary 2025: Port Blair, Havelock & Neil',
+  title: '7-Day Andaman Itinerary 2026: Port Blair, Havelock & Neil',
   slug,
   excerpt:
-    'Plan the perfect 7-day Andaman trip in 2025 with this expert, day-by-day itinerary covering Port Blair, Havelock (Swaraj Dweep) and Neil (Shaheed Dweep)—complete with beaches, ferries, budgets, pro tips, and FAQs.',
+    'The 6N/7D Andaman plan we sell most — day-by-day ferries, Radhanagar, Elephant Beach, Neil, and what to skip so you are not stuck in Port Blair traffic.',
   image: images.main.src,
   author: defaultAuthor,
   date: new Date().toISOString(),
@@ -49,12 +49,14 @@ const post: BlogPost = {
     'neil island guide',
     'radhanagar beach',
     'elephant beach snorkeling',
-    'andaman travel guide 2025',
+    'andaman travel guide 2026',
+    '7 days in andaman',
+    'andaman 7 day package',
   ],
   relatedPosts: [
-    'andaman-best-time',
-    'andaman-top-things-to-do',
-    'andaman-budget-guide',
+    'andaman-6-days-itinerary-2026',
+    'how-many-days-in-andaman-2026',
+    'andaman-5-days-itinerary-2026',
   ],
   faq: [
     {
@@ -84,8 +86,11 @@ const post: BlogPost = {
     },
   ],
   content: `
-## Welcome to Your Perfect Week in the Andamans
-Dreaming of turquoise lagoons, sugar-white beaches, and slow island days? This 7-day Andaman itinerary is the sweet spot—enough time to savor Port Blair’s history, Havelock’s world-class beaches, and Neil’s laid-back charm without rushing. Use this day-by-day plan to lock in ferries, pick the right beaches at the right time, and budget smart for 2025.
+## Seven days is the version that does not feel rushed
+
+Five days works if you skip Neil. Six is the couple default. Seven lets you keep Havelock slow and still see Bharatpur and Natural Bridge without a 6 am panic.
+
+This is Port Blair → Havelock → Neil → Port Blair. Not Diglipur. Not four islands. Shorter: [5-day itinerary](/blog/andaman-5-days-itinerary-2026). The default we quote: [6-day itinerary](/blog/andaman-6-days-itinerary-2026). Still deciding length: [how many days in Andaman](/blog/how-many-days-in-andaman-2026).
 
 ---
 
@@ -171,11 +176,11 @@ Your total can vary based on season and stay choices. For ultra-budget or premiu
 ---
 
 ## Plan your trip next
-- Read next: [Top Things To Do in Andaman](/blog/andaman-top-things-to-do)
-- Check the [Best Time to Visit Andaman](/blog/andaman-best-time)
-- Hungry? See our [Andaman Food Guide](/blog/andaman-food-guide)
-- Want to spread costs? Read our guide to [Andaman on EMI 2025](/blog/andaman-budget-emi-2025)
-- Ready to go? Explore [Packages](/packages) or [Contact us](/contact)
+- [Best time to visit](/blog/best-time-to-visit-andaman)
+- [Andaman food guide](/blog/andaman-food-guide)
+- [Trip cost 2026](/blog/andaman-trip-cost-complete-breakdown-2026)
+- [EMI option](/blog/andaman-budget-emi-2026)
+- [Packages](/packages) or [enquiry](/enquiry)
 
 ---
 

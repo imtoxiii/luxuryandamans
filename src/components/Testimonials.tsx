@@ -1,132 +1,100 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, Quote } from 'lucide-react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { Star } from 'lucide-react';
+import SectionIntro from './SectionIntro';
 
 const testimonials = [
   {
-    name: "Luxury Andaman Team",
-    location: "Bengaluru, India",
+    name: 'Diya Krishnan',
+    location: 'Chennai',
+    trip: 'Sisters · Oct 2025',
     rating: 5,
-    comment: "Our trip to the Andaman Islands was truly unforgettable! The pristine beaches and crystal-clear waters were breathtaking. We highly recommend Luxury Andamans for their exceptional service and seamless arrangements.",
-    image: "/favicon.png"
+    comment:
+      'Just the two of us — no honeymoon upsell. Havelock stay was a two-minute walk to the beach. Baratang started at 4am, brutal, but the caves were worth it.',
   },
   {
-    name: "Luxury Andaman Team",
-    location: "Delhi, India",
-    rating: 5,
-    comment: "Luxury Andamans crafted the perfect romantic getaway for us. From the serene sunsets to thrilling water sports, every moment was magical. The team was incredibly helpful and ensured we had a worry-free vacation.",
-    image: "/favicon.png"
+    name: 'Rahul Mehta',
+    location: 'Pune',
+    trip: 'Family · Dec 2025',
+    rating: 4,
+    comment:
+      'Parents (65) and our 8-year-old. They put us on the slower ferry after dad said he gets seasick. Scuba got cancelled for swell — sea walk the next morning, no extra charge.',
   },
   {
-    name: "Luxury Andaman Team",
-    location: "Mumbai, India",
+    name: 'Sneha Rao',
+    location: 'Hyderabad',
+    trip: 'Couple · Feb 2026',
     rating: 5,
-    comment: "An amazing adventure for our family! The kids absolutely loved the snorkeling and glass-bottom boat rides. Luxury Andamans made sure our trip was comfortable and filled with joyous memories. We can't wait to visit again!",
-    image: "/favicon.png"
-  }
+    comment:
+      'I messaged them constantly the week before. They still replied. Radhanagar sunset was the photo we wanted. They warned us Elephant Beach visibility was low. Fish yes, magazine water no.',
+  },
+  {
+    name: 'Nikhil Joshi',
+    location: 'Jaipur',
+    trip: 'Friends · Jan 2026',
+    rating: 4,
+    comment:
+      'Four of us, one budget. They didn’t push the ₹70k package. Jolly Buoy permits were done the day before. Jet ski was extra and they said so upfront.',
+  },
 ];
+
+const ease = [0.22, 1, 0.36, 1] as const;
+
+const initials = (name: string) =>
+  name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join('')
+    .toUpperCase();
 
 const Testimonials = () => {
   return (
-    <section className="py-24 bg-blue-900 relative overflow-hidden rounded-[2rem] md:rounded-[3rem]">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-blue-900 via-blue-900/95 to-blue-800" />
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500 rounded-full blur-[128px] opacity-20" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-500 rounded-full blur-[128px] opacity-20" />
+    <section className="container mx-auto px-4 py-6 md:py-8">
+      <SectionIntro title="Stories of" script="Paradise">
+        From families, couples, and first-timers who actually took the trip.
+      </SectionIntro>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-blue-200 mb-6">
-            <Star className="w-4 h-4 fill-blue-200" />
-            <span className="text-sm font-bold tracking-wide uppercase">Guest Reviews</span>
-          </div>
-          
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-display tracking-tight">
-            Stories of Paradise
-          </h2>
-          <p className="text-blue-100/80 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-light">
-            Read authentic reviews from our valued guests who have experienced 
-            the magic of the Andaman Islands with us.
-          </p>
-        </motion.div>
-
-        <Swiper
-          modules={[Pagination, Autoplay]}
-          spaceBetween={30}
-          slidesPerView={1}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-            },
-          }}
-          pagination={{ 
-            clickable: true,
-            bulletActiveClass: 'swiper-pagination-bullet-active bg-white',
-            bulletClass: 'swiper-pagination-bullet bg-white/30'
-          }}
-          autoplay={{ delay: 5000 }}
-          className="pb-16"
-        >
-          {testimonials.map((testimonial, index) => (
-            <SwiperSlide key={index}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="bg-white/10 backdrop-blur-md rounded-[2rem] p-8 border border-white/10 hover:bg-white/15 transition-all duration-300 group h-full"
-              >
-                <Quote className="w-12 h-12 text-blue-400/30 mb-6 group-hover:text-blue-400/50 transition-colors" />
-                
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="relative">
-                    <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-white/20">
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center border-2 border-blue-900">
-                      <Quote className="w-3 h-3 text-white fill-current" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-white text-lg">
-                      {testimonial.name}
-                    </h3>
-                    <p className="text-sm text-blue-200">{testimonial.location}</p>
-                  </div>
-                </div>
-
-                <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-4 h-4 text-yellow-400 fill-yellow-400 mr-1"
-                    />
-                  ))}
-                </div>
-
-                <p className="text-blue-50/90 italic leading-relaxed">"{testimonial.comment}"</p>
-              </motion.div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+      <div className="flex gap-3 overflow-x-auto pb-1 snap-x snap-mandatory hide-scrollbar md:grid md:grid-cols-4 md:gap-4 md:overflow-visible">
+        {testimonials.map((review, index) => (
+          <motion.article
+            key={review.name}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.06, ease }}
+            className="flex w-[min(78vw,280px)] shrink-0 snap-start flex-col rounded-2xl border border-slate-200/80 bg-[#f7f4ef] p-4 md:w-auto md:p-5"
+          >
+            <div className="mb-2.5 flex gap-0.5" aria-label={`${review.rating} out of 5 stars`}>
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star
+                  key={i}
+                  className={`h-3 w-3 ${
+                    i < review.rating ? 'fill-amber-400 text-amber-400' : 'fill-none text-slate-300'
+                  }`}
+                />
+              ))}
+            </div>
+            <p className="line-clamp-5 flex-1 text-[13px] leading-relaxed text-slate-600">
+              “{review.comment}”
+            </p>
+            <div className="mt-4 flex items-center gap-2.5 border-t border-slate-200/70 pt-3">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-[10px] font-display font-semibold tracking-wide text-slate-700">
+                {initials(review.name)}
+              </div>
+              <div className="min-w-0">
+                <p className="truncate text-sm font-display font-semibold text-slate-900">
+                  {review.name}
+                </p>
+                <p className="truncate text-[11px] text-slate-500">
+                  {review.location}
+                  <span className="mx-1 opacity-40">·</span>
+                  {review.trip}
+                </p>
+              </div>
+            </div>
+          </motion.article>
+        ))}
       </div>
     </section>
   );

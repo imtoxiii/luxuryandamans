@@ -1,16 +1,19 @@
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CardSlider from './CardSlider';
 import PackageCard from './PackageCard';
+import SectionIntro from './SectionIntro';
+
+const featuredPackagesItemsPerView = (width: number) => (width >= 768 ? 3 : 1);
 
 const FeaturedPackages = () => {
   const packages = [
     {
       title: "Luxury Island Escape",
       description: "Ultra-luxury 7-day experience with 5-star resorts, premium activities, and personalized service",
-      price: 85000,
+      price: 96999,
       duration: "7 days",
       groupSize: "2-4",
       image: "/images/packages/luxury-escape/hero/hero.jpg",
@@ -21,7 +24,7 @@ const FeaturedPackages = () => {
     {
       title: "Luxury Adventure",
       description: "Experience premium luxury in a compact 5-day package with exclusive water activities",
-      price: 65000,
+      price: 74999,
       duration: "5 days",
       groupSize: "2",
       image: "/images/packages/luxury-4n5d/hero.jpg",
@@ -32,7 +35,7 @@ const FeaturedPackages = () => {
     {
       title: "Family Paradise",
       description: "Perfect family vacation with kid-friendly activities, comfortable accommodations, and fun for all ages",
-      price: 32000,
+      price: 36999,
       duration: "6 days",
       groupSize: "4-6",
       image: "/images/packages/family-paradise/hero.jpg",
@@ -43,7 +46,7 @@ const FeaturedPackages = () => {
     {
       title: "Honeymoon Special",
       description: "Perfect 5 nights 6 days romantic itinerary with time-optimized schedule for couples",
-      price: 38000,
+      price: 44999,
       duration: "6 days",
       groupSize: "2",
       image: "/images/packages/honeymoon-5n6d/hero/hero.jpg",
@@ -54,7 +57,7 @@ const FeaturedPackages = () => {
     {
       title: "Standard Andaman",
       description: "Budget-friendly complete Andaman tour covering all major attractions",
-      price: 25000,
+      price: 29999,
       duration: "6 days",
       groupSize: "2-6",
       image: "/images/packages/standard-andaman/hero.jpg",
@@ -62,43 +65,25 @@ const FeaturedPackages = () => {
       slug: "standard-andaman-package-5n6d",
       id: "standard-andaman"
     }
-  ];
+  ].sort((a, b) => a.price - b.price);
 
   return (
-    <div className="relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-30" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100 rounded-full blur-3xl opacity-30" />
-
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 text-blue-600 mb-6 shadow-sm">
-            <Sparkles className="w-4 h-4 fill-blue-600" />
-            <span className="text-sm font-bold tracking-wide uppercase">Curated Experiences</span>
-          </div>
-
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-display tracking-tight">
-            Featured Packages
-          </h2>
-          <p className="text-gray-500 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-light">
-            Discover our handpicked selection of luxury vacation packages,
-            each crafted to provide an unforgettable Andaman experience.
-          </p>
-        </motion.div>
+    <div className="relative">
+      <div className="container mx-auto px-4">
+        <SectionIntro title="Featured" script="Packages">
+          Sorted by price — swipe for the rest.
+        </SectionIntro>
 
         <div className="relative">
-          {/* Horizontal Scrolling Cards - Shows 3 on desktop, 2 on tablet, 1 on mobile */}
-          <div className="mb-12">
-            <CardSlider showDots={true} autoScroll={false}>
+          <div className="mb-5">
+            <CardSlider
+              showDots={true}
+              autoScroll={false}
+              getItemsPerView={featuredPackagesItemsPerView}
+            >
               {packages.map((pkg, index) => (
                 <PackageCard
-                  key={index}
+                  key={pkg.slug}
                   title={pkg.title}
                   description={pkg.description}
                   price={pkg.price}
@@ -109,24 +94,25 @@ const FeaturedPackages = () => {
                   slug={pkg.slug}
                   id={pkg.id}
                   delay={index * 0.1}
+                  reverse={index % 2 === 1}
                 />
               ))}
             </CardSlider>
           </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.6 }}
             className="text-center"
           >
             <Link
               to="/packages"
-              className="inline-flex items-center px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-lg hover:bg-blue-700 transition-all transform hover:scale-105 hover:shadow-xl group"
+              className="inline-flex items-center gap-2 rounded-full bg-[#0a2740] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#041018]"
             >
-              <span>View All Packages</span>
-              <ArrowRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
+              View all packages
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </motion.div>
         </div>

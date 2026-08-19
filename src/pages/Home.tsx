@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ArrowRight, Star, MapPin, Calendar, CreditCard } from 'lucide-react';
+import { ArrowRight, Star, Calendar, CreditCard } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import SEO from '../components/SEO';
 import Header from '../components/Header';
@@ -12,6 +12,7 @@ import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
 import CardSlider from '../components/CardSlider';
 import ExperienceCard from '../components/ExperienceCard';
+import SectionIntro from '../components/SectionIntro';
 import {
   HOME_HERO_DESKTOP,
   HOME_HERO_MOBILE,
@@ -321,7 +322,7 @@ const Home = () => {
       {/* The white "sheet" — slides over the hero with a rounded cut */}
       <div className="relative z-10 bg-white rounded-t-[2.5rem] md:rounded-t-[3.5rem] -mt-10 shadow-[0_-24px_48px_-24px_rgba(4,13,23,0.4)]">
         {/* Island marquee — editorial ticker along the top of the sheet */}
-        <div className="overflow-hidden pt-10 pb-6 md:pt-14 md:pb-10 select-none" aria-hidden="true">
+        <div className="overflow-hidden pt-6 pb-3 md:pt-8 md:pb-5 select-none" aria-hidden="true">
           <div className="marquee-track flex w-max items-center">
             {[...marqueeItems, ...marqueeItems].map((item, i) => (
               <span key={i} className="flex items-center shrink-0 pr-8 md:pr-14">
@@ -339,115 +340,101 @@ const Home = () => {
         </div>
 
         {/* Featured Packages with improved spacing */}
-        <section className="py-8 md:py-12">
+        <section className="py-6 md:py-8">
           <FeaturedPackages />
         </section>
 
-        {/* Popular Islands Section */}
-        <section className="py-16 bg-white">
+        <section className="py-6 md:py-8">
           <PopularIslands />
         </section>
 
-        {/* Destinations with Parallax Effect */}
-        <section className="relative py-12 md:py-16 bg-gray-50 overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+        <section className="py-6 md:py-8">
           <Destinations />
         </section>
 
-        {/* Experiences Section - Redesigned */}
-        <section className="py-12 md:py-16 bg-white relative">
+        <section className="py-6 md:py-8">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <span className="text-blue-600 font-bold tracking-wider uppercase text-sm mb-3 block">Unforgettable Moments</span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-display">
-                Curated Experiences
-              </h2>
-              <p className="text-gray-500 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-                Discover the best of what the Andaman Islands have to offer through our carefully curated experiences
-              </p>
-            </div>
+            <SectionIntro title="Curated" script="Experiences">
+              Dives, hops, and evenings on the water.
+            </SectionIntro>
 
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-[3rem] -z-10 transform rotate-1" />
-              <CardSlider showDots={true} autoScroll={false}>
-                {experiences.map((exp, index) => (
-                  <ExperienceCard
-                    key={index}
-                    title={exp.title}
-                    description={exp.description}
-                    image={exp.image}
-                    delay={index * 0.1}
-                    link={exp.link}
-                  />
-                ))}
-              </CardSlider>
+            <CardSlider showDots={true} autoScroll={false}>
+              {experiences.map((exp, index) => (
+                <ExperienceCard
+                  key={exp.link}
+                  title={exp.title}
+                  description={exp.description}
+                  image={exp.image}
+                  delay={index * 0.08}
+                  link={exp.link}
+                  reverse={index % 2 === 1}
+                />
+              ))}
+            </CardSlider>
+
+            <div className="mt-5 text-center">
+              <Link
+                to="/experiences"
+                className="inline-flex items-center gap-2 rounded-full bg-[#0a2740] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#041018]"
+              >
+                View all experiences
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
           </div>
         </section>
 
-        {/* Dark sections as inset rounded panels — modern editorial layout cuts */}
-        <div className="px-3 md:px-6 lg:px-8 space-y-4 md:space-y-6 pb-6 md:pb-10">
-          <Testimonials />
+        {/* Reviews + offers + CTA on the same white sheet */}
+        <Testimonials />
 
+        <div className="container mx-auto px-4 pb-6 md:pb-8">
           <Newsletter />
+        </div>
 
-          {/* Call to Action Section - Premium */}
+        <div className="container mx-auto px-4 pb-6 md:pb-8">
           <section
             ref={ctaRef}
-            className="relative py-16 md:py-24 overflow-hidden rounded-[2rem] md:rounded-[3rem]"
+            className="relative overflow-hidden rounded-[1.75rem] md:rounded-[2.25rem]"
           >
-            <div className="absolute inset-0 bg-blue-900">
-              {/* Parallax drift on the backdrop while the panel scrolls through the viewport */}
+            <div className="absolute inset-0">
               <motion.img
                 src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
                 alt="Andaman island coastline at sunset for tour package booking"
-                className="w-full h-full object-cover opacity-20 mix-blend-overlay scale-125 will-change-transform"
+                className="h-full w-full scale-125 object-cover will-change-transform"
                 loading="lazy"
                 style={{ y: ctaImgY }}
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-blue-800/90 to-cyan-900/90" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-black/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
             </div>
 
-          <div className="container relative z-10 px-4">
-            <div className="max-w-5xl mx-auto text-center">
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="w-24 h-24 bg-white/10 backdrop-blur-xl rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl border border-white/20"
-              >
-                <MapPin className="w-10 h-10 text-white" />
-              </motion.div>
-
-              <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 font-display leading-tight">
-                Ready for Your <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200">Luxury Adventure?</span>
+            <div className="relative z-10 px-6 py-12 md:px-12 md:py-16 lg:max-w-2xl lg:px-14">
+              <h2 className="font-serif text-4xl font-semibold tracking-tight text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.35)] sm:text-5xl md:text-6xl">
+                Ready for your{' '}
+                <span className="font-script text-[1.15em] font-normal">island chapter?</span>
               </h2>
 
-              <p className="text-blue-100 text-lg md:text-xl mb-12 max-w-3xl mx-auto leading-relaxed font-light">
-                Let our expert travel consultants create a bespoke itinerary tailored to your desires. From private island retreats to exclusive cultural experiences, we craft journeys that exceed expectations.
+              <p className="mt-4 max-w-md text-[15px] font-light leading-relaxed text-white/80">
+                Share your dates. We send a written itinerary with named ferries and hotels.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <Link
                   to="/enquiry"
-                  className="px-10 py-5 bg-white text-blue-900 rounded-full font-bold text-lg hover:bg-blue-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center gap-3 min-w-[200px] justify-center"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-[15px] font-semibold text-[#0a2740] transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-50"
                 >
-                  <span>Start Planning</span>
-                  <ArrowRight className="w-5 h-5" />
+                  Start Planning
+                  <ArrowRight className="h-5 w-5" />
                 </Link>
                 <Link
                   to="/calculator"
-                  className="px-10 py-5 bg-blue-800/50 border border-blue-400/30 text-white rounded-full font-bold text-lg hover:bg-blue-800/70 transition-all duration-300 backdrop-blur-md flex items-center gap-3 min-w-[200px] justify-center"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-7 py-3.5 text-[15px] font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20"
                 >
-                  <span>Calculate Costs</span>
-                  <CreditCard className="w-5 h-5" />
+                  Calculate Costs
+                  <CreditCard className="h-5 w-5" />
                 </Link>
               </div>
             </div>
-          </div>
           </section>
         </div>
 

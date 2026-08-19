@@ -2,16 +2,25 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const defaultItemsPerView = (width: number) => {
+  if (width >= 1280) return 3;
+  if (width >= 1024) return 3;
+  if (width >= 768) return 2;
+  return 1;
+};
+
 interface CardSliderProps {
   children: React.ReactNode;
   showDots?: boolean;
   autoScroll?: boolean;
+  getItemsPerView?: (width: number) => number;
 }
 
 const CardSlider: React.FC<CardSliderProps> = ({ 
   children, 
   showDots = true, 
-  autoScroll = false 
+  autoScroll = false,
+  getItemsPerView = defaultItemsPerView,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(1);
@@ -20,24 +29,16 @@ const CardSlider: React.FC<CardSliderProps> = ({
 
   // Calculate items per view based on screen size
   useEffect(() => {
-    const calculateItemsPerView = () => {
-      const width = window.innerWidth;
-      if (width >= 1280) return 3; // xl screens - show 3 cards
-      if (width >= 1024) return 3; // lg screens - show 3 cards  
-      if (width >= 768) return 2;  // md screens - show 2 cards
-      return 1; // sm screens - show 1 card
-    };
-
     const updateItemsPerView = () => {
-      const newItemsPerView = calculateItemsPerView();
+      const newItemsPerView = getItemsPerView(window.innerWidth);
       setItemsPerView(newItemsPerView);
-      setCurrentIndex(0); // Reset to first slide when screen size changes
+      setCurrentIndex(0);
     };
 
     updateItemsPerView();
     window.addEventListener('resize', updateItemsPerView);
     return () => window.removeEventListener('resize', updateItemsPerView);
-  }, []);
+  }, [getItemsPerView]);
 
   const maxIndex = Math.max(0, items.length - itemsPerView);
 
@@ -184,7 +185,7 @@ const CardSlider: React.FC<CardSliderProps> = ({
 
       {/* Enhanced Dot Navigation */}
       {showDots && items.length > itemsPerView && maxIndex > 0 && (
-        <div className="hidden md:flex items-center justify-center space-x-2 mt-8">
+        <div className="hidden md:flex items-center justify-center space-x-2 mt-4">
           {Array.from({ length: maxIndex + 1 }).map((_, index) => (
             <motion.button
               key={index}
@@ -208,7 +209,7 @@ const CardSlider: React.FC<CardSliderProps> = ({
       )}
 
       {/* Enhanced progress bar for mobile */}
-      <div className="md:hidden mt-6">
+      <div className="md:hidden mt-4">
         <div className="w-full bg-gray-200 rounded-full h-1 overflow-hidden">
           <motion.div 
             className="bg-azure h-1 rounded-full"

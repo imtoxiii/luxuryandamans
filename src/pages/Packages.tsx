@@ -5,28 +5,15 @@ import { Shield, Award, ChevronDown, Filter, Users, Search } from 'lucide-react'
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
-import { packages, Package } from '../data/packages';
+import { packages } from '../data/packages';
 import { staggerContainer, fadeInUp } from '../lib/animations';
 import PackageCard from '../components/PackageCard';
 
 type Category = 'All' | 'Luxury' | 'Honeymoon' | 'Family' | 'Standard';
 
-const getCategory = (pkg: Package): Exclude<Category, 'All'> => {
-  const t = (pkg.title + ' ' + pkg.slug).toLowerCase();
-  if (t.includes('luxury')) return 'Luxury';
-  if (t.includes('honeymoon')) return 'Honeymoon';
-  if (t.includes('family')) return 'Family';
-  return 'Standard';
-};
-
 const getDays = (duration: string) => {
-  const m = duration.match(/(\d+)(?=\s*days?|\s*d|\s*n?\s*\d*\s*d|\b)/i);
-  const num = m ? parseInt(m[1], 10) : undefined;
-  if (!num) {
-    const nightsDays = duration.match(/(\d+)\s*[nN].*?(\d+)\s*[dD]/);
-    if (nightsDays) return parseInt(nightsDays[2], 10);
-  }
-  return num ?? 0;
+  const m = duration.match(/(\d+)/);
+  return m ? parseInt(m[1], 10) : 0;
 };
 
 const PackagesPage = () => {
@@ -45,7 +32,7 @@ const PackagesPage = () => {
   }, []);
 
   const filtered = useMemo(() => {
-    return packages.filter(p => category === 'All' ? true : getCategory(p) === category);
+    return packages.filter(p => category === 'All' ? true : p.category === category);
   }, [category]);
 
   const displayed = useMemo(() => {
@@ -70,14 +57,14 @@ const PackagesPage = () => {
     <div className="min-h-screen bg-gray-50 font-sans selection:bg-blue-100 selection:text-blue-900">
       <SEO
         title="Andaman Tour Packages 2026 with Prices | Book Online"
-        description="Browse all Andaman tour packages with prices. Honeymoon from ₹35,000, Family from ₹25,000, Luxury from ₹60,000. Includes ferry, hotels, meals & activities. Compare & book online. Call +91 62975 76826."
+        description="Browse Andaman tour packages with prices. Standard 5N/6D from ₹29,999, honeymoon from ₹34,999, family from ₹27,999, luxury Taj stays from ₹74,999. Ferry, hotels, and sightseeing included. Call +91 62975 76826."
         keywords="andaman packages with price, andaman tour packages 2026, andaman honeymoon packages, andaman family packages, luxury andaman packages, cheap andaman packages, 5 days andaman package, best andaman deals, andaman package booking, havelock package, all inclusive andaman package, best andaman travel agent, andaman travel agency packages"
         pathname="/packages"
         targetAudience="all"
         faqData={[
           {
             question: "What is the cost of Andaman tour packages in 2026?",
-            answer: "Andaman tour packages in 2026 start from ₹14,999 per person for budget trips. Honeymoon packages range ₹35,000-80,000, Family packages ₹25,000-60,000, and Luxury villa packages from ₹60,000-1,50,000. Prices include hotel stay, ferry transfers, sightseeing, meals, and activities. Call +91 62975 76826 for exact quotes."
+            answer: "Land-only packages in 2026 start at ₹24,999 per person for a 4N/5D family or standard plan. The classic 5N/6D three-island circuit is ₹29,999 (standard) to ₹44,999 (honeymoon 4-star). Luxury 4N/5D with Taj Exotica starts at ₹74,999. Flights are extra. Call +91 62975 76826 for a dated quote."
           },
           {
             question: "What is included in Andaman tour packages?",
@@ -89,7 +76,7 @@ const PackagesPage = () => {
           },
           {
             question: "Which is the best Andaman package for honeymoon couples?",
-            answer: "Our bestselling honeymoon packages include: Romantic Andaman 5N/6D (₹45,000/couple) with private beach dinner, Luxury Honeymoon 6N/7D (₹75,000/couple) with overwater villa stay, and Premium Suite Honeymoon 7N/8D (₹1,20,000/couple) with yacht cruise & spa."
+            answer: "Our bestselling honeymoon plans: 4N/5D Deluxe from ₹34,999 per person, 5N/6D Elephant Beach & Chidiya Tapu from ₹44,999, and Luxury Honeymoon Bliss 6N/7D from ₹89,999 with Taj Exotica villas."
           }
         ]}
         structuredData={{
@@ -98,7 +85,7 @@ const PackagesPage = () => {
           "name": "Andaman Tour Packages",
           "description": "Browse our collection of Andaman tour packages for honeymoon, family, and adventure travel.",
           "url": "https://luxuryandamans.com/packages",
-          "numberOfItems": "10+",
+          "numberOfItems": "19",
           "itemListElement": [
             {
               "@type": "ListItem",
@@ -263,14 +250,24 @@ const PackagesPage = () => {
         </div>
       </div>
 
-      {/* Packages Grid */}
-      <section className="py-12 bg-gray-50 min-h-[60vh]">
+      <section className="py-12 bg-[#f4f7fb] min-h-[60vh]">
         <div className="container mx-auto px-4">
+          <div className="mb-8 flex items-end justify-between gap-4">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-600">{category} collection</p>
+              <h2 className="mt-1 font-display text-2xl font-bold text-slate-900 md:text-3xl">
+                {displayed.length} {displayed.length === 1 ? 'itinerary' : 'itineraries'}
+              </h2>
+            </div>
+            <p className="hidden max-w-sm text-right text-sm text-slate-500 md:block">
+              Night splits are fixed so Havelock is never a one-night dash. Prices are per person, twin sharing, land only.
+            </p>
+          </div>
           <motion.div
             variants={staggerContainer(0.1, 0.1)}
             initial="initial"
             animate="animate"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="flex flex-col gap-8"
           >
             <AnimatePresence mode='popLayout'>
               {displayed.length > 0 ? (
@@ -279,10 +276,10 @@ const PackagesPage = () => {
                     key={pkg.slug}
                     variants={fadeInUp}
                     layout
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.3 }}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.35 }}
                   >
                     <PackageCard
                       title={pkg.title}
@@ -294,7 +291,11 @@ const PackagesPage = () => {
                       image={pkg.image}
                       slug={pkg.slug}
                       id={pkg.id}
-                      delay={idx * 0.05}
+                      delay={idx * 0.04}
+                      category={pkg.category}
+                      nightsPlan={pkg.nightsPlan}
+                      layout="landscape"
+                      reverse={idx % 2 === 1}
                     />
                   </motion.div>
                 ))

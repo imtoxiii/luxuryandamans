@@ -15,15 +15,24 @@ import { adventureThrill } from './packages/adventure-thrill';
 import { familyParadise } from './packages/family-paradise';
 import { family4n5d } from './packages/family-4n5d';
 import { grandAndaman } from './packages/grand-andaman';
+import { jollyBuoyWandoor } from './packages/jolly-buoy-wandoor';
+import { grandEscape9d } from './packages/grand-escape-9d';
 
-// Standard Package
+// Standard Packages
 import { standardAndaman } from './packages/standard-andaman';
+import { shortBreak3n4d } from './packages/short-break-3n4d';
+import { neilIslandSpecial } from './packages/neil-island-special';
+import { rossNorthBayHop } from './packages/ross-north-bay-hop';
+import { havelockExtendedExplore } from './packages/havelock-extended-explore';
+import { completeAndaman7d } from './packages/complete-andaman-7d';
+
+export type PackageCategory = 'Standard' | 'Luxury' | 'Honeymoon' | 'Family';
 
 export interface Hotel {
   name: string;
   location: string;
   rating: number;
-  image: string;
+  image?: string;
   amenities: string[];
   description: string;
   starCategory?: 3 | 4 | 5;
@@ -58,6 +67,7 @@ export interface ItineraryDay {
   hotel?: Hotel;
   meals: string[];
   sightseeing: string[];
+  location?: string;
 }
 
 export interface Package {
@@ -67,6 +77,8 @@ export interface Package {
   price: number;
   duration: string;
   groupSize: string;
+  category: PackageCategory;
+  nightsPlan: string;
   image: string;
   features: string[];
   includes: string[];
@@ -91,23 +103,30 @@ export interface Package {
 }
 
 export const packages: Package[] = [
-  // Honeymoon Packages - sorted by duration
-  honeymoon4n5d,      // 5 days - Quick honeymoon
-  romanticHideaway,   // 6 days - Romantic Hideaway
-  honeymoon5n6d,      // 6 days - Time mapped
-  luxuryHoneymoon,    // 7 days - New Luxury
+  // Honeymoon
+  honeymoon4n5d,
+  neilIslandSpecial,
+  romanticHideaway,
+  honeymoon5n6d,
+  luxuryHoneymoon,
 
-  // Luxury Packages - sorted by duration
-  luxury4n5d,         // 5 days - Premium
-  ultimateAdventure,  // 7 days - Adventure
-  luxuryEscape,       // 7 days - Ultra luxury
-  adventureThrill,    // 6 days - New Adventure
+  // Luxury
+  luxury4n5d,
+  adventureThrill,
+  ultimateAdventure,
+  luxuryEscape,
 
-  // Family Packages - sorted by duration
-  family4n5d,         // 5 days - Quick family fun
-  familyParadise,     // 6 days - Complete family
-  grandAndaman,       // 8 days - Grand Tour
+  // Family
+  family4n5d,
+  familyParadise,
+  jollyBuoyWandoor,
+  grandAndaman,
+  grandEscape9d,
 
-  // Standard Package - Best value
-  standardAndaman     // 6 days - Budget friendly
+  // Standard
+  shortBreak3n4d,
+  rossNorthBayHop,
+  standardAndaman,
+  havelockExtendedExplore,
+  completeAndaman7d,
 ];

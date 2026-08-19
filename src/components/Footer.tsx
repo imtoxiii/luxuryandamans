@@ -1,5 +1,4 @@
-import { useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Instagram,
@@ -8,13 +7,10 @@ import {
   Mail,
   Phone,
   MapPin,
-  ChevronRight
+  ChevronDown,
+  ArrowRight,
 } from 'lucide-react';
-import { gsap } from 'gsap';
 
-// Static link lists (name + URL only). Do NOT import the full data files here:
-// the footer renders on every page, and importing src/data/destinations.ts &
-// experiences.ts pulled ~170KB of content data into every page load.
 const quickLinks = [
   { name: 'Logistics Guide', href: '/guide' },
   { name: 'Itinerary Guide', href: '/travel-guide' },
@@ -70,221 +66,196 @@ const experienceLinks = [
   { name: 'Jet Skiing', href: '/experiences/jet-ski' },
 ];
 
-const Footer = () => {
+const social = [
+  { href: 'https://www.instagram.com/luxuryandamans', label: 'Instagram', Icon: Instagram },
+  { href: 'https://www.facebook.com/luxuryandamans', label: 'Facebook', Icon: Facebook },
+  { href: 'https://x.com/luxuryandaman', label: 'Twitter', Icon: Twitter },
+];
 
-  const gradientTextRef = useRef(null);
-
-  useEffect(() => {
-    if (gradientTextRef.current) {
-      gsap.to(gradientTextRef.current, {
-        backgroundPosition: '200% center',
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-        duration: 3,
-      });
-    }
-  }, []);
+const FooterColumn = ({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) => {
+  const [open, setOpen] = useState(false);
 
   return (
-    <footer className="bg-night text-pearl">
-      {/* Main Footer */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
-          {/* Company Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h3 ref={gradientTextRef} className="text-2xl font-bold mb-6 bg-gradient-to-r from-azure via-lagoon to-azure bg-clip-text text-transparent" style={{ backgroundSize: '200% auto' }}>Luxury Andamans</h3>
-            <p className="text-pearl/80 mb-6">
-              Port Blair–based Andaman travel agency for honeymoon, family, and custom island trips.
-              We lock ferries, hotels, and activities so you spend the holiday on the beach — not on WhatsApp.
+    <div className="border-b border-slate-200 md:border-0">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="flex w-full items-center justify-between py-4 text-left md:pointer-events-none md:py-0"
+        aria-expanded={open}
+      >
+        <h4 className="font-serif text-xl font-semibold text-slate-900">{title}</h4>
+        <ChevronDown
+          className={`h-4 w-4 text-slate-400 transition-transform duration-300 md:hidden ${open ? 'rotate-180' : ''}`}
+        />
+      </button>
+      <div className={`${open ? 'block pb-5' : 'hidden'} md:block md:pb-0 md:pt-4`}>
+        {children}
+      </div>
+    </div>
+  );
+};
+
+const Footer = () => {
+  return (
+    <footer className="bg-[#f7f4ef] text-slate-900">
+      <div className="container mx-auto px-4 py-10 md:px-6 md:py-14">
+        <div className="mb-10 flex flex-col gap-6 border-b border-slate-200/80 pb-8 md:mb-12 md:flex-row md:items-end md:justify-between">
+          <div>
+            <Link to="/" className="inline-block">
+              <span className="block font-serif text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl">
+                Luxury <span className="font-script text-[1.15em] font-normal text-slate-800">Andamans</span>
+              </span>
+            </Link>
+            <p className="mt-4 max-w-md text-sm font-light leading-relaxed text-slate-500 md:text-[15px]">
+              Port Blair–based agency for honeymoon, family, and custom island trips.
             </p>
-            <div className="flex space-x-4">
-              <a
-                href="https://www.instagram.com/luxuryandamans"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="w-10 h-10 rounded-full bg-azure/10 flex items-center justify-center hover:bg-azure/20 transition-colors"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="https://www.facebook.com/luxuryandamans"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="w-10 h-10 rounded-full bg-azure/10 flex items-center justify-center hover:bg-azure/20 transition-colors"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="https://x.com/luxuryandaman"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Twitter"
-                className="w-10 h-10 rounded-full bg-azure/10 flex items-center justify-center hover:bg-azure/20 transition-colors"
-              >
-                <Twitter className="w-5 h-5" />
-              </a>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {social.map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-900"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
             </div>
-          </motion.div>
+          </div>
 
-          {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    to={link.href}
-                    className="text-pearl/80 hover:text-pearl transition-colors inline-flex items-center group"
-                  >
-                    <ChevronRight className="w-4 h-4 mr-2 transform group-hover:translate-x-1 transition-transform" />
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <a
+              href="tel:+916297576826"
+              className="inline-flex items-center gap-2 text-sm text-slate-600 transition-colors hover:text-slate-900"
+            >
+              <Phone className="h-4 w-4" />
+              +91 62975 76826
+            </a>
+            <span className="hidden text-slate-300 sm:inline">·</span>
+            <a
+              href="mailto:info@luxuryandamans.com"
+              className="inline-flex items-center gap-2 text-sm text-slate-600 transition-colors hover:text-slate-900"
+            >
+              <Mail className="h-4 w-4" />
+              info@luxuryandamans.com
+            </a>
+            <Link
+              to="/enquiry"
+              className="inline-flex h-11 items-center gap-2 rounded-full bg-[#0a2740] px-5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#041018] sm:ml-2"
+            >
+              Plan my trip
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
 
-          {/* Destinations */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <h4 className="text-lg font-semibold mb-6">Destinations</h4>
-            <ul className="space-y-3">
-              {destinationLinks.map((dest) => (
-                <li key={dest.href}>
-                  <Link
-                    to={dest.href}
-                    className="text-pearl/80 hover:text-pearl transition-colors inline-flex items-center group"
-                  >
-                    <ChevronRight className="w-4 h-4 mr-2 transform group-hover:translate-x-1 transition-transform" />
-                    {dest.name}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link
-                  to="/destinations"
-                  className="text-azure hover:text-pearl transition-colors inline-flex items-center group font-medium"
-                >
-                  <ChevronRight className="w-4 h-4 mr-2 transform group-hover:translate-x-1 transition-transform" />
-                  View all destinations
-                </Link>
-              </li>
-            </ul>
-          </motion.div>
+        <div className="grid gap-2 md:grid-cols-12 md:gap-10">
+          <div className="md:col-span-4 lg:col-span-3">
+            <div className="mb-5 flex items-start gap-2.5 text-sm text-slate-500">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
+              <span>
+                Marine Hill Road, Port Blair
+                <span className="mt-0.5 block text-xs text-slate-400">Andaman & Nicobar Islands</span>
+              </span>
+            </div>
+            <p className="text-sm text-slate-500">
+              <span className="block font-medium text-slate-700">+91 94337 31478</span>
+              <span className="text-xs text-slate-400">Mon–Sat 9:00–18:00</span>
+            </p>
+          </div>
 
-          {/* Experiences */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
-          >
-            <h4 className="text-lg font-semibold mb-6">Experiences</h4>
-            <ul className="space-y-3">
-              {experienceLinks.map((experience) => (
-                <li key={experience.href}>
-                  <Link
-                    to={experience.href}
-                    className="text-pearl/80 hover:text-pearl transition-colors inline-flex items-center group"
-                  >
-                    <ChevronRight className="w-4 h-4 mr-2 transform group-hover:translate-x-1 transition-transform" />
-                    {experience.name}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link
-                  to="/experiences"
-                  className="text-azure hover:text-pearl transition-colors inline-flex items-center group font-medium"
-                >
-                  <ChevronRight className="w-4 h-4 mr-2 transform group-hover:translate-x-1 transition-transform" />
-                  View all experiences
-                </Link>
-              </li>
-            </ul>
-          </motion.div>
+          <div className="md:col-span-8 lg:col-span-9">
+            <div className="grid md:grid-cols-3 md:gap-8">
+              <FooterColumn title="Explore">
+                <ul className="grid grid-cols-2 gap-x-4 gap-y-2 md:grid-cols-1">
+                  {quickLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        to={link.href}
+                        className="text-[13px] leading-snug text-slate-500 transition-colors hover:text-slate-900"
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </FooterColumn>
 
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <h4 className="text-lg font-semibold mb-6">Contact Us</h4>
-            <ul className="space-y-4">
-              <li>
-                <div className="space-y-2">
-                  <Link to="tel:+916297576826" className="flex items-start text-pearl/80 hover:text-pearl transition-colors">
-                    <Phone className="w-5 h-5 mr-3 mt-1 glass-sunset-text" />
-                    <div>
-                      <p>+91 6297576826</p>
-                      <p className="text-sm text-pearl/60">Primary Contact</p>
-                    </div>
-                  </Link>
-                  <Link to="tel:+919433731478" className="flex items-start text-pearl/80 hover:text-pearl transition-colors ml-8">
-                    <div>
-                      <p>+91 9433731478</p>
-                      <p className="text-sm text-pearl/60">Mon-Sat 9:00-18:00</p>
-                    </div>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="flex items-start gap-4">
-                  <Mail className="text-accent-gold mt-1.5" size={20} />
-                  <div>
-                    <p className="font-bold text-pearl mb-1 text-lg">Email Us</p>
-                    <Link to="mailto:info@luxuryandamans.com" className="flex items-start text-pearl/80 hover:text-pearl transition-colors">
-                      <div className="ml-0">
-                        <p>info@luxuryandamans.com</p>
-                      </div>
+              <FooterColumn title="Islands">
+                <ul className="grid grid-cols-2 gap-x-4 gap-y-2 md:grid-cols-1">
+                  {destinationLinks.map((dest) => (
+                    <li key={dest.href}>
+                      <Link
+                        to={dest.href}
+                        className="text-[13px] leading-snug text-slate-500 transition-colors hover:text-slate-900"
+                      >
+                        {dest.name}
+                      </Link>
+                    </li>
+                  ))}
+                  <li className="col-span-2 md:col-span-1">
+                    <Link
+                      to="/destinations"
+                      className="inline-flex items-center gap-1 text-[13px] font-medium text-slate-800 transition-colors hover:text-slate-900"
+                    >
+                      View all destinations
+                      <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
-                  </div>
-                </div>
-              </li>
-              <li className="flex items-start text-pearl/80">
-                <MapPin className="w-5 h-5 mr-3 mt-1 glass-sunset-text" />
-                <div>
-                  <p>Marine Hill Road, Port Blair</p>
-                  <p className="text-sm text-pearl/60">Andaman & Nicobar Islands</p>
-                </div>
-              </li>
-            </ul>
-          </motion.div>
+                  </li>
+                </ul>
+              </FooterColumn>
+
+              <FooterColumn title="Experiences">
+                <ul className="grid grid-cols-2 gap-x-4 gap-y-2 md:grid-cols-1">
+                  {experienceLinks.map((experience) => (
+                    <li key={experience.href}>
+                      <Link
+                        to={experience.href}
+                        className="text-[13px] leading-snug text-slate-500 transition-colors hover:text-slate-900"
+                      >
+                        {experience.name}
+                      </Link>
+                    </li>
+                  ))}
+                  <li className="col-span-2 md:col-span-1">
+                    <Link
+                      to="/experiences"
+                      className="inline-flex items-center gap-1 text-[13px] font-medium text-slate-800 transition-colors hover:text-slate-900"
+                    >
+                      View all experiences
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </li>
+                </ul>
+              </FooterColumn>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-azure/10">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-pearl/60 text-sm">
-              © 2026 Luxury Andamans. All rights reserved.
-            </p>
-            <div className="flex items-center space-x-6 mt-4 md:mt-0">
-              <Link to="/privacy" className="text-pearl/60 hover:text-pearl text-sm transition-colors">
-                Privacy Policy
-              </Link>
-              <Link to="/terms" className="text-pearl/60 hover:text-pearl text-sm transition-colors">
-                Terms of Service
-              </Link>
-              <Link to="/sitemap" className="text-pearl/60 hover:text-pearl text-sm transition-colors">
-                Sitemap
-              </Link>
-            </div>
+      <div className="border-t border-slate-200/80">
+        <div className="container mx-auto flex flex-col items-start justify-between gap-3 px-4 py-4 md:flex-row md:items-center md:px-6">
+          <p className="text-xs text-slate-400 md:text-sm">
+            © 2026 Luxury Andamans. All rights reserved.
+          </p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <Link to="/privacy" className="text-xs text-slate-400 transition-colors hover:text-slate-700 md:text-sm">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="text-xs text-slate-400 transition-colors hover:text-slate-700 md:text-sm">
+              Terms of Service
+            </Link>
+            <Link to="/sitemap" className="text-xs text-slate-400 transition-colors hover:text-slate-700 md:text-sm">
+              Sitemap
+            </Link>
           </div>
         </div>
       </div>

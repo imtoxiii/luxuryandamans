@@ -24,7 +24,7 @@ import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
 import SmartImage from '../../components/SmartImage';
 import { packages, Package } from '../../data/packages';
-import { filterExistingImages, getHeroImages, getHotelMainImage, getAllHotelImages, getDestinationCardImage, getDestinationImagesForHighlight } from '../../lib/imageLoader';
+import { filterExistingImages, getHeroImages, getDestinationCardImage, getDestinationImagesForHighlight } from '../../lib/imageLoader';
 import { generatePackageMetaTags, generatePackageStructuredData } from '../../lib/structuredData';
 
 const PackageDetailPage: React.FC = () => {
@@ -53,7 +53,9 @@ const PackageDetailPage: React.FC = () => {
     const foundPackage = packages.find(pkg => pkg.slug === slug);
     if (foundPackage) {
       setCurrentPackage(foundPackage);
-      const durationDays = parseInt(foundPackage.duration.split(' ')[0]);
+      const durationDays =
+        foundPackage.pricingOptions?.find((o) => o.pricePerPerson === foundPackage.price)?.days
+        || parseInt(foundPackage.duration, 10);
       setSelectedDays(durationDays || 6);
     }
     setIsLoading(false);
@@ -264,7 +266,7 @@ const PackageDetailPage: React.FC = () => {
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
                 <MapPin className="w-5 h-5" />
-                Andaman Islands
+                {currentPackage.nightsPlan || 'Andaman Islands'}
               </div>
             </div>
           </motion.div>
@@ -456,88 +458,114 @@ const PackageDetailPage: React.FC = () => {
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <section className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 space-y-8">
-                      <div className="flex items-center justify-between border-b pb-4">
-                        <h2 className="text-3xl font-bold text-gray-900 font-display">Your Journey</h2>
-                        <button
-                          onClick={() => {
-                            const details = document.querySelectorAll('details');
-                            const allOpen = Array.from(details).every(d => d.open);
-                            details.forEach(d => d.open = !allOpen);
-                          }}
-                          className="text-sm font-semibold text-blue-600 hover:text-blue-800 bg-blue-50 px-4 py-2 rounded-lg transition-colors"
-                        >
-                          Toggle All
-                        </button>
+                    <section className="overflow-hidden rounded-[2.2rem_0.9rem_2.2rem_0.9rem] border border-slate-100 bg-white p-6 shadow-sm md:p-8">
+                      <div className="mb-8 flex flex-col gap-3 border-b border-slate-100 pb-5 sm:flex-row sm:items-end sm:justify-between">
+                        <div>
+                          <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-600">Day by day</p>
+                          <h2 className="mt-1 font-display text-3xl font-bold text-slate-900">Your journey</h2>
+                          {currentPackage.nightsPlan && (
+                            <p className="mt-2 text-sm text-slate-500">{currentPackage.nightsPlan}</p>
+                          )}
+                        </div>
+                        <p className="max-w-xs text-sm text-slate-400">
+                          Stay names are listed on each night. Room images live with the hotel — this plan is the route.
+                        </p>
                       </div>
 
-                      <div className="relative border-l-2 border-blue-100 ml-4 space-y-8 pb-4">
-                        {(currentPackage.itineraries?.[selectedDays] || currentPackage.itinerary).map((day, idx) => (
-                          <div key={idx} className="relative pl-8">
-                            <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-600 ring-4 ring-white shadow-sm" />
-
-                            <details className="group bg-gray-50 rounded-xl border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-md open:bg-white open:shadow-lg open:ring-1 open:ring-blue-100">
-                              <summary className="flex items-center justify-between p-6 cursor-pointer select-none">
-                                <div>
-                                  <span className="text-sm font-bold text-blue-600 uppercase tracking-wider mb-1 block">Day {idx + 1}</span>
-                                  <h3 className="text-xl font-bold text-gray-900">{day.title}</h3>
-                                </div>
-                                <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center transition-transform duration-300 text-blue-600">
-                                  <ChevronDown className="w-5 h-5" />
-                                </div>
-                              </summary>
-
-                              <div className="px-6 pb-6 pt-0 border-t border-gray-100 mt-2">
-                                <p className="text-gray-600 leading-relaxed mb-6 mt-4">{day.description}</p>
-
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                  <div className="bg-blue-50/50 rounded-xl p-5 border border-blue-100">
-                                    <h4 className="font-bold text-gray-900 mb-3 flex items-center">
-                                      <Check className="w-4 h-4 text-blue-600 mr-2" />
-                                      Activities
-                                    </h4>
-                                    <ul className="space-y-2">
-                                      {day.activities.map((activity, i) => (
-                                        <li key={i} className="text-sm text-gray-700 flex items-start">
-                                          <span className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 mr-2 flex-shrink-0" />
-                                          {activity}
-                                        </li>
-                                      ))}
-                                    </ul>
+                      <div className="relative space-y-5">
+                        <div className="absolute bottom-8 left-6 top-8 hidden w-px bg-gradient-to-b from-blue-200 via-cyan-100 to-blue-200 md:block" />
+                        {(currentPackage.itineraries?.[selectedDays] || currentPackage.itinerary).map((dayItem, idx) => {
+                          const reverse = idx % 2 === 1;
+                          const curve = reverse
+                            ? 'rounded-[0.9rem_2.1rem_0.9rem_2.1rem]'
+                            : 'rounded-[2.1rem_0.9rem_2.1rem_0.9rem]';
+                          return (
+                            <div key={idx} className="relative md:pl-14">
+                              <div className="absolute left-[18px] top-7 hidden h-4 w-4 rounded-full bg-blue-600 ring-4 ring-white md:block" />
+                              <details className={`group overflow-hidden border border-slate-100 bg-slate-50/80 shadow-sm transition-all open:bg-white open:shadow-lg open:ring-1 open:ring-blue-100 ${curve}`}>
+                                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 p-5 marker:content-none md:p-6 [&::-webkit-details-marker]:hidden">
+                                  <div className="flex gap-4">
+                                    <div className={`flex h-14 w-14 shrink-0 flex-col items-center justify-center bg-blue-600 text-white ${reverse ? 'rounded-[0.55rem_1.1rem_0.55rem_1.1rem]' : 'rounded-[1.1rem_0.55rem_1.1rem_0.55rem]'}`}>
+                                      <span className="text-[10px] font-bold uppercase tracking-widest text-blue-100">Day</span>
+                                      <span className="font-display text-xl font-bold leading-none">{String(idx + 1).padStart(2, '0')}</span>
+                                    </div>
+                                    <div>
+                                      {dayItem.location && (
+                                        <span className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-600">{dayItem.location}</span>
+                                      )}
+                                      <h3 className="mt-0.5 text-lg font-bold text-slate-900 md:text-xl">{dayItem.title}</h3>
+                                      {dayItem.hotel && (
+                                        <p className="mt-1 flex items-center gap-1.5 text-sm text-slate-500">
+                                          <Home className="h-3.5 w-3.5 text-amber-600" />
+                                          {dayItem.hotel.name}
+                                        </p>
+                                      )}
+                                    </div>
                                   </div>
+                                  <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-blue-600 shadow-sm transition-transform duration-300 group-open:rotate-180">
+                                    <ChevronDown className="h-4 w-4" />
+                                  </div>
+                                </summary>
 
-                                  <div className="space-y-4">
-                                    {day.hotel && (
-                                      <div className="bg-amber-50/50 rounded-xl p-5 border border-amber-100">
-                                        <h4 className="font-bold text-gray-900 mb-2 flex items-center">
-                                          <Home className="w-4 h-4 text-amber-600 mr-2" />
-                                          Accommodation
-                                        </h4>
-                                        <p className="text-sm text-gray-800 font-medium">{day.hotel.name}</p>
-                                        <p className="text-xs text-gray-500">{day.hotel.location}</p>
-                                      </div>
-                                    )}
-                                    {day.meals && (
-                                      <div className="bg-green-50/50 rounded-xl p-5 border border-green-100">
-                                        <h4 className="font-bold text-gray-900 mb-2 flex items-center">
-                                          <Info className="w-4 h-4 text-green-600 mr-2" />
-                                          Meals Included
-                                        </h4>
+                                <div className="border-t border-slate-100 px-5 pb-6 pt-4 md:px-6">
+                                  <p className="mb-5 leading-relaxed text-slate-600">{dayItem.description}</p>
+                                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                                    <div className={`border border-blue-100 bg-blue-50/60 p-5 ${reverse ? 'rounded-[0.7rem_1.5rem_0.7rem_1.5rem]' : 'rounded-[1.5rem_0.7rem_1.5rem_0.7rem]'}`}>
+                                      <h4 className="mb-3 flex items-center font-bold text-slate-900">
+                                        <Check className="mr-2 h-4 w-4 text-blue-600" />
+                                        On this day
+                                      </h4>
+                                      <ul className="space-y-2">
+                                        {dayItem.activities.map((activity, i) => (
+                                          <li key={i} className="flex items-start text-sm text-slate-700">
+                                            <span className="mr-2 mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400" />
+                                            {activity}
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                    <div className="space-y-4">
+                                      {dayItem.hotel && (
+                                        <div className="rounded-[1.25rem_0.6rem_1.25rem_0.6rem] border border-amber-100 bg-amber-50/70 p-5">
+                                          <h4 className="mb-1 flex items-center font-bold text-slate-900">
+                                            <Home className="mr-2 h-4 w-4 text-amber-600" />
+                                            Night stay
+                                          </h4>
+                                          <p className="text-sm font-semibold text-slate-800">{dayItem.hotel.name}</p>
+                                          <p className="text-xs text-slate-500">{dayItem.hotel.location} · {dayItem.hotel.starCategory || dayItem.hotel.rating} star</p>
+                                        </div>
+                                      )}
+                                      {dayItem.sightseeing?.length > 0 && (
                                         <div className="flex flex-wrap gap-2">
-                                          {day.meals.map((meal, i) => (
-                                            <span key={i} className="text-xs font-medium bg-white px-2 py-1 rounded border border-green-100 text-green-700 shadow-sm">
-                                              {meal}
+                                          {dayItem.sightseeing.map((spot) => (
+                                            <span key={spot} className="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-600 ring-1 ring-slate-200">
+                                              {spot}
                                             </span>
                                           ))}
                                         </div>
-                                      </div>
-                                    )}
+                                      )}
+                                      {dayItem.meals && (
+                                        <div className="rounded-[0.6rem_1.25rem_0.6rem_1.25rem] border border-green-100 bg-green-50/70 p-5">
+                                          <h4 className="mb-2 flex items-center font-bold text-slate-900">
+                                            <Info className="mr-2 h-4 w-4 text-green-600" />
+                                            Meals
+                                          </h4>
+                                          <div className="flex flex-wrap gap-2">
+                                            {dayItem.meals.map((meal, i) => (
+                                              <span key={i} className="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-green-700 ring-1 ring-green-100">
+                                                {meal}
+                                              </span>
+                                            ))}
+                                          </div>
+                                        </div>
+                                      )}
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            </details>
-                          </div>
-                        ))}
+                              </details>
+                            </div>
+                          );
+                        })}
                       </div>
                     </section>
                   </motion.div>
@@ -552,7 +580,8 @@ const PackageDetailPage: React.FC = () => {
                     transition={{ duration: 0.3 }}
                     className="space-y-6"
                   >
-                    <h2 className="text-3xl font-bold text-gray-900 font-display mb-6">Accommodation</h2>
+                    <h2 className="mb-2 font-display text-3xl font-bold text-gray-900">Named stays</h2>
+                    <p className="mb-6 text-sm text-slate-500">Hotels are listed by name and room band. Photos are not shown here — ask us for the live room category on your dates.</p>
                     {isFromOffer ? (
                       /* When coming from Offer page, always show customization message */
                       <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 border border-amber-100 shadow-sm">
@@ -586,40 +615,70 @@ const PackageDetailPage: React.FC = () => {
                         </div>
                       </div>
                     ) : currentPackage.hotels && currentPackage.hotels.length > 0 ? (
-                      currentPackage.hotels.map((hotel, idx) => (
-                        <div key={idx} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col md:flex-row">
-                          <div className="md:w-1/3 h-64 md:h-auto relative">
-                            <img
-                              src={getHotelMainImage(currentPackage.id || currentPackage.slug, hotel.name) || hotel.image}
-                              alt={hotel.name}
-                              className="w-full h-full object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                              onClick={() => {
-                                const images = getAllHotelImages(currentPackage.id || currentPackage.slug, hotel.name);
-                                if (images.length > 0) openImageModal(images);
-                              }}
-                            />
-                            <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 shadow-sm">
-                              {hotel.starCategory || hotel.rating} Star
-                            </div>
-                          </div>
-                          <div className="p-6 md:w-2/3 flex flex-col justify-between">
-                            <div>
-                              <h3 className="text-xl font-bold text-gray-900 mb-2">{hotel.name}</h3>
-                              <p className="text-gray-500 text-sm mb-4 flex items-center">
-                                <MapPin className="w-4 h-4 mr-1" /> {hotel.location}
-                              </p>
-                              <p className="text-gray-600 mb-4 line-clamp-3">{hotel.description}</p>
-                              <div className="flex flex-wrap gap-2 mb-4">
-                                {hotel.amenities.slice(0, 5).map((amenity, i) => (
-                                  <span key={i} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-md">
-                                    {amenity}
+                      currentPackage.hotels.map((hotel, idx) => {
+                        const reverse = idx % 2 === 1;
+                        const curve = reverse
+                          ? 'rounded-[0.9rem_2.2rem_0.9rem_2.2rem]'
+                          : 'rounded-[2.2rem_0.9rem_2.2rem_0.9rem]';
+                        const rates = (hotel.roomTypes || [])
+                          .map((r) => r.pricePerNight)
+                          .filter((n): n is number => typeof n === 'number');
+                        const minRate = rates.length ? Math.min(...rates) : undefined;
+                        const maxRate = rates.length ? Math.max(...rates) : undefined;
+                        return (
+                          <div key={idx} className={`border border-slate-100 bg-white p-6 shadow-sm md:p-8 ${curve}`}>
+                            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                              <div>
+                                <div className="mb-2 flex flex-wrap items-center gap-2">
+                                  <span className="rounded-full bg-amber-50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-amber-700">
+                                    {hotel.starCategory || hotel.rating} star
                                   </span>
+                                  <span className="inline-flex items-center text-sm text-slate-500">
+                                    <MapPin className="mr-1 h-4 w-4" /> {hotel.location}
+                                  </span>
+                                </div>
+                                <h3 className="font-display text-2xl font-bold text-slate-900">{hotel.name}</h3>
+                                <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">{hotel.description}</p>
+                              </div>
+                              {minRate && (
+                                <div className="shrink-0 rounded-[1.1rem_0.45rem_1.1rem_0.45rem] bg-slate-900 px-4 py-3 text-white">
+                                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/60">Room band / night</p>
+                                  <p className="font-display text-lg font-semibold">
+                                    ₹{minRate.toLocaleString('en-IN')}
+                                    {maxRate && maxRate !== minRate ? ` – ₹${maxRate.toLocaleString('en-IN')}` : ''}
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                            <div className="mt-4 flex flex-wrap gap-2">
+                              {hotel.amenities.map((amenity) => (
+                                <span key={amenity} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
+                                  {amenity}
+                                </span>
+                              ))}
+                            </div>
+                            {hotel.roomTypes && hotel.roomTypes.length > 0 && (
+                              <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                                {hotel.roomTypes.map((room) => (
+                                  <div key={room.name} className="rounded-[1.2rem_0.5rem_1.2rem_0.5rem] border border-slate-100 bg-slate-50 p-4">
+                                    <p className="font-semibold text-slate-900">{room.name}</p>
+                                    {room.description && <p className="mt-1 text-xs leading-relaxed text-slate-500">{room.description}</p>}
+                                    <div className="mt-3 flex items-baseline justify-between">
+                                      {room.pricePerNight ? (
+                                        <p className="text-sm font-bold text-blue-700">₹{room.pricePerNight.toLocaleString('en-IN')}<span className="font-medium text-slate-400"> / night</span></p>
+                                      ) : <span />}
+                                      {room.maxOccupancy && (
+                                        <p className="text-xs text-slate-400">Up to {room.maxOccupancy}</p>
+                                      )}
+                                    </div>
+                                  </div>
                                 ))}
                               </div>
-                            </div>
+                            )}
+                            <p className="mt-4 text-xs text-slate-400">Same star band if this hotel is sold out for your dates.</p>
                           </div>
-                        </div>
-                      ))
+                        );
+                      })
                     ) : (
                       <div className="text-center py-12 bg-gray-50 rounded-2xl border border-dashed border-gray-200">
                         <Home className="w-12 h-12 text-gray-300 mx-auto mb-4" />
@@ -697,7 +756,10 @@ const PackageDetailPage: React.FC = () => {
                         onChange={(e) => setSelectedDays(parseInt(e.target.value))}
                         className="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl py-3.5 px-4 pr-8 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-medium transition-shadow"
                       >
-                        {[...new Set([...(currentPackage.pricingOptions?.map(o => o.days) || []), 6, 7, 8])]
+                        {(currentPackage.pricingOptions?.length
+                          ? currentPackage.pricingOptions.map(o => o.days)
+                          : [parseInt(currentPackage.duration, 10) || 6])
+                          .filter((d, i, arr) => arr.indexOf(d) === i)
                           .sort((a, b) => a - b)
                           .map(days => (
                             <option key={days} value={days}>{days} Days / {days - 1} Nights</option>

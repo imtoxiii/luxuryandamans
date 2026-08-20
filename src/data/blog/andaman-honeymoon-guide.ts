@@ -197,7 +197,7 @@ If you want to avoid the selfie-taking crowds at Radhanagar, try these spots:
     *   **Documents:** IDs, flight/hotel vouchers, and a copy of your marriage certificate (some hotels offer honeymoon freebies).
 *   **Connectivity:** Mobile network coverage can be spotty. BSNL and Airtel have the best connectivity. Be prepared to disconnect and enjoy each other's company!
 *   **Plan Your Itinerary:** While it's good to be spontaneous, having a basic itinerary helps. Use our [7-day itinerary](/blog/7-day-andaman-itinerary) as a starting point.
-*   **Check Entry Permits:** Indian nationals do not require a permit to visit the main tourist islands. Foreign nationals need a Restricted Area Permit (RAP), which is usually issued on arrival at the Port Blair airport.
+*   **Check Entry Permits:** Indian nationals do not require a permit to visit the main tourist islands. Foreign nationals need a valid Indian visa and passport; a separate RAP is generally not required for standard tourist islands. See the [foreign tourist permit guide](/blog/andaman-permits-foreign-tourists-2026).
 
 ## Ready for Your Romantic Escape?
 

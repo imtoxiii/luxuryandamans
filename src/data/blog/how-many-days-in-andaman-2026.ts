@@ -22,9 +22,11 @@ const post: BlogPost = {
     '7 days andaman enough',
   ],
   relatedPosts: [
+    'andaman-3-days-itinerary-2026',
     'andaman-5-days-itinerary-2026',
     'andaman-6-days-itinerary-2026',
-    'andaman-itinerary-7-days',
+    '7-day-andaman-itinerary',
+    'andaman-10-days-itinerary-2026',
   ],
   faq: [
     {
@@ -48,7 +50,7 @@ const post: BlogPost = {
 
 Google “how many days in Andaman” because an uncle said 4 and Instagram said 10. Both can be true. Four days is a Havelock dash. Ten days is Diglipur or a second scuba course. **First trip, three islands, Indian metro flights: 6 days.**
 
-Shorter write-ups: [5-day itinerary](/blog/andaman-5-days-itinerary-2026), [6-day itinerary](/blog/andaman-6-days-itinerary-2026), [7-day itinerary](/blog/7-day-andaman-itinerary).
+Day-by-day write-ups: [3-day (honest too-short plan)](/blog/andaman-3-days-itinerary-2026), [5-day itinerary](/blog/andaman-5-days-itinerary-2026), [6-day itinerary](/blog/andaman-6-days-itinerary-2026), [7-day itinerary](/blog/7-day-andaman-itinerary), [10-day itinerary](/blog/andaman-10-days-itinerary-2026).
 
 ---
 

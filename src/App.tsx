@@ -11,6 +11,7 @@ import { removeLoader } from './lib/loader';
 import { resetPrerenderSignal, evaluatePrerenderReady, signalPrerenderReady } from './lib/prerenderReady';
 import DiscountPopup from './components/DiscountPopup';
 import OfferSticker from './components/OfferSticker';
+import { LEGACY_REDIRECTS } from './lib/legacyRedirects';
 
 // Offer sticker should show everywhere EXCEPT on the Offer page itself (as it's redundant there)
 const ShowOfferSticker = () => {
@@ -18,6 +19,10 @@ const ShowOfferSticker = () => {
   // Don't show on offer page
   if (location.pathname === '/offer') return null;
   return <OfferSticker />;
+};
+
+const LoggedNavigate = ({ to }: { to: string }) => {
+  return <Navigate to={to} replace />;
 };
 
 // Lazy load non-critical pages
@@ -100,12 +105,11 @@ function App() {
     resetPrerenderSignal(path);
 
     let cancelled = false;
-    const started = Date.now();
     const initialTitle = document.title;
 
     const tick = () => {
       if (cancelled) return;
-      if (evaluatePrerenderReady(path, initialTitle, started)) {
+      if (evaluatePrerenderReady(path, initialTitle)) {
         signalPrerenderReady(path);
         window.clearInterval(interval);
       }
@@ -124,6 +128,10 @@ function App() {
     <>
       <Suspense fallback={null}>
         <Routes location={displayLocation}>
+          {Object.entries(LEGACY_REDIRECTS).map(([from, to]) => (
+            <Route key={from} path={from} element={<LoggedNavigate to={to} />} />
+          ))}
+
           <Route path="/" element={<Home />} />
           <Route path="/destinations" element={<DestinationsPage />} />
           {/* Category hub pages */}
@@ -153,7 +161,6 @@ function App() {
           <Route path="/experiences" element={<ExperiencesPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/guide" element={<GuidePage />} />
-          <Route path="/about" element={<Navigate to="/guide" replace />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/travel-guide" element={<TravelGuide />} />
@@ -167,7 +174,6 @@ function App() {
 
           {/* Experience Detail Pages */}
           <Route path="/experiences/luxury-resorts" element={<LuxuryResortsPage />} />
-          <Route path="/experiences/luxury-beach-resorts" element={<Navigate to="/experiences/luxury-resorts" replace />} />
           <Route path="/experiences/scuba-diving" element={<ScubaDivingPage />} />
           <Route path="/experiences/island-hopping" element={<IslandHoppingPage />} />
           <Route path="/experiences/sunset-cruises" element={<SunsetCruisesPage />} />

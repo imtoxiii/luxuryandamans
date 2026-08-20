@@ -28,7 +28,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
 import { staggerContainer, fadeInUp } from '../../lib/animations';
-import type { Destination } from '../../data/destinations';
+import { destinations, type Destination } from '../../data/destinations';
 
 type DestinationTemplateProps = {
   destination: Destination;
@@ -623,10 +623,12 @@ export default function DestinationTemplate({ destination }: DestinationTemplate
                     <div className="bg-white p-5 rounded-xl border border-gray-100">
                       <h3 className="text-lg font-bold text-night mb-3">Nearby Attractions</h3>
                       <div className="grid grid-cols-1 gap-3">
-                        {destination.nearbyAttractions.map((a, idx) => (
+                        {destination.nearbyAttractions.map((a, idx) => {
+                          const destExists = Boolean(a.slug && destinations.some((d) => d.slug === a.slug));
+                          return (
                           <div key={idx} className="flex items-start justify-between">
                             <div>
-                              {a.slug ? (
+                              {destExists ? (
                                 <Link className="text-azure font-semibold hover:underline" to={`/destinations/${a.slug}`}>{a.name}</Link>
                               ) : (
                                 <div className="text-night font-semibold">{a.name}</div>
@@ -637,7 +639,8 @@ export default function DestinationTemplate({ destination }: DestinationTemplate
                             </div>
                             <div className="text-night/60 text-xs sm:text-sm ml-3 flex-shrink-0">{a.distance}</div>
                           </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
                   )}

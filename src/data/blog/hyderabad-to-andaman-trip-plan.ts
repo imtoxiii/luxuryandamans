@@ -86,7 +86,7 @@ Here’s a realistic cost estimate for a 7-day trip for two people.
 - **Pre-Book Ferries & Activities:** During peak season (December-January), it is crucial to pre-book your inter-island ferries and popular activities like scuba diving to avoid disappointment.
 - **Cash is King:** While UPI is available in some places, network connectivity can be patchy. Always carry sufficient cash for local transport, small eateries, and markets.
 
-Ready to take the next step? Browse our specially curated [Andaman Packages](/packages) or read our [Andaman Budget Guide](/blog/andaman-budget-guide) for more detailed financial planning.
+Ready to take the next step? Browse our specially curated [Andaman Packages](/packages) or read our [Andaman Budget Guide](/blog/andaman-budget-travel-guide) for more detailed financial planning.
 `,
   faq: [
     {

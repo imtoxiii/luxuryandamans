@@ -151,7 +151,7 @@ This itinerary focuses on affordable transport and activities, which can easily 
 ## Ready to Plan Your Trip?
 Financing your Andaman trip with an EMI is a smart way to make your dream vacation happen without financial stress. With a little planning, you can explore this stunning archipelago affordably.
 
-- Explore our [Andaman Budget Guide](/blog/andaman-budget-guide) for more money-saving tips.
+- Explore our [Andaman Budget Guide](/blog/andaman-budget-travel-guide) for more money-saving tips.
 - Check out our customizable [Andaman Tour Packages](/packages) that can be tailored to your budget.
 - [Contact us](/contact) today to learn more about our easy EMI options and start planning!
 

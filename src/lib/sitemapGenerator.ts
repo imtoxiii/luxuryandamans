@@ -82,7 +82,6 @@ export function generateDestinationCategorySitemapEntries(): SitemapEntry[] {
     { slug: 'havelock-destinations', priority: 0.95, name: 'Havelock Island' },
     { slug: 'neil-destinations', priority: 0.85, name: 'Neil Island' },
     { slug: 'baratang-destinations', priority: 0.75, name: 'Baratang' },
-    { slug: 'north-andaman-destinations', priority: 0.7, name: 'North Andaman' },
   ];
   
   return categories.map(category => ({

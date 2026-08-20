@@ -236,7 +236,7 @@ export const destinations: Destination[] = [
       { name: "Sea-view boutique stay", type: "Hotel", priceRange: "₹6,000–₹12,000", location: "Marine Hill" }
     ],
     practicalInfo: {
-      permits: "No special permit required for Indian nationals. Foreign nationals require RAP (issued on arrival).",
+      permits: "No special permit for Indian nationals (photo ID). Foreign nationals need a valid Indian visa and passport; a separate RAP is generally not required for ~30 tourist islands including Port Blair, Havelock, and Neil.",
       networkCoverage: ["Airtel", "Jio", "BSNL"],
       atmAvailability: "Multiple ATMs within 1–2 km in city center.",
       medicalFacilities: "GB Pant Hospital ~2 km; basic first-aid available at venue.",
@@ -2101,7 +2101,7 @@ export const destinations: Destination[] = [
     ],
     bestFor: ["beach lovers", "snorkelers", "photographers", "families", "adventure seekers"],
     nearbyAttractions: [
-      { name: "Saddle Peak", distance: "1–1.5 hr drive", slug: "saddle-peak" },
+      { name: "Saddle Peak", distance: "1–1.5 hr drive", description: "Highest point in the Andamans, near Diglipur" },
       { name: "Kalipur Beach", distance: "30 min", description: "Turtle nesting beach" },
       { name: "Aerial Bay Jetty", distance: "45 min boat ride", description: "Departure point" }
     ],

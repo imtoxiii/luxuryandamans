@@ -149,7 +149,7 @@ Want a hassle-free Andaman experience? Let our local experts plan your 2026 geta
       question:
         'Which is better for a honeymoon: Havelock or Neil Island?',
       answer:
-        'Both! Havelock offers more activities, resorts, and a lively vibe. Neil Island is quieter, more rustic, and perfect for slowing down. Our itinerary gives you the best of both worlds. For a deep dive, read our <a href="/blog/havelock-vs-neil-island-guide">guide to Havelock and Neil islands</a>.'
+        'Both! Havelock offers more activities, resorts, and a lively vibe. Neil Island is quieter, more rustic, and perfect for slowing down. Our itinerary gives you the best of both worlds. For a deep dive, read our <a href="/blog/havelock-vs-neil-island-guide-2026">guide to Havelock and Neil islands</a>.'
     },
     {
       question: 'Do we need to book everything in advance?',

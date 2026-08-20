@@ -17,6 +17,8 @@ export const post: BlogPost = {
     'best-travel-agency-andaman-2026',
     'andaman-ferry-booking-guide',
     'andaman-packages-from-india-2026',
+    'andaman-islands-international-travel-guide-2026',
+    'havelock-island-travel-guide-2026',
   ],
   content: `
 ## You do not need all 572 islands
@@ -31,7 +33,7 @@ Port Blair is the airport and the history (Cellular Jail, Ross Island). Havelock
 
 **Indian citizens:** Aadhaar or any government photo ID for ferries and hotels. No special permit for Port Blair, Havelock, Neil, or standard Baratang day tours.
 
-**Foreign nationals:** Restricted Area Permit rules were simplified — 30 islands are open on a valid Indian visa without a separate RAP for most leisure routes. Carry passport copies everywhere. Full details in our [foreign tourist permit guide](/blog/andaman-permits-foreign-tourists-2026).
+**Foreign nationals:** Restricted Area Permit rules were simplified — 30 islands are open on a valid Indian visa without a separate RAP for most leisure routes. Carry passport copies everywhere. Start with the [international visitor hub](/blog/andaman-islands-international-travel-guide-2026), then [e-Visa steps](/blog/india-evisa-andaman-trip-2026) and the [foreign tourist permit guide](/blog/andaman-permits-foreign-tourists-2026). Money and data: [ATMs & cards](/blog/andaman-money-atm-cards-foreigners-2026), [eSIM](/blog/andaman-esim-sim-foreign-tourists-2026).
 
 Book flights to **Veer Savarkar Airport (IXZ)**. Morning arrivals help — you can catch an afternoon Havelock ferry same day if tickets exist.
 

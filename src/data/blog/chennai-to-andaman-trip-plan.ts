@@ -85,7 +85,7 @@ Here’s an estimated budget for a comfortable 7-day trip for two.
 - **Pack for the Tropics:** Light cotton clothes, swimwear, sunscreen, and a hat are essential. Don't forget mosquito repellent for the evenings.
 - **Carry Government ID:** A government-issued photo ID (like an Aadhaar card or driver's license) is mandatory for check-ins and ferry boarding.
 
-Start building your dream vacation by exploring our [Andaman Packages](/packages) or getting inspiration from the [Top Things to Do in Andaman](/blog/top-things-to-do-in-andaman).
+Start building your dream vacation by exploring our [Andaman Packages](/packages) or getting inspiration from the [Top Things to Do in Andaman](/blog/andaman-top-things-to-do-2025).
 `,
   faq: [
     {

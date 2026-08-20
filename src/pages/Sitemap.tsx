@@ -46,6 +46,10 @@ const Sitemap = () => {
 
   const destinationLinks = [
     { name: 'All Destinations', path: '/destinations' },
+    { name: 'Port Blair Guide', path: '/destinations/port-blair-destinations' },
+    { name: 'Havelock Guide', path: '/destinations/havelock-destinations' },
+    { name: 'Neil Island Guide', path: '/destinations/neil-destinations' },
+    { name: 'Baratang Guide', path: '/destinations/baratang-destinations' },
     ...destinationData.map(d => ({ name: d.name, path: `/destinations/${d.slug}` }))
   ];
 
@@ -76,6 +80,8 @@ const Sitemap = () => {
         { name: "Logistics Guide", path: "/guide" },
         { name: "Itinerary Guide", path: "/travel-guide" },
         { name: "Contact", path: "/contact" },
+        { name: "Plan my trip", path: "/enquiry" },
+        { name: "Current offer", path: "/offer" },
         { name: "Price Calculator", path: "/calculator" },
         { name: "FAQ", path: "/faq" },
         { name: "Privacy Policy", path: "/privacy" },

@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
 import { blogPosts } from '../../data/blog';
+import { relatedPostAliases } from '../../data/blog/blogSeoConfig';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import ScrollProgress from '../../components/ScrollProgress';
@@ -75,8 +76,9 @@ const BlogPost = () => {
   useEffect(() => {
     if (!post) {
       navigate('/blog', { replace: true });
+      return;
     }
-  }, [post, navigate]);
+  }, [post, navigate, location.pathname]);
 
   useEffect(() => {
     if (processedContent) {
@@ -125,9 +127,12 @@ const BlogPost = () => {
     );
   }
 
-  const relatedPosts = post.relatedPosts
-    .map(id => blogPosts.find(p => p.id === id))
-    .filter(Boolean);
+  const relatedPosts = (post.relatedPosts || [])
+    .map((id) => {
+      const key = relatedPostAliases[id] || id;
+      return blogPosts.find((p) => p.id === key || p.slug === key || p.id === id || p.slug === id);
+    })
+    .filter((p): p is NonNullable<typeof p> => Boolean(p) && !p.noindex);
 
   const sharePost = () => {
     if (navigator.share) {
@@ -229,6 +234,8 @@ const BlogPost = () => {
         tags={post.tags}
         faqData={post.faq}
         noindex={post.noindex}
+        locale={post.category.toLowerCase() === 'international' ? 'en_US' : 'en_IN'}
+        inLanguage={post.category.toLowerCase() === 'international' ? 'en' : 'en-IN'}
         extraStructuredData={[blogBreadcrumbSchema]}
       />
       <Header />

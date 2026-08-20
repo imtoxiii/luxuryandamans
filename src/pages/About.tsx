@@ -90,7 +90,7 @@ const GuidePage = () => {
         name: 'Do I need a passport to visit Andaman?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Indian citizens do not need a passport; a valid government ID (Aadhaar, Voter ID, etc.) is sufficient. Foreign nationals require a valid passport and an Indian Visa. The Restricted Area Permit (RAP) is no longer required for 30 inhabited tourist islands.'
+          text: 'Indian citizens do not need a passport; a valid government ID (Aadhaar, Voter ID, etc.) is sufficient. Foreign nationals require a valid passport and an Indian visa (e-Visa accepted for most nationalities). A separate Restricted Area Permit is generally not required for about 30 tourist islands. See luxuryandamans.com/blog/andaman-islands-international-travel-guide-2026 and luxuryandamans.com/blog/india-evisa-andaman-trip-2026.'
         }
       },
       {

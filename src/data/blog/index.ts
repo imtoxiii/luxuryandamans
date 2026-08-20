@@ -89,9 +89,49 @@ import howManyDays2026 from './how-many-days-in-andaman-2026';
 import sixDayItinerary2026 from './andaman-6-days-itinerary-2026';
 import februaryMarch2026 from './andaman-in-february-march-2026';
 import withParents2026 from './andaman-with-parents-2026';
+import havelockIslandGuide2026 from './havelock-island-travel-guide-2026';
+import portBlairGuide2026 from './port-blair-travel-guide-2026';
+import diglipurGuide2026 from './diglipur-north-andaman-guide-2026';
+import jollyBuoyVsRedSkin2026 from './jolly-buoy-vs-red-skin-2026';
+import cellularJailGuide2026 from './cellular-jail-port-blair-guide-2026';
+import aprilMay2026 from './andaman-in-april-may-2026';
+import ahmedabadPlan from './ahmedabad-to-andaman-trip-plan';
+import kochiPlan from './kochi-to-andaman-trip-plan';
+import threeDayItinerary2026 from './andaman-3-days-itinerary-2026';
+import tenDayItinerary2026 from './andaman-10-days-itinerary-2026';
+import internationalHub2026 from './andaman-islands-international-travel-guide-2026';
+import fromSingapore2026 from './andaman-from-singapore-2026';
+import fromDubai2026 from './andaman-from-dubai-2026';
+import fromUk2026 from './andaman-from-uk-2026';
+import fromAustralia2026 from './andaman-from-australia-2026';
+import fromUsaEurope2026 from './andaman-from-usa-europe-2026';
+import evisaAndaman2026 from './india-evisa-andaman-trip-2026';
+import moneyForeigners2026 from './andaman-money-atm-cards-foreigners-2026';
+import esimForeigners2026 from './andaman-esim-sim-foreign-tourists-2026';
+import worthVisiting2026 from './is-andaman-worth-visiting-2026';
 import { applyBlogSeoOverrides } from './blogSeoConfig';
 
 const newPosts: BlogPost[] = [
+  havelockIslandGuide2026,
+  portBlairGuide2026,
+  diglipurGuide2026,
+  jollyBuoyVsRedSkin2026,
+  cellularJailGuide2026,
+  aprilMay2026,
+  ahmedabadPlan,
+  kochiPlan,
+  threeDayItinerary2026,
+  tenDayItinerary2026,
+  internationalHub2026,
+  fromSingapore2026,
+  fromDubai2026,
+  fromUk2026,
+  fromAustralia2026,
+  fromUsaEurope2026,
+  evisaAndaman2026,
+  moneyForeigners2026,
+  esimForeigners2026,
+  worthVisiting2026,
   howManyDays2026,
   sixDayItinerary2026,
   februaryMarch2026,

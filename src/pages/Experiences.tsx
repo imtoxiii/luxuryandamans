@@ -262,7 +262,7 @@ const ExperiencesPage = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70 z-10" />
           <img
             src="https://images.pexels.com/photos/1078983/pexels-photo-1078983.jpeg"
-            alt="Experiences Hero"
+            alt="Snorkeling and water sports in clear Andaman sea near Havelock Island"
             className="w-full h-full object-cover scale-110"
             loading="eager"
             fetchPriority="high"

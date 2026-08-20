@@ -21,6 +21,10 @@ Allow: /offer
 Disallow: /admin
 Disallow: /api/
 Disallow: /*.json$
+Disallow: /*.php$
+Disallow: /spa-shell.html
+Disallow: /404
+Disallow: /404.html
 
 # Allow all assets for rich snippets
 Allow: /images/

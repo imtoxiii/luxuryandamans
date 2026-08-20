@@ -947,7 +947,7 @@ const PackageDetailPage: React.FC = () => {
             <div className="relative w-full max-w-6xl aspect-video" onClick={e => e.stopPropagation()}>
               <img
                 src={modalImages[modalImageIndex]}
-                alt="Gallery View"
+                alt={currentPackage ? `${currentPackage.title} gallery photo ${modalImageIndex + 1}` : 'Andaman tour package gallery'}
                 className="w-full h-full object-contain rounded-lg shadow-2xl"
               />
 
@@ -978,7 +978,7 @@ const PackageDetailPage: React.FC = () => {
                       className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${modalImageIndex === idx ? 'border-white scale-110' : 'border-transparent opacity-50 hover:opacity-100'
                         }`}
                     >
-                      <img src={img} alt={`Thumbnail ${idx}`} className="w-full h-full object-cover" />
+                      <img src={img} alt={currentPackage ? `${currentPackage.title} thumbnail ${idx + 1}` : `Package photo ${idx + 1}`} className="w-full h-full object-cover" />
                     </button>
                   ))}
                 </div>

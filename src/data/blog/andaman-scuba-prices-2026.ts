@@ -84,7 +84,7 @@ Andaman is a fantastic and affordable place to get your diving license.
 2.  **Look for Packages:** Many dive shops offer packages that combine dives with accommodation, which can be very economical.
 3.  **Travel in the Shoulder Season:** Months like October, November, February, and March offer fantastic diving conditions with fewer crowds.
 
-Ready to plan your entire trip? Dive into our comprehensive [Andaman Scuba Diving Guide](/blog/andaman-scuba-guide) and use our [7-Day Andaman Itinerary](/blog/7-day-andaman-itinerary) to build your perfect vacation.
+Ready to plan your entire trip? Dive into our comprehensive [Andaman Scuba Diving Guide](/blog/andaman-scuba-diving-guide) and use our [7-Day Andaman Itinerary](/blog/7-day-andaman-itinerary) to build your perfect vacation.
 
 ---
 

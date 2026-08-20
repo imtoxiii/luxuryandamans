@@ -155,7 +155,7 @@ Your experience heavily depends on your guide. Look for operators who:
 ## Plan Your Andaman Adventure
 Bioluminescence kayaking is a perfect addition to any Andaman itinerary.
 - Pair it with our recommended [Andaman Honeymoon Guide](/blog/andaman-honeymoon-guide) for a romantic escape.
-- Discover more unique experiences in our list of [Top Things to Do in Andaman](/blog/andaman-top-things-to-do).
+- Discover more unique experiences in our list of [Top Things to Do in Andaman](/blog/andaman-top-things-to-do-2025).
 
 ---
 

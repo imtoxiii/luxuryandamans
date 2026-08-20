@@ -143,11 +143,24 @@ const robots = fs.readFileSync(path.join(projectRoot, 'public/robots.txt'), 'utf
 if (!robots.includes('Sitemap: https://luxuryandamans.com/sitemap.xml')) {
   fail('robots.txt sitemap URL wrong');
 } else pass('robots.txt points at canonical sitemap');
-if (/Disallow:\s*\/$/.test(robots) || /Disallow:\s*\//.test(robots) && robots.includes('Disallow: /\n')) {
-  // only fail if whole site blocked
-}
 if (/^Disallow:\s*\/\s*$/m.test(robots)) fail('robots.txt blocks entire site');
 else pass('robots.txt does not block site');
+if (!robots.includes('Disallow: /spa-shell.html')) fail('robots.txt should block /spa-shell.html');
+else pass('robots.txt blocks spa-shell.html');
+
+const legacy = fs.readFileSync(path.join(projectRoot, 'src/lib/legacyRedirects.ts'), 'utf8');
+const legacyPairs = [...legacy.matchAll(/['"](\/[^'"]+)['"]\s*:\s*['"](\/[^'"]+)['"]/g)];
+for (const [, from, to] of legacyPairs) {
+  const htNeedle = from.replace(/^\//, '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  if (!htaccess.includes(from.replace(/^\//, ''))) {
+    fail(`.htaccess missing redirect for ${from}`);
+  }
+  if (!redirects.includes(from)) fail(`_redirects missing ${from}`);
+  if (!redirects.includes(to) && to !== '/guide' && to !== '/blog') {
+    // target should appear as destination
+  }
+}
+if (legacyPairs.length) pass(`Legacy redirects synced (${legacyPairs.length} paths in .htaccess + _redirects)`);
 
 // 7) SEO canonical normalization present
 if (!seo.includes("replace(/\\/+$/, '')") && !seo.includes('replace(/\\/+$/')) {

@@ -145,14 +145,14 @@ export const andamanFaqs: FAQItem[] = [
     category: 'permits',
     question: 'What documents do foreign tourists need for Andaman?',
     answer:
-      'A valid Indian visa (e-Visa or regular) and passport with six months validity. Most nationalities get a Restricted Area Permit (RAP) on arrival at Port Blair, valid 30 days for standard tourist islands. Citizens of Afghanistan, China, and Pakistan need prior clearance. Baratang requires a separate permit for foreigners, arranged through a registered operator.',
+      'A valid Indian visa (e-Visa or regular) and passport with six months validity. A separate Restricted Area Permit (RAP) is generally not required for about 30 tourist islands (Port Blair, Havelock, Neil) for stays up to 30 days. Register at the Port Blair airport immigration desk. Citizens of Afghanistan, China, and Pakistan need prior clearance. Baratang day trips run through a registered operator with convoy rules.',
   },
   {
     id: 'baratang-permit-tourists',
     category: 'permits',
     question: 'Can tourists visit Baratang Island and the limestone caves?',
     answer:
-      'Yes, on a day trip from Port Blair. Indians need only ID. Foreigners need a Baratang RAP arranged a day or two ahead. The morning convoy through the Jarawa reserve has fixed times — miss it and you miss the trip that day.',
+      'Yes, on a day trip from Port Blair. Indians need only ID. Foreigners join a registered operator (passport copy at checkposts). The morning convoy through the Jarawa reserve has fixed times — miss it and you miss the trip that day.',
   },
   {
     id: 'north-sentinel-tribal-areas',

@@ -29,7 +29,7 @@ const post: BlogPost = {
         'traffic rules andaman 2026'
     ],
     relatedPosts: [
-        'andaman-solor-trip-guide',
+        'andaman-solo-trip-guide',
         'havelock-vs-neil-island-guide-2026',
         'andaman-budget-guide'
     ],

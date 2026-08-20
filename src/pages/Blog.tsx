@@ -56,8 +56,8 @@ const Blog = () => {
     <div className="relative min-h-screen bg-pearl font-sans selection:bg-azure selection:text-white">
       <SEO
         title="Andaman Travel Blog 2026 | Guides from Port Blair"
-        description="Andaman travel guides written from Port Blair — ferries, packages, best time to go, honeymoon plans, and how to pick a travel agency. Practical, not brochure copy."
-        keywords="andaman travel blog, andaman travel tips, andaman travel guide 2026, best travel agency in andaman, andaman itinerary, havelock island guide, andaman honeymoon tips, andaman trip cost, best time to visit andaman, andaman first time visitor, andaman tour packages guide"
+        description="Andaman guides from Port Blair — Indian itineraries, Havelock & Diglipur, plus international pages for Singapore, UK, UAE, Australia, e-Visa, SIMs and money. Practical, not brochure copy."
+        keywords="andaman travel blog, andaman travel tips, andaman travel guide 2026, havelock island travel guide, andaman for foreign tourists, andaman from singapore, india e visa andaman, andaman itinerary, best time to visit andaman"
         targetAudience="all"
         pathname="/blog"
         faqData={[
@@ -72,6 +72,10 @@ const Blog = () => {
           {
             question: "Which is the best travel agency in Andaman?",
             answer: "Look for a Port Blair office, named ferry operators on the voucher, GST invoices, and a phone that works after 8 pm on Havelock. Read our 2026 guide: https://luxuryandamans.com/blog/best-travel-agency-andaman-2026"
+          },
+          {
+            question: "Do you have guides for international travellers?",
+            answer: "Yes. Start at https://luxuryandamans.com/blog/andaman-islands-international-travel-guide-2026 for e-Visa, RAP, money, eSIM, and country pages from Singapore, Dubai, the UK, Australia, the US and Europe."
           }
         ]}
         structuredData={{

@@ -104,7 +104,7 @@ const Destinations = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70 z-10" />
           <img
             src="https://images.pexels.com/photos/10945169/pexels-photo-10945169.jpeg"
-            alt="Destinations Hero"
+            alt="Turquoise Andaman coastline with white sand beaches at Havelock Island"
             className="w-full h-full object-cover scale-110"
             loading="eager"
             fetchPriority="high"

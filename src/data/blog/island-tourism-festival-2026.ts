@@ -49,7 +49,7 @@ Shop for souvenirs made by local artisans:
 ## Tips for Tourists
 *   **Entry:** Entry to the festival is free for all.
 *   **Timing:** The events usually start from 4:00 PM and go on until 10:00 PM.
-*   **Stay:** Hotels in Port Blair get booked out fast during ITF. [Book your stay early](/blog/andaman-luxury-resorts-2025).
+*   **Stay:** Hotels in Port Blair get booked out fast during ITF. [Book your stay early](/blog/andaman-luxury-resorts-2026).
 
 Don't miss this opportunity to see the Andaman Islands in their most festive avatar!
   `,

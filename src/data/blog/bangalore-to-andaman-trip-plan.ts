@@ -87,7 +87,7 @@ Here’s a realistic budget estimate for a 7-day trip for two people.
 - **Flight-Ferry Buffer:** On your departure day, book a ferry from Neil/Havelock that reaches Port Blair at least 4-5 hours before your flight to Bangalore. This accounts for any potential delays.
 - **Pack Smart:** Pack light, quick-drying clothes, reef-safe sunscreen, a good power bank, and a waterproof bag.
 
-Ready to make it happen? Explore our customized [Andaman Packages](/packages) or read up on the [Top Things To Do in Andaman](/blog/top-things-to-do-in-andaman) to start building your dream trip.
+Ready to make it happen? Explore our customized [Andaman Packages](/packages) or read up on the [Top Things To Do in Andaman](/blog/andaman-top-things-to-do-2025) to start building your dream trip.
 `,
   faq: [
     {

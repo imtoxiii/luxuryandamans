@@ -175,3 +175,36 @@ export function getAllRoutes() {
 
   return Array.from(routes).sort((a, b) => a.localeCompare(b));
 }
+
+/**
+ * Thin noindex posts (no canonicalSlug) — keep live HTML so Google sees noindex
+ * instead of a hard 404. Duplicate posts with canonicalSlug are 301'd instead.
+ */
+export function getThinNoindexBlogSlugs() {
+  const configFile = path.join(projectRoot, 'src', 'data', 'blog', 'blogSeoConfig.ts');
+  const content = readFileSafe(configFile);
+  if (!content) return [];
+  const slugs = [];
+  const regex = /['"]([^'"]+)['"]\s*:\s*\{([^}]+)\}/g;
+  let match;
+  while ((match = regex.exec(content)) !== null) {
+    const body = match[2];
+    if (!body.includes('noindex: true')) continue;
+    if (body.includes('canonicalSlug:')) continue;
+    slugs.push(match[1]);
+  }
+  return slugs;
+}
+
+/**
+ * Sitemap routes + thin noindex blogs + /404. Duplicate noindex slugs are
+ * omitted — they 301 via .htaccess / _redirects / LEGACY_REDIRECTS.
+ */
+export function getPrerenderRoutes() {
+  const routes = new Set(getAllRoutes());
+  getThinNoindexBlogSlugs().forEach((slug) => {
+    routes.add(`/blog/${slug}`);
+  });
+  routes.add('/404');
+  return Array.from(routes).sort((a, b) => a.localeCompare(b));
+}

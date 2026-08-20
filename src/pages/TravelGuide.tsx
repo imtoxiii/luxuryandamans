@@ -108,7 +108,7 @@ const TravelGuide = () => {
     <div className="min-h-screen bg-pearl font-sans selection:bg-azure selection:text-white">
       <SEO
         title="Andaman Itinerary Guide 2026 | Days, Islands & Combos"
-        description="Plan your Andaman itinerary for 2026: how many days you need, which islands to visit, and the best Port Blair–Havelock–Neil combos. Sample 4, 6 & 8-day plans."
+        description="Plan your Andaman itinerary for 2026: 3, 5, 6, 7 or 10 days, Havelock and Diglipur add-ons, plus a path for international visitors. Port Blair–Havelock–Neil combos that actually fit ferries."
         pathname={location.pathname}
         type="article"
         keywords="andaman itinerary, how many days andaman, how many days in andaman, 6 day andaman itinerary, 5 day andaman itinerary, 7 day andaman itinerary, andaman island hopping plan, havelock neil itinerary, port blair itinerary, andaman trip plan 2026, best andaman combo"
@@ -118,7 +118,7 @@ const TravelGuide = () => {
         faqData={[
           {
             question: "How many days are enough for Andaman?",
-            answer: "5–6 days is ideal for first-timers covering Port Blair, Havelock, and Neil without rushing. Minimum 4 days covers Port Blair + Havelock. Add 2–3 more days for Baratang or Diglipur."
+            answer: "5–6 days is ideal for first-timers covering Port Blair, Havelock, and Neil without rushing. Three days is a taste only (Havelock plus a Port Blair night). Ten days allows a slow triangle or Diglipur. See luxuryandamans.com/blog/how-many-days-in-andaman-2026."
           },
           {
             question: "Which islands should I visit first?",

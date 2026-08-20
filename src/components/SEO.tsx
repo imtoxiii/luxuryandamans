@@ -14,6 +14,8 @@ interface SEOProps {
   section?: string;
   tags?: string[];
   locale?: string;
+  /** JSON-LD inLanguage (e.g. en-IN or en for international posts) */
+  inLanguage?: string;
   siteName?: string;
   twitterHandle?: string;
   targetAudience?: 'budget' | 'luxury' | 'family' | 'honeymoon' | 'adventure' | 'all';
@@ -41,6 +43,7 @@ const SEO: React.FC<SEOProps> = ({
   section,
   tags = [],
   locale = 'en_IN',
+  inLanguage,
   siteName = 'Luxury Andamans',
   twitterHandle = '@luxuryandaman',
   targetAudience = 'all',
@@ -198,8 +201,8 @@ const SEO: React.FC<SEOProps> = ({
       opens: '09:00',
       closes: '21:00'
     },
-    currenciesAccepted: 'INR',
-    paymentAccepted: 'Cash, Credit Card, Debit Card, UPI, Bank Transfer',
+    currenciesAccepted: 'INR, USD, EUR, GBP',
+    paymentAccepted: 'Cash, Credit Card, Debit Card, UPI, Bank Transfer, International cards',
     knowsAbout: [
       'Andaman tour packages',
       'Best travel agency in Andaman',
@@ -226,7 +229,12 @@ const SEO: React.FC<SEOProps> = ({
           '@type': 'PostalAddress',
           addressCountry: 'IN'
         }
-      }
+      },
+      { '@type': 'Country', name: 'Singapore' },
+      { '@type': 'Country', name: 'United Arab Emirates' },
+      { '@type': 'Country', name: 'United Kingdom' },
+      { '@type': 'Country', name: 'Australia' },
+      { '@type': 'Country', name: 'United States' },
     ],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -323,7 +331,7 @@ const SEO: React.FC<SEOProps> = ({
       '@type': 'WebPage',
       '@id': canonicalUrl
     },
-    inLanguage: 'en-IN',
+    inLanguage: inLanguage || (locale === 'en_IN' ? 'en-IN' : 'en'),
     author: {
       '@type': isPersonAuthor ? 'Person' : 'Organization',
       name: author,
@@ -437,6 +445,8 @@ const SEO: React.FC<SEOProps> = ({
       )}
       <meta name="author" content={author} />
       <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
+      <meta name="googlebot" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
+      <meta name="bingbot" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
 
       {/* Open Graph */}
       <meta property="og:title" content={siteTitle} />
@@ -449,6 +459,10 @@ const SEO: React.FC<SEOProps> = ({
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content={siteName} />
       <meta property="og:locale" content={locale} />
+      <meta property="og:locale:alternate" content="en_US" />
+      <meta property="og:locale:alternate" content="en_GB" />
+      <meta property="og:locale:alternate" content="en_AU" />
+      <meta property="og:locale:alternate" content="en_SG" />
       {publishedTime && <meta property="article:published_time" content={publishedTime} />}
       {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
       {section && <meta property="article:section" content={section} />}
@@ -471,7 +485,6 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       <meta name="format-detection" content="telephone=no" />
-      <meta name="google" content="notranslate" />
       <meta name="rating" content="general" />
       <meta name="geo.region" content="IN-AN" />
       <meta name="geo.placename" content="Andaman and Nicobar Islands" />

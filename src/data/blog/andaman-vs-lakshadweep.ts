@@ -106,7 +106,7 @@ Lakshadweep is a collection of coral atolls. The lagoons here are shallow, calm,
 
 For most travelers in 2025, **Andaman remains the better choice** due to its ease of access, variety of activities, and tourist-friendly infrastructure. Lakshadweep is a stunning gem, but it requires more effort and patience to visit.
 
-**Ready to plan your Andaman adventure?** Check out our [7-Day Itinerary](/blog/andaman-7-day-itinerary) or explore our [Packages](/packages) to get started!
+**Ready to plan your Andaman adventure?** Check out our [7-Day Itinerary](/blog/7-day-andaman-itinerary) or explore our [Packages](/packages) to get started!
   `,
     faq: [
         {

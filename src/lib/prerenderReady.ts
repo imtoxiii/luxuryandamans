@@ -36,11 +36,12 @@ function canonicalMatchesPath(pathname: string): boolean {
 
 /**
  * Returns true when the route has meaningful content and SEO tags for Puppeteer capture.
+ * Inner routes must have a matching canonical — never fall back to "title changed" alone,
+ * or the snapshot can keep the homepage canonical and ship a duplicate.
  */
 export function evaluatePrerenderReady(
   pathname: string,
-  initialTitle: string,
-  startedAt: number
+  initialTitle: string
 ): boolean {
   const root = document.getElementById('root');
   const textLen = root?.textContent?.trim().length ?? 0;
@@ -56,15 +57,9 @@ export function evaluatePrerenderReady(
     return false;
   }
 
-  const seoReady =
-    pathname === '/'
-      ? true
-      : canonicalMatchesPath(pathname) && titleChanged;
+  if (pathname === '/') {
+    return canonicalMatchesPath('/') || titleChanged;
+  }
 
-  if (seoReady) return true;
-
-  // Lazy routes: allow capture once title updated and content mounted (max 8s)
-  if (titleChanged && Date.now() - startedAt >= 8000) return true;
-
-  return false;
+  return canonicalMatchesPath(pathname) && titleChanged;
 }

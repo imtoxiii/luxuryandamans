@@ -137,7 +137,7 @@ Time to head home with a bag full of memories.
 
 ## Ready to Create Your Family's Island Story?
 This itinerary is a perfect starting point for an unforgettable family vacation in the Andamans.
-- Discover more activities in our guide to the [Top Things to Do in Andaman](/blog/andaman-top-things-to-do).
+- Discover more activities in our guide to the [Top Things to Do in Andaman](/blog/andaman-top-things-to-do-2025).
 - Find the most comfortable season for your family with our [Best Time to Visit guide](/blog/best-time-to-visit-andaman).
 - Ready to book? [Contact us](/contact) for a customized family package that takes care of everything!
 `,

@@ -105,7 +105,7 @@ Adventure-heavy travellers sometimes share scuba boats and keep a private cab fo
 
 - Two adults, first Andaman, December: **private land**, named ferry.
 - Four adults splitting the car: **private**, obviously.
-- One person, monsoon, guesthouse energy: **sharing**, government ferry, DIY hotels. [Budget guide](/blog/andaman-budget-guide).
+- One person, monsoon, guesthouse energy: **sharing**, government ferry, DIY hotels. [Budget guide](/blog/andaman-budget-travel-guide).
 - Couple on a mid-range budget in November: private car in Port Blair + scooter on Havelock. Scooter notes: [how to rent a scooter](/blog/how-to-rent-scooter-andaman-2026).
 
 Tell us dates and group size on [enquiry](/enquiry). We quote both lines when it is close — sharing vs private — so you can see the gap in rupees, not adjectives.

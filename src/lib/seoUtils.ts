@@ -18,32 +18,32 @@ export interface SEOKeywords {
 // High-priority internal links for budget travel SEO
 export const budgetTravelLinks: InternalLink[] = [
   {
-    url: '/blog/andaman-vs-maldives-budget-alternative-comparison',
+    url: '/blog/andaman-vs-maldives-budget',
     title: 'Andaman vs Maldives: Budget Alternative Comparison',
     keywords: ['andaman vs maldives', 'budget alternative', 'cheap vacation', 'maldives alternative'],
     priority: 'high'
   },
   {
-    url: '/blog/cheapest-andaman-packages-budget-travel-under-20000',
-    title: 'Cheapest Andaman Packages Under ₹20,000',
+    url: '/blog/andaman-budget-travel-guide',
+    title: 'Andaman Budget Trip 2026: Real Costs & Ways to Spend Less',
     keywords: ['cheapest andaman packages', 'budget travel', 'andaman under 20000'],
     priority: 'high'
   },
   {
-    url: '/blog/budget-honeymoon-andaman-packages-under-50000',
-    title: 'Budget Honeymoon Packages Under ₹50,000',
+    url: '/blog/budget-honeymoon-andaman',
+    title: 'Budget Honeymoon in Andaman Under ₹50,000',
     keywords: ['budget honeymoon', 'andaman honeymoon packages', 'cheap honeymoon'],
     priority: 'high'
   },
   {
-    url: '/blog/family-vacation-packages-andaman-kid-friendly-activities',
-    title: 'Family Vacation Packages with Kid-Friendly Activities',
+    url: '/blog/andaman-family-itinerary',
+    title: 'Andaman with Kids 2026: A Relaxed 5-Day Family Itinerary',
     keywords: ['family vacation', 'andaman family packages', 'kid friendly'],
     priority: 'medium'
   },
   {
-    url: '/blog/best-beach-destination-india-andaman-vs-goa-kerala-maldives',
-    title: 'Best Beach Destination in India: Andaman vs Goa vs Kerala',
+    url: '/blog/andaman-vs-goa-2026',
+    title: 'Andaman vs Goa 2026: Which Beach Trip Should You Book?',
     keywords: ['best beach destination india', 'andaman vs goa', 'beach vacation india'],
     priority: 'medium'
   }

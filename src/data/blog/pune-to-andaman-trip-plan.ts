@@ -86,7 +86,7 @@ Here is an estimated budget for a comfortable 7-day trip for two.
 - **Pack for Humidity:** While you might be used to Pune's dry weather, the Andamans are humid. Pack light, quick-drying clothes.
 - **Digital Detox:** Mobile connectivity is limited outside Port Blair. Prepare for a digital detox and enjoy the stunning nature around you.
 
-Ready to book your trip? Explore our curated [Andaman Packages](/packages) or discover all the amazing experiences in our guide to the [Top Things To Do in Andaman](/blog/top-things-to-do-in-andaman).
+Ready to book your trip? Explore our curated [Andaman Packages](/packages) or discover all the amazing experiences in our guide to the [Top Things To Do in Andaman](/blog/andaman-top-things-to-do-2025).
 `,
   faq: [
     {

@@ -82,7 +82,7 @@ Here is a comprehensive price list for the 2024-2025 season. *Note: Prices are a
 ---
 
 ## 1. Scuba Diving �
-*See our detailed [Scuba Price Guide](/blog/andaman-scuba-prices-2025) for more.*
+*See our detailed [Scuba Price Guide](/blog/andaman-scuba-prices-2026) for more.*
 - **Shore Dive (Beginner):** ₹3,500 - ₹4,000
 - **Boat Dive (Beginner):** ₹5,500 - ₹6,500
 - **Fun Dive (Certified):** ₹2,500 - ₹3,500 per dive

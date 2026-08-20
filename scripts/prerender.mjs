@@ -1,7 +1,7 @@
 import fs from 'fs';
 import http from 'http';
 import path from 'path';
-import { getAllRoutes, projectRoot } from './routes.mjs';
+import { getAllRoutes, getPrerenderRoutes, projectRoot } from './routes.mjs';
 import {
   PRERENDER_CONFIG,
   getRouteTimeout,
@@ -115,6 +115,50 @@ function routeToOutputPath(route) {
   return path.join(DIST, ...segments, 'index.html');
 }
 
+const HOMEPAGE_SHELL_TITLE = /^Andaman Tour Packages 2026\s*\|\s*(Starting|From)/i;
+
+function capturedHtmlLooksWrong(html, route) {
+  if (route === '/') return false;
+  const title = (html.match(/<title[^>]*>([^<]*)<\/title>/i) || [])[1] || '';
+  if (HOMEPAGE_SHELL_TITLE.test(title)) return 'title still matches homepage shell';
+  const canons = [...html.matchAll(/rel=["']canonical["'][^>]*href=["']([^"']+)/gi)].map(
+    (m) => m[1]
+  );
+  if (canons.length && !canons.some((href) => href.includes(route))) {
+    return `canonical does not include ${route}`;
+  }
+  return null;
+}
+
+function assertNoindexDuplicatesAreRedirected() {
+  const config = fs.readFileSync(
+    path.join(projectRoot, 'src/data/blog/blogSeoConfig.ts'),
+    'utf8'
+  );
+  const legacy = fs.readFileSync(
+    path.join(projectRoot, 'src/lib/legacyRedirects.ts'),
+    'utf8'
+  );
+  const missing = [];
+  const re = /['"]([^'"]+)['"]\s*:\s*\{([^}]+)\}/g;
+  let match;
+  while ((match = re.exec(config)) !== null) {
+    const slug = match[1];
+    const body = match[2];
+    if (!body.includes('noindex: true') || !body.includes('canonicalSlug:')) continue;
+    const from = `/blog/${slug}`;
+    if (!legacy.includes(`'${from}'`) && !legacy.includes(`"${from}"`)) {
+      missing.push(from);
+    }
+  }
+  if (missing.length) {
+    console.error(
+      `Noindex+canonical blog slugs missing from LEGACY_REDIRECTS (would 404 on Apache):\n  ${missing.join('\n  ')}`
+    );
+    process.exit(1);
+  }
+}
+
 /** Boot loader markup from the Vite shell — prerender removes it when React runs. */
 let bootLoaderMarkup = '';
 
@@ -178,6 +222,8 @@ function cleanupCapturedHtml(html, route) {
     'description',
     'keywords',
     'robots',
+    'googlebot',
+    'bingbot',
     'author',
     'theme-color',
     'twitter:title',
@@ -218,6 +264,12 @@ function cleanupCapturedHtml(html, route) {
         out = out.replace(matches[i][0], '');
       }
     }
+  }
+
+  // Shell leftover googlebot/bingbot "index" would override Helmet noindex.
+  if (/name=["']robots["'][^>]*noindex/i.test(out)) {
+    out = out.replace(/<meta[^>]+name=["']googlebot["'][^>]*>/gi, '');
+    out = out.replace(/<meta[^>]+name=["']bingbot["'][^>]*>/gi, '');
   }
 
   if (!/^<!DOCTYPE/i.test(out)) {
@@ -272,6 +324,10 @@ async function prerenderRoute(browser, baseUrl, route) {
 
     const raw = await page.evaluate(() => document.documentElement.outerHTML);
     const html = cleanupCapturedHtml(raw, route);
+    const wrong = capturedHtmlLooksWrong(html, route);
+    if (wrong) {
+      return { route, ok: false, error: `Refusing to write snapshot: ${wrong}` };
+    }
 
     const outPath = routeToOutputPath(route);
     fs.mkdirSync(path.dirname(outPath), { recursive: true });
@@ -326,6 +382,8 @@ async function main() {
     process.exit(1);
   }
 
+  assertNoindexDuplicatesAreRedirected();
+
   const shellCachePath = path.join(DIST, 'spa-shell.html');
   // Always snapshot the fresh Vite shell before prerender overwrites index.html
   const spaShellHtml = fs.readFileSync(spaIndexPath, 'utf8');
@@ -343,14 +401,20 @@ async function main() {
     process.exit(1);
   }
 
-  const only = (process.env.PRERENDER_ONLY || '')
+  const allowPartial =
+    process.env.ALLOW_PRERENDER_ONLY === '1' || process.env.ALLOW_PRERENDER_ONLY === 'true';
+  const onlyRaw = (process.env.PRERENDER_ONLY || '')
     .split(',')
     .map((s) => s.trim())
     .filter(Boolean);
+  const only = allowPartial ? onlyRaw : [];
+  if (onlyRaw.length && !allowPartial) {
+    console.warn(
+      'Ignoring PRERENDER_ONLY (set ALLOW_PRERENDER_ONLY=1 to use a partial prerender). Running full prerender.'
+    );
+  }
 
-  let routes = getAllRoutes().filter((r) => r !== '/');
-  // Not in sitemap — Apache ErrorDocument 404 /404.html
-  routes.push('/404');
+  let routes = getPrerenderRoutes().filter((r) => r !== '/');
   routes.push('/');
   if (only.length) {
     routes = routes.filter((r) => only.includes(r));
@@ -368,10 +432,13 @@ async function main() {
 
   let browser;
   try {
-    browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-    });
+    const launchBrowser = () =>
+      puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+      });
+
+    browser = await launchBrowser();
 
     const standardResults = await prerenderBatch(
       browser,
@@ -392,7 +459,9 @@ async function main() {
 
     const firstFailures = results.filter((r) => !r.ok);
     if (firstFailures.length) {
-      console.log(`\nRetrying ${firstFailures.length} failed route(s) at concurrency 1…`);
+      console.log(`\nRetrying ${firstFailures.length} failed route(s) at concurrency 1 in a fresh browser…`);
+      await browser.close().catch(() => {});
+      browser = await launchBrowser();
       const retries = await prerenderBatch(
         browser,
         baseUrl,
@@ -413,10 +482,26 @@ async function main() {
       failures.forEach((f) => console.error(`  - ${f.route}: ${f.error}`));
     }
 
-    const failRatio = failures.length / results.length;
-    if (failures.length > 0) {
+    const sitemapSet = new Set(getAllRoutes());
+    const sitemapFailures = failures.filter((f) => sitemapSet.has(f.route));
+    if (sitemapFailures.length > 0) {
       console.error(
-        `Prerender failures (${failures.length}, ${(failRatio * 100).toFixed(1)}%). Sitemap URLs must all succeed.`
+        `Prerender failures on sitemap URLs (${sitemapFailures.length}/${sitemapSet.size}). Refusing to ship.`
+      );
+      process.exit(1);
+    }
+    if (failures.length > 0) {
+      console.warn(
+        `Non-sitemap prerender skips (${failures.length}): ${failures.map((f) => f.route).join(', ')}`
+      );
+    }
+
+    const missingSitemapHtml = getAllRoutes().filter((route) => {
+      return !fs.existsSync(routeToOutputPath(route));
+    });
+    if (missingSitemapHtml.length) {
+      console.error(
+        `Sitemap URLs missing prerender HTML (${missingSitemapHtml.length}):\n  ${missingSitemapHtml.slice(0, 20).join('\n  ')}`
       );
       process.exit(1);
     }
@@ -431,9 +516,18 @@ async function main() {
       console.error('dist/404.html is missing noindex — refusing to ship.');
       process.exit(1);
     }
+    if (/name=["']googlebot["'][^>]*content=["'][^"']*index,\s*follow/i.test(notFoundBody)) {
+      console.error('dist/404.html still has googlebot index — refusing to ship.');
+      process.exit(1);
+    }
   } finally {
     if (browser) await browser.close().catch(() => {});
     await new Promise((resolve) => server.close(resolve));
+    try {
+      if (fs.existsSync(shellCachePath)) fs.unlinkSync(shellCachePath);
+    } catch {
+      // ignore
+    }
   }
 }
 

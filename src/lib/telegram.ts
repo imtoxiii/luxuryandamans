@@ -24,26 +24,40 @@ export const sendTelegramMessage = async (message: string): Promise<boolean> => 
         return false;
     }
 
+    const text = message.trim();
     console.log('📤 Sending Telegram message...');
 
     let status = 'failed';
     let apiResponse = null;
 
     try {
-        const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                chat_id: TELEGRAM_CHAT_ID,
-                text: message,
-                parse_mode: 'HTML',
-            }),
-        });
+        const send = async (parseMode?: 'HTML') => {
+            const body: Record<string, string> = {
+                chat_id: String(TELEGRAM_CHAT_ID),
+                text,
+            };
+            if (parseMode) body.parse_mode = parseMode;
 
-        const data = await response.json();
+            return fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body),
+            });
+        };
+
+        let response = await send('HTML');
+        let data = await response.json();
         apiResponse = data;
+
+        // Retry as plain text if HTML parse fails
+        if (!data.ok && String(data.description || '').toLowerCase().includes('parse')) {
+            console.warn('⚠️ Telegram HTML parse failed, retrying as plain text');
+            response = await send();
+            data = await response.json();
+            apiResponse = data;
+        }
 
         if (data.ok) {
             console.log('✅ Telegram message sent successfully');
@@ -63,7 +77,7 @@ export const sendTelegramMessage = async (message: string): Promise<boolean> => 
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    message: message,
+                    message: text,
                     status: status,
                     metadata: apiResponse
                 })
@@ -90,7 +104,7 @@ export const sendTelegramMessage = async (message: string): Promise<boolean> => 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    message: message,
+                    message: text,
                     status: 'network_error',
                     metadata: { error: String(error) }
                 })
@@ -162,6 +176,25 @@ export const formatContactMessage = (data: any): string => {
 <b>Message:</b>
 ${escapeHtml(message)}
   `;
+};
+
+export const formatPersonalizedTourMessage = (data: {
+    name: string;
+    email?: string;
+    phone: string;
+}): string => {
+    const { name, email, phone } = data;
+
+    return [
+        '<b>🏝️ Personalized Tour Package Enquiry</b>',
+        '',
+        '<b>👤 Customer Details</b>',
+        `<b>Name:</b> ${escapeHtml(name)}`,
+        `<b>Email:</b> ${escapeHtml(email?.trim() || 'Not provided')}`,
+        `<b>Phone:</b> ${escapeHtml(phone)}`,
+        '',
+        '<b>📝 Source:</b> Lead popup (auto-show / sticker)',
+    ].join('\n');
 };
 
 export const formatCalculatorMessage = (data: any): string => {

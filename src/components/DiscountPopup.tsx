@@ -4,6 +4,11 @@ import { X, Phone, ArrowRight } from 'lucide-react';
 import { sendTelegramMessage } from '../lib/telegram';
 import toast from 'react-hot-toast';
 
+/**
+ * DISABLED — phone-only "Get Offer" popup.
+ * Replaced by PersonalizedTourPopup (name + email + phone, shows after 5s).
+ * Kept for reference; do not mount in App.tsx.
+ */
 const DiscountPopup = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [phone, setPhone] = useState('');
@@ -22,24 +27,21 @@ const DiscountPopup = () => {
     }, [isOpen]);
 
     useEffect(() => {
-        // Show popup after 10 seconds, but only if the page is fully loaded
-        const timer = setTimeout(() => {
-            // Don't show if loading skeleton is still visible
-            const skeleton = document.getElementById('loading-skeleton');
-            if (skeleton && !skeleton.classList.contains('hidden')) {
-                return;
-            }
-            
-            const hasSeenPopup = sessionStorage.getItem('hasSeenDiscountPopup');
-            if (!hasSeenPopup) {
-                setIsOpen(true);
-                if (window.history.state?.popup !== true) {
-                    window.history.pushState({ popup: true }, '');
-                }
-            }
-        }, 10000);
-
-        return () => clearTimeout(timer);
+        // DISABLED: old phone-only popup timer (was 10s). See PersonalizedTourPopup instead.
+        // const timer = setTimeout(() => {
+        //     const skeleton = document.getElementById('loading-skeleton');
+        //     if (skeleton && !skeleton.classList.contains('hidden')) {
+        //         return;
+        //     }
+        //     const hasSeenPopup = sessionStorage.getItem('hasSeenDiscountPopup');
+        //     if (!hasSeenPopup) {
+        //         setIsOpen(true);
+        //         if (window.history.state?.popup !== true) {
+        //             window.history.pushState({ popup: true }, '');
+        //         }
+        //     }
+        // }, 10000);
+        // return () => clearTimeout(timer);
     }, []);
 
     useEffect(() => {

@@ -1,6 +1,7 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { Toaster } from 'react-hot-toast';
 import { useScrollTop } from './hooks/useScrollTop';
 import { usePageTransition } from './hooks/usePageTransition';
 import CurtainTransition from './components/CurtainTransition';
@@ -9,7 +10,8 @@ import ChatWidget from './components/ChatWidget';
 import PrefetchManager from './components/PrefetchManager';
 import { removeLoader } from './lib/loader';
 import { resetPrerenderSignal, evaluatePrerenderReady, signalPrerenderReady } from './lib/prerenderReady';
-import DiscountPopup from './components/DiscountPopup';
+// import DiscountPopup from './components/DiscountPopup'; // phone-only offer popup (disabled)
+import PersonalizedTourPopup from './components/PersonalizedTourPopup';
 import OfferSticker from './components/OfferSticker';
 import { LEGACY_REDIRECTS } from './lib/legacyRedirects';
 
@@ -200,7 +202,9 @@ function App() {
       </Suspense>
       <ChatWidget />
       <ShowOfferSticker />
-      <DiscountPopup />
+      {/* <DiscountPopup /> */} {/* phone-only offer popup — replaced by PersonalizedTourPopup */}
+      <PersonalizedTourPopup />
+      <Toaster position="top-center" toastOptions={{ duration: 3500 }} />
 
       {/* Transition walls - appear over the page content */}
       <AnimatePresence>

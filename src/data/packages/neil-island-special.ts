@@ -41,7 +41,7 @@ export const neilIslandSpecial: Package = {
   groupSize: '2–4',
   category: 'Honeymoon',
   nightsPlan: '1N Port Blair · 1N Havelock · 1N Neil · 1N Port Blair',
-  image: '/images/packages/romantic-hideaway/hero/hero.jpg',
+  image: '/images/packages/neil-island-special/hero/hero.jpg',
   features: ['Neil Island night', 'Natural Rock Bridge', 'Radhanagar photoshoot', 'Three islands', '4-star cottages'],
   includes: [
     '4 nights in 3/4-star hotels with GST',
@@ -57,9 +57,9 @@ export const neilIslandSpecial: Package = {
   itinerary: itinerary5,
   itineraries: { 5: itinerary5, 6: itinerary6 },
   highlights: [
-    { title: 'Neil is why you book this', description: 'Bharatpur, Laxmanpur, and the rock bridge — not a 40-minute drive-by.', image: '/images/packages/romantic-hideaway/hero/hero.jpg' },
-    { title: 'Three islands, five days', description: 'Honest pacing: one night each on Havelock and Neil.', image: '/images/packages/romantic-hideaway/hero/hero.jpg' },
-    { title: 'Photoshoot included', description: 'A photographer on Radhanagar sand.', image: '/images/packages/romantic-hideaway/hero/hero.jpg' },
+    { title: 'Neil is why you book this', description: 'Bharatpur, Laxmanpur, and the rock bridge — not a 40-minute drive-by.', image: '/images/packages/neil-island-special/hero/hero.jpg' },
+    { title: 'Three islands, five days', description: 'Honest pacing: one night each on Havelock and Neil.', image: '/images/packages/neil-island-special/hero/hero.jpg' },
+    { title: 'Photoshoot included', description: 'A photographer on Radhanagar sand.', image: '/images/packages/neil-island-special/hero/hero.jpg' },
   ],
   terms: commonTerms,
   paymentPolicy: commonPaymentPolicy,
@@ -76,5 +76,5 @@ export const neilIslandSpecial: Package = {
   pickupLocations: commonPickup,
   cancellationPolicy: commonCancellationPolicy,
   slug: 'neil-island-special-4n5d',
-  id: 'romantic-hideaway',
+  id: 'neil-island-special',
 };

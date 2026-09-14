@@ -40,7 +40,7 @@ export const havelockExtendedExplore: Package = {
   groupSize: '2–6',
   category: 'Standard',
   nightsPlan: '1N Port Blair · 2N Havelock · 2N Port Blair',
-  image: '/images/packages/adventure-thrill/hero.jpg',
+  image: '/images/packages/havelock-extended-explore/hero/hero.jpg',
   features: ['2N Havelock', 'Elephant Beach', 'Chidiya Tapu', 'Ross Island', 'No Neil hop'],
   includes: [
     '5 nights in 3-star hotels with GST',
@@ -58,9 +58,9 @@ export const havelockExtendedExplore: Package = {
   itinerary: itinerary6,
   itineraries: { 5: itinerary5, 6: itinerary6 },
   highlights: [
-    { title: 'Havelock held for two nights', description: 'Radhanagar one day, Elephant Beach the next.', image: '/images/packages/adventure-thrill/hero.jpg' },
-    { title: 'Ross without Neil', description: 'The historical boat day sits after Chidiya Tapu, not instead of the beach.', image: '/images/packages/adventure-thrill/hero.jpg' },
-    { title: 'Fewer ferry queues', description: 'One return crossing from Havelock — then boats from Port Blair.', image: '/images/packages/adventure-thrill/hero.jpg' },
+    { title: 'Havelock held for two nights', description: 'Radhanagar one day, Elephant Beach the next.', image: '/images/packages/havelock-extended-explore/hero/hero.jpg' },
+    { title: 'Ross without Neil', description: 'The historical boat day sits after Chidiya Tapu, not instead of the beach.', image: '/images/packages/havelock-extended-explore/hero/hero.jpg' },
+    { title: 'Fewer ferry queues', description: 'One return crossing from Havelock — then boats from Port Blair.', image: '/images/packages/havelock-extended-explore/hero/hero.jpg' },
   ],
   terms: commonTerms,
   paymentPolicy: commonPaymentPolicy,
@@ -77,5 +77,5 @@ export const havelockExtendedExplore: Package = {
   pickupLocations: commonPickup,
   cancellationPolicy: commonCancellationPolicy,
   slug: 'havelock-extended-explore-5n6d',
-  id: 'adventure-thrill',
+  id: 'havelock-extended-explore',
 };

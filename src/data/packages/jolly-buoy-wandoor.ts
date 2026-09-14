@@ -51,7 +51,7 @@ export const jollyBuoyWandoor: Package = {
   groupSize: '2–8',
   category: 'Family',
   nightsPlan: '1N Port Blair · 1N Havelock · 3N Port Blair',
-  image: '/images/packages/family-paradise/hero.jpg',
+  image: '/images/packages/jolly-buoy-wandoor/hero/hero.jpg',
   features: ['Jolly Buoy Island', 'Wandoor Beach', 'Ross & North Bay', 'Marine park', 'Family rooms'],
   includes: [
     '5 nights in 4-star family hotels with GST',
@@ -69,9 +69,9 @@ export const jollyBuoyWandoor: Package = {
   itinerary: itinerary6,
   itineraries: { 5: itinerary5, 6: itinerary6, 7: itinerary7 },
   highlights: [
-    { title: 'The coral-park circuit', description: 'Jolly Buoy is a national-park island — not another Havelock beach.', image: '/images/packages/family-paradise/hero.jpg' },
-    { title: 'No Neil ferry', description: 'One island hop to Havelock, then boats from Port Blair.', image: '/images/packages/family-paradise/hero.jpg' },
-    { title: 'Family-friendly reefs', description: 'Glass-bottom and snorkel water, with a museum afternoon for kids.', image: '/images/packages/family-paradise/hero.jpg' },
+    { title: 'The coral-park circuit', description: 'Jolly Buoy is a national-park island — not another Havelock beach.', image: '/images/packages/jolly-buoy-wandoor/hero/hero.jpg' },
+    { title: 'No Neil ferry', description: 'One island hop to Havelock, then boats from Port Blair.', image: '/images/packages/jolly-buoy-wandoor/hero/hero.jpg' },
+    { title: 'Family-friendly reefs', description: 'Glass-bottom and snorkel water, with a museum afternoon for kids.', image: '/images/packages/jolly-buoy-wandoor/hero/hero.jpg' },
   ],
   terms: commonTerms,
   paymentPolicy: commonPaymentPolicy,
@@ -89,5 +89,5 @@ export const jollyBuoyWandoor: Package = {
   pickupLocations: commonPickup,
   cancellationPolicy: commonCancellationPolicy,
   slug: 'jolly-buoy-wandoor-5n6d',
-  id: 'family-paradise',
+  id: 'jolly-buoy-wandoor',
 };

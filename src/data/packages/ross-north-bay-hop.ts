@@ -47,7 +47,7 @@ export const rossNorthBayHop: Package = {
   groupSize: '2–6',
   category: 'Standard',
   nightsPlan: '1N Port Blair · 1N Havelock · 2N Port Blair',
-  image: '/images/packages/grand-andaman/hero.jpg',
+  image: '/images/packages/ross-north-bay-hop/hero/hero.jpg',
   features: ['Ross Island', 'North Bay corals', 'Chidiya Tapu', 'Radhanagar', '3-star hotels'],
   includes: [
     '4 nights in 3-star hotels with GST',
@@ -62,9 +62,9 @@ export const rossNorthBayHop: Package = {
   itinerary: itinerary5,
   itineraries: { 4: itinerary4, 5: itinerary5, 6: itinerary6 },
   highlights: [
-    { title: 'Ross is the extra island', description: 'Ruins, deer, and peacocks — not another beach transfer.', image: '/images/packages/grand-andaman/hero.jpg' },
-    { title: 'North Bay reef', description: 'Coral viewing off Port Blair without a Neil ferry.', image: '/images/packages/grand-andaman/hero.jpg' },
-    { title: 'Chidiya Tapu close', description: 'Sunset at the southern tip on the return evening.', image: '/images/packages/grand-andaman/hero.jpg' },
+    { title: 'Ross is the extra island', description: 'Ruins, deer, and peacocks — not another beach transfer.', image: '/images/packages/ross-north-bay-hop/hero/hero.jpg' },
+    { title: 'North Bay reef', description: 'Coral viewing off Port Blair without a Neil ferry.', image: '/images/packages/ross-north-bay-hop/hero/hero.jpg' },
+    { title: 'Chidiya Tapu close', description: 'Sunset at the southern tip on the return evening.', image: '/images/packages/ross-north-bay-hop/hero/hero.jpg' },
   ],
   terms: commonTerms,
   paymentPolicy: commonPaymentPolicy,
@@ -82,5 +82,5 @@ export const rossNorthBayHop: Package = {
   pickupLocations: commonPickup,
   cancellationPolicy: commonCancellationPolicy,
   slug: 'ross-north-bay-hop-4n5d',
-  id: 'grand-andaman',
+  id: 'ross-north-bay-hop',
 };

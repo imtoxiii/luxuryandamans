@@ -60,7 +60,7 @@ export const grandEscape9d: Package = {
   groupSize: '2–8',
   category: 'Family',
   nightsPlan: '1N Port Blair · 2N Havelock · 1N Neil · 4N Port Blair',
-  image: '/images/packages/luxury-escape/hero/hero.jpg',
+  image: '/images/packages/grand-escape-9d/hero/hero.jpg',
   features: ['Jolly Buoy', 'Baratang caves', 'Three islands', 'Scuba for two', '4-star stays'],
   includes: [
     '8 nights in 4-star hotels with GST',
@@ -80,9 +80,9 @@ export const grandEscape9d: Package = {
   itinerary: itinerary9,
   itineraries: { 7: itinerary7, 8: itinerary8, 9: itinerary9 },
   highlights: [
-    { title: 'Every headline island', description: 'Havelock, Neil, Ross, Baratang, Jolly Buoy — without stealing Havelock nights.', image: '/images/packages/luxury-escape/hero/hero.jpg' },
-    { title: 'Caves and corals', description: 'Baratang one day, Jolly Buoy the next. They are not combined.', image: '/images/packages/luxury-escape/hero/hero.jpg' },
-    { title: 'Scuba in the quote', description: 'Two persons at Elephant Beach, photos included.', image: '/images/packages/luxury-escape/hero/hero.jpg' },
+    { title: 'Every headline island', description: 'Havelock, Neil, Ross, Baratang, Jolly Buoy — without stealing Havelock nights.', image: '/images/packages/grand-escape-9d/hero/hero.jpg' },
+    { title: 'Caves and corals', description: 'Baratang one day, Jolly Buoy the next. They are not combined.', image: '/images/packages/grand-escape-9d/hero/hero.jpg' },
+    { title: 'Scuba in the quote', description: 'Two persons at Elephant Beach, photos included.', image: '/images/packages/grand-escape-9d/hero/hero.jpg' },
   ],
   terms: commonTerms,
   paymentPolicy: commonPaymentPolicy,
@@ -100,5 +100,5 @@ export const grandEscape9d: Package = {
   pickupLocations: commonPickup,
   cancellationPolicy: commonCancellationPolicy,
   slug: 'andaman-grand-escape-8n9d',
-  id: 'luxury-escape',
+  id: 'grand-escape-9d',
 };

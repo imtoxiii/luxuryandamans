@@ -197,6 +197,37 @@ export const formatPersonalizedTourMessage = (data: {
     ].join('\n');
 };
 
+export const formatBestPackageMessage = (data: {
+    name: string;
+    email?: string;
+    phone: string;
+    packageName?: string;
+    packagePrice?: number;
+    city?: string;
+}): string => {
+    const { name, email, phone, packageName, packagePrice, city } = data;
+
+    return [
+        '<b>✨ Get Best Package Enquiry</b>',
+        '',
+        '<b>👤 Customer Details</b>',
+        `<b>Name:</b> ${escapeHtml(name)}`,
+        `<b>Phone:</b> ${escapeHtml(phone)}`,
+        `<b>Email:</b> ${escapeHtml(email?.trim() || 'Not provided')}`,
+        '',
+        packageName
+            ? [
+                '<b>📦 Interested Package</b>',
+                `<b>Package:</b> ${escapeHtml(packageName)}`,
+                packagePrice != null ? `<b>Offer Price:</b> ₹${packagePrice.toLocaleString('en-IN')}/person` : '',
+              ].filter(Boolean).join('\n')
+            : '',
+        city ? `<b>City:</b> ${escapeHtml(city)}` : '',
+        '',
+        '<b>📝 Source:</b> Offers page — Get Best Package',
+    ].filter((line) => line !== undefined).join('\n');
+};
+
 export const formatCalculatorMessage = (data: any): string => {
     const {
         name,

@@ -56,7 +56,7 @@ export const completeAndaman7d: Package = {
   groupSize: '2–8',
   category: 'Standard',
   nightsPlan: '1N Port Blair · 2N Havelock · 1N Neil · 2N Port Blair',
-  image: '/images/packages/standard-andaman/hero.jpg',
+  image: '/images/packages/complete-andaman-7d/hero/hero.jpg',
   features: ['Three islands', 'Ross & North Bay', 'Elephant Beach', '3-star hotels', 'Natural Bridge'],
   includes: [
     '6 nights in 3-star hotels with GST',
@@ -73,9 +73,9 @@ export const completeAndaman7d: Package = {
   itinerary: itinerary7,
   itineraries: { 6: itinerary6, 7: itinerary7, 8: itinerary8 },
   highlights: [
-    { title: 'The complete loop, 3-star', description: 'Same islands as the luxury week — without Taj rates.', image: '/images/packages/standard-andaman/hero.jpg' },
-    { title: 'Ross on day six', description: 'Historical boat day after Neil, not instead of Havelock.', image: '/images/packages/standard-andaman/hero.jpg' },
-    { title: '8-day Baratang option', description: 'Add limestone caves when you have the extra night.', image: '/images/packages/standard-andaman/hero.jpg' },
+    { title: 'The complete loop, 3-star', description: 'Same islands as the luxury week — without Taj rates.', image: '/images/packages/complete-andaman-7d/hero/hero.jpg' },
+    { title: 'Ross on day six', description: 'Historical boat day after Neil, not instead of Havelock.', image: '/images/packages/complete-andaman-7d/hero/hero.jpg' },
+    { title: '8-day Baratang option', description: 'Add limestone caves when you have the extra night.', image: '/images/packages/complete-andaman-7d/hero/hero.jpg' },
   ],
   terms: commonTerms,
   paymentPolicy: commonPaymentPolicy,
@@ -93,5 +93,5 @@ export const completeAndaman7d: Package = {
   pickupLocations: commonPickup,
   cancellationPolicy: commonCancellationPolicy,
   slug: 'complete-andaman-circuit-6n7d',
-  id: 'standard-andaman',
+  id: 'complete-andaman-7d',
 };

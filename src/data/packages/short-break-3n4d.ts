@@ -38,7 +38,7 @@ export const shortBreak3n4d: Package = {
   groupSize: '2–6',
   category: 'Standard',
   nightsPlan: '1N Port Blair · 1N Havelock · 1N Port Blair',
-  image: '/images/packages/honeymoon-4n5d/hero.jpg',
+  image: '/images/packages/short-break-3n4d/hero/hero.jpg',
   features: ['4-day short trip', 'Radhanagar sunset', 'Elephant Beach', '3-star hotels', 'Private car'],
   includes: [
     '3 nights in 3-star hotels with GST',
@@ -53,9 +53,9 @@ export const shortBreak3n4d: Package = {
   itinerary: itinerary4,
   itineraries: { 4: itinerary4, 5: itinerary5 },
   highlights: [
-    { title: 'Built for a long weekend', description: 'Four days, two islands, no fake Neil stop.', image: '/images/packages/honeymoon-4n5d/hero.jpg' },
-    { title: 'Elephant Beach in the quote', description: 'Snorkel the house reef before you sail back.', image: '/images/packages/honeymoon-4n5d/hero.jpg' },
-    { title: 'Named 3-star rooms', description: 'Haywizz and Silver Sand — or the same band.', image: '/images/packages/honeymoon-4n5d/hero.jpg' },
+    { title: 'Built for a long weekend', description: 'Four days, two islands, no fake Neil stop.', image: '/images/packages/short-break-3n4d/hero/hero.jpg' },
+    { title: 'Elephant Beach in the quote', description: 'Snorkel the house reef before you sail back.', image: '/images/packages/short-break-3n4d/hero/hero.jpg' },
+    { title: 'Named 3-star rooms', description: 'Haywizz and Silver Sand — or the same band.', image: '/images/packages/short-break-3n4d/hero/hero.jpg' },
   ],
   terms: commonTerms,
   paymentPolicy: commonPaymentPolicy,
@@ -71,5 +71,5 @@ export const shortBreak3n4d: Package = {
   pickupLocations: commonPickup,
   cancellationPolicy: commonCancellationPolicy,
   slug: 'andaman-short-break-3n4d',
-  id: 'honeymoon-4n5d',
+  id: 'short-break-3n4d',
 };

@@ -1,16 +1,61 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { Phone, MessageCircle, Star, Clock, ArrowRight, MapPin, Shield, Users, Sparkles, Calendar, Mail, Copy, X, Check } from 'lucide-react';
+import { Phone, MessageCircle, Star, ArrowRight, Shield, Users, Sparkles, Calendar, Mail, Copy, X, Check } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
+import SectionIntro from '../components/SectionIntro';
 import { packages } from '../data/packages';
-import { getPackageCardImage } from '../lib/imageLoader';
-import { sendTelegramMessage, formatBookingMessage } from '../lib/telegram';
+import { sendTelegramMessage, formatBookingMessage, formatBestPackageMessage } from '../lib/telegram';
+import {
+    OFFER_HERO_DESKTOP,
+    OFFER_HERO_MOBILE,
+    OFFER_HERO_DESKTOP_DIMENSIONS,
+    OFFER_PACKAGE_COUPLE,
+    OFFER_PACKAGE_PREMIUM,
+    OFFER_PACKAGE_FAMILY,
+    OFFER_SUMEET_PHOTO,
+} from '../lib/heroImages';
 import toast, { Toaster } from 'react-hot-toast';
 import { family4n5d } from '../data/packages/family-4n5d';
 
+type OfferDeal = {
+    pkg: (typeof packages)[number];
+    offerPrice: number;
+    badge?: string;
+    tagline: string;
+    image: string;
+    shortTitle: string;
+};
+
+const marqueeItems = [
+    'Havelock Island',
+    'Neil Island',
+    'Port Blair',
+    'Scuba Diving',
+    'Radhanagar Beach',
+    'Island Hopping',
+    'Sunset Cruises',
+    'Natural Bridge',
+];
+
+const heroLine = {
+    hidden: { y: '112%' },
+    show: (i: number) => ({
+        y: '0%',
+        transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.35 + i * 0.13 },
+    }),
+};
+
+const heroFade = {
+    hidden: { opacity: 0, y: 26 },
+    show: (i: number) => ({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.3 + i * 0.14 },
+    }),
+};
 
 const Offer = () => {
     const location = useLocation();
@@ -27,8 +72,14 @@ const Offer = () => {
     const [showEmailPopup, setShowEmailPopup] = useState(false);
     const [copiedPhone, setCopiedPhone] = useState(false);
     const [copiedEmail, setCopiedEmail] = useState(false);
+    const [bestPackageOpen, setBestPackageOpen] = useState(false);
+    const [selectedDeal, setSelectedDeal] = useState<OfferDeal | null>(null);
+    const [bestPackageForm, setBestPackageForm] = useState({ name: '', phone: '', email: '' });
+    const [bestPackageSubmitting, setBestPackageSubmitting] = useState(false);
     const { scrollY } = useScroll();
-    const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+    const heroContentY = useTransform(scrollY, [0, 600], [0, -160]);
+    const heroContentOpacity = useTransform(scrollY, [0, 440], [1, 0]);
+    const heroImgScale = useTransform(scrollY, [0, 900], [1, 1.12]);
     const packagesRef = useRef<HTMLElement>(null);
 
     // Dynamic City Logic
@@ -126,17 +177,71 @@ const Offer = () => {
     };
 
     const currentCity = cityConfig[cityKey] || cityConfig['default'];
-    // Use the specific city image if available, else fallback to the generic Andaman one if it's default
-    const heroImage = currentCity.image;
     const isGeneric = cityKey === 'default';
 
-    // Show 3 packages - 2 popular + 1 family package
-    const featuredPackages = [packages[0], packages[1], family4n5d];
+    const scrollToPackages = () => {
+        packagesRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
 
-    const scrollToForm = () => {
-        const formElement = document.getElementById('quick-enquiry');
-        if (formElement) {
-            formElement.scrollIntoView({ behavior: 'smooth' });
+    // 3 curated offer itineraries with value pricing
+    const featuredDeals: OfferDeal[] = [
+        {
+            pkg: packages[0],
+            offerPrice: 17000,
+            shortTitle: 'Couple / Honeymoon',
+            tagline: 'Couples favourite · Port Blair + Havelock + Neil',
+            image: OFFER_PACKAGE_COUPLE,
+        },
+        {
+            pkg: packages[1],
+            offerPrice: 22000,
+            shortTitle: 'Complete Andaman Tour',
+            badge: 'Most Booked',
+            tagline: 'Neil Island night + Natural Bridge + photoshoot',
+            image: OFFER_PACKAGE_PREMIUM,
+        },
+        {
+            pkg: family4n5d,
+            offerPrice: 25000,
+            shortTitle: 'Family',
+            tagline: 'Family-paced days · kid-friendly hotels & ferries',
+            image: OFFER_PACKAGE_FAMILY,
+        },
+    ];
+
+    const openBestPackageForm = (deal: OfferDeal) => {
+        setSelectedDeal(deal);
+        setBestPackageForm({ name: '', phone: '', email: '' });
+        setBestPackageOpen(true);
+    };
+
+    const handleBestPackageSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!bestPackageForm.name.trim() || !bestPackageForm.phone.trim()) {
+            toast.error('Please enter your name and phone number.');
+            return;
+        }
+
+        setBestPackageSubmitting(true);
+        try {
+            const message = formatBestPackageMessage({
+                ...bestPackageForm,
+                packageName: selectedDeal?.pkg.title,
+                packagePrice: selectedDeal?.offerPrice,
+                city: currentCity.name || undefined,
+            });
+            const ok = await sendTelegramMessage(message);
+            if (ok) {
+                toast.success('Got it! We will share the best package shortly.');
+                setBestPackageOpen(false);
+                setBestPackageForm({ name: '', phone: '', email: '' });
+                setSelectedDeal(null);
+            }
+        } catch (error) {
+            console.error('Error sending best package enquiry:', error);
+            toast.error('Failed to send. Please try again.');
+        } finally {
+            setBestPackageSubmitting(false);
         }
     };
 
@@ -167,25 +272,6 @@ const Offer = () => {
             ...prev,
             [e.target.name]: e.target.value
         }));
-    };
-
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 30 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.6, ease: "easeOut" }
-        }
     };
 
     // Detect when packages section is in view
@@ -235,17 +321,17 @@ const Offer = () => {
     };
 
     return (
-        <div className={`min-h-screen font-sans selection:bg-purple-100 selection:text-purple-900 overflow-x-hidden pb-24 md:pb-0 ${currentCity.colors.bg}`}>
+        <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden pb-14 md:pb-0">
             <SEO
-                title={`Exclusive Andaman Packages ${currentCity.name ? `from ${currentCity.name}` : ''} | 50% OFF | Starting ₹14,999`}
-                description={`Book your dream Andaman vacation ${currentCity.name ? `from ${currentCity.name}` : ''}. Luxury stays from ₹14,999/person, custom itineraries, all-inclusive packages with ferry, hotels & activities. 24/7 on-trip support. Limited time 50% OFF.`}
+                title={`Exclusive Andaman Packages ${currentCity.name ? `from ${currentCity.name}` : ''} | Starting ₹17,000`}
+                description={`Book your dream Andaman vacation ${currentCity.name ? `from ${currentCity.name}` : ''}. Value itineraries from ₹17,000/person — hotels, ferries & sightseeing included. Custom quotes in minutes.`}
                 pathname={location.pathname}
-                keywords={`andaman packages ${currentCity.name ? `from ${currentCity.name.toLowerCase()}` : ''}, andaman tour offer, cheap andaman packages, andaman holiday deals, andaman discount packages, best andaman offer 2026, andaman package under 20000, andaman couple package offer, andaman family deal, andaman honeymoon offer, luxury andaman discount, andaman all inclusive deal, andaman last minute offer, andaman packages on emi, andaman flash sale, andaman weekend getaway, andaman short trip package, andaman 3 day package, andaman special offer today, cheapest andaman deal, andaman booking offer`.trim()}
+                keywords={`andaman packages ${currentCity.name ? `from ${currentCity.name.toLowerCase()}` : ''}, andaman tour offer, cheap andaman packages, andaman holiday deals, andaman discount packages, best andaman offer 2026, andaman package under 20000, andaman couple package offer, andaman family deal, andaman honeymoon offer, andaman all inclusive deal, andaman last minute offer, andaman weekend getaway, andaman short trip package, cheapest andaman deal, andaman booking offer`.trim()}
                 targetAudience="all"
                 faqData={[
                     {
                         question: `What is the cheapest Andaman package ${currentCity.name ? `from ${currentCity.name}` : 'available'}?`,
-                        answer: `Our most affordable Andaman package ${currentCity.name ? `from ${currentCity.name}` : ''} starts at ₹14,999 per person for 4N/5D. This includes hotel stay, ferry transfers, sightseeing at Port Blair, Havelock & Neil Island, daily breakfast, and airport pickup/drop. ${currentCity.name ? `Flights from ${currentCity.name} are not included but we can help you find the best deals.` : 'Flight booking assistance is also available.'}`
+                        answer: `Our most affordable Andaman package ${currentCity.name ? `from ${currentCity.name}` : ''} starts at ₹17,000 per person for 4N/5D. This includes hotel stay, ferry transfers, sightseeing at Port Blair, Havelock & Neil Island, daily breakfast, and airport pickup/drop. ${currentCity.name ? `Flights from ${currentCity.name} are not included but we can help you find the best deals.` : 'Flight booking assistance is also available.'}`
                     },
                     {
                         question: "Is the 50% OFF offer on Andaman packages real?",
@@ -408,278 +494,229 @@ const Offer = () => {
                 )}
             </AnimatePresence>
 
-            {/* Hero Section - Main with dynamic content */}
-            <div className={`relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden pb-12 pt-24 md:pt-0`}>
-                <motion.div
-                    style={{ y: y1 }}
-                    className="absolute inset-0 z-0 text-center"
-                >
-                    {/* Very light overlay to ensure text readability but keep image extremely bright and visible */}
-                    <div className="absolute inset-0 bg-black/10 z-10" />
-                    <img
-                        src={heroImage}
-                        alt="Andaman Islands beach paradise with crystal clear water"
-                        className="w-full h-full object-cover scale-105"
-                    />
-                </motion.div>
+            {/* Hero — home composition, lighter copy over turquoise water */}
+            <section className="relative h-screen min-h-[640px] flex flex-col overflow-hidden">
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                    <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#041018]/45 via-transparent to-[#041018]/60" />
+                    <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#041018]/30 via-transparent to-transparent md:from-[#041018]/40" />
+                    <motion.div className="absolute inset-0 will-change-transform" style={{ scale: heroImgScale }}>
+                        <picture>
+                            <source media="(max-width: 767px)" srcSet={OFFER_HERO_MOBILE} type="image/png" />
+                            <img
+                                src={OFFER_HERO_DESKTOP}
+                                alt="Turquoise Andaman water with pink plumeria flowers on white sand"
+                                className="w-full h-full object-cover"
+                                width={OFFER_HERO_DESKTOP_DIMENSIONS.width}
+                                height={OFFER_HERO_DESKTOP_DIMENSIONS.height}
+                                loading="eager"
+                                fetchPriority="high"
+                                decoding="async"
+                                style={{ objectPosition: 'center 30%' }}
+                            />
+                        </picture>
+                    </motion.div>
+                </div>
 
-                <div className="relative z-20 container mx-auto px-4 text-center text-white mt-10 md:mt-20">
-                    <motion.div
-                        initial="hidden"
-                        animate="visible"
-                        variants={containerVariants}
-                        className="max-w-4xl mx-auto"
-                    >
-                        <motion.div variants={itemVariants} className={`inline-flex items-center gap-2 py-2 px-6 rounded-full text-white text-sm font-bold mb-8 shadow-lg shadow-black/20 ${currentCity.colors.badge}`}>
-                            <MapPin className="w-4 h-4" />
-                            <span className="tracking-wide uppercase text-xs">{currentCity.label}</span>
+                <motion.div
+                    className="relative z-20 w-full max-w-7xl mx-auto px-5 md:px-8 pt-28 md:pt-36 lg:pt-40"
+                    style={{ y: heroContentY, opacity: heroContentOpacity }}
+                >
+                    <div className="max-w-xl md:max-w-2xl text-left">
+                        <motion.div
+                            variants={heroFade}
+                            custom={0}
+                            initial="hidden"
+                            animate="show"
+                            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white mb-5 md:mb-7"
+                        >
+                            <Star className="w-3.5 h-3.5 text-yellow-300 fill-yellow-300" />
+                            <span className="text-[11px] md:text-xs font-semibold tracking-[0.22em] uppercase">
+                                {isGeneric ? 'From ₹17,000 / person' : `${currentCity.name} specials`}
+                            </span>
                         </motion.div>
 
-                        <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 leading-[1.2] tracking-tight drop-shadow-2xl">
-                            <span className="drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">Planning an Andaman Trip</span><br />
-                            <span className="inline-block mt-2 transform -rotate-1">
-                                <span className={`bg-white/95 backdrop-blur-xl rounded-2xl px-4 md:px-6 py-1 md:py-2 shadow-2xl border border-white/50 text-3xl md:text-5xl lg:text-7xl inline-block`}>
-                                    <span className={`text-transparent bg-clip-text bg-gradient-to-r ${currentCity.colors.from} ${currentCity.colors.to} font-extrabold tracking-tight`}>
-                                        {isGeneric ? 'for your loved ones?' : `from ${currentCity.name}?`}
-                                    </span>
+                        <h1 className="mb-4 md:mb-5">
+                            <span className="sr-only">
+                                {isGeneric
+                                    ? 'Andaman tour packages with hotels, ferries and sightseeing included'
+                                    : `Andaman packages from ${currentCity.name}`}
+                            </span>
+                            <span aria-hidden="true" className="block">
+                                <span className="block overflow-hidden pb-[0.06em]">
+                                    <motion.span
+                                        variants={heroLine}
+                                        custom={0}
+                                        initial="hidden"
+                                        animate="show"
+                                        className="block will-change-transform font-serif font-semibold text-white text-[3.25rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[0.95] tracking-tight drop-shadow-[0_2px_24px_rgba(4,16,24,0.45)]"
+                                    >
+                                        {isGeneric ? 'Andaman' : currentCity.name}
+                                    </motion.span>
+                                </span>
+                                <span className="block overflow-hidden mt-1 md:mt-2">
+                                    <motion.span
+                                        variants={heroLine}
+                                        custom={1}
+                                        initial="hidden"
+                                        animate="show"
+                                        className="block will-change-transform font-script text-white/95 text-[2.75rem] sm:text-5xl md:text-6xl lg:text-7xl leading-none drop-shadow-[0_2px_20px_rgba(4,16,24,0.4)]"
+                                    >
+                                        {isGeneric ? 'Awaits' : 'to Andaman'}
+                                    </motion.span>
                                 </span>
                             </span>
-                        </motion.h1>
+                        </h1>
 
-                        <motion.p variants={itemVariants} className="text-xl md:text-2xl text-white/90 mb-10 max-w-xl mx-auto font-light leading-relaxed drop-shadow-sm">
-                            Premium couple & family packages. <br className="hidden md:block" />
-                            <span className="font-semibold text-white">Direct local pricing.</span>
+                        <motion.p
+                            variants={heroFade}
+                            custom={2}
+                            initial="hidden"
+                            animate="show"
+                            className="text-base md:text-lg text-white/85 max-w-sm leading-relaxed font-light drop-shadow-md"
+                        >
+                            Ready itineraries. Honest local pricing.
                         </motion.p>
+                    </div>
+                </motion.div>
 
-                        <motion.div variants={itemVariants} className="flex flex-col items-center justify-center gap-4 w-full max-w-sm mx-auto">
-                            <a
-                                href="tel:+916297576826"
-                                onClick={(e) => handleContactClick(e, 'phone')}
-                                className="group relative w-full px-8 py-4 bg-white text-slate-900 rounded-full font-bold text-lg hover:bg-slate-50 transition-all flex items-center justify-center gap-3 shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:shadow-[0_0_50px_rgba(255,255,255,0.3)] transform hover:-translate-y-1"
-                            >
-                                <div className="absolute inset-0 rounded-full border border-slate-200 opacity-50 animate-pulse"></div>
-                                <Phone className={`w-5 h-5 fill-current ${currentCity.name ? currentCity.colors.text : 'text-amber-600'}`} />
-                                <span>Call for Best Price</span>
-                            </a>
-                        </motion.div>
+                <div className="flex-1 relative z-10 pointer-events-none" aria-hidden="true" />
 
-                        {/* Trust Indicators */}
-                        <motion.div variants={itemVariants} className="mt-12 pt-8 border-t border-white/10 flex flex-wrap justify-center gap-6 md:gap-12 text-sm text-white/90">
-                            <div className="flex items-center gap-2">
-                                <Shield className="w-5 h-5 text-amber-400" />
-                                <span>Govt. Registered</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <Star className="w-5 h-5 text-amber-400" />
-                                <span>4.9/5 Rated</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <Users className="w-5 h-5 text-amber-400" />
-                                <span>10k+ Happy Guests</span>
-                            </div>
-                        </motion.div>
+                <motion.div
+                    className="relative z-20 w-full max-w-7xl mx-auto px-5 md:px-8 pb-28 md:pb-28"
+                    style={{ opacity: heroContentOpacity }}
+                >
+                    <motion.div
+                        variants={heroFade}
+                        custom={3}
+                        initial="hidden"
+                        animate="show"
+                        className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center"
+                    >
+                        <button
+                            type="button"
+                            onClick={scrollToPackages}
+                            className="px-7 py-3.5 md:px-8 md:py-4 bg-white text-[#0a2740] rounded-full font-semibold text-base md:text-lg hover:bg-blue-50 transition-all duration-300 shadow-[0_8px_40px_-8px_rgba(255,255,255,0.55)] hover:-translate-y-0.5 flex items-center justify-center gap-2"
+                        >
+                            View packages
+                            <ArrowRight className="w-5 h-5" />
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => openBestPackageForm(featuredDeals[0])}
+                            className="hidden sm:inline-flex px-7 py-3.5 md:px-8 md:py-4 bg-white/10 border border-white/50 text-white rounded-full font-semibold text-base md:text-lg hover:bg-white/20 transition-all duration-300 backdrop-blur-md items-center justify-center gap-2"
+                        >
+                            Send enquiry
+                            <Calendar className="w-5 h-5" />
+                        </button>
                     </motion.div>
-                </div>
-            </div>
+                </motion.div>
 
-            {/* Human Trust Section */}
-            <section className="bg-white py-12 border-b border-slate-100">
-                <div className="container mx-auto px-4 max-w-3xl">
-                    <div className="flex flex-col md:flex-row items-center gap-6 bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                        <div className="w-20 h-20 rounded-full bg-slate-200 overflow-hidden shrink-0 border-2 border-white shadow-md">
-                            {/* Placeholder for Sumeet's image */}
-                            <div className="w-full h-full flex items-center justify-center bg-slate-800 text-white font-bold text-xl">S</div>
-                        </div>
-                        <div className="text-center md:text-left">
-                            <p className="text-lg font-bold text-slate-800 mb-1">"Hi, I’m Sumeet – Local Andaman Travel Expert."</p>
-                            <p className="text-slate-600 mb-3">Call me directly for honest advice and best local pricing. No hidden costs.</p>
-                            <a
-                                href={`https://wa.me/916297576826?text=Hi,%20I%E2%80%99m%20planning%20an%20Andaman%20trip${currentCity.name ? `%20from%20${currentCity.name}` : ''}.%20Please%20guide%20me.`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-green-600 font-bold hover:underline"
-                            >
-                                <MessageCircle className="w-5 h-5" /> Chat with me on WhatsApp
-                            </a>
+                <motion.div
+                    style={{ opacity: heroContentOpacity }}
+                    className="absolute bottom-16 md:bottom-14 left-1/2 -translate-x-1/2 z-20 pointer-events-none"
+                >
+                    <div className="hidden md:flex flex-col items-center gap-2 text-white/70">
+                        <span className="text-[10px] uppercase tracking-[0.28em]">Scroll</span>
+                        <div className="relative w-px h-10 overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-b from-white/70 to-transparent" />
+                            <div className="scroll-cue-dot absolute left-1/2 -translate-x-1/2 w-[3px] h-[3px] rounded-full bg-white" />
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </section>
 
-            {/* Sticky Action Bar - Appears on Scroll */}
-            <motion.div
-                className="fixed left-0 right-0 z-[100] top-[72px] md:top-auto md:bottom-0"
-                initial={{ opacity: 0, y: 100 }}
-                animate={{
-                    opacity: showStickyBar ? 1 : 0,
-                    y: showStickyBar ? 0 : 100
-                }}
-                transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 30
-                }}
-            >
-                <div className="bg-white/80 backdrop-blur-lg border-b border-slate-100 shadow-lg">
-                    <div className="container mx-auto px-4 py-3 md:py-1.5">
-                        <div className="flex items-center justify-between gap-3 max-w-4xl mx-auto">
-                            <a
-                                href="tel:+916297576826"
-                                onClick={(e) => handleContactClick(e, 'phone')}
-                                className="hidden md:flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 min-w-[60px] md:min-w-0 text-slate-600 hover:text-amber-600 transition-colors group"
-                            >
-                                <div className="w-10 h-10 md:w-9 md:h-9 rounded-full bg-amber-50 group-hover:bg-amber-100 flex items-center justify-center transition-colors">
-                                    <Phone className="w-5 h-5 md:w-4 md:h-4 text-amber-600" />
-                                </div>
-                                <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">Call</span>
-                            </a>
-
-                            <button
-                                onClick={scrollToForm}
-                                className="flex-1 md:flex-initial md:px-4 bg-slate-900 text-white h-12 md:h-10 rounded-xl font-bold text-sm md:text-xs shadow-lg shadow-slate-900/20 hover:bg-slate-800 active:scale-95 transition-all flex items-center justify-center gap-2"
-                            >
-                                <Sparkles className="w-4 h-4 md:w-3.5 md:h-3.5 text-amber-400" />
-                                <span>Get Best Quote</span>
-                            </button>
-
-                            <a
-                                href="https://wa.me/916297576826?text=Hi,%20I%20want%20to%20plan%20my%20Andaman%20trip."
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="hidden md:flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 min-w-[60px] md:min-w-0 text-slate-600 hover:text-green-600 transition-colors group"
-                            >
-                                <div className="w-10 h-10 md:w-9 md:h-9 rounded-full bg-green-50 group-hover:bg-green-100 flex items-center justify-center transition-colors">
-                                    <MessageCircle className="w-5 h-5 md:w-4 md:h-4 text-green-600" />
-                                </div>
-                                <span className="text-[10px] md:text-xs font-bold uppercase tracking-wide">WhatsApp</span>
-                            </a>
-
-                            <a
-                                href="https://mail.google.com/mail/?view=cm&fs=1&to=luxuryandamans@gmail.com&su=Andaman%20Trip%20Enquiry&body=Hi,%0D%0A%0D%0AI%20want%20to%20plan%20my%20Andaman%20trip.%0D%0A%0D%0APlease%20contact%20me%20with%20more%20details.%0D%0A%0D%0AThank%20you!"
-                                onClick={(e) => handleContactClick(e, 'email')}
-                                className="hidden md:flex flex-row items-center justify-center gap-2 text-slate-600 hover:text-blue-600 transition-colors group"
-                            >
-                                <div className="w-9 h-9 rounded-full bg-blue-50 group-hover:bg-blue-100 flex items-center justify-center transition-colors">
-                                    <Mail className="w-4 h-4 text-blue-600" />
-                                </div>
-                                <span className="text-xs font-bold uppercase tracking-wide">Email</span>
-                            </a>
-                        </div>
+            {/* White sheet over hero */}
+            <div className="relative z-10 bg-white rounded-t-[2.5rem] md:rounded-t-[3.5rem] -mt-10 shadow-[0_-24px_48px_-24px_rgba(4,13,23,0.4)]">
+                <div className="overflow-hidden pt-6 pb-3 md:pt-8 md:pb-5 select-none" aria-hidden="true">
+                    <div className="marquee-track flex w-max items-center">
+                        {[...marqueeItems, ...marqueeItems].map((item, i) => (
+                            <span key={i} className="flex items-center shrink-0 pr-8 md:pr-14">
+                                <span
+                                    className={`font-display font-bold uppercase tracking-tight whitespace-nowrap text-3xl md:text-5xl ${
+                                        i % 2 ? 'text-outline-ink' : 'text-gray-900'
+                                    }`}
+                                >
+                                    {item}
+                                </span>
+                                <span className="ml-8 md:ml-14 w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-blue-600/60 shrink-0" />
+                            </span>
+                        ))}
                     </div>
                 </div>
-            </motion.div>
 
-
-            {/* Packages Section - Refined Cards */}
-            <section ref={packagesRef} className="py-16 md:py-24 bg-slate-50 relative">
+            {/* Packages — minimal portrait cards */}
+            <section ref={packagesRef} className="py-8 md:py-12 relative">
                 <div className="container mx-auto px-4 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-center mb-20"
-                    >
-                        <span className="text-amber-600 font-bold tracking-[0.2em] uppercase text-sm mb-4 block">Best Sellers</span>
-                        <h2 className="text-5xl md:text-6xl font-display font-bold text-slate-900 mb-6">Curated Experiences</h2>
-                        <div className="w-24 h-1.5 bg-amber-500 mx-auto rounded-full mb-8"></div>
-                        <p className="text-slate-600 max-w-2xl mx-auto text-xl leading-relaxed">
-                            Choose from our most popular itineraries, crafted for luxury, adventure, and romance.
-                        </p>
-                    </motion.div>
+                    <SectionIntro title="Pick your" script="trip" />
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                        {featuredPackages.map((pkg, index) => {
-                            const cardImage = getPackageCardImage(pkg.id || pkg.slug) || pkg.image;
-                            const isMostBooked = index === 1; // Highlight the 2nd one
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 max-w-6xl mx-auto">
+                        {featuredDeals.map((deal, index) => {
+                            const pkg = deal.pkg;
+                            const isFeatured = Boolean(deal.badge);
+                            const objectPos =
+                                index === 0 ? 'center 18%' :
+                                index === 1 ? 'center 45%' :
+                                'center 22%';
+                            const curveClass = index % 2 === 1
+                                ? 'rounded-[0.85rem_2.75rem_0.85rem_2.75rem]'
+                                : 'rounded-[2.75rem_0.85rem_2.75rem_0.85rem]';
 
                             return (
                                 <motion.div
                                     key={pkg.slug}
-                                    initial={{ opacity: 0, y: 50 }}
+                                    initial={{ opacity: 0, y: 24 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ duration: 0.7, delay: index * 0.1 }}
-                                    className={`group relative ${isMostBooked ? 'md:-mt-4 md:mb-4' : ''}`}
+                                    viewport={{ once: true, margin: '-40px' }}
+                                    transition={{ duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                                    className="h-full"
                                 >
-                                    {isMostBooked && (
-                                        <div className="absolute -top-4 left-0 right-0 z-20 flex justify-center">
-                                            <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-sm font-bold px-4 py-1.5 rounded-full shadow-lg shadow-amber-500/20 flex items-center gap-1.5 uppercase tracking-wide">
-                                                <Star className="w-3.5 h-3.5 fill-current" /> Most Booked by {currentCity.name || 'Couples'}
+                                    <div className={`group relative isolate flex h-[520px] md:h-[560px] w-full flex-col overflow-hidden ${curveClass}`}>
+                                        <div className="absolute inset-0 overflow-hidden">
+                                            <div className="h-full w-full origin-center transition-transform duration-[1.3s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]">
+                                                <img
+                                                    src={deal.image}
+                                                    alt={deal.shortTitle}
+                                                    className="h-full w-full object-cover"
+                                                    style={{ objectPosition: objectPos }}
+                                                    loading="lazy"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/10" />
+
+                                        <div className="relative z-20 flex h-full flex-col justify-between p-5 md:p-6">
+                                            <span className="self-start rounded-full border border-white/30 bg-white/20 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md">
+                                                {isFeatured ? deal.badge : pkg.duration}
                                             </span>
-                                        </div>
-                                    )}
 
-                                    <div
-                                        onClick={() => window.dispatchEvent(new CustomEvent('openDiscountPopup', { detail: { package: pkg.title } }))}
-                                        className={`block bg-white rounded-[2.5rem] overflow-hidden shadow-lg transition-all duration-500 border h-full cursor-pointer ${isMostBooked
-                                            ? 'shadow-xl shadow-amber-500/10 border-amber-200 scale-100 md:scale-105 z-10'
-                                            : 'border-slate-100 hover:shadow-2xl hover:shadow-amber-500/10 hover:-translate-y-2'
-                                            }`}
-                                    >
-                                        <div className="relative h-72 overflow-hidden">
-                                            <img
-                                                src={cardImage}
-                                                alt={pkg.title}
-                                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-80" />
-
-                                            <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold text-slate-900 flex items-center gap-2 shadow-lg uppercase tracking-wide">
-                                                <Clock className="w-3 h-3" /> {pkg.duration}
-                                            </div>
-
-                                            <div className="absolute bottom-6 left-6 right-6 text-white">
-                                                <h3 className="text-2xl font-display font-bold mb-2 leading-tight">{pkg.title}</h3>
-                                                <div className="flex items-center gap-2 text-sm text-slate-200 font-medium">
-                                                    <MapPin className="w-4 h-4 text-amber-400" />
-                                                    <span>Port Blair • Havelock • Neil</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="p-6 md:p-8 flex flex-col relative text-left">
-                                            <p className="text-slate-600 text-sm md:text-base mb-6 line-clamp-3 leading-relaxed font-normal">
-                                                {pkg.description}
-                                            </p>
-
-                                            <div className="space-y-6">
-                                                <div className="flex flex-wrap gap-2">
-                                                    {pkg.features.slice(0, 3).map((feature, idx) => (
-                                                        <span key={idx} className="text-xs bg-slate-50 text-slate-600 px-3 py-1.5 rounded-full font-medium border border-slate-100">
-                                                            {feature}
-                                                        </span>
-                                                    ))}
-                                                </div>
-
-                                                <div className="pt-6 border-t border-slate-100">
-                                                    <div className="flex items-end justify-between mb-2">
-                                                        <div>
-                                                            <p className="text-xs text-slate-400 font-bold uppercase tracking-widest mb-1">Starting From</p>
-                                                            <p className="text-3xl font-display font-bold text-slate-900">₹{pkg.price.toLocaleString()}</p>
-                                                        </div>
-                                                    </div>
-                                                    <p className="text-xs text-red-500 font-medium mb-4 flex items-center gap-1">
-                                                        <Clock className="w-3 h-3" /> Ferry seats are limited – prices may change
+                                            <div>
+                                                <div className="flex items-baseline gap-2 flex-wrap">
+                                                    <p className="font-serif text-[2.15rem] font-medium leading-none tracking-tight text-white md:text-[2.4rem]">
+                                                        ₹{deal.offerPrice.toLocaleString('en-IN')}
                                                     </p>
-
-                                                    <a
-                                                        href="tel:+916297576826"
-                                                        onClick={(e) => handleContactClick(e, 'phone')}
-                                                        className={`w-full py-4 text-white rounded-xl font-bold text-sm transition-all shadow-lg flex items-center justify-center gap-2 ${isMostBooked
-                                                            ? 'bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 shadow-amber-500/30'
-                                                            : 'bg-slate-900 hover:bg-slate-800'
-                                                            }`}
-                                                    >
-                                                        <Phone className="w-4 h-4" /> Call for Best Price
-                                                    </a>
-
-                                                    <Link
-                                                        to={`/packages/${pkg.slug}?from=offer`}
-                                                        className="block text-center mt-3 text-xs font-bold text-slate-500 hover:text-amber-600 underline"
-                                                    >
-                                                        View Full Itinerary
-                                                    </Link>
+                                                    <span className="font-script text-[1.05rem] leading-none text-white/85 md:text-[1.15rem]">
+                                                        Per Person
+                                                    </span>
                                                 </div>
+                                                <h3 className="mt-2 font-script text-[2.35rem] leading-none text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.45)] md:text-[2.75rem]">
+                                                    {deal.shortTitle}
+                                                </h3>
+
+                                                <button
+                                                    type="button"
+                                                    onClick={() => openBestPackageForm(deal)}
+                                                    className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#0a2740] transition-all hover:-translate-y-0.5 hover:bg-blue-50"
+                                                >
+                                                    <Sparkles className="h-4 w-4 text-amber-500" />
+                                                    Send enquiry
+                                                </button>
+                                                <Link
+                                                    to={`/packages/${pkg.slug}?from=offer`}
+                                                    className="mt-2.5 block text-center text-xs font-semibold text-white/80 transition-colors hover:text-white"
+                                                >
+                                                    View itinerary
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
@@ -688,16 +725,15 @@ const Offer = () => {
                         })}
                     </div>
 
-                    <div className="mt-16 text-center">
-                        <p className="text-slate-500 mb-4 font-medium">Not suitable? We customize.</p>
-                        <a
-                            href="tel:+916297576826"
-                            onClick={(e) => handleContactClick(e, 'phone')}
-                            className="inline-flex items-center gap-3 text-amber-600 font-bold text-lg hover:text-amber-700 transition-colors group"
+                    <div className="mt-8 text-center">
+                        <button
+                            type="button"
+                            onClick={() => openBestPackageForm(featuredDeals[1])}
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 transition-colors hover:text-[#0a2740]"
                         >
-                            <span className="border-b-2 border-amber-600/30 group-hover:border-amber-600 pb-1 transition-colors">Call us for a custom-made itinerary</span>
-                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                        </a>
+                            Need a custom plan?
+                            <ArrowRight className="h-4 w-4" />
+                        </button>
                     </div>
                 </div>
             </section>
@@ -741,10 +777,12 @@ const Offer = () => {
                                 desc: "Soar high above the coastline for a breathtaking bird's eye view.",
                                 link: "/experiences/parasailing"
                             }
-                        ].map((activity, idx) => (
+                        ].map((activity, idx) => {
+                            const waText = `Hi, I'm looking for Andaman tour packages. Please share the best options available.`;
+                            return (
                             <a
                                 key={idx}
-                                href={`https://wa.me/916297576826?text=Hi,%20I'm%20interested%20in%20${encodeURIComponent(activity.title)}%20in%20Andaman.`}
+                                href={`https://wa.me/916297576826?text=${encodeURIComponent(waText)}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
@@ -771,7 +809,8 @@ const Offer = () => {
                                     </div>
                                 </motion.div>
                             </a>
-                        ))}
+                            );
+                        })}
                     </div>
 
                     <div className="mt-16 text-center">
@@ -786,21 +825,21 @@ const Offer = () => {
                 </div>
             </section>
             {/* Why Choose Us - Enhanced Layout */}
-            <section className="py-32 bg-white overflow-hidden">
+            <section className="py-12 md:py-20 bg-white overflow-hidden">
                 <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
                         <motion.div
                             initial={{ opacity: 0, x: -50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
-                            className="relative"
+                            className="relative hidden md:block"
                         >
                             <div className="absolute -inset-4 bg-amber-50/50 rounded-full blur-xl opacity-30" />
                             <img
                                 src="https://images.pexels.com/photos/907485/pexels-photo-907485.jpeg"
                                 alt="Luxury Experience"
-                                className="relative rounded-[3rem] shadow-2xl w-full object-cover h-[700px] z-10"
+                                className="relative rounded-[3rem] shadow-2xl w-full object-cover h-[560px] z-10"
                             />
 
                             {/* Floating Glass Card */}
@@ -829,9 +868,9 @@ const Offer = () => {
                             transition={{ duration: 0.8 }}
                         >
                             <span className="text-amber-600 font-bold tracking-[0.2em] uppercase text-sm">Why Choose Luxury Andamans</span>
-                            <h2 className="text-5xl md:text-6xl font-display font-bold text-slate-900 mt-4 mb-10 leading-tight">We Don't Just Plan Trips, We Craft <span className="text-amber-500 italic">Memories</span></h2>
+                            <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-slate-900 mt-3 mb-6 md:mb-8 leading-tight">We Don't Just Plan Trips, We Craft <span className="text-amber-500 italic">Memories</span></h2>
 
-                            <div className="space-y-10">
+                            <div className="space-y-6 md:space-y-8">
                                 {[
                                     { icon: Users, title: "Local Experts", desc: "Our team consists of locals who know every hidden gem of the islands." },
                                     { icon: Shield, title: "100% Transparent", desc: "No hidden charges. What you see is exactly what you pay." },
@@ -843,19 +882,48 @@ const Offer = () => {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: 0.2 * idx, duration: 0.5 }}
-                                        className="flex gap-6 group"
+                                        className="flex gap-4 md:gap-6 group"
                                     >
-                                        <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-amber-500 transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:shadow-amber-500/30">
-                                            <item.icon className="w-8 h-8 text-amber-500 group-hover:text-white transition-colors duration-300" />
+                                        <div className="w-12 h-12 md:w-16 md:h-16 bg-slate-50 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-amber-500 transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:shadow-amber-500/30">
+                                            <item.icon className="w-6 h-6 md:w-8 md:h-8 text-amber-500 group-hover:text-white transition-colors duration-300" />
                                         </div>
                                         <div>
-                                            <h3 className="text-2xl font-bold text-slate-900 mb-2 font-display">{item.title}</h3>
-                                            <p className="text-slate-600 leading-relaxed text-lg">{item.desc}</p>
+                                            <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-1 md:mb-2 font-display">{item.title}</h3>
+                                            <p className="text-slate-600 leading-relaxed text-base md:text-lg">{item.desc}</p>
                                         </div>
                                     </motion.div>
                                 ))}
                             </div>
                         </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Local expert */}
+            <section className="pt-4 pb-10 md:pt-6 md:pb-14 bg-white">
+                <div className="container mx-auto px-4 max-w-3xl">
+                    <div className="flex flex-col md:flex-row items-center gap-5 rounded-[2rem] border border-slate-100 bg-slate-50/80 p-5 md:p-7">
+                        <div className="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden shrink-0 border-2 border-white shadow-md ring-2 ring-slate-100">
+                            <img
+                                src={OFFER_SUMEET_PHOTO}
+                                alt="Sumeet — Local Andaman Travel Expert"
+                                className="w-full h-full object-cover"
+                                style={{ objectPosition: 'center 20%' }}
+                                loading="lazy"
+                            />
+                        </div>
+                        <div className="text-center md:text-left">
+                            <p className="text-lg font-bold text-slate-800 mb-1">"Hi, I'm Sumeet – Local Andaman Travel Expert."</p>
+                            <p className="text-slate-600 mb-3">Call me directly for honest advice and best local pricing. No hidden costs.</p>
+                            <a
+                                href={`https://wa.me/916297576826?text=Hi,%20I%E2%80%99m%20planning%20an%20Andaman%20trip${currentCity.name ? `%20from%20${currentCity.name}` : ''}.%20Please%20guide%20me.`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-green-600 font-bold hover:underline"
+                            >
+                                <MessageCircle className="w-5 h-5" /> Chat with me on WhatsApp
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -969,26 +1037,207 @@ const Offer = () => {
                 </div>
             </section>
 
+            </div>
+            {/* end white sheet */}
+
             <Footer />
 
-            {/* Mobile Sticky Bottom Bar */}
-            <div className="fixed bottom-0 left-0 right-0 p-3 bg-white/90 backdrop-blur-xl border-t border-gray-100/50 z-[999] md:hidden shadow-[0_-8px_30px_rgba(0,0,0,0.12)]">
-                <div className="flex gap-3">
-                    <a
-                        href="tel:+916297576826"
-                        className="flex-1 flex items-center justify-center gap-2 bg-slate-900 text-white py-3.5 rounded-2xl font-bold text-base shadow-lg active:scale-95 transition-all relative overflow-hidden group"
+            {/* Sticky Action Bar - Desktop only */}
+            <motion.div
+                className="hidden md:block fixed left-0 right-0 z-[100] bottom-0"
+                initial={{ opacity: 0, y: 100 }}
+                animate={{
+                    opacity: showStickyBar ? 1 : 0,
+                    y: showStickyBar ? 0 : 100
+                }}
+                transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 30
+                }}
+            >
+                <div className="bg-white/80 backdrop-blur-lg border-t border-slate-100 shadow-lg">
+                    <div className="container mx-auto px-4 py-1.5">
+                        <div className="flex items-center justify-between gap-3 max-w-4xl mx-auto">
+                            <a
+                                href="tel:+916297576826"
+                                onClick={(e) => handleContactClick(e, 'phone')}
+                                className="flex flex-row items-center justify-center gap-2 text-slate-600 hover:text-amber-600 transition-colors group"
+                            >
+                                <div className="w-9 h-9 rounded-full bg-amber-50 group-hover:bg-amber-100 flex items-center justify-center transition-colors">
+                                    <Phone className="w-4 h-4 text-amber-600" />
+                                </div>
+                                <span className="text-xs font-bold uppercase tracking-wide">Call</span>
+                            </a>
+
+                            <button
+                                type="button"
+                                onClick={() => openBestPackageForm(featuredDeals[1])}
+                                className="px-4 bg-slate-900 text-white h-10 rounded-xl font-bold text-xs shadow-lg shadow-slate-900/20 hover:bg-slate-800 active:scale-95 transition-all flex items-center justify-center gap-2"
+                            >
+                                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                                <span>Send enquiry</span>
+                            </button>
+
+                            <a
+                                href="https://wa.me/916297576826?text=Hi,%20I%20want%20to%20plan%20my%20Andaman%20trip."
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex flex-row items-center justify-center gap-2 text-slate-600 hover:text-green-600 transition-colors group"
+                            >
+                                <div className="w-9 h-9 rounded-full bg-green-50 group-hover:bg-green-100 flex items-center justify-center transition-colors">
+                                    <MessageCircle className="w-4 h-4 text-green-600" />
+                                </div>
+                                <span className="text-xs font-bold uppercase tracking-wide">WhatsApp</span>
+                            </a>
+
+                            <a
+                                href="https://mail.google.com/mail/?view=cm&fs=1&to=luxuryandamans@gmail.com&su=Andaman%20Trip%20Enquiry&body=Hi,%0D%0A%0D%0AI%20want%20to%20plan%20my%20Andaman%20trip.%0D%0A%0D%0APlease%20contact%20me%20with%20more%20details.%0D%0A%0D%0AThank%20you!"
+                                onClick={(e) => handleContactClick(e, 'email')}
+                                className="flex flex-row items-center justify-center gap-2 text-slate-600 hover:text-blue-600 transition-colors group"
+                            >
+                                <div className="w-9 h-9 rounded-full bg-blue-50 group-hover:bg-blue-100 flex items-center justify-center transition-colors">
+                                    <Mail className="w-4 h-4 text-blue-600" />
+                                </div>
+                                <span className="text-xs font-bold uppercase tracking-wide">Email</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+
+            {/* Get Best Package modal */}
+            <AnimatePresence>
+                {bestPackageOpen && (
+                    <motion.div
+                        className="fixed inset-0 z-[1100] flex items-end sm:items-center justify-center p-0 sm:p-4"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                     >
-                        <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                        <Phone className="w-5 h-5 animate-bounce" /> <span className="tracking-wide">Call Now</span>
-                    </a>
+                        <button
+                            type="button"
+                            aria-label="Close"
+                            className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+                            onClick={() => setBestPackageOpen(false)}
+                        />
+                        <motion.div
+                            role="dialog"
+                            aria-modal="true"
+                            aria-labelledby="best-package-title"
+                            initial={{ opacity: 0, y: 40, scale: 0.98 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 24, scale: 0.98 }}
+                            transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                            className="relative w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl border border-slate-100 overflow-hidden"
+                        >
+                            <div className="px-6 pt-5 pb-4 border-b border-slate-100 flex items-start justify-between gap-3">
+                                <div>
+                                    <p className="text-[11px] font-bold uppercase tracking-widest text-amber-600 mb-1">Quick enquiry</p>
+                                    <h3 id="best-package-title" className="text-xl font-display font-bold text-slate-900 leading-snug">
+                                        Get Best Package
+                                    </h3>
+                                    {selectedDeal && (
+                                        <p className="text-sm text-slate-500 mt-1 line-clamp-2">
+                                            {selectedDeal.pkg.title} · ₹{selectedDeal.offerPrice.toLocaleString('en-IN')}/person
+                                        </p>
+                                    )}
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={() => setBestPackageOpen(false)}
+                                    className="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 shrink-0"
+                                >
+                                    <X className="w-4 h-4" />
+                                </button>
+                            </div>
+
+                            <form onSubmit={handleBestPackageSubmit} className="p-6 space-y-4">
+                                <div>
+                                    <label htmlFor="bp-name" className="block text-xs font-bold uppercase tracking-wide text-slate-600 mb-1.5">
+                                        Name
+                                    </label>
+                                    <input
+                                        id="bp-name"
+                                        type="text"
+                                        name="name"
+                                        required
+                                        autoComplete="name"
+                                        value={bestPackageForm.name}
+                                        onChange={(e) => setBestPackageForm((prev) => ({ ...prev, name: e.target.value }))}
+                                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none text-slate-900"
+                                        placeholder="Your name"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="bp-phone" className="block text-xs font-bold uppercase tracking-wide text-slate-600 mb-1.5">
+                                        Phone number
+                                    </label>
+                                    <input
+                                        id="bp-phone"
+                                        type="tel"
+                                        name="phone"
+                                        required
+                                        autoComplete="tel"
+                                        value={bestPackageForm.phone}
+                                        onChange={(e) => setBestPackageForm((prev) => ({ ...prev, phone: e.target.value }))}
+                                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none text-slate-900"
+                                        placeholder="+91 98765 43210"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="bp-email" className="block text-xs font-bold uppercase tracking-wide text-slate-600 mb-1.5">
+                                        Email <span className="font-medium normal-case tracking-normal text-slate-400">(optional)</span>
+                                    </label>
+                                    <input
+                                        id="bp-email"
+                                        type="email"
+                                        name="email"
+                                        autoComplete="email"
+                                        value={bestPackageForm.email}
+                                        onChange={(e) => setBestPackageForm((prev) => ({ ...prev, email: e.target.value }))}
+                                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none text-slate-900"
+                                        placeholder="you@email.com"
+                                    />
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    disabled={bestPackageSubmitting}
+                                    className="w-full py-3.5 bg-slate-900 hover:bg-amber-500 text-white rounded-xl font-bold transition-colors disabled:opacity-70 flex items-center justify-center gap-2"
+                                >
+                                    {bestPackageSubmitting ? 'Sending...' : 'Submit'}
+                                    {!bestPackageSubmitting && <ArrowRight className="w-4 h-4" />}
+                                </button>
+                                <p className="text-center text-[11px] text-slate-400">
+                                    We usually reply within 10 minutes on call or WhatsApp.
+                                </p>
+                            </form>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Mobile Sticky Bottom Bar */}
+            <div className="fixed bottom-0 left-0 right-0 px-2.5 pt-1.5 pb-[max(0.4rem,env(safe-area-inset-bottom))] bg-white/95 backdrop-blur-xl border-t border-gray-100/50 z-[999] md:hidden shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+                <div className="flex gap-2">
                     <a
                         href={`https://wa.me/916297576826?text=Hi,%20I%E2%80%99m%20planning%20an%20Andaman%20trip${currentCity.name ? `%20from%20${currentCity.name}` : ''}.%20Please%20guide%20me.`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-3.5 rounded-2xl font-bold text-base shadow-lg shadow-emerald-500/30 active:scale-95 transition-all"
+                        className="flex-1 flex items-center justify-center gap-1.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-2 rounded-xl font-bold text-sm shadow-md shadow-emerald-500/20 active:scale-95 transition-all"
                     >
-                        <MessageCircle className="w-5 h-5" /> WhatsApp Quote
+                        <MessageCircle className="w-3.5 h-3.5 shrink-0" />
+                        <span>whatsapp us</span>
                     </a>
+                    <button
+                        type="button"
+                        onClick={() => openBestPackageForm(featuredDeals[0])}
+                        className="flex-1 flex items-center justify-center gap-1.5 bg-slate-900 text-white py-2 rounded-xl font-bold text-sm active:scale-95 transition-all"
+                    >
+                        <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                        <span className="tracking-wide">Send enquiry</span>
+                    </button>
                 </div>
             </div>
         </div>

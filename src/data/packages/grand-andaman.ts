@@ -62,7 +62,7 @@ export const grandAndaman: Package = {
   groupSize: '2–8',
   category: 'Family',
   nightsPlan: '1N Port Blair · 2N Havelock · 1N Neil · 3N Port Blair',
-  image: '/images/packages/grand-andaman/hero.jpg',
+  image: '/images/packages/grand-andaman/hero/hero.jpg',
   features: ['Baratang caves', 'Jolly Buoy option', 'Three islands', '4-star stays', 'Ross & North Bay'],
   includes: [
     '7 nights in 4-star hotels with GST',
@@ -80,9 +80,9 @@ export const grandAndaman: Package = {
   itinerary: itinerary8,
   itineraries: { 7: itinerary7, 8: itinerary8, 9: itinerary9 },
   highlights: [
-    { title: 'The classic long trip', description: 'Every headline island, with Havelock still held for two nights.', image: '/images/packages/grand-andaman/hero.jpg' },
-    { title: 'Baratang done right', description: 'A full cave day from Port Blair — not a rumour of a Makruzz to Havelock at noon.', image: '/images/packages/grand-andaman/hero.jpg' },
-    { title: '9-day Escape', description: 'Add Jolly Buoy and Wandoor when you have the extra night.', image: '/images/packages/grand-andaman/hero.jpg' },
+    { title: 'The classic long trip', description: 'Every headline island, with Havelock still held for two nights.', image: '/images/packages/grand-andaman/hero/hero.jpg' },
+    { title: 'Baratang done right', description: 'A full cave day from Port Blair — not a rumour of a Makruzz to Havelock at noon.', image: '/images/packages/grand-andaman/hero/hero.jpg' },
+    { title: '9-day Escape', description: 'Add Jolly Buoy and Wandoor when you have the extra night.', image: '/images/packages/grand-andaman/hero/hero.jpg' },
   ],
   terms: commonTerms,
   paymentPolicy: commonPaymentPolicy,

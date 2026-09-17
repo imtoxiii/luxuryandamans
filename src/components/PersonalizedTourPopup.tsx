@@ -43,9 +43,23 @@ const COUNTRY_DIAL_CODES = [
 const SESSION_KEY = 'hasSeenPersonalizedTourPopup';
 const MIN_PHONE_DIGITS = 7;
 const MAX_PHONE_DIGITS = 15;
+/** Countdown only starts after the site is ready + user has engaged with the hero. */
+const POPUP_DELAY_MS = 10000;
+/** Fallback: if they stay on the hero without scrolling, start countdown after this. */
+const HERO_SETTLE_MS = 2000;
+/** Scroll past this fraction of the viewport to start the countdown early. */
+const SCROLL_TRIGGER_RATIO = 0.3;
 
 const inputClass =
   'w-full rounded-lg border border-sand/70 bg-pearl/50 text-night placeholder:text-night/35 focus:bg-white focus:border-lagoon focus:ring-2 focus:ring-lagoon/20 outline-none transition-all text-[15px]';
+
+const isSiteReady = (): boolean => {
+  const skeleton = document.getElementById('loading-skeleton');
+  return !skeleton || skeleton.classList.contains('hidden');
+};
+
+const hasScrolledPastHero = (): boolean =>
+  window.scrollY >= Math.min(window.innerHeight * SCROLL_TRIGGER_RATIO, 360);
 
 /** Normalize local phone digits (strip trunk 0 / pasted country code for India). */
 const normalizePhoneDigits = (raw: string, countryCode: string): string => {
@@ -107,11 +121,75 @@ const PersonalizedTourPopup = () => {
   }, [isOpen]);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => {
-      const skeleton = document.getElementById('loading-skeleton');
-      if (skeleton && !skeleton.classList.contains('hidden')) return;
-      openPopup(false);
-    }, 5000);
+    let countdownId: number | null = null;
+    let heroSettleId: number | null = null;
+    let readyPollId: number | null = null;
+    let countdownStarted = false;
+    let readyHandled = false;
+    let siteReady = isSiteReady();
+
+    const startCountdown = () => {
+      if (countdownStarted || sessionStorage.getItem(SESSION_KEY)) return;
+      countdownStarted = true;
+
+      if (heroSettleId !== null) {
+        window.clearTimeout(heroSettleId);
+        heroSettleId = null;
+      }
+
+      countdownId = window.setTimeout(() => {
+        openPopup(false);
+      }, POPUP_DELAY_MS);
+    };
+
+    const onEngaged = () => {
+      if (!siteReady) return;
+      startCountdown();
+    };
+
+    const markSiteReady = () => {
+      siteReady = true;
+      if (readyHandled) return;
+      readyHandled = true;
+
+      // User has landed on the hero after load — settle briefly, then start countdown.
+      // If they scroll sooner, scroll handler starts it immediately instead.
+      if (hasScrolledPastHero()) {
+        onEngaged();
+      } else {
+        heroSettleId = window.setTimeout(() => {
+          onEngaged();
+        }, HERO_SETTLE_MS);
+      }
+    };
+
+    const handleScroll = () => {
+      if (!siteReady || countdownStarted) return;
+      if (hasScrolledPastHero()) onEngaged();
+    };
+
+    const handleReveal = () => {
+      markSiteReady();
+    };
+
+    // Loader already gone (e.g. soft nav / blog immediate remove)
+    if (siteReady) {
+      markSiteReady();
+    } else {
+      window.addEventListener('luxal:reveal', handleReveal);
+      // Fallback poll if reveal event was missed
+      readyPollId = window.setInterval(() => {
+        if (isSiteReady()) {
+          if (readyPollId !== null) {
+            window.clearInterval(readyPollId);
+            readyPollId = null;
+          }
+          markSiteReady();
+        }
+      }, 400);
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     const handleOpenEvent = () => {
       setHasSubmitted(false);
@@ -122,7 +200,11 @@ const PersonalizedTourPopup = () => {
     window.addEventListener('openPersonalizedTourPopup', handleOpenEvent);
 
     return () => {
-      window.clearTimeout(timer);
+      if (countdownId !== null) window.clearTimeout(countdownId);
+      if (heroSettleId !== null) window.clearTimeout(heroSettleId);
+      if (readyPollId !== null) window.clearInterval(readyPollId);
+      window.removeEventListener('luxal:reveal', handleReveal);
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('openDiscountPopup', handleOpenEvent);
       window.removeEventListener('openPersonalizedTourPopup', handleOpenEvent);
     };

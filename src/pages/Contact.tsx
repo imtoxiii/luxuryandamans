@@ -138,14 +138,16 @@ const ContactPage = () => {
             "email": "luxuryandamans@gmail.com",
             "address": {
               "@type": "PostalAddress",
+              "streetAddress": "Junglighat, Near Honda Showroom",
               "addressLocality": "Port Blair",
               "addressRegion": "Andaman and Nicobar Islands",
+              "postalCode": "744103",
               "addressCountry": "IN"
             },
             "geo": {
               "@type": "GeoCoordinates",
-              "latitude": "11.6234",
-              "longitude": "92.7265"
+              "latitude": "11.661879",
+              "longitude": "92.730446"
             },
             "openingHoursSpecification": {
               "@type": "OpeningHoursSpecification",
@@ -239,8 +241,9 @@ const ContactPage = () => {
                     <h4 className="font-semibold text-slate-900 text-lg">Office</h4>
                     <p className="text-slate-500 text-sm mb-1">Come say hello at our office headquarters.</p>
                     <p className="text-slate-700 font-medium">
-                      Andaman & Nicobar Islands<br />
-                      India - 744101
+                      Junglighat, Near Honda Showroom<br />
+                      Port Blair, Andaman & Nicobar Islands<br />
+                      India - 744103
                     </p>
                   </div>
                 </div>

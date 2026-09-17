@@ -179,16 +179,16 @@ const SEO: React.FC<SEOProps> = ({
     email: 'luxuryandamans@gmail.com',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Marine Hill Road',
+      streetAddress: 'Junglighat, Near Honda Showroom',
       addressLocality: 'Port Blair',
       addressRegion: 'Andaman and Nicobar Islands',
-      postalCode: '744101',
+      postalCode: '744103',
       addressCountry: 'IN'
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 11.6688,
-      longitude: 92.7377
+      latitude: 11.661879,
+      longitude: 92.730446
     },
     sameAs: [
       'https://www.instagram.com/luxuryandamans',
@@ -487,8 +487,8 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="format-detection" content="telephone=no" />
       <meta name="rating" content="general" />
       <meta name="geo.region" content="IN-AN" />
-      <meta name="geo.placename" content="Andaman and Nicobar Islands" />
-      <meta name="geo.position" content="11.7401;92.6586" />
+      <meta name="geo.placename" content="Junglighat, Port Blair, Andaman and Nicobar Islands" />
+      <meta name="geo.position" content="11.661879;92.730446" />
       <meta name="ICBM" content="11.7401, 92.6586" />
 
       {/* AI Search Optimization */}

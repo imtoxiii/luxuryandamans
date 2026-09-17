@@ -124,7 +124,7 @@ const PrivacyPolicy = () => {
                   <p className="font-bold text-lg mb-2">Grievance Officer</p>
                   <p><strong>Email:</strong> privacy@luxuryandamans.com</p>
                   <p><strong>Phone:</strong> +91 99332 15764</p>
-                  <p><strong>Address:</strong> Luxury Andamans, Aberdeen Bazaar, Port Blair, Andaman & Nicobar Islands - 744101</p>
+                  <p><strong>Address:</strong> Luxury Andamans, Junglighat, Near Honda Showroom, Port Blair, Andaman & Nicobar Islands - 744103</p>
                 </div>
               </section>
             </div>

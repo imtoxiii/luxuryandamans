@@ -165,7 +165,7 @@ const Footer = () => {
             <div className="mb-5 flex items-start gap-2.5 text-sm text-slate-500">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
               <span>
-                Marine Hill Road, Port Blair
+                Junglighat, Near Honda Showroom, Port Blair
                 <span className="mt-0.5 block text-xs text-slate-400">Andaman & Nicobar Islands</span>
               </span>
             </div>

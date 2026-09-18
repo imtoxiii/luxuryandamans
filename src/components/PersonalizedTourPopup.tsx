@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, User, Mail, Phone, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
 import { sendTelegramMessage, formatPersonalizedTourMessage } from '../lib/telegram';
+import { redirectToThankYou } from '../lib/formSuccess';
+import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const COUNTRY_DIAL_CODES = [
@@ -76,6 +78,7 @@ const normalizePhoneDigits = (raw: string, countryCode: string): string => {
 };
 
 const PersonalizedTourPopup = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -308,10 +311,11 @@ const PersonalizedTourPopup = () => {
       if (success) {
         toast.success('Thank you! Our experts will contact you shortly.');
         setHasSubmitted(true);
+        const submittedName = name;
         setFormData({ name: '', email: '', phone: '' });
-        window.setTimeout(() => {
-          handleClose();
-        }, 2500);
+        sessionStorage.setItem(SESSION_KEY, 'true');
+        setIsOpen(false);
+        redirectToThankYou(navigate, 'lead_popup', { name: submittedName });
       }
       // sendTelegramMessage already toasts on failure
     } catch (error) {

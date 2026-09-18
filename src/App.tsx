@@ -64,6 +64,7 @@ const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Sitemap = lazy(() => import('./pages/Sitemap'));
 const Offer = lazy(() => import('./pages/Offer'));
+const ThankYou = lazy(() => import('./pages/ThankYou'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const LuxuryResortsPage = lazy(() => import('./pages/experiences/luxury-resorts'));
@@ -90,6 +91,14 @@ function App() {
   const { transitionPhase, displayLocation } = usePageTransition();
   const location = useLocation();
   useScrollTop();
+
+  // Thank-you renders as a dismissible modal over the submitting page:
+  // the URL genuinely becomes /thank-you (fires GTM/GA pageview + Ads
+  // URL-based conversions) while the form page stays mounted underneath.
+  const modalState = (location.state || {}) as {
+    backgroundLocation?: { pathname: string; search: string; hash: string };
+  };
+  const backgroundLocation = modalState.backgroundLocation;
 
   useEffect(() => {
     // If we are not on the home page, remove the loader immediately
@@ -129,7 +138,7 @@ function App() {
   return (
     <>
       <Suspense fallback={null}>
-        <Routes location={displayLocation}>
+        <Routes location={backgroundLocation || displayLocation}>
           {Object.entries(LEGACY_REDIRECTS).map(([from, to]) => (
             <Route key={from} path={from} element={<LoggedNavigate to={to} />} />
           ))}
@@ -172,6 +181,7 @@ function App() {
           <Route path="/sitemap" element={<Sitemap />} />
           <Route path="/offer" element={<Offer />} />
           <Route path="/enquiry" element={<Enquiry />} />
+          <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/calculator" element={<PricingCalculatorPage />} />
 
           {/* Experience Detail Pages */}
@@ -200,6 +210,14 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
+      {/* Thank-you modal route — mounted over the background page.
+          Direct visits / refreshes (no backgroundLocation) render the full
+          /thank-you page through the Routes above instead. */}
+      {backgroundLocation && (
+        <Suspense fallback={null}>
+          <ThankYou />
+        </Suspense>
+      )}
       <ChatWidget />
       <ShowOfferSticker />
       {/* <DiscountPopup /> */} {/* phone-only offer popup — replaced by PersonalizedTourPopup */}

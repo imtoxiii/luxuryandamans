@@ -49,4 +49,23 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   '/blog/new-eco-resorts-andaman-2026': '/blog/andaman-luxury-resorts-2026',
   '/destinations/saddle-peak': '/destinations/ross-smith-islands',
   '/destinations/north-andaman-destinations': '/destinations/ross-smith-islands',
+  // Island guides live under /locations — these destination slugs 404'd / JS-redirected
+  '/destinations/port-blair': '/locations/port-blair',
+  '/destinations/havelock-island': '/locations/havelock-island',
+  '/destinations/neil-island': '/locations/neil-island',
+  // Wave 2 — live 404s Google can still crawl (old sitemap / guessed URLs)
+  '/about-us': '/guide',
+  '/contact-us': '/contact',
+  '/home': '/',
+  '/tours': '/packages',
+  '/tour-packages': '/packages',
+  '/andaman-tour-packages': '/packages',
+  '/honeymoon': '/blog/andaman-honeymoon-packages-2026',
+  '/family': '/blog/andaman-family-tour-packages-2026',
+  '/offers': '/offer',
+  '/booking': '/enquiry',
+  '/packages/wellness-sanctuary': '/packages',
+  '/packages/corporate-retreat': '/packages',
+  '/packages/adventure-seeker': '/packages',
+  '/destinations/DestinationDetailEnhanced': '/destinations',
 };

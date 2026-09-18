@@ -8,6 +8,8 @@ import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { staggerContainer, fadeInUp } from '../lib/animations';
 import { sendTelegramMessage, formatCalculatorMessage } from '../lib/telegram';
+import { redirectToThankYou } from '../lib/formSuccess';
+import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 
 // --- DATA CONFIGURATION ---
@@ -660,6 +662,7 @@ const PricingCalculatorPage = () => {
     } = useCalculator();
 
     const [showSuccess, setShowSuccess] = useState(false);
+    const navigate = useNavigate();
 
     const handleFormSubmit = () => {
         setShowSuccess(true);
@@ -669,6 +672,7 @@ const PricingCalculatorPage = () => {
         setTimeout(() => {
             setShowSuccess(false);
         }, 2500);
+        redirectToThankYou(navigate, 'calculator');
     };
 
     const currentTier = accommodationTiers.find(t => t.id === accommodationTier);

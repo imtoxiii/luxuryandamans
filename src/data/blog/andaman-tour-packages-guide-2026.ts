@@ -21,9 +21,9 @@ const post: BlogPost = {
     'andaman trip cost',
   ],
   relatedPosts: [
-    'best-travel-agency-andaman-2026',
-    'how-to-choose-andaman-travel-agent-2026',
-    'andaman-trip-cost-complete-breakdown-2026',
+    'andaman-honeymoon-packages-2026',
+    '4-nights-5-days-andaman-package-2026',
+    'andaman-packages-from-delhi-2026',
   ],
   content: `
 ## Packages exist because ferries are annoying to book alone

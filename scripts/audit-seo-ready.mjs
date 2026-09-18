@@ -126,6 +126,14 @@ if (!htaccess.includes('about/?$')) fail('.htaccess missing /about → /guide');
 else pass('.htaccess /about → /guide present');
 if (!htaccess.includes('ErrorDocument 404 /404.html')) fail('.htaccess should 404 via /404.html');
 else pass('.htaccess ErrorDocument 404 /404.html');
+if (!htaccess.includes('Legacy paths FIRST')) fail('.htaccess should apply legacy 301s before host canonicalization');
+else pass('.htaccess legacy 301s run before www/http');
+if (!htaccess.includes('destinations/port-blair')) fail('.htaccess missing /destinations/port-blair → /locations/port-blair');
+else pass('.htaccess /destinations/port-blair → /locations/port-blair');
+if (!htaccess.includes('https://luxuryandamans.com%1')) {
+  fail('.htaccess trailing-slash strip must use absolute HTTPS (avoid http:// Location)');
+} else pass('.htaccess trailing-slash strip uses absolute HTTPS');
+
 if (htaccess.includes('RewriteRule ^ /index.html [L]') || htaccess.includes('RewriteRule . /index.html [L]')) {
   fail('.htaccess still SPA-fallbacks unknown URLs to /index.html (soft 404s)');
 } else pass('.htaccess does not rewrite unknown URLs to homepage');
@@ -137,6 +145,8 @@ if (!redirects.includes('/*/  /:splat  301!')) fail('_redirects missing trailing
 else pass('_redirects trailing-slash strip present');
 if (!redirects.includes('/404.html')) fail('_redirects missing 404 fallback');
 else pass('_redirects unknown paths → 404.html');
+if (!redirects.includes('/destinations/port-blair')) fail('_redirects missing /destinations/port-blair');
+else pass('_redirects /destinations/port-blair present');
 
 // 6) robots.txt
 const robots = fs.readFileSync(path.join(projectRoot, 'public/robots.txt'), 'utf8');
@@ -161,6 +171,14 @@ for (const [, from, to] of legacyPairs) {
   }
 }
 if (legacyPairs.length) pass(`Legacy redirects synced (${legacyPairs.length} paths in .htaccess + _redirects)`);
+if (!htaccess.includes('about-us')) fail('.htaccess missing /about-us → /guide');
+else pass('.htaccess /about-us → /guide');
+if (!htaccess.includes('^index\\.html$') && !htaccess.includes('index\\.html')) {
+  fail('.htaccess missing /index.html → /');
+} else pass('.htaccess /index.html → homepage');
+if (!htaccess.includes('THE_REQUEST') || !htaccess.includes('index\\.html')) {
+  fail('.htaccess /index.html 301 must use THE_REQUEST (avoid DirectoryIndex loop)');
+} else pass('.htaccess /index.html 301 gated on THE_REQUEST');
 
 // 7) SEO canonical normalization present
 if (!seo.includes("replace(/\\/+$/, '')") && !seo.includes('replace(/\\/+$/')) {

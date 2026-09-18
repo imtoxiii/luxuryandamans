@@ -47,9 +47,9 @@ const post: BlogPost = {
     'andaman with children',
   ],
   relatedPosts: [
+    'andaman-family-tour-packages-2026',
     'andaman-with-parents-2026',
-    'andaman-best-time',
-    'andaman-tour-packages-guide-2026',
+    '4-nights-5-days-andaman-package-2026',
   ],
   faq: [
     {

@@ -2,6 +2,13 @@
 <html lang="en">
 
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-W29JM5GW');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
 
   <!-- Google tag (gtag.js) + Meta Pixel — stubs queue events immediately; the heavy
@@ -101,7 +108,7 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt"
     content="Beautiful Andaman Islands beach with crystal clear turquoise water and white sand - Luxury Andamans Tour Packages" />
-  <meta property="og:url" content="https://luxuryandamans.com/" />
+  <meta property="og:url" content="https://luxuryandamans.com/" data-rh="true" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Luxury Andamans" />
   <meta property="og:locale" content="en_IN" />
@@ -124,8 +131,28 @@
   <meta name="apple-mobile-web-app-title" content="Luxury Andaman" />
   <meta name="format-detection" content="telephone=no" />
 
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://luxuryandamans.com/" />
+  <!-- Canonical URL — rewritten immediately to the current path so Google never
+       sees the homepage canonical on an inner URL if prerender HTML is missed. -->
+  <link rel="canonical" href="https://luxuryandamans.com/" data-rh="true" />
+  <script>
+    (function () {
+      var origin = 'https://luxuryandamans.com';
+      var path = (window.location.pathname || '/').replace(/\/index\.html$/i, '');
+      if (path.length > 1) path = path.replace(/\/+$/, '');
+      if (!path) path = '/';
+      var url = origin + (path === '/' ? '/' : path);
+      var canon = document.querySelector('link[rel="canonical"]');
+      if (canon) {
+        canon.setAttribute('href', url);
+        canon.setAttribute('data-rh', 'true');
+      }
+      var og = document.querySelector('meta[property="og:url"]');
+      if (og) {
+        og.setAttribute('content', url);
+        og.setAttribute('data-rh', 'true');
+      }
+    })();
+  </script>
 
   <!-- Preconnect to external domains for faster resource loading -->
   <link rel="preconnect" href="https://images.pexels.com" crossorigin />
@@ -494,6 +521,10 @@
 
 
 <body class="bg-light text-dark antialiased">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W29JM5GW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <!-- Meta Pixel Code (noscript fallback) -->
   <noscript><img height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=1481700080630119&ev=PageView&noscript=1"></noscript>

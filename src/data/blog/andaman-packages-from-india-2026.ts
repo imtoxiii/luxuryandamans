@@ -22,8 +22,8 @@ const post: BlogPost = {
     'andaman tour from india',
   ],
   relatedPosts: [
-    'delhi-to-andaman-trip-plan',
-    'cheap-flights-to-andaman-2026',
+    'andaman-packages-from-delhi-2026',
+    'andaman-packages-from-mumbai-2026',
     'andaman-tour-packages-guide-2026',
   ],
   faq: [

@@ -130,8 +130,16 @@ const Destinations = () => {
             </h1>
 
             <p className="text-lg md:text-2xl text-gray-100 max-w-2xl mx-auto leading-relaxed font-light drop-shadow-md">
-              From the pristine beaches of Havelock to the historic shores of Port Blair,
-              explore the diverse beauty of the Andaman Islands.
+              From Radhanagar on{' '}
+              <Link to="/locations/havelock-island" className="text-cyan-200 underline underline-offset-4 hover:text-white">Havelock</Link>
+              {' '}to Cellular Jail in{' '}
+              <Link to="/locations/port-blair" className="text-cyan-200 underline underline-offset-4 hover:text-white">Port Blair</Link>
+              {' '}and Natural Bridge on{' '}
+              <Link to="/locations/neil-island" className="text-cyan-200 underline underline-offset-4 hover:text-white">Neil</Link>
+              . Pair islands with a{' '}
+              <Link to="/blog/4-nights-5-days-andaman-package-2026" className="text-cyan-200 underline underline-offset-4 hover:text-white">4N/5D package</Link>
+              {' '}or the{' '}
+              <Link to="/blog/andaman-honeymoon-packages-2026" className="text-cyan-200 underline underline-offset-4 hover:text-white">honeymoon price list</Link>.
             </p>
           </motion.div>
         </div>

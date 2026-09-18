@@ -21,10 +21,9 @@ const post: BlogPost = {
     'short andaman trip',
   ],
   relatedPosts: [
-    'andaman-6-days-itinerary-2026',
+    '4-nights-5-days-andaman-package-2026',
     'how-many-days-in-andaman-2026',
-    'andaman-ferry-booking-guide',
-    'first-timers-guide-andaman-2026',
+    'andaman-family-tour-packages-2026',
   ],
   faq: [
     {

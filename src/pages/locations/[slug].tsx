@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { 
   MapPin, 
   Calendar, 
@@ -12,37 +11,45 @@ import {
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
+import NotFound from '../NotFound';
 import { locations } from '../../data/locations';
 import InteractiveMap from '../../components/InteractiveMap';
 
 const LocationPage = () => {
   const { slug } = useParams();
-  const navigate = useNavigate();
   const location = locations.find(l => l.slug === slug);
 
-  useEffect(() => {
-    if (!location) {
-      navigate('/destinations', { replace: true });
-    }
-  }, [location, navigate]);
-
   if (!location) {
-    return (
-      <div className="min-h-screen bg-pearl">
-        <SEO
-          title="Location Not Found | Luxury Andamans"
-          description="This location page does not exist. Browse our Andaman destinations instead."
-          pathname={`/locations/${slug}`}
-          noindex={true}
-        />
-        <Header />
-        <div className="pt-32 pb-20 container mx-auto px-4 text-center">
-          <p className="text-night/70">Redirecting to destinations...</p>
-        </div>
-        <Footer />
-      </div>
-    );
+    return <NotFound />;
   }
+
+  const islandExtras: Record<string, { hub: string; hubLabel: string; blog: string; blogLabel: string; pack: string; packLabel: string }> = {
+    'port-blair': {
+      hub: '/destinations/port-blair-destinations',
+      hubLabel: 'Port Blair sightseeing',
+      blog: '/blog/port-blair-travel-guide-2026',
+      blogLabel: 'Port Blair travel guide',
+      pack: '/blog/andaman-packages-from-delhi-2026',
+      packLabel: 'Andaman packages from Delhi',
+    },
+    'havelock-island': {
+      hub: '/destinations/havelock-destinations',
+      hubLabel: 'Havelock beaches & dives',
+      blog: '/blog/havelock-island-travel-guide-2026',
+      blogLabel: 'Havelock Island 2026 guide',
+      pack: '/blog/andaman-honeymoon-packages-2026',
+      packLabel: 'Honeymoon packages',
+    },
+    'neil-island': {
+      hub: '/destinations/neil-destinations',
+      hubLabel: 'Neil Island sights',
+      blog: '/blog/neil-island-travel-guide-2026',
+      blogLabel: 'Neil Island 2026 guide',
+      pack: '/blog/4-nights-5-days-andaman-package-2026',
+      packLabel: '4N/5D Andaman package',
+    },
+  };
+  const extras = islandExtras[location.slug];
 
   return (
     <div className="min-h-screen bg-pearl">
@@ -52,6 +59,20 @@ const LocationPage = () => {
         pathname={`/locations/${location.slug}`}
         image={location.image}
         keywords={`${location.name.toLowerCase()}, ${location.name.toLowerCase()} andaman, ${location.name.toLowerCase()} travel guide, things to do in ${location.name.toLowerCase()}, ${location.slug.replace(/-/g, ' ')}, andaman islands, andaman tour packages`}
+        faqData={[
+          {
+            question: `How many nights should I stay in ${location.name}?`,
+            answer: location.slug === 'havelock-island'
+              ? 'Two nights is the minimum that feels like a holiday. Three if you want scuba plus a slow Radhanagar sunset.'
+              : location.slug === 'neil-island'
+                ? 'One night is enough for Natural Bridge and Bharatpur. Two nights if you want a slow cycle day. Skip Neil entirely on a 4N/5D trip.'
+                : 'One night on arrival and optionally one before the flight. Most sightseeing (Cellular Jail, Ross, North Bay) is day-trip from Port Blair.',
+          },
+          {
+            question: `Do I need a separate permit for ${location.name}?`,
+            answer: 'Indian citizens need photo ID only. Foreign visitors need a valid Indian visa and passport for standard tourist islands. Restricted tribal areas are not on this itinerary.',
+          },
+        ]}
       />
       <Header />
       
@@ -79,7 +100,7 @@ const LocationPage = () => {
                 Back to Destinations
               </Link>
               <h1 className="text-5xl md:text-6xl font-bold text-pearl mb-4">
-                {location.name}
+                {location.name} Travel Guide 2026
               </h1>
               <p className="text-xl text-pearl/90 mb-8">
                 {location.tagline}
@@ -124,6 +145,16 @@ const LocationPage = () => {
                   Explore Activities
                 </Link>
               </div>
+              {extras && (
+                <p className="mt-6 text-night/70">
+                  Also see the{' '}
+                  <Link to={extras.hub} className="text-azure font-semibold hover:underline">{extras.hubLabel}</Link>
+                  {', '}
+                  <Link to={extras.blog} className="text-azure font-semibold hover:underline">{extras.blogLabel}</Link>
+                  {', and '}
+                  <Link to={extras.pack} className="text-azure font-semibold hover:underline">{extras.packLabel}</Link>.
+                </p>
+              )}
             </motion.div>
           </div>
         </div>

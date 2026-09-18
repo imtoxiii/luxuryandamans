@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { Send, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { sendTelegramMessage } from '../lib/telegram';
+import { redirectToThankYou } from '../lib/formSuccess';
+import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const Newsletter = () => {
+  const navigate = useNavigate();
   const [phone, setPhone] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +32,7 @@ const Newsletter = () => {
         setPhone('');
         toast.success('Successfully subscribed!');
         setTimeout(() => setIsSubmitted(false), 3000);
+        redirectToThankYou(navigate, 'newsletter');
       } else {
         toast.error('Failed to subscribe. Please try again.');
       }

@@ -109,6 +109,11 @@ import evisaAndaman2026 from './india-evisa-andaman-trip-2026';
 import moneyForeigners2026 from './andaman-money-atm-cards-foreigners-2026';
 import esimForeigners2026 from './andaman-esim-sim-foreign-tourists-2026';
 import worthVisiting2026 from './is-andaman-worth-visiting-2026';
+import honeymoonPackages2026 from './andaman-honeymoon-packages-2026';
+import familyTourPackages2026 from './andaman-family-tour-packages-2026';
+import packagesFromDelhi2026 from './andaman-packages-from-delhi-2026';
+import packagesFromMumbai2026 from './andaman-packages-from-mumbai-2026';
+import fourNightsFiveDaysPackage2026 from './4-nights-5-days-andaman-package-2026';
 import { applyBlogSeoOverrides } from './blogSeoConfig';
 
 const newPosts: BlogPost[] = [
@@ -132,6 +137,11 @@ const newPosts: BlogPost[] = [
   moneyForeigners2026,
   esimForeigners2026,
   worthVisiting2026,
+  honeymoonPackages2026,
+  familyTourPackages2026,
+  packagesFromDelhi2026,
+  packagesFromMumbai2026,
+  fourNightsFiveDaysPackage2026,
   howManyDays2026,
   sixDayItinerary2026,
   februaryMarch2026,

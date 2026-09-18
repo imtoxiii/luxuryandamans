@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, CheckCircle, ArrowRight, Sparkles, MapPin, Clock, User, Calendar, Users, ShieldCheck, Star } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { sendTelegramMessage, formatBookingMessage } from '../lib/telegram';
+import { redirectToThankYou } from '../lib/formSuccess';
 import toast, { Toaster } from 'react-hot-toast';
 import Header from './Header';
 import Footer from './Footer';
@@ -36,6 +37,7 @@ const Enquiry = () => {
   const [isSuccess, setIsSuccess] = useState(false);
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Check for booking details from package pages
@@ -122,7 +124,7 @@ const Enquiry = () => {
       if (success) {
         setIsSuccess(true);
         toast.success('Enquiry submitted successfully!');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        redirectToThankYou(navigate, 'enquiry_page', { name: formData.name.trim() });
       }
     } catch (error) {
       console.error('Enquiry form error:', error);

@@ -8,6 +8,14 @@ export const usePageTransition = () => {
   const currentLocation = useLocation();
   
   useEffect(() => {
+    // Thank-you renders as a modal over the current page (and closing it
+    // navigates back) — keep the page mounted, no curtain transition.
+    const navState = (currentLocation.state || {}) as {
+      backgroundLocation?: unknown;
+      modalClose?: boolean;
+    };
+    if (navState.backgroundLocation || navState.modalClose) return;
+
     // If location changed, start transition
     if (currentLocation.pathname !== displayLocation.pathname) {
       setIsTransitioning(true);

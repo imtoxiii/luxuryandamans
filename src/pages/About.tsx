@@ -161,9 +161,9 @@ const GuidePage = () => {
             </div>
 
             <h1 className="flex flex-col items-center text-white mb-6">
-              <span className="font-serif italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-2 opacity-90">How to Reach</span>
+              <span className="font-serif italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-2 opacity-90">Andaman Logistics</span>
               <span className="font-display font-black text-5xl sm:text-6xl md:text-7xl lg:text-8xl uppercase tracking-tighter leading-[0.85] text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/70 drop-shadow-2xl">
-                Andaman
+                Flights, Ferries & Permits
               </span>
             </h1>
 

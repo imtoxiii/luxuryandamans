@@ -61,9 +61,9 @@ const post: BlogPost = {
     'romantic andaman itinerary',
   ],
   relatedPosts: [
+    'andaman-honeymoon-packages-2026',
     'andaman-honeymoon-itinerary-2026',
-    'andaman-vs-goa-2026',
-    'best-travel-agency-andaman-2026',
+    '4-nights-5-days-andaman-package-2026',
   ],
   faq: [
     {

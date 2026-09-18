@@ -181,8 +181,8 @@ const TravelGuide = () => {
               Itinerary Planning · 2026
             </span>
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold text-white mb-6 leading-tight drop-shadow-lg">
-              Plan Your <br className="hidden sm:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-azure to-teal-200">Island Days</span>
+              Andaman Itinerary Guide
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-azure to-teal-200">Days, Islands & Combos</span>
             </h1>
             <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto font-light leading-relaxed mb-10">
               How many days, which islands, and which combos work — so your trip feels full without feeling rushed.

@@ -1,4 +1,5 @@
 import { useMemo, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Award, ChevronDown, Filter, Users, Search } from 'lucide-react';
 
@@ -137,12 +138,20 @@ const PackagesPage = () => {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight drop-shadow-lg font-display">
-              Andaman Tour Packages <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200">For Every Traveler</span>
+              Andaman Tour Packages 2026
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-cyan-200">Prices, 4N–7N Plans & Booking</span>
             </h1>
 
             <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed font-light">
-              Explore our handpicked collection of luxury packages designed for unforgettable memories in the Andaman Islands.
+              Land-only itineraries with named hotels and ferries. Compare{' '}
+              <Link to="/blog/andaman-honeymoon-packages-2026" className="text-cyan-200 underline underline-offset-4 hover:text-white">honeymoon packages</Link>,{' '}
+              <Link to="/blog/andaman-family-tour-packages-2026" className="text-cyan-200 underline underline-offset-4 hover:text-white">family packages</Link>, and the{' '}
+              <Link to="/blog/4-nights-5-days-andaman-package-2026" className="text-cyan-200 underline underline-offset-4 hover:text-white">4N/5D plan</Link>
+              {' '}before you pay. Delhi and Mumbai flight math is on the{' '}
+              <Link to="/blog/andaman-packages-from-delhi-2026" className="text-cyan-200 underline underline-offset-4 hover:text-white">Delhi</Link>
+              {' '}and{' '}
+              <Link to="/blog/andaman-packages-from-mumbai-2026" className="text-cyan-200 underline underline-offset-4 hover:text-white">Mumbai</Link>
+              {' '}package guides.
             </p>
           </motion.div>
         </div>

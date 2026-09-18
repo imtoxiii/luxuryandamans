@@ -1,10 +1,11 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { Calendar, User, Clock, Tag, ArrowLeft, Share2, BookOpen, ChevronRight, HelpCircle } from 'lucide-react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
+import NotFound from '../NotFound';
 import { blogPosts } from '../../data/blog';
 import { relatedPostAliases } from '../../data/blog/blogSeoConfig';
 import ReactMarkdown from 'react-markdown';
@@ -60,7 +61,6 @@ const dedent = (str: string | undefined): string => {
 const BlogPost = () => {
   const { slug } = useParams();
   const location = useLocation();
-  const navigate = useNavigate();
   const post = blogPosts.find(p => p.slug === slug);
   const [activeSection, setActiveSection] = useState('');
   const [tableOfContents, setTableOfContents] = useState<Array<{ id: string, title: string, level: number }>>([]);
@@ -71,14 +71,6 @@ const BlogPost = () => {
   const nextPost = currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null;
 
   const processedContent = useMemo(() => dedent(post?.content), [post]);
-
-  // Redirect invalid blog slugs to /blog to avoid Soft 404s in Google
-  useEffect(() => {
-    if (!post) {
-      navigate('/blog', { replace: true });
-      return;
-    }
-  }, [post, navigate, location.pathname]);
 
   useEffect(() => {
     if (processedContent) {
@@ -110,21 +102,7 @@ const BlogPost = () => {
   }, [processedContent]);
 
   if (!post) {
-    return (
-      <>
-        <SEO
-          title="Redirecting to Blog"
-          description=""
-          pathname={`/blog/${slug}`}
-          noindex={true}
-        />
-        <div className="min-h-screen bg-pearl flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-night mb-4">Redirecting to Blog...</h1>
-          </div>
-        </div>
-      </>
-    );
+    return <NotFound />;
   }
 
   const relatedPosts = (post.relatedPosts || [])

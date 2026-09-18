@@ -7,15 +7,7 @@ DirectorySlash Off
   RewriteEngine On
   RewriteBase /
 
-  # --- Canonical host: HTTPS + non-www (must be first) ---
-  RewriteCond %{HTTP_HOST} ^www\.luxuryandamans\.com$ [NC]
-  RewriteRule ^ https://luxuryandamans.com%{REQUEST_URI} [L,R=301]
-
-  RewriteCond %{HTTPS} !=on
-  RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
-  RewriteRule ^ https://luxuryandamans.com%{REQUEST_URI} [L,R=301]
-
-  # --- Legacy path redirects (HTTP 301, absolute HTTPS — avoid http:// Location) ---
+  # --- Legacy paths FIRST (absolute HTTPS apex) so www/http/slash is one hop ---
   RewriteRule ^about/?$ https://luxuryandamans.com/guide [L,R=301]
   RewriteRule ^experiences/luxury-beach-resorts/?$ https://luxuryandamans.com/experiences/luxury-resorts [L,R=301]
   RewriteRule ^blog/undefined/?$ https://luxuryandamans.com/blog [L,R=301]
@@ -61,10 +53,49 @@ DirectorySlash Off
   RewriteRule ^blog/new-eco-resorts-andaman-2026/?$ https://luxuryandamans.com/blog/andaman-luxury-resorts-2026 [L,R=301]
   RewriteRule ^destinations/saddle-peak/?$ https://luxuryandamans.com/destinations/ross-smith-islands [L,R=301]
   RewriteRule ^destinations/north-andaman-destinations/?$ https://luxuryandamans.com/destinations/ross-smith-islands [L,R=301]
+  RewriteRule ^destinations/port-blair/?$ https://luxuryandamans.com/locations/port-blair [L,R=301]
+  RewriteRule ^destinations/havelock-island/?$ https://luxuryandamans.com/locations/havelock-island [L,R=301]
+  RewriteRule ^destinations/neil-island/?$ https://luxuryandamans.com/locations/neil-island [L,R=301]
+  RewriteRule ^about-us/?$ https://luxuryandamans.com/guide [L,R=301]
+  RewriteRule ^contact-us/?$ https://luxuryandamans.com/contact [L,R=301]
+  RewriteRule ^home/?$ https://luxuryandamans.com/ [L,R=301]
+  RewriteRule ^tours/?$ https://luxuryandamans.com/packages [L,R=301]
+  RewriteRule ^tour-packages/?$ https://luxuryandamans.com/packages [L,R=301]
+  RewriteRule ^andaman-tour-packages/?$ https://luxuryandamans.com/packages [L,R=301]
+  RewriteRule ^honeymoon/?$ https://luxuryandamans.com/blog/andaman-honeymoon-packages-2026 [L,R=301]
+  RewriteRule ^family/?$ https://luxuryandamans.com/blog/andaman-family-tour-packages-2026 [L,R=301]
+  RewriteRule ^offers/?$ https://luxuryandamans.com/offer [L,R=301]
+  RewriteRule ^booking/?$ https://luxuryandamans.com/enquiry [L,R=301]
+  RewriteRule ^packages/wellness-sanctuary/?$ https://luxuryandamans.com/packages [L,R=301]
+  RewriteRule ^packages/corporate-retreat/?$ https://luxuryandamans.com/packages [L,R=301]
+  RewriteRule ^packages/adventure-seeker/?$ https://luxuryandamans.com/packages [L,R=301]
+  RewriteRule ^destinations/DestinationDetailEnhanced/?$ https://luxuryandamans.com/destinations [L,R=301,NC]
+  # Only when the client asked for index.html — not DirectoryIndex or prerender rewrites
+  RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+  RewriteRule ^index\.html$ https://luxuryandamans.com/ [L,R=301]
+  RewriteCond %{THE_REQUEST} \s/+(.+)/index\.html[\s?] [NC]
+  RewriteRule ^(.+)/index\.html$ https://luxuryandamans.com/$1 [L,R=301]
 
-  # --- Strip trailing slash (except root) — matches sitemap + canonicals ---
+  # --- Canonical host + HTTPS + strip trailing slash in one hop ---
+  RewriteCond %{HTTP_HOST} ^www\.luxuryandamans\.com$ [NC]
   RewriteCond %{REQUEST_URI} ^(.+)/$
-  RewriteRule ^ %1 [L,R=301]
+  RewriteRule ^ https://luxuryandamans.com%1 [L,R=301]
+
+  RewriteCond %{HTTP_HOST} ^www\.luxuryandamans\.com$ [NC]
+  RewriteRule ^ https://luxuryandamans.com%{REQUEST_URI} [L,R=301]
+
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+  RewriteCond %{REQUEST_URI} ^(.+)/$
+  RewriteRule ^ https://luxuryandamans.com%1 [L,R=301]
+
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+  RewriteRule ^ https://luxuryandamans.com%{REQUEST_URI} [L,R=301]
+
+  # --- HTTPS apex leftover trailing slash (except root) ---
+  RewriteCond %{REQUEST_URI} ^(.+)/$
+  RewriteRule ^ https://luxuryandamans.com%1 [L,R=301]
 
   # --- Prerendered directories: serve index.html without redirect ---
   RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}/index.html -f

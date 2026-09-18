@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, Send, MessageCircle, User, AtSign, CheckCircle, Loader2, Sparkles } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { sendTelegramMessage, formatContactMessage } from '../lib/telegram';
+import { redirectToThankYou } from '../lib/formSuccess';
 import toast, { Toaster } from 'react-hot-toast';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -10,6 +11,7 @@ import SEO from '../components/SEO';
 
 const ContactPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -58,6 +60,7 @@ const ContactPage = () => {
       if (success) {
         setIsSuccess(true);
         toast.success('✅ Thank you! Your message has been sent successfully.');
+        redirectToThankYou(navigate, 'contact_page', { name: formData.name.trim() });
         setTimeout(() => {
           setFormData({
             name: '',

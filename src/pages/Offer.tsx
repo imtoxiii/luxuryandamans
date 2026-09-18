@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Phone, MessageCircle, Star, ArrowRight, Shield, Users, Sparkles, Calendar, Mail, Copy, X, Check } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { redirectToThankYou } from '../lib/formSuccess';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
@@ -59,6 +60,7 @@ const heroFade = {
 
 const Offer = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -234,8 +236,10 @@ const Offer = () => {
             if (ok) {
                 toast.success('Got it! We will share the best package shortly.');
                 setBestPackageOpen(false);
+                const submittedName = bestPackageForm.name.trim();
                 setBestPackageForm({ name: '', phone: '', email: '' });
                 setSelectedDeal(null);
+                redirectToThankYou(navigate, 'offer_best_package', { name: submittedName });
             }
         } catch (error) {
             console.error('Error sending best package enquiry:', error);
@@ -258,7 +262,9 @@ const Offer = () => {
 
             await sendTelegramMessage(message);
             toast.success('Enquiry sent! We will call you within 10 mins.');
+            const submittedName = formData.name.trim();
             setFormData({ name: '', phone: '', email: '', duration: '5', message: '' });
+            redirectToThankYou(navigate, 'offer_quick_enquiry', { name: submittedName });
         } catch (error) {
             console.error('Error sending message:', error);
             toast.error('Failed to send enquiry. Please try again.');

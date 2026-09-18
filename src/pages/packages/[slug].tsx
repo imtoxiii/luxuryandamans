@@ -22,6 +22,7 @@ import {
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import SEO from '../../components/SEO';
+import NotFound from '../NotFound';
 import SmartImage from '../../components/SmartImage';
 import { packages, Package } from '../../data/packages';
 import { filterExistingImages, getHeroImages, getDestinationCardImage, getDestinationImagesForHighlight } from '../../lib/imageLoader';
@@ -168,14 +169,6 @@ const PackageDetailPage: React.FC = () => {
     document.body.style.overflow = 'unset';
   };
 
-  // Redirect invalid package slugs to /packages to avoid Soft 404s in Google
-  // Must be before any conditional returns to comply with React hooks rules
-  useEffect(() => {
-    if (!isLoading && !currentPackage) {
-      navigate('/packages', { replace: true });
-    }
-  }, [isLoading, currentPackage, navigate]);
-
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -185,19 +178,7 @@ const PackageDetailPage: React.FC = () => {
   }
 
   if (!currentPackage) {
-    return (
-      <>
-        <SEO
-          title="Redirecting to Packages"
-          description=""
-          pathname={`/packages/${slug}`}
-          noindex={true}
-        />
-        <div className="min-h-screen flex flex-col items-center justify-center">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Redirecting to Packages...</h2>
-        </div>
-      </>
-    );
+    return <NotFound />;
   }
 
   const seoTags = currentPackage ? generatePackageMetaTags(currentPackage) : undefined;

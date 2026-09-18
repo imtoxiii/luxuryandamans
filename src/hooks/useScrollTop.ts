@@ -5,6 +5,14 @@ export const useScrollTop = () => {
   const location = useLocation();
 
   useEffect(() => {
+    // Thank-you modal overlays the current page — don't yank the background
+    // page's scroll position when it opens or closes.
+    const navState = (location.state || {}) as {
+      backgroundLocation?: unknown;
+      modalClose?: boolean;
+    };
+    if (navState.backgroundLocation || navState.modalClose) return;
+
     // Scroll to top immediately and also after a short delay to ensure page transition
     window.scrollTo(0, 0);
     

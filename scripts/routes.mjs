@@ -202,6 +202,8 @@ export function getThinNoindexBlogSlugs() {
  */
 export function getPrerenderRoutes() {
   const routes = new Set(getAllRoutes());
+  // Distinct conversion page after successful form submissions (noindex, not in sitemap)
+  routes.add('/thank-you');
   getThinNoindexBlogSlugs().forEach((slug) => {
     routes.add(`/blog/${slug}`);
   });

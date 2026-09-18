@@ -38,7 +38,7 @@ const post: BlogPost = {
     'andaman trip cost'
   ],
   relatedPosts: [
-    'andaman-packages-from-india-2026',
+    'andaman-packages-from-delhi-2026',
     'andaman-itinerary-7-days',
     'cheap-flights-to-andaman-2026'
   ],

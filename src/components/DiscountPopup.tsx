@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Phone, ArrowRight } from 'lucide-react';
 import { sendTelegramMessage } from '../lib/telegram';
+import { redirectToThankYou } from '../lib/formSuccess';
+import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 /**
@@ -10,6 +12,7 @@ import toast from 'react-hot-toast';
  * Kept for reference; do not mount in App.tsx.
  */
 const DiscountPopup = () => {
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
     const [phone, setPhone] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -71,9 +74,8 @@ const DiscountPopup = () => {
             await sendTelegramMessage(`🎁 *Discount Popup Claim (Auto-Show)*\n\nPhone: ${phone}\nOffer: General Site Offer`);
             toast.success('Offer claimed! We will contact you shortly.');
             setHasSubmitted(true);
-            setTimeout(() => {
-                handleClose();
-            }, 3000);
+            setIsOpen(false);
+            redirectToThankYou(navigate, 'discount_popup');
         } catch (error) {
             console.error('Failed to send discount claim', error);
             toast.error('Something went wrong. Please try again.');
